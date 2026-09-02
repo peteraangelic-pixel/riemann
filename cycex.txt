@@ -1,0 +1,275 @@
+Extremal graphs for some problems on cycles in
+graphs
+Klas Markstr¨ om
+Abstract. This paper contain a collection of extremal graphs for
+some questions on cycles in graphs. The graphs have been found b y
+exhaustive computer search.
+I list the extremal graphs and values for the maximum and
+minum numer of cycles in a graph, graphs without cycles of lengt h 4
+and 8 relating to a conjecture of Erd¨ os and Gyarfas and the smallest
+3-connected non-hamiltonian cubic graphs of class I.
+1. Introduction
+Many basic questions regarding the cycle structure of graph s in general,
+and cubic graphs in particular, are very poorly understood. In the literat-
+ure we ﬁnd unsolved problems of all degree of sophistication, from the cycle
+double cover conjecture to the hamiltonicity of various cla sses of graphs.
+In this paper I list extremal graphs and values for some graph properties
+related to cycles in graphs which I have happend to be working on during
+the last few years. Next to more traditional pen and paper wor k I have
+done some computational work which has been collected in thi s note.
+The four diﬀerent problems treated are brieﬂy: the maximum n umber
+of cycles, the minimum number of cycles, the existence of cyc les of length
+a power of 2, and ﬁnding nonhamiltonian 3-connected, 3-edge colourable
+cubic graphs.
+2. Graphs with many cycles
+In [ES81] Entringer and Slater studied graphs with the maximum possible
+number of cycles among all graphs on n vertices and m edges. More
+speciﬁcally they deﬁnedψ(G) to be the number of cycles in the graph G
+and ψ(k) as the maximum number of cycles in a graph with n +k −1
+edges. Furthermore they showed that given any value of k there is a cubic
+graphG on 2(k −1) vertices such that ψ(G) = ψ(k), i.e. there is always a
+reasonably small extremal graph for a given k.
+Since k is the dimension of the cycle space of a graph on n +k −1
+edges we ﬁnd that ψ(k) < 2k. Entringer and Slater proved that ψ(k) ≥
+1
+2k−1 +k2 −3k + 3 by calculating the number of cycles in the M¨ obius
+wheels. Using an exhaustive computer search they found the v alue of ψ(k)
+for k ≤8 and based on these values conjectured that ψ(k) ∼2k−1.
+I have extended the computer search for cubic graphs on 2(k−1) vertices
+for which ψ(G) = ψ(k). I have found the extremal graphs for k ≤11. For
+12 ≤k ≤ 22 I have computed lower bounds for ψ(k) by narrowing our
+search to graphs with high girth. The results are given in Tab le 1.
+In [ES81] it was conjectured that all cubic graphs which are ex tremal
+forψwould have as large girth as is possible for a cubic graph on 2( k −1).
+This conjecture was disproved in [Gui96], however it still s eems to be true
+that the extremal graphs tend to have a girth which is close to the largest
+possible one. Thus it is not unreasonable to expect the lower bounds for
+ψ(k) given here to actually be the value of ψ(k).
+The generalised Petersen graph GP( n,m ), n ≥ 3, 1 ≤m < n/2, is a
+cubic graph with vertex-set {ui;i ∈Zn} ∪ {vi;i ∈Zn}, and edge-set
+{uiui+1,u ivi,v ivi+m;i ∈Zn}.
+Fork = 6 we have seen that GP (6 −1, 2), the ordinary Petersen graph,
+is extremal with respect to ψ(G), likewise for k = 5 the graph GP (5 −
+1, 2), the cube, is extremal. Motivated by these to initial coin cidences we
+computed the number of cycles in all small generalised Peter sen graphs
+and found that for suitable m they come very close indeed to the extremal
+value of ψ(n −1), see Table 2. We thus make the following conjecture.
+Conjecture 2.1. Letp(k) = max mψ(GP (k −1,m )).
+(1) p(k) = 2 k−1 +f (k), where f (k) is a function not bounded by any
+polynomial.
+(2) ψ(k) −2k−1 = O(p(k) −2k−1).
+From our data for small k one ﬁnd a decent ﬁt with f (k) = O(kln k).
+However there is little else in support for a sharper conject ure.
+That p(k) is greater than 2 k−1 is immediate since GP (k −1, 1) is the
+family of ordinary cyclic ladders and for these we have that
+ψ(GP (k −1, 2)) ≥2k−1 + (k −1)(k −2) + 2.
+2
+k ψ(k) ψ(k)/ 2k−1 girth Extremal graphs
+3 7 1.75 3/3 K4, 3-cage
+4 15 1.875 3/4 K3, 3, 4-cage
+5 29 1.813 3/4 The M¨ obius ladder.
+6 57 1.7813 3/5 The Petersen graph, 5-cage
+7 109 1.703 3/5 Figure 1
+8 213 1.664 3/6 The Heawood graph, 6-cage
+9 401 1.566 3/5 Figure 2
+10 783 1.529 3/6 Figure 2
+11 1484 1.449 3/5,6 Figure 3
+12 2876 1.404 3/6 Figure 4
+13 ≥ 5608 ≥1.369 6/7 The McGee graph, 7-cage
+14 ≥ 10872 ≥1.327 7/7 Figure 4
+15 ≥ 21192 ≥1.293 7/7 The Coxeter graph, snark
+16 ≥ 41400 ≥1.263 7/8 The Tutte-Coxeter graph, 8-cage
+17 ≥ 80211 ≥1.223 7/7 Figure 5
+18 ≥ 157134 ≥1.198 8/8 Figure 5
+19 ≥ 306373 ≥1.168 8/8 Figure 6
+20 ≥ 600054 ≥1.144 8/8 Figure 6
+21 ≥ 1182592 ≥1.127 8/8 Figure 7
+22 ≥ 2324532 ≥1.108 8/8 Figure 7
+Table 1. Values and bounds for ψ(k). In the column
+labelled girt the ﬁrst value is the minimum girth of the
+graphs searched to give our bound and after the slash
+mark we list the girths of the extremal graphs found.
+Figure 1. Graphs maximising ψ(G) for k = 12.
+3
+k ψ(k) p(k)
+4 15 14
+5 29 28
+6 57 57
+7 109 94
+8 213 205
+9 401 400
+10 783 704
+11 1484 1456
+12 2876 2818
+13 ≥ 5608 5442
+14 ≥ 10872 10818
+15 ≥ 21192 19767
+16 ≥ 41400 40099
+17 ≥ 80211 72656
+Table 2. Values ofp(k) for k ≤17 compared to our best
+lower bounds for ψ(k)
+Figure 2. Graphs maximising ψ(G) for k = 16, 18.
+Figure 3. Graphs maximising ψ(G) for k = 20.
+4
+Figure 4. Graphs giving our value and lower bound for
+ψ(k) for k = 22, 26.
+Figure 5. Graphs giving our lower bound for ψ(k) for
+k = 32, 34.
+Figure 6. Graphs giving our lower bound for ψ(k) for
+k = 36, 38.
+5
+Figure 7. Graphs giving our lower bound for ψ(k) for
+k = 40, 42.
+6
+3. Graphs with few cycles
+In [BCE86] Barefoot Clark and Entringer studied what is more or less to
+opposite question of the previous section, namely how many c ycles a graph
+onn at least must have. Since trees by deﬁnition do not have any cy cles we
+must restrict our graph in order to get a meaningful question . Barefoot et
+al deﬁnedfk(n) as the smallest number of cycles in any k-connected cubic
+graph on n vertices.
+Barefoot et al determined the exact value of f1(n) and found the family
+of extremal graphs satisfying this bound, f1 turns out to be linear in n.
+They also found the value f2(n), which is quadratic in n, an found the
+corresponding extremal graphs.
+Fork = 3 fk(n) has not yet been determined. In [BCE86] it was shown
+thatf3(n) is bounded from above by n2nc
+,c = log 8
+log 9 , and it was conjectured
+that f3(n) is larger than any polynomial. This conjecture was proved b y
+Aldred and Thomassen [AT97] who showed that 2 n0. 17
+< f3(n) for large
+n. These bounds are to this date the best found for f3(n).
+Obviously no family of extremal graphs for f3(n) has been found, but in
+[BCE86] the extremal graphs for n ≤14 was found by comparing a simple
+family of planar graphs with values of ψ(G) from a computer generated
+table. The family Gn mentioned is constructed as follows. Let Gn = {K4}.
+A graph G2 ∈ Gn+1 is constructed from a graph G1 in Gn by expanding a
+vertex v, contained in as few cycles of G1 as possible, into a triangle. It
+was also noted without proof that if G ∈ Gn thenψ(G) = Fn/ 2+5 −n/ 2+4,
+where Fn is the nth Fibonacci number.
+We have veriﬁed and extended the search for extremal graphs f orf3(n)
+to all n ≤ 20 and we found that all the extremal graphs thus far belong
+to Gn. As noted in [BCE86] this can not continue to hold for all n, the
+Fibonacci number grow exponentially, and an interesting ch allenge is thus
+to ﬁnd the smallestn for such that f3(n)<F n/ 2+5 −n/ 2 + 4.
+The extremal graphs for n ≤20 are displayed in Figures 8 to 13.
+7
+Figure 8. Graphs minimising ψ(G) for n = 8, 10.
+Figure 9. Graphs minimising ψ(G) for n = 12.
+Figure 10. Graphs minimising ψ(G) for n = 14.
+8
+Figure 11. Graphs minimising ψ(G) for n = 16.
+Figure 12. Graphs minimising ψ(G) for n = 18.
+9
+Figure 13. Graphs minimising ψ(G) for n = 20.
+10
+n
+24 4
+26 23
+28 251
+Table 3. The number of cubic graphs with no C4 and C8.
+4. Graphs with few cycles of length 2k
+In 1995 Erd¨ os and Gyarfas made the following conjecture.
+Conjecture 4.1. Every graph with minimum degree at least 3 contains a
+cycle whose length is a power of 2.
+Erd¨ os oﬀered $100 for a proof and $50 for a counterexample. Apart from
+Shauger’s results on claw-free graphs [Sha98, DS01] there seems to be very
+little published on this conjecture.
+Assume that G is a, edge and vertex, minimal counterexample to this
+conjecture and that u and v are two vertices of G. If d(u) ≥ 3 and
+d(v) ≥ 3 then {u,v }can not be an edge; if it was then G \ {u,v }would
+be a counterexample with fewer edges than G. Thus a counterexample
+must consist of an independent set V1 of vertices of degree at least 4, and
+a nonempty set V2 =V \ V1 of vertices of degree 3.
+Using this observation Gordon Royle [Roy] used a modiﬁed ver sion
+of Brendan McKay’s graph generator makeg [McK] to generate graphs
+without C4’s and the described degree structure. Royle generated all r el-
+evant graphs on less than 16 vertices and found no counterexa mples.
+In order to extend this search further we choose to look at gra phs with
+V1 = ∅, i.e cubic graphs. We used Gunnar Brinkman’s cubic graph gen er-
+ator minibaum [Bri96] to generate all cubic graphs on less th an 29 vertices
+and a simple fortran program to check for the existence of cyc les of length
+4,8 and 16. No counterexamples to the conjecture was found. H owever on
+24 vertices we found the smallest cubic graphs without cycle s of lengths 4
+and 8. These graphs are displayed in Fig. 14. We note that the l ower right
+of the four graphs can be constructed from K4 be repeatedly expanding
+vertices into triangles, it is also the only planar graph amo ng the four.
+In Table 3 we display the number of cubic graphs on n vertices having
+no cycles of length 4 or 8. From the distribution of short cycl es in random
+cubic graphs, see e.g. the nice survey in [Wor99], we ﬁnd that for these
+smalln the number of graphs without any cycles of length 4 and 8 is muc h
+larger than the asymptotic proportion of such graphs among t he cubic
+graphs.
+11
+Figure 14. The cubic graphs on 24 which contains
+neither a C4 nor a C8
+12
+5. Nonhamiltonian cubic graphs of class I
+The hamiltonicity of cubic graphs is a well investigated pro perty. It is
+of course easy to construct a nonhamiltonian 1-connected cu bic graphs
+and it is only slightly harder to ﬁnd a 2-connected nonhamilt onian graph.
+Among the 3-connected cubic graphs the smallest nonahmilto nian graph
+is the well known Petersen-graph, and from it there is a numbe r of ways
+to construct families of larger nonhamiltonian graphs. Gra phs constructed
+in this way are typically of class II, i.e. they are not 3-edge -colourable.
+Among cubic graphs of class I the planar graphs have received a lot of
+attention, ﬁrst in connection with the 4-colour theorem. Th e ﬁrst non-
+hamiltonian example was found by Tutte in [Tut46]. Later on s everal
+examples of non-hamiltonian cubic graphs on 38 vertices wer e found by
+Lederberg, Barnette, and Bosk. Holton and McKay proved that all 3-
+connected planar cubic graphs on at most 36 vertices are hami ltonian,
+thus proving the minimality of the examples on 38 vertices.
+Here we have searched for 3-connected, non-planar, non-ham iltonian,
+cubic graphs of class I. We used a fortran program to sieve for non-
+hamiltonian graphs among all cubic graphs on n vertices and among those
+we used Mathematica to check wether the found graphs were cla ss I and
+3-connected. The cubic graphs were generated using minibau m [Bri96].
+All triangle free cubic graphs on at most 22 vertices were tes ted, the re-
+striction to triangle free graphs coming from the fact that i f we contract
+a triangle in a cubic graph we preserve both the chromatic ind ex and the
+hamiltonicity of the graph.
+In Figure 15 we show the smallest such graphs and in Figure 16 w e show
+all such graphs on 22 vertices. The ﬁrst four graphs in Figure 16 can be
+constructed from the graph in Figure 15, the ﬁfth graph is the generalised
+Petersen graph GP (11, 2).
+13
+Figure 15. The 3-connected class-I nonhamiltonian cu-
+bic graph on 20 vertices.
+Figure 16
+14
+References
+[AT97] R. E. L. Aldred and Carsten Thomassen, On the number of cycles in 3-
+connected cubic graphs , J. Combin. Theory Ser. B 71 (1997), no. 1, 79–84.
+[BCE86] C. A. Barefoot, Lane Clark, and Roger Entringer, Cubic graphs with the min-
+imum number of cycles , Proceedings of the seventeenth Southeastern inter-
+national conference on combinatorics, graph theory, and comput ing (Boca
+Raton, Fla., 1986), vol. 53, 1986, pp. 49–62.
+[Bri96] Gunnar Brinkmann, Fast generation of cubic graphs , J. Graph Theory 23
+(1996), no. 2, 139–149.
+[DS01] Dale Daniel and Stephen E. Shauger, A result on the Erd˝ os-Gy´ arf´ as conjecture
+in planar graphs , Proceedings of the Thirty-second Southeastern International
+Conference on Combinatorics, Graph Theory and Computing (Baton Rouge,
+LA, 2001), vol. 153, 2001, pp. 129–139.
+[ES81] R. C. Entringer and P. J. Slater, On the maximum number of cycles in a
+graph, Ars Combin. 11 (1981), 289–294.
+[Gui96] David R. Guichard, The maximum number of cycles in graphs , Proceedings
+of the Twenty-seventh Southeastern International Conference on Combinator-
+ics, Graph Theory and Computing (Baton Rouge, LA, 1996), vol. 1 21, 1996,
+pp. 211–215.
+[McK] Brendan McKay, The program geng is available from Brendan Mc Kays home
+page at http://cs.anu.edu.au/people/bdm.
+[Roy] Gordon Royle, The 2ˆn conjecture,
+http://www.cs.uwa.edu.au/˜gordon/remote/erdosconj.html.
+[Sha98] Stephen E. Shauger, Results on the Erd˝ os-Gy´ arf´ as conjecture inK1,m -free
+graphs, Proceedings of the Twenty-ninth Southeastern International Confer-
+ence on Combinatorics, Graph Theory and Computing (Boca Raton, FL,
+1998), vol. 134, 1998, pp. 61–65.
+[Tut46] W. T. Tutte, On Hamiltonian circuits , J. London Math. Soc. 21 (1946), 98–
+101.
+[Wor99] N. C. Wormald, Models of random regular graphs , Surveys in combinatorics,
+1999 (Canterbury), London Math. Soc. Lecture Note Ser., vol. 267 , Cambridge
+Univ. Press, Cambridge, 1999, pp. 239–298.
+E-mail address : Klas.Markstrom@math.umu.se
+Department of Mathematics, Ume ˚aUniversity , SE-901 87 Ume ˚a, Sweden
+15

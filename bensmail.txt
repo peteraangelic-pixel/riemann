@@ -1,0 +1,266 @@
+HAL Id: hal-01629942
+https://hal.science/hal-01629942v1
+Submitted on 7 Nov 2017
+HAL is a multi-disciplinary open access archive
+for the deposit and dissemination of scientific re-
+search documents, whether they are published or not.
+The documents may come from teaching and research
+institutions in France or abroad, or from public or pri-
+vate research centers.
+L’archive ouverte pluridisciplinaire HAL, est des-
+tinée au dépôt et à la diffusion de documents scien-
+tifiques de niveau recherche, publiés ou non, émanant
+des établissements d’enseignement et de recherche
+français ou étrangers, des laboratoires publics ou
+privés.
+HAL Authorization
+On q-power cycles in cubic graphs
+Julien Bensmail
+To cite this version:
+Julien Bensmail. On q-power cycles in cubic graphs. Discussiones Mathematicae Graph Theory, 2017, 37 (1),
+pp.211 - 220. ⟨10.7151/dmgt.1926⟩. ⟨hal-01629942⟩
+On q-power cycles in cubic graphs
+Julien Bensmail
+Department of Applied Mathematics and Computer Science
+Technical University of Denmark
+DK-2800 Lyngby, Denmark
+Abstract
+In the context of a conjecture of Erdős and Gyárfás, we consider, for any q ≥ 2, the existence
+of q-power cycles ( i.e. with length a power of q) in cubic graphs. We exhibit constructions
+showing that, for every q ≥ 3, there exist arbitrarily large cubic graphs with no q-power
+cycles. Concerning the remaining case q = 2 (which corresponds to the conjecture of Erdős
+and Gyárfás), we show that there exist arbitrarily large cubic graphs whose only 2-power cycles
+have length 4 only, or 8 only.
+1 Introduction
+Throughout this note, given someq≥ 2, by aq-power cycleof some undirected simple graphG, we
+refer to a cycle ofG whose length is a power ofq. Our work is related to the following conjecture
+attributed to Erdős and Gyárfás (see [1]).
+Conjecture 1 (Erdős and Gyárfás). Every graph with minimum degree at least3 has a 2-power
+cycle.
+Although Erdős and Gyárfás themselves suspected that Conjecture 1 should admit counterex-
+amples, the question is still open in general. Conjecture 1 being seemingly complicated, only a
+few works have been dedicated to it. Markström, through a computer search, proved that any
+cubic counterexample to Conjecture 1 should have at least30 vertices [4]. He also exhibited small
+cubic graphs whose only2-power cycles have length16. Conjecture 1 was nevertheless veriﬁed in
+some situations, such as for planar claw-free graphs (by Daniel and Shauger [2]), and forK1,m-free
+graphs with minimum degree at leastm + 1 or maximum degree at least2m− 1 (by Shauger [6]).
+More recently, the conjecture was also veriﬁed for3-connected planar cubic graphs by Heckman
+and Krakovski [3]. More details on this subject may be found in [5].
+Caro, as reported by West [7], raised, in the context of Conjecture 1, a more general question
+about whether every graph with minimum degree at least3 has a cycle whose length is a non-trivial
+power of some natural number.
+Conjecture 2 (Caro). For every graph G with minimum degree at least 3, there is a natural
+number q≥ 2 such that G has qp-cycles for anyp > 1.
+Conjecture 1, if true, would basically answer positively to Conjecture 2 (with settingq = 2). We
+here consider a generalization of Conjecture 1, which is obtained by ﬁxingq in Conjecture 2, and
+whose some particular cases will be answered in this note.
+Question 1. For any q≥ 2, does every large enough graph with minimum degree at least3 have
+a q-power cycle?
+Although quite natural in the context of Conjecture 1 (the caseq = 2 of Question 1 is exactly
+Conjecture 1), we did not ﬁnd any progress on Question 1 in literature.
+1
+G
+t1 t2
+u v
+v
+u1
+u2
+u3
+G
+t1
+t2
+t3
+Figure 1: Replacing an edge by an edge-gadget (left), and a degree-3 vertex by a vertex-gadget
+(right).
+We here exhibit constructions yielding a negative answer to Question 1 for everyq≥ 3. These
+constructions all provide graphs being cubic and planar. As our construction tools and techniques
+do not apply for the caseq = 2 of Question 1, this conﬁrms that this remaining case, Conjecture 1,
+is by far the hardest case.
+2 Terminology and constructions
+Most of our constructions are based on the following scheme. We start from aninternally cubic
+tree, namely a tree whose all non-leaf nodes have degree exactly3. Clearly an internally cubic tree
+may have arbitrarily large order. In order to get a cubic graph with noq-power cycles for some
+given q, the main idea now is to start from some internally cubic treeT, and make T cubic by
+attaching some gadgets to its leaves. So that we control the lengths of the cycles we create in this
+way, one way to proceed is to attach gadgets to the leaves ofT in such a way that all leaves ofT
+remain articulation vertices in the obtained cubic graphG. In doing so, the only cycles inG will
+be the cycles in the gadgets used to raise the degrees – so we just need to ﬁnd such gadgets with
+no q-power cycles.
+We will mainly use two kinds of degree-raising gadgets – see Figure 1 for an illustration of the
+described operations. The ﬁrst kind of gadgets are callededge-gadgets. The main property of an
+edge-gadget G is that it is a subcubic graph with only two verticest1 and t2, called theends of G,
+being of degree less than3. Furthermore, t1 and t2 must be of degree exactly1 in G. Basically,
+an edge-gadget G with ends t1 and t2 can be used to replace an edge is some graphH: assuming
+uv is an edge ofH, one may just deleteuv, add a copy ofG to H, identify u and t1, and identify
+v and t2 in H. In doing so, note that the degrees ofu and v are not aﬀected by the operation.
+Edge-gadgets can also be used to raise by2 the degree of any vertexw of H. To that end, one may
+just add a loop atw, and replace that loop by an edge-gadget, in the same fashion as described
+above.
+The second kind of gadgets we will use arevertex-gadgets. A vertex-gadget G is a subcubic
+graph with only three verticest1, t2 and t3, orends, being of degree less than3, with t1, t2 and t3
+being of degree exactly2 in G. This time, a vertex-gadgetG with ends t1, t2 and t3 can be used
+to replace a vertexv with degree 3 in a graphH: assuming u1, u2 and u3 are the three neighbours
+of v in H, one may just deletev from H, add a copy ofG to H, and match the vertices among
+{t1, t2, t3} with those among{u1, u2, u3}. Note that if H is cubic, then of course the obtained
+graph remains cubic after the modiﬁcation.
+3 Cubic graphs with no q-power cycles for q≥ 3
+We now exhibit constructions yielding, for any ﬁxedq≥ 3, arbitrarily large cubic planar graphs
+with noq-power cycles. We start by considering the caseq≥ 6, before considering every remaining
+case separately.
+2
+t1 t2
+k columns
+Figure 2: The edge-gadgetG used for the caseq≥ 6.
+Figure 3: The gadgetG′ used for the caseq≥ 6.
+3.1 Case q≥ 6
+The main gadget we use in this section is the edge-gadgetG depicted in Figure 2, whose two ends
+are t1 and t2, and whose numberk≥ 1 of internal columns is parametrized. We note that, for every
+k, the diﬀerent cycle lengths ofG, as well as the path lengths fromt1 to t2, are easily deduced.
+Observation 1. Assume k≥ 1 is ﬁxed. All cycles ofG have length among{3, 4, ..., 2k + 2}.
+Observation 2. Assume k≥ 1 is ﬁxed. All{t1, t2}-paths of G have length among{k + 3, k +
+4, ..., 2k + 3}.
+We will also make use of the gadgetG′ depicted in Figure 3, where we call the white vertex of
+G′ its root. We note the following.
+Observation 3. All cycles ofG′ have length among{3, 4, 5, 6, 7}.
+We are now ready to construct a graphH with no q-power cycles for any ﬁxedq≥ 6. Start
+from H being an internally cubic tree. Now consider every leafv of T, add a new copy ofG′ to
+H, and identifyv and the root ofG′. Note that, so far, all cycles ofH are the cycles in the copies
+of G′. To ﬁnish the construction, consider every gadgetG′ we attached toH, and replace every of
+its edges by a copy ofG. Now each cycle ofH is either a cycle ofG, or goes through some copies
+of G following some cycle ofG′.
+Observation 4. All cycles ofH have length among
+{3, 4, ..., 2k + 2}∪{ 3k + 9, 3k + 10, ..., 14k + 21}.
+Proof. As said above, a cycleC of H uses either 1) edges from a single copy ofG, or 2) edges
+of several copies of G following some cycle of G′. In situation 1), from Observation 1 we know
+that the length ofC is among{3, 4, ..., 2k + 2}. Now, in situation 2),C goes through severalG’s
+following some cycle in G′. Since the cycles in G′ have length among{3, 4, 5, 6, 7} according to
+Observation 3, and all{t1, t2}-paths of G have length among{k + 3, k + 4, ..., 2k + 3} according
+to Observation 2, then the smallest possible length forC is 3(k + 3) = 3 k + 9 while the biggest
+possible length forC is 7(2k + 3) = 14 k + 21.
+Corollary 1. If q∈{ 2k + 4, 2k + 5}, then H has no q-power cycle.
+3
+t1
+t3t2
+Figure 4: The vertex-gadgetG used for the caseq = 5.
+Proof. According to Observation 4, all cycles ofH have length among
+L ={3, 4, ..., 2k + 2}∪{ 3k + 9, 3k + 10, ..., 14k + 21}.
+We remark ﬁrst thatq⁄∈ L, soH has noq-cycle. Now note thatq2∈{ 4k2+16k+16, 4k2+20k+25},
+which is strictly greater than14k + 21 as long as k≥ 1. So, as long as k≥ 1, which is always
+veriﬁed,H has no qp-cycle for anyp≥ 2. So H has no q-power cycle.
+The conclusion is then the following.
+Theorem 1. For every q≥ 6, there exist arbitrarily large planar cubic graphs having noq-power
+cycles.
+Proof. Consider the construction of H above. The original internally cubic tree can be taken
+arbitrarily large – soH has arbitrarily large order. To now make sure thatH has noq-power cycle,
+just perform the construction with choosingk so that q∈{ 2k + 4, 2k + 5}, which is possible since
+q≥ 6. The conclusion follows from Corollary 1.
+3.2 Case q = 5
+The main gadget to be used in this section is the vertex-gadgetG depicted in Figure 4, whose ends
+are t1, t2 and t3. Its cycle and path lengths properties of interest here are the following.
+Observation 5. All cycles ofG have length among{3, 4}.
+Observation 6. For every two distinct endsti and tj of G, all{ti, tj}-paths of G have length
+among{6, 7, 8}.
+Now consider the multigraph G′ depicted in Figure 5, whose white vertex is theroot of G′.
+Clearly, we have the following.
+Observation 7. All cycles ofG′ have length among{2, 5}.
+We now describe how to obtain a cubic graphH with no 5-power cycles. Start fromH being
+an internally cubic tree. For every leafv of H, identify v and the root vertex of a new copy of
+G′. Finally consider every vertex v of H (hence of degree 3) belonging to some copy ofG′, and
+replace v by a copy ofH (as described in Section 2). Due to the symmetric structure ofG, note
+that we do not have to care about how the replacement is done (i.e. how the vertices are joined).
+Furthermore, the only cycles inH are cycles in some copies ofG, or cycles going through copies
+of G following some cycle inG′. In particular, every such cycle cannot go twice through a single
+copy of G.
+4
+Figure 5: The gadgetG′ used for the caseq = 5.
+t1
+t2
+Figure 6: The edge-gadgetG used for the caseq = 4.
+Observation 8. All cycles ofH have length among
+{3, 4}∪{ 14, 15, ..., 18}∪{ 35, 36, ..., 45}.
+Proof. Let C be a cycle of H. If C is completely included in one of the copies of G, then C
+has length among{3, 4} according to Observation 5. Now, if C goes through several copies of
+G, then, according to the arguments above, it goes through2 or 5 copies of G only according
+to Observation 7. Recall that, when going through a copy of G, cycle C uses 6, 7 or 8 of its
+edges (Observation 6). In caseC goes through exactly two copies ofG, the length ofC is among
+{14, 15, ..., 18}. Now, if C goes through exactly ﬁve copies ofG, then the length ofC is among
+{35, 36, ..., 45}. This concludes the proof.
+Observation 8 now gives our conclusion, since the original internally cubic tree from whichH
+is constructed can be arbitrarily large.
+Theorem 2. There exist arbitrarily large planar cubic graphs having no5-power cycles.
+3.3 Case q = 4
+We herein need the edge-gadgetG depicted in Figure 6, whose ends aret1 and t2. Its properties
+of interest are the following.
+Observation 9. All cycles ofG have length among{3}∪{ 5, 6, ..., 14}.
+Observation 10. All{t1, t2}-paths of G have length among{7, 8, ..., 15}.
+We now construct a cubic graphH with no 4-power cycles. Start fromH being an internally
+cubic tree. Now consider every leafv of H, and add a loop atv. Note thatH is now cubic. Finally
+replace every such loop by a new copy ofG. It should be clear thatH remains cubic, and that the
+only cycles ofH are located at its “leaves”. We make it more formal below.
+5
+t1 t2
+Figure 7: The edge-gadgetG used for the caseq = 3.
+Observation 11. All cycles ofH have length among
+{3}∪{ 5, 6, ..., 15}.
+Proof. Consider a cycle C in H. It should be clear that C cannot include two vertices of H
+belonging to the original internally cubic tree from whichH was constructed (because of its 1-
+connectivity). So C is either completely included in some copy ofG, in which caseC has length
+among{3}∪{ 5, 6, ..., 14} (Observation 9), or is actually a path fromt1 to t2 in G. In the latter,
+C has length among{7, 8, ..., 15} according to Observation 10. This concludes the proof.
+Once again, since the original internally cubic tree (from which H is constructed) can be
+arbitrarily large, from Observation 11 we get the following.
+Theorem 3. There exist arbitrarily large planar cubic graphs having no4-power cycles.
+3.4 Case q = 3
+We will here use the edge-gadgetG with ends t1 and t2 depicted in Figure 7. Its properties are
+the following.
+Observation 12. All cycles ofG have length among{4, 6, 8}.
+Observation 13. All{t1, t2}-paths of G have length among{13, 14, ..., 25}.
+To obtain a cubic graphH with no3-power cycles, just repeat the construction from Section 3.3
+but with using the gadgetG introduced in this section. We then get the following.
+Observation 14. All cycles ofH have length among
+{4, 6, 8}∪{ 13, 14, ..., 25}.
+Proof. The proof of Observation 14 can just be mimicked in the current context. The statement
+then follows from Observations 12 and 13.
+For the same reasons as in Section 3.3, we can now state the following.
+Theorem 4. There exist arbitrarily large planar cubic graphs having no3-power cycles.
+4 Discussion
+In this paper, we have considered a generalization of Conjecture 1, namely Question 1, and obtained
+some results about it. We have exhibited several constructions conﬁrming that Conjecture 1, not
+surprisingly, is the hardest particular case of Question 1.
+A few side results can be deduced from our results. Since the caseq = 4 of Question 1 is wrong,
+we get that, in the context of Conjecture 1, there exists a family of arbitrarily large planar cubic
+graphs whose only2-power cycles have length an odd power of2. Similar statements may of course
+be formulated for any power of2 greater than 4.
+We also note that our constructions can be easily modiﬁed to get arbitrarily large planar cubic
+graphs whose 2-power cycles are all of the same length. To obtain such graphs whose all2-power
+cycles are 4-cycles, we can just apply the construction in Section 3.3 but with using, asG, the ﬁrst
+6
+t1 t2
+t1
+t2
+Figure 8: The edge-gadgets mentioned in the discussion section.
+(left) edge-gadget depicted in Figure 8. Similarly, to obtain such graphs whose all2-power cycles
+are 8-cycles, we can just repeat the same construction but with using, asG, the second (right)
+edge-gadget depicted in Figure 8. Towards Conjecture 1, it could be interesting investigating
+whether, for any larger power of2, say 2k > 8, there exist inﬁnite families of cubic graphs whose
+only 2-power cycles have length2k.
+Acknowledgements
+We would like to thank the anonymous referees for their positive and constructive comments. The
+author was supported by ERC Advanced Grant GRACOL, project no. 320812.
+References
+[1] P. Erdős. Some old and new problems in various branches of combinatorics.Discrete Mathe-
+matics, 165/166:227-231, 1997.
+[2] D.Daniel, S.E.Shauger.AresultontheErdős-Gyárfásconjectureinplanargraphs. Congressus
+Numerantium, 153:129-139, 2001.
+[3] C.C. Heckman, R. Krakovski. Erdős-Gyárfás Conjecture for Cubic Planar Graphs.Electronic
+Journal of Combinatorics, 20(2):P7, 2013.
+[4] K. Markström. Extremal graphs for some problems on cycles in graphs.Congressus Numer-
+antium, 171:179-192, 2004.
+[5] P.S. Nowbandegani, H. Esfandiari, M.H.S. Haghighi, K. Bibak. On the Erdős-Gyárfás Con-
+jecture in Claw-Free Graphs.Discussiones Mathematicae Graph Theory, 34(3):635-640, 2014.
+[6] S.E. Shauger. Results on the Erdős-Gyárfás conjecture inK1,m-free graphs.Congressus Nu-
+merantium, 134:61-65, 1998.
+[7] D. West. Erdős-Gyárfás conjecture on2-power cycle lengths.Open problems – Graph theory
+and Combinatorics. Web page available online athttp://www.math.uiuc.edu/~west/openp/
+2powcyc.html.
+7

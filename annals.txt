@@ -1,0 +1,1039 @@
+Annals of Mathematics, 166 (2007), 347–366
+Lehmer’s problem for polynomials
+with odd coeﬃcients
+By Peter Borwein, Edward Dobrowolski, and Michael J. Mossinghoff*
+Abstract
+We prove that if f(x)= ∑ n−1
+k=0 akxk is a polynomial with no cyclotomic
+factors whose coeﬃcients satisfy ak ≡ 1 mod 2 for 0 ≤ k<n , then Mahler’s
+measure of f satisﬁes
+log M(f) ≥ log 5
+4
+(
+1 − 1
+n
+)
+.
+This resolves a problem of D. H. Lehmer [12] for the class of polynomials with
+odd coeﬃcients. We also prove that iff has odd coeﬃcients, degree n −1, and
+at least one noncyclotomic factor, then at least one root α of f satisﬁes
+|α| > 1+ log 3
+2n ,
+resolving a conjecture of Schinzel and Zassenhaus [21] for this class of poly-
+nomials. More generally, we solve the problems of Lehmer and Schinzel and
+Zassenhaus for the class of polynomials where each coeﬃcient satisﬁes ak ≡ 1
+mod m for a ﬁxed integer m ≥ 2. We also characterize the polynomials that
+appear as the noncyclotomic part of a polynomial whose coeﬃcients satisfy
+ak ≡ 1m o dp for each k, for a ﬁxed prime p. Last, we prove that the smallest
+Pisot number whose minimal polynomial has odd coeﬃcients is a limit point,
+from both sides, of Salem [19] numbers whose minimal polynomials have coef-
+ﬁcients in {−1,1}.
+1. Introduction
+Mahler’s measure of a polynomial f, denoted M( f), is deﬁned as the
+product of the absolute values of those roots off that lie outside the unit disk,
+multiplied by the absolute value of the leading coeﬃcient. Writing f(x)=
+*The ﬁrst author was supported in part by NSERC of Canada and MITACS. The
+authors thank the Banﬀ International Research Station for hosting the workshop on “The
+many aspects of Mahler’s measure,” where this research began.
+348 P. BORWEIN, E. DOBROWOLSKI, AND M. J. MOSSINGHOFF
+a∏ d
+k=1(x − αk), we have
+M(f)= |a|
+d∏
+k=1
+max{1, |αk|}.(1.1)
+For f ∈ Z[x], clearly M( f) ≥ 1, and by a classical theorem of Kronecker,
+M(f) = 1 precisely when f(x) is a product of cyclotomic polynomials and the
+monomial x. In 1933, D. H. Lehmer [12] asked if for everyε> 0 there exists a
+polynomial f ∈ Z[x] satisfying 1 < M(f) < 1+ ε. This is known as Lehmer’s
+problem. Lehmer noted that the polynomial
+𝓁(x)= x10 + x9 − x7 − x6 − x5 − x4 − x3 + x +1
+has M(𝓁)=1 .176280 ... , and this value remains the smallest known measure
+larger than 1 of a polynomial with integer coeﬃcients.
+Let f ∗ denote the reciprocal polynomial of f, deﬁned by f ∗(x)=
+xdeg f f(1/x); it is easy to verify that M( f ∗)=M ( f). We say a polynomial
+f is reciprocal if f = ±f ∗.
+Lehmer’s problem has been solved for several special classes of polyno-
+mials. For example, Smyth [22] showed that if f ∈ Z[x] is nonreciprocal and
+f(0) ⁄= 0, then M(f) ≥ M(x3 −x−1) = 1.324717 ... . Also, Schinzel [20] proved
+that if f is a monic, integer polynomial with degree d satisfying f(0) = ±1
+and f(±1) ⁄= 0, and all roots of f are real, then M(f) ≥ γd/2, where γ denotes
+the golden ratio, γ =( 1+
+√
+5)/2. In addition, Amoroso and Dvornicich [1]
+showed that iff is an irreducible, noncyclotomic polynomial of degreed whose
+splitting ﬁeld is an abelian extension of Q, then M(f) ≥ 5d/12.
+The best general lower bound for Mahler’s measure of an irreducible, non-
+cyclotomic polynomial f ∈ Z[x] with degree d has the form
+log M(f) ≫
+( log logd
+log d
+)3
+;
+see [6] or [8].
+In this paper, we solve Lehmer’s problem for another class of polynomials.
+Let Dm denote the set of polynomials whose coeﬃcients are all congruent to 1
+mod m,
+Dm =
+{ d∑
+k=0
+akxk ∈ Z[x]: ak ≡ 1m o dm for 0 ≤ k ≤ d
+}
+.(1.2)
+The set D2 thus contains the set of Littlewood polynomials, deﬁned as those
+polynomials f whose coeﬃcients ak satisfy ak = ±1 for 0 ≤ k ≤ deg f.W e
+prove in Corollaries 3.4 and 3.5 of Theorem 3.3 that iff ∈D m has degree n −1
+LEHMER’S PROBLEM FOR POLYNOMIALS WITH ODD COEFFICIENTS 349
+and no cyclotomic factors, then
+log M(f) ≥ cm
+(
+1 − 1
+n
+)
+,
+with c2 = (log 5)/4 and cm = log(
+√
+m2 +1 /2) for m> 2.
+We provide in Theorem 2.4 a characterization of polynomialsf ∈ Z[x] for
+which there exists a polynomial F ∈D p with f | F and M(f)=M ( F), where
+p is a prime number. The proof in fact speciﬁes an explicit construction for
+such a polynomial F when it exists.
+In [21], Schinzel and Zassenhaus conjectured that there exists a constant
+c> 0 such that for any monic, irreducible polynomialf of degreed, there exists
+ar o o tα of f satisfying |α| > 1+ c/d. Certainly, solving Lehmer’s problem
+resolves this conjecture as well: If M( f) ≥ M0 for every member f of a class
+of monic, irreducible polynomials, then it is easy to see that the conjecture of
+Schinzel and Zassenhaus holds for this class with c = logM0. We prove some
+further results on this conjecture for polynomials in Dm. In Theorem 5.1, we
+show that iff ∈D m is monic with degreen−1 and M(f) > 1, then there exists
+ar o o tα of f satisfying |α| > 1+ cm/n, with c2 = log
+√
+3 and cm = log(m − 1)
+for m> 2. We also prove (Theorem 5.3) that one cannot replace the constant
+cm in this result with any number larger than log(2m − 1).
+Recall that a Pisot number is a real algebraic integer α> 1, all of whose
+conjugates lie inside the open unit disk, and aSalem number is a real algebraic
+integer α> 1, all of whose conjugates lie inside the closed unit disk, with at
+least one conjugate on the unit circle. (In fact, all the conjugates of a Salem
+number except its reciprocal lie on the unit circle.) In Theorem 6.1, we obtain
+a lower bound on a Salem number whose minimal polynomial lies in D2. This
+bound is slightly stronger than that obtained from our bound on Mahler’s
+measure of a polynomial in this set.
+The smallest Pisot number is the minimal value of Mahler’s measure of a
+nonreciprocal polynomial, M( x3 − x − 1) = 1.324717 ... . In [4], it is shown
+that the smallest measure of a nonreciprocal polynomial in D2 is the golden
+ratio, M(x2 −x −1) = γ, and therefore this value is the smallest Pisot number
+whose minimal polynomial lies in D2. Salem [19] proved that every Pisot
+number is a limit point, from both sides, of Salem numbers. We prove in
+Theorem 6.2 that the golden ratio is in fact a limit point, from both sides, of
+Salem numbers whose minimal polynomials are also in D2; in fact, they are
+Littlewood polynomials.
+This paper is organized as follows. Section 2 obtains some preliminary
+results on factors of cyclotomic polynomials modulo a prime, and describes
+factors of polynomials inDp. Section 3 derives our results on Lehmer’s problem
+for polynomials in Dm. The method here requires the use of an auxiliary
+polynomial, and Section 4 describes two methods for searching for favorable
+auxiliary polynomials in a particularly promising family. Section 5 proves our
+350 P. BORWEIN, E. DOBROWOLSKI, AND M. J. MOSSINGHOFF
+bounds in the problem of Schinzel and Zassenhaus for polynomials inDm, and
+Section 6 contains our results on Salem numbers whose minimal polynomials
+are in D2.
+Throughout this paper, the nth cyclotomic polynomial is denoted by Φn.
+Also, for a polynomial f(x)= ∑ d
+k=0 akxk, the length of f, denoted L(f), is
+deﬁned as the sum of the absolute values of the coeﬃcients of f,
+L(f)=
+d∑
+k=0
+|ak|,(1.3)
+and ‖f ‖∞ denotes the supremum of |f(x)| over the unit circle.
+2. Factors of polynomials in Dp
+Let p be a prime number. We describe some facts about factors of cyclo-
+tomic polynomials modulo p, and then prove some results about cyclotomic
+and noncyclotomic parts of polynomials whose coeﬃcients are all congruent
+t o1m o d p. We begin by recording a factorization of the binomial xn − 1
+modulo p.
+Lemma 2.1. Suppose p is a prime number , and n = pkm with p ∤ m.
+Then
+xn − 1 ≡
+∏
+d|m
+Φpk
+d (x)m o d p.
+Proof. Using the standard formula Φ n(x)= ∏
+d|n
+(
+xd − 1
+)μ(n/d), where
+μ(·) denotes the M¨obius function, one obtains the well-known relations
+Φpq(x)=
+⎧
+⎪⎨
+⎪⎩
+Φq(xp), if p | q,
+Φq(xp)
+Φq(x) , if p ∤ q.
+Thus, if n = pkm with p ∤ m, then Φ n(x) ≡ Φϕ(pk)
+m (x)m o d p, where ϕ(·)
+denotes Euler’s totient function. Therefore,
+xn − 1=
+∏
+d|n
+Φd(x) ≡
+∏
+d|m
+Φ
+∑ k
+i=0 ϕ(pi)
+d (x)=
+∏
+d|m
+Φpk
+d (x)m o d p,
+establishing the result.
+Let Fp denote the ﬁeld withp elements, wherep is a prime number. Cyclo-
+tomic polynomials are of course irreducible in Q[x], but this is not necessarily
+the case inFp[x]. However, cyclotomic polynomials whose indices are relatively
+prime and not divisible by p have no common factors in Fp[x].
+LEHMER’S PROBLEM FOR POLYNOMIALS WITH ODD COEFFICIENTS 351
+Lemma 2.2. Suppose m and n are distinct, relatively prime positive inte-
+gers, and suppose p is a prime number that does not divide mn. Then Φn(x)
+and Φm(x) are relatively prime in Fp[x].
+Proof. Let e denote the multiplicative order of p modulo n.I n Fp[x], the
+polynomial Φn(x) factors as the product of all monic irreducible polynomials
+with degree e and order n (see [13, Ch. 3]). Since their factors in Fp[x] have
+diﬀerent orders, we conclude that Φn and Φm are relatively prime modulo p.
+We next describe the cyclotomic factors that may appear in a polynomial
+whose coeﬃcients are all congruent to 1 modulo p.
+Lemma 2.3. Suppose f(x) ∈ Z[x] has degreen − 1 and Φr | f.I f f ∈D 2,
+then r | 2n; if f ∈D p for an odd prime p, then r | n.
+Proof. Suppose f ∈D p with p prime. Write n = pkm with p ∤ m.B y
+Lemma 2.1, we have
+(x − 1)f(x) ≡
+∏
+d|m
+Φpk
+d (x)m o d p.(2.1)
+Write r = pls with p ∤ s.I f l = 0, then in view of Lemma 2.2, the polynomial
+Φr must appear among the factors Φd on the right side of (2.1), so that r | m.
+If l> 0, then Φ r ≡ Φϕ(pl)
+s mod p,s o s | m.I f s> 1 then we also have
+pk ≥ pl −pl−1, and so if p> 2 then k ≥ l and thus r | n;i f p = 2 then k ≥ l −1
+and consequently r | 2n. Last, if s = 1 then pk ≥ pl − pl−1 + 1 and thus k ≥ l
+and r | n.
+We now state a simple characterization of polynomialsf ∈ Z[x] that divide
+a polynomial with the same measure having all its coeﬃcients congruent to 1
+modulo p.
+Theorem 2.4. Let p be a prime number , and let f(x) be a polynomial
+with integer coeﬃcients. There exists a polynomial F ∈D p with f | F and
+M(f)=M ( F) if and only iff is congruent modulop to a product of cyclotomic
+polynomials.
+Proof. Suppose ﬁrst thatF ∈Dp factors asF(x)= f(x)Φ(x) with M(Φ)=1,
+so that Φ( x) is a product of cyclotomic polynomials. Since F ∈D p,i ti s
+congruent modulo p to a product of cyclotomic polynomials. Using Lemma 2.2
+and the fact that Fp[x] is a unique factorization domain, we conclude that the
+polynomial f must also be congruent modulo p to a product of cyclotomic
+polynomials.
+352 P. BORWEIN, E. DOBROWOLSKI, AND M. J. MOSSINGHOFF
+For the converse, suppose
+f(x) ≡
+∏
+p∤d
+Φed
+d (x)m o d p,
+with each ed ≥ 0. Let k =
+⌈
+logp(max{e1 +1 ,max{ed : d> 1,p ∤ d}})
+⌉
+, m =
+lcm{d : ed > 0,p ∤ d}, n = mpk + 1, and
+Φ(x)=( x − 1)pk −e1−1 ∏
+d|m
+d>1
+Φpk −ed
+d (x).
+Then
+(x − 1)f(x)Φ(x) ≡
+∏
+d|m
+Φpk
+d (x) ≡ xn − 1m o d p,
+and so F(x)= f(x)Φ(x) has the required properties.
+Theorem 2.4 suggests an algorithm for determining if a given polynomialf
+with degree d divides a polynomial F in Dp with the same measure: Construct
+all possible products of cyclotomic polynomials with degreed, and test if any of
+these are congruent tof mod p. Using this strategy, we verify that none of the
+100 irreducible, noncyclotomic polynomials from [15] representing the smallest
+known values of Mahler’s measure divides a Littlewood polynomial with the
+same measure. This does not imply, however, that no Littlewood polynomi-
+als exist with these measures, since measures are not necessarily represented
+uniquely by irreducible integer polynomials, even discounting the simple sym-
+metries M(f)=M ( ±f(±xk)). See [7] for more information on the values of
+Mahler’s measure.
+The requirement in Theorem 2.4 thatF(x) contain no noncyclotomic fac-
+tors besides f is certainly necessary. For example, the polynomial x10 − x7 −
+x5 −x3+1 is not congruent to a product of cyclotomic polynomials mod 2, so no
+Littlewood polynomial exists having this polynomial as its only noncyclotomic
+factor. However, the product (x10 − x7 − x5 − x3 + 1)(x10 − x9 + x5 − x +1 )i s
+congruent to Φ33 mod 2, and our construction indicates that multiplying this
+product by Φ1Φ2
+3Φ2
+11Φ33 yields a polynomial with all odd coeﬃcients. (In fact,
+using the factors Φ2Φ3Φ6Φ33Φ44 instead yields a Littlewood polynomial.)
+We close this section by noting that one may demand stronger conditions
+on the polynomial F of Theorem 2.4 in certain situations.
+Corollary 2.5. Suppose f ∈ Z[x] has no cyclotomic factors, and there
+exists a polynomial F ∈D 2 with even degree 2m having f | F and M(f)=
+M(F). Then there exists a polynomial G ∈D 2 with deg G =2 m, f | G,
+M(f)=M ( G), and the additional property thatG(x) and 1+ x+x2 + ··· +x2m
+have no common factors.
+LEHMER’S PROBLEM FOR POLYNOMIALS WITH ODD COEFFICIENTS 353
+Proof. Suppose Φ d | F. By Lemma 2.3, we have d | (4m + 2). If d is odd
+and d ≥ 3, so that Φd(x) is a factor of 1 +x + ··· + x2m, then we can replace
+the factor Φd in F with Φ2d without disturbing the required properties of F,
+since Φ2d(x)=Φ d(−x). Let G be the polynomial obtained from F by making
+this substitution for each factor Φd of F with d ≥ 3 odd.
+3. Lehmer’s problem
+We derive a lower bound on Mahler’s measure of a polynomial that has no
+cyclotomic factors and whose coeﬃcients are all congruent to 1 modulo m for
+some ﬁxed integer m ≥ 2. Our results depend on the bounds on the resultants
+appearing in the following lemma.
+Lemma 3.1. Suppose f ∈D m with degreen −1, and let g be a factor off.
+If gcd(g(x),xn − 1) = 1, then
+|Res(g(x),xn − 1)|≥ mdeg g.(3.1)
+Further, if m =2 , k is a nonnegative integer, and gcd(g(x),xn2k
++1 )=1 , then
+⏐⏐⏐Res(g(x),xn2k
++1 )
+⏐⏐⏐≥ 2deg g.(3.2)
+Proof. Deﬁne the polynomial s(x)b y
+ms(x)=( xn − 1 )+( 1− x)f(x),(3.3)
+and note thats(x) ∈ Z[x] since f ∈D m.I f g has no common factor withxn −1,
+then gcd(g,s ) = 1, so|Res(g,s )|≥ 1. Thus, by computing the resultant of both
+sides of (3.3) with g, we obtain (3.1).
+Suppose m =2 . F o rk ≥ 0, deﬁne the polynomial tk(x)b y
+2tk(x)=( xn2k
++1 )+( 1+ x)f(x)
+2k −1∑
+j=0
+xjn.
+Now, (3.2) follows by a similar argument.
+We also require the following result regarding the length of a power of a
+polynomial.
+Lemma 3.2. For any polynomial f ∈ C[x], the value of L(fk)1/k ap-
+proaches ‖f ‖∞ from above as k →∞ .
+Proof. From the triangle and Cauchy-Schwarz inequalities, we have
+‖‖fk‖‖
+∞
+≤ L(fk) ≤ √1+ k deg f
+‖‖fk‖‖
+∞, and since
+‖‖fk‖‖
+∞ = ‖f ‖k
+∞, the result follows
+immediately.
+354 P. BORWEIN, E. DOBROWOLSKI, AND M. J. MOSSINGHOFF
+Our main theorem in this section provides a lower bound on the measure
+of a polynomial in Dm that depends on certain properties of an auxiliary
+polynomial. For a polynomial g ∈ Z[x], let νk(g) denote the multiplicity of
+the cyclotomic polynomial Φ2k (x)i n g(x), and let ν(g)= ∑
+k≥0 νk(g).
+Theorem 3.3. Suppose f ∈D m with degree n − 1, and suppose F ∈ Z[x]
+satisﬁes gcd(f(x),F (xn)) = 1. Then
+log M(f) ≥
+⎧
+⎪⎪⎨
+⎪⎪⎩
+ν(F) log 2− log ‖F ‖∞
+deg F
+(
+1 − 1
+n
+)
+, if m =2 ,
+ν0(F) logm − log ‖F ‖∞
+deg F
+(
+1 − 1
+n
+)
+, if m> 2.
+Proof. Suppose m = 2. Since f(x) and F(xn) have no common factors,
+by Lemma 3.1 each cyclotomic factor Φ2k of F contributes a factor of 2n−1 to
+their resultant. Thus
+|Res(f(x),F (xn))|≥ 2ν(F)(n−1).
+If α i sar o o to ff, then
+|F(αn)|≤ L(F) max
+{
+1, |α|ndeg F
+}
+,
+so that
+|Res(f(x),F (xn))|≤ L(F)n−1M(f)ndeg F .
+Therefore
+2ν(F)(n−1) ≤ L(F)n−1M(f)ndeg F ,
+or
+log M(f) ≥ ν(F) log 2− log L(F)
+deg F
+(
+1 − 1
+n
+)
+.(3.4)
+Let k be a positive integer. Since ν(Fk)= kν(F) and deg Fk = k deg F,w e
+obtain
+log M(f) ≥ ν(F) logm − log L(Fk)1/k
+deg F
+(
+1 − 1
+n
+)
+.
+The theorem follows by letting k →∞ and using Lemma 3.2. The proof for
+m> 2 is similar, with ν0(F) in place of ν(F).
+For example, if f has all odd coeﬃcients and no cyclotomic factors, then
+we may use F(x)= x2 − 1 in Theorem 3.3 to obtain
+log M(f) ≥ log 2
+2
+(
+1 − 1
+n
+)
+.(3.5)
+LEHMER’S PROBLEM FOR POLYNOMIALS WITH ODD COEFFICIENTS 355
+For m> 2, if f ∈D m has no cyclotomic factors, then we may useF(x)= x −1
+to obtain
+log M(f) ≥ log(m/2)
+(
+1 − 1
+n
+)
+.(3.6)
+Section 4 describes a class of polynomials that one might expect to contain
+some choices forF that improve the bounds (3.5) and (3.6), and describes some
+algorithms developed to search this set for better auxiliary polynomials. We
+record here some improved bounds that arose from these searches.
+Corollary 3.4. Let f be a polynomial with degreen − 1 having odd co-
+eﬃcients and no cyclotomic factors. Then
+log M(f) ≥ log 5
+4
+(
+1 − 1
+n
+)
+,(3.7)
+with equality if and only if f(x)= ±1.
+Proof. Let F(x)=
+(
+1+ x2)(
+1 − x2)4. Since ν(F) = 9, degF = 10, and
+‖F ‖∞ =
+‖‖(1 +y)(1 − y)4‖‖
+∞
+=2 5 max
+0≤t≤1
+⏐⏐cos(πt) sin4(πt)
+⏐⏐= 29
+25
+√
+5 ,
+using Theorem 3.3 we establish (3.7). Last, if the leading or constant coeﬃcient
+of f is greater than 1 in absolute value, then M( f) ≥ 3; if n> 1 and these
+coeﬃcients are ±1, then M(f) is a unit.
+Another auxiliary polynomial yielding the lower bound (3.7) appears in
+Section 4.
+We remark that the bound of 5 1/4 =1 .495348 ... is not far from the
+smallest known measure of a polynomial with odd coeﬃcients and no cyclo-
+tomic factors: M(1 +x − x2 − x3 − x4 + x5 + x6)=1 .556030 ... . This number
+is in fact the smallest measure of a reciprocal polynomial with ±1 coeﬃcients
+having no cyclotomic factors and degree at most 72; see [4]. Section 6 provides
+more information on the structure of known small values of Mahler’s measure
+of these polynomials.
+For the case m> 2, an auxiliary polynomial similar to the one employed
+in Corollary 3.4 improves (3.6) slightly.
+Corollary 3.5. Let f ∈D m have degreen−1 and no cyclotomic factors.
+Then
+log M(f) ≥ log
+( √
+m2 +1
+2
+) (
+1 − 1
+n
+)
+,(3.8)
+with equality if and only if f(x)= ±1.
+356 P. BORWEIN, E. DOBROWOLSKI, AND M. J. MOSSINGHOFF
+Proof. Let F(x)=( 1+ x)( 1− x)m2
+. Since ν0(F)= m2, deg F = m2 +1 ,
+and
+‖F ‖∞ =2 m2+1 max
+0≤t≤1
+⏐⏐⏐cos(πt) sinm2
+(πt)
+⏐⏐⏐
+= 2m2+1mm2
+(m2 +1 )(m2+1)/2 ,
+using Theorem 3.3 we verify (3.8). The argument for the case of equality is
+similar to that of Corollary 3.4.
+Section 4.3 shows that the bound of
+√
+10/2=1 .581138 ... for m = 3 may
+be replaced by 1.582495 ... by using the auxiliary polynomial
+(1 − x)425(1 − x2)50(1 − x5).
+No improvements are known for m> 3.
+4. Auxiliary polynomials
+We obtain nontrivial bounds on the measure of a polynomial f ∈D m
+from Theorem 3.3 by using auxiliary polynomials having small degree, small
+supremum norm, and a high order of vanishing at 1. In this section, we inves-
+tigate a family of polynomials having precisely these properties and search for
+auxiliary polynomials yielding good lower bounds.
+4.1. Pure product polynomials. A pure product of size n is a polynomial
+of the form
+n∏
+k=1
+(1 − xek ),
+with each ek a positive integer. Let A(n) denote the minimal supremum over
+the unit disk among all pure products of size n,
+A(n) = min
+{‖‖‖‖‖
+n∏
+k=1
+(1 − xek )
+‖‖‖‖‖
+∞
+: ek ≥ 1 for 1 ≤ k ≤ n
+}
+.
+Erd˝os and Szekeres studied this quantity in [10], proving that the growth rate
+of A(n) is subexponential:
+lim
+n→∞
+A(n)1/n =1 .
+The upper bound on the asymptotic growth rate of log A(n) has since been
+greatly improved. Atkinson [2] obtained O(√n log n), Odlyzko [17] proved
+O(n1/3 log4/3 n), Kolountzakis [11] demonstrated O(n1/3 log n), and Belov and
+Konyagin [3] showed O(log4 n). The best known general lower bound on A(n)
+LEHMER’S PROBLEM FOR POLYNOMIALS WITH ODD COEFFICIENTS 357
+is simply
+√
+2n; strengthening this would provide information on the Diophan-
+tine problem of Prouhet, Tarry, and Escott (see for instance [14]). Erd˝ os
+conjectured [9, p. 55] that in fact A(n) ≫ nc for any c> 0.
+Since ν0(A(n)) = n and log A(n)= o(n), it follows that there exist pure
+product polynomials F(x) that yield nontrivial lower bounds in Theorem 3.3.
+The article [5] exhibits some pure products of size n ≤ 20 with very small
+length and degree, and these polynomials yield nontrivial lower bounds in
+Theorem 3.3. However, these polynomials arise as optimal examples of poly-
+nomials with {−1,0,1} coeﬃcients having a root of prescribed ordern at 1 and
+minimal degree. We obtain better bounds by designing some more specialized
+searches. We describe two such searches.
+4.2. Hill-climbing. Our ﬁrst method employs a modiﬁed hill-climbing
+strategy to search for good auxiliary polynomialsF(x), replacing the objective
+function appearing in Theorem 3.3 with the computationally more attractive
+function from (3.4). So for each m we wish to ﬁnd large values of
+Bm(F)=
+⎧
+⎪⎨
+⎪⎩
+ν(F) log 2− log L(F)
+deg F , if m =2 ,
+ν0(F) logm − log L(F)
+deg F , if m> 2.
+Algorithm 4.1. Modiﬁed hill-climbing for auxiliary polynomials.
+Input. An integer m ≥ 2, a set E of positive integers, and for each e ∈ E,
+a nonnegative integer re.
+Output. A sequence of pure products {Fk} with Fk−1 | Fk for each k.
+Step 1. Let F0(x)= ∏
+e∈E(1 − xe)re , let b0 = Bm(F0), and set k =1 .
+Step 2. For eache ∈ E, compute Bm((1−xe)Fk−1(x)). If the largest of these
+|E| values is greater thanbk−1, then set Fk(x)=( 1 −xe)Fk−1(x) for
+the optimal choice ofe, set bk = Bm(Fk), print Fk and bk, increment
+k, and repeat Step 2. Otherwise, continue with Step 3.
+Step 3. For each subset{e1,e2} of E, compute Bm((1−xe1 )(1−xe2 )Fk−1(x)).
+If the largest of these
+(|E|
+2
+)
+values exceeds bk−1, then set Fk(x)=
+(1 − xe1 )(1 − xe2 )Fk−1(x) for the optimal choice {e1,e2}, set bk =
+Bm(Fk), printFk and bk, incrementk, and repeat Step 3. Otherwise,
+set bk−1 = 0 and perform Step 2.
+Several criteria may be used for termination, for example, a prescribed
+bound on k or deg Fk, or the appearance of a decreasing sequence of values of
+bk of a particular length.
+358 P. BORWEIN, E. DOBROWOLSKI, AND M. J. MOSSINGHOFF
+We remark that a pure hill-climbing method would omit the resetting of
+bk−1 to 0 at the end of Step 3 and would terminate as soon as none of the
+adjustments of Steps 2 or 3 improves the bound. By adding this assignment,
+we need not stop at local maxima and instead allow our objective value to
+decrease temporarily in order to continue searching for better values.
+We use the revolving door algorithm [16] to enumerate the
+(|E|
+2
+)
+combi-
+nations of factors to test in Step 3. This way, each polynomial we test can be
+constructed from the previous polynomial considered with just one division by
+a binomial and one multiplication.
+We implemented Algorithm 4.1 in C++ and ran it on an Apple Pow-
+erPC G4. For m = 2, letting F0(x)=1 − x2 and choosing E to be a set of
+small positive integers like {1,2,... , 8}, we see that Algorithm 4.1 produces
+a sequence of polynomials of the form (1 − x2)a(1 − x4)b with a ≈ 3b. This
+suggests the sequence Fk(x) = ((1 − x2)3(1 − x4))k and hence Corollary 3.4.
+Despite several variations on the initial values, no better sequence was found
+with Algorithm 4.1 for m =2 .
+For several values of m greater than 2, Algorithm 4.1, starting with
+F0(x)=1 − x, produces a sequence of auxiliary polynomials of the form
+(1 − x)a(1 − x2)b with a ≈ (m2 − 1)b, suggesting the polynomial employed
+in Corollary 3.5. Our method also indicates a further improvement for the
+case m = 3. With E = {1,2,3,4,5}, Algorithm 4.1 constructs the polynomial
+F(x)=( 1 − x)1078(1 − x2)127(1 − x5)3,(4.1)
+which hasB3(F)=1 .581983 ...>
+√
+10/2. This example is investigated further
+in our second search method.
+4.3. Special families. A second method of searching for good auxiliary
+polynomials in Theorem 3.3 computes‖F ‖∞ directly for certain families of pure
+products rather than using the quantity L(F) as a bound. For a polynomial
+F, let βm(F) denote the expression appearing in Theorem 3.3:
+βm(F)=
+⎧
+⎪⎨
+⎪⎩
+ν(F) log 2− log ‖F ‖∞
+deg F , if m =2 ,
+ν0(F) logm − log ‖F ‖∞
+deg F , if m> 2.
+Given m and ﬁxing a set of positive integers E, we evaluate
+βm
+( ∏
+e∈E
+(1 − xe)re
+)
+for a number of selections for the exponentsre, subject to gcd{re : e ∈ E} =1 .
+For example, for m = 2 and E = {2,4,8}, we ﬁnd no polynomials that yield
+a bound as good as that of Corollary 3.4. However, using E = {2,4,6},
+LEHMER’S PROBLEM FOR POLYNOMIALS WITH ODD COEFFICIENTS 359
+20 40 60 80 100
+0.4012
+0.4014
+0.4016
+0.4018
+0.4020
+0.4022
+Figure 1: β2(Gk) for k ≤ 100.
+we detect an auxiliary polynomial that does just as well. After computing
+β2((1 − x2)a(1 − x4)b(1 − x6)) for 1 ≤ a, b ≤ 50, we ﬁnd that the polynomials
+Gk(x)=
+(
+1 − x2)2k+1 (
+1 − x4)k (
+1 − x6)
+produce values rather close to (log 5) /4, and further that these values are
+increasing in k over this range. We obtain Figure 1 by computing β2 for
+additional polynomials in this sequence. The maximum value occurs atk = 34,
+and
+‖G34‖∞ =
+‖‖(1 − y)104(1 +y)34(1 +y + y2)
+‖‖
+∞
+=2 138 max
+0≤t≤1
+⏐⏐sin104(πt) cos34(πt)(2 cos(2πt)+1 )
+⏐⏐
+= 2242
+570 .
+Since ν(G34) = 242 and degG34 = 280, we again obtain (3.7).
+For m = 3, given (4.1) we investigate polynomials with E = {1,2,5} and
+ﬁnd that we obtain good bounds using r1 ≈ 8.5r2 and r3 = 1. The maximum
+value of β3((1 − x)17k(1 − x2)2k(1 − x5)) occurs at k = 25, yielding the value
+1.582495 ... cited at the end of Section 3.
+Similar investigations for larger values ofm have not improved the bound
+of Corollary 3.5. For example, choosingE = {1,2,5}, r1 =( 2m2 −1)k, r2 =2 k,
+k ≥ 1, and r3 = 1, we obtain a sequence of values under βm approaching
+log(
+√
+m2 +1 /2) from below, but no polynomial tested improves this bound.
+5. The conjecture of Schinzel and Zassenhaus
+The lower bounds on log M( f) for f ∈D m of Corollaries 3.4 and 3.5
+automatically yield lower bounds on max{|α| : f(α)=0 } for polynomials f ∈
+Dm having no cyclotomic factors. The following theorem improves these results
+in the Schinzel-Zassenhaus problem in two ways: weakening the hypotheses and
+improving the constants.
+360 P. BORWEIN, E. DOBROWOLSKI, AND M. J. MOSSINGHOFF
+Theorem 5.1. Suppose f ∈D m is monic with degreen−1 having at least
+one noncyclotomic factor. Then there exists a root α of f satisfying
+|α| >
+⎧
+⎪⎨
+⎪⎩
+1+ log 3
+2n , if m =2 ,
+1+ log(m − 1)
+n , if m> 2.
+(5.1)
+Proof. Let g denote the noncyclotomic part of f, let d = deg g, and let
+α1, ... , αd denote the roots of g. Suppose that
+max{|αk| :1 ≤ k ≤ d} < 1+ c
+n
+for a positive constant c, so that |αn
+k | <e c for each k.
+Suppose m = 2. Since the maximum value of
+⏐⏐1 − z2⏐⏐for complex numbers
+z lying in the disk {z : |z|≤ r} is 1 + r2, with the maximum value occurring
+at z = ±ir, we have
+⏐⏐1 − α2n
+k
+⏐⏐< 1+ e2c
+for each k. Consequently, using Lemma 3.1 with both xn + 1 and xn − 1, we
+ﬁnd
+22d ≤
+⏐⏐Res(g(x),1 − x2n)
+⏐⏐<
+(
+1+ e2c)d
+.(5.2)
+Therefore 1 +e2c > 4, and the inequality for m = 2 follows.
+If m> 2, in a similar way we obtain
+md ≤| Res(g(x),1 − xn)| < (1 +ec)d ,(5.3)
+and the theorem follows.
+No better bounds were found by using other auxiliary polynomials in place
+of 1 −x2n and 1 −xn in (5.2) and (5.3). However, for some m we ﬁnd that the
+polynomials employed in Corollaries 3.4 and 3.5 do just as well. For example,
+let Fa,b(x)=( 1 −x2)a(1 +x2)b, with a and b positive integers. The supremum
+of Fa,b on the disk {z ∈ C : |z| = r} is
+‖Fa,b‖|z|=r = aa/2bb/2
+( 2(1 +r4)
+a + b
+)(a+b)/2
+,
+and we obtain a lower bound on c from the inequality
+22a+b < ‖Fa,b‖|z|=ec .
+The optimal choice of parameters is a = 4 and b = 1, as in Corollary 3.4,
+yielding c ≥ (log 3)/2. Likewise, for m> 1 the optimal choice for a and b in
+the auxiliary polynomial (1−x)a(1+x)b is a = m2 and b = 1, but this selection
+achieves c ≥ log(m − 1) only for m =3 .
+LEHMER’S PROBLEM FOR POLYNOMIALS WITH ODD COEFFICIENTS 361
+We now show that the constant in Theorem 5.1 forf ∈D m cannot be re-
+placed with any number larger than log(2m −1). We ﬁrst require the following
+inequality.
+Lemma 5.2. Suppose f(z)= zn + an−1zn−1 + ··· + a1z + a0, and let
+K = {k :0 ≤ k ≤ n − 1 and ak ⁄=0 }. For each k ∈ K, let ck be a positive
+number, and suppose that ∑
+k∈K ck ≤ 1.I f α is a root of f, then
+|α|≤ max
+{( |ak|
+ck
+) 1
+n−k
+: k ∈ K
+}
+.
+Proof. See [18, part III, problem 20].
+Theorem 5.3. For each m ≥ 2, any ε> 0, and all n ≥ n0(m, ε), there
+exists a polynomial f ∈D m with degree n satisfying
+1+ log m − ε
+n < max
+f(α)=0
+|α| < 1+ log(2m − 1) +ε
+n .
+Proof. Fix m ≥ 2. Let fn(x)= xn + xn−1 + ··· + x +1 − m, so that
+(x − 1)fn(x)= xn+1 − mx + m − 1. By Rouch´e’s theorem, fn has exactly one
+zero inside the unit disk, and this root is a real number approaching (m−1)/m
+for large n.T h u sf ∗
+n has a single root outside the unit disk near m/(m − 1),
+so that M(fn)=M ( f ∗
+n) → m as n →∞ .
+If fn has a reciprocal factorg, theng divides f ∗
+n as well, and sog | fn −f ∗
+n =
+m(xn − 1). However, fn(1) = n +1 − m and fn(ζ)=1 − m for any complex
+nth root of unity ζ;s o f has no reciprocal factor, and hence no roots on the
+unit circle, if n ⁄= m − 1.
+Given ε> 0. For suﬃciently large n, the polynomial fn has n − 1 roots
+outside the unit circle, and at least one of them must have modulus at least as
+large as the geometric mean of these roots. Thus,
+max
+fn(α)=0
+|α|≥ M(fn)1/(n−1) >
+(
+e−εm
+)1/(n−1) > 1+ log m − ε
+n .
+For the upper bound, we apply Lemma 5.2 usingf(z)= zn+1 −mz+m−1,
+c0 =( m − 1)/(2m − 1), and c1 = m/(2m − 1) to obtain
+max
+fn(α)=0
+|α|≤ (2m − 1)1/n.
+Taking n suﬃciently large completes the proof.
+For m = 2, the positive real root of the polynomial f ∗
+n appearing in the
+proof of Theorem 5.3 is a Pisot number, since all its conjugates lie inside the
+open unit disk. In the next section we study some properties of Pisot and
+Salem numbers that appear as roots of Littlewood polynomials.
+362 P. BORWEIN, E. DOBROWOLSKI, AND M. J. MOSSINGHOFF
+6. Pisot and Salem numbers
+We say a real number α> 1i sa Littlewood-Pisot number if it is a Pisot
+number and its minimal polynomial is a Littlewood polynomial, and deﬁne
+a Littlewood-Salem number in the same way. The article [4] proves that the
+minimal value of Mahler’s measure of a nonreciprocal polynomial in D2 is the
+golden ratio. Thus, this value is the smallest Littlewood-Pisot number.
+We ﬁrst improve Theorem 3.3 slightly for Salem numbers. Since we focus
+on Littlewood polynomials in this section, we present only the case of poly-
+nomials with odd coeﬃcients; an analogous argument improves the bound for
+Salem numbers whose minimal polynomial lies in Dm with m> 2.
+Theorem 6.1. Suppose f is a monic, irreducible polynomial in D2 with
+degree n − 1 having exactly one root α outside the unit disk. Then
+log |α| > log 5
+4
+(
+1+ 1
+10n
+)
+.
+Proof.I f F(x) is a polynomial with f(x) ∤ F(xn), then using Lemma 3.1
+and the fact that the complex roots of f lie on the unit circle, we obtain
+2ν(F)(n−1) ≤| Res(f(x),F (xn))|≤‖ F ‖n−3
+∞
+⏐⏐F(αn)F(α−n)
+⏐⏐.
+Choose F(x)=( 1 − x2)4(1 +x2). Then
+⏐⏐F(αn)F(α−n)
+⏐⏐= α−10n |F(αn)|2 = α−10n (
+α2n − 1
+)6 (
+α4n − 1
+)2
+<α 10n,
+so that
+29(n−1) <α 10n
+( 29
+55/2
+)n−3
+.
+Consequently
+|α| > 51/4
+( 218
+515/2
+)1/10n
+.
+Thus
+log |α| > log 5
+4 + 9 log 2
+5n − 3 log 5
+4n = log 5
+4
+(
+1+ c
+n
+)
+,
+where
+c = 36 log 2
+5 log 5 − 3= .100871 ...> 1
+10.
+Our main result of this section concerns a limit point of Littlewood-Salem
+numbers. It is well-known that every Pisot number is a two-sided limit point of
+Salem numbers. We prove that more is true for the smallest Littlewood-Pisot
+number.
+LEHMER’S PROBLEM FOR POLYNOMIALS WITH ODD COEFFICIENTS 363
+Theorem 6.2. The smallest Littlewood-Pisot number is a limit point ,
+from both sides, of Littlewood-Salem numbers.
+Proof. We ﬁrst deﬁne two sequences of Littlewood polynomials which
+have exactly one root outside the unit circle. Let Pn(x) denote the cyclotomic
+product
+Pn(x)=Φ 6(x)
+2n∑
+k=0
+x3k =Φ 6(x)x6n+3 − 1
+x3 − 1 =Φ 6(x)
+∏
+d|6n+3
+d>3
+Φd(x),
+and let
+pn(t)= e(−(3n +1 )t)Pn(e(t)),
+where e(t)= e2πit. Thus, pn(t) is a real-valued, periodic function with period 1
+having simple zeros in the interval (0,1/2) at the points
+{ 1
+6
+} ⋃ { k
+6n +3 :1 ≤ k ≤ 3n +1 ,k ⁄=2 n +1
+}
+.
+Let
+an(t) = 2 cos((6n +2 )πt)
+and
+bn(t)= −4 sin(πt) sin((6n +1 )πt).
+Since
+2k − 1
+12n +4 < k
+6n +3 < 2k +1
+12n +4 < k +1
+6n +3
+for 1 ≤ k ≤ 3n, it follows that between two consecutive zeros ofan(t)i n( 0,1/2)
+there exists exactly one zero of pn(t), with two exceptions corresponding to
+the absence of a zero of pn(t)a t t =1 /3 and the extra zero at t =1 /6.
+Consequently, the function an(t) − pn(t) has at least 3n − 2 zeros in (0,1/2).
+A similar computation veriﬁes that pn(t) − bn(t) has at least 3 n − 2 zeros in
+(0,1/2).
+For n ≥ 1, deﬁne the Littlewood polynomials An(x) and Bn(x)b y
+An(x)= x6n +( 1 − x − x2)
+2n−1∑
+k=0
+x3k(6.1)
+and
+Bn(x)= x6n−1 +( 1+ x − x2)
+2n−1∑
+k=0
+x3k,(6.2)
+so that deg An =6 n and deg Bn =6 n − 2. Since
+Pn(x)+ xAn(x)= x6n+2 +1
+364 P. BORWEIN, E. DOBROWOLSKI, AND M. J. MOSSINGHOFF
+and
+Pn(x) − x2Bn(x)=( x − 1)(x6n+1 − 1),
+it follows that e(−3nt)An(e(t)) and e(−(3n − 1)t)Bn(e(t)) each have at least
+6n −4 zeros in (0,1), and thus thatAn(x) and Bn(x) each have at least 6n −4
+zeros on the unit circle. Since An(−1) = 1, An(1) = 1 − 2n, Bn(−1) = −1,
+and Bn(1) = 1 + 2n, it follows that An(x) and Bn(x) have one real root in
+the interval (−1,1), and, since these polynomials are reciprocal, one real root
+outside the unit disk as well. This accounts for all roots of Bn(x), and all but
+two roots of An(x). These last two roots cannot be real, since evidentlyAn(x)
+has an odd number of roots in [−1,1] and hence its total number of real roots
+is congruent to 2 mod 4. Also, they must have modulus 1, for otherwise a root
+α would have distinct conjugates 1/α, α, and 1/α.
+We next prove that An(x) and Bn(x) are irreducible. Let αn denote the
+real root of An(x) outside the unit disk, and let βn denote that of Bn(x).
+If f | An and f(αn) ⁄= 0, then by Kronecker’s theorem f is a product of
+cyclotomic polynomials. Suppose then that Φ d | An. By Lemma 2.3, we have
+d | 12n +2 . I fd | 6n + 1, then Φd divides
+An(x)+ x6n+1 − 1
+x − 1 =2 x6n+3 − 1
+x3 − 1 ,
+so that d | 6n + 3 and thus d = 1, but An(1) ⁄=0 . I f d is an even divisor of
+12n + 2, then Φd/2(x) | An(−x). Since
+x6n+1 − 1
+x − 1 − An(−x)=2 x2Φ3(x)x6n − 1
+x6 − 1 ,
+we have d | 12n as well and again arrive at a contradiction. The proof that
+Bn(x) is irreducible is similar.
+Let γ denote the golden ratio, γ =( 1+
+√
+5)/2. Since An( 1 )=1 − 2n
+and An(γ)=1 ,w eh a v eαn <γ for each n. Similarly, we compute Bn(−2) =
+(26n−1 − 5)/9 and Bn(−γ)=1 − γ, so that βn < −γ for each n. Further,
+An+1(αn)= α6n+6
+n − α6n
+n +( 1 − αn − α2
+n)(α6n
+n + α6n+3
+n )
+= α6n+1
+n (α3
+n + 1)(α2
+n − αn − 1),
+and since x2 − x − 1 < 0o n( 1 ,γ ), we conclude An+1(αn) < 0 and thus
+αn+1 >α n. Similarly,
+Bn+1(βn)= β6n−1
+n (β3
+n + 1)(β2
+n + βn − 1) > 0,
+and so βn+1 >β n. Thus, the sequences {αn} and {βn} converge.
+Finally, since An(x) converges uniformly to (1 − x − x2)/(1 − x3)o na n y
+compact subset of ( −1,1), it follows that lim n→∞ 1/αn =1 /γ, and so {αn}
+converges to γ. Similarly, {βn} converges to −γ. Thus, An(x) and Bn(−x)
+provide the required Littlewood-Salem numbers.
+LEHMER’S PROBLEM FOR POLYNOMIALS WITH ODD COEFFICIENTS 365
+The root α1 of A1(x) in the proof of Theorem 6.2 is the smallest known
+measure of an irreducible Littlewood polynomial. Moreover, the sequences
+{αn} and {−βn} encompass all known values of Mahler’s measure below 1.645
+of reciprocal, irreducible Littlewood polynomials (see [15]).
+Finally, it is likely that the method of the proof extends, at least in part,
+to the other Littlewood-Pisot numbers appearing in the proof of Theorem 5.3.
+Let
+fm(x)= xm−1 −
+m−2∑
+k=0
+xk,
+and let γm denote the Pisot number having fm(x) as its minimal polynomial.
+Following (6.1) and (6.2), for each m ≥ 3 and n ≥ 1 deﬁne the Littlewood
+polynomials
+Am,n(x)= x2mn + f ∗
+m(x)
+2n−1∑
+k=0
+xmk
+and
+Bm,n(x)= x2mn−1 − fm(x)
+2n−1∑
+k=0
+xmk.
+For each m, it appears that Am,n(x) yields a sequence of Salem numbers ap-
+proaching γm from below. However, while M(Bm,n) approaches γm as n →∞ ,
+evidently Bm,n(x) has m − 2 roots outside the unit circle.
+Added in proof. Since this article was written, some other papers have ap-
+peared on the topics treated in this paper. Lower bounds in Lehmer’s problem
+and the Schinzel-Zassenhaus problem for polynomials with coeﬃcients congru-
+ent to 1 mod m are developed further in
+A. Dubickas and M. J. Mossinghoff, Auxiliary polynomials for some prob-
+lems regarding Mahler’s measure, Acta Arith. 119 (2005), 65–79.
+Results on Lehmer’s problem are generalized in
+C. L. Samuels, The Weil height in terms of an auxiliary polynomial, Acta
+Arith. 128 (2007), 209–221.
+More information on Littlewood-Pisot and Salem numbers may be found in
+K. Mukunda, Littlewood Pisot numbers, J. Number Theory 117 (2006),
+106–121.
+Simon Fraser University, Burnaby, B.C., Canada
+E-mail address: pborwein@cecm.sfu.ca
+College of New Caledonia, Prince George, B.C., Canada
+E-mail address: dobrowolski@cnc.bc.ca
+Davidson College, Davidson, N.C., USA
+E-mail address: mjm@member.ams.org
+366 P. BORWEIN, E. DOBROWOLSKI, AND M. J. MOSSINGHOFF
+References
+[1] F. Amoroso and R. Dvornicich, A lower bound for the height in abelian extensions, J.
+Number Theory 80 (2000), 260–272.
+[2] F. V. Atkinson, On a problem of Erd˝os and Szekeres, Canad. Math. Bull. 4 (1961),
+7–12.
+[3] A. S. Belov and S. V. Konyagin, An estimate for the free term of a nonnegative trigono-
+metric polynomial with integer coeﬃcients (Russian),Mat. Zametki 59 (1996), 627–629.
+Translation in Math. Notes 59 (1996), 451–453.
+[4] P. Borwein, K. G. Hare, and M. J. Mossinghoff, The Mahler measure of polynomials
+with odd coeﬃcients, Bull. London Math. Soc. 36 (2004), 332–338.
+[5] P. Borwein and M. J. Mossinghoff, Polynomials with height 1 and prescribed vanishing
+at 1, Experiment. Math. 9 (2000), 425–433.
+[6] D. C. Cantorand E. G. Straus, On a conjecture of D. H. Lehmer,Acta Arith.42 (1982),
+97–100. Correction, ibid. 42 (1983), 327.
+[7] J. D. Dixon and A. Dubickas, The values of Mahler measures, Mathematika 51 (2005),
+131–148.
+[8] E. Dobrowolski, On a question of Lehmer and the number of irreducible factors of a
+polynomial, Acta Arith. 34 (1979), 391–401.
+[9] P. Erd˝os, Problems and results on diophantine approximations, Compositio Math. 16
+(1964), 52–65.
+[10] P. Erd˝os and G. Szekeres, On the product ∏ n
+k=1(1 − zak ), Acad. Serbe Sci. Publ. Inst.
+Math. 13 (1959), 29–34.
+[11] M. N. Kolountzakis, On nonnegative cosine polynomials with nonnegative integral co-
+eﬃcients, Proc. Amer. Math. Soc.120 (1994), 157–163.
+[12] D. H. Lehmer, Factorization of certain cyclotomic functions, Ann. of Math. 34 (1933),
+461–479.
+[13] R. Lidl and H. Niederreiter, Introduction to Finite Fields and their Applications, Cam-
+bridge Univ. Press, Cambridge, 1994.
+[14] R. Maltby, Pure product polynomials and the Prouhet-Tarry-Escott problem, Math.
+Comp. 66 (1997), 1323–1340.
+[15] M. J. Mossinghoff, Lehmer’s Problem, http://www.cecm.sfu.ca/∼mjm/Lehmer, 2003.
+[16] A. Nijenhuis and H. S. Wilf , Combinatorial Algorithms, Academic Press, New York,
+1975.
+[17] A. M. Odlyzko, Minima of cosine sums and maxima of polynomials on the unit circle,
+J. London Math. Soc. 26 (1982), 412–420.
+[18] G. P´olya and G. Szeg¨o, Problems and Theorems in Analysis, vol. I, Springer-Verlag,
+New York, 1972.
+[19] R. Salem, Power series with integral coeﬃcients, Duke Math. J. 12 (1945), 153–172.
+[20] A. Schinzel, On the product of the conjugates outside the unit circle of an algebraic
+number, Acta Arith. 24 (1973), 385–399; Addendum, ibid. 26 (1975), 329–331.
+[21] A. Schinzel and H. Zassenhaus, A reﬁnement of two theorems of Kronecker, Michigan
+Math. J. 12 (1965), 81–85.
+[22] C. J. Smyth, On the product of the conjugates outside the unit circle of an algebraic
+integer, Bull. London Math. Soc. 3 (1971), 169–175.
+(Received October 2, 2003)

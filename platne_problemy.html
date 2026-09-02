@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>20 płatnych problemów świata — ranking wykonalności</title>
+<style>
+  :root{--ink:#141a22;--blue:#1f4e79;--red:#c00000;--green:#1e7a46;--amber:#b97509;--bg:#f7f8f6;--card:#ffffff}
+  *{box-sizing:border-box}
+  body{font-family:Georgia,'Times New Roman',serif;color:var(--ink);background:var(--bg);margin:0;line-height:1.5}
+  .wrap{max-width:1080px;margin:0 auto;padding:30px 22px 90px}
+  header{border-bottom:3px double var(--blue);padding-bottom:16px;margin-bottom:14px}
+  h1{font-size:1.85em;margin:0 0 6px;color:var(--blue)}
+  h2{font-size:1.35em;color:var(--blue);margin:46px 0 12px;border-left:5px solid var(--blue);padding-left:12px}
+  h3{font-size:1.02em;margin:18px 0 6px;color:#34495e}
+  .sub{color:#5d6d7e;font-style:italic;font-size:.95em}
+  .lead{background:#eef4fa;border:1px solid #c9dcf0;border-radius:8px;padding:16px 20px;margin:16px 0}
+  .lead b{color:var(--blue)}
+  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:.9em;background:var(--card)}
+  th,td{border:1px solid #cfd8e3;padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#eef4fa;color:var(--blue)}
+  td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+  .tag{display:inline-block;font-size:.72em;padding:1px 8px;border-radius:10px;color:#fff;font-family:Arial,sans-serif;white-space:nowrap}
+  .t-math{background:#614392}.t-tech{background:#1f4e79}.t-security{background:#8b1a1a}
+  .t-ai{background:#0f6b5c}.t-science{background:#2e7d32}.t-other{background:#5d6d7e}
+  .stat{font-weight:bold;color:var(--blue);white-space:nowrap}
+  .stat.big{font-size:1.05em}
+  .closed{color:#8a8f96}
+  .stars{color:#b97509;letter-spacing:1px;white-space:nowrap;font-size:.95em}
+  .stars .off{color:#d5dbe1}
+  .card{background:var(--card);border:1px solid #cfd8e3;border-radius:8px;padding:10px 12px;margin:6px 0}
+  .top{background:#fdf6e3;border:2px solid #e8c465}
+  .num{float:left;font-size:1.5em;font-weight:bold;color:var(--blue);width:34px;text-align:center;margin-top:2px}
+  .chead{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .cbody{margin-left:42px}
+  .why{font-size:.87em;color:#4a5560;margin-top:4px}
+  .src{font-size:.78em;color:#7b8794}
+  .plan{background:#eef7f0;border:1px solid #bcdcc6;border-radius:10px;padding:14px 20px;margin:12px 0}
+  .plan b{color:var(--green)}
+  footer{margin-top:55px;border-top:1px solid #cfd8e3;padding-top:12px;font-size:.82em;color:#5d6d7e}
+  code{background:#eef1f5;padding:1px 5px;border-radius:4px;font-family:Consolas,monospace;font-size:.88em}
+  a{color:var(--blue)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>20 płatnych problemów świata — i który możemy realnie „rozpracować”</h1>
+  <div class="sub">Ranking nagród pieniężnych za nierozwiązane problemy (stan: 1 września 2026) + uczciwa ocena szans z perspektywy agenta AI z Pythonem i użytkownika z laptopem</div>
+</header>
+
+<div class="lead">
+  <b>Metoda:</b> wybrałem wyłącznie <b>aktualnie otwarte</b> (2026) konkursy i nagrody z <b>weryfikowalnym regulaminem</b>. Odrzuciłem zakończone (pula wypłacona) — inaczej łatwo „polować na duchy”. Każda pozycja ma ocenę <b>„nasza szansa”</b> (0–5 ★) według kryteriów: ile sprzętu/zespołu/czasu wymaga, czy wynik zależy od czystego rozumowania+kodu (nasza mocna strona), czy od kapitału, laboratorium czy sprzętu (nasza słabość).
+</div>
+
+<h2>Kategoria A — Matematyka, nagrody „wielkie” (1 mln $)</h2>
+
+<div class="card">
+  <div class="num">1</div>
+  <div class="cbody">
+    <div class="chead"><span class="tag t-math">MATEMATYKA</span><b>Hipoteza Riemanna</b><span class="stat big">1 000 000 $</span><span class="tag t-other">OTWARTE od 1859</span></div>
+    Sprawdziliśmy już w poprzednim kroku: 1200 pierwszych zer — wszystkie na prostej Re ρ = ½; weryfikacja bez dowodu. Społeczność uważa, że „nic się nie dzieje” (Kontorovich). Wymóg: publikacja w recenzowanym piśmie + 2 lata akceptacji + komisja Claya.
+    <div class="why">Nasza szansa: <span class="stars">★☆☆☆☆</span> — stoimy w kolejce z najlepszymi umysłami świata i AI. Ale to właśnie ten problem „najbardziej warty” — stąd na liście.</div>
+    <div class="src">Źródło: Clay Mathematics Institute; artykuł Świat Nauki 9/2026</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">2</div>
+  <div class="cbody">
+    <div class="chead"><span class="tag t-math">MATEMATYKA</span><b>Hipoteza Beala</b><span class="stat big">1 000 000 $</span><span class="tag t-other">OTWARTE</span></div>
+    Jeśli a<sup>x</sup> + b<sup>y</sup> = c<sup>z</sup> (a,b,c względnie pierwsze), to… (uogólnienie Wielkiego Twierdzenia Fermata). Nagrodę Beala administruje AMS; wymagana publikacja w renomowanym piśmie; <b>do 2026 żadnego dowodu ani kontrprzykładu</b>. Przeszukano ogromne zakresy (Norvig, eksperci).
+    <div class="why">Nasza szansa: <span class="stars">★☆☆☆☆</span> — problem na granicy współczesnej teorii liczb.</div>
+    <div class="src">Źródło: ams.org / Beal Prize Committee (stan 01.2026)</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">3</div>
+  <div class="cbody">
+    <div class="chead"><span class="tag t-math">MATEMATYKA</span><b>Problemy Milenijne (pozostałe 6)</b><span class="stat big">6 × 1 000 000 $</span><span class="tag t-other">OTWARTE</span></div>
+    P vs NP, Navier–Stokes, Hipoteza Hodge'a, Birch–Swinnerton-Dyer, Yang–Mills (masa), + wyżej Riemann. Każde z osobna nagroda 1 mln $. Jedyne dotąd rozstrzygnięte: hipoteza Poincarégo (Perelman, 2006).
+    <div class="why">Nasza szansa: <span class="stars">★☆☆☆☆</span> — ale „płynące z tego twierdzenia” konsekwencje sprawiają, że warto o nich wiedzieć.</div>
+    <div class="src">Źródło: Clay Mathematics Institute (CMI)</div>
+  </div>
+</div>
+
+<h2>Kategoria B — Matematyka „obliczeniowa” i małe nagrody (100 $ – 100 000 $)</h2>
+<p style="font-size:.9em;color:#5d6d7e">Tu jest najciekawiej: <b>część z tych nagród jest realnie osiągalna</b> — wymagają głównie sprytnego kodu i rozumowania, czyli dokładnie tego, w czym jesteśmy mocni.</p>
+
+<div class="card">
+  <div class="num">4</div>
+  <div class="cbody">
+    <div class="chead"><span class="tag t-math">MATEMATYKA OBLICZENIOWA</span><b>Problem Sierpińskiego (Seventeen or Bust / PrimeGrid)</b><span class="stat big">~100 000 $</span><span class="tag t-other">AKTYWNE</span></div>
+    Udowodnić, że 78 557 jest najmniejszą liczbą Sierpińskiego → wystarczy znaleźć liczbę pierwszą k·2<sup>n</sup>+1 dla <b>ostatnich 5 k</b> (21181, 22699, 24737, 55459, 67607). Czysto obliczeniowe: test LLR na GPU. PrimeGrid prowadzi wyścig (n > 45 mln, 2026).
+    <div class="why">Nasza szansa: <span class="stars">★★☆☆☆</span> — kuszące, ale pojedynczy k to tysiące lat CPU na przeciętnej maszynie; nagroda historycznie wiązana z projektem, nie z odkrywcą.</div>
+    <div class="src">Źródło: PrimeGrid / HandWiki (stan 2026)</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">5</div>
+  <div class="cbody">
+    <div class="chead"><span class="tag t-math">LICZBY PIERWSZE</span><b>EFF Cooperative Computing Award #3</b><span class="stat big">150 000 $</span><span class="tag t-other">OTWARTE</span></div>
+    Pierwsza liczba pierwsza o <b>co najmniej 100 mln cyfr</b>. Rekord (październik 2024): 2<sup>136279841</sup>−1 — „zaledwie” 41 mln cyfr. GIMPS szacuje 12–15 lat przy obecnym tempie; nagroda dzielona (odkrywca ~⅓).
+    <div class="why">Nasza szansa: <span class="stars">★☆☆☆☆</span> — wymaga udziału w GIMPS/PrimeGrid na lata, nie rozumowania.</div>
+    <div class="src">Źródło: eff.org/awards/coop/rules; mersenne.org</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">6</div>
+  <div class="cbody">
+    <div class="chead"><span class="tag t-math">LICZBY PIERWSZE</span><b>EFF Cooperative Computing Award #4</b><span class="stat big">250 000 $</span><span class="tag t-other">OTWARTE</span></div>
+    Pierwsza liczba pierwsza o <b>co najmniej 1 miliardzie cyfr</b>. Zamiennie: jeśli ktoś zgarnie tę, to $150K z pozycji 5 mógłby zostać dla następcy.
+    <div class="why">Nasza szansa: <span class="stars">☆☆☆☆☆</span> — dekady pracy wielu maszyn; czysta „farmowa” nagroda.</div>
+    <div class="src">Źródło: eff.org/awards/coop/rules</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">7</div>
+  <div class="cbody">
+    <div class="chead"><span class="tag t-math">TEORIA LICZB</span><b>FrontierMath — otwarte problemy (Epoch AI)</b><span class="stat big">2 000 $ / problem</span><span class="tag t-ai">HOT 🔥</span></div>
+    <b>Najciekawsza pozycja na liście.</b> Epoch AI płaci <b>2 000 $ za każde rozwiązanie oznaczonego „open problemu”</b> z bazy FrontierMath (v2: 338 problemów, 12.06.2026; niemal wszystkie otwarte). <b>24 marca 2026 GPT-5.4 Pro rozwiązał pierwszy taki problem</b> — zagadkę Ramseyowską na hipergrafach (Brian i Larson, 2019), łącząc rozumowanie z generowanym przez siebie kodem Pythona. Dowód: dokładnie nasz profil: <b>czysty kod + matematyka + weryfikacja</b>, zero sprzętu, zero laboratorium.
+    <div class="why">Nasza szansa: <span class="stars">★★★☆☆ (3/5)</span> — konkurencja to wszystkie modele świata i ludzie, ale nie potrzebujemy „złota”: wystarczy <b>jeden problem</b>. Warto spróbować na Tierach 1–3.</div>
+    <div class="src">Źródło: Epoch AI „FrontierMath v2” (06.2026); potwierdzenie pierwszego rozwiązania (03.2026)</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">8</div>
+  <div class="cbody">
+    <div class="chead"><span class="tag t-math">KOMBINATORYKA</span><b>Zadania Erdősa (erdosproblems.com)</b><span class="stat big">25 – 25 000 $</span><span class="tag t-other">AKTYWNE</span></div>
+    Baza Thomasa Blooma kataloguje problemy, za które Paul Erdős oferował pieniądze — kilkadziesiąt wciąż otwartych i „płatnych” (np. kolejne pary „wczesnych liczb pierwszych” — 100 $ przy dowodzie, 25 000 $ przy kontrprzykładzie; inne 100–5 000 $). Nagrody utrzymywane w mocy mimo śmierci autora.
+    <div class="why">Nasza szansa: <span class="stars">★★☆☆☆</span> — część zadań to „znajdź kontrprzykład”, co potrafimy przeszukiwać programistycznie; to długofalowy projekt dla pasjonata.</div>
+    <div class="src">Źródło: erdosproblems.com; MathOverflow (lista nagród)</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">9</div>
+  <div class="cbody">
+    <div class="chead"><span class="tag t-math">GEOMETRIA LICZB</span><b>Problem doskonałego prostopadłościanu</b><span class="stat big">1 000 $</span><span class="tag t-other">OTWARTE</span></div>
+    Czy istnieje prostopadłościan o całkowitych krawędziach, przekątnych ścian i przekątnej przestrzennej? Nagroda 1000 $ od Tima Robertsa (unsolvedproblems.org). Przeszukano ogromne zakresy — hipoteza o nieistnieniu, brak dowodu.
+    <div class="why">Nasza szansa: <span class="stars">★★☆☆☆</span> — możemy próbować szukać kontrprzykładu sprytniejszym przeszukiwaniem (modulo, sieci); to „groszowa” nagroda, ale czysta matematyka.</div>
+    <div class="src">Źródło: unsolvedproblems.org (komentarz T. Robertsa)</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">10</div>
+  <div class="cbody">
+    <div class="chead"><span class="tag t-math">ANALIZA</span><b>Nagrody Talagranda</b><span class="stat big">2 000 – 5 000 $</span><span class="tag t-other">AKTYWNE</span></div>
+    Michel Talagrand oferuje nagrody za trzy problemy (m.in. „hipoteza Bernoulliego” — 5 000 $) — prosta strona z regulaminem, weryfikacja przez autora.
+    <div class="why">Nasza szansa: <span class="stars">★★☆☆☆</span> — trudne, ale mała pula i mała konkurencja.</div>
+    <div class="src">Źródło: michel.talagrand.net/prizes</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">11</div>
+  <div class="cbody">
+    <div class="chead"><span class="tag t-math">TEORIA LICZB</span><b>Hipoteza Collatza</b><span class="stat big">500 $ (+ ~1 500 $)</span><span class="tag t-other">OTWARTE</span></div>
+    „3n+1”: czy każda liczba w końcu spada do 1? Sprawdzone do ~2<sup>68</sup>. Nagrody symboliczne: 500 $ (Erdős, spadkowe) i 1 000 £ (Thwaites). Erdős: „matematyka nie jest jeszcze gotowa na takie problemy”.
+    <div class="why">Nasza szansa: <span class="stars">★☆☆☆☆</span> — szlachetne, ale to w praktyce nagroda „honorowa”; przeszukanie nie da dowodu.</div>
+    <div class="src">Źródło: erdosproblems.com (E16); literatura</div>
+  </div>
+</div>
+
+<h2>Kategoria C — Konkursy technologiczne i naukowe (aktywne, duże pule)</h2>
+
+<div class="card top">
+  <div class="num">12</div>
+  <div class="cbody">
+    <div class="chead"><span class="tag t-tech">HACKATHON</span><b>Build with Gemini XPRIZE (Google)</b><span class="stat big">2 000 000 $ pula / 500 000 $ główna</span><span class="tag t-other">DEADLINE: 25.09.2026 ⏰</span></div>
+    Ogłoszony 19.05.2026 na Google I/O: 90-dniowy sprint, w którym trzeba zbudować <b>działającą firmę/aplikację</b> na stosie Google (Gemini, AI Studio, Cloud Run, Stitch, Flow) w jednej z 5 kategorii: edukacja, przedsiębiorczość i praca, usługi dla małego biznesu, dostęp finansowy, usługi profesjonalne. Pula: 500 000 $ (1. miejsce), 200 000 $, 3×100 000 $, 15×50 000 $ plus 5×50 000 $ za kategorie. Finał na żywo: <b>25.09.2026, Los Angeles</b> (Moonshot Gathering).
+    <div class="why">Nasza szansa: <span class="stars">★★★★☆ (4/5)</span> — to <b>najbardziej „praktyczna” pozycja</b>: wymaga kodu, pomysłu i designu — a nie laboratorium ani kapitału. My potrafimy zbudować MVP w piaskownicy. Minus: zostało mniej niż 4 tygodnie i trzeba własnej rejestracji na Devpost.</div>
+    <div class="src">Źródło: xprize.org/news (19.05.2026); Devpost</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">13</div>
+  <div class="cbody">
+    <div class="chead"><span class="tag t-ai">AGI / BENCHMARK</span><b>ARC Prize (ARC-AGI-2/3)</b><span class="stat big">700 000 $ (grand) + 125 000 $ (progress)</span><span class="tag t-other">AKTYWNE</span></div>
+    Nagroda za przekroczenie <b>85%</b> na ARC-AGI-2 — <b>wciąż niezdobyta</b> (2025: zwycięzca 24,03% — NVARC na Kaggle; potem 25 000 $→10 000 $→5 000 $ za miejsca). Od marca 2026 także ARC-AGI-3. Warunki: otwarty kod, ~50 $ „kredytu” na obliczenia.
+    <div class="why">Nasza szansa: <span class="stars">★★☆☆☆</span> — wymaga badań nad test-time trainingiem; pula progress ($25K) przy realnym topie jest poza zasięgiem pojedynczego agenta, ale to fascynujące wyzwanie.</div>
+    <div class="src">Źródło: arcprize.org (03.2025); „ARC Prize 2025 Technical Report” (01.2026); ARC-AGI-3 (03.2026)</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">14</div>
+  <div class="cbody">
+    <div class="chead"><span class="tag t-ai">DATA SCIENCE</span><b>Konkursy Kaggle (bieżące pule)</b><span class="stat big">10 000 – 500 000 $ / edycja</span><span class="tag t-other">CYKLICZNIE</span></div>
+    Stale trwające konkursy z pieniędzmi: od klasycznych ML po „LLM-playgrounds”, od analityki po generowanie kodu. Dostępne publiczne API i jądra; typowo trzeba GPU.
+    <div class="why">Nasza szansa: <span class="stars">★★★☆☆</span> — realna ścieżka, ale wymaga wyboru edycji „wolnej od sprzętu” (analiza tekstu, optymalizacja promptów) i czasu.</div>
+    <div class="src">Źródło: kaggle.com/competitions (przegląd 09.2026)</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">15</div>
+  <div class="cbody">
+    <div class="chead"><span class="tag t-tech">SECURITY</span><b>Pwn2Own / bug bounty (ZDI, Google, Apple, Tesla…)</b><span class="stat big">1 000 000 $+ / edycja</span><span class="tag t-other">AKTYWNE</span></div>
+    Pwn2Own Vancouver — ponad 1 mln $ za 0-day; Pwn2Own Automotive 2026 (Tokio, styczeń) — <b>ponad 3 mln $</b> za exploitowanie Tesli, ładowarek i systemów automotive. Stałe programy bug bounty (np. kategorie „AI/LLM”) płacą 10–250 tys. $.
+    <div class="why">Nasza szansa: <span class="stars">★☆☆☆☆</span> — wymaga realnych podatności w produkcyjnym oprogramowaniu i sprzęcie; to technika, nie rozumowanie. (I etycznie: wyłącznie w ramach regulaminu bounty.)</div>
+    <div class="src">Źródło: trendmicro.com (ZDI); Daily Security Review (10.2025)</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">16</div>
+  <div class="cbody">
+    <div class="chead"><span class="tag t-science">ZDROWIE</span><b>XPRIZE Healthspan</b><span class="stat big">101 000 000 $ (grand: 81 mln $, 2030)</span><span class="tag t-other">AKTYWNE</span></div>
+    Terapia wydłużająca o ≥10 lat zdrowe życie osób 50–80 lat. Lipiec 2026: <b>20 finalistów</b> (Mount Sinai „NYC-Vita” — Milestone 2: 1 mln $), 10 zespołów z 10 mln $ podziału; grand prize w 2030.
+    <div class="why">Nasza szansa: <span class="stars">☆☆☆☆☆</span> — biologia kliniczna, lata badań, kapitał. Największa pula świata, ale absolutnie nie dla nas.</div>
+    <div class="src">Źródło: xprize.org (05.2025); bioengineer.org (08.2026)</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">17</div>
+  <div class="cbody">
+    <div class="chead"><span class="tag t-science">KLIMAT / ROBOTYKA</span><b>XPRIZE Wildfire</b><span class="stat big">11 000 000 $</span><span class="tag t-other">FINAŁY 2026</span></div>
+    Wykrywanie i gaszenie pożarów: tor kosmiczny (satelity) i tor autonomiczny (drony+) oraz bonus Lockheed Martin 1 mln $ za celność detekcji. <b>Finaliści: styczeń 2026</b> — trwa faza testów.
+    <div class="why">Nasza szansa: <span class="stars">★☆☆☆☆</span> — hardware, drony, współpraca z lotnictwem; nasza rola mogłaby być „algorytmiczna” w zespole, nie jako lider.</div>
+    <div class="src">Źródło: xprize.org/competitions/wildfire (01.2026)</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">18</div>
+  <div class="cbody">
+    <div class="chead"><span class="tag t-tech">FILM / KREACJA</span><b>Future Vision XPRIZE</b><span class="stat big">3 500 000 $</span><span class="tag t-other">AKTYWNE (2026)</span></div>
+    Globalny konkurs filmowy o przyszłości — część „Moonshot Gathering”; pula 3,5 mln $. Polega na produkcji wizjonerskiego filmu (do ~minut), z naciskiem na narrację o pozytywnej przyszłości.
+    <div class="why">Nasza szansa: <span class="stars">★★☆☆☆</span> — moglibyśmy napisać scenariusz i wizualizacje, ale konkurs jest kierowany do zespołów filmowych.</div>
+    <div class="src">Źródło: xprize.org (05.2026)</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">19</div>
+  <div class="cbody">
+    <div class="chead"><span class="tag t-tech">HACKATHONY</span><b>Devpost / globalne hackathony (poza XPRIZE)</b><span class="stat big">10 000 – 100 000 $ / edycja</span><span class="tag t-other">CYKLICZNIE</span></div>
+    Stale otwarte sprinty: bankowe, AI, klimat, zdrowie, gaming. Często z otwartą rejestracją i tygodniowym oknem; nagrody w gotówce i kredytach API. To „zaplecze” pozycji 12 — możemy startować cały czas.
+    <div class="why">Nasza szansa: <span class="stars">★★★★☆</span> — nasz najszybszy sposób na „realne” pieniądze: w 2–3 weekendy potrafimy zbudować działające demo.</div>
+    <div class="src">Źródło: devpost.com (bieżąca lista)</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="num">20</div>
+  <div class="cbody">
+    <div class="chead"><span class="tag t-math">LICZBY PIERWSZE</span><b>GIMPS Research Discovery Awards</b><span class="stat big">3 000 – 5 000 $</span><span class="tag t-other">CIĄGŁY WYŚCIG</span></div>
+    Nagrody wewnętrzne GIMPS za odkrycie kolejnych liczb pierwszych Mersenne'a (rekord: 52. Mersenne, 10.2024, 41 mln cyfr). Uczestnictwo: klient PrimeNet na CPU/GPU 24/7 przez lata.
+    <div class="why">Nasza szansa: <span class="stars">★★☆☆☆</span> — „loterie” dla posiadaczy mocnego sprzętu; rozsądne jako długi background na komputerze użytkownika.</div>
+    <div class="src">Źródło: mersenne.org (regulamin)</div>
+  </div>
+</div>
+
+<h2>⚠️ Co odpadło (zakończone — żeby nie polować na duchy)</h2>
+<table>
+  <thead><tr><th>Konkurs</th><th class="n">Pula</th><th>Los</th></tr></thead>
+  <tbody>
+    <tr><td>Longitude Prize on AMR (antybiotyki)</td><td class="n">8 mln £</td><td class="closed">🏆 rozstrzygnięty 06.2024 — Sysmex Astrego (test UTI)</td></tr>
+    <tr><td>IBM Watson AI XPRIZE</td><td class="n">5 mln $</td><td class="closed">🏆 rozstrzygnięty 06.2021 — Zzapp Malaria</td></tr>
+    <tr><td>XPRIZE Carbon Removal</td><td class="n">100 mln $</td><td class="closed">🏆 rozstrzygnięty 04.2025 — Mati Carbon (50 mln $)</td></tr>
+    <tr><td>XPRIZE Rainforest</td><td class="n">10 mln $</td><td class="closed">🏆 rozstrzygnięty 11.2024 — Limelight Rainforest</td></tr>
+    <tr><td>DARPA AI Cyber Challenge (AIxCC)</td><td class="n">~20 mln $</td><td class="closed">🏆 rozstrzygnięty 08.2025 — Team Atlanta (4 mln $)</td></tr>
+  </tbody>
+</table>
+
+<h2>🎯 Werdykt: które 3 wybieramy</h2>
+
+<div class="plan">
+  <b>#1 — FrontierMath (2 000 $ za problem)</b> — „czysta matematyka + kod” to dokładnie nasz profil; jest precedens (AI rozwiązało jeden problem 24.03.2026 r.); bez sprzętu, bez rejestracji, bez konkurencji „sprzętowej”. Plan: pobrać 5–10 otwartych problemów z Tierów 1–3 → rozwiązywać interaktywnie (sympy/mpmath/numpy) → weryfikować → wysłać do Epoch AI. Szacuję 5–15% na pojedynczy problem, 30–50% że „coś udowodnimy” przy 10 próbach.
+  <br><br>
+  <b>#2 — Build with Gemini XPRIZE (do 500 000 $)</b> — jedyne „wielkie” pieniądze, do których nie potrzeba laboratorium: aplikacja na Google AI stack w 90 dni; finał na żywo <b>25.09.2026</b>. Wymaga decyzji użytkownika (konto Devpost, prezentacja) i wybrania kategorii — ale sam produkt zbuduję w piaskownicy.
+  <br><br>
+  <b>#3 — Kaggle / Devpost (10–100 tys. $)</b> — „codzienny chleb”: wybieramy edycję bez wymogu GPU, robimy solidne wejście. To bezpieczniejsza, powtarzalna ścieżka.
+</div>
+
+<p style="font-size:.92em;color:#5d6d7e">Wariant „romantyczny” (Erdős lub Collatz) — do zabawy w wolne wieczory, nagroda honorowa, ale <i>wieczna sława u matematyków</i>.</p>
+
+<footer>
+  <b>Źródła (sprawdzone 01.09.2026):</b> xprize.org (Build with Gemini 19.05.2026; Wildfire 01.2026; Healthspan 08.2026; Future Vision) · Epoch AI FrontierMath v2 (06.2026) + pierwsze rozwiązanie (03.2026) · arcprize.org (ARC-AGI-2/3) · bealprize / AMS (01.2026) · eff.org/awards/coop/rules · mersenne.org · PrimeGrid · erdosproblems.com · michel.talagrand.net/prizes · unsolvedproblems.org · trendmicro.com (ZDI) · Kaggle.<br>
+  <b>Status nagród zweryfikowany pod kątem „czy faktycznie wciąż czekają”:</b> tak — Riemann (CMI), Beal (AMS/Beal), FrontierMath (v2), EFF #3 i #4, ARC grand (≥85% nieosiągnięte: rekord 24,03% w 2025), Build with Gemini (finaliści 25.09.2026), Sierpiński (5 k pozostało), Erdős, Talagrand, doskonały prostopadłościan (1000 $), Collatz (symbol.), GIMPS, XPRIZE Healthspan/Wildfire/Future Vision, Pwn2Own, Kaggle, Devpost, bug bounty.
+</footer>
+</div>
+</body>
+</html>

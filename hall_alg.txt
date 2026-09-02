@@ -1,0 +1,504 @@
+arXiv:math/0504579v2  [math.NT]  3 Jul 2009
+A NEW ALGORITHM TO SEARCH FOR SMALL NONZERO
+|x3 − y2| V ALUES
+I. JIM ´ENEZ CAL VO, J. HERRANZ, AND G. S ´AEZ
+Abstract. In relation to Hall’s conjecture , a new algorithm is present ed to
+search for small nonzero k = |x3 − y2|values. Seventeen new values of k < x 1/ 2
+are reported.
+1. Hall’s conjecture
+Dealing with natural numbers, the diﬀerence
+(1.1) k = x3 − y2
+is zero when x = t2 and y = t3 but, in other cases, it seems diﬃcult to achieve
+small absolute values. For a given k ⁄= 0, (1.1) known as Mordell’s equation, is an
+elliptic curve and has only ﬁnitely many solutions in integers by Siegel’s th eorem.
+Therefore, for any k ⁄= 0, there are only ﬁnitely many solutions in x (which is hence
+bounded). There is a proved bound due to A. Baker [1] and improved by H. M.
+Stark [14], that places the size of k above the order of log c(x) for any c < 1. A
+bound concerning the minimal growth rate of |k| was found early by M. Hall [2, 7]
+by means of a parametric family of the form
+(1.2)
+f (t) = t
+9 (t9 + 6t6 + 15t3 + 12),
+g(t) = t15
+27 + t12 + 4t9 + 8t6
+3 + 5t3 + 1
+2 ,
+f 3(t) − g2(t) = − 3t6 + 14t3 + 27
+108 ,
+with t congruent to 3 mod 6, which supplies inﬁnitely many cases with k < Cx 3/ 5,
+where C is a positive constant.
+H. Davenport [4], pointed out that the degree of f 3(t) − g2(t) is always greater
+than the half of the degree of f (t). This fact and experimental results for x <
+700.000, prompted Marshall Hall [7] to conjecture that |k| can not be less than
+Cx1/ 2, for some constant C whose tentative value was ﬁxed to be C = 1/5. Later,
+L. V. Danilov [3] found a inﬁnite family derived from the unbounded solu tions of
+quadratic equations supplying values of |k| < 217
+√
+2x1/ 2. N. D. Elkies [5] revised
+and improved the method reporting the Fermat-Pell family
+(1.3) (5 5t2 + 3000t + 719)3 − (53t2 − 114t + 26)(56t2 − 53123t + 3781)2 = 27(2t − 1),
+for t such that 5 3t2 − 114t + 26 is a perfect square. This family yields inﬁnitely
+many solutions with |k| < 0.966 x1/ 2. Theoretical probabilistic considerations (see
+1991 Mathematics Subject Classiﬁcation. Primary 11Y50, 65A05; Secondary 11D25, 14H52.
+Key words and phrases. Hall’s conjecture, Mordell’s equation.
+1
+2 I. JIM ´ENEZ CAL VO, J. HERRANZ, AND G. S ´AEZ
+S. Lang [9, p. 163]) and the ﬁnding by computer search of smaller valu es of |k|
+as the present record found by Elkies [5] of |k| = 1 /46.6 x1/ 2 suggest that 1/2 is
+not the better exponent and the original conjecture was reform ulated in a weaker
+way as follows: For any exponent e < 1/2, a constant Ce > 0 exists such that
+|x3 − y2| > C exe. Hall’s conjecture is considered a particular case of the related
+and more general ABC conjecture [11, 9] and both seem hard to be proved or
+disproved. S. Mohit and M. R. Murty [10] show that Hall’s conjecture implies that
+there are inﬁnite many primes such that ap−1 ⁄≡1 (mod p16) for any a.
+Since, at present, Hall’s conjecture is neither proved nor disprove d, it is worthy
+to enumerate the cases when |k| < x 1/ 2, what we address as good examples of
+Hall’s conjecture borrowing notation used in ABC conjecture. Table 1, gathers the
+currently known examples (excluding the inﬁnite Danilov-Elkies family) displaying
+the value of x and r = √x/k > 1. The values of y and k are not displayed because
+y can be calculated as the nearest integer to x3/ 2. Items #2, #3, #12 and #13
+correspond to (1.2) for t = −3, 3, −9 and 9 respectively. Items #4 and #24 and #43
+correspond to the two ﬁrst solutions of (1.3) which, in fact, yields in ﬁnitely many
+examples with r > 1.035. J. Gebel, A. Peth¨ o and H.G. Zimmer [6] applied their own
+algorithm to compute the integral points on elliptic curves in all the ca ses of (1.1)
+with |k| ≤ 100, 000. Their algorithm was able to ﬁnd up to the item #14 in table
+1 and excludes the possibility of the existence of other cases with |k| ≤ 100, 000.
+N.D. Elkies [5] gives an extensive account on the subject and develop s a lattice base
+reduction algorithm ﬁnding the next items up to #26.
+In this paper we present a new algorithm that adds 17 new items to th e table
+of the known good examples of Hall’s conjecture . The algorithm has also found
+704 cases with √x/k ∈ (0, 16] which turn out to be uniformly distributed in this
+range. The data also show that the number of cases for x < X and k ≤ n√x
+may be estimated as 0 .80 n log(X). The algorithm was developed on an euristical
+approach, noticing the patterns (see Fig. 1) of the plots of solutio ns of (1.1) such
+that |k| is minimal for each x value rather than using basis reduction algorithms,
+common in this kind of problems. The algorithm searches a family of poly nomials
+that contain those minimal solutions. It has the drawback that it do es not ﬁnd
+all the cases in increasing order and we can not prove that the algor ithm does not
+miss any solution. Nevertheless, it was able to ﬁnd all the good examples of Hall’s
+conjecture known before this work, including the ﬁrst cases of the inﬁnite Danilo v-
+Elkies family (we conjeture that the new algorithm could also ﬁnd the r est of cases,
+with enought time of computation).
+2. V alues of k for x near the square of a rational
+We consider the smallest k satisfying (1.1) as a function of x. Using the notation
+⌊x⌉ = ⌊x + 1/2⌋, it is given by
+(2.1) k(x) = x3 −
+⌊
+x3/ 2
+⌉2
+,
+where y =
+⌊
+x3/ 2⌉
+. It is clear that k(x) = 0 for x = t2, t integer.
+These expressions of x and y are somehow related with the expressions given by
+N.D.Elkies in equations (38) and (40) of [5], where x and y are approximated by
+multiples of a square and a cube, respectively. Speciﬁcally, he writes x = 3 α2 + β
+and y = 6 α3 + 3αβ + δ. Then, Elkies argues that the problem can be studied via
+A NEW ALGORITHM TO SEARCH FOR SMALL NONZERO |x3 − y2| V ALUES 3
+lattice reduction. We use a diﬀerent approach, maybe more heurist ic and intuitive,
+which does not employ lattice reductions.
+Our method starts by allowing rational values for t and considering values of x
+for the integers close to t2. We deﬁne
+(2.2)
+t = a/b, α ≡ a2 (mod b2) with |α| ≤ b2/2 and x0 = ⌊t2⌉ = a2 − α
+b2 .
+Function (2.1) for the integer values of x near x0, say for x0 + i, where i =
+0, ±1, ±2, · · ·, takes the form
+(2.3) k(x0 + i) = ( x0 + i)3 − y2, y =
+⌊
+(x0 + i)3/ 2
+⌉
+.
+Lemma 2.1. Function (2.1) for integer values of the variable near t2, t rational,
+is equivalent to the equation,
+(2.4) k(x0 + i) = −2Ca 3 + 3
+4 (b2i − α)2a2 − 3(b2i − α)Ca − C2 + (b2i − α)3
+b6 ,
+for appropriate values of C and i satisfying
+(2.5) 2 a3 + 3(b2i − α)a + 2C ≡ 0 (mod 2 b3)
+such that |k(x0 + i)| ≤ (x0 + i)3/ 2 + 1
+4 .
+Proof. We note that, by the deﬁnition of x0,
+(x0 + i)3 = a6 + 3(b2i − α)a4 + 3(b2i − α)2a2 + (b2i − α)3
+b6 .
+Let
+y2 = a6 + 3(b2i − α)a4 + p(a)
+b6 =
+( a3 + Ba + C
+b3
+) 2
+for an appropriate third degree polynomial p(a) and coeﬃcients B and C. Since y
+must be an integer, the following two conditions must be fulﬁlled,
+(i) ( a3 + Ba + C)2 = a6 + 3(b2i − α)a4 + p(a).
+(ii) b3 | a3 + Ba + C.
+Expanding the square of the trinomial in (i) we can deduce that B = 3/2(b2i − α)
+and p(a) takes the following expression on C,
+p(a) = 2 Ca 3 + 9
+4 (b2i − α)2a2 + 3(b2i − α)Ca + C2.
+The condition (ii) becomes now a3 + 3
+2 (b2i − α)a + C ≡ 0 (mod b3). Multiplying by
+2, we have (2.5). Substituting the value of ( x0 + i)3 and y2 in (2.3), we have (2.4)
+where values C and i must fulﬁll (2.5). The condition |k(x0 + i)| ≤ (x0 + i)3/ 2 + 1/4
+easily follows from the bounds of (2.1).Note that 2 C is only determined modulo
+2b3 by (2.5), so that we can take |2C| < b 3 and the absolute value of the leading
+term of (2.4) is always smaller than a3/b3 ≈ x3/ 2
+0 , hence the bounds of (2.4) are the
+bounds of (2.3) for moderate i values. □
+The allowed values of C imposed by (2.5) form a small set for a ﬁxed t, due to
+the coeﬃcient b2 of i. Fig. 1 depicts an example for t = a/b = 222272 /15. In
+this case ﬁve values are possible, all of them congruent mod 3 b2 and for each one
+of the ﬁve C values, the points split as integer points of ﬁve cubic polynomials.
+4 I. JIM ´ENEZ CAL VO, J. HERRANZ, AND G. S ´AEZ
+x0
+k(x)
+-x0
+3/2
++x0
+3/2
+0
+P2
+P1
+P0
+P4
+P3
+C=1174
+C=499
+C=-176
+C=-851
+C=-1526
+Figure 1. The polynomials for t = 222272 /15
+The number of polynomials and the values of C depend from b, the parity of a and
+whether 3 divides b or not. The analysis is done in the next section.
+3. The geometry of k(x)
+From (2.5), we obtain
+3b2ai ≡ 3aα − 2a3 − 2C (mod 2 b3).
+Both sides of the equation must be divisible by g = gcd(3b2a, 2b3) to be solvable in
+i. Note that, since the fraction t is in its lowest terms, gcd( a, b) = 1, then
+g = c1c2b2,
+{
+c1 = 2 if a is even, c1 = 1 otherwise;
+c2 = 3 if 3 |b, c2 = 1 otherwise.
+Canceling by g, we obtain
+(3.1)
+( 3a
+c1c2
+)
+i ≡
+( 3aα − 2a3 − 2C
+c1c2b2
+)
+(mod 2b
+c1c2
+).
+Since the right side of the equation must be an integer, we have that
+3aα − 2a3 − 2C ≡ 0 (mod c1c2b2).
+A NEW ALGORITHM TO SEARCH FOR SMALL NONZERO |x3 − y2| V ALUES 5
+Note that α = a2 + rb2 for some integer r, then 3 aα ≡ 3a3 + 3 arb2 ≡ 3a3
+(mod c1c2b2) for any of the possible values of c1 and c2. Then,
+(3.2) (2 C) ≡ a3 (mod c1c2b2)
+{
+(2C) ≡ a3 (mod c2b2), when a is odd,
+C ≡ a3/2 (mod c2b2), when a is even,
+The values of C are of the form C = C0 + sc2b2, for some integer s. Note that
+whenever a is odd, C may be a rational of the form C = C′/2, C ′ integer. For a
+even, C is always integral.
+For each value of C, the allowed values of i are of the form i = j + ωb′, b ′ =
+2b/(c1c2), where ω ∈ Z, being j a solution of (3.1) for such C value. We have splited
+up the points x0 + i into b′ classes of congruence. For each one, we can associate
+an unique value of C. For each one of the b′ couples ( j, C), we can substitute the
+value of i in (2.4), getting a cubic polynomial in the variable ω that contains the
+family of points corresponding to a value j. The eﬀective value of C (out of the b′
+signiﬁcant possible values) must be chosen so that k(x) is bounded as imposed by
+Lemma 2.1.
+An example: We apply the theory to the case illustrated in ﬁg. 1 where a =
+222272 and b = 15. Then by (2.2),
+α = a2 mod b2 = 109 , x 0 = (a2 − α)/b2 = 219577075 .
+Since a is even c1 = 2 while c2 = 3 because 3 |b. Applying (3.2) we have that
+C0 = a3/2 mod 3 b2 = 499, then C = C0 + 3b2s = 499 + 675 s, s ∈ Z.
+Applying (3.1) we guess that for C = 499, i ≡ 4 mod 5, then i = 4 + 5ω. That is,
+for x = x0 + 4 + 5 ω, the values of k(x) correspond to the points labeled as P4 in
+the ﬁgure.
+Theorem 3.1. The integer points of k(x) = x3 −
+⌊
+x3/ 2⌉2
+, for x near the square of
+a rational t = a/b, are integer points of a set of polynomials
+Pj(x) = x3 − ( 3
+2 t)2x2 + ( 3
+2 t4 − 3C
+b3 t)x + C
+b3 t3 − C2
+b6 − 1
+4 t6.
+for 0 ≤ j < b ′, b′ = 2b/ gcd(3a, 2b) and a computable number C, provided |Pj (x)| ≤
+x3/ 2 + 1/4 and x =
+⌊
+t2⌉
++ j + ω b ′, ω ∈ Z.
+Proof. We note that, for each C value in (3.1), i is in Zb′, with b′ = 2 b/(c1c2) =
+2b/ gcd(3a, 2b). Then, we put i = j + ωb′ and we have b′ cases of values ( C, j) for
+each t value. We substitute j + ωb′ for i in (2.4). Then the term ( b2i − α) becomes
+(b2(j + ωb′) − α) = b2(b′ω + j − α
+b2 ). We get a polynomial in ω for each j,
+Pj(ω) = ( b′ω + j − α
+b2 )3 + 3
+4 t2(b′ω + j − α
+b2 )2 − 3C
+b3 t(b′ω + j − α
+b2 ) − 2C
+b3 t3 − C2
+b6 .
+Recall than x = x0 + j + b′ω. Let be z = x − t2, then
+(3.3) z = x0 + j + b′ω − t2 = j + b′ω − α
+b2 .
+as follows from (2.2). Then
+(3.4) Pj(z) = z3 + 3
+4 t2z2 − 3C
+b3 tz − 2C
+b3 t3 − C2
+b6 .
+We can put the polynomial in function of x by means of the variable change z =
+x − t2, obtaining the polynomials Pj(x) in the statement of the theorem.
+6 I. JIM ´ENEZ CAL VO, J. HERRANZ, AND G. S ´AEZ
+As in Lemma 2.1, we must impose that k(x) is bounded by x3/ 2 + 1/4. We can
+compute C by (3.2). □
+We analyze the polynomial for x near t2, i.e. for z ≈ 0. Note that, for small
+z, the cubic term is small compared with the quadratic one, then, it is lo cally
+approximated by a parabola with the vertex near z = 0. The value of the polynomial
+at the vertex is therefore near
+Pj(z = 0) ≈ − 2C
+b3 t3.
+Since the values of C for some t are equally spaced (they are of the form C =
+C0 + sc2b2 with s integral), the vertices are also approximately equally spaced.
+Note that, for C > 0, the value of the polynomial is negative in the vertex, but
+the polynomial grows until crossing Pj(z) = 0. Recall that for integral ω, the
+polynomials give k(x). In this way, it is possible to ﬁnd a small k(x), selecting for
+each ﬁxed a/b the polynomial with lower positive C value (the polynomial P4 in the
+example of ﬁg. 1) and calculating the value ω where the polynomial has its smallest
+absolute value. Nevertheless, better results can be achieved calc ulating the optimal
+value of a for each value b, for which we can select an optimal polynomial. First,
+we can impose C to be positive and small (say C = 1 /2, 1, 3/2 · · ·). We can also
+impose that the smallest value of the polynomial is for ω = 0, so the value of z in
+(3.3) is small and we can hope a small value of Pj(z). Even more, if j = 0, then
+z = α/b2 ≤ 1/2 which is the smallest value possible for z. We can approximate the
+value of P0, for ω = 0 by taking only the terms in t3 and t2 in (3.4) getting
+(3.5) P0(ω = 0) ≈ 3
+4 t2 α2
+b4 − 2C
+b3 t3.
+Suppose that a < O (b5/ 2), α < O (b5/ 4) and C = O(1). Then x ≈ a2/b2 < O (b3)
+and both terms of the approximation are smaller than O(x1/ 2). Even if a and α
+are above those bounds, the polynomial may have a small value if bot h terms are
+balanced.
+4. The algorithm
+The algorithm runs over b = 2, 3, 4, . . . , and for small values of C whose bounds
+will be discussed later. For each pair ( b, C), we must compute the values of a (if
+any value exists) in (2.5) corresponding to the polynomial P0 (that is for j = 0)
+whose smallest absolute value is for ω = 0. So, (2.5) becomes
+(4.1) 2 a3 − 3α + 2C ≡ 0 (mod 2 b3).
+First, we compute the value of a modulo b2 and then we lift to modulo 2 b3. From
+(3.2), we have that
+(4.2) a ≡ (2C)1/ 3 (mod b2).
+Note that the equation is solvable only when gcd(2 C, b) = 1 because a and b are
+coprime. The cube root may be computed, for example, using the alg orithms
+described in [12]. Before lifting the solution of (4.2) to modulo 2 b3 in (2.5), we must
+analyze the possible values of the variables whose constraints can b e summarized
+as
+A NEW ALGORITHM TO SEARCH FOR SMALL NONZERO |x3 − y2| V ALUES 7
+gcd(2C, b) = 1 , b
+
+
+
+even, C rational,
+odd,
+{ C rational;
+C integer.
+In fact, if b is even, a must be odd because t is in its lower terms. Being b even
+and a odd, α must be odd, by the deﬁnition of α in (2.2), what implies that (2 C)
+in (4.1) must be odd. Therefore, C = C′/2 for some odd integer C′. If b is odd, a
+can be even or odd, then C may be rational or integer.
+Let a0 be a solution of (4.2), then a = a0 + kb2 for some integer k that must
+fulﬁll (4.1). So, we have
+2(a0 + kb2)3 − 3α(a0 + kb2) + 2C ≡ 0 (mod 2 b3).
+Expanding and neglecting the vanishing terms, we have
+2a3
+0 + 6a2
+0kb2 − 3αa0 − 3αkb2 + 2C ≡ 0 (mod 2 b3).
+Then
+3b2(2a2
+0 − α)k ≡ −
+(
+2a3
+0 − 3αa0 + 2C
+)
+(mod 2 b3).
+Let
+d = gcd(3(2a2
+0 − α), 2b).
+Then
+(4.3) k ≡ −
+( 3(2a2
+0 − α)
+d
+) −1 ( 2a3
+0 − 3αa0 + 2C
+db2
+)
+(mod 2b
+d ).
+Note that the possible values of d may be d = 1, d = 3 if 3 |b, d = 2 if α is even
+or d = 6 if both conditions holds. Let k0 be a solution of the above equation, then
+k = k0 + n2b/d for some integer n. Substituting the value of k in a = a0 + kb2, we
+have ﬁnally
+a = a0 + k0b2 + n 2b3
+d .
+Since we are looking for small values of P0 in (3.5), that is for ω = 0, we want that
+a ≈ (3α2)/(8C). Then
+n =
+⌊ d
+2b3
+( 3α2
+8C − a0 − k0b2
+)⌉
+.
+Once the most appropriate values a for each couple ( b, C) are computed, we can
+compute x0 = (a2 − α)/b2 expecting to ﬁnd a small value of k(x).
+5. Results and conclusions
+The algorithm was programed as a PARI script and translated to C wit h the
+utility GP2C [13]. The executable was run in various computers during s everal
+periods being the total time of computation equivalent to about 100 0 days in a
+AMD-64 3400+. The algorithm was able to ﬁnd all the so far known item s and the
+remaining 17 new items displayed in table 1 with r = √x/k ≥ 1. Three items were
+found by Johan Bosman using the software of the authors.
+8 I. JIM ´ENEZ CAL VO, J. HERRANZ, AND G. S ´AEZ
+# x r b C Comments
+1 2 1.41 - - -
+2 5234 4.26 26 1/2 H, GPZ, (1.2)
+3 8158 3.76 28 1/2 H, GPZ, (1.2)
+4 93844 1.03 53 1 H, GPZ, (1.3)
+5 367806 2.93 117 1/2 H, GPZ
+6 421351 1.05 26 1/2 H, GPZ
+7 720114 3.77 42 1/2 H, GPZ
+8 939787 3.16 115 2 H, GPZ
+9 28187351 4.87 159 5 H, GPZ
+10 110781386 1.23 95 1/2 H, GPZ
+11 154319269 1.08 228 1/2 H, GPZ
+12 384242766 1.34 728 1/2 H, GPZ, (1.2)
+13 390620082 1.33 730 1/2 H, GPZ, (1.2)
+14 3790689201 2.20 1155 4 GPZ
+15 65589428378 2.19 5235 17/2 E
+16 952764389446 1.15 1448 5/2 E
+17 12438517260105 1.27 13415 6 E
+18 35495694227489 1.15 97266 1/2 E
+19 53197086958290 1.66 13777 1 E
+20 5853886516781223 46.60 137035 9 E, !
+21 12813608766102806 1.30 6291 35/2 E
+22 23415546067124892 1.46 1315447 32 E, *
+23 38115991067861271 6.50 321346 1/2 E
+24 322001299796379844 1.04 1313479 11 E, (1.3)
+25 471477085999389882 1.38 3281374 95/2 E
+26 810574762403977064 4.66 5346121 49/2 E
+27 9870884617163518770 1.90 4928788 109/2 JHS
+28 42532374580189966073 3.47 583876 9/2 JHS
+29 51698891432429706382 1.75 19061951 29 JHS
+30 44648329463517920535 1.79 11744301 13 JHS
+31 231411667627225650649 3.71 11694866 347/2 JHS
+32 601724682280310364065 1.88 7496613 13 JHS
+33 4996798823245299750533 2.17 76010518 67/2 JHS
+34 5592930378182848874404 1.38 93203798 139/2 JHS
+35 14038790674256691230847 1.27 61769318 53/2 JHS
+36 77148032713960680268604 10.18 184388019 4 JB
+37 180179004295105849668818 5.65 292889921 45/2 JB
+38 372193377967238474960883 1.33 2554989 4 JHS
+39 664947779818324205678136 16.53 678534061 39.2 JHS
+40 2028871373185892500636155 1.14 490670918 55/2 JB
+41 37223900078734215181946587 1.87 530793746 1457/2 JHS
+42 3690445383173227306376634720 1.51 685266726 1/2 JHS
+43 1114592308630995805123571151844 1.04 52019836686 1475/2 (1.3)
+44 6078673043126084065007902175846955 1.03 8144029787 3 JHS
+T able 1: Good examples of Hall’s conjecture .
+H; Found by M. Hall [7]. GPZ: Found by J. Gebel, A. Peth¨ o and H. G. Zimmer
+A NEW ALGORITHM TO SEARCH FOR SMALL NONZERO |x3 − y2| V ALUES 9
+[6] with the elliptic curve method.
+E: Found by N.D. Elkies with a lattice basis reduction algorithm.
+JHS: Found by the authors of this paper.
+JB: Found by Johan Bosman with the software of the authors.
+(1.2): Items #2,#3,#12 and #13 correspond to the polynomial family for t =
+−3, 3, −9 and 9 respectively in equation (1.2).
+(1.3): The two ﬁrst terms of the inﬁnite Fermat-Pell family from equation (1.3).
+!: Record of N.D. Elkies.
+*: Obtained from #20 scaling ( x, y, k) to (2 2x, 23y, 26k).
+The value of the integer b runs from 2 to a bound B while for each value of
+b, values of C from 1/2 to bu were checked. Experimentally, it was found that a
+good interval for C correspond to u = 1 /3. With a shorter interval, for example
+u = 1 /4, the algorithm runs faster but can not ﬁnd some items in the table. In
+the ﬁrst case, for 1 /2 ≤ C ≤ b1/ 3 the bound for b reached was B = 6 · 108, while
+for 1 /2 ≤ C ≤ b1/ 4 the bound was B = 5 · 109. Item #42 and #43 was found
+constraining the search to lower values of C. Although the used bounds for C
+seem reasonable, it can not be proved that the algorithm can ﬁnd all existing good
+examples of Hall’s conjecture .
+The exact complexity of the algorithm must be expressed only in func tion of
+the bound of b. For each b value, we must factorize b and, for each of the bu
+values of C, we must perform a cube root and other polynomial time opera-
+tions. Suppose that the factorization of b takes O(bv) operations. Then it takes
+O(B1+max{u,v } logO(1)(B)) operations to explore the b ≤ B values. Since a simple
+trial division with a table of primes was used, the exponent v must be under 0.35
+in about half of the instances (see [8]). It is not possible to express t he complexity
+as a ﬁxed function of the bound of x, nevertheless a estimation can be performed.
+The value of a is O(bθ ) for an variable exponent θ that is 2.5 in average (see the last
+paragraph in Section 3). Then, the corresponding value of x is x ≈ a2/b2 = b2θ−2.
+Since max {u, v} = 0 .35, the complexity takes the form O(X
+1. 35
+2θ −2 logO(1)(X)) for
+x < X . If we consider the average value θ = 2.5 we obtain an equivalent complexity
+of O(X 0. 45) which coincides with the experimental average complexity.
+Another search was performed seeking for cases in which k ≤ 16√x for b <
+12, 500, 000. The algorithm discovered 704 cases whose analysis shows that the
+distribution of the values of k/√x ∈ (0, 16] is very close to a uniform distribution
+for this range of k (the mean is 7.996 and the Kolmogorov-Smirnov test gives a
+conﬁdence of 98.60% to the hypothesis of a uniform distribution). T his gives extra
+support to the possibility that the size of k/√x may be arbitrarily small, and so
+the corresponding exponent in Hall’s conjecture must be at most 1 /2 − ǫ. The data
+also support that the number of cases for x < X and k ≤ n√x may be estimated
+as 0 .80 n log(X), somewhat less than the expected value n log(X).
+References
+1. A. Baker, Contributions to the theory of diophantine equations. I. On the representation of
+integers by binary quadratic forms. II. The diophantine equ ation y2 = x3 + k. Philos. Trans.
+R. Soc. London, Ser. A 263, (1967-1968), 173–191 and 193–208.
+2. B.J. Birch, S. Chowla, M. Hall and A. Schinzel, On the diﬀerence x3 − y2. Norske Vid. Selsk.
+Forh. 38 (1965), 65–69.
+10 I. JIM ´ENEZ CAL VO, J. HERRANZ, AND G. S ´AEZ
+3. L.V. Danilov, The Diophantine equation x3 − y2 = k and Hall’s conjecture. Math. Notes
+Acad. Sci. USSR 32 (1982), 617–618.
+4. H. Davenport, The diophantine equation y2 − k = x3. Norske Vid. Selsk. Forh. 38 (1965),
+86–87.
+5. N.D. Elkies, Rational points near curves and small nonzero |x3 − y2| via lattice reduction.
+Pages 33–63 in Algorithmic Number Theory (Proceedings of AN TS-IV;W. Bosma, ed.; Berlin:
+Springer, 2000; LNCS 1838).
+6. J. Gebel, A. Peth¨ o and H. G. Zimmer, On Mordell’s equation. Compositio Math. 110 (1998),
+335-367.
+7. M. Hall, The Diophantine equation x3 − y2 = k. Computers in Number Theory (A. Atkin, B.
+Birch, eds.; Academic Press, 1971), pp. 173–198.
+8. D. E. Knuth and L. Trabb Pardo, Analysis of a simple factorization algorithm. Theoretical
+Computer Sci. 3 (1976) pp. 321–348.
+9. S. Lang, Conjectured diophantine estimates on elliptic curves. Arithmetic and Geometry,
+Volume dedicated to Shafarevich, Vol I, edited by M. Artin an d J. Tate, Birkhauser, 1983,
+pp. 155-171.
+10. S. Mohit anb M. R. Murty, Wieferich primes and Hall’s conjecture , Comptes Rendus
+del’Acad. Sciences (Canada) 20 (1998), 29–32.
+11. J. Oesterl´ e, Nouvelles approaches du “th´ eor´ eme” de Fermat. S´ em. Bourbaki 2/88, expos´ e
+#694.
+12. C. Padr´ o and G. S´ aez,Taking cube roots on Zm. Appl. Math. Lett. 15 (2002), 703–708.
+13. The PARI Group. PARI/GP, Version 2.1.0, 2002, Bordeaux. Available from
+http://www.parigp-home.de/.
+14. H. M. Stark, Eﬀective estimates of solutions of some diophantine equati ons. Acta Arith. 24,
+(1973), 251–259.
+C/Virgen de las Vi ˜nas 11, 28031–Madrid. (Spain).
+E-mail address : ismaeljc@fdi.ucm.es,ijcalvo@gmail.com
+Dep. de Matem `atica Aplicada IV, Universitat Polit `ecnica de Catalunya, c/Jordi
+Girona, 1-3, 08034-Barcelona (Spain).
+E-mail address : jherranz@ma4.upc.es
+Dep. de Matem `atica Aplicada IV, Universitat Polit `ecnica de Catalunya, c/Jordi
+Girona, 1-3, 08034-Barcelona (Spain).
+E-mail address : german@ma4.upc.es

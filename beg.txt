@@ -1,0 +1,713 @@
+LMS J. Comput. Math. 18 (1) (2015) 633–646 C© 2015 Authors
+doi:10.1112/S1461157015000182
+Mordell’s equation: a classical approach
+Michael A. Bennett and Amir Ghadermarzi
+Abstract
+We solve the Diophantine equation Y 2 = X 3 + k for all nonzero integers k with|k| ⩽ 107.
+Our approach uses a classical connection between these equations and cubic Thue equations.
+The latter can be treated algorithmically via lower bounds for linear forms in logarithms in
+conjunction with lattice-basis reduction.
+1. Introduction
+If k is a nonzero integer, then the equation
+Y 2 =X 3 +k (1.1)
+deﬁnes an elliptic curve over Q. Such Diophantine equations have a long history, dating back
+(at least) to work of Bachet in the seventeenth century, and are nowadays termed Mordell
+equations, honouring the substantial contributions of Mordell to their study. Indeed, the
+statement that, for a given k⁄= 0, equation (1.1) has at most ﬁnitely many integral solutions
+is implicit in work of Mordell [ 30] (via application of a result of Thue [ 35]), and explicitly
+stated in [ 31].
+Historically, the earliest approaches to equation (1.1) for certain special values ofk appealed
+to simple local arguments; references to such work may be found in Dickson [ 11]. More
+generally, working in either Q(
+√
+k) or Q(
+3√
+k), one is led to consider a ﬁnite number of
+Thue equations of the shape F (x,y ) = m, where the m are nonzero integers and the F
+are, respectively, binary cubic or quartic forms with rational integer coeﬃcients. Via classical
+arguments of Lagrange (see, for example, [ 11, p. 673]), these in turn correspond to a ﬁnite
+(though typically larger) collection of Thue equations of the shapeG(x,y ) = 1. Here, again, the
+G are binary cubic or quartic forms with integer coeﬃcients. In the case where k is positive,
+one encounters cubic forms of negative discriminant which may typically be treated rather
+easily via Skolem’sp-adic method (as the corresponding cubic ﬁelds have a single fundamental
+unit). For negative values of k, one is led to cubic or quartic ﬁelds with a pair of fundamental
+units, which may sometimes be treated by similar, if rather more complicated, methods; see,
+for example, [ 15, 20, 28].
+There are alternative approaches for ﬁnding the integral points on a given model of an
+elliptic curve. The most commonly used currently proceeds via appeal to lower bounds for
+linear forms in elliptic logarithms, the idea for which dates back to work of Lang [ 27] and
+Zagier [38] (though the bounds required to make such arguments explicit are found in work
+of David and of Hirata-Kohno; see, for example, [ 6]). Using these bounds, Gebel et al. [16],
+Smart [ 33] and Stroeker and Tzanakis [ 34] obtained, independently, a ‘practical’ method to
+ﬁnd integral points on elliptic curves. Applying this method, in 1998, Gebel et al. [17] solved
+equation (1.1) for all integers |k|< 104 and partially extended the computation to |k|< 105.
+Received 2 March 2015; revised 22 July 2015.
+2010 Mathematics Subject Classiﬁcation 11D25, 11G05 (primary).
+Supported in part by a grant from NSERC.
+634 m. a. bennett and a. ghadermarzi
+As a byproduct of their calculation, they obtained a variety of interesting information about
+the corresponding elliptic curves, such as their ranks, generators of their Mordell–Weil groups,
+and information on their Tate–Shafarevich groups.
+The only obvious disadvantage of this approach is its dependence upon knowledge of the
+Mordell–Weil basis overQ of the given Mordell curve (indeed, it is this dependence that ensures,
+with current technology at least, that this method is not, strictly speaking, algorithmic). For
+curves of large rank, in practical terms, this means that the method cannot be guaranteed to
+solve equation (1.1).
+Our goal in this paper is to present (and demonstrate the results of) a practical algorithm
+for solving Mordell equations with values of k in a somewhat larger range. At its heart are
+lower bounds for linear forms in complex logarithms, stemming from the work of Baker [ 1].
+These were ﬁrst applied in the context of explicitly solving equation (1.1), for ﬁxed k, by
+Ellison et al. [13]. To handle values of k in a relatively large range, we will appeal to classical
+invariant theory and, in particular, to the reduction theory of binary cubic forms (where we
+have available very accessible algorithmic work of Belabas [ 2], Belabas and Cohen [ 3] and
+Cremona [ 5]). This approach has previously been outlined by Delone and Fadeev (see [ 10,
+§ 78]) and Mordell (see, for example, [ 32]; its origins lie in [ 29]). We use it to solve Mordell’s
+equation (1.1) for all k with 0 <|k| ⩽ 107. We should emphasize that our algorithm does
+not provide a priori information on, say, the ranks of the corresponding elliptic curves, though
+values of k for which (1.1) has many solutions necessarily (as long as k is sixth power free)
+provide curves with at least moderately large rank (see [ 18]).
+It is worth noting that an approach to this problem along very similar lines can be found
+in the thesis of Wildanger [ 37], where a further reduction to index-form equations is used
+to solve the cases remaining from [ 17] of equation (1.1) with |k| ⩽ 105. Further reﬁnements
+of this approach by J¨ atzschmann [24] and by Fieker et al. [14], utilizing ideas from class
+ﬁeld theory, make this a feasible method for solving (1.1) for ﬁxed k as large as 10 15 or so.
+By way of comparison, for ﬁxed values of k, our approach requires a search for binary cubic
+forms with a four-dimensional search space of size of order|k|3/4 (without employing any local
+considerations); to treat all values of |k| ⩽K, the corresponding search space has order |K|.
+We proceed as follows. In § 2 we discuss the precise correspondence that exists between
+integer solutions to (1.1) and integer solutions to cubic Thue equations of the shapeF (x,y ) = 1,
+for certain binary cubic forms of discriminant −108k. In§ 3 we indicate a method to choose
+representatives from equivalence classes of forms of a given discriminant. Section 4 contains a
+brief discussion of our computation, while§ 5 is devoted to presenting a summary of our data,
+including information on both the number of solutions and their heights.
+2. Preliminaries
+In this section, we begin by outlining a correspondence between integer solutions to the
+equation Y 2 =X 3 +k and solutions to certain cubic Thue equations of the form F (x,y ) = 1,
+whereF is a binary cubic form of discriminant −108k. As noted earlier, this approach is very
+classical. To make it computationally eﬃcient, however, there are a number of details that we
+must treat rather carefully.
+Let us suppose that a,b,c and d are integers, and consider the binary cubic form
+F (x,y ) =ax3 + 3bx2y + 3cxy2 +dy3, (2.1)
+with discriminant
+D =DF =−27(a2d2− 6abcd− 3b2c2 + 4ac3 + 4b3d).
+It is important to observe (as a short calculation reveals) that the set of forms of the shape (2.1)
+is closed within the larger set of binary cubic forms in Z[x,y ], under the action of both SL 2(Z)
+mordell’s equation: a classical approach 635
+and GL 2(Z). To such a form we associate covariants, namely the Hessian H = HF (x,y )
+given by
+H =HF (x,y ) =−1
+4
+(∂2F
+∂x2
+∂2F
+∂y 2 −
+( ∂2F
+∂x∂y
+)2)
+and the Jacobian determinant of F and H, a cubic form G =GF deﬁned as
+G =GF (x,y ) = ∂F
+∂x
+∂H
+∂y − ∂F
+∂y
+∂H
+∂x .
+Note that, explicitly, we have
+H/9 = (b2−ac)x2 + (bc−ad)xy + (c2−bd)y2
+and
+G/27 =a1x3 + 3b1x2y + 3c1xy2 +d1y3,
+where
+a1 =−a2d + 3abc− 2b3, b 1 =−b2c−abd + 2ac2, c 1 =bc2− 2b2d +acd
+and d1 =−3bcd + 2c3 +ad2.
+Crucially for our arguments, these covariants satisfy the syzygy
+4H(x,y )3 =G(x,y )2 + 27DF (x,y )2.
+Deﬁning D1 =D/27, H1 =H/9 and G1 =G/27, we thus have
+4H1(x,y )3 =G1(x,y )2 +D1F (x,y )2.
+If (x0,y 0) satisﬁes the equation F (x0,y 0) = 1 and D1≡ 0 (mod 4) (i.e. if ad≡ bc (mod 2)),
+then necessarily G1(x0,y 0)≡ 0 (mod 2). We may therefore conclude that Y 2 =X 3 +k, where
+X =H1(x0,y 0), Y = G1(x0,y 0)
+2 and k =−D1
+4 =− D
+108.
+It follows that, to a given triple ( F,x 0,y 0), where F is a cubic form as in (2.1) with
+discriminant−108k, and x0,y 0 are integers for which F (x0,y 0) = 1, we can associate an
+integral point on the Mordell curve Y 2 =X 3 +k.
+Conversely, suppose, for a given integer k, that (X,Y ) satisﬁes equation (1.1). To the pair
+(X,Y ) we associate the cubic form
+F (x,y ) =x3− 3Xxy 2 + 2Yy 3.
+Such a form F is of the shape (2.1), with discriminant
+DF =−108Y 2 + 108X 3 =−108k
+and covariants satisfying
+X = G1(1, 0)
+2 = G(1, 0)
+54 and Y =H1(1, 0) = H(1, 0)
+9 .
+In summary, there exists a correspondence between the set of integral solutions
+Sk ={(X1,Y 1),..., (XNk,YNk)}
+to the Mordell equation Y 2 = X 3 +k and the set Tk of triples (F,x,y ), where each F is a
+binary cubic form of the shape (2.1), with discriminant−108k, and the integersx andy satisfy
+F (x,y ) = 1. Note that the forms F under consideration here need not be irreducible.
+636 m. a. bennett and a. ghadermarzi
+In the remainder of this section we will prove the following proposition.
+Proposition 2.1. There is a bijection between Tk, under SL2(Z)-equivalence, and the
+set Sk.
+We begin by demonstrating the following pair of lemmas.
+Lemma 2.2. Letk be a nonzero integer and suppose that F1 andF2 are SL2(Z)-inequivalent
+binary cubic forms of the shape (2.1), each with discriminant −108k, and that x1,y 1,x 2 and
+y2 are integers such that (F1,x 1,y 1) and (F2,x 2,y 2) are in Tk. Then the tuples (F1,x 1,y 1)
+and (F2,x 2,y 2) correspond to distinct elements of Sk.
+Proof. Suppose that the tuples (F1,x 1,y 1) and (F2,x 2,y 2) are in Tk, so that
+F1(x1,y 1) =F2(x2,y 2) = 1.
+Since, for each i, xi and yi are necessarily coprime, we can ﬁnd integers mi and ni such that
+mixi−niyi = 1, for i = 1, 2. Writingτi =
+(xi ni
+yi mi
+)
+, we thus have
+Fi◦τi(x,y ) =x3 + 3bix2y + 3cixy2 +diy3,
+for integers bi,ci and di, and hence, under the further action of γi =
+(1 −bi
+1 0
+)
+, we observe that
+Fi is SL2(Z)-equivalent to
+x3− 3pixy2 + 2qiy3,
+where
+pi = GFi(xi,yi)
+54 and qi = HFi(xi,yi)
+9 .
+If the two tuples correspond to the same element of Sk, necessarily
+GF1(x1,y 1) =GF2(x2,y 2) and HF1(x1,y 1) =HF2(x2,y 2),
+contradicting our assumption that F1 and F2 are SL2(Z)-inequivalent.
+Lemma 2.3. Suppose that k is a nonzero integer, that F is a binary cubic form of the
+shape (2.1) and discriminant −108k, and that F (x0,y 0) = F (x1,y 1) = 1 where (x0,y 0) and
+(x1,y 1) are distinct pairs of integers. Then the tuples (F,x 0,y 0) and (F,x 1,y 1) correspond to
+distinct elements of Sk.
+Proof. Via SL 2(Z)-action, we may suppose, without loss of generality, that F (x,y ) = x3 +
+3bx2y + 3cxy2 +dy3 and that (x0,y 0) = (1, 0). If the triples (F, 1, 0) and (F,x 1,y 1) correspond
+to the same element of Sk, necessarily
+GF (1, 0) =GF (x1,y 1) and HF (1, 0) =HF (x1,y 1),
+whereby
+x3
+1 + 3bx2
+1y1 + 3cx1y2
+1 +dy3
+1 = 1, (2.2)
+(b2−c)x2
+1 + (bc−d)x1y1 + (c2−bd)y2
+1 =b2−c (2.3)
+and
+a1x3
+1 + 3b1x2
+1y1 + 3c1x1y2
+1 +d1y3
+1 =a1. (2.4)
+It follows that
+3(ba1−b1)x2
+1y1 + 3(ca1−c1)x1y2
+1 + (da1−d1)y3
+1 = 0.
+mordell’s equation: a classical approach 637
+Since (x1,y 1)⁄= (1, 0), we have that y1⁄= 0 and so
+3(ba1−b1)x2
+1 + 3(ca1−c1)x1y1 + (da1−d1)y2
+1 = 0,
+that is,
+−3(b2−c)2x2
+1 + 3(b2−c)(d−bc)x1y1 + (3bcd−b3d−c3−d2)y2
+1 = 0. (2.5)
+If b2 =c, it follows that
+3bcd−b3d−c3−d2 =−(d−b3)2 = 0,
+so that d =b3 and F (x,y ) = (x +by)3, contradicting our assumption that DF⁄= 0. We thus
+have
+(b2−c)x2
+1 + (bc−d)x1y1 = (3bcd−b3d−c3−d2)
+3(b2−c) y2
+1
+and so
+(3bcd−b3d−c3−d2)
+3(b2−c) y2
+1 = (bd−c2)y2
+1 +b2−c,
+that is,
+(−d2 + 6bcd− 4b3d− 4c3 + 3b2c2)y2
+1 = 3(b2−c)2,
+and so
+DFy2
+1 = 81(b2−c)2.
+Since DF =−108k, it follows that k =−3m2 for some integer m, where 2 my1 = b2−c.
+From (2.5), we thus have
+−12m2x2
+1 + 6(d−bc)mx1 + 3bcd−b3d−c3−d2 = 0,
+whereby
+x1 = 1
+4m(d−bc± 2).
+Substituting the expressions for x1 and y1 into equation (2.5), we conclude, from b2⁄=c, that
+−3
+4 (d−bc± 2)2 + 3
+2(d−bc)(d−bc± 2) + 3bcd−b3d−c3−d2 = 0,
+whence, since the left-hand side of this expression is justDF/27−12, we ﬁnd thatDF = 324. It
+follows that the triple (F, 1, 0), say, corresponds to an integral solution to the Mordell equation
+Y 2 = X 3− 3. Adding 4 to both sides of this equation, however, we observe that necessarily
+X 2−X + 1≡ 3 (mod 4), contradicting the fact that it divides the sum of two squares Y 2 + 4.
+The lemma thus follows as stated.
+To conclude as desired, we have only to note that, for any γ∈ SL2(Z), covariance implies
+that HF ◦γ =HF◦γ and GF ◦γ =GF◦γ, and hence triples
+(F,x 0,y 0) and ( F◦γ,γ (x0),γ (y0))
+in Tk necessarily correspond to the same solution to (1.1) in Sk. This completes the proof of
+Proposition 2.1.
+Remark 2.4. Instead of working with SL 2(Z)-equivalence, we can consider GL 2(Z)-
+equivalence classes (and, as we shall see in the next section, this equivalence is arguably a
+more natural one with which to work). Since H(x,y ) and G2(x,y ) are GL 2(Z)-covariant, if
+two forms are equivalent under the action of GL 2(Z), but not under SL 2(Z), then we have
+HF ◦γ =HF◦γ and GF ◦γ =−GF◦γ.
+638 m. a. bennett and a. ghadermarzi
+It follows that, in order to determine all pairs of integers ( X,Y ) satisfying equation (1.1), it
+is suﬃcient to ﬁnd a representative for each GL 2(Z)-equivalence class of forms of shape (2.1)
+and discriminant−108k and, for each such form, solve the corresponding Thue equation. A
+pair of integers (x0,y 0) for which F (x0,y 0) = 1 now leads to a pair of solutions ( X,±Y ) to
+Y 2 =X 3 +k, where
+X =H1(x0,y 0) and Y =G1(x0,y 0)/2,
+at least provided G1(x0,y 0)⁄= 0.
+3. Finding representative forms
+As we have demonstrated in the previous section, to solve Mordell’s equation for a given integer
+k, it suﬃces to determine a set of representatives for SL 2(Z)-equivalence classes (or, if we
+prefer, GL2(Z)-equivalence classes) of binary cubic forms of the shape (2.1), with discriminant
+−108k, and then solve the corresponding Thue equations F (x,y ) = 1. In this section we
+describe how to ﬁnd distinguished representatives for equivalence classes of cubic forms with
+a given discriminant. In all cases, the various notions of reduction arise from associating to a
+given cubic form a particular deﬁnite quadratic form – in the case of positive discriminant,
+the Hessian deﬁned earlier works well. In what follows, we state our deﬁnitions of reduction
+solely in terms of the coeﬃcients of the given cubic form, keeping the role of the associated
+quadratic form hidden from view.
+3.1. Forms of positive discriminant
+In the case of positive discriminant forms (i.e. those corresponding to negative values of k),
+there is a well-developed classical reduction theory, dating back to work of Hermite [ 21, 22]
+and later applied to great eﬀect by Davenport (see, for example, [ 7–9]). This procedure allows
+us to determine distinguished reduced elements within each equivalence class of forms. We can,
+in fact, apply this reduction procedure to both irreducible and reducible forms; initially we will
+assume the forms we are treating are irreducible, for reasons which will become apparent. We
+will follow work of Belabas [ 2] (see also [ 3, 5]), in essence a modern treatment and reﬁnement
+of Hermite’s method.
+Definition 3.1. An irreducible binary integral cubic form
+F (x,y ) =ax3 + 3bx2y + 3cxy2 +dy3
+of positive discriminant is called reduced if we have:
+• |bc−ad| ⩽b2−ac ⩽c2−bd;
+• a> 0,b > 0, where d< 0 whenever b = 0;
+• if bc =ad, d< 0;
+• if b2−ac =bc−ad, b< |a−b|; and
+• if b2−ac =c2−bd, a ⩽|d| and b< |c|.
+The main value of this notion of reduction is apparent in the following result [ 2,
+Corollary 3.3].
+Proposition 3.2. Any irreducible cubic form of the shape (2.1) with positive discriminant
+is GL2(Z)-equivalent to a unique reduced one.
+To determine equivalence classes of reduced cubic forms with bounded discriminant, we will
+appeal to the following result (immediate from Belabas [ 2, Lemma 3.5]).
+mordell’s equation: a classical approach 639
+Lemma 3.3. Let K be a positive real number and
+F (x,y ) =ax3 + 3bx2y + 3cxy2 +dy3
+be a reduced form whose discriminant lies in (0,K ]. Then we have
+1 ⩽a ⩽ 2K 1/4
+3
+√
+3
+and
+0 ⩽b ⩽ a
+2 + 1
+3
+(√
+K− 27a2
+4
+)1/2
+.
+If we denote by P2 the unique positive real solution of the equation
+−4P 3
+2 + (3a + 6b)2P 2
+2 + 27a2K = 0,
+then
+9b2−P2
+9a ⩽c ⩽b−a.
+In practice, to avoid particularly large loops on the coeﬃcients a,b,c and d, we will instead
+employ a slight reﬁnement of this lemma to treat forms with discriminants in the interval
+(K0,K ] for given positive reals K0 <K . It is easy to check that we have
+b2−P2
+3a ⩽c ⩽ min
+{b2− 27a2K0/4
+3a ,b− 3a
+}
+.
+To bound d, we note that the deﬁnition of reduction implies that
+(3a +b)c−b2
+9a ⩽d ⩽ (3a−b)c−b2
+9a .
+The further assumption that K0 < DF ⩽ K leads us to a quadratic equation in d which we
+can solve to determine a second interval for d. Intersecting these intervals provides us (for
+values of K that are not too large) with a reasonable search space for d.
+3.2. Forms of negative discriminant
+In the case of negative discriminant, we require a diﬀerent notion of reduction, as the Hessian
+is no longer a deﬁnite form. We will instead, following Belabas [2], appeal to an idea of Berwick
+and Mathews [ 4]. We take as our deﬁnition of a reduced form an alternative characterization
+due to Belabas [ 2, Lemma 4.2].
+Definition 3.4. An irreducible binary integral cubic form
+F (x,y ) =ax3 + 3bx2y + 3cxy2 +dy3
+of negative discriminant is called reduced if we have:
+• d2−a2 > 3(bd−ac);
+• −(a− 3b)2− 3ac< 3(ad−bc)< (a + 3b)2 + 3ac;
+• a> 0,b > 0 and d> 0 whenever b = 0.
+640 m. a. bennett and a. ghadermarzi
+Analogous to Proposition 3.2, we have the following consequence of [ 2, Lemma 4.3].
+Proposition 3.5. Any irreducible cubic form of the shape (2.1) with negative discriminant
+is GL2(Z)-equivalent to a unique reduced one.
+To count the number of reduced cubic forms in this case we appeal to Belabas [2, Lemma 4.4].
+Lemma 3.6. Let K be a positive real number and
+F (x,y ) =ax3 + 3bx2y + 3cxy2 +dy3
+be a reduced form whose discriminant lies in [−K, 0). Then we have
+1 ⩽a ⩽
+(16K
+27
+)1/4
+,
+0 ⩽b ⩽ a
+2 + 1
+3
+(√
+K/3− 3a2
+4
+)1/2
+,
+1− 3b ⩽ 3c ⩽
+(K
+4a
+)1/3
++
+{
+3b2/a if a > 2b,
+3b− 3a/4 otherwise.
+As in the case of forms of positive discriminant, from a computational viewpoint it is often
+useful to restrict our attention to forms with discriminant ∆ with −∆∈ (K0,K ] for given
+0 < K0 < K. Also as previously, the loop over d is speciﬁed by the inequalities deﬁning
+reduced forms and by the deﬁnition of discriminant.
+It is worth noting here that a somewhat diﬀerent notion of reduction for cubic forms of
+negative discriminant is described in Cremona [5], based on classical work of Julia [26]. Under
+this deﬁnition, one encounters rather shorter loops for the coeﬃcient a – it appears that this
+leads to a slight improvement in the expected complexity of this approach (though the number
+of tuples (a,b,c,d ) considered is still linear in K).
+3.3. Reducible forms
+Suppose, ﬁnally, thatF is a reducible cubic form of discriminant−108k, as in (2.1), for which
+F (x0,y 0) = 1 for some pair of integers x0 andy0. Then, under SL 2(Z)-action,F is necessarily
+equivalent to
+f(x,y ) =x(x2 + 3Bxy + 3Cy 2), (3.1)
+for certain integers B and C. We thus have
+Df =DF = 27C 2(3B2− 4C) (3.2)
+(so that necessarily BC≡ 0 (mod 2)). Almost immediately from (3.2), we have the following
+lemma.
+Lemma 3.7. Let K >0 be a real number and suppose that f is a cubic form as in (3.1). If
+0<D f ⩽K then
+−
+( K
+108
+)1/3
+⩽C ⩽
+(K
+27
+)1/2
+, C ⁄= 0,
+and
+max
+{
+0,
+(4C + 1
+3
+)1/2}
+⩽B ⩽
+(K + 108C 3
+81C 2
+)1/2
+.
+mordell’s equation: a classical approach 641
+If, on the other hand, −K ⩽Df < 0 then
+1 ⩽C ⩽
+(K
+27
+)1/2
+and
+max
+{
+0,
+(−K + 108C 3
+81C 2
+)1/2}
+⩽B ⩽
+(4C− 1
+3
+)1/2
+.
+One technical detail that remains for us, in the case of reducible forms, is that of identifying
+SL2(Z)-equivalent forms. If we have
+f1(x,y ) =x(x2 + 3B1xy + 3C1y2) and f2(x,y ) =x(x2 + 3B2xy + 3C2y2),
+with
+f1◦τ(x,y ) =f2(x,y ) and τ(1, 0) = (1, 0), (3.3)
+where τ∈ SL2(Z), then necessarily τ =
+(1 n
+0 1
+)
+, for some integer n, so that
+B2 =B1 +n, C 2 =C1 + 2B1n +n2 and 3 C1n + 3B1n2 +n3 = 0.
+Assuming n⁄= 0, it follows that f1(x, 1) factors completely over Z[x], whereby, in particular,
+C1 = 3C0 for C0∈ Z and B2
+1− 4C0 is a perfect square, say B2
+1− 4C0 =D2
+0 (where D0⁄= 0 if
+we assume that Df1⁄= 0). We may thus write
+n =−3B1± 3D0
+2 ,
+whence there are precisely three pairs ( B2,C 2) satisfying (3.3), namely
+(B2,C 2) = (B1,C 1),
+(−B1 + 3D0
+2 , 3
+2D0(D0−B1)
+)
+and (−B1− 3D0
+2 , 3
+2D0(D0 +B1)
+)
+.
+Let us deﬁne a notion of reduction for forms of the shape (3.1) as follows.
+Definition 3.8. A reducible binary integral cubic form
+F (x,y ) =x(x2 + 3bxy + 3cy2)
+of nonzero discriminant DF is called reduced if we have either:
+• DF is not the square of an integer; or
+• DF is the square of an integer; and b and c are positive.
+From the preceding discussion, it follows that such reduced forms are unique in their SL2(Z)-
+class. Note that the solutions to the equation
+F (x,y ) =x(x2 + 3bxy + 3cy2) = 1
+are precisely those given by (x,y ) = (1, 0) and, if c divides b, (x,y ) = (1,−b/c).
+642 m. a. bennett and a. ghadermarzi
+4. Running the algorithm
+We implement the algorithm implicit in the preceding sections for ﬁnding the integral solutions
+to equations of the shape (1.1) with |k| ⩽ K, for given K > 0. The number of cubic Thue
+equationsF (x,y ) = 1 which we are required to solve is of order K. To handle these equations,
+we appeal to by now well-known arguments of Tzanakis and de Weger [ 36] (which, as noted
+previously, are based upon lower bounds for linear forms in complex logarithms, together with
+lattice basis reduction); these are implemented in several computer algebra packages, including
+Magma and Pari (Sage). We used the former despite concerns over its reliance on closed-source
+code, primarily due to its stability for longer runs. The main computational bottleneck in this
+approach is typically that of computing the fundamental units in the corresponding cubic ﬁelds;
+for computations with K = 107, we encountered no diﬃculties with any of the Thue equations
+arising (in particular, the fundamental units occurring can be certiﬁed without reliance upon
+the generalized Riemann hypothesis). We are unaware of a computational complexity analysis,
+heuristic or otherwise, of known algorithms for solving Thue equations and hence it is not by
+any means obvious how timings for this approach should compare to that based upon lower
+bounds for linear forms in elliptic logarithms, as in [ 16].
+5. Numerical results
+The full output for our computation is available at http://www.math.ubc.ca/ ∼bennett/
+BeGa-data.html, which documents the results of a month-long run on a MacBookPro.
+Realistically, with suﬃcient perseverance and suitably many machines, one should be able
+to readily extend the results described here to something like K = 1010. In the remainder of
+this section, we will brieﬂy summarize our data.
+5.1. Number of solutions
+In Tables 1–4 we tabulate the number of curves encountered for which equation (1.1) has a
+given numberNk of integer solutions, with|k| ⩽ 107. We include results for all values ofk, and
+also those obtained by restricting to sixth power free k (the two most natural restrictions here
+are, in our opinion, this one and the restriction to solutions with gcd( X,Y ) = 1). In the range
+under consideration, the maximum number of solutions encountered for positive values of k
+was 58, corresponding to the case k = 3470400. For negative values of k, the largest number
+of solutions we found was 66, for k =−9754975.
+Table 1. Number of Mordell curves with Nk integral points for positive values of k with 0 < k ⩽ 107.
+Nk # of curves Nk # of curves Nk # of curves
+0 8667066 12 3890 32 33
+1 108 14 2186 34 18
+2 1103303 16 1187 36 28
+3 34 17 1 38 17
+4 145142 18 589 40 11
+5 33 20 347 42 6
+6 55518 22 197 44 3
+7 8 24 148 46 5
+8 13595 26 91 48 2
+9 6 28 63 56 1
+10 6308 30 55 58 1
+mordell’s equation: a classical approach 643
+Table 2. Number of Mordell curves with Nk integral points for negative values of k with|k| ⩽ 107.
+Nk # of curves Nk # of curves Nk # of curves
+0 9165396 11 4 32 8
+1 167 12 1351 34 8
+2 729968 14 655 36 2
+3 23 16 340 38 1
+4 67639 18 238 40 1
+5 10 20 160 42 1
+6 23531 22 107 44 2
+7 3 24 71 46 2
+8 7318 26 37 48 1
+9 6 28 20 50 2
+10 2912 30 15 66 1
+Table 3. Number of Mordell curves with Nk integral points for positive k ⩽ 107 sixth power free.
+Nk # of curves Nk # of curves Nk # of curves
+0 8545578 12 3575 32 29
+1 79 14 1998 34 18
+2 1067023 16 1055 36 22
+3 24 17 1 38 15
+4 139090 18 506 40 9
+5 10 20 278 42 6
+6 51721 22 161 44 1
+7 2 24 112 46 5
+8 12271 26 76 48 2
+9 1 28 58 56 1
+10 5756 30 44
+Table 4. Number of Mordell curves with Nk integral points for negative k,|k| ⩽ 107 sixth power
+free.
+Nk # of curves Nk # of curves Nk # of curves
+0 9026739 11 1 32 8
+1 109 12 1174 34 8
+2 705268 14 562 36 2
+3 12 16 291 38 1
+4 63685 18 197 42 1
+5 5 20 138 44 2
+6 21883 22 96 46 2
+7 3 24 68 48 1
+8 6644 26 31 50 1
+9 3 28 17 66 1
+10 2561 30 13
+Regarding the largest value of Nk known (where, to avoid trivialities, we can, for example,
+consider only sixth power free k), Noam Elkies kindly provided the following example, found
+in October 2009:
+k = 509142596247656696242225 = 52· 73· 112· 192· 149· 587· 15541336441.
+644 m. a. bennett and a. ghadermarzi
+This value of k corresponds to an elliptic curve of rank (at least) 12, with (at least) 125
+pairs of integral points (i.e. Nk > 250), with X-coordinates ranging from −79822305 to
+801153865351455.
+5.2. Number of solutions by rank
+From a result of Gross and Silverman [ 18], if k is a sixth power free integer, then the number
+of integral solutions Nk to equation (1.1) is bounded above by a constant N(r) that depends
+only on the Mordell–Weil rank over Q of the corresponding elliptic curve (and hence, by
+an increasing consensus, absolutely bounded). It is easy to show that we have N(0) = 6,
+corresponding to k = 1. For larger ranks, we have that N(1) > 12 (where the only example
+of a rank 1 curve we know with Nk = 12 corresponds to k = 100), N(2) > 26 (where
+N225 = 26), N(3) > 46 (with N1334025 = 46), N(4) > 56 (with N5472225 = 56), N(5) > 50
+(withN−9257031 = 50) and N(6) > 66 (where N−9754975 = 66). The techniques of Ingram [ 23]
+might enable one to prove that N(1) = 12.
+5.3. Hall’s conjecture and large integral points
+Sharp upper bounds for the heights of integer solutions to equation (1.1) are intimately
+connected to the ABC conjecture of Masser and Oesterl´ e. In this particular context, we have
+the following conjecture of Marshall Hall.
+Conjecture 5.1 (Hall). Given ϵ >0, there exists a positive constant Cϵ so that, if k is a
+nonzero integer, then the inequality
+|X|<C ϵ|k|2+ϵ
+holds for all solutions in integers ( X,Y ) to equation (1.1).
+The original statement of this conjecture, in [ 19], actually predicts that a like inequality
+holds for ϵ = 0. The current thinking is that such a result is unlikely to be true (though it has
+not been disproved).
+We next list (in Table 5) all the Mordell curves encountered for which there exists a solution
+(X,Y ) to equation (1.1) with corresponding ‘Hall measure’ X 1/2/|k| exceeding 1; in each case
+we round this measure to the second decimal place (Table 5). In the range under consideration,
+we found no new examples to supplement those previously known and recorded in Elkies [ 12]
+(note that the case with k =−852135 was omitted from this paper due to a transcription
+error) and in work of Jim´ enez Calvoet al. [25].
+Table 5. Hall’s conjecture extrema for |k| ⩽ 107.
+k X X 1/2/|k| k X X 1/2/|k|
+−1641843 5853886516781223 46.60 1 2 1.41
+1090 28187351 4.87 14668 384242766 1.34
+17 5234 4.26 14857 390620082 1.33
+225 720114 3.77 −2767769 12438517260105 1.27
+24 8158 3.76 8569 110781386 1.23
+−307 939787 3.16 −5190544 35495694227489 1.15
+−207 367806 2.93 −852135 952764389446 1.15
+28024 3790689201 2.20 11492 154319269 1.08
+117073 65589428378 2.19 618 421351 1.05
+4401169 53197086958290 1.66 297 93844 1.03
+mordell’s equation: a classical approach 645
+Table 6. Solutions to (1.1) with X > 1012 for|k| ⩽ 107.
+k N k X k N k X
+−1641843 6 5853886516781223 −1923767 2 2434890738626
+4401169 6 53197086958290 −2860984 4 2115366915022
+−5190544 4 35495694227489 2383593 10 1854521158546
+−4090263 2 16544006443618 2381192 10 1852119707102
+−4203905 2 15972973971249 −4024909 4 1569699004069
+−2767769 4 12438517260105 −9218431 6 1183858050175
+7008155 2 9137950007869 5066001 8 1026067837540
+−9698283 2 7067107221619 5059001 8 1024245337460
+2214289 4 4608439927403 3537071 6 1007988055117
+Our ﬁnal table (Table 6) lists all the values of k in the range under consideration for which
+equation (1.1) has a suﬃciently large solution. In particular, by way of example, the equation
+Y 2 =X 3− 4090263
+thus has the feature that its smallest (indeed, only) solution in positive integers is given by
+(X,Y ) = (16544006443618, 67291628068556097113).
+References
+1. A. Baker, ‘On the representation of integers by binary forms’, Philos. Trans. A 263 (1968) 173–208.
+2. K. Belabas, ‘A fast algorithm to compute cubic ﬁelds’, Math. Comp. 66 (1997) 1213–1237.
+3. K. Belabas and H. Cohen, ‘Binary cubic forms and cubic number ﬁelds’, Organic mathematics (Burnaby,
+BC, 1995) , CMS Conference Proceedings 20 (American Mathematical Society, Providence, RI, 1997)
+175–204.
+4. W. E. H. Berwick and G. B. Mathews, ‘On the reduction of arithmetical binary cubic forms which have
+a negative determinant’, Proc. Lond. Math. Soc. (2) 10 (1911) 43–53.
+5. J. Cremona, ‘Reduction of binary cubic and quartic forms’, LMS J. Comput. Math. 4 (1999) 64–94.
+6. S. David and N. Hirata-Kohno, ‘Linear forms in elliptic logarithms’, J. reine angew. Math. 628 (2009)
+37–89.
+7. H. Davenport, ‘The reduction of a binary cubic form. I’, J. Lond. Math. Soc. 20 (1945) 14–22.
+8. H. Davenport, ‘The reduction of a binary cubic form. II’, J. Lond. Math. Soc. 20 (1945) 139–147.
+9. H. Davenport and H. Heilbronn , ‘On the density of discriminants of cubic ﬁelds. II’, Proc. R. Soc.
+Lond. A 322 (1971) 405–420.
+10. B. N. Delone and D. K. Faddeev , The theory of irrationalities of the third degree , Translations of
+Mathematical Monographs 10 (American Mathematical Society, Providence, RI, 1964).
+11. L. E. Dickson , History of the theory of numbers, Vol 2: Diophantine analysis (Carnegie Institute,
+Washington DC, 1920; reprinted Chelsea, New York, 1952).
+12. N. Elkies, ‘Rational points near curves and small nonzero |x3− y2| via lattice reduction’, Algorithmic
+number theory (Proceedings of ANTS-IV) , Lecture Notes in Computer Science 1838 (ed. W. Bosma;
+Springer, Berlin, 2000) 33–63.
+13. W. J. Ellison, F. Ellison, J. Pesek, C. E. Stahl and D. S. Stall, ‘The Diophantine equation y2 + k =
+x3’, J. Number Theory 4 (1972) 107–117.
+14. C. Fieker, I. Ga´al and M. Pohst, ‘On computing integral points of a Mordell curve over rational function
+ﬁelds in characteristic > 3’, J. Number Theory 133 (2013) 738–750.
+15. R. Finkelstein and H. London, ‘On Mordell’s equation y2− k = x3: an interesting case of Sierpinski’,
+J. Number Theory 2 (1970) 310–321.
+16. J. Gebel, A. Peth ˝o and H. G. Zimmer , ‘Computing integral points on elliptic curves’, Acta Arith. 68
+(1994) no. 2, 171–192.
+17. J. Gebel , A. Peth ˝o and H. G. Zimmer , ‘On Mordell’s equations’, Compos. Math. 110 (1998) no. 3,
+335–367.
+18. R. Gross and J. Silverman, ‘S-integer points on elliptic curves’, Paciﬁc J. Math. 167 (1995) 263–288.
+19. M. Hall , ‘The Diophantine equation x3− y2 = k’, Computers in number theory (eds A. Atkin and
+B. Birch; Academic Press, London, 1971) 173–198.
+646 m. a. bennett and a. ghadermarzi
+20. O. Hemer, ‘Notes on the Diophantine equation y2− k = x3’, Ark. Mat. 3 (1954) 67–77.
+21. C. Hermite, ‘Note sur la r´ eduction des formes homog` enes ` a coeﬃcients entiers et ` a deux ind´ etermine´ ees’,
+J. reine angew. Math. 36 (1848) 357–364.
+22. C. Hermite, ‘Sur la r´ eduction des formes cubiques ` a deux ind´ etermine´ ees’,C. R. Math. Acad. Sci. Paris
+48 (1859) 351–357.
+23. P. Ingram, ‘Multiples of integral points on elliptic curves’, J. Number Theory 129 (2009) no. 1, 182–208.
+24. A. J ¨atzschmann, Zur Bestimmung ganzer Punkte auf elliptischen Kurven (Diplomarbeit, Technische
+Universit¨ at, Berlin, 2010).
+25. I. Jim ´enez Calvo, J. Herranz and G. S ´aez, ‘A new algorithm to search for small nonzero |x3− y2|
+values’, Math. Comp. 78 (2009) 2435–2444.
+26. G. Julia , ‘ ´Etude sur les formes binaires non quadratiques ` a ind´ etermin´ ees r´ elles ou complexes’,Mem.
+Acad. Sci. l’Inst. France 55 (1917) 1–293.
+27. S. Lang , Elliptic curves: Diophantine analysis , Grundlehren der Mathematischen Wissenschaften 231
+(Springer, Berlin, 1978).
+28. W. Ljunggren, ‘The diophantine equation y2 = x3− k’, Acta Arith. 8 (1961) 451–465.
+29. L. J. Mordell, ‘The diophantine equation y2− k = x3’, Proc. Lond. Math. Soc. (2) 13 (1913) 60–80.
+30. L. J. Mordell, ‘Indeterminate equations of the third and fourth degree’, Quart. J. Pure Appl. Math. 45
+(1914) 170–186.
+31. L. J. Mordell, ‘A statement of Fermat’, Proc. Lond. Math. Soc. (2) 18 (1919) v–vi.
+32. L. J. Mordell, Diophantine equations (Academic Press, London, 1969).
+33. N. P. Smart, ‘S-integral points on elliptic curves’, Math. Proc. Cambridge Philos. Soc. 116 (1994).
+34. R. J. Stroeker and N. Tzanakis, ‘Solving elliptic Diophantine equations by estimating linear forms in
+elliptic logarithms’, Acta Arith. 67 (1994) 177–196.
+35. A. Thue, ‘ ¨Uber Ann¨ aherungswerte algebraischer Zahlen’,J. reine angew Math. 135 (1909) 284–305.
+36. N. Tzanakis and B. M. M. de Weger , ‘On the practical solutions of the Thue equation’, J. Number
+Theory 31 (1989) 99–132.
+37. K. Wildanger, ‘ ¨Uber das L¨ osen von Einheiten- und Indexformgleichungen in algebraischen Zahlk¨ orpern
+mit einer Anwendung auf die Bestimmung aller ganzen Punkte einer Mordellschen Kurve’, Thesis,
+Technical University, Berlin, 1997.
+38. D. Zagier, ‘Large integral points on elliptic curves’, Math. Comp. 48 (1987) no. 177, 425–436.
+Michael A. Bennett
+Department of Mathematics
+University of British Columbia
+Vancouver, BC
+Canada
+V6T 1Z2
+bennett@math.ubc.ca
+Amir Ghadermarzi
+Department of Mathematics
+University of British Columbia
+Vancouver, BC
+Canada
+V6T 1Z2
+amir@math.ubc.ca
