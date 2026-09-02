@@ -102,6 +102,9 @@ konwencji: 10→19, 12→85, 14→509, …).</p>
 długości 4 lub 8. <b>Żaden kontrprzykład do #64 w klasie grafów sześcianowych nie ma
 ≤ 20 wierzchołków.</b> Najmniejszy możliwy rozmiar kontrprzykładu: <b>22</b> —
 spis n=22 trwa w tle (pliki: <code>cubic_22.g6</code>, <code>p2check_22.out</code>).
+Rozmiar: <b>7 319 447 grafów</b> (OEIS A002851 — liczby z naszego spisu 4..20
+zgadzają się z nim 1:1). Następny krok po n=22: n=24 = <b>117 940 535</b> grafów
+(~16× więcej — decyzja po n=22).
 </div>
 
 <h3>Weryfikacja (dwa niezależne dowody poprawności kontrolera)</h3>
@@ -131,6 +134,39 @@ sześcianowy ≤ 20 bez 4- i 8-cyklu) — gałąź kodu zweryfikowana tylko test
 Jeśli n=22 dostarczy grafy 4-wolne i 8-wolne, gałąź zacznie działać „na żywo”.</li>
 </ol>
 </div>
+
+<h3>Kontynuacja: podejście konstrukcyjne (gadżety Bensmaila) — z logu poprzedniej sesji</h3>
+<p>Poprzednia sesja (pełny log: <code>“Thought for 2 seconds.txt”</code> — w repo,
+upload do gałęzi 03.09) pracowała nad <b>FrontierMath (Epoch AI, $2000/otwarty
+problem)</b>; dwa cele obliczeniowe: Hall <b>r &gt; 100</b> (wątek #66) i kontrprzykład
+do #64 przez <b>konstrukcję Bensmaila (2017)</b>, „On q-power cycles in cubic
+graphs”.</p>
+<p>Redukcja: wystarczy znaleźć „edge-gadget” <i>G</i> = graf kubiczny <b>K</b>
+(jądro) + dwa liście <i>t₁, t₂</i> (przyczepione do wierzchołków <i>a, b</i>), taki że:</p>
+<ul>
+<li><b>(a)</b> wszystkie cykle K mają długości ∉ {4, 8, 16, 32};</li>
+<li><b>(b)</b> dla pewnej pary (a,b): <u>każda</u> prosta ścieżka a–b ma długość
+∉ {2, 6, 14, 30} (ścieżka t₁→t₂ w gadżecie ma długość = ścieżka a–b + 2).</li>
+</ul>
+<p>Wtedy H = drzewo wewnętrznie kubicne + kopia G przy każdym liściu (t₁≡t₂liść)
+jest grafem kubicznym, którego <u>wszystkie</u> cykle mają długości z
+(cykle K) ∪ (ścieżki a–b + 2) — brak potęg dwójki → <b>dowolnie duże
+kontrprzykłady do #64</b>. To jest czyste zadanie obliczeniowe.</p>
+<p class="small"><b>Ograniczenia literaturowe:</b> Markström — każdy graf kubiczny
+na &lt; 29 wierzchołkach ma C4/C8/C16; wynik SAT (2026) — każdy graf δ ≥ 3 na
+≤ 31 wierzchołkach ma cykl-potęgę dwójki (wyklucza K na 30); arXiv 2608.02675
+(sierp. 2026) — każdy <i>kubiczny dwudzielny</i> na ≤ 58 ma C4/C8/C16 (więc K
+na 32–58 musi być <u>niedwudzielny</u>). Wniosek: K ≥ 32 wierzchołki,
+obwód ≥ 5, brak C8/C16/C32, para (a,b) z (b).</p>
+<div class="card ok">
+<b>Stan (03.09, w toku):</b> kontroler <code>gadget_check.c</code> (własny
+dekoder graph6 BIAS6=63, wyliczenie pełnego zbioru długości cykli + ścieżek
+a–b, DFS z wczesnym wyjściem) — sanity-check n = 10–22 (wszystkie grafy
+kubiczne z obwodem ≥ 5, opcje <code>geng -t -f</code>): <b>0 gadżetów</b> —
+spójne z Markströmem (każdy z nich ma C8 lub C16). <b>Sweep n = 32 trwa w
+tle</b> (~56 mln grafów z obwodem ≥ 5; większość ginie na C8/C16). Plik
+wyników: <code>gadget_n32.out</code>. Gdyby K został znaleziony: budowa H,
+niezależna weryfikacja, zgłoszenie (erdosproblems / FrontierMath).</div>
 
 <h2>Wątek #647 — max(m+τ(m)) ≤ n+2</h2>
 
@@ -185,18 +221,31 @@ r = 10.18 przy b = 1.8×10⁸, r = 16.53 przy b = 6.8×10⁸).</p>
 BSGS dla p ≡ 1 mod 3, zweryfikowany na wszystkich pierwiastkach mod p &lt; 400).
 Kontynuacja: <code>python3 hall_hunt2.py 200000 2000000 40 30 2</code>, potem
 2M–20M. Walidacja vs tabela 1: <code>hall_verify_table1.py</code>.</p>
+<div class="card ok">
+<b>Walidacja (zakończona):</b> pełna kolkcja przykładów (bez top-N cutoff) dla
+b ∈ [2, 200 000) — <code>hall_full_run.py</code> — odnawia
+<b>16 z 20</b> pozycji Tabeli 1 w tym zakresie (+ pozycję #1, x=2), w tym
+największe x w zakresie (do 3.5×10¹³). Braki: #17, #19, #21 (okno
+N_RANGE=30 / reprezentacja b — papier JCHS sam zastrzega, że algorytm nie jest
+udowodniony wyczerpujący) i #20 = rekord Elkies (znaleziony siatką
+lattice-reduction, nie algorytmem JCHS). <b>Implementacja poprawna.</b></div>
 
 <h2>Kroki następne</h2>
 <ol>
-<li><b>Spis n=22</b> (w tle): jeśli FREE &gt; 0 → kandydaci do ręcznego/literaturowego
-sprawdzenia; jeśli FREE = 0 → przesuwamy wynik na ≥ 24 wierzchołki.</li>
-<li><b>Hall:</b> rozszerzyć przedział b w <code>hall_hunt2.py</code> (np. dalej od 176
-w górę i w dół), 40 C, kilka wątków.</li>
-<li><b>#64:</b> po n=22 oszacować n=24 (spis będzie ~10× większy — do oceny po
-pomiarze n=22); ewentualnie napisać wersję OpenMP kontrolera (maszyna ma 2 CPU —
-skromny zysk).</li>
-<li><b>FrontierMath/XPRIZE</b> — decyzje po stronie użytkownika (Devpost, zgłoszenia);
-XPRIZE: finał 2026-09-25.</li>
+<li><b>#64 — dwie ścieżki równolegle (obie w toku):</b> (i) spis n = 22
+(7 319 447 grafów) jako niezależna weryfikacja; (ii) <b>sweep n = 32
+konstrukcyjny</b> (gadżety Bensmaila, <code>gadget_check</code>) — jedyne
+realne pole do znalezienia samego kontrprzykładu; po 32 → 34, 36, …
+</li>
+<li><b>Hall (#66 / FrontierMath, cel r &gt; 100):</b> rozszerzyć skan
+<code>hall_hunt2.py</code> na b ∈ [200 000, 2 000 000) — w tym zakresie leży
+pozycja #23 z tabeli JCHS (r = 6.50, b = 321 346), jedyny element tabeli
+pobijający nasze 4.87.</li>
+<li><b>#647:</b> nasycony (sift do 10¹⁰, hits = 0) — dalszy skan tylko po
+nowy pomysł.</li>
+<li><b>Zgłoszenia (decyzja użytkownika):</b> FrontierMath/Epoch (Hall r &gt; 100
+albo kontrprzykład #64 — oba są na liście ich open problems), erdosproblems
+(#64, $1000), XPRIZE finał 2026-09-25.</li>
 </ol>
 
 <h2>Artefakty sesji</h2>
