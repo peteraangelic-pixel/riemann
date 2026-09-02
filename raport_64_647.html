@@ -164,12 +164,27 @@ związek z #679, silniejszy od #413/#248). Wątek 647 zamykamy jako
 </div>
 
 <h2>Wątek #66 — Hipoteza Halla (stan, dla kontynuacji)</h2>
-<p>Najlepszy stosunek z bieżących obliczeń (JCHS + a081119):
-<b>√x/|y²−x³| = 4.8708</b> przy x = 28 187 351, y = 149 651 610 621, |y²−x³| = 1090.
-Rekord świata: <b>46.60 (Elkies)</b> — mamy ~10× do niego. Wyniki:
-<code>hall_results.json</code> (top-30), skan:
-<code>python3 hall_hunt2.py B_START B_END C_MAX THREADS</code> (C_MAX=40).
-Kontynuacja = kolejne przedziały b (ostatni najlepszy: b=176).</p>
+<p><b>Kontekst (JCHS, arXiv:math/0504579, Math. Comp. 78 (2009) 2435–2444):</b> szukamy
+dużych wartości r = √x / |y²−x³| (tablica 1 w artykule = znane „dobre przykłady”,
+44 pozycje). <b>Rekord świata: r = 46.60</b> — x = 5 853 886 516 781 223 (Elkies,
+b = 137 035, C = 9). Statystyka JCHS: liczba przypadków z k ≤ n√x i x &lt; X ≈
+0.80·n·log(X) (rozkład r w (0,16] niemal jednostajny). Skalowanie: x ≈ b^{2θ−2},
+θ ≈ 2.5–3 (x ~ b³–b⁴).</p>
+<p><b>Nasze położenie:</b> najlepsze z tej sesji: <b>r = 4.8708</b> przy
+x = 28 187 351, y = 149 651 610 621, |y²−x³| = 1090 — to <u>pozycja #9 tabeli JCHS</u>
+(znana od Halla/GPZ, b = 159, C = 5) — nasz skan ją niezależnie odtwarza
+(walidacja implementacji). Rekord 46.60 leży przy b = 137 035 — <u>w zakresie bieżącego
+skanu (b ≤ 200 000)</u>; JCHS jednak #20 znalazł Elkies siecią (lattice), nie ich
+algorytmem — więc nasz skan może go <i>nie</i> odtworzyć (nie jest to błąd).
+Do pobicia rekordu potrzebne x ~ 10²⁵+ (statystycznie: ~1 oczekiwany przykład przy
+X = e⁵⁸ ≈ 1.5×10²⁵) → b ~ 10⁶–10⁸; skan do b = 10⁷ jest wykonalny w tej maszynie
+(≈ kilka godzin). Realistyczny cel: poprawa 4.87 → 10–20 (kolejne pozycje tabeli:
+r = 10.18 przy b = 1.8×10⁸, r = 16.53 przy b = 6.8×10⁸).</p>
+<p><b>Stan obliczeń:</b> skan b ∈ [200, 200 000) w tle (C_MAX = 40, N_RANGE = 30,
+2 wątki); <code>hall_hunt2.py</code> — wersja bez sympy (własny cbrt mod p:
+BSGS dla p ≡ 1 mod 3, zweryfikowany na wszystkich pierwiastkach mod p &lt; 400).
+Kontynuacja: <code>python3 hall_hunt2.py 200000 2000000 40 30 2</code>, potem
+2M–20M. Walidacja vs tabela 1: <code>hall_verify_table1.py</code>.</p>
 
 <h2>Kroki następne</h2>
 <ol>
