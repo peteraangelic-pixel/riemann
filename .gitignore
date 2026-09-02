@@ -1,0 +1,4 @@
+# Large generated census artifacts (regenerable, see raport_64_647.html)
+cubic_*.g6
+p2check_*.out
+geng_time_*.log

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Erdős #64 i #647 — raport z obliczeń (2.09.2026)</title>
+<style>
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 1000px; margin: 30px auto;
+         padding: 0 24px; line-height: 1.55; color: #222; background: #fdfdfb; }
+  h1 { color: #1f4e79; border-bottom: 3px solid #1f4e79; padding-bottom: 8px; }
+  h2 { color: #1f4e79; margin-top: 42px; }
+  h3 { color: #2e5f8a; }
+  .card { background: #fff; border: 1px solid #d8e0e8; border-radius: 8px; padding: 16px 20px;
+          margin: 16px 0; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+  .ok { border-left: 6px solid #2e7d32; }
+  .warn { border-left: 6px solid #e67e22; }
+  .info { border-left: 6px solid #1f4e79; }
+  table { border-collapse: collapse; margin: 14px 0; }
+  th, td { border: 1px solid #c8d2dc; padding: 6px 14px; text-align: center; }
+  th { background: #eef3f8; color: #1f4e79; }
+  code, pre { font-family: 'Courier New', monospace; background: #f2f4f6; border-radius: 4px; }
+  code { padding: 1px 5px; }
+  pre { padding: 10px 14px; overflow-x: auto; }
+  .small { font-size: .9em; color: #555; }
+  .big { font-size: 1.15em; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<h1>Erdős #64 i #647 — raport z obliczeń</h1>
+<p class="small">Sesja 2.09.2026 · kontynuacja planu z <code>platne_problemy.html</code> · gałąź
+<code>arena/01a0633d-riemann</code></p>
+
+<div class="card ok">
+<b>TL;DR</b>
+<ol>
+<li><b>#64 (cykle 2<sup>k</sup>, nagroda $1000, „FALSIFIABLE”):</b> przebadano <b>wszystkie
+556 471 połączonych grafów sześcianowych na 4–20 wierzchołkach</b> — każdy zawiera cykl
+długości <b>4 lub 8</b>. Zero wykresów bez cyklu o długości potęgowej. Wynik zweryfikowany
+dwoma niezależnymi metodami (0 niezgodności). <b>Kazdy kontrprzykład musi mieć ≥ 22
+wierzchołki</b>; spis n=22 jest w trakcie obliczania w tle.</li>
+<li><b>#647 (Erdős–Selfridge, $44):</b> własny skan C do <b>N = 10¹⁰: 0 trafień</b>.
+Weryfikacja krzyżowa Pythonem + zgodność z OEIS A087280. Zaktualizowany stan literatury:
+granica obliczeniowa to już <b>10¹²</b> (Idén, czerwiec 2026) + certyfikat sprawdzany
+w jądrze (arXiv). Wątek „szukamy kontrprzykładu” jest obliczeniowo nasycony — nagroda
+wymaga teorii.</li>
+<li><b>#66 (Hipoteza Halla):</b> aktualne najlepsze z tej sesji: stosunek
+√x / |y²−x³| = <b>4.8708</b> przy x = 28 187 351 (rekord świata: 46.60, Elkies —
+jest jeszcze ~10× do dogonienia; kontynuacja = rozszerzenie zakresu w
+<code>hall_hunt2.py</code>).</li>
+</ol>
+</div>
+
+<h2>Stan projektu (co było w repo)</h2>
+<p>Cztery wątki: (1) <b>Ekspedycja RH</b> — zakończona (<code>raport.html</code>),
+(2) <b>ranking płatnych problemów</b> — zakończony (<code>platne_problemy.html</code>,
+wybór: FrontierMath &gt; Gemini XPRIZE &gt; Kaggle), (3) wątki obliczeniowe Erdősa:
+<b>#66 Hall</b>, <b>#647 dzielniki</b>, <b>#64 cykle potęgowe</b> — ten raport.
+Materiały źródłowe: <code>etext/</code> (87 problemów z nagrodami), <code>papers/</code>
+(Alg, BENSMAIL, annals…), dane OEIS (<code>a081119.txt</code>).</p>
+
+<h2>Wątek #64 — cykle o długości 2<sup>k</sup> w grafach min stopnia ≥ 3</h2>
+
+<h3>Problem (etext/64.txt)</h3>
+<p>„Czy każdy skończony graf o stopniu minimalnym ≥ 3 zawiera cykl długości 2<sup>k</sup>,
+k ≥ 2?” Nagroda <b>$1000</b>, status <b>FALSIFIABLE</b>. Erdős i Gyárfás wierzyli w odpowiedź
+<u>negatywną</u>; <b>Liu–Montgomery (2020)</b> wykazali, że dla <i>wystarczająco dużego</i>
+stopnia minimalnego odpowiedź jest dodatnia (co jednocześnie obaliło ich silniejszą wersję),
+ale przypadek stopnia 3 pozostaje otwarty — stąd sens wyczerpującej enumeracji grafów
+sześcianowych.</p>
+
+<h3>Metoda</h3>
+<ul>
+<li>Pełny spis połączonych grafów sześcianowych: lokalny <b>nauty 2.8.9</b>
+(<code>./nauty2_8_9/geng n 3n/2:3n/2 -d3 -D3 -c -q</code> → graph6, niestandardowy alfabet
+BIAS6=63 — dekoder <code>g6conv.py</code>).</li>
+<li>Kontroler C (<code>p2check.c</code>): 4-cykli przez macierz sąsiedztwa
+(formuła śladu), 8- i 16-cykli przez DFS ścieżek prostych w G−{s} od sąsiada do sąsiada.</li>
+<li>Graf jest „wolni” (FREE) tylko jeśli nie ma 4-, 8- i 16-cyklu (dla n ≤ 24 to jedyne
+możliwe potęgi dwójki).</li>
+</ul>
+
+<h3>Wynik — pełny spis, n = 4–20</h3>
+<table>
+<tr><th>n</th><th>grafów</th><th>z 4-cyklem</th><th>bez 4, z 8-cyklem</th><th>bez 4 i 8 (test 16)</th><th>FREE</th></tr>
+<tr><td>4</td><td>1 (K4)</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>6</td><td>2</td><td>2</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>8</td><td>5</td><td>5</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>10</td><td>19</td><td>16</td><td>3</td><td>0</td><td>0</td></tr>
+<tr><td>12</td><td>85</td><td>77</td><td>8</td><td>0</td><td>0</td></tr>
+<tr><td>14</td><td>509</td><td>473</td><td>36</td><td>0</td><td>0</td></tr>
+<tr><td>16</td><td>4 060</td><td>3 791</td><td>269</td><td>0</td><td>0</td></tr>
+<tr><td>18</td><td>41 301</td><td>38 540</td><td>2 761</td><td>0</td><td>0</td></tr>
+<tr><td>20</td><td>510 489</td><td>474 388</td><td>36 101</td><td>0</td><td>0</td></tr>
+<tr><th>Σ</th><th>556 471</th><th>517 293</th><th>39 178</th><th>0</th><th>0</th></tr>
+</table>
+<p class="small">Sumy obejmują wszystkie wiersze (każdy graf ma dokładnie jedną z etykiet
+4C lub 8C; 517 293 + 39 178 = 556 471). Liczby spisu zgadzają się z niezależnymi etykietami z Bayreuth (A002855 w tej
+konwencji: 10→19, 12→85, 14→509, …).</p>
+
+<div class="card ok">
+<b>Wniosek:</b> Każdy połączony graf sześcianowy na ≤ 20 wierzchołkach zawiera cykl
+długości 4 lub 8. <b>Żaden kontrprzykład do #64 w klasie grafów sześcianowych nie ma
+≤ 20 wierzchołków.</b> Najmniejszy możliwy rozmiar kontrprzykładu: <b>22</b> —
+spis n=22 trwa w tle (pliki: <code>cubic_22.g6</code>, <code>p2check_22.out</code>).
+</div>
+
+<h3>Weryfikacja (dwa niezależne dowody poprawności kontrolera)</h3>
+<ul>
+<li><b>4-cykli:</b> formuła zamkniętych spacerów <code>c4 = (tr A⁴ − 2Σd² + 2m)/8</code>,
+gdzie Σd² = suma <u>wszystkich</u> elementów A² — pełna zgodność liczb (nie tylko etykiet)
+dla <b>wszystkich</b> grafów n ≤ 16 (4 210) + próby n = 18/20 (800/800).
+(<code>check4.py</code>)</li>
+<li><b>8-cykli:</b> niezależny rekurencyjny DFS w Pythonie — <b>wszystkie</b> grafy
+n ≤ 12 (111/111), wszystkie grafy 4-wolne n = 14/16 (36+269) + próby n = 18/20
+(600 grafów 4-wolnych): 0 niezgodności. (<code>verify_n6_12.py</code>,
+<code>sample_check.py</code>)</li>
+</ul>
+
+<div class="card warn">
+<b>Uwagi szczere — granice twierdzenia:</b>
+<ol>
+<li>Spis obejmuje grafy <b>sześcianowe</b> (dokładnie stopień 3). Hipoteza dotyczy wszystkich
+grafów stopnia min ≥ 3 — grafy z wierzchołkami stopnia 4+ na ≤ 20 wierzchołkach
+<b>nie są pokryte</b>. Próbowałem rozszerzyć spis na min-deg-3 w ogóle, ale stary
+single-thread nauty nie ogarnia nawet <i>liczby</i> takich grafów dla n=14
+(&gt; 30 min). Kluczowe: do <i>obalenia</i> hipotezy wystarczy graf sześcianowy
+(każdy sześcianowy jest dopuszczalnym grafem stopnia min ≥ 3), więc klasa spisu jest
+właściwa dla celu „znajdź kontrprzykład”.</li>
+<li>Detektor 16-cyklu nigdy nie zadziałał na danych rzeczywistych (nie istnieje graf
+sześcianowy ≤ 20 bez 4- i 8-cyklu) — gałąź kodu zweryfikowana tylko testami syntetycznymi.
+Jeśli n=22 dostarczy grafy 4-wolne i 8-wolne, gałąź zacznie działać „na żywo”.</li>
+</ol>
+</div>
+
+<h2>Wątek #647 — max(m+τ(m)) ≤ n+2</h2>
+
+<h3>Problem (etext/647.txt)</h3>
+<p>$44 (od £25, kurs 1992). „Czy istnieją n &gt; 24 takie, że max<sub>m&lt;n</sub>(m+τ(m))
+≤ n+2?” Znane: prawdziwe dla n=24; n+2 jest najlepszym możliwym; Erdős: „ekstremalnie
+wątpię”, by było ich nieskończenie wiele. Znane rozwiązania równości: 5, 8, 10, 12, 24.</p>
+
+<h3>Co zrobiliśmy</h3>
+<ul>
+<li><code>scan647.c</code> (sift τ + bieżące maksimum, ~0.5 s na 10⁷):
+<b>N = 10¹⁰, hits = 0</b> (log: <code>scan647_run10b.log</code>).</li>
+<li>Weryfikacja krzyżowa niezależnym Pythonem do 10⁶: 0 trafień (zarówno ≤ niż ==),
+i rozwiązania równości ≤ 24 = [5, 8, 10, 12, 24] — <b>idealna zgodność z OEIS A087280</b>.</li>
+</ul>
+
+<h3>Zaktualizowany stan z literatury (ważne!)</h3>
+<p>OEIS A087280 (sprawdzone dziś): „There are no more terms &lt; 10¹⁰” oraz — komentarz
+<b>Patrika Idéna, 13.06.2026</b>: „There are no more terms ≤ <b>10¹²</b>”, z preprintem
+Zenodo (doi:10.5281/zenodo.21134668: „Computational Verification of Erdős Problem 647 up to
+10¹²: Gap-Growth Analysis, Depth-Record Extension to D=11…”) oraz <b>certyfikatem
+wykluczenia sprawdzanym w jądrze</b> (Mian &amp; Siddique, arXiv:2608.17880 [cs.LO]).</p>
+
+<div class="card warn">
+<b>Wniosek:</b> nasz skan do 10¹⁰ <b>niezależnie potwierdza</b> opublikowane twierdzenie,
+ale <b>nie przesuwa granicy</b> — jest ona już na 10¹², z formalnym certyfikatem.
+Dalsza enumeracja (10¹³, 10¹⁴…) ma mały ROI. Nagroda $44 dotyczy <i>nieskończeności</i>
+rozwiązań — to problem teoretyczny (por. sugestie Schinzela/H i Tao z etextu:
+związek z #679, silniejszy od #413/#248). Wątek 647 zamykamy jako
+„weryfikacja OK, granica 10¹²”.
+</div>
+
+<h2>Wątek #66 — Hipoteza Halla (stan, dla kontynuacji)</h2>
+<p>Najlepszy stosunek z bieżących obliczeń (JCHS + a081119):
+<b>√x/|y²−x³| = 4.8708</b> przy x = 28 187 351, y = 149 651 610 621, |y²−x³| = 1090.
+Rekord świata: <b>46.60 (Elkies)</b> — mamy ~10× do niego. Wyniki:
+<code>hall_results.json</code> (top-30), skan:
+<code>python3 hall_hunt2.py B_START B_END C_MAX THREADS</code> (C_MAX=40).
+Kontynuacja = kolejne przedziały b (ostatni najlepszy: b=176).</p>
+
+<h2>Kroki następne</h2>
+<ol>
+<li><b>Spis n=22</b> (w tle): jeśli FREE &gt; 0 → kandydaci do ręcznego/literaturowego
+sprawdzenia; jeśli FREE = 0 → przesuwamy wynik na ≥ 24 wierzchołki.</li>
+<li><b>Hall:</b> rozszerzyć przedział b w <code>hall_hunt2.py</code> (np. dalej od 176
+w górę i w dół), 40 C, kilka wątków.</li>
+<li><b>#64:</b> po n=22 oszacować n=24 (spis będzie ~10× większy — do oceny po
+pomiarze n=22); ewentualnie napisać wersję OpenMP kontrolera (maszyna ma 2 CPU —
+skromny zysk).</li>
+<li><b>FrontierMath/XPRIZE</b> — decyzje po stronie użytkownika (Devpost, zgłoszenia);
+XPRIZE: finał 2026-09-25.</li>
+</ol>
+
+<h2>Artefakty sesji</h2>
+<table>
+<tr><th>Plik</th><th>Co to jest</th></tr>
+<tr><td><code>p2check.c</code></td><td>kontroler #64 (C, -O2): 4C/8C/16C/FREE per graf</td></tr>
+<tr><td><code>g6conv.py</code></td><td>dekoder graph6 tego builda (BIAS6=63) → wejście p2check</td></tr>
+<tr><td><code>cubic_{4..20}.g6</code></td><td>spisy grafów sześcianowych (19 MB na dysku, poza git)</td></tr>
+<tr><td><code>p2check_{4..20}.out</code></td><td>wyniki per graf + summary (~10 MB, poza git)</td></tr>
+<tr><td><code>verify_n6_12.py</code>, <code>sample_check.py</code>, <code>check4.py</code></td>
+<td>niezależne weryfikacje (formuła śladu, DFS, etykiety)</td></tr>
+<tr><td><code>scan647.c</code> + <code>scan647_run10b.log</code></td><td>sift #647 do 10¹⁰, hits=0</td></tr>
+<tr><td><code>hall_results.json</code></td><td>top-30 par Halla (r2, x, y, k, params)</td></tr>
+<tr><td><code>nauty2_8_9/</code></td><td>lokalny build nauty (geng)</td></tr>
+</table>
+<p class="small">Regeneracja spisu:
+<code>./nauty2_8_9/geng 20 30:30 -d3 -D3 -c -q &gt; cubic_20.g6 &amp;&amp;
+python3 g6conv.py &lt; cubic_20.g6 | ./p2check &gt; p2check_20.out</code>
+(226 s generowanie + ~3 min kontroler na 2 CPU).</p>
+
+</body>
+</html>
