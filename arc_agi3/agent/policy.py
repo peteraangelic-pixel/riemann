@@ -499,6 +499,7 @@ class TileMazeView:
     glyphs: tuple[tuple[Coordinate, TileGlyph], ...]
     token_targets: tuple[TokenTarget, ...]
     control_tiles: tuple[Coordinate, ...]
+    resource_tiles: tuple[Coordinate, ...]
 
 
 def _tile(grid: Grid, x: int, y: int) -> tuple[tuple[int, ...], ...] | None:
@@ -666,6 +667,22 @@ def _compact_control_glyph(glyph: TileGlyph | None) -> bool:
     return len(core) >= 3
 
 
+def _framed_ring_glyph(glyph: TileGlyph | None) -> bool:
+    """Recognize a compact framed ring, a common visual pickup affordance."""
+    if glyph is None or not _framed_glyph(glyph):
+        return False
+    frame = glyph[0][0]
+    if glyph[TILE_SIZE // 2][TILE_SIZE // 2] != frame:
+        return False
+    ring = {
+        glyph[y][x]
+        for y in range(1, TILE_SIZE - 1)
+        for x in range(1, TILE_SIZE - 1)
+        if (x, y) != (TILE_SIZE // 2, TILE_SIZE // 2)
+    }
+    return len(ring) == 1 and next(iter(ring)) != frame
+
+
 def tile_maze_view(snapshot: Snapshot) -> TileMazeView | None:
     """Recognize a regular directional tile maze from one visual observation."""
     if not set(DIRECTIONAL_ACTIONS).issubset(snapshot.available_actions):
@@ -725,6 +742,21 @@ def tile_maze_view(snapshot: Snapshot) -> TileMazeView | None:
             key=lambda point: (point[1], point[0]),
         )
     )
+    resource_tiles = tuple(
+        sorted(
+            (
+                representative
+                for representative, group in landmarks
+                if (
+                    len(group) == 1
+                    and 1 <= representative[0] < tile_shape[0] - 1
+                    and 1 <= representative[1] < tile_shape[1] - 1
+                    and _framed_ring_glyph(glyphs.get(representative))
+                )
+            ),
+            key=lambda point: (point[1], point[0]),
+        )
+    )
     token_options: list[TokenTarget] = []
     for badge in _edge_badge_glyphs(grid):
         rotated = badge
@@ -766,6 +798,7 @@ def tile_maze_view(snapshot: Snapshot) -> TileMazeView | None:
         glyphs=tuple(sorted(glyphs.items(), key=lambda item: (item[0][1], item[0][0]))),
         token_targets=token_targets,
         control_tiles=control_tiles,
+        resource_tiles=resource_tiles,
     )
 
 
@@ -846,6 +879,8 @@ class TileMazeNavigator:
         self._token_control: Coordinate | None = None
         self._control_entries = 0
         self._bounce_return: str | None = None
+        self._active_resource: Coordinate | None = None
+        self._used_resources: set[Coordinate] = set()
 
     def reset(self) -> None:
         """Forget episode-local geometry after terminal or modal feedback."""
@@ -862,6 +897,8 @@ class TileMazeNavigator:
         self._token_control = None
         self._control_entries = 0
         self._bounce_return = None
+        self._active_resource = None
+        self._used_resources.clear()
 
     @staticmethod
     def _glyph_at(view: TileMazeView, coordinate: Coordinate) -> TileGlyph | None:
@@ -893,6 +930,8 @@ class TileMazeNavigator:
         self._token_control = None
         self._control_entries = 0
         self._bounce_return = None
+        self._active_resource = None
+        self._used_resources.clear()
 
     def _observe_avatar(self, view: TileMazeView) -> None:
         if self._last_avatar is None or self._last_action is None:
@@ -1005,6 +1044,72 @@ class TileMazeNavigator:
                 return action
         return None
 
+    def _observe_resource_arrival(self, view: TileMazeView) -> None:
+        """Mark one visually selected resource after the avatar reaches its tile."""
+        if self._active_resource is not None and view.avatar == self._active_resource:
+            self._used_resources.add(self._active_resource)
+            self._active_resource = None
+
+    def _resource_proposal(
+        self,
+        view: TileMazeView,
+        *,
+        goal: Coordinate,
+        require_goal_neutral_route: bool,
+    ) -> ActionProposal | None:
+        """Route to a framed resource, optionally only when it lies on the goal path."""
+        blocked = self._known_blocked(view)
+        candidates = [
+            resource
+            for resource in view.resource_tiles
+            if resource not in self._used_resources and resource != view.avatar
+        ]
+        if self._active_resource is not None:
+            candidates = [self._active_resource]
+        if not candidates:
+            return None
+
+        direct = optimistic_tile_path(view.avatar, goal, view.shape, blocked)
+        routes: list[tuple[int, int, int, Coordinate, tuple[str, ...]]] = []
+        for resource in candidates:
+            to_resource = optimistic_tile_path(view.avatar, resource, view.shape, blocked)
+            if to_resource is None:
+                continue
+            if require_goal_neutral_route:
+                resource_to_goal = optimistic_tile_path(resource, goal, view.shape, blocked)
+                if (
+                    direct is None
+                    or resource_to_goal is None
+                    or len(to_resource) + len(resource_to_goal) > len(direct)
+                ):
+                    continue
+            routes.append(
+                (
+                    len(to_resource),
+                    abs(view.avatar[0] - resource[0]) + abs(view.avatar[1] - resource[1]),
+                    resource[1],
+                    resource,
+                    to_resource,
+                )
+            )
+        if not routes:
+            if self._active_resource is not None:
+                self._used_resources.add(self._active_resource)
+                self._active_resource = None
+            return None
+        _, _, _, resource, path = min(routes)
+        self._active_resource = resource
+        return ActionProposal(
+            path[0],
+            reasoning={
+                "policy": "novelty-explorer-v5",
+                "kind": "tile-resource-navigation",
+                "target": list(resource),
+                "goal": list(goal),
+                "learned_blocked_tiles": len(blocked),
+            },
+        )
+
     def _token_proposal(self, view: TileMazeView) -> ActionProposal | None:
         """Navigate a visually matched badge/control/target relation.
 
@@ -1017,6 +1122,27 @@ class TileMazeNavigator:
         control = self._token_control
         if target is None or control is None:
             return None
+
+        # A framed ring is treated as a one-use visual resource. Before a
+        # mismatched token reaches its control, try the nearest one; after the
+        # tokens agree, only detour through a remaining ring when it is already
+        # on an equally short learned route to the board target.
+        if self._active_resource is not None:
+            proposal = self._resource_proposal(
+                view,
+                goal=target.coordinate,
+                require_goal_neutral_route=False,
+            )
+            if proposal is not None:
+                return proposal
+        elif target.quarter_turns > 0 and not self._used_resources:
+            proposal = self._resource_proposal(
+                view,
+                goal=target.coordinate,
+                require_goal_neutral_route=False,
+            )
+            if proposal is not None:
+                return proposal
 
         if self._bounce_return is not None:
             action = self._bounce_return
@@ -1036,6 +1162,14 @@ class TileMazeNavigator:
             target.quarter_turns > 0
             and self._control_entries < self._MAX_TOKEN_CONTROL_ENTRIES
         )
+        if target.quarter_turns == 0:
+            proposal = self._resource_proposal(
+                view,
+                goal=target.coordinate,
+                require_goal_neutral_route=True,
+            )
+            if proposal is not None:
+                return proposal
         destination = control if needs_control else target.coordinate
         if view.avatar == control and needs_control:
             action = self._token_bounce_action(view)
@@ -1090,6 +1224,7 @@ class TileMazeNavigator:
                 and (self._last_avatar[0] + dx, self._last_avatar[1] + dy) == self._token_control
             )
         self._observe_avatar(view)
+        self._observe_resource_arrival(view)
         if entered_control and self._token_control is not None:
             self._control_entries += 1
 

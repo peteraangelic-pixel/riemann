@@ -148,6 +148,7 @@ class ExplorerPolicyTests(unittest.TestCase):
         *,
         turns_to_target: int,
         walls: frozenset[tuple[int, int]] = frozenset(),
+        resources: frozenset[tuple[int, int]] = frozenset(),
     ) -> Snapshot:
         """Make a generic badge/control/target fixture with arbitrary colours."""
         grid = [[4 for _ in range(64)] for _ in range(64)]
@@ -180,6 +181,15 @@ class ExplorerPolicyTests(unittest.TestCase):
         )
         for wall in walls:
             paint(wall, ((8,) * 5,) * 5)
+        ring = (
+            (4, 4, 4, 4, 4),
+            (4, 6, 6, 6, 4),
+            (4, 6, 4, 6, 4),
+            (4, 6, 6, 6, 4),
+            (4, 4, 4, 4, 4),
+        )
+        for resource in resources:
+            paint(resource, ring)
         paint((7, 2), target)
         paint((3, 6), control)
         paint(avatar, ((12,) * 5, (12,) * 5, (9,) * 5, (9,) * 5, (9,) * 5))
@@ -254,6 +264,36 @@ class ExplorerPolicyTests(unittest.TestCase):
             [(target.coordinate, target.quarter_turns) for target in view.token_targets],
             [((7, 2), 3)],
         )
+
+    def test_tile_maze_navigator_visits_nearest_framed_resource_before_control(self) -> None:
+        resources = frozenset({(2, 3), (6, 6)})
+        navigator = TileMazeNavigator()
+        first = navigator.choose(
+            self._token_maze_snapshot((5, 6), turns_to_target=3, resources=resources)
+        )
+        self.assertEqual(first.reasoning["kind"], "tile-resource-navigation")
+        self.assertEqual(first.reasoning["target"], [6, 6])
+        after_pickup = navigator.choose(
+            self._token_maze_snapshot((6, 6), turns_to_target=3, resources=frozenset({(2, 3)}))
+        )
+        self.assertEqual(after_pickup.reasoning["kind"], "tile-badge-navigation")
+        self.assertEqual(after_pickup.reasoning["target"], [3, 6])
+
+    def test_tile_maze_navigator_uses_remaining_resource_on_an_equal_goal_route(self) -> None:
+        navigator = TileMazeNavigator()
+        navigator._token_goal = (7, 2)  # noqa: SLF001 - matched visual route setup
+        navigator._token_control = (3, 6)  # noqa: SLF001 - matched visual route setup
+        navigator._control_entries = 3  # noqa: SLF001 - no more control cycles required
+        navigator._used_resources.add((6, 6))  # noqa: SLF001 - pre-control resource consumed
+        proposal = navigator.choose(
+            self._token_maze_snapshot(
+                (3, 6),
+                turns_to_target=0,
+                resources=frozenset({(3, 4)}),
+            )
+        )
+        self.assertEqual(proposal.reasoning["kind"], "tile-resource-navigation")
+        self.assertEqual(proposal.reasoning["target"], [3, 4])
 
     def test_tile_maze_navigator_cycles_a_control_until_badge_matches_target(self) -> None:
         navigator = TileMazeNavigator()
