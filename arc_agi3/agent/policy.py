@@ -987,6 +987,9 @@ class TileMazeNavigator:
         self._meter_tick_observations = 0
         self._meter_active_value: int | None = None
         self._meter_units_per_action: int | None = None
+        # Aggregate only generic meter-observation counts. Unlike the current
+        # meter estimate, these survive episode resets for a safe run report.
+        self._meter_evidence: Counter[str] = Counter()
         self._bounce_return: str | None = None
         self._active_resource: Coordinate | None = None
         self._used_resources: set[Coordinate] = set()
@@ -1097,6 +1100,8 @@ class TileMazeNavigator:
         meter = _bottom_edge_meter(primary_grid(snapshot.planes))
         previous = self._last_bottom_meter
         self._last_bottom_meter = meter
+        if meter is not None:
+            self._meter_evidence["candidate-observations"] += 1
         if (
             meter is None
             or previous is None
@@ -1104,6 +1109,7 @@ class TileMazeNavigator:
             != (previous.row, previous.start, len(previous.values))
         ):
             return
+        self._meter_evidence["matching-geometry-observations"] += 1
         replacements = [
             (before, after)
             for before, after in zip(previous.values, meter.values)
@@ -1118,6 +1124,7 @@ class TileMazeNavigator:
         if len(pair_counts) != 1:
             return
         pair, units = next(iter(pair_counts.items()))
+        self._meter_evidence["regular-tick-observations"] += 1
         if pair == self._meter_tick_pair:
             self._meter_tick_observations += 1
         else:
@@ -1127,6 +1134,8 @@ class TileMazeNavigator:
         # Two consecutive same-direction replacements establish both the
         # active value and its observed consumption per submitted action.
         if self._meter_tick_observations >= 2:
+            if (self._meter_active_value, self._meter_units_per_action) != (pair[0], units):
+                self._meter_evidence["estimates-established"] += 1
             self._meter_active_value = pair[0]
             self._meter_units_per_action = units
 
@@ -1144,27 +1153,33 @@ class TileMazeNavigator:
         )
         return active_units // self._meter_units_per_action
 
+    def meter_evidence(self) -> dict[str, int]:
+        """Return aggregate, palette-free meter observations for a run report."""
+        return dict(sorted(self._meter_evidence.items()))
+
     def _resource_is_urgent_before_control(
         self, view: TileMazeView, target: TokenTarget, control: Coordinate
     ) -> int | None:
         """Use a reachable ring before a control when a learned meter is tight."""
+        self._meter_evidence["staged-route-checks"] += 1
         remaining = self._meter_actions_remaining()
         if remaining is None:
+            self._meter_evidence["route-checks-without-estimate"] += 1
             return None
         blocked = self._known_blocked(view)
         to_control = optimistic_tile_path(view.avatar, control, view.shape, blocked)
         control_to_target = optimistic_tile_path(control, target.coordinate, view.shape, blocked)
         if to_control is None or control_to_target is None:
+            self._meter_evidence["route-checks-without-path"] += 1
             return None
         # This deliberately ignores unknown control-cycle counts. If merely
         # reaching the selected control and then the visible board target
         # already exceeds the measured budget, a reachable ring is a safer
         # visually justified waypoint than the direct route.
-        return (
-            remaining
-            if len(to_control) + len(control_to_target) > remaining
-            else None
-        )
+        if len(to_control) + len(control_to_target) > remaining:
+            self._meter_evidence["meter-tight-route-checks"] += 1
+            return remaining
+        return None
 
     @staticmethod
     def _interior_landmarks(view: TileMazeView) -> tuple[tuple[Coordinate, frozenset[Coordinate]], ...]:
@@ -1411,6 +1426,7 @@ class TileMazeNavigator:
         }
         if max_actions_to_resource is not None:
             reasoning["meter_budget_actions"] = max_actions_to_resource
+            self._meter_evidence["meter-bounded-resource-actions"] += 1
         return ActionProposal(path[0], reasoning=reasoning)
 
     def _token_proposal(
@@ -1754,6 +1770,10 @@ class ExplorerPolicy:
             if entry.get("meter_bounded_resource"):
                 counts["meter-bounded-resource"] += 1
         return dict(sorted(counts.items()))
+
+    def meter_evidence(self) -> dict[str, int]:
+        """Expose palette-free bottom-meter observation counts for a run report."""
+        return self._tile_maze.meter_evidence()
 
     def finalize(self, snapshot: Snapshot) -> None:
         """Account for a final environment response when no next action is due.

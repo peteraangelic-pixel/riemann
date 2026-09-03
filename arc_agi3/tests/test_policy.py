@@ -137,6 +137,15 @@ class PolicyHelpersTests(unittest.TestCase):
         self.assertIsNone(navigator._meter_actions_remaining())  # noqa: SLF001
         navigator._observe_bottom_meter(snapshot(36))  # noqa: SLF001 - repeated tick confirms direction
         self.assertEqual(navigator._meter_actions_remaining(), 18)  # noqa: SLF001
+        self.assertEqual(
+            navigator.meter_evidence(),
+            {
+                "candidate-observations": 3,
+                "estimates-established": 1,
+                "matching-geometry-observations": 2,
+                "regular-tick-observations": 2,
+            },
+        )
 
 
 class ExplorerPolicyTests(unittest.TestCase):

@@ -94,6 +94,15 @@ def build_summary(report_path: Path, sketch_path: Path, log_path: Path) -> str:
                 ]
                 if decisions:
                     summary.append("  - Decision modes: " + "; ".join(decisions))
+            raw_meter_evidence = row.get("meter_evidence", {})
+            if isinstance(raw_meter_evidence, dict):
+                meter_evidence = [
+                    "{mode}: {count}".format(mode=_safe_mode(mode), count=count)
+                    for mode, count in sorted(raw_meter_evidence.items(), key=lambda item: str(item[0]))
+                    if isinstance(count, int) and not isinstance(count, bool) and count > 0
+                ]
+                if meter_evidence:
+                    summary.append("  - Meter evidence: " + "; ".join(meter_evidence))
             trace = row.get("policy_trace", [])
             if isinstance(trace, list):
                 recent = [entry for entry in trace[-8:] if isinstance(entry, dict)]

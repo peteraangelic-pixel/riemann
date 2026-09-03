@@ -32,6 +32,7 @@ class RunResult:
     actions: int
     policy_evidence: dict[str, dict[str, int]]
     policy_decisions: dict[str, int]
+    meter_evidence: dict[str, int]
     policy_trace: list[dict[str, Any]]
 
 
@@ -173,6 +174,7 @@ def main() -> None:
             actions=int(agent.action_counter),
             policy_evidence=agent.policy.diagnostics(),
             policy_decisions=agent.policy.decision_evidence(),
+            meter_evidence=agent.policy.meter_evidence(),
             policy_trace=agent.policy.transition_trace(),
         )
         results.append(result)
