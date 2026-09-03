@@ -1371,25 +1371,31 @@ class TileMazeNavigator:
         ]
         if self._active_resource is not None:
             candidates = [self._active_resource]
+        meter_bounded = max_actions_to_resource is not None
+        if meter_bounded:
+            self._meter_evidence["meter-resource-route-attempts"] += 1
         if not candidates:
+            if meter_bounded:
+                self._meter_evidence["meter-resource-no-candidates"] += 1
             return None
 
         direct = optimistic_tile_path(view.avatar, goal, view.shape, blocked)
         routes: list[tuple[int, int, int, int, Coordinate, tuple[str, ...]]] = []
         for resource in candidates:
             to_resource = optimistic_tile_path(view.avatar, resource, view.shape, blocked)
-            if (
-                to_resource is None
-                or (
-                    max_actions_to_resource is not None
-                    and len(to_resource) > max_actions_to_resource
-                )
-            ):
+            if to_resource is None:
+                if meter_bounded:
+                    self._meter_evidence["meter-resource-unreachable-candidates"] += 1
+                continue
+            if max_actions_to_resource is not None and len(to_resource) > max_actions_to_resource:
+                self._meter_evidence["meter-resource-over-budget-candidates"] += 1
                 continue
             resource_to_goal: tuple[str, ...] | None = None
             if require_goal_neutral_route or max_actions_to_resource is not None:
                 resource_to_goal = optimistic_tile_path(resource, goal, view.shape, blocked)
                 if resource_to_goal is None:
+                    if meter_bounded:
+                        self._meter_evidence["meter-resource-no-continuation-candidates"] += 1
                     continue
             if require_goal_neutral_route and (
                 direct is None

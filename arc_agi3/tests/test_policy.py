@@ -484,6 +484,11 @@ class ExplorerPolicyTests(unittest.TestCase):
         self.assertEqual(proposal.reasoning["kind"], "tile-resource-navigation")
         self.assertEqual(proposal.reasoning["target"], [4, 4])
         self.assertEqual(proposal.reasoning["meter_budget_actions"], 5)
+        evidence = navigator.meter_evidence()
+        self.assertEqual(evidence["staged-route-checks"], 1)
+        self.assertEqual(evidence["meter-tight-route-checks"], 1)
+        self.assertEqual(evidence["meter-resource-route-attempts"], 1)
+        self.assertEqual(evidence["meter-bounded-resource-actions"], 1)
 
     def test_tile_maze_navigator_keeps_an_initial_control_probe_direct_when_meter_is_tight(self) -> None:
         navigator = TileMazeNavigator()
