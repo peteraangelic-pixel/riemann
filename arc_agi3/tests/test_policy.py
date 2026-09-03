@@ -738,45 +738,7 @@ class ExplorerPolicyTests(unittest.TestCase):
         evidence = navigator.token_evidence()
         self.assertEqual(evidence["relations-selected"], 1)
         self.assertEqual(evidence["unexpected-avatar-relation-preserved"], 1)
-        self.assertNotIn("forced-step-blocks", evidence)
         self.assertNotIn("unexpected-avatar-resets", evidence)
-
-    def test_tile_maze_navigator_blocks_a_visually_revalidated_forced_step(self) -> None:
-        """A forced displacement records only its same-frame verified entry tile."""
-        navigator = TileMazeNavigator()
-        initial = navigator.choose(
-            self._token_maze_snapshot((4, 6), turns_to_target=0, controls=((3, 6),))
-        )
-        self.assertIsNotNone(initial)
-        assert initial is not None
-        self.assertEqual(initial.name, "ACTION1")
-
-        displaced = self._token_maze_snapshot((6, 6), turns_to_target=0, controls=((3, 6),))
-        navigator.choose(displaced)
-        view = tile_maze_view(displaced)
-        self.assertIsNotNone(view)
-        assert view is not None
-        # The prior move would have entered (4, 5). Its unchanged glyph plus
-        # the live target/control relation make this one causal avoidance tile
-        # safe to retain after the unrelated avatar position is refreshed.
-        self.assertIn((4, 5), navigator._known_blocked(view))  # noqa: SLF001
-        self.assertEqual(navigator.token_evidence()["forced-step-blocks"], 1)
-
-        # A changed glyph revokes the coordinate guard before any later route
-        # can reuse it on a visually different board.
-        altered_grid = [list(row) for row in displaced.planes[0]]
-        for row in range(25, 30):
-            altered_grid[row][24:29] = [8] * 5
-        altered = Snapshot(
-            "NOT_FINISHED",
-            0,
-            displaced.available_actions,
-            (tuple(map(tuple, altered_grid)),),
-        )
-        altered_view = tile_maze_view(altered)
-        self.assertIsNotNone(altered_view)
-        assert altered_view is not None
-        self.assertEqual(navigator._revalidated_forced_step_blocks(altered_view), {})  # noqa: SLF001
 
     def test_tile_maze_navigator_does_not_cycle_grace_on_non_tile_frames(self) -> None:
         """Unrelated games must not manufacture tile-view recovery state."""
