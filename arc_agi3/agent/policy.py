@@ -484,6 +484,15 @@ class TokenTarget:
 
 
 @dataclass(frozen=True)
+class BottomEdgeMeter:
+    """A long, two-colour paired-pixel indicator found at the bottom edge."""
+
+    row: int
+    start: int
+    values: tuple[int, ...]
+
+
+@dataclass(frozen=True)
 class TileMazeView:
     """A conservative visual view of a regular tile-navigation board.
 
@@ -695,6 +704,50 @@ def _edge_badge_glyphs(grid: Grid) -> tuple[TileGlyph, ...]:
             if valid and _framed_glyph(glyph):
                 badges.add(glyph)
     return tuple(sorted(badges))
+
+
+def _bottom_edge_meter(grid: Grid) -> BottomEdgeMeter | None:
+    """Find one long paired-pixel, one-or-two-colour bottom-edge indicator.
+
+    This is intentionally geometric rather than palette-specific. A candidate
+    does not become a countdown estimate until later frames show a consistent
+    small replacement within the same strip, which rejects static footer art.
+    """
+    width, height = grid_shape(grid)
+    minimum_width = max(12, width // 4)
+    if width < minimum_width or height < 3:
+        return None
+
+    best: tuple[int, int, int, tuple[int, ...]] | None = None
+    # HUD indicators conventionally use the final few rows. Requiring two
+    # vertically paired pixels filters single-row text and thin maze borders.
+    for row in range(max(0, height - 4), height - 1):
+        paired: list[int | None] = []
+        for column in range(width):
+            if column >= len(grid[row]) or column >= len(grid[row + 1]):
+                paired.append(None)
+                continue
+            upper, lower = grid[row][column], grid[row + 1][column]
+            paired.append(upper if upper == lower else None)
+        for start in range(width):
+            colours: set[int] = set()
+            for end in range(start, width):
+                value = paired[end]
+                if value is None:
+                    break
+                colours.add(value)
+                if len(colours) > 2:
+                    break
+                length = end - start + 1
+                if length < minimum_width:
+                    continue
+                candidate = (row, length, -start, tuple(paired[start : end + 1]))
+                if best is None or candidate[:3] > best[:3]:
+                    best = candidate
+    if best is None:
+        return None
+    row, _, negated_start, values = best
+    return BottomEdgeMeter(row=row, start=-negated_start, values=values)
 
 
 def _compact_control_glyph(glyph: TileGlyph | None) -> bool:
@@ -929,6 +982,11 @@ class TileMazeNavigator:
         self._control_effects: dict[Coordinate, tuple[bool, bool]] = {}
         self._retired_controls: set[Coordinate] = set()
         self._last_token_target: TokenTarget | None = None
+        self._last_bottom_meter: BottomEdgeMeter | None = None
+        self._meter_tick_pair: tuple[int, int] | None = None
+        self._meter_tick_observations = 0
+        self._meter_active_value: int | None = None
+        self._meter_units_per_action: int | None = None
         self._bounce_return: str | None = None
         self._active_resource: Coordinate | None = None
         self._used_resources: set[Coordinate] = set()
@@ -951,6 +1009,11 @@ class TileMazeNavigator:
         self._control_effects.clear()
         self._retired_controls.clear()
         self._last_token_target = None
+        self._last_bottom_meter = None
+        self._meter_tick_pair = None
+        self._meter_tick_observations = 0
+        self._meter_active_value = None
+        self._meter_units_per_action = None
         self._bounce_return = None
         self._active_resource = None
         self._used_resources.clear()
@@ -988,6 +1051,11 @@ class TileMazeNavigator:
         self._control_effects.clear()
         self._retired_controls.clear()
         self._last_token_target = None
+        self._last_bottom_meter = None
+        self._meter_tick_pair = None
+        self._meter_tick_observations = 0
+        self._meter_active_value = None
+        self._meter_units_per_action = None
         self._bounce_return = None
         self._active_resource = None
         self._used_resources.clear()
@@ -1023,6 +1091,80 @@ class TileMazeNavigator:
             # A teleport, moving platform, or a changed tile scale invalidates
             # a one-step model. Rebuild it from this ordinary observation.
             self._clear_local_navigation()
+
+    def _observe_bottom_meter(self, snapshot: Snapshot) -> None:
+        """Learn a depleting bottom indicator only after repeated small ticks."""
+        meter = _bottom_edge_meter(primary_grid(snapshot.planes))
+        previous = self._last_bottom_meter
+        self._last_bottom_meter = meter
+        if (
+            meter is None
+            or previous is None
+            or (meter.row, meter.start, len(meter.values))
+            != (previous.row, previous.start, len(previous.values))
+        ):
+            return
+        replacements = [
+            (before, after)
+            for before, after in zip(previous.values, meter.values)
+            if before != after
+        ]
+        # A regular countdown tick is deliberately narrow compared with a
+        # level transition or a broad HUD redraw. The bound scales with the
+        # indicator width and tolerates meters with a few units per action.
+        if not replacements or len(replacements) > max(4, len(meter.values) // 8):
+            return
+        pair_counts = Counter(replacements)
+        if len(pair_counts) != 1:
+            return
+        pair, units = next(iter(pair_counts.items()))
+        if pair == self._meter_tick_pair:
+            self._meter_tick_observations += 1
+        else:
+            self._meter_tick_pair = pair
+            self._meter_tick_observations = 1
+        # One accidental small UI update is not enough to steer navigation.
+        # Two consecutive same-direction replacements establish both the
+        # active value and its observed consumption per submitted action.
+        if self._meter_tick_observations >= 2:
+            self._meter_active_value = pair[0]
+            self._meter_units_per_action = units
+
+    def _meter_actions_remaining(self) -> int | None:
+        """Return an observed countdown budget, never a palette-specific guess."""
+        if (
+            self._last_bottom_meter is None
+            or self._meter_active_value is None
+            or self._meter_units_per_action is None
+        ):
+            return None
+        active_units = sum(
+            value == self._meter_active_value
+            for value in self._last_bottom_meter.values
+        )
+        return active_units // self._meter_units_per_action
+
+    def _resource_is_urgent_before_control(
+        self, view: TileMazeView, target: TokenTarget, control: Coordinate
+    ) -> int | None:
+        """Use a reachable ring before a control when a learned meter is tight."""
+        remaining = self._meter_actions_remaining()
+        if remaining is None:
+            return None
+        blocked = self._known_blocked(view)
+        to_control = optimistic_tile_path(view.avatar, control, view.shape, blocked)
+        control_to_target = optimistic_tile_path(control, target.coordinate, view.shape, blocked)
+        if to_control is None or control_to_target is None:
+            return None
+        # This deliberately ignores unknown control-cycle counts. If merely
+        # reaching the selected control and then the visible board target
+        # already exceeds the measured budget, a reachable ring is a safer
+        # visually justified waypoint than the direct route.
+        return (
+            remaining
+            if len(to_control) + len(control_to_target) > remaining
+            else None
+        )
 
     @staticmethod
     def _interior_landmarks(view: TileMazeView) -> tuple[tuple[Coordinate, frozenset[Coordinate]], ...]:
@@ -1203,8 +1345,9 @@ class TileMazeNavigator:
         *,
         goal: Coordinate,
         require_goal_neutral_route: bool,
+        max_actions_to_resource: int | None = None,
     ) -> ActionProposal | None:
-        """Route to a framed resource, optionally only when it lies on the goal path."""
+        """Route to a framed resource under optional route and meter constraints."""
         blocked = self._known_blocked(view)
         candidates = [
             resource
@@ -1217,21 +1360,34 @@ class TileMazeNavigator:
             return None
 
         direct = optimistic_tile_path(view.avatar, goal, view.shape, blocked)
-        routes: list[tuple[int, int, int, Coordinate, tuple[str, ...]]] = []
+        routes: list[tuple[int, int, int, int, Coordinate, tuple[str, ...]]] = []
         for resource in candidates:
             to_resource = optimistic_tile_path(view.avatar, resource, view.shape, blocked)
-            if to_resource is None:
+            if (
+                to_resource is None
+                or (
+                    max_actions_to_resource is not None
+                    and len(to_resource) > max_actions_to_resource
+                )
+            ):
                 continue
-            if require_goal_neutral_route:
+            resource_to_goal: tuple[str, ...] | None = None
+            if require_goal_neutral_route or max_actions_to_resource is not None:
                 resource_to_goal = optimistic_tile_path(resource, goal, view.shape, blocked)
-                if (
-                    direct is None
-                    or resource_to_goal is None
-                    or len(to_resource) + len(resource_to_goal) > len(direct)
-                ):
+                if resource_to_goal is None:
                     continue
+            if require_goal_neutral_route and (
+                direct is None
+                or len(to_resource) + len(resource_to_goal) > len(direct)
+            ):
+                continue
+            # For a meter-bounded detour, also prefer a short continuation
+            # after the visual reset; ordinary first-resource selection keeps
+            # its original nearest-waypoint ranking.
+            continuation = 0 if resource_to_goal is None else len(resource_to_goal)
             routes.append(
                 (
+                    len(to_resource) + continuation if max_actions_to_resource is not None else len(to_resource),
                     len(to_resource),
                     abs(view.avatar[0] - resource[0]) + abs(view.avatar[1] - resource[1]),
                     resource[1],
@@ -1244,18 +1400,18 @@ class TileMazeNavigator:
                 self._used_resources.add(self._active_resource)
                 self._active_resource = None
             return None
-        _, _, _, resource, path = min(routes)
+        _, _, _, _, resource, path = min(routes)
         self._active_resource = resource
-        return ActionProposal(
-            path[0],
-            reasoning={
-                "policy": "novelty-explorer-v5",
-                "kind": "tile-resource-navigation",
-                "target": list(resource),
-                "goal": list(goal),
-                "learned_blocked_tiles": len(blocked),
-            },
-        )
+        reasoning: dict[str, Any] = {
+            "policy": "novelty-explorer-v5",
+            "kind": "tile-resource-navigation",
+            "target": list(resource),
+            "goal": list(goal),
+            "learned_blocked_tiles": len(blocked),
+        }
+        if max_actions_to_resource is not None:
+            reasoning["meter_budget_actions"] = max_actions_to_resource
+        return ActionProposal(path[0], reasoning=reasoning)
 
     def _token_proposal(
         self, view: TileMazeView, *, entered_control: bool = False
@@ -1291,9 +1447,10 @@ class TileMazeNavigator:
             control = self._select_token_control(view, target)
 
         # A framed ring is treated as a one-use visual resource. Before an
-        # unaligned token reaches its control, try the nearest one; after the
-        # token agrees, only detour through a remaining ring when it is already
-        # on an equally short learned route to the board target.
+        # unaligned token reaches its control, try the nearest one. Thereafter
+        # retain route-neutral rings, plus a reachable detour only when the
+        # independently learned bottom meter cannot cover the visible
+        # control-to-target leg.
         if self._active_resource is not None:
             proposal = self._resource_proposal(
                 view,
@@ -1310,6 +1467,28 @@ class TileMazeNavigator:
             )
             if proposal is not None:
                 return proposal
+        elif needs_adjustment and control is not None:
+            # Once a first ring has been reached, a remaining one may still be
+            # useful before a newly selected control. Preserve route efficiency:
+            # only visit it when the current learned A* path can pass through
+            # the ring without becoming longer than going to that control.
+            proposal = self._resource_proposal(
+                view,
+                goal=control,
+                require_goal_neutral_route=True,
+            )
+            if proposal is not None:
+                return proposal
+            meter_budget = self._resource_is_urgent_before_control(view, target, control)
+            if meter_budget is not None:
+                proposal = self._resource_proposal(
+                    view,
+                    goal=control,
+                    require_goal_neutral_route=False,
+                    max_actions_to_resource=meter_budget,
+                )
+                if proposal is not None:
+                    return proposal
 
         if self._bounce_return is not None and control is not None:
             action = self._bounce_return
@@ -1385,6 +1564,7 @@ class TileMazeNavigator:
         if self._levels_completed is not None and snapshot.levels_completed != self._levels_completed:
             self.reset()
         self._levels_completed = snapshot.levels_completed
+        self._observe_bottom_meter(snapshot)
         entered_control = False
         if (
             self._token_control is not None

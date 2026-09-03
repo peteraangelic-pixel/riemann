@@ -11,11 +11,13 @@ sys.path.insert(0, str(ROOT / "agent"))
 
 from policy import (  # noqa: E402
     ACTION_NAMES,
+    BottomEdgeMeter,
     COMPLEX_ACTION,
     RESET,
     ExplorerPolicy,
     Snapshot,
     TileMazeNavigator,
+    _bottom_edge_meter,
     changed_coordinates,
     connected_components,
     horizontal_hud_mask,
@@ -104,6 +106,38 @@ class PolicyHelpersTests(unittest.TestCase):
         self.assertEqual(targets[0][1], (4, 4))
         self.assertTrue(all(point not in mask for _, point, _ in targets))
 
+    def test_bottom_edge_meter_learns_a_repeated_depleting_tick(self) -> None:
+        def snapshot(active_units: int) -> Snapshot:
+            grid = [[4 for _ in range(64)] for _ in range(64)]
+            # Distinct compact footer details bound the paired indicator rather
+            # than allowing a uniform background to extend the candidate run.
+            for column in range(1, 11):
+                grid[61][column] = 5
+                grid[62][column] = 5
+            grid[61][12] = 5
+            grid[62][12] = 5
+            for column in range(13, 55):
+                value = 11 if column >= 55 - active_units else 3
+                grid[61][column] = value
+                grid[62][column] = value
+            for column in range(55, 64):
+                value = 5 if column % 3 == 1 else 8
+                grid[61][column] = value
+                grid[62][column] = value
+            return Snapshot("NOT_FINISHED", 0, (), (tuple(map(tuple, grid)),))
+
+        meter = _bottom_edge_meter(snapshot(40).planes[0])
+        self.assertIsNotNone(meter)
+        assert meter is not None
+        self.assertEqual((meter.row, meter.start, len(meter.values)), (61, 13, 42))
+
+        navigator = TileMazeNavigator()
+        navigator._observe_bottom_meter(snapshot(40))  # noqa: SLF001 - visual sequence setup
+        navigator._observe_bottom_meter(snapshot(38))  # noqa: SLF001 - first observed tick
+        self.assertIsNone(navigator._meter_actions_remaining())  # noqa: SLF001
+        navigator._observe_bottom_meter(snapshot(36))  # noqa: SLF001 - repeated tick confirms direction
+        self.assertEqual(navigator._meter_actions_remaining(), 18)  # noqa: SLF001
+
 
 class ExplorerPolicyTests(unittest.TestCase):
     @staticmethod
@@ -152,6 +186,7 @@ class ExplorerPolicyTests(unittest.TestCase):
         controls: tuple[tuple[int, int], ...] = ((3, 6),),
         badge_foreground: int | None = None,
         target_coordinate: tuple[int, int] = (7, 2),
+        meter_active_units: int | None = None,
     ) -> Snapshot:
         """Make a generic badge/control/target fixture with arbitrary colours."""
         grid = [[4 for _ in range(64)] for _ in range(64)]
@@ -208,6 +243,11 @@ class ExplorerPolicyTests(unittest.TestCase):
                 for dy in range(2):
                     for dx in range(2):
                         grid[53 + 2 * y + dy][1 + 2 * x + dx] = value
+        if meter_active_units is not None:
+            for column in range(13, 55):
+                value = 11 if column < 13 + meter_active_units else 3
+                grid[61][column] = value
+                grid[62][column] = value
         return Snapshot(
             "NOT_FINISHED",
             0,
@@ -391,6 +431,48 @@ class ExplorerPolicyTests(unittest.TestCase):
         )
         self.assertEqual(proposal.reasoning["kind"], "tile-resource-navigation")
         self.assertEqual(proposal.reasoning["target"], [3, 4])
+
+    def test_tile_maze_navigator_uses_a_remaining_resource_on_an_equal_control_route(self) -> None:
+        navigator = TileMazeNavigator()
+        navigator._token_goal = (7, 2)  # noqa: SLF001 - matched visual route setup
+        navigator._token_control = (2, 6)  # noqa: SLF001 - active compact control
+        navigator._used_resources.add((6, 6))  # noqa: SLF001 - first ring consumed
+        proposal = navigator.choose(
+            self._token_maze_snapshot(
+                (6, 6),
+                turns_to_target=3,
+                resources=frozenset({(4, 6)}),
+                controls=((2, 6),),
+            )
+        )
+        self.assertEqual(proposal.reasoning["kind"], "tile-resource-navigation")
+        self.assertEqual(proposal.reasoning["target"], [4, 6])
+        self.assertEqual(proposal.reasoning["goal"], [2, 6])
+
+    def test_tile_maze_navigator_uses_a_reachable_detour_when_meter_is_tight(self) -> None:
+        navigator = TileMazeNavigator()
+        navigator._token_goal = (7, 2)  # noqa: SLF001 - matched visual route setup
+        navigator._token_control = (2, 6)  # noqa: SLF001 - active compact control
+        navigator._used_resources.add((6, 6))  # noqa: SLF001 - first ring consumed
+        navigator._last_bottom_meter = BottomEdgeMeter(  # noqa: SLF001 - learned visual meter
+            row=61,
+            start=13,
+            values=(11,) * 10 + (3,) * 32,
+        )
+        navigator._meter_active_value = 11  # noqa: SLF001 - repeated-tick inference setup
+        navigator._meter_units_per_action = 2  # noqa: SLF001 - repeated-tick inference setup
+        proposal = navigator.choose(
+            self._token_maze_snapshot(
+                (6, 6),
+                turns_to_target=3,
+                resources=frozenset({(4, 4)}),
+                controls=((2, 6),),
+                meter_active_units=10,
+            )
+        )
+        self.assertEqual(proposal.reasoning["kind"], "tile-resource-navigation")
+        self.assertEqual(proposal.reasoning["target"], [4, 4])
+        self.assertEqual(proposal.reasoning["meter_budget_actions"], 5)
 
     def test_tile_maze_navigator_cycles_a_control_until_badge_matches_target(self) -> None:
         navigator = TileMazeNavigator()
