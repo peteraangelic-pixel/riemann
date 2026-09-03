@@ -692,6 +692,16 @@ class ExplorerPolicyTests(unittest.TestCase):
         assert toward_goal is not None
         self.assertEqual(toward_goal.reasoning["kind"], "tile-badge-navigation")
         self.assertEqual(toward_goal.reasoning["target"], [7, 2])
+        self.assertEqual(
+            navigator.token_evidence(),
+            {
+                "control-entries": 3,
+                "orientation-changing-entries": 3,
+                "orientation-improving-entries": 2,
+                "orientation-worsening-entries": 1,
+                "relations-selected": 1,
+            },
+        )
 
     def test_tile_maze_navigator_generalizes_a_confirmed_uniform_collision_style(self) -> None:
         snapshot = self._token_maze_snapshot(

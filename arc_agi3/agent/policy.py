@@ -1014,6 +1014,11 @@ class TileMazeNavigator:
         # Aggregate only generic meter-observation counts. Unlike the current
         # meter estimate, these survive episode resets for a safe run report.
         self._meter_evidence: Counter[str] = Counter()
+        # Compact visual-control outcomes likewise survive retries. They carry
+        # no palette values, tile coordinates, or inferred game rules, but make
+        # a held-out run diagnostic enough to distinguish a bad route from a
+        # control whose observed effect is moving away from the target.
+        self._token_evidence: Counter[str] = Counter()
         self._bounce_return: str | None = None
         self._active_resource: Coordinate | None = None
         self._active_resource_meter_bound = False
@@ -1214,6 +1219,10 @@ class TileMazeNavigator:
         """Return aggregate, palette-free meter observations for a run report."""
         return dict(sorted(self._meter_evidence.items()))
 
+    def token_evidence(self) -> dict[str, int]:
+        """Return aggregate, coordinate-free visual control outcomes for a run."""
+        return dict(sorted(self._token_evidence.items()))
+
     def _resource_is_urgent_before_control(
         self, view: TileMazeView, target: TokenTarget, control: Coordinate
     ) -> int | None:
@@ -1280,6 +1289,7 @@ class TileMazeNavigator:
         if not options:
             return None
         _, _, _, _, target, control = min(options)
+        self._token_evidence["relations-selected"] += 1
         self._token_goal = target.coordinate
         self._token_control = control
         self._control_entries = 0
@@ -1347,10 +1357,22 @@ class TileMazeNavigator:
             return
         self._control_entries += 1
         self._control_entries_by_tile[control] = self._control_entries_by_tile.get(control, 0) + 1
+        self._token_evidence["control-entries"] += 1
         before = self._last_token_target
         if before is None or before.coordinate != target.coordinate:
+            self._token_evidence["control-entries-without-comparison"] += 1
             return
         turns_changed = before.quarter_turns != target.quarter_turns
+        if turns_changed:
+            self._token_evidence["orientation-changing-entries"] += 1
+            before_distance = min(before.quarter_turns, 4 - before.quarter_turns)
+            after_distance = min(target.quarter_turns, 4 - target.quarter_turns)
+            if after_distance < before_distance:
+                self._token_evidence["orientation-improving-entries"] += 1
+            elif after_distance > before_distance:
+                self._token_evidence["orientation-worsening-entries"] += 1
+            else:
+                self._token_evidence["orientation-neutral-entries"] += 1
         # Ignore an incidental raw-pixel rearrangement caused by a rotation:
         # a palette control is evidenced by a changed aligned appearance while
         # its inferred orientation remains the same.
@@ -1358,6 +1380,14 @@ class TileMazeNavigator:
             not turns_changed
             and before.appearance_signature != target.appearance_signature
         )
+        if appearance_changed:
+            self._token_evidence["appearance-changing-entries"] += 1
+            if target.appearance_mismatches < before.appearance_mismatches:
+                self._token_evidence["appearance-improving-entries"] += 1
+            elif target.appearance_mismatches > before.appearance_mismatches:
+                self._token_evidence["appearance-worsening-entries"] += 1
+            else:
+                self._token_evidence["appearance-neutral-entries"] += 1
         previous_turns, previous_appearance = self._control_effects.get(control, (False, False))
         self._control_effects[control] = (
             previous_turns or turns_changed,
@@ -1418,6 +1448,7 @@ class TileMazeNavigator:
     def _observe_resource_arrival(self, view: TileMazeView) -> None:
         """Mark one visually selected resource after the avatar reaches its tile."""
         if self._active_resource is not None and view.avatar == self._active_resource:
+            self._token_evidence["resource-arrivals"] += 1
             self._used_resources.add(self._active_resource)
             self._route_deferred_resources.discard(self._active_resource)
             self._meter_deferred_resources.pop(self._active_resource, None)
@@ -1920,6 +1951,10 @@ class ExplorerPolicy:
     def meter_evidence(self) -> dict[str, int]:
         """Expose palette-free bottom-meter observation counts for a run report."""
         return self._tile_maze.meter_evidence()
+
+    def token_evidence(self) -> dict[str, int]:
+        """Expose coordinate-free visual-control outcome counts for a run report."""
+        return self._tile_maze.token_evidence()
 
     def finalize(self, snapshot: Snapshot) -> None:
         """Account for a final environment response when no next action is due.

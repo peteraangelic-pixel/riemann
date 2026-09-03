@@ -135,6 +135,15 @@ def build_summary(report_path: Path, sketch_path: Path, log_path: Path) -> str:
                 ]
                 if meter_evidence:
                     summary.append("  - Meter evidence: " + "; ".join(meter_evidence))
+            raw_token_evidence = row.get("token_evidence", {})
+            if isinstance(raw_token_evidence, dict):
+                token_evidence = [
+                    "{mode}: {count}".format(mode=_safe_mode(mode), count=count)
+                    for mode, count in sorted(raw_token_evidence.items(), key=lambda item: str(item[0]))
+                    if isinstance(count, int) and not isinstance(count, bool) and count > 0
+                ]
+                if token_evidence:
+                    summary.append("  - Token/control evidence: " + "; ".join(token_evidence))
             trace = row.get("policy_trace", [])
             if isinstance(trace, list):
                 recent = [entry for entry in trace[-8:] if isinstance(entry, dict)]

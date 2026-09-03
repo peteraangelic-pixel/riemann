@@ -39,6 +39,10 @@ class CheckSummaryTests(unittest.TestCase):
                         "candidate-observations": 12,
                         "estimates-established": 1,
                     },
+                    "token_evidence": {
+                        "control-entries": 2,
+                        "orientation-improving-entries": 1,
+                    },
                     "policy_trace": [
                         {
                             "action": "ACTION6:2:3",
@@ -74,6 +78,10 @@ class CheckSummaryTests(unittest.TestCase):
             summary,
         )
         self.assertIn("Meter evidence: candidate-observations: 12; estimates-established: 1", summary)
+        self.assertIn(
+            "Token/control evidence: control-entries: 2; orientation-improving-entries: 1",
+            summary,
+        )
         self.assertIn("Scorecard: `1.5`", summary)
         self.assertIn("## Recorded frame sketches", summary)
 

@@ -40,6 +40,7 @@ class LocalRunnerReportTests(unittest.TestCase):
             policy_evidence={"ACTION6": {"attempts": 4, "changed": 3}},
             policy_decisions={"graph-click-frontier": 1},
             meter_evidence={"candidate-observations": 2, "estimates-established": 1},
+            token_evidence={"control-entries": 1, "orientation-improving-entries": 1},
             policy_trace=[
                 {
                     "action": "ACTION6:1:1",
@@ -75,6 +76,7 @@ class LocalRunnerReportTests(unittest.TestCase):
                 "meter_evidence": {"candidate-observations": 2, "estimates-established": 1},
                 "policy_decisions": {"graph-click-frontier": 1},
                 "policy_evidence": {"ACTION6": {"attempts": 4, "changed": 3}},
+                "token_evidence": {"control-entries": 1, "orientation-improving-entries": 1},
                 "policy_trace": [
                     {
                         "action": "ACTION6:1:1",
