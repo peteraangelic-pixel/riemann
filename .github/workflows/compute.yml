@@ -1,0 +1,118 @@
+name: compute
+
+# Long-running math jobs for the riemann project (Erdős #64/#66/#647,
+# FrontierMath). Public repo => free Actions minutes (2 vCPU / 7 GB runner).
+# Manual dispatch: repo -> Actions -> compute -> Run workflow.
+# Once this workflow is on the default branch, the gadget sampler also runs
+# hourly via cron, auto-rotating res/mod batches (stateless lottery mode).
+
+on:
+  workflow_dispatch:
+    inputs:
+      job:
+        description: "job to run: hall | census | gadget"
+        required: true
+        default: "hall"
+        type: choice
+        options: ["hall", "census", "gadget"]
+      n:
+        description: "census: number of vertices (even)"
+        required: false
+        default: "22"
+      batch:
+        description: "gadget: res/mod batch (empty = auto-rotate by time)"
+        required: false
+        default: ""
+
+  # auto-rotate gadget sampler: 6-hour slot index mod 1e6 as res/mod batch
+  schedule:
+    - cron: "0 * * * *"
+
+jobs:
+  hall:
+    # Hall scan b in [200k, 2M) — targets JCHS Table #23 (r=6.50, b=321346)
+    if: github.event_name == 'workflow_dispatch' && inputs.job == 'hall'
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Hall scan b in [200000, 2000000)
+        run: |
+          python3 hall_hunt2.py 200000 2000000 40 30 2 2>&1 | tee hall_2m.log
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hall-2m
+          path: |
+            hall_results.json
+            hall_2m.log
+          if-no-files-found: ignore
+
+  census:
+    # full connected cubic graph census for n vertices + p2check + audit
+    if: github.event_name == 'workflow_dispatch' && inputs.job == 'census'
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build nauty + p2check
+        run: |
+          tar xzf nauty.tgz
+          cd nauty2_8_9 && ./configure >/dev/null && make -j2 geng >/dev/null
+          cd .. && gcc -O2 -o p2check p2check.c
+      - name: Generate + check n=${{ inputs.n }}
+        run: |
+          n=${{ inputs.n }}
+          e=$((3*n/2))
+          ./nauty2_8_9/geng $n $e:$e -d3 -D3 -c -q > cubic_$n.g6
+          wc -l cubic_$n.g6
+          python3 g6conv.py < cubic_$n.g6 | ./p2check > p2check_$n.out
+          grep -E "^==|TOTAL" p2check_$n.out | tail -10
+          if [ "$n" = "22" ]; then python3 n22_free_audit.py p2check_22.out | tail -25; fi
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: census-${{ inputs.n }}
+          path: |
+            p2check_${{ inputs.n }}.out
+          if-no-files-found: ignore
+
+  gadget:
+    # Bensmail edge-gadget sampler, cubic girth>=5 graphs on 32 vertices,
+    # res/mod batch (stateless; each run covers ~1e-6 of the class)
+    if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.job == 'gadget')
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build nauty + gadget_check
+        run: |
+          tar xzf nauty.tgz
+          cd nauty2_8_9 && ./configure >/dev/null && make -j2 geng >/dev/null
+          cd .. && gcc -O2 -o gadget_check gadget_check.c
+      - name: Resolve batch
+        id: b
+        run: |
+          b="${{ inputs.batch }}"
+          if [ -z "$b" ]; then
+            b="$(( ($(date +%s) / 21600) % 1000000 ))/1000000"
+          fi
+          echo "batch=$b" >> "$GITHUB_OUTPUT"
+          echo "Using batch: $b"
+      - name: Sample + check
+        run: |
+          ./nauty2_8_9/geng 32 48:48 -d3 -D3 -c -t -f -q ${{ steps.b.outputs.batch }} \
+            | ./gadget_check > gadget_out.txt 2> gadget_err.txt
+          tail -2 gadget_err.txt
+          echo "=== FOUND bytes: $(wc -c < gadget_out.txt) ==="
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gadget-n32-${{ steps.b.outputs.batch }}
+          path: |
+            gadget_out.txt
+            gadget_err.txt
+          if-no-files-found: ignore
