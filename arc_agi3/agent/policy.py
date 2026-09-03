@@ -474,11 +474,13 @@ MAZE_ACTION_ORDER = ("ACTION3", "ACTION1", "ACTION4", "ACTION2")
 
 @dataclass(frozen=True)
 class TokenTarget:
-    """A board glyph that visually matches an edge token after quarter turns."""
+    """A board glyph structurally matched to an edge token after quarter turns."""
 
     coordinate: Coordinate
     quarter_turns: int
     group_size: int
+    appearance_mismatches: int
+    appearance_signature: tuple[tuple[int, int], ...]
 
 
 @dataclass(frozen=True)
@@ -490,7 +492,8 @@ class TileMazeView:
     game ID or assume a particular colour palette. ``landmarks`` are compact
     non-uniform tile clusters that can be reached as potential switches/goals.
     ``token_targets`` adds an even stricter visual relation: a framed 2× edge
-    badge has the exact same glyph as an interior tile under a quarter-turn.
+    badge has the same colour-partition glyph as an interior tile under a
+    quarter-turn, while preserving raw appearance differences for feedback.
     """
 
     avatar: Coordinate
@@ -590,6 +593,47 @@ def _rotate_tile_glyph(glyph: TileGlyph) -> TileGlyph:
         tuple(glyph[TILE_SIZE - 1 - x][y] for x in range(TILE_SIZE))
         for y in range(TILE_SIZE)
     )
+
+
+def _colour_isomorphic(left: TileGlyph, right: TileGlyph) -> bool:
+    """Whether two glyphs have equal structure under a one-to-one colour map.
+
+    A mutable visual token may need a palette change as well as a rotation.
+    Comparing colour partitions, rather than palette IDs, preserves the visual
+    shape relation while retaining raw pixel differences for control feedback.
+    """
+    if len(left) != len(right) or any(len(a) != len(b) for a, b in zip(left, right)):
+        return False
+    left_to_right: dict[int, int] = {}
+    right_to_left: dict[int, int] = {}
+    for left_row, right_row in zip(left, right):
+        for left_value, right_value in zip(left_row, right_row):
+            if (
+                left_value in left_to_right and left_to_right[left_value] != right_value
+            ) or (
+                right_value in right_to_left and right_to_left[right_value] != left_value
+            ):
+                return False
+            left_to_right[left_value] = right_value
+            right_to_left[right_value] = left_value
+    return True
+
+
+def _glyph_difference_signature(
+    left: TileGlyph, right: TileGlyph
+) -> tuple[tuple[int, int], ...]:
+    """Describe raw aligned-pixel differences without naming palette values."""
+    return tuple(
+        (left_value, right_value)
+        for left_row, right_row in zip(left, right)
+        for left_value, right_value in zip(left_row, right_row)
+        if left_value != right_value
+    )
+
+
+def _glyph_difference_count(left: TileGlyph, right: TileGlyph) -> int:
+    """Count raw visual cells that remain different between aligned glyphs."""
+    return len(_glyph_difference_signature(left, right))
 
 
 def _framed_glyph(glyph: TileGlyph) -> bool:
@@ -767,9 +811,9 @@ def tile_maze_view(snapshot: Snapshot) -> TileMazeView | None:
                     group is None
                     or coordinate == avatar
                     or not (1 <= coordinate[0] < tile_shape[0] - 1)
-                    or not (1 <= coordinate[1] < tile_shape[1] - 2)
+                    or not (1 <= coordinate[1] < tile_shape[1] - 1)
                     or not _framed_glyph(glyph)
-                    or glyph != rotated
+                    or not _colour_isomorphic(glyph, rotated)
                 ):
                     continue
                 token_options.append(
@@ -777,6 +821,8 @@ def tile_maze_view(snapshot: Snapshot) -> TileMazeView | None:
                         coordinate=coordinate,
                         quarter_turns=quarter_turns,
                         group_size=len(group),
+                        appearance_mismatches=_glyph_difference_count(glyph, rotated),
+                        appearance_signature=_glyph_difference_signature(glyph, rotated),
                     )
                 )
             rotated = _rotate_tile_glyph(rotated)
@@ -785,6 +831,7 @@ def tile_maze_view(snapshot: Snapshot) -> TileMazeView | None:
             set(token_options),
             key=lambda target: (
                 -target.group_size,
+                target.appearance_mismatches,
                 target.coordinate[1],
                 target.coordinate[0],
                 target.quarter_turns,
@@ -878,6 +925,10 @@ class TileMazeNavigator:
         self._token_goal: Coordinate | None = None
         self._token_control: Coordinate | None = None
         self._control_entries = 0
+        self._control_entries_by_tile: dict[Coordinate, int] = {}
+        self._control_effects: dict[Coordinate, tuple[bool, bool]] = {}
+        self._retired_controls: set[Coordinate] = set()
+        self._last_token_target: TokenTarget | None = None
         self._bounce_return: str | None = None
         self._active_resource: Coordinate | None = None
         self._used_resources: set[Coordinate] = set()
@@ -896,6 +947,10 @@ class TileMazeNavigator:
         self._token_goal = None
         self._token_control = None
         self._control_entries = 0
+        self._control_entries_by_tile.clear()
+        self._control_effects.clear()
+        self._retired_controls.clear()
+        self._last_token_target = None
         self._bounce_return = None
         self._active_resource = None
         self._used_resources.clear()
@@ -929,6 +984,10 @@ class TileMazeNavigator:
         self._token_goal = None
         self._token_control = None
         self._control_entries = 0
+        self._control_entries_by_tile.clear()
+        self._control_effects.clear()
+        self._retired_controls.clear()
+        self._last_token_target = None
         self._bounce_return = None
         self._active_resource = None
         self._used_resources.clear()
@@ -975,13 +1034,15 @@ class TileMazeNavigator:
         )
         return interior or view.landmarks
 
+    @staticmethod
+    def _target_for_goal(view: TileMazeView, goal: Coordinate) -> TokenTarget | None:
+        """Recover the live visual state of one previously selected board token."""
+        return next((target for target in view.token_targets if target.coordinate == goal), None)
+
     def _token_target(self, view: TileMazeView) -> TokenTarget | None:
-        """Select one stable badge-to-board relation and its compact control."""
+        """Select one stable badge-to-board relation and its first compact control."""
         if self._token_goal is not None:
-            for target in view.token_targets:
-                if target.coordinate == self._token_goal:
-                    return target
-            return None
+            return self._target_for_goal(view, self._token_goal)
 
         blocked = self._known_blocked(view)
         options: list[tuple[int, int, int, int, TokenTarget, Coordinate]] = []
@@ -1008,17 +1069,103 @@ class TileMazeNavigator:
         self._token_goal = target.coordinate
         self._token_control = control
         self._control_entries = 0
+        self._control_entries_by_tile.clear()
+        self._control_effects.clear()
+        self._retired_controls.clear()
+        self._last_token_target = None
         self._bounce_return = None
         # Avoid advancing the older landmark model while this stricter visual
         # relation is active.
         self._active = None
         return target
 
+    def _select_token_control(
+        self, view: TileMazeView, target: TokenTarget
+    ) -> Coordinate | None:
+        """Choose an unretired reachable control using only observed feedback."""
+        blocked = self._known_blocked(view)
+        candidates: list[tuple[int, int, int, int, Coordinate]] = []
+        for control in view.control_tiles:
+            if control == target.coordinate or control in self._retired_controls:
+                continue
+            path = optimistic_tile_path(view.avatar, control, view.shape, blocked)
+            if path is None:
+                continue
+            affects_turns, affects_appearance = self._control_effects.get(control, (False, False))
+            helps_open_difference = (
+                target.quarter_turns > 0 and affects_turns
+            ) or (
+                target.appearance_mismatches > 0 and affects_appearance
+            )
+            # A control that has already visibly addressed the outstanding
+            # difference wins; otherwise sample the nearest unknown one.
+            candidates.append(
+                (
+                    0 if helps_open_difference else 1,
+                    len(path),
+                    control[1],
+                    control[0],
+                    control,
+                )
+            )
+        if not candidates:
+            self._token_control = None
+            return None
+        _, _, _, _, control = min(candidates)
+        self._token_control = control
+        self._bounce_return = None
+        return control
+
+    def _record_control_entry(self, target: TokenTarget, entered_control: bool) -> None:
+        """Learn which visual difference changed after entering a control tile."""
+        control = self._token_control
+        if not entered_control or control is None:
+            return
+        self._control_entries += 1
+        self._control_entries_by_tile[control] = self._control_entries_by_tile.get(control, 0) + 1
+        before = self._last_token_target
+        if before is None or before.coordinate != target.coordinate:
+            return
+        turns_changed = before.quarter_turns != target.quarter_turns
+        # Ignore an incidental raw-pixel rearrangement caused by a rotation:
+        # a palette control is evidenced by a changed aligned appearance while
+        # its inferred orientation remains the same.
+        appearance_changed = (
+            not turns_changed
+            and before.appearance_signature != target.appearance_signature
+        )
+        previous_turns, previous_appearance = self._control_effects.get(control, (False, False))
+        self._control_effects[control] = (
+            previous_turns or turns_changed,
+            previous_appearance or appearance_changed,
+        )
+
+    def _control_needs_reentry(self, control: Coordinate, target: TokenTarget) -> bool:
+        """Decide whether the current control still affects an open mismatch."""
+        entries = self._control_entries_by_tile.get(control, 0)
+        if entries == 0:
+            # If the avatar began on a control, leave and re-enter once to
+            # obtain an actual visual intervention observation.
+            return True
+        if entries >= self._MAX_TOKEN_CONTROL_ENTRIES:
+            return False
+        affects_turns, affects_appearance = self._control_effects.get(control, (False, False))
+        return (
+            target.quarter_turns > 0 and affects_turns
+        ) or (
+            target.appearance_mismatches > 0 and affects_appearance
+        )
+
     def _record_maze_action(self, view: TileMazeView, action: str | None) -> None:
         """Retain only the last visual movement observation for online learning."""
         self._last_avatar = view.avatar
         self._last_action = action
         self._last_view = view
+        self._last_token_target = (
+            self._target_for_goal(view, self._token_goal)
+            if self._token_goal is not None
+            else None
+        )
 
     def _token_bounce_action(self, view: TileMazeView) -> str | None:
         """Step out of a responsive control so a later step can re-enter it."""
@@ -1110,22 +1257,42 @@ class TileMazeNavigator:
             },
         )
 
-    def _token_proposal(self, view: TileMazeView) -> ActionProposal | None:
+    def _token_proposal(
+        self, view: TileMazeView, *, entered_control: bool = False
+    ) -> ActionProposal | None:
         """Navigate a visually matched badge/control/target relation.
 
-        A compact control is revisited locally only while the edge badge still
-        differs from its framed board counterpart. This makes cyclic controls
-        learnable without encoding a colour, a rotation direction, or a count
-        of required presses.
+        Each entered compact control is classified from the next badge frame:
+        it may change orientation, palette appearance, neither, or both. A
+        control is revisited only while its observed effect addresses a still
+        open visual difference; otherwise another visible control is sampled.
+        No palette ID, control identity, or fixed press count is assumed.
         """
         target = self._token_target(view)
-        control = self._token_control
-        if target is None or control is None:
+        if target is None:
             return None
+        self._record_control_entry(target, entered_control)
 
-        # A framed ring is treated as a one-use visual resource. Before a
-        # mismatched token reaches its control, try the nearest one; after the
-        # tokens agree, only detour through a remaining ring when it is already
+        needs_adjustment = (
+            target.quarter_turns > 0 or target.appearance_mismatches > 0
+        )
+        control = self._token_control
+        if needs_adjustment and control is None:
+            control = self._select_token_control(view, target)
+        if (
+            needs_adjustment
+            and control is not None
+            and view.avatar == control
+            and not self._control_needs_reentry(control, target)
+        ):
+            self._retired_controls.add(control)
+            self._token_control = None
+            self._bounce_return = None
+            control = self._select_token_control(view, target)
+
+        # A framed ring is treated as a one-use visual resource. Before an
+        # unaligned token reaches its control, try the nearest one; after the
+        # token agrees, only detour through a remaining ring when it is already
         # on an equally short learned route to the board target.
         if self._active_resource is not None:
             proposal = self._resource_proposal(
@@ -1135,7 +1302,7 @@ class TileMazeNavigator:
             )
             if proposal is not None:
                 return proposal
-        elif target.quarter_turns > 0 and not self._used_resources:
+        elif needs_adjustment and not self._used_resources:
             proposal = self._resource_proposal(
                 view,
                 goal=target.coordinate,
@@ -1144,7 +1311,7 @@ class TileMazeNavigator:
             if proposal is not None:
                 return proposal
 
-        if self._bounce_return is not None:
+        if self._bounce_return is not None and control is not None:
             action = self._bounce_return
             self._bounce_return = None
             return ActionProposal(
@@ -1154,15 +1321,34 @@ class TileMazeNavigator:
                     "kind": "tile-badge-control-return",
                     "target": list(control),
                     "token_quarter_turns": target.quarter_turns,
+                    "token_appearance_mismatches": target.appearance_mismatches,
                     "control_entries": self._control_entries,
                 },
             )
 
-        needs_control = (
-            target.quarter_turns > 0
-            and self._control_entries < self._MAX_TOKEN_CONTROL_ENTRIES
-        )
-        if target.quarter_turns == 0:
+        if needs_adjustment:
+            if control is None:
+                # All observed controls failed to change an outstanding visual
+                # difference. Return control to the graph explorer rather than
+                # walking into an explicitly mismatched board target.
+                return None
+            if view.avatar == control:
+                action = self._token_bounce_action(view)
+                if action is None:
+                    return None
+                return ActionProposal(
+                    action,
+                    reasoning={
+                        "policy": "novelty-explorer-v5",
+                        "kind": "tile-badge-control-exit",
+                        "target": list(control),
+                        "token_quarter_turns": target.quarter_turns,
+                        "token_appearance_mismatches": target.appearance_mismatches,
+                        "control_entries": self._control_entries,
+                    },
+                )
+            destination = control
+        else:
             proposal = self._resource_proposal(
                 view,
                 goal=target.coordinate,
@@ -1170,24 +1356,10 @@ class TileMazeNavigator:
             )
             if proposal is not None:
                 return proposal
-        destination = control if needs_control else target.coordinate
-        if view.avatar == control and needs_control:
-            action = self._token_bounce_action(view)
-            if action is None:
-                return None
-            return ActionProposal(
-                action,
-                reasoning={
-                    "policy": "novelty-explorer-v5",
-                    "kind": "tile-badge-control-exit",
-                    "target": list(control),
-                    "token_quarter_turns": target.quarter_turns,
-                    "control_entries": self._control_entries,
-                },
-            )
+            destination = target.coordinate
+
         if view.avatar == destination:
             return None
-
         path = optimistic_tile_path(view.avatar, destination, view.shape, self._known_blocked(view))
         if not path:
             return None
@@ -1198,6 +1370,7 @@ class TileMazeNavigator:
                 "kind": "tile-badge-navigation",
                 "target": list(destination),
                 "token_quarter_turns": target.quarter_turns,
+                "token_appearance_mismatches": target.appearance_mismatches,
                 "control_entries": self._control_entries,
                 "learned_blocked_tiles": len(self._known_blocked(view)),
             },
@@ -1225,10 +1398,8 @@ class TileMazeNavigator:
             )
         self._observe_avatar(view)
         self._observe_resource_arrival(view)
-        if entered_control and self._token_control is not None:
-            self._control_entries += 1
 
-        token_proposal = self._token_proposal(view)
+        token_proposal = self._token_proposal(view, entered_control=entered_control)
         if token_proposal is not None:
             self._record_maze_action(view, token_proposal.name)
             return token_proposal

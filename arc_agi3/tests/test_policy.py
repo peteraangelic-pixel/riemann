@@ -149,6 +149,9 @@ class ExplorerPolicyTests(unittest.TestCase):
         turns_to_target: int,
         walls: frozenset[tuple[int, int]] = frozenset(),
         resources: frozenset[tuple[int, int]] = frozenset(),
+        controls: tuple[tuple[int, int], ...] = ((3, 6),),
+        badge_foreground: int | None = None,
+        target_coordinate: tuple[int, int] = (7, 2),
     ) -> Snapshot:
         """Make a generic badge/control/target fixture with arbitrary colours."""
         grid = [[4 for _ in range(64)] for _ in range(64)]
@@ -188,10 +191,16 @@ class ExplorerPolicyTests(unittest.TestCase):
             (4, 6, 6, 6, 4),
             (4, 4, 4, 4, 4),
         )
+        if badge_foreground is not None:
+            badge = tuple(
+                tuple(badge_foreground if value == 9 else value for value in row)
+                for row in badge
+            )
         for resource in resources:
             paint(resource, ring)
-        paint((7, 2), target)
-        paint((3, 6), control)
+        paint(target_coordinate, target)
+        for control_coordinate in controls:
+            paint(control_coordinate, control)
         paint(avatar, ((12,) * 5, (12,) * 5, (9,) * 5, (9,) * 5, (9,) * 5))
         for y in range(5):
             for x in range(5):
@@ -264,6 +273,94 @@ class ExplorerPolicyTests(unittest.TestCase):
             [(target.coordinate, target.quarter_turns) for target in view.token_targets],
             [((7, 2), 3)],
         )
+
+    def test_tile_maze_view_matches_a_palette_shifted_badge_to_a_bottom_target(self) -> None:
+        view = tile_maze_view(
+            self._token_maze_snapshot(
+                (5, 6),
+                turns_to_target=2,
+                badge_foreground=12,
+                target_coordinate=(7, 10),
+            )
+        )
+        self.assertIsNotNone(view)
+        assert view is not None
+        self.assertEqual(
+            [(target.coordinate, target.quarter_turns, target.appearance_mismatches) for target in view.token_targets],
+            [((7, 10), 2, 6)],
+        )
+
+    def test_tile_maze_navigator_switches_from_a_palette_to_a_rotation_control(self) -> None:
+        """Separate controls are identified from visual effects, not glyph IDs."""
+        navigator = TileMazeNavigator()
+        controls = ((3, 6), (5, 6))
+        # The nearer first control changes only the badge palette. Once its
+        # aligned appearance agrees, the navigator moves to the other visible
+        # control, whose first entry changes the inferred orientation.
+        self.assertEqual(
+            navigator.choose(
+                self._token_maze_snapshot(
+                    (4, 6),
+                    turns_to_target=2,
+                    badge_foreground=12,
+                    controls=controls,
+                )
+            ).name,
+            "ACTION3",
+        )
+        toward_rotation = navigator.choose(
+            self._token_maze_snapshot(
+                (3, 6),
+                turns_to_target=2,
+                badge_foreground=9,
+                controls=controls,
+            )
+        )
+        self.assertEqual(toward_rotation.name, "ACTION4")
+        self.assertEqual(toward_rotation.reasoning["target"], [5, 6])
+        self.assertEqual(
+            navigator.choose(
+                self._token_maze_snapshot(
+                    (4, 6),
+                    turns_to_target=2,
+                    badge_foreground=9,
+                    controls=controls,
+                )
+            ).name,
+            "ACTION4",
+        )
+        self.assertEqual(
+            navigator.choose(
+                self._token_maze_snapshot(
+                    (5, 6),
+                    turns_to_target=1,
+                    badge_foreground=9,
+                    controls=controls,
+                )
+            ).name,
+            "ACTION3",
+        )
+        self.assertEqual(
+            navigator.choose(
+                self._token_maze_snapshot(
+                    (4, 6),
+                    turns_to_target=1,
+                    badge_foreground=9,
+                    controls=controls,
+                )
+            ).name,
+            "ACTION4",
+        )
+        toward_goal = navigator.choose(
+            self._token_maze_snapshot(
+                (5, 6),
+                turns_to_target=0,
+                badge_foreground=9,
+                controls=controls,
+            )
+        )
+        self.assertEqual(toward_goal.reasoning["kind"], "tile-badge-navigation")
+        self.assertEqual(toward_goal.reasoning["target"], [7, 2])
 
     def test_tile_maze_navigator_visits_nearest_framed_resource_before_control(self) -> None:
         resources = frozenset({(2, 3), (6, 6)})

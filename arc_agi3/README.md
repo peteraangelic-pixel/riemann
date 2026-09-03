@@ -19,9 +19,10 @@ novelty policy:
   as obstacles, generalizes only confirmed uniform wall styles, and replans to
   visible interior landmarks;
 - under a stricter visual contract, it matches a framed 2× edge badge to a
-  rotated board glyph, cycles an information-rich local control only until the
-  two visual tokens agree, and treats framed ring glyphs as one-use resources
-  when they are reached or lie on an equally short learned target route; and
+  board glyph under quarter-turn and one-to-one palette relabeling, learns from
+  badge frames whether a compact control changes orientation or appearance,
+  and treats framed ring glyphs as one-use resources when they are reached or
+  lie on an equally short learned target route; and
 - it never retries the same click in an unchanged visual state.
 
 This is an appropriate starting point for reliable plumbing and ablation. It
