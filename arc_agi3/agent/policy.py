@@ -27,6 +27,18 @@ ACTION_NAMES = (RESET, *(f"ACTION{i}" for i in range(1, 8)))
 ACTION_SET = frozenset(ACTION_NAMES)
 COMPLEX_ACTION = "ACTION6"
 DIRECTIONAL_ACTIONS = ("ACTION1", "ACTION2", "ACTION3", "ACTION4")
+# The standard directional protocol forms two inverse pairs.  Treating a newly
+# discovered movement edge as reversible first lets the explorer expand a state
+# graph breadth-first rather than walking one action direction into every
+# corridor before trying its siblings.  The observed successor still decides
+# whether the inverse actually returns, so this remains safe for games with
+# one-way mechanics.
+INVERSE_DIRECTIONAL_ACTION = {
+    "ACTION1": "ACTION2",
+    "ACTION2": "ACTION1",
+    "ACTION3": "ACTION4",
+    "ACTION4": "ACTION3",
+}
 
 Grid = tuple[tuple[int, ...], ...]
 Planes = tuple[Grid, ...]
@@ -408,7 +420,7 @@ def rank_click_targets(
                 continue
             score = base_score + (1000 if (x, y) in changed else 0)
             reason = {
-                "policy": "novelty-explorer-v2",
+                "policy": "novelty-explorer-v3",
                 "kind": "salient-component",
                 "color": component.color,
                 "component_size": component_size,
@@ -429,7 +441,7 @@ def rank_click_targets(
             (
                 score,
                 {
-                    "policy": "novelty-explorer-v2",
+                    "policy": "novelty-explorer-v3",
                     "kind": "lattice-fallback",
                     "recent_change": point in changed,
                 },
@@ -469,6 +481,9 @@ class StateNode:
     """Lazily generated action frontier for one semantic game state."""
 
     actions: tuple[ActionProposal, ...]
+    # Discovery depth supplies a stable, low-action-cost traversal order when
+    # several graph frontiers are reachable from the current observation.
+    depth: int = 0
     tried: set[str] = field(default_factory=set)
 
 
@@ -476,11 +491,11 @@ class ExplorerPolicy:
     """Deterministic frontier explorer over visually canonicalized states.
 
     The policy records every attempted state-action edge before observing its
-    result. At a state it expands an untested high-priority action; once that
-    local frontier is exhausted, it follows known directed edges toward the
-    nearest reachable frontier. This avoids mistaking a ticking HUD for useful
-    progress and avoids the common failure mode of repeating one movement that
-    merely changes a status bar.
+    result. Fresh directional successors test their protocol inverse first;
+    thereafter it follows known directed edges to the shallowest reachable
+    frontier. This avoids mistaking a ticking HUD for useful progress, walking
+    an entire corridor before testing sibling moves, and repeating one movement
+    that merely changes a status bar.
     """
 
     def __init__(self) -> None:
@@ -611,7 +626,7 @@ class ExplorerPolicy:
             proposal = ActionProposal(
                 action,
                 reasoning={
-                    "policy": "novelty-explorer-v2",
+                    "policy": "novelty-explorer-v3",
                     "kind": "graph-simple-frontier",
                 },
             )
@@ -625,7 +640,7 @@ class ExplorerPolicy:
                     y=y,
                     reasoning={
                         **reason,
-                        "policy": "novelty-explorer-v2",
+                        "policy": "novelty-explorer-v3",
                         "kind": "graph-click-frontier",
                         "target": [x, y],
                         "salience": salience,
@@ -653,30 +668,49 @@ class ExplorerPolicy:
         changed: set[Coordinate],
         excluded: frozenset[Coordinate],
     ) -> StateNode:
+        """Get a graph node, prioritising a validated inverse on discovery.
+
+        A move into a previously unseen screen state normally leaves its parent
+        with other untried actions.  Probing the protocol inverse first is a
+        cheap way to establish the return edge; subsequent choices can then
+        navigate to the shallowest remaining frontier rather than committing
+        to an arbitrary depth-first walk.
+        """
         node = self._nodes.get(signature)
-        if node is None:
-            node = StateNode(self._candidate_actions(snapshot, changed, excluded))
-            self._nodes[signature] = node
+        if node is not None:
+            return node
+
+        actions = list(self._candidate_actions(snapshot, changed, excluded))
+        parent = self._nodes.get(self._previous_signature or "")
+        incoming = self._pending
+        transition = self._last_transition
+        depth = 0
+        if parent is not None and incoming is not None and transition is not None and not transition.game_over:
+            depth = parent.depth + 1
+            inverse = INVERSE_DIRECTIONAL_ACTION.get(incoming.name)
+            if inverse is not None:
+                # Keep the policy-generated proposal (and its reasoning) but
+                # put the likely return movement ahead of deeper probes.
+                actions.sort(key=lambda proposal: proposal.name != inverse)
+
+        node = StateNode(tuple(actions), depth=depth)
+        self._nodes[signature] = node
         return node
 
     @staticmethod
     def _next_untested(node: StateNode) -> ActionProposal | None:
         return next((action for action in node.actions if action.key not in node.tried), None)
 
-    def _route_to_frontier(self, start: str) -> tuple[ActionProposal, ...]:
-        """Return a shortest known directed route to another untested frontier."""
+    def _route_to(self, start: str, target: str) -> tuple[ActionProposal, ...] | None:
+        """Return a shortest safe known directed route, if one exists."""
+        if start == target:
+            return ()
         queue: deque[str] = deque([start])
         parents: dict[str, tuple[str, GraphEdge]] = {}
         visited = {start}
-        target: str | None = None
 
         while queue:
             state = queue.popleft()
-            node = self._nodes.get(state)
-            if state != start and node is not None and self._next_untested(node) is not None:
-                target = state
-                break
-
             outgoing = [
                 edge
                 for (origin, _), edge in self._edges.items()
@@ -687,18 +721,40 @@ class ExplorerPolicy:
             ]
             for edge in sorted(outgoing, key=lambda candidate: candidate.proposal.key):
                 assert edge.successor is not None
-                visited.add(edge.successor)
-                parents[edge.successor] = (state, edge)
-                queue.append(edge.successor)
+                successor = edge.successor
+                visited.add(successor)
+                parents[successor] = (state, edge)
+                if successor == target:
+                    route: list[ActionProposal] = []
+                    while successor != start:
+                        previous, parent_edge = parents[successor]
+                        route.append(parent_edge.proposal)
+                        successor = previous
+                    return tuple(reversed(route))
+                queue.append(successor)
+        return None
 
-        if target is None:
-            return ()
-        route: list[ActionProposal] = []
-        while target != start:
-            previous, edge = parents[target]
-            route.append(edge.proposal)
-            target = previous
-        return tuple(reversed(route))
+    def _scheduled_frontier(self, current: str) -> ActionProposal | None:
+        """Choose the shallowest reachable open node and route toward it.
+
+        Local expansion alone is depth-first: a successful ``ACTION1`` causes
+        another ``ACTION1`` at every fresh successor.  Scheduling globally by
+        discovery depth keeps inverse-verified routes short and samples all
+        sibling directions before spending an entire episode down one branch.
+        """
+        options: list[tuple[int, int, int, str, tuple[ActionProposal, ...], ActionProposal]] = []
+        for state, node in self._nodes.items():
+            next_action = self._next_untested(node)
+            if next_action is None:
+                continue
+            route = self._route_to(current, state)
+            if route is None:
+                continue
+            options.append((node.depth, len(node.tried), len(route), state, route, next_action))
+        if not options:
+            return None
+        _, _, _, _, route, next_action = min(options)
+        return route[0] if route else next_action
 
     def choose(self, snapshot: Snapshot) -> ActionProposal:
         """Observe ``snapshot`` and select one legal, systematic probe."""
@@ -711,7 +767,7 @@ class ExplorerPolicy:
             proposal = ActionProposal(
                 RESET,
                 reasoning={
-                    "policy": "novelty-explorer-v2",
+                    "policy": "novelty-explorer-v3",
                     "kind": "reset",
                     "state": snapshot.state,
                 },
@@ -723,28 +779,24 @@ class ExplorerPolicy:
         if not valid:
             proposal = ActionProposal(
                 RESET,
-                reasoning={"policy": "novelty-explorer-v2", "kind": "no-valid-actions"},
+                reasoning={"policy": "novelty-explorer-v3", "kind": "no-valid-actions"},
             )
             self._remember(snapshot, signature, excluded, proposal)
             return proposal
 
-        node = self._node(snapshot, signature, changed, excluded)
-        proposal = self._next_untested(node)
-        if proposal is None:
-            route = self._route_to_frontier(signature)
-            if route and route[0].name in valid:
-                proposal = route[0]
-            else:
-                # A reset is the deterministic way to revisit a known root when
-                # this directed graph has no path to another unexplored node.
-                proposal = ActionProposal(
-                    RESET,
-                    reasoning={
-                        "policy": "novelty-explorer-v2",
-                        "kind": "frontier-reset",
-                        "state_visits": self._state_visits[signature],
-                    },
-                )
+        self._node(snapshot, signature, changed, excluded)
+        proposal = self._scheduled_frontier(signature)
+        if proposal is None or proposal.name not in valid:
+            # A reset is the deterministic way to revisit a known root when
+            # this directed graph has no safe route to another unexplored node.
+            proposal = ActionProposal(
+                RESET,
+                reasoning={
+                    "policy": "novelty-explorer-v3",
+                    "kind": "frontier-reset",
+                    "state_visits": self._state_visits[signature],
+                },
+            )
 
         self._remember(snapshot, signature, excluded, proposal)
         return proposal

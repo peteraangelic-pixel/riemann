@@ -12,7 +12,9 @@ novelty policy:
 - it ranks `ACTION6` click coordinates by non-background colour rarity,
   component size, and recently changed pixels;
 - it tracks visible change, level progress, game-over outcomes, and revisited
-  states; and
+  states;
+- for standard directional controls, it first verifies the inverse move and
+  schedules reachable shallow frontiers before descending farther; and
 - it never retries the same click in an unchanged visual state.
 
 This is an appropriate starting point for reliable plumbing and ablation. It

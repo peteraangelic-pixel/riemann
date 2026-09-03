@@ -124,29 +124,32 @@ class ExplorerPolicyTests(unittest.TestCase):
         proposal = policy.choose(snapshot)
         self.assertEqual(proposal.name, "ACTION3")
 
-    def test_graph_expands_an_untried_edge_after_returning_to_a_known_state(self) -> None:
+    def test_graph_returns_via_directional_inverse_before_expanding_child(self) -> None:
         policy = ExplorerPolicy()
         start = self._snapshot(actions=("ACTION1", "ACTION2"), grid=((0, 0), (0, 9)))
         middle = self._snapshot(actions=("ACTION1", "ACTION2"), grid=((0, 1), (0, 9)))
 
         self.assertEqual(policy.choose(start).name, "ACTION1")
-        self.assertEqual(policy.choose(middle).name, "ACTION1")
-        # The second ACTION1 returns to the already expanded start node. Its
-        # first edge is marked tested, so ACTION2 becomes the next frontier.
+        # A fresh directional successor tests its protocol inverse first. This
+        # establishes a cheap route home rather than immediately walking deeper.
+        self.assertEqual(policy.choose(middle).name, "ACTION2")
+        # The shallow parent is reachable again and still has ACTION2 untested.
         self.assertEqual(policy.choose(start).name, "ACTION2")
 
-    def test_graph_replays_shortest_known_route_to_another_frontier(self) -> None:
+    def test_graph_replays_route_to_a_scheduled_frontier(self) -> None:
         policy = ExplorerPolicy()
         start = self._snapshot(actions=("ACTION1",), grid=((0, 0), (0, 9)))
-        middle = self._snapshot(actions=("ACTION1",), grid=((0, 1), (0, 9)))
+        middle = self._snapshot(actions=("ACTION1", "ACTION2"), grid=((0, 1), (0, 9)))
         frontier = self._snapshot(actions=("ACTION1", "ACTION2"), grid=((0, 2), (0, 9)))
 
         self.assertEqual(policy.choose(start).name, "ACTION1")
+        self.assertEqual(policy.choose(middle).name, "ACTION2")  # return to start
+        # Start is closed, so replay the known route to the shallow open middle.
+        self.assertEqual(policy.choose(start).name, "ACTION1")
         self.assertEqual(policy.choose(middle).name, "ACTION1")
-        self.assertEqual(policy.choose(frontier).name, "ACTION1")
-        # The current middle node has no untried action. Its known ACTION1
-        # edge reaches frontier, where ACTION2 remains untried, so the graph
-        # replays the first action on that shortest route.
+        # The fresh deeper successor similarly establishes its return route.
+        self.assertEqual(policy.choose(frontier).name, "ACTION2")
+        # Middle is closed; replay its known edge to frontier's remaining action.
         self.assertEqual(policy.choose(middle).name, "ACTION1")
 
     def test_clicks_salient_target_then_does_not_repeat_same_click_on_noop(self) -> None:
