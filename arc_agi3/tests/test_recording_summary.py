@@ -21,6 +21,13 @@ class RecordingSummaryTests(unittest.TestCase):
         )
         self.assertEqual(summarize_recordings.frame_to_text([]), "<no frame>")
 
+    def test_striped_avatar_tile_reports_coarse_coordinate_or_safe_placeholder(self) -> None:
+        grid = [[4 for _ in range(12)] for _ in range(12)]
+        for row, color in enumerate((12, 12, 9, 9, 9)):
+            grid[5 + row][4:9] = [color] * 5
+        self.assertEqual(summarize_recordings.striped_avatar_tile(grid), "(0,1)")
+        self.assertEqual(summarize_recordings.striped_avatar_tile([[4] * 4 for _ in range(4)]), "-")
+
     def test_summary_keeps_first_and_final_of_longest_recording_per_game(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             recordings = Path(directory)

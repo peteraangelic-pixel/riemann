@@ -52,6 +52,42 @@ def frame_to_text(frame: Any) -> str:
     return "\n".join(lines)
 
 
+def striped_avatar_tile(grid: list[list[int]]) -> str:
+    """Return a safe coarse coordinate for an opt-in 5×5 striped avatar.
+
+    This mirrors the deliberately strict visual contract used by the pure
+    tile-maze navigator, without importing the agent into this standalone
+    recorder utility. It is diagnostic metadata only: ``-`` means no matching
+    sprite was visible, for example during a full-screen modal transition.
+    """
+    if len(grid) < 5 or max((len(row) for row in grid), default=0) < 5:
+        return "-"
+    counts: dict[int, int] = {}
+    for row in grid:
+        for value in row:
+            counts[value] = counts.get(value, 0) + 1
+    if not counts:
+        return "-"
+    background = max(counts, key=lambda value: counts[value])
+    candidates: list[tuple[int, int, int]] = []
+    for y in range(len(grid) - 4):
+        for x in range(max((len(row) for row in grid), default=0) - 4):
+            glyph = [row[x : x + 5] for row in grid[y : y + 5]]
+            if any(len(row) != 5 or len(set(row)) != 1 for row in glyph):
+                continue
+            row_colours = [row[0] for row in glyph]
+            colours = set(row_colours)
+            if len(colours) != 2 or background in colours:
+                continue
+            if sum(left != right for left, right in zip(row_colours, row_colours[1:])) != 1:
+                continue
+            candidates.append((sum(counts[colour] for colour in colours), y, x))
+    if not candidates:
+        return "-"
+    _, y, x = min(candidates)
+    return f"({x // 5},{y // 5})"
+
+
 def _events(path: Path) -> list[dict[str, Any]]:
     events: list[dict[str, Any]] = []
     for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
@@ -91,12 +127,12 @@ def transition_geometry(events: list[dict[str, Any]], limit: int = 64) -> list[s
     rows = [
         "",
         "#### Transition geometry",
-        "| Step | Submitted action | Changed cells | Bounding box | Edge-band cells | State |",
-        "| ---: | --- | ---: | --- | ---: | --- |",
+        "| Step | Submitted action | Changed cells | Bounding box | Edge-band cells | State | Avatar tile |",
+        "| ---: | --- | ---: | --- | ---: | --- | --- |",
     ]
     for step, (before, after) in enumerate(zip(events, events[1:]), start=2):
         if step - 1 > limit:
-            rows.append(f"| … | remaining {len(events) - limit} transitions omitted | | | | |")
+            rows.append(f"| … | remaining {len(events) - limit} transitions omitted | | | | | |")
             break
         before_grid = _grid_from_frame(before.get("frame"))
         after_grid = _grid_from_frame(after.get("frame"))
@@ -117,13 +153,14 @@ def transition_geometry(events: list[dict[str, Any]], limit: int = 64) -> list[s
             bbox = "-"
             edge = 0
         rows.append(
-            "| {step} | {action} | {count} | `{bbox}` | {edge} | `{state}` |".format(
+            "| {step} | {action} | {count} | `{bbox}` | {edge} | `{state}` | `{avatar}` |".format(
                 step=step,
                 action=_action_label(after),
                 count=len(changed),
                 bbox=bbox,
                 edge=edge,
                 state=str(after.get("state", "?")).replace("|", "\\|"),
+                avatar=striped_avatar_tile(after_grid),
             )
         )
     return rows
