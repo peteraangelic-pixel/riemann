@@ -7,7 +7,67 @@ Wyniki: hall_results.json (top-20), hall_hit.txt gdy r > 100.
 import sys, json, os, time, math
 from math import gcd, isqrt
 from multiprocessing import Pool
-from sympy.ntheory.residue_ntheory import nthroot_mod
+
+def _bsgs(m, g, p):
+    """dlog of m base g mod p, p prime, via baby-step giant-step (p small here)."""
+    if m == 1 % p:
+        return 0
+    n = math.isqrt(p - 1) + 1
+    table = {}
+    cur = 1
+    for j in range(n):
+        if cur not in table:
+            table[cur] = j
+        cur = cur * g % p
+    factor = pow(pow(g, n, p), -1, p)
+    cur = m % p
+    for i in range(n + 1):
+        if cur in table:
+            A = i * n + table[cur]
+            if A < p - 1:
+                return A
+        cur = cur * factor % p
+    raise ValueError("dlog not found")
+
+def _cbrt_mod_p(m, p):
+    m %= p
+    if p == 2 or p == 3:
+        return [x for x in range(p) if pow(x, 3, p) == m]
+    if p % 3 == 2:
+        if m == 0:
+            return [0]
+        x = pow(m, (2 * p - 1) // 3, p)
+        return [x] if pow(x, 3, p) == m else []
+    # p == 1 (mod 3): m^q == 1 test, primitive root, BSGS dlog, three roots
+    if m == 0:
+        return [0]
+    q = (p - 1) // 3
+    if pow(m, q, p) != 1:
+        return []
+    # factor p-1 for primitive root test
+    pm1 = p - 1
+    facs = []
+    d, t = 2, pm1
+    while d * d <= t:
+        if t % d == 0:
+            facs.append(d)
+            while t % d == 0:
+                t //= d
+        d += 1 if d == 2 else 2
+    if t > 1:
+        facs.append(t)
+    g = 2
+    while True:
+        if all(pow(g, pm1 // lf, p) != 1 for lf in facs):
+            break
+        g += 1
+    A = _bsgs(m, g, p)
+    assert A % 3 == 0, "cube-residue check failed"
+    base = pow(g, A // 3, p)
+    roots = set()
+    for t in (0, 1, 2):
+        roots.add(base * pow(g, q * t, p) % p)
+    return sorted(roots)
 
 OUT = os.path.dirname(os.path.abspath(__file__))
 RES = os.path.join(OUT, "hall_results.json")
@@ -27,18 +87,6 @@ def factor_small(n):
     if n > 1:
         fac[n] = 1
     return fac
-
-def _cbrt_mod_p(m, p):
-    m %= p
-    if p == 2 or p == 3:
-        return [x for x in range(p) if pow(x, 3, p) == m]
-    if p % 3 == 2:
-        if m == 0:
-            return [0]
-        x = pow(m, (2 * p - 1) // 3, p)
-        return [x] if pow(x, 3, p) == m else []
-    # p == 1 (mod 3)
-    return list(nthroot_mod(m, 3, p, all_roots=True))
 
 def _hensel_cbrt(x0, m, p, e):
     mod = p
