@@ -516,6 +516,68 @@ class ExplorerPolicyTests(unittest.TestCase):
         self.assertEqual(continued.reasoning["kind"], "tile-resource-navigation")
         self.assertEqual(continued.reasoning["meter_budget_actions"], 4)
 
+    def test_tile_maze_navigator_defers_an_over_budget_resource_without_marking_it_used(self) -> None:
+        """A meter rejection is route feedback, not evidence of a pickup."""
+        snapshot = self._token_maze_snapshot(
+            (6, 6),
+            turns_to_target=3,
+            resources=frozenset({(4, 4)}),
+            controls=((2, 6),),
+        )
+        view = tile_maze_view(snapshot)
+        self.assertIsNotNone(view)
+        assert view is not None
+        navigator = TileMazeNavigator()
+        navigator._active_resource = (4, 4)  # noqa: SLF001 - active meter-route setup
+        navigator._active_resource_meter_bound = True  # noqa: SLF001 - active meter-route setup
+
+        # Four visual tile moves are needed; a three-action meter cannot pay
+        # for it. The resource remains uncollected and is deferred instead.
+        self.assertIsNone(
+            navigator._resource_proposal(  # noqa: SLF001 - focused route outcome
+                view,
+                goal=(2, 6),
+                require_goal_neutral_route=False,
+                max_actions_to_resource=3,
+            )
+        )
+        self.assertNotIn((4, 4), navigator._used_resources)  # noqa: SLF001
+        self.assertIsNone(navigator._active_resource)  # noqa: SLF001
+        self.assertEqual(navigator._meter_deferred_resources, {(4, 4): 3})  # noqa: SLF001
+
+        # The same or a smaller budget does not endlessly reselect it.
+        self.assertIsNone(
+            navigator._resource_proposal(  # noqa: SLF001 - focused route outcome
+                view,
+                goal=(2, 6),
+                require_goal_neutral_route=False,
+                max_actions_to_resource=3,
+            )
+        )
+        # A visibly larger refill reopens the route without fabricating use.
+        resumed = navigator._resource_proposal(  # noqa: SLF001 - focused route outcome
+            view,
+            goal=(2, 6),
+            require_goal_neutral_route=False,
+            max_actions_to_resource=4,
+        )
+        self.assertIsNotNone(resumed)
+        assert resumed is not None
+        self.assertEqual(resumed.reasoning["target"], [4, 4])
+        self.assertEqual(resumed.reasoning["meter_budget_actions"], 4)
+        self.assertNotIn((4, 4), navigator._used_resources)  # noqa: SLF001
+        self.assertEqual(
+            navigator.meter_evidence(),
+            {
+                "meter-bounded-resource-actions": 1,
+                "meter-resource-deferred-candidates": 1,
+                "meter-resource-deferrals": 1,
+                "meter-resource-no-candidates": 1,
+                "meter-resource-over-budget-candidates": 1,
+                "meter-resource-retried-candidates": 1,
+                "meter-resource-route-attempts": 3,
+            },
+        )
 
     def test_tile_maze_navigator_keeps_an_initial_control_probe_direct_when_meter_is_tight(self) -> None:
         navigator = TileMazeNavigator()

@@ -1017,7 +1017,13 @@ class TileMazeNavigator:
         self._bounce_return: str | None = None
         self._active_resource: Coordinate | None = None
         self._active_resource_meter_bound = False
+        # ``_used_resources`` has a deliberately literal meaning: a resource
+        # enters it only after the avatar is observed on its tile. Routes that
+        # cannot currently be used are deferred separately, so a tightened
+        # meter estimate never fabricates a pickup merely to avoid replanning.
         self._used_resources: set[Coordinate] = set()
+        self._route_deferred_resources: set[Coordinate] = set()
+        self._meter_deferred_resources: dict[Coordinate, int] = {}
 
     def reset(self) -> None:
         """Forget episode-local geometry after terminal or modal feedback."""
@@ -1046,6 +1052,8 @@ class TileMazeNavigator:
         self._active_resource = None
         self._active_resource_meter_bound = False
         self._used_resources.clear()
+        self._route_deferred_resources.clear()
+        self._meter_deferred_resources.clear()
 
     @staticmethod
     def _glyph_at(view: TileMazeView, coordinate: Coordinate) -> TileGlyph | None:
@@ -1089,6 +1097,8 @@ class TileMazeNavigator:
         self._active_resource = None
         self._active_resource_meter_bound = False
         self._used_resources.clear()
+        self._route_deferred_resources.clear()
+        self._meter_deferred_resources.clear()
 
     def _observe_avatar(self, view: TileMazeView) -> None:
         if self._last_avatar is None or self._last_action is None:
@@ -1278,6 +1288,11 @@ class TileMazeNavigator:
         self._retired_controls.clear()
         self._last_token_target = None
         self._bounce_return = None
+        # Route eligibility is relative to the target/control relation. A
+        # newly recognized relation warrants retrying any resource that was
+        # deferred for the preceding one; it still does not make it "used".
+        self._route_deferred_resources.clear()
+        self._meter_deferred_resources.clear()
         # Avoid advancing the older landmark model while this stricter visual
         # relation is active.
         self._active = None
@@ -1316,6 +1331,11 @@ class TileMazeNavigator:
             self._token_control = None
             return None
         _, _, _, _, control = min(candidates)
+        if control != self._token_control:
+            # A route-neutral resource detour is evaluated against the active
+            # control. Reconsider prior route deferrals after that destination
+            # changes, without conflating them with consumed resources.
+            self._route_deferred_resources.clear()
         self._token_control = control
         self._bounce_return = None
         return control
@@ -1399,6 +1419,11 @@ class TileMazeNavigator:
         """Mark one visually selected resource after the avatar reaches its tile."""
         if self._active_resource is not None and view.avatar == self._active_resource:
             self._used_resources.add(self._active_resource)
+            self._route_deferred_resources.discard(self._active_resource)
+            self._meter_deferred_resources.pop(self._active_resource, None)
+            # Reaching a resource is an observed world transition. Other route
+            # deferrals were based on the preceding board and can be retried.
+            self._route_deferred_resources.clear()
             self._active_resource = None
             self._active_resource_meter_bound = False
 
@@ -1412,16 +1437,40 @@ class TileMazeNavigator:
     ) -> ActionProposal | None:
         """Route to a framed resource under optional route and meter constraints."""
         blocked = self._known_blocked(view)
+        meter_bounded = max_actions_to_resource is not None
         candidates = [
             resource
             for resource in view.resource_tiles
-            if resource not in self._used_resources and resource != view.avatar
+            if (
+                resource not in self._used_resources
+                and resource not in self._route_deferred_resources
+                and resource != view.avatar
+            )
         ]
         if self._active_resource is not None:
             candidates = [self._active_resource]
-        meter_bounded = max_actions_to_resource is not None
         if meter_bounded:
             self._meter_evidence["meter-resource-route-attempts"] += 1
+            eligible: list[Coordinate] = []
+            for resource in candidates:
+                deferred_at = self._meter_deferred_resources.get(resource)
+                if deferred_at is not None and max_actions_to_resource <= deferred_at:
+                    self._meter_evidence["meter-resource-deferred-candidates"] += 1
+                    continue
+                if deferred_at is not None:
+                    # Only a strictly larger observed budget reopens a route
+                    # that was previously too long. A falling countdown cannot
+                    # make that route safer, but a visually observed refill can.
+                    self._meter_deferred_resources.pop(resource, None)
+                    self._meter_evidence["meter-resource-retried-candidates"] += 1
+                eligible.append(resource)
+            candidates = eligible
+        else:
+            candidates = [
+                resource
+                for resource in candidates
+                if resource not in self._meter_deferred_resources
+            ]
         if not candidates:
             if meter_bounded:
                 self._meter_evidence["meter-resource-no-candidates"] += 1
@@ -1429,19 +1478,24 @@ class TileMazeNavigator:
 
         direct = optimistic_tile_path(view.avatar, goal, view.shape, blocked)
         routes: list[tuple[int, int, int, int, Coordinate, tuple[str, ...]]] = []
+        route_deferred: set[Coordinate] = set()
+        meter_deferred: set[Coordinate] = set()
         for resource in candidates:
             to_resource = optimistic_tile_path(view.avatar, resource, view.shape, blocked)
             if to_resource is None:
+                route_deferred.add(resource)
                 if meter_bounded:
                     self._meter_evidence["meter-resource-unreachable-candidates"] += 1
                 continue
             if max_actions_to_resource is not None and len(to_resource) > max_actions_to_resource:
+                meter_deferred.add(resource)
                 self._meter_evidence["meter-resource-over-budget-candidates"] += 1
                 continue
             resource_to_goal: tuple[str, ...] | None = None
             if require_goal_neutral_route or max_actions_to_resource is not None:
                 resource_to_goal = optimistic_tile_path(resource, goal, view.shape, blocked)
                 if resource_to_goal is None:
+                    route_deferred.add(resource)
                     if meter_bounded:
                         self._meter_evidence["meter-resource-no-continuation-candidates"] += 1
                     continue
@@ -1449,6 +1503,9 @@ class TileMazeNavigator:
                 direct is None
                 or len(to_resource) + len(resource_to_goal) > len(direct)
             ):
+                # This is a strategic filter rather than an unreachable route:
+                # a following meter-bounded check may still justify the same
+                # detour, so do not defer the resource here.
                 continue
             # For a meter-bounded detour, also prefer a short continuation
             # after the visual reset; ordinary first-resource selection keeps
@@ -1465,12 +1522,27 @@ class TileMazeNavigator:
                 )
             )
         if not routes:
+            # A rejected route is not a collected resource. Keep physical
+            # pickup state separate from path eligibility: defer candidates
+            # only for the current visual relation, while a meter rejection is
+            # retried solely after a strictly larger observed action budget.
+            self._route_deferred_resources.update(route_deferred)
+            if meter_deferred and max_actions_to_resource is not None:
+                newly_meter_deferred = 0
+                for resource in meter_deferred:
+                    previous_budget = self._meter_deferred_resources.get(resource)
+                    if previous_budget is None or max_actions_to_resource > previous_budget:
+                        self._meter_deferred_resources[resource] = max_actions_to_resource
+                        newly_meter_deferred += 1
+                if newly_meter_deferred:
+                    self._meter_evidence["meter-resource-deferrals"] += newly_meter_deferred
             if self._active_resource is not None:
-                self._used_resources.add(self._active_resource)
                 self._active_resource = None
                 self._active_resource_meter_bound = False
             return None
         _, _, _, _, resource, path = min(routes)
+        self._route_deferred_resources.discard(resource)
+        self._meter_deferred_resources.pop(resource, None)
         previous_active_resource = self._active_resource
         self._active_resource = resource
         if meter_bounded:

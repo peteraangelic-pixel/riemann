@@ -33,6 +33,33 @@ def _safe_mode(value: Any) -> str:
     return text
 
 
+def _modes_by_resulting_level(trace: list[Any]) -> list[str]:
+    """Summarize bounded policy modes by visually observed progress phase.
+
+    The runner records the level count returned after each submitted action.
+    Aggregating it here exposes where an explorer spends its budget without
+    publishing board coordinates, pixels, free-form reasoning, or game rules.
+    """
+    phases: dict[int, dict[str, int]] = {}
+    for entry in trace:
+        if not isinstance(entry, dict):
+            continue
+        level = entry.get("levels_completed")
+        if not isinstance(level, int) or isinstance(level, bool) or level < 0:
+            continue
+        modes = phases.setdefault(level, {})
+        mode = _safe_mode(entry.get("decision_kind"))
+        modes[mode] = modes.get(mode, 0) + 1
+    output: list[str] = []
+    for level, modes in sorted(phases.items())[:12]:
+        rendered = "; ".join(
+            f"{mode}: {count}"
+            for mode, count in sorted(modes.items(), key=lambda item: item[0])
+        )
+        output.append(f"L{level}: {rendered}")
+    return output
+
+
 def build_summary(report_path: Path, sketch_path: Path, log_path: Path) -> str:
     """Create bounded Markdown from trusted local report/sketch artifacts."""
     if report_path.is_file():
@@ -94,6 +121,11 @@ def build_summary(report_path: Path, sketch_path: Path, log_path: Path) -> str:
                 ]
                 if decisions:
                     summary.append("  - Decision modes: " + "; ".join(decisions))
+            trace = row.get("policy_trace", [])
+            if isinstance(trace, list):
+                phase_modes = _modes_by_resulting_level(trace)
+                if phase_modes:
+                    summary.append("  - Modes by resulting level: " + " | ".join(phase_modes))
             raw_meter_evidence = row.get("meter_evidence", {})
             if isinstance(raw_meter_evidence, dict):
                 meter_evidence = [
