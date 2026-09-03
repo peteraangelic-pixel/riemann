@@ -41,7 +41,7 @@ class MyAgent(Agent):
 
     @property
     def name(self) -> str:
-        return f"{super().name}.novelty-v1"
+        return f"{super().name}.novelty-v2"
 
     def is_done(self, frames: list[FrameData], latest_frame: FrameData) -> bool:
         """Stop on win or budget; GAME_OVER must otherwise be followed by RESET."""

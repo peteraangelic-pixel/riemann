@@ -1,4 +1,4 @@
-"""Deterministic, observation-driven exploration policy for ARC-AGI-3.
+"""Deterministic, graph-driven exploration policy for ARC-AGI-3.
 
 This module deliberately has no ARC SDK or model dependency.  It turns a frame
 into a small, JSON-safe ``Snapshot`` and proposes one legal action.  Keeping the
@@ -408,7 +408,7 @@ def rank_click_targets(
                 continue
             score = base_score + (1000 if (x, y) in changed else 0)
             reason = {
-                "policy": "novelty-explorer-v1",
+                "policy": "novelty-explorer-v2",
                 "kind": "salient-component",
                 "color": component.color,
                 "component_size": component_size,
@@ -429,7 +429,7 @@ def rank_click_targets(
             (
                 score,
                 {
-                    "policy": "novelty-explorer-v1",
+                    "policy": "novelty-explorer-v2",
                     "kind": "lattice-fallback",
                     "recent_change": point in changed,
                 },

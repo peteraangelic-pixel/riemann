@@ -40,7 +40,8 @@ jobs:
             arc_agi3/scripts/configure_kaggle.py \
             arc_agi3/scripts/prepare_framework.py \
             arc_agi3/scripts/play_local.py \
-            arc_agi3/scripts/build_notebook.py
+            arc_agi3/scripts/build_notebook.py \
+            arc_agi3/scripts/summarize_recordings.py
       - name: Run offline regression tests
         run: python -m unittest discover -s arc_agi3/tests -v
 
@@ -63,11 +64,16 @@ jobs:
         run: |
           set -o pipefail
           make verify-local | tee local-smoke.log
+      - name: Sketch first and final public frames
+        if: always()
+        working-directory: arc_agi3
+        run: .venv/bin/python scripts/summarize_recordings.py recordings --output recording-summary.md
       - name: Publish compact smoke outcome on this check
         if: always()
         env:
           GITHUB_TOKEN: ${{ github.token }}
           SMOKE_REPORT: arc_agi3/recordings/local-smoke-report.json
+          FRAME_SKETCHES: arc_agi3/recording-summary.md
         run: |
           python - <<'PY'
           import json
@@ -168,6 +174,10 @@ jobs:
                       "```",
                   ]
 
+              sketch_path = Path(os.environ["FRAME_SKETCHES"])
+              if sketch_path.is_file():
+                  summary.extend(["", sketch_path.read_text(encoding="utf-8", errors="replace")[:48000]])
+
               runs = api(f"https://api.github.com/repos/{repo}/commits/{sha}/check-runs")
               target = max(
                   (run for run in runs["check_runs"] if run["name"] == "Public ARC SDK smoke test"),
@@ -188,6 +198,7 @@ jobs:
           name: arc-agi3-local-smoke-${{ github.run_id }}
           path: |
             arc_agi3/local-smoke.log
+            arc_agi3/recording-summary.md
             arc_agi3/recordings/
           if-no-files-found: warn
           retention-days: 14

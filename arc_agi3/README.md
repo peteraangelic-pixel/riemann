@@ -90,6 +90,9 @@ ARC source changes. The real public-game smoke job is never scheduled: run it
 through **Run workflow** with `local_smoke=true`, or push an explicit commit
 whose message contains `[arc-smoke]`. The latter is useful where the GitHub API
 cannot create a workflow-dispatch event. It uses no Kaggle or ARC credential.
+Each explicit smoke exposes a compact outcome table, action evidence, and
+first/final public-frame sketches in the check details; the full public JSONL
+recordings remain an expiring artifact.
 
 ## Layout
 
@@ -102,6 +105,7 @@ arc_agi3/
 │   ├── configure_kaggle.py    # Secure local token handoff
 │   ├── prepare_framework.py   # Prepares generated reference framework
 │   ├── play_local.py          # Local public-game runner
+│   ├── summarize_recordings.py # Frame sketches for CI/replay inspection
 │   └── build_notebook.py      # Creates Kaggle deployment artifact
 ├── tests/test_policy.py       # Offline regression tests
 ├── notebooks/kernel-metadata.json
