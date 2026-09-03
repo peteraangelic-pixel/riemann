@@ -17,6 +17,11 @@ on:
         required: false
         default: false
         type: boolean
+      public_eval:
+        description: "Run the bounded 400-step public graph evaluation"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -88,6 +93,52 @@ jobs:
           path: |
             arc_agi3/local-smoke.log
             arc_agi3/recording-summary.md
+            arc_agi3/recordings/
+          if-no-files-found: warn
+          retention-days: 14
+
+  public-eval:
+    name: Public ARC graph evaluation
+    if: (github.event_name == 'workflow_dispatch' && inputs.public_eval) || (github.event_name == 'push' && contains(github.event.head_commit.message, '[arc-eval]'))
+    needs: unit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install SDK and reference framework
+        working-directory: arc_agi3
+        run: make setup
+      - name: Evaluate public graph explorer
+        working-directory: arc_agi3
+        run: |
+          set -o pipefail
+          make evaluate-public | tee public-eval.log
+      - name: Sketch first and final public frames
+        if: always()
+        working-directory: arc_agi3
+        run: .venv/bin/python scripts/summarize_recordings.py recordings --output public-eval-summary.md
+      - name: Publish compact evaluation outcome on this check
+        if: always()
+        working-directory: arc_agi3
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          .venv/bin/python scripts/publish_check_summary.py \
+            --check-name "Public ARC graph evaluation" \
+            --report recordings/public-eval-report.json \
+            --sketches public-eval-summary.md \
+            --log public-eval.log
+      - name: Upload public graph-evaluation recordings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: arc-agi3-public-eval-${{ github.run_id }}
+          path: |
+            arc_agi3/public-eval.log
+            arc_agi3/public-eval-summary.md
             arc_agi3/recordings/
           if-no-files-found: warn
           retention-days: 14

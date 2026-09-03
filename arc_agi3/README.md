@@ -90,9 +90,14 @@ ARC source changes. The real public-game smoke job is never scheduled: run it
 through **Run workflow** with `local_smoke=true`, or push an explicit commit
 whose message contains `[arc-smoke]`. The latter is useful where the GitHub API
 cannot create a workflow-dispatch event. It uses no Kaggle or ARC credential.
-Each explicit smoke exposes a compact outcome table, action evidence, and
-first/final public-frame sketches in the check details; the full public JSONL
-recordings remain an expiring artifact.
+
+A separate bounded public evaluation runs 400 actions per selected public game:
+use **Run workflow** with `public_eval=true`, push an explicit `[arc-eval]`
+commit, or run `make evaluate-public EVAL_STEPS=400` locally. It is likewise
+never scheduled and is an experiment—not a Kaggle submission. Each explicit
+smoke/evaluation exposes a compact outcome table, action evidence, and
+first/final public-frame sketches in the check details; full public JSONL
+recordings remain an expiring 14-day artifact.
 
 ## Layout
 
