@@ -24,7 +24,7 @@ MAX_POLICY_TRACE_REPORT_STEPS = 1_000
 
 
 def _policy_trace_limit(action_budget: int) -> int:
-    """Keep a report's coordinate-free decision trace bounded and useful."""
+    """Keep a report's frame-free policy trace bounded and useful."""
     return min(max(1, action_budget), MAX_POLICY_TRACE_REPORT_STEPS)
 
 

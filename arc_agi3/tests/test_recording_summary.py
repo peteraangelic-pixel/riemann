@@ -73,6 +73,41 @@ class RecordingSummaryTests(unittest.TestCase):
         self.assertIn("action 6 at (1, 1)", table)
         self.assertIn("| 2 | action 6 at (1, 1) | 1 | `x=1..1, y=1..1` | 1 |", table)
 
+    def test_checkpoint_windows_include_later_progress_and_only_safe_policy_kind(self) -> None:
+        events = [
+            {"frame": [[[0]]], "state": "NOT_FINISHED", "levels_completed": 0},
+            {
+                "frame": [[[1]]],
+                "state": "GAME_OVER",
+                "levels_completed": 0,
+                "action_input": {
+                    "id": 3,
+                    "reasoning": {"kind": "tile-maze-navigation", "private": "must-not-appear"},
+                },
+            },
+            {
+                "frame": [[[2]]],
+                "state": "NOT_FINISHED",
+                "levels_completed": 0,
+                "action_input": {"id": 4, "reasoning": {"kind": "bad|secret"}},
+            },
+            {
+                "frame": [[[3]]],
+                "state": "NOT_FINISHED",
+                "levels_completed": 1,
+                "action_input": {"id": 1, "reasoning": {"kind": "resource-navigation"}},
+            },
+        ]
+        table = "\n".join(summarize_recordings.checkpoint_transition_geometry(events))
+
+        self.assertIn("Checkpoint transition windows", table)
+        self.assertIn("state-change", table)
+        self.assertIn("level 0->1", table)
+        self.assertIn("tile-maze-navigation", table)
+        self.assertIn("resource-navigation", table)
+        self.assertNotIn("must-not-appear", table)
+        self.assertNotIn("bad|secret", table)
+
     def test_empty_directory_has_explicit_safe_message(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             summary = summarize_recordings.summarize_paths(Path(directory).glob("*.jsonl"))
