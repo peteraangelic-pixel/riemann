@@ -33,9 +33,12 @@ class LocalRunnerReportTests(unittest.TestCase):
             levels_completed=2,
             actions=17,
             policy_evidence={"ACTION6": {"attempts": 4, "changed": 3}},
+            policy_decisions={"graph-click-frontier": 1},
             policy_trace=[
                 {
                     "action": "ACTION6:1:1",
+                    "decision_kind": "graph-click-frontier",
+                    "meter_bounded_resource": False,
                     "changed": True,
                     "level_gain": 0,
                     "game_over": False,
@@ -63,11 +66,14 @@ class LocalRunnerReportTests(unittest.TestCase):
                 "actions": 17,
                 "game_id": "ls20",
                 "levels_completed": 2,
+                "policy_decisions": {"graph-click-frontier": 1},
                 "policy_evidence": {"ACTION6": {"attempts": 4, "changed": 3}},
                 "policy_trace": [
                     {
                         "action": "ACTION6:1:1",
                         "changed": True,
+                        "decision_kind": "graph-click-frontier",
+                        "meter_bounded_resource": False,
                         "game_over": False,
                         "level_gain": 0,
                         "levels_completed": 2,

@@ -1738,6 +1738,23 @@ class ExplorerPolicy:
             return []
         return [dict(entry) for entry in self._transition_trace[-limit:]]
 
+    def decision_evidence(self) -> dict[str, int]:
+        """Count bounded policy modes across the completed replay.
+
+        This deliberately exposes only policy-owned mode labels and a boolean
+        meter-routing flag, never frame data, coordinates, or arbitrary
+        free-form reasoning. It lets a public evaluation distinguish an
+        unexercised route from an exercised route that did not score.
+        """
+        counts: Counter[str] = Counter()
+        for entry in self._transition_trace:
+            kind = entry.get("decision_kind", "unspecified")
+            if isinstance(kind, str):
+                counts[kind] += 1
+            if entry.get("meter_bounded_resource"):
+                counts["meter-bounded-resource"] += 1
+        return dict(sorted(counts.items()))
+
     def finalize(self, snapshot: Snapshot) -> None:
         """Account for a final environment response when no next action is due.
 
@@ -1795,9 +1812,23 @@ class ExplorerPolicy:
         )
         edge.successor = signature
         edge.transition = transition
+        decision_kind = self._pending.reasoning.get("kind", "unspecified")
+        # Policy-created labels are intentionally simple identifiers. Avoid
+        # passing arbitrary free-form reasoning into reports or artifacts.
+        if not (
+            isinstance(decision_kind, str)
+            and decision_kind
+            and len(decision_kind) <= 80
+            and all(character.islower() or character.isdigit() or character == "-" for character in decision_kind)
+        ):
+            decision_kind = "unspecified"
         self._transition_trace.append(
             {
                 "action": self._pending.key,
+                "decision_kind": decision_kind,
+                "meter_bounded_resource": isinstance(
+                    self._pending.reasoning.get("meter_budget_actions"), int
+                ),
                 "changed": transition.changed,
                 "level_gain": transition.level_gain,
                 "game_over": transition.game_over,

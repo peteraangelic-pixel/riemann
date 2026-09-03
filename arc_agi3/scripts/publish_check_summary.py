@@ -21,6 +21,18 @@ def _safe(value: Any) -> str:
     return str(value).replace("|", "\\|")
 
 
+def _safe_mode(value: Any) -> str:
+    """Keep public policy-mode diagnostics bounded and non-free-form."""
+    text = value if isinstance(value, str) else "unspecified"
+    if (
+        not text
+        or len(text) > 80
+        or not all(character.islower() or character.isdigit() or character == "-" for character in text)
+    ):
+        return "unspecified"
+    return text
+
+
 def build_summary(report_path: Path, sketch_path: Path, log_path: Path) -> str:
     """Create bounded Markdown from trusted local report/sketch artifacts."""
     if report_path.is_file():
@@ -73,6 +85,15 @@ def build_summary(report_path: Path, sketch_path: Path, log_path: Path) -> str:
                     evidence="; ".join(evidence) or "no completed transitions",
                 )
             )
+            raw_decisions = row.get("policy_decisions", {})
+            if isinstance(raw_decisions, dict):
+                decisions = [
+                    "{mode}: {count}".format(mode=_safe_mode(mode), count=count)
+                    for mode, count in sorted(raw_decisions.items(), key=lambda item: str(item[0]))
+                    if isinstance(count, int) and not isinstance(count, bool) and count > 0
+                ]
+                if decisions:
+                    summary.append("  - Decision modes: " + "; ".join(decisions))
             trace = row.get("policy_trace", [])
             if isinstance(trace, list):
                 recent = [entry for entry in trace[-8:] if isinstance(entry, dict)]

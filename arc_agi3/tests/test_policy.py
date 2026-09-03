@@ -646,6 +646,9 @@ class ExplorerPolicyTests(unittest.TestCase):
         self.assertEqual([entry["action"] for entry in trace], ["ACTION1", "ACTION1"])
         self.assertTrue(trace[0]["changed"])
         self.assertTrue(trace[-1]["game_over"])
+        self.assertEqual(trace[0]["decision_kind"], "graph-simple-frontier")
+        self.assertFalse(trace[0]["meter_bounded_resource"])
+        self.assertEqual(policy.decision_evidence(), {"graph-simple-frontier": 2})
         self.assertEqual(policy.transition_trace(limit=0), [])
 
     def test_finalize_accounts_for_last_action_once_without_proposing_again(self) -> None:

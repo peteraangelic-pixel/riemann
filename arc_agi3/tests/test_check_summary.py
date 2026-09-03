@@ -31,6 +31,10 @@ class CheckSummaryTests(unittest.TestCase):
                             "game_overs": 0,
                         }
                     },
+                    "policy_decisions": {
+                        "graph-click-frontier": 3,
+                        "meter-bounded-resource": 1,
+                    },
                     "policy_trace": [{"action": "ACTION6:2:3", "changed": True}],
                 }
             ],
@@ -47,6 +51,7 @@ class CheckSummaryTests(unittest.TestCase):
         self.assertIn("| vc33 | WIN | 1 | 8 |", summary)
         self.assertIn("ACTION6: 6/8 changed, 1 level gains, 0 game overs", summary)
         self.assertIn("ACTION6:2:3 (changed)", summary)
+        self.assertIn("Decision modes: graph-click-frontier: 3; meter-bounded-resource: 1", summary)
         self.assertIn("Scorecard: `1.5`", summary)
         self.assertIn("## Recorded frame sketches", summary)
 
