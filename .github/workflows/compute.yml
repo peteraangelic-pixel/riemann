@@ -24,14 +24,21 @@ on:
         required: false
         default: ""
 
+  # push-trigger on the session branch: a commit message containing
+  # [run-hall], [run-census <n>] and/or [run-gadget] starts the matching jobs
+  # (works before the workflow lands on the default branch)
+  push:
+    branches: ["arena/01a0633d-riemann"]
+
   # auto-rotate gadget sampler: 6-hour slot index mod 1e6 as res/mod batch
+  # (active once this file is on the default branch)
   schedule:
     - cron: "0 * * * *"
 
 jobs:
   hall:
     # Hall scan b in [200k, 2M) — targets JCHS Table #23 (r=6.50, b=321346)
-    if: github.event_name == 'workflow_dispatch' && inputs.job == 'hall'
+    if: (github.event_name == 'workflow_dispatch' && inputs.job == 'hall') || (github.event_name == 'push' && contains(github.event.head_commit.message, '[run-hall]'))
     runs-on: ubuntu-latest
     timeout-minutes: 350
     steps:
@@ -51,7 +58,7 @@ jobs:
 
   census:
     # full connected cubic graph census for n vertices + p2check + audit
-    if: github.event_name == 'workflow_dispatch' && inputs.job == 'census'
+    if: (github.event_name == 'workflow_dispatch' && inputs.job == 'census') || (github.event_name == 'push' && contains(github.event.head_commit.message, '[run-census]'))
     runs-on: ubuntu-latest
     timeout-minutes: 350
     steps:
@@ -63,7 +70,8 @@ jobs:
           cd .. && gcc -O2 -o p2check p2check.c
       - name: Generate + check n=${{ inputs.n }}
         run: |
-          n=${{ inputs.n }}
+          n="${{ inputs.n }}"
+          case "$n" in ""|null) n="$(echo "${{ github.event.head_commit.message }}" | grep -oP '\[run-census \K[0-9]+' || echo 22)";; esac
           e=$((3*n/2))
           ./nauty2_8_9/geng $n $e:$e -d3 -D3 -c -q > cubic_$n.g6
           wc -l cubic_$n.g6
@@ -82,7 +90,7 @@ jobs:
   gadget:
     # Bensmail edge-gadget sampler, cubic girth>=5 graphs on 32 vertices,
     # res/mod batch (stateless; each run covers ~1e-6 of the class)
-    if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.job == 'gadget')
+    if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.job == 'gadget') || (github.event_name == 'push' && contains(github.event.head_commit.message, '[run-gadget]'))
     runs-on: ubuntu-latest
     timeout-minutes: 350
     steps:
