@@ -45,7 +45,7 @@ jobs:
 
   local-smoke:
     name: Public ARC SDK smoke test
-    if: github.event_name == 'workflow_dispatch' && inputs.local_smoke
+    if: (github.event_name == 'workflow_dispatch' && inputs.local_smoke) || (github.event_name == 'push' && contains(github.event.head_commit.message, '[arc-smoke]'))
     needs: unit
     runs-on: ubuntu-latest
     timeout-minutes: 15

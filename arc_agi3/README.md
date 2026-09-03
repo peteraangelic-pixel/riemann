@@ -82,6 +82,14 @@ Then inspect the Kaggle run. The final leaderboard submission is a separate,
 deliberate action in Kaggle's UI and should only be used for a validated
 candidate.
 
+## GitHub Actions
+
+`.github/workflows/arc-agi3.yml` runs the offline policy and notebook tests on
+ARC source changes. The real public-game smoke job is never scheduled: run it
+through **Run workflow** with `local_smoke=true`, or push an explicit commit
+whose message contains `[arc-smoke]`. The latter is useful where the GitHub API
+cannot create a workflow-dispatch event. It uses no Kaggle or ARC credential.
+
 ## Layout
 
 ```text
