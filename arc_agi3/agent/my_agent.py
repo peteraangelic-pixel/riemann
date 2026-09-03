@@ -10,7 +10,7 @@ from __future__ import annotations
 from threading import RLock
 from typing import Any
 
-from arcengine import FrameData, GameAction, GameState
+from arcengine import ActionInput, FrameData, GameAction, GameState
 from agents.agent import Agent
 
 try:  # Package import on Kaggle, direct-file import in scripts/play_local.py.
@@ -92,7 +92,17 @@ class MyAgent(Agent):
 
     def take_action(self, action: GameAction):  # type: ignore[override]
         try:
-            return super().take_action(action)
+            frame = super().take_action(action)
+            if frame is not None:
+                # The current reference Agent conversion omits raw.action_input.
+                # Restore the exact submitted action before append_frame records
+                # it, preserving a usable public replay and action/frame pairing.
+                frame.action_input = ActionInput(
+                    id=action,
+                    data=action.action_data.model_dump(),
+                    reasoning=getattr(action, "reasoning", None),
+                )
+            return frame
         finally:
             if getattr(self, "_holds_action_lock", False):
                 self._holds_action_lock = False

@@ -70,7 +70,12 @@ def _action_label(event: dict[str, Any]) -> str:
     if not isinstance(action, dict):
         return "initial"
     identifier = action.get("id")
-    return "initial" if identifier is None else f"action {identifier}"
+    if identifier is None:
+        return "initial"
+    data = action.get("data")
+    if isinstance(data, dict) and "x" in data and "y" in data:
+        return f"action {identifier} at ({data['x']}, {data['y']})"
+    return f"action {identifier}"
 
 
 def _game_id(events: Iterable[dict[str, Any]], fallback: str) -> str:
@@ -79,6 +84,49 @@ def _game_id(events: Iterable[dict[str, Any]], fallback: str) -> str:
         if value:
             return str(value).split("-", 1)[0]
     return fallback
+
+
+def transition_geometry(events: list[dict[str, Any]], limit: int = 64) -> list[str]:
+    """Describe each action's visual delta without repeating full frame data."""
+    rows = [
+        "",
+        "#### Transition geometry",
+        "| Step | Submitted action | Changed cells | Bounding box | Edge-band cells | State |",
+        "| ---: | --- | ---: | --- | ---: | --- |",
+    ]
+    for step, (before, after) in enumerate(zip(events, events[1:]), start=2):
+        if step - 1 > limit:
+            rows.append(f"| … | remaining {len(events) - limit} transitions omitted | | | | |")
+            break
+        before_grid = _grid_from_frame(before.get("frame"))
+        after_grid = _grid_from_frame(after.get("frame"))
+        width = max(max((len(row) for row in before_grid), default=0), max((len(row) for row in after_grid), default=0))
+        height = max(len(before_grid), len(after_grid))
+        changed = []
+        for y in range(height):
+            for x in range(width):
+                old = before_grid[y][x] if y < len(before_grid) and x < len(before_grid[y]) else None
+                new = after_grid[y][x] if y < len(after_grid) and x < len(after_grid[y]) else None
+                if old != new:
+                    changed.append((x, y))
+        if changed:
+            xs, ys = zip(*changed)
+            bbox = f"x={min(xs)}..{max(xs)}, y={min(ys)}..{max(ys)}"
+            edge = sum(y < 8 or y >= height - 8 for _, y in changed)
+        else:
+            bbox = "-"
+            edge = 0
+        rows.append(
+            "| {step} | {action} | {count} | `{bbox}` | {edge} | `{state}` |".format(
+                step=step,
+                action=_action_label(after),
+                count=len(changed),
+                bbox=bbox,
+                edge=edge,
+                state=str(after.get("state", "?")).replace("|", "\\|"),
+            )
+        )
+    return rows
 
 
 def summarize_paths(paths: Iterable[Path]) -> str:
@@ -117,6 +165,7 @@ def summarize_paths(paths: Iterable[Path]) -> str:
                     "```",
                 ]
             )
+        output.extend(transition_geometry(events))
     return "\n".join(output) + "\n"
 
 

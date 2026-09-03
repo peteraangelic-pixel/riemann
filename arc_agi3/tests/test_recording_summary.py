@@ -53,6 +53,19 @@ class RecordingSummaryTests(unittest.TestCase):
         self.assertIn("\n2\n", summary)
         self.assertNotIn("must_not", summary)
 
+    def test_transition_geometry_reports_action_coordinates_and_delta_box(self) -> None:
+        events = [
+            {"frame": [[[0, 0], [0, 0]]], "state": "NOT_FINISHED"},
+            {
+                "frame": [[[0, 0], [0, 9]]],
+                "state": "NOT_FINISHED",
+                "action_input": {"id": 6, "data": {"x": 1, "y": 1}},
+            },
+        ]
+        table = "\n".join(summarize_recordings.transition_geometry(events))
+        self.assertIn("action 6 at (1, 1)", table)
+        self.assertIn("| 2 | action 6 at (1, 1) | 1 | `x=1..1, y=1..1` | 1 |", table)
+
     def test_empty_directory_has_explicit_safe_message(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             summary = summarize_recordings.summarize_paths(Path(directory).glob("*.jsonl"))

@@ -19,7 +19,19 @@ class AdapterBudgetTests(unittest.TestCase):
             WIN = object()
             NOT_FINISHED = object()
 
+        class FakeActionInput:
+            def __init__(self, **kwargs):
+                self.__dict__.update(kwargs)
+
+        class FakeFrame:
+            action_input = None
+
+        class FakeAgent:
+            def take_action(self, action):
+                return FakeFrame()
+
         fake_arcengine = types.ModuleType("arcengine")
+        fake_arcengine.ActionInput = FakeActionInput
         fake_arcengine.FrameData = object
         fake_arcengine.GameAction = object
         fake_arcengine.GameState = FakeGameState
@@ -27,7 +39,7 @@ class AdapterBudgetTests(unittest.TestCase):
         fake_agents = types.ModuleType("agents")
         fake_agents.__path__ = []
         fake_agent_module = types.ModuleType("agents.agent")
-        fake_agent_module.Agent = type("Agent", (), {})
+        fake_agent_module.Agent = FakeAgent
 
         module_name = "arc_agi3_budget_adapter"
         spec = importlib.util.spec_from_file_location(module_name, AGENT_FILE)
@@ -43,10 +55,10 @@ class AdapterBudgetTests(unittest.TestCase):
             },
         ):
             spec.loader.exec_module(module)
-        return module, FakeGameState
+        return module, FakeGameState, FakeActionInput
 
     def test_is_done_enforces_budget_before_reference_loop_off_by_one(self) -> None:
-        adapter, game_state = self._load_adapter_with_sdk_stubs()
+        adapter, game_state, _ = self._load_adapter_with_sdk_stubs()
         agent = object.__new__(adapter.MyAgent)
         agent.ACTION_BUDGET = 50
         latest = types.SimpleNamespace(state=game_state.NOT_FINISHED)
@@ -57,11 +69,31 @@ class AdapterBudgetTests(unittest.TestCase):
         self.assertTrue(agent.is_done([], latest))
 
     def test_is_done_always_stops_on_win(self) -> None:
-        adapter, game_state = self._load_adapter_with_sdk_stubs()
+        adapter, game_state, _ = self._load_adapter_with_sdk_stubs()
         agent = object.__new__(adapter.MyAgent)
         agent.ACTION_BUDGET = 50
         agent.action_counter = 0
         self.assertTrue(agent.is_done([], types.SimpleNamespace(state=game_state.WIN)))
+
+    def test_take_action_restores_submitted_metadata_for_recording(self) -> None:
+        adapter, _, action_input_type = self._load_adapter_with_sdk_stubs()
+
+        class Payload:
+            def model_dump(self):
+                return {"x": 7, "y": 9}
+
+        action = types.SimpleNamespace(
+            action_data=Payload(),
+            reasoning={"policy": "test"},
+        )
+        agent = object.__new__(adapter.MyAgent)
+        agent._holds_action_lock = False
+        returned = agent.take_action(action)
+
+        self.assertIsInstance(returned.action_input, action_input_type)
+        self.assertIs(returned.action_input.id, action)
+        self.assertEqual(returned.action_input.data, {"x": 7, "y": 9})
+        self.assertEqual(returned.action_input.reasoning, {"policy": "test"})
 
 
 if __name__ == "__main__":
