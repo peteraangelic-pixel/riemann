@@ -1479,7 +1479,19 @@ class TileMazeNavigator:
             )
             if proposal is not None:
                 return proposal
-            meter_budget = self._resource_is_urgent_before_control(view, target, control)
+            # A longer meter-bounded diversion is reserved until at least one
+            # compact control has visibly changed the token. This preserves the
+            # low-risk direct probe of an initially selected control and only
+            # spends extra route length on a demonstrated multi-stage relation.
+            has_control_feedback = any(
+                changes_turns or changes_appearance
+                for changes_turns, changes_appearance in self._control_effects.values()
+            )
+            meter_budget = (
+                self._resource_is_urgent_before_control(view, target, control)
+                if has_control_feedback
+                else None
+            )
             if meter_budget is not None:
                 proposal = self._resource_proposal(
                     view,

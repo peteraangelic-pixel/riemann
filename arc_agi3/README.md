@@ -23,7 +23,8 @@ novelty policy:
   badge frames whether a compact control changes orientation or appearance,
   learns a repeated depleting paired-pixel edge meter, and treats framed ring
   glyphs as one-use resources when they are reached, lie on an equally short
-  learned route, or are reachable before a meter-tight control/target leg; and
+  learned route, or (after a demonstrated control response) are reachable
+  before a meter-tight control/target leg; and
 - it never retries the same click in an unchanged visual state.
 
 This is an appropriate starting point for reliable plumbing and ablation. It
