@@ -985,11 +985,16 @@ class TileMazeNavigator:
     """
 
     _MAX_TOKEN_CONTROL_ENTRIES = 4
+    _MAX_FORCED_STEP_BLOCKS = 8
 
     def __init__(self) -> None:
         self._blocked: set[Coordinate] = set()
         self._blocked_uniform_values: set[int] = set()
         self._traversable_uniform_values: set[int] = set()
+        # A small set of attempted entries that causally led to a forced avatar
+        # displacement. Each retains its exact glyph and is revalidated on
+        # every accepted view before it may influence the next A* route.
+        self._forced_step_blocks: dict[Coordinate, TileGlyph] = {}
         self._visited: set[Coordinate] = set()
         self._active: tuple[Coordinate, frozenset[Coordinate]] | None = None
         self._last_avatar: Coordinate | None = None
@@ -1040,6 +1045,7 @@ class TileMazeNavigator:
         self._blocked.clear()
         self._blocked_uniform_values.clear()
         self._traversable_uniform_values.clear()
+        self._forced_step_blocks.clear()
         self._visited.clear()
         self._active = None
         self._last_avatar = None
@@ -1077,6 +1083,7 @@ class TileMazeNavigator:
     def _known_blocked(self, view: TileMazeView) -> set[Coordinate]:
         """Combine exact collisions with cautiously learned uniform wall style."""
         blocked = set(self._blocked)
+        blocked.update(self._forced_step_blocks)
         for coordinate, glyph in view.glyphs:
             if (
                 coordinate != view.avatar
@@ -1085,11 +1092,16 @@ class TileMazeNavigator:
                 blocked.add(coordinate)
         return blocked
 
-    def _clear_spatial_navigation(self) -> None:
-        """Discard route geometry while retaining an independently live relation."""
+    def _clear_spatial_navigation(
+        self, *, forced_step_blocks: dict[Coordinate, TileGlyph] | None = None
+    ) -> None:
+        """Discard route geometry while retaining independently live visual evidence."""
         self._blocked.clear()
         self._blocked_uniform_values.clear()
         self._traversable_uniform_values.clear()
+        self._forced_step_blocks.clear()
+        if forced_step_blocks is not None:
+            self._forced_step_blocks.update(forced_step_blocks)
         self._visited.clear()
         self._active = None
         self._last_avatar = None
@@ -1116,6 +1128,49 @@ class TileMazeNavigator:
             and self._last_token_target is not None
             and self._last_token_target.coordinate == self._token_goal
         )
+
+    @staticmethod
+    def _semantic_tiles(view: TileMazeView) -> set[Coordinate]:
+        """Return tiles whose changing glyphs are deliberate visual affordances."""
+        return {
+            view.avatar,
+            *view.control_tiles,
+            *view.resource_tiles,
+            *(target.coordinate for target in view.token_targets),
+        }
+
+    def _revalidated_forced_step_blocks(
+        self, view: TileMazeView
+    ) -> dict[Coordinate, TileGlyph]:
+        """Retain a forced-step guard only while its live glyph still agrees."""
+        glyphs = dict(view.glyphs)
+        semantic = self._semantic_tiles(view)
+        return {
+            coordinate: glyph
+            for coordinate, glyph in self._forced_step_blocks.items()
+            if coordinate not in semantic and glyphs.get(coordinate) == glyph
+        }
+
+    def _forced_step_blocks_after_displacement(
+        self, view: TileMazeView, expected: Coordinate
+    ) -> dict[Coordinate, TileGlyph]:
+        """Add one causally forced entry only under a stable visual alignment."""
+        retained = self._revalidated_forced_step_blocks(view)
+        previous = self._last_view
+        if previous is None or previous.shape != view.shape:
+            return retained
+        if expected in self._semantic_tiles(previous) or expected in self._semantic_tiles(view):
+            return retained
+        previous_glyph = self._glyph_at(previous, expected)
+        current_glyph = self._glyph_at(view, expected)
+        if previous_glyph is None or current_glyph is None or previous_glyph != current_glyph:
+            return retained
+        if expected not in retained:
+            self._token_evidence["forced-step-blocks"] += 1
+        retained[expected] = current_glyph
+        while len(retained) > self._MAX_FORCED_STEP_BLOCKS:
+            retained.pop(next(iter(retained)))
+        return retained
 
     def _clear_local_navigation(self) -> None:
         """Clear all local assumptions after an incompatible avatar displacement."""
@@ -1167,8 +1222,13 @@ class TileMazeNavigator:
             # at the same freshly perceived tile coordinates; otherwise rebuild
             # all local assumptions as before.
             if self._relation_is_live(view):
+                # A forced relocation can be caused by the just-entered visual
+                # tile rather than by a changed coordinate system. Keep only
+                # that causal entry when its glyph, board shape, target, and
+                # any selected control all still agree in the current view.
+                forced_step_blocks = self._forced_step_blocks_after_displacement(view, expected)
                 self._token_evidence["unexpected-avatar-relation-preserved"] += 1
-                self._clear_spatial_navigation()
+                self._clear_spatial_navigation(forced_step_blocks=forced_step_blocks)
             else:
                 self._token_evidence["unexpected-avatar-resets"] += 1
                 self._clear_local_navigation()
@@ -1848,6 +1908,10 @@ class TileMazeNavigator:
         if self._levels_completed is not None and snapshot.levels_completed != self._levels_completed:
             self.reset(reason="level-changed")
         self._levels_completed = snapshot.levels_completed
+        # Forced-step guards are never coordinate memories alone: every normal
+        # visual observation must still show their exact glyph before planning
+        # may treat them as obstacles.
+        self._forced_step_blocks = self._revalidated_forced_step_blocks(view)
         self._observe_bottom_meter(snapshot)
         entered_control = False
         if (
