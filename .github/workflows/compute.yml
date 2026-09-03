@@ -30,10 +30,10 @@ on:
   push:
     branches: ["arena/01a0633d-riemann"]
 
-  # auto-rotate gadget sampler: 6-hour slot index mod 1e6 as res/mod batch
+  # daily free-quota sampler (public repo: 2000 min/month; this costs ~30)
   # (active once this file is on the default branch)
   schedule:
-    - cron: "0 * * * *"
+    - cron: "0 6 * * *"
 
 jobs:
   hall:
@@ -111,7 +111,9 @@ jobs:
           echo "Using batch: $b"
       - name: Sample + check
         run: |
-          ./nauty2_8_9/geng 32 48:48 -d3 -D3 -c -t -f -q ${{ steps.b.outputs.batch }} \
+          # scheduled runs are capped (free-quota friendly); manual runs run long
+          if [ "${{ github.event_name }}" = "schedule" ]; then LIMIT=1500; else LIMIT=20000; fi
+          timeout $LIMIT ./nauty2_8_9/geng 32 48:48 -d3 -D3 -c -t -f -q ${{ steps.b.outputs.batch }} \
             | ./gadget_check > gadget_out.txt 2> gadget_err.txt
           tail -2 gadget_err.txt
           echo "=== FOUND bytes: $(wc -c < gadget_out.txt) ==="
