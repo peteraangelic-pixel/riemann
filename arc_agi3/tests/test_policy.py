@@ -120,6 +120,7 @@ class ExplorerPolicyTests(unittest.TestCase):
         avatar: tuple[int, int] = (6, 8),
         *,
         levels: int = 0,
+        goal_halo: bool = False,
     ) -> Snapshot:
         """Make a visual-only 12×12 navigation fixture with no game ID hint."""
         grid = [[4 for _ in range(64)] for _ in range(64)]
@@ -135,6 +136,9 @@ class ExplorerPolicyTests(unittest.TestCase):
         # landmark when it arrives, as an ordinary sprite layer would.
         paint((3, 6), (3, 3, 0, 1, 3))
         paint((6, 2), (5, 9, 5, 9, 5))
+        if goal_halo:
+            for cell in ((5, 1), (6, 1), (7, 1), (5, 2), (7, 2), (5, 3), (6, 3), (7, 3)):
+                paint(cell, (5, 9, 5, 9, 5))
         paint(avatar, (12, 12, 9, 9, 9))
         return Snapshot("NOT_FINISHED", levels, ("ACTION1", "ACTION2", "ACTION3", "ACTION4"), (tuple(map(tuple, grid)),))
 
@@ -206,6 +210,18 @@ class ExplorerPolicyTests(unittest.TestCase):
         self.assertIsNotNone(next_target)
         assert next_target is not None
         self.assertEqual(next_target.reasoning["target"], [6, 2])
+
+    def test_tile_maze_navigator_does_not_finish_on_goal_halo_periphery(self) -> None:
+        navigator = TileMazeNavigator()
+        goal = frozenset((x, y) for x in (5, 6, 7) for y in (1, 2, 3))
+        # Keep the target established from an earlier observation. The avatar
+        # has reached its lower visual halo, not the central enterable tile.
+        navigator._active = ((6, 2), goal)  # noqa: SLF001 - state-machine regression setup
+        proposal = navigator.choose(self._tile_maze_snapshot((6, 3), goal_halo=True))
+        self.assertIsNotNone(proposal)
+        assert proposal is not None
+        self.assertEqual(proposal.name, "ACTION1")
+        self.assertEqual(proposal.reasoning["target"], [6, 2])
 
     def test_policy_uses_tile_maze_navigation_only_when_the_visual_contract_matches(self) -> None:
         policy = ExplorerPolicy()

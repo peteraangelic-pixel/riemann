@@ -713,7 +713,10 @@ class TileMazeNavigator:
         self._levels_completed = snapshot.levels_completed
         self._observe_avatar(view)
 
-        if self._active is not None and view.avatar in self._active[1]:
+        # A decorative goal halo may span several tiles. Only its chosen centre
+        # counts as reached: accepting any halo tile prematurely abandons the
+        # final move into an enterable target.
+        if self._active is not None and view.avatar == self._active[0]:
             self._visited.add(self._active[0])
             self._active = None
 
