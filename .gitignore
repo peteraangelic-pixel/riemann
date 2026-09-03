@@ -2,3 +2,6 @@
 cubic_*.g6
 p2check_*.out
 geng_time_*.log
+
+# Local credentials (never commit)
+kaggle.json
