@@ -106,6 +106,7 @@ arc_agi3/
 │   ├── prepare_framework.py   # Prepares generated reference framework
 │   ├── play_local.py          # Local public-game runner
 │   ├── summarize_recordings.py # Frame sketches for CI/replay inspection
+│   ├── publish_check_summary.py # Publishes safe run evidence to a check
 │   └── build_notebook.py      # Creates Kaggle deployment artifact
 ├── tests/test_policy.py       # Offline regression tests
 ├── notebooks/kernel-metadata.json
