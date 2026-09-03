@@ -21,9 +21,10 @@ novelty policy:
 - under a stricter visual contract, it matches a framed 2× edge badge to a
   board glyph under quarter-turn and one-to-one palette relabeling, learns from
   badge frames whether a compact control changes orientation or appearance,
-  learns a repeated depleting paired-pixel edge meter, retains a verified
-  token/control relation through one transient unreadable frame or a
-  visually revalidated spatial displacement, and treats framed ring glyphs as
+  learns a repeated depleting paired-pixel edge meter, retains an already
+  verified token/control relation (and only such a relation) through one
+  transient unreadable frame or a visually revalidated spatial displacement,
+  and treats framed ring glyphs as
   one-use resources when they are reached, lie on an equally short learned
   route, or (between demonstrated stages of a multi-control response) are
   reachable before a meter-tight control/target leg; and
@@ -109,10 +110,10 @@ A separate bounded public evaluation runs 400 actions per selected public game:
 use **Run workflow** with `public_eval=true`, push an explicit `[arc-eval]`
 commit, or run `make evaluate-public EVAL_STEPS=400` locally. It is likewise
 never scheduled and is an experiment—not a Kaggle submission. Each explicit
-smoke/evaluation exposes a compact outcome table, action evidence, early
-frame-derived avatar-tile geometry, and first/final public-frame sketches in
-the check details; full public JSONL recordings remain an expiring 14-day
-artifact.
+smoke/evaluation exposes a compact outcome table, action evidence, early and
+checkpointed frame-derived avatar-tile geometry, and first/final public-frame
+sketches in the check details; full public JSONL recordings remain an expiring
+14-day artifact.
 
 ## Layout
 

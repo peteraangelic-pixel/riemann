@@ -1109,6 +1109,14 @@ class TileMazeNavigator:
             return False
         return self._token_control is None or self._token_control in view.control_tiles
 
+    def _has_verified_token_relation(self) -> bool:
+        """Whether the last accepted tile view established the selected target."""
+        return (
+            self._token_goal is not None
+            and self._last_token_target is not None
+            and self._last_token_target.coordinate == self._token_goal
+        )
+
     def _clear_local_navigation(self) -> None:
         """Clear all local assumptions after an incompatible avatar displacement."""
         self._clear_spatial_navigation()
@@ -1814,6 +1822,14 @@ class TileMazeNavigator:
         """Return one legal tile-navigation action, or ``None`` to use graph fallback."""
         view = tile_maze_view(snapshot)
         if view is None:
+            # Most ARC games are not tile mazes. A rejected view is eligible
+            # for one-frame continuity only after the *last accepted* tile view
+            # independently established the stored token target. Otherwise
+            # silently clear any partial maze state rather than alternately
+            # creating grace and reset evidence on every unrelated frame.
+            if not self._has_verified_token_relation():
+                self._clear_local_navigation()
+                return None
             self._view_misses += 1
             # A one-frame animation can temporarily hide the strict avatar or
             # badge geometry. Yield to the graph explorer for that one frame,

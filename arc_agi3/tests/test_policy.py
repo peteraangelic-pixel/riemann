@@ -740,6 +740,20 @@ class ExplorerPolicyTests(unittest.TestCase):
         self.assertEqual(evidence["unexpected-avatar-relation-preserved"], 1)
         self.assertNotIn("unexpected-avatar-resets", evidence)
 
+    def test_tile_maze_navigator_does_not_cycle_grace_on_non_tile_frames(self) -> None:
+        """Unrelated games must not manufacture tile-view recovery state."""
+        navigator = TileMazeNavigator()
+        non_tile = Snapshot(
+            "NOT_FINISHED",
+            0,
+            ("ACTION1", "ACTION2", "ACTION6"),
+            (((0, 0), (0, 0)),),
+        )
+        for _ in range(3):
+            self.assertIsNone(navigator.choose(non_tile))
+        self.assertEqual(navigator.token_evidence(), {})
+        self.assertEqual(navigator._view_misses, 0)  # noqa: SLF001 - bounded-state regression
+
     def test_tile_maze_navigator_keeps_a_live_relation_through_one_missing_frame(self) -> None:
         """A single unreadable frame yields safely without throwing away context."""
         navigator = TileMazeNavigator()
