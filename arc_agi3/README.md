@@ -21,10 +21,12 @@ novelty policy:
 - under a stricter visual contract, it matches a framed 2× edge badge to a
   board glyph under quarter-turn and one-to-one palette relabeling, learns from
   badge frames whether a compact control changes orientation or appearance,
-  learns a repeated depleting paired-pixel edge meter, and treats framed ring
-  glyphs as one-use resources when they are reached, lie on an equally short
-  learned route, or (between demonstrated stages of a multi-control response)
-  are reachable before a meter-tight control/target leg; and
+  learns a repeated depleting paired-pixel edge meter, retains a verified
+  token/control relation through one transient unreadable frame or a
+  visually revalidated spatial displacement, and treats framed ring glyphs as
+  one-use resources when they are reached, lie on an equally short learned
+  route, or (between demonstrated stages of a multi-control response) are
+  reachable before a meter-tight control/target leg; and
 - it never retries the same click in an unchanged visual state.
 
 This is an appropriate starting point for reliable plumbing and ablation. It

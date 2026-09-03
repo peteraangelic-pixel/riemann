@@ -995,6 +995,9 @@ class TileMazeNavigator:
         self._last_avatar: Coordinate | None = None
         self._last_action: str | None = None
         self._last_view: TileMazeView | None = None
+        # One unreadable animation/modal frame should not erase a relation
+        # that is visually re-established on the next observation.
+        self._view_misses = 0
         self._levels_completed: int | None = None
         # An optional visual relation between an edge token, a compact control,
         # and a framed board target. These are coordinates inferred fresh from
@@ -1042,6 +1045,7 @@ class TileMazeNavigator:
         self._last_avatar = None
         self._last_action = None
         self._last_view = None
+        self._view_misses = 0
         self._levels_completed = None
         self._token_goal = None
         self._token_control = None
@@ -1081,13 +1085,33 @@ class TileMazeNavigator:
                 blocked.add(coordinate)
         return blocked
 
-    def _clear_local_navigation(self) -> None:
-        """Clear assumptions invalidated by an unexpected avatar displacement."""
+    def _clear_spatial_navigation(self) -> None:
+        """Discard route geometry while retaining an independently live relation."""
         self._blocked.clear()
         self._blocked_uniform_values.clear()
         self._traversable_uniform_values.clear()
         self._visited.clear()
         self._active = None
+        self._last_avatar = None
+        self._last_action = None
+        self._last_view = None
+        self._view_misses = 0
+        self._bounce_return = None
+        self._active_resource = None
+        self._active_resource_meter_bound = False
+        self._used_resources.clear()
+        self._route_deferred_resources.clear()
+        self._meter_deferred_resources.clear()
+
+    def _relation_is_live(self, view: TileMazeView) -> bool:
+        """Whether the selected token relation still appears at its live tiles."""
+        if self._token_goal is None or self._target_for_goal(view, self._token_goal) is None:
+            return False
+        return self._token_control is None or self._token_control in view.control_tiles
+
+    def _clear_local_navigation(self) -> None:
+        """Clear all local assumptions after an incompatible avatar displacement."""
+        self._clear_spatial_navigation()
         self._token_goal = None
         self._token_control = None
         self._control_entries = 0
@@ -1100,12 +1124,6 @@ class TileMazeNavigator:
         self._meter_tick_observations = 0
         self._meter_active_value = None
         self._meter_units_per_action = None
-        self._bounce_return = None
-        self._active_resource = None
-        self._active_resource_meter_bound = False
-        self._used_resources.clear()
-        self._route_deferred_resources.clear()
-        self._meter_deferred_resources.clear()
 
     def _observe_avatar(self, view: TileMazeView) -> None:
         if self._last_avatar is None or self._last_action is None:
@@ -1136,9 +1154,16 @@ class TileMazeNavigator:
                 self._traversable_uniform_values.add(traversed_value)
         else:
             # A teleport, moving platform, or a changed tile scale invalidates
-            # a one-step model. Rebuild it from this ordinary observation.
-            self._token_evidence["unexpected-avatar-resets"] += 1
-            self._clear_local_navigation()
+            # the local path model. Preserve a stricter high-level relation
+            # only when its board token and selected control are still visible
+            # at the same freshly perceived tile coordinates; otherwise rebuild
+            # all local assumptions as before.
+            if self._relation_is_live(view):
+                self._token_evidence["unexpected-avatar-relation-preserved"] += 1
+                self._clear_spatial_navigation()
+            else:
+                self._token_evidence["unexpected-avatar-resets"] += 1
+                self._clear_local_navigation()
 
     def _observe_bottom_meter(self, snapshot: Snapshot) -> None:
         """Learn a depleting bottom indicator only after repeated small ticks."""
@@ -1167,12 +1192,29 @@ class TileMazeNavigator:
         self._last_bottom_meter = meter
         if meter is not None:
             self._meter_evidence["candidate-observations"] += 1
-        if (
-            meter is None
-            or previous is None
-            or (meter.row, meter.start, len(meter.values))
-            != (previous.row, previous.start, len(previous.values))
+        if meter is None:
+            return
+        if previous is None:
+            if self._meter_active_value is not None or self._meter_units_per_action is not None:
+                self._meter_tick_pair = None
+                self._meter_tick_observations = 0
+                self._meter_active_value = None
+                self._meter_units_per_action = None
+                self._meter_evidence["geometry-estimate-resets"] += 1
+            return
+        if (meter.row, meter.start, len(meter.values)) != (
+            previous.row,
+            previous.start,
+            len(previous.values),
         ):
+            # A new footer geometry cannot safely inherit an old active colour
+            # or tick width. This also keeps a preserved high-level token
+            # relation from steering by a stale meter after a screen shift.
+            self._meter_tick_pair = None
+            self._meter_tick_observations = 0
+            self._meter_active_value = None
+            self._meter_units_per_action = None
+            self._meter_evidence["geometry-estimate-resets"] += 1
             return
         self._meter_evidence["matching-geometry-observations"] += 1
         replacements = [
@@ -1772,8 +1814,21 @@ class TileMazeNavigator:
         """Return one legal tile-navigation action, or ``None`` to use graph fallback."""
         view = tile_maze_view(snapshot)
         if view is None:
-            self.reset(reason="view-rejected")
+            self._view_misses += 1
+            # A one-frame animation can temporarily hide the strict avatar or
+            # badge geometry. Yield to the graph explorer for that one frame,
+            # but preserve the verified relation so a normal next frame does
+            # not restart the entire control plan. Two consecutive misses are
+            # treated as a genuine modal/layout change.
+            self._last_avatar = None
+            self._last_action = None
+            self._last_view = None
+            if self._view_misses >= 2:
+                self.reset(reason="view-rejected")
+            else:
+                self._token_evidence["view-grace-observations"] += 1
             return None
+        self._view_misses = 0
         if self._levels_completed is not None and snapshot.levels_completed != self._levels_completed:
             self.reset(reason="level-changed")
         self._levels_completed = snapshot.levels_completed

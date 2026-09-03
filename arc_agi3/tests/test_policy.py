@@ -156,6 +156,17 @@ class PolicyHelpersTests(unittest.TestCase):
         self.assertEqual(navigator._meter_actions_remaining(), 21)  # noqa: SLF001
         self.assertEqual(navigator.meter_evidence()["geometry-alignments"], 1)
 
+        # A new footer placement cannot reuse the prior active colour/tick
+        # estimate, even if its pixels still look meter-like.
+        navigator._last_bottom_meter = BottomEdgeMeter(  # noqa: SLF001 - shifted geometry setup
+            row=60,
+            start=13,
+            values=(11,) * 42,
+        )
+        navigator._observe_bottom_meter(snapshot(42))  # noqa: SLF001 - geometry update
+        self.assertIsNone(navigator._meter_actions_remaining())  # noqa: SLF001
+        self.assertEqual(navigator.meter_evidence()["geometry-estimate-resets"], 1)
+
 
 class ExplorerPolicyTests(unittest.TestCase):
     @staticmethod
@@ -703,6 +714,52 @@ class ExplorerPolicyTests(unittest.TestCase):
                 "relations-selected": 1,
             },
         )
+
+    def test_tile_maze_navigator_preserves_a_live_relation_after_an_unexpected_move(self) -> None:
+        """A spatial discontinuity need not erase a still-visible token/control pair."""
+        navigator = TileMazeNavigator()
+        initial = navigator.choose(
+            self._token_maze_snapshot((4, 6), turns_to_target=2, controls=((3, 6),))
+        )
+        self.assertIsNotNone(initial)
+        assert initial is not None
+        self.assertEqual(initial.reasoning["target"], [3, 6])
+
+        # The avatar lands somewhere other than either its prior tile or the
+        # one-step successor, while the selected token and control are still
+        # freshly recognized at their previous lattice coordinates.
+        resumed = navigator.choose(
+            self._token_maze_snapshot((6, 6), turns_to_target=2, controls=((3, 6),))
+        )
+        self.assertIsNotNone(resumed)
+        assert resumed is not None
+        self.assertEqual(resumed.reasoning["kind"], "tile-badge-navigation")
+        self.assertEqual(resumed.reasoning["target"], [3, 6])
+        evidence = navigator.token_evidence()
+        self.assertEqual(evidence["relations-selected"], 1)
+        self.assertEqual(evidence["unexpected-avatar-relation-preserved"], 1)
+        self.assertNotIn("unexpected-avatar-resets", evidence)
+
+    def test_tile_maze_navigator_keeps_a_live_relation_through_one_missing_frame(self) -> None:
+        """A single unreadable frame yields safely without throwing away context."""
+        navigator = TileMazeNavigator()
+        navigator.choose(self._token_maze_snapshot((4, 6), turns_to_target=2, controls=((3, 6),)))
+        missing = Snapshot(
+            "NOT_FINISHED",
+            0,
+            ("ACTION1", "ACTION2", "ACTION3", "ACTION4"),
+            (((0, 0), (0, 0)),),
+        )
+        self.assertIsNone(navigator.choose(missing))
+        self.assertEqual(navigator.token_evidence()["view-grace-observations"], 1)
+
+        resumed = navigator.choose(
+            self._token_maze_snapshot((6, 6), turns_to_target=2, controls=((3, 6),))
+        )
+        self.assertIsNotNone(resumed)
+        assert resumed is not None
+        self.assertEqual(resumed.reasoning["target"], [3, 6])
+        self.assertEqual(navigator.token_evidence()["relations-selected"], 1)
 
     def test_tile_maze_navigator_generalizes_a_confirmed_uniform_collision_style(self) -> None:
         snapshot = self._token_maze_snapshot(
