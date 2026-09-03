@@ -125,6 +125,11 @@ class ExplorerPolicyTests(unittest.TestCase):
         self.assertEqual(stats["attempts"], 2)
         self.assertEqual(stats["level_gains"], 1)
         self.assertEqual(stats["game_overs"], 1)
+        trace = policy.transition_trace()
+        self.assertEqual([entry["action"] for entry in trace], ["ACTION1", "ACTION1"])
+        self.assertTrue(trace[0]["changed"])
+        self.assertTrue(trace[-1]["game_over"])
+        self.assertEqual(policy.transition_trace(limit=0), [])
 
     def test_action_name_catalog_has_every_protocol_action(self) -> None:
         self.assertEqual(ACTION_NAMES, ("RESET", "ACTION1", "ACTION2", "ACTION3", "ACTION4", "ACTION5", "ACTION6", "ACTION7"))

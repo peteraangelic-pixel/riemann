@@ -11,10 +11,12 @@ import argparse
 import importlib
 import json
 import logging
+import os
 import subprocess
 import sys
 from dataclasses import asdict, dataclass
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 VENDOR = ROOT / "vendor" / "ARC-AGI-3-Agents"
@@ -29,6 +31,7 @@ class RunResult:
     levels_completed: int
     actions: int
     policy_evidence: dict[str, dict[str, int]]
+    policy_trace: list[dict[str, Any]]
 
 
 def _state_name(value: object) -> str:
@@ -107,10 +110,16 @@ def main() -> None:
     from arc_agi import OperationMode
 
     mode = OperationMode.OFFLINE if args.offline else OperationMode.NORMAL
+    recordings_dir = ROOT / "recordings"
+    # The SDK receives this directory as a constructor argument, while the
+    # reference framework's Recorder reads only RECORDINGS_DIR. Keep both
+    # components aligned so --record never drops JSONL files into the source
+    # tree or outside the ignored recordings directory.
+    os.environ["RECORDINGS_DIR"] = str(recordings_dir)
     arcade = arc_agi.Arcade(
         operation_mode=mode,
         environments_dir=str(ROOT / "environment_files"),
-        recordings_dir=str(ROOT / "recordings"),
+        recordings_dir=str(recordings_dir),
     )
     environments = arcade.get_environments()
 
@@ -133,6 +142,9 @@ def main() -> None:
     if not game_ids:
         raise SystemExit("No games selected.")
 
+    # Keep the runner's public ceiling exact even though the upstream loop uses
+    # ``<= MAX_ACTIONS`` internally.
+    MyAgent.ACTION_BUDGET = args.max_steps
     MyAgent.MAX_ACTIONS = args.max_steps
     results: list[RunResult] = []
     for game_id in game_ids:
@@ -158,6 +170,7 @@ def main() -> None:
             levels_completed=int(final.levels_completed),
             actions=int(agent.action_counter),
             policy_evidence=agent.policy.diagnostics(),
+            policy_trace=agent.policy.transition_trace(),
         )
         results.append(result)
         print(

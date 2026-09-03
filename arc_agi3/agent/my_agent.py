@@ -29,7 +29,10 @@ class MyAgent(Agent):
 
     # This is an exploration ceiling, not a target. Competition scoring rewards
     # few actions, but a non-random baseline needs room to infer simple controls.
-    MAX_ACTIONS = 240
+    # The reference Agent loop uses ``<= MAX_ACTIONS``, so ``is_done`` below
+    # additionally enforces this exact budget instead of allowing an off-by-one.
+    ACTION_BUDGET = 240
+    MAX_ACTIONS = ACTION_BUDGET
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
@@ -41,8 +44,8 @@ class MyAgent(Agent):
         return f"{super().name}.novelty-v1"
 
     def is_done(self, frames: list[FrameData], latest_frame: FrameData) -> bool:
-        """Stop only after a win; GAME_OVER must be followed by RESET."""
-        return latest_frame.state is GameState.WIN
+        """Stop on win or budget; GAME_OVER must otherwise be followed by RESET."""
+        return self.action_counter >= self.ACTION_BUDGET or latest_frame.state is GameState.WIN
 
     @staticmethod
     def _to_game_action(proposal: ActionProposal) -> GameAction:

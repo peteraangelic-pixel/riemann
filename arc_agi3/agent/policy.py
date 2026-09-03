@@ -420,6 +420,7 @@ class ExplorerPolicy:
         self._global_stats: dict[str, ActionStats] = defaultdict(ActionStats)
         self._state_stats: dict[tuple[str, str], ActionStats] = defaultdict(ActionStats)
         self._tried_clicks: dict[str, set[Coordinate]] = defaultdict(set)
+        self._transition_trace: list[dict[str, Any]] = []
 
     def diagnostics(self) -> dict[str, dict[str, int]]:
         """Return compact, serializable aggregate evidence for a replay."""
@@ -433,6 +434,17 @@ class ExplorerPolicy:
             }
             for action, stats in sorted(self._global_stats.items())
         }
+
+    def transition_trace(self, limit: int = 80) -> list[dict[str, Any]]:
+        """Return recent action/outcome evidence without retaining grid pixels.
+
+        The compact trace is intended for local and CI smoke reports. It lets a
+        replay show which probes changed a state without exporting frames or any
+        service credential.
+        """
+        if limit < 1:
+            return []
+        return [dict(entry) for entry in self._transition_trace[-limit:]]
 
     def _observe_transition(self, current: Snapshot, signature: str) -> set[Coordinate]:
         changed: set[Coordinate] = set()
@@ -460,6 +472,17 @@ class ExplorerPolicy:
             level_gain=transition.level_gain,
             game_over=transition.game_over,
             revisit=transition.revisit,
+        )
+        self._transition_trace.append(
+            {
+                "action": self._pending.key,
+                "changed": transition.changed,
+                "level_gain": transition.level_gain,
+                "game_over": transition.game_over,
+                "revisit": transition.revisit,
+                "next_state": current.state,
+                "levels_completed": current.levels_completed,
+            }
         )
         return changed
 

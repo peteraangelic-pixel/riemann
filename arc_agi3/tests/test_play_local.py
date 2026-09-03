@@ -33,6 +33,17 @@ class LocalRunnerReportTests(unittest.TestCase):
             levels_completed=2,
             actions=17,
             policy_evidence={"ACTION6": {"attempts": 4, "changed": 3}},
+            policy_trace=[
+                {
+                    "action": "ACTION6:1:1",
+                    "changed": True,
+                    "level_gain": 0,
+                    "game_over": False,
+                    "revisit": False,
+                    "next_state": "NOT_FINISHED",
+                    "levels_completed": 2,
+                }
+            ],
         )
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "nested" / "report.json"
@@ -53,6 +64,17 @@ class LocalRunnerReportTests(unittest.TestCase):
                 "game_id": "ls20",
                 "levels_completed": 2,
                 "policy_evidence": {"ACTION6": {"attempts": 4, "changed": 3}},
+                "policy_trace": [
+                    {
+                        "action": "ACTION6:1:1",
+                        "changed": True,
+                        "game_over": False,
+                        "level_gain": 0,
+                        "levels_completed": 2,
+                        "next_state": "NOT_FINISHED",
+                        "revisit": False,
+                    }
+                ],
                 "state": "NOT_FINISHED",
             }
         ])

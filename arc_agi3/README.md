@@ -58,7 +58,8 @@ make setup
 make test
 
 # First real-environment smoke run. The SDK caches public environment files
-# below environment_files/ for later offline use.
+# below environment_files/ for later offline use. JSONL trajectories and a
+# compact frame-free outcome report stay in ignored recordings/.
 make verify-local
 
 # Build, but do not upload, a Kaggle notebook.
