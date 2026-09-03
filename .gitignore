@@ -5,3 +5,15 @@ geng_time_*.log
 
 # Local credentials (never commit)
 kaggle.json
+
+# ARC-AGI-3 local credentials, runtime data and generated deployment artifacts
+arc_agi3/.env
+arc_agi3/.kaggle/
+arc_agi3/.venv/
+arc_agi3/vendor/
+arc_agi3/environment_files/
+arc_agi3/recordings/
+arc_agi3/notebooks/submission.ipynb
+arc_agi3/logs.log
+arc_agi3/**/__pycache__/
+arc_agi3/**/*.pyc

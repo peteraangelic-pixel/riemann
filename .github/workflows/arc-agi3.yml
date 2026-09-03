@@ -1,0 +1,72 @@
+name: ARC-AGI-3 checks
+
+on:
+  push:
+    branches: ["arena/01a0661a-riemann"]
+    paths:
+      - "arc_agi3/**"
+      - ".github/workflows/arc-agi3.yml"
+  pull_request:
+    paths:
+      - "arc_agi3/**"
+      - ".github/workflows/arc-agi3.yml"
+  workflow_dispatch:
+    inputs:
+      local_smoke:
+        description: "Run the public ARC SDK smoke test (requires ARC service connectivity)"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  unit:
+    name: Offline policy and notebook checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile tracked source
+        run: |
+          python -m py_compile \
+            arc_agi3/agent/policy.py \
+            arc_agi3/agent/my_agent.py \
+            arc_agi3/scripts/configure_kaggle.py \
+            arc_agi3/scripts/prepare_framework.py \
+            arc_agi3/scripts/play_local.py \
+            arc_agi3/scripts/build_notebook.py
+      - name: Run offline regression tests
+        run: python -m unittest discover -s arc_agi3/tests -v
+
+  local-smoke:
+    name: Public ARC SDK smoke test
+    if: github.event_name == 'workflow_dispatch' && inputs.local_smoke
+    needs: unit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install SDK and reference framework
+        working-directory: arc_agi3
+        run: make setup
+      - name: Play two public environments
+        working-directory: arc_agi3
+        run: make verify-local | tee local-smoke.log
+      - name: Upload public smoke recordings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: arc-agi3-local-smoke-${{ github.run_id }}
+          path: |
+            arc_agi3/local-smoke.log
+            arc_agi3/recordings/
+          if-no-files-found: warn
+          retention-days: 14

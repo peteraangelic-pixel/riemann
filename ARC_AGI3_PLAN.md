@@ -59,6 +59,29 @@ iteracji i zgłoszenia przed kamieniem milowym 30 września 2026 r.
 - Sekrety i pliki poświadczeń pozostają lokalne lub w GitHub Secrets — nigdy w
   commicie, logach ani artefaktach.
 
+## Stan implementacji — 03.09.2026
+
+- Dodano katalog `arc_agi3/` z deterministycznym baseline'em
+  `novelty-explorer-v1`: legalne akcje, analiza zmian ramek, ranking kliknięć
+  według komponentów i mały graf stanów zamiast losowych akcji.
+- Dodano offline'owe testy regresji oraz generator notebooka Kaggle z
+  wyłączonym internetem. Domyślnie wybiera CPU; GPU jest świadomą opcją.
+- Dodano ręcznie uruchamiany workflow GitHub Actions do testów ARC. Nie ma on
+  crona, nie zawiera poświadczeń i nie wykonuje zgłoszenia Kaggle.
+- Lokalny sandbox nie łączy się obecnie TLS z ARC/Kaggle, dlatego rzeczywisty
+  smoke test publicznych gier jest przeznaczony do ręcznego runu GitHub Actions
+  lub środowiska z dostępem do ARC. Nie wykonano zgłoszenia konkursowego.
+
+## Najbliższe bramki
+
+1. Potwierdzić, że konto Kaggle dołączyło do konkursu i zaakceptowało regulamin.
+2. Uruchomić publiczny smoke test na `ls20` i `vc33`, obejrzeć recordingi i
+   ustalić pierwsze powtarzalne mechaniki.
+3. Uzyskać lokalny `ARC_API_KEY` (poza Git) dla pełnego zestawu publicznych
+   środowisk oraz zbudować stały zestaw walidacyjny.
+4. Dopiero po walidacji pushować notebook do Kaggle; oficjalne zgłoszenie
+   leaderboardowe pozostaje osobną, świadomą decyzją (limit: jedno dziennie).
+
 ## Kryterium gotowości
 
 Przed 30.09.2026 repozytorium ma zawierać odtwarzalny pipeline ARC-AGI-3,
