@@ -156,11 +156,11 @@ def main() -> None:
         agent = MyAgent(
             card_id="local-dev",
             game_id=game_id,
-            agent_name=f"novelty-v4.{game_id}",
+            agent_name=f"novelty-v5.{game_id}",
             ROOT_URL="http://localhost",
             record=args.record,
             arc_env=env,
-            tags=["local-dev", "novelty-v4"],
+            tags=["local-dev", "novelty-v5"],
         )
         agent.main()
         agent.finalize_diagnostics()

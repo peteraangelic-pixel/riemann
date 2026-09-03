@@ -16,7 +16,11 @@ novelty policy:
 - for standard directional controls, it first verifies the inverse move and
   schedules reachable shallow frontiers before descending farther;
 - when a 5×5 striped-tile maze is visually recognized, it learns failed moves
-  as obstacles and replans to visible interior landmarks; and
+  as obstacles, generalizes only confirmed uniform wall styles, and replans to
+  visible interior landmarks;
+- under a stricter visual contract, it matches a framed 2× edge badge to a
+  rotated board glyph and cycles an information-rich local control only until
+  the two visual tokens agree; and
 - it never retries the same click in an unchanged visual state.
 
 This is an appropriate starting point for reliable plumbing and ablation. It
@@ -99,9 +103,10 @@ A separate bounded public evaluation runs 400 actions per selected public game:
 use **Run workflow** with `public_eval=true`, push an explicit `[arc-eval]`
 commit, or run `make evaluate-public EVAL_STEPS=400` locally. It is likewise
 never scheduled and is an experiment—not a Kaggle submission. Each explicit
-smoke/evaluation exposes a compact outcome table, action evidence, and
-first/final public-frame sketches in the check details; full public JSONL
-recordings remain an expiring 14-day artifact.
+smoke/evaluation exposes a compact outcome table, action evidence, early
+frame-derived avatar-tile geometry, and first/final public-frame sketches in
+the check details; full public JSONL recordings remain an expiring 14-day
+artifact.
 
 ## Layout
 

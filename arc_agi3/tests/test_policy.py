@@ -142,6 +142,60 @@ class ExplorerPolicyTests(unittest.TestCase):
         paint(avatar, (12, 12, 9, 9, 9))
         return Snapshot("NOT_FINISHED", levels, ("ACTION1", "ACTION2", "ACTION3", "ACTION4"), (tuple(map(tuple, grid)),))
 
+    @staticmethod
+    def _token_maze_snapshot(
+        avatar: tuple[int, int],
+        *,
+        turns_to_target: int,
+        walls: frozenset[tuple[int, int]] = frozenset(),
+    ) -> Snapshot:
+        """Make a generic badge/control/target fixture with arbitrary colours."""
+        grid = [[4 for _ in range(64)] for _ in range(64)]
+
+        def paint(cell: tuple[int, int], glyph: tuple[tuple[int, ...], ...]) -> None:
+            x = 4 + 5 * cell[0]
+            y = 5 * cell[1]
+            for row, values in enumerate(glyph):
+                grid[y + row][x : x + 5] = values
+
+        def rotate(glyph: tuple[tuple[int, ...], ...]) -> tuple[tuple[int, ...], ...]:
+            return tuple(tuple(glyph[4 - x][y] for x in range(5)) for y in range(5))
+
+        target = (
+            (5, 5, 5, 5, 5),
+            (5, 9, 9, 9, 5),
+            (5, 9, 5, 5, 5),
+            (5, 9, 5, 9, 5),
+            (5, 5, 5, 5, 5),
+        )
+        badge = target
+        for _ in range((-turns_to_target) % 4):
+            badge = rotate(badge)
+        control = (
+            (4, 4, 4, 4, 4),
+            (4, 0, 4, 4, 4),
+            (4, 4, 1, 1, 4),
+            (4, 4, 1, 4, 4),
+            (4, 4, 4, 4, 4),
+        )
+        for wall in walls:
+            paint(wall, ((8,) * 5,) * 5)
+        paint((7, 2), target)
+        paint((3, 6), control)
+        paint(avatar, ((12,) * 5, (12,) * 5, (9,) * 5, (9,) * 5, (9,) * 5))
+        for y in range(5):
+            for x in range(5):
+                value = badge[y][x]
+                for dy in range(2):
+                    for dx in range(2):
+                        grid[53 + 2 * y + dy][1 + 2 * x + dx] = value
+        return Snapshot(
+            "NOT_FINISHED",
+            0,
+            ("ACTION1", "ACTION2", "ACTION3", "ACTION4"),
+            (tuple(map(tuple, grid)),),
+        )
+
     def test_resets_unplayed_and_game_over(self) -> None:
         policy = ExplorerPolicy()
         initial = self._snapshot(state="NOT_PLAYED", actions=())
@@ -190,6 +244,69 @@ class ExplorerPolicyTests(unittest.TestCase):
         self.assertEqual(view.shape, (12, 12))
         self.assertIn((3, 6), [representative for representative, _ in view.landmarks])
         self.assertIn((6, 2), [representative for representative, _ in view.landmarks])
+
+    def test_tile_maze_view_matches_edge_badge_to_rotated_board_target(self) -> None:
+        view = tile_maze_view(self._token_maze_snapshot((5, 6), turns_to_target=3))
+        self.assertIsNotNone(view)
+        assert view is not None
+        self.assertEqual(view.control_tiles, ((3, 6),))
+        self.assertEqual(
+            [(target.coordinate, target.quarter_turns) for target in view.token_targets],
+            [((7, 2), 3)],
+        )
+
+    def test_tile_maze_navigator_cycles_a_control_until_badge_matches_target(self) -> None:
+        navigator = TileMazeNavigator()
+        # The token initially needs three visually inferred quarter turns. A
+        # successful entry changes it to two, then local exits/re-entries cycle
+        # it without any fixed game-specific press count.
+        self.assertEqual(
+            navigator.choose(self._token_maze_snapshot((4, 6), turns_to_target=3)).name,
+            "ACTION3",
+        )
+        self.assertEqual(
+            navigator.choose(self._token_maze_snapshot((3, 6), turns_to_target=2)).name,
+            "ACTION4",
+        )
+        self.assertEqual(
+            navigator.choose(self._token_maze_snapshot((4, 6), turns_to_target=2)).name,
+            "ACTION3",
+        )
+        self.assertEqual(
+            navigator.choose(self._token_maze_snapshot((3, 6), turns_to_target=1)).name,
+            "ACTION4",
+        )
+        self.assertEqual(
+            navigator.choose(self._token_maze_snapshot((4, 6), turns_to_target=1)).name,
+            "ACTION3",
+        )
+        toward_goal = navigator.choose(self._token_maze_snapshot((3, 6), turns_to_target=0))
+        self.assertIsNotNone(toward_goal)
+        assert toward_goal is not None
+        self.assertEqual(toward_goal.reasoning["kind"], "tile-badge-navigation")
+        self.assertEqual(toward_goal.reasoning["target"], [7, 2])
+
+    def test_tile_maze_navigator_generalizes_a_confirmed_uniform_collision_style(self) -> None:
+        snapshot = self._token_maze_snapshot(
+            (4, 6),
+            turns_to_target=3,
+            walls=frozenset({(5, 6), (5, 5)}),
+        )
+        view = tile_maze_view(snapshot)
+        self.assertIsNotNone(view)
+        assert view is not None
+        navigator = TileMazeNavigator()
+        # A previous successful departure exposed uniform style 4 as walkable.
+        # The next attempted move stays in place at a differently styled tile.
+        navigator._last_avatar = (4, 6)  # noqa: SLF001 - transition setup
+        navigator._last_action = "ACTION4"  # noqa: SLF001 - transition setup
+        navigator._last_view = view  # noqa: SLF001 - transition setup
+        navigator._traversable_uniform_values.add(4)  # noqa: SLF001
+        navigator._observe_avatar(view)  # noqa: SLF001 - test visual evidence update
+        self.assertIn(8, navigator._blocked_uniform_values)  # noqa: SLF001
+        self.assertIn((5, 6), navigator._known_blocked(view))  # noqa: SLF001
+        self.assertIn((5, 5), navigator._known_blocked(view))  # noqa: SLF001
+        self.assertNotIn((4, 6), navigator._known_blocked(view))  # noqa: SLF001
 
     def test_optimistic_tile_path_replans_around_a_learned_collision(self) -> None:
         direct = optimistic_tile_path((6, 8), (3, 6), (12, 12), set())

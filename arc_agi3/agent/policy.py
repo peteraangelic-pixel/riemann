@@ -45,6 +45,7 @@ INVERSE_DIRECTIONAL_ACTION = {
 Grid = tuple[tuple[int, ...], ...]
 Planes = tuple[Grid, ...]
 Coordinate = tuple[int, int]
+TileGlyph = tuple[tuple[int, ...], ...]
 
 
 @dataclass(frozen=True)
@@ -422,7 +423,7 @@ def rank_click_targets(
                 continue
             score = base_score + (1000 if (x, y) in changed else 0)
             reason = {
-                "policy": "novelty-explorer-v4",
+                "policy": "novelty-explorer-v5",
                 "kind": "salient-component",
                 "color": component.color,
                 "component_size": component_size,
@@ -443,7 +444,7 @@ def rank_click_targets(
             (
                 score,
                 {
-                    "policy": "novelty-explorer-v4",
+                    "policy": "novelty-explorer-v5",
                     "kind": "lattice-fallback",
                     "recent_change": point in changed,
                 },
@@ -472,18 +473,32 @@ MAZE_ACTION_ORDER = ("ACTION3", "ACTION1", "ACTION4", "ACTION2")
 
 
 @dataclass(frozen=True)
+class TokenTarget:
+    """A board glyph that visually matches an edge token after quarter turns."""
+
+    coordinate: Coordinate
+    quarter_turns: int
+    group_size: int
+
+
+@dataclass(frozen=True)
 class TileMazeView:
     """A conservative visual view of a regular tile-navigation board.
 
     This recognizer is deliberately opt-in: it requires a 5×5 two-colour
     striped avatar and all four directional controls.  It does not inspect a
-    game ID or assume a particular colour palette.  ``landmarks`` are compact
+    game ID or assume a particular colour palette. ``landmarks`` are compact
     non-uniform tile clusters that can be reached as potential switches/goals.
+    ``token_targets`` adds an even stricter visual relation: a framed 2× edge
+    badge has the exact same glyph as an interior tile under a quarter-turn.
     """
 
     avatar: Coordinate
     shape: tuple[int, int]
     landmarks: tuple[tuple[Coordinate, frozenset[Coordinate]], ...]
+    glyphs: tuple[tuple[Coordinate, TileGlyph], ...]
+    token_targets: tuple[TokenTarget, ...]
+    control_tiles: tuple[Coordinate, ...]
 
 
 def _tile(grid: Grid, x: int, y: int) -> tuple[tuple[int, ...], ...] | None:
@@ -560,6 +575,97 @@ def _group_representative(group: frozenset[Coordinate]) -> Coordinate:
     )
 
 
+def _uniform_tile_value(glyph: TileGlyph | None) -> int | None:
+    """Return a tile's sole visual value, or ``None`` when it is varied."""
+    if glyph is None:
+        return None
+    values = {cell for row in glyph for cell in row}
+    return next(iter(values)) if len(values) == 1 else None
+
+
+def _rotate_tile_glyph(glyph: TileGlyph) -> TileGlyph:
+    """Rotate a square visual glyph one quarter turn clockwise."""
+    return tuple(
+        tuple(glyph[TILE_SIZE - 1 - x][y] for x in range(TILE_SIZE))
+        for y in range(TILE_SIZE)
+    )
+
+
+def _framed_glyph(glyph: TileGlyph) -> bool:
+    """Recognize a non-uniform 5×5 glyph with one uniform outer frame."""
+    if len(glyph) != TILE_SIZE or any(len(row) != TILE_SIZE for row in glyph):
+        return False
+    border = {
+        glyph[y][x]
+        for y in range(TILE_SIZE)
+        for x in range(TILE_SIZE)
+        if x in {0, TILE_SIZE - 1} or y in {0, TILE_SIZE - 1}
+    }
+    interior = {
+        glyph[y][x]
+        for y in range(1, TILE_SIZE - 1)
+        for x in range(1, TILE_SIZE - 1)
+    }
+    return len(border) == 1 and len(interior) >= 2
+
+
+def _edge_badge_glyphs(grid: Grid) -> tuple[TileGlyph, ...]:
+    """Find exact 2× scaled framed glyphs anchored near a screen edge.
+
+    Some visual navigation games display the actor's mutable token as a
+    magnified edge badge. The geometry is intentionally narrow: arbitrary UI
+    text, ordinary tiles, and unframed status bars do not qualify.
+    """
+    width, height = grid_shape(grid)
+    scale = 2
+    side = TILE_SIZE * scale
+    if width < side or height < side:
+        return ()
+
+    badges: set[TileGlyph] = set()
+    margin = TILE_SIZE - 1
+    planes: Planes = (grid,)
+    for top in range(height - side + 1):
+        for left in range(width - side + 1):
+            if min(left, top, width - (left + side), height - (top + side)) > margin:
+                continue
+            rows: list[tuple[int, ...]] = []
+            valid = True
+            for tile_y in range(TILE_SIZE):
+                row: list[int] = []
+                for tile_x in range(TILE_SIZE):
+                    values = {
+                        _at(planes, 0, left + tile_x * scale + dx, top + tile_y * scale + dy)
+                        for dx in range(scale)
+                        for dy in range(scale)
+                    }
+                    if None in values or len(values) != 1:
+                        valid = False
+                        break
+                    row.append(next(iter(values)))
+                if not valid:
+                    break
+                rows.append(tuple(row))
+            glyph = tuple(rows)
+            if valid and _framed_glyph(glyph):
+                badges.add(glyph)
+    return tuple(sorted(badges))
+
+
+def _compact_control_glyph(glyph: TileGlyph | None) -> bool:
+    """Identify a small, information-rich single-tile interaction candidate."""
+    if glyph is None:
+        return False
+    core = {
+        glyph[y][x]
+        for y in range(1, TILE_SIZE - 1)
+        for x in range(1, TILE_SIZE - 1)
+    }
+    # A three-or-more-value inner glyph is deliberately stricter than ordinary
+    # two-colour decoration or a seam between two uniform terrain tiles.
+    return len(core) >= 3
+
+
 def tile_maze_view(snapshot: Snapshot) -> TileMazeView | None:
     """Recognize a regular directional tile maze from one visual observation."""
     if not set(DIRECTIONAL_ACTIONS).issubset(snapshot.available_actions):
@@ -583,24 +689,84 @@ def tile_maze_view(snapshot: Snapshot) -> TileMazeView | None:
     # clustered because a goal marker may span several tiles around its actual
     # enterable centre.  Fully uniform tiles are deliberately not guessed as
     # walls: unsuccessful moves learn collisions safely from observations.
+    glyphs: dict[Coordinate, TileGlyph] = {}
     special: set[Coordinate] = set()
     for tile_y, origin_y in enumerate(origins_y):
         for tile_x, origin_x in enumerate(origins_x):
             glyph = _tile(grid, origin_x, origin_y)
             if glyph is None:
                 continue
-            if len({cell for row in glyph for cell in row}) > 1:
-                special.add((tile_x, tile_y))
+            coordinate = (tile_x, tile_y)
+            glyphs[coordinate] = glyph
+            if coordinate != avatar and len({cell for row in glyph for cell in row}) > 1:
+                # The actor is a moving overlay, not part of an adjacent goal
+                # or control. Keeping it out before grouping prevents it from
+                # visually gluing a one-tile control to itself.
+                special.add(coordinate)
 
+    groups_by_cell: dict[Coordinate, frozenset[Coordinate]] = {}
     landmarks: list[tuple[Coordinate, frozenset[Coordinate]]] = []
     for group in _tile_groups(special):
-        if avatar in group:
-            continue
+        for coordinate in group:
+            groups_by_cell[coordinate] = group
         landmarks.append((_group_representative(group), group))
     landmarks.sort(key=lambda item: (item[0][1], item[0][0]))
     if not landmarks:
         return None
-    return TileMazeView(avatar=avatar, shape=(len(origins_x), len(origins_y)), landmarks=tuple(landmarks))
+
+    tile_shape = (len(origins_x), len(origins_y))
+    control_tiles = tuple(
+        sorted(
+            (
+                representative
+                for representative, group in landmarks
+                if len(group) == 1 and _compact_control_glyph(glyphs.get(representative))
+            ),
+            key=lambda point: (point[1], point[0]),
+        )
+    )
+    token_options: list[TokenTarget] = []
+    for badge in _edge_badge_glyphs(grid):
+        rotated = badge
+        for quarter_turns in range(4):
+            for coordinate, glyph in glyphs.items():
+                group = groups_by_cell.get(coordinate)
+                if (
+                    group is None
+                    or coordinate == avatar
+                    or not (1 <= coordinate[0] < tile_shape[0] - 1)
+                    or not (1 <= coordinate[1] < tile_shape[1] - 2)
+                    or not _framed_glyph(glyph)
+                    or glyph != rotated
+                ):
+                    continue
+                token_options.append(
+                    TokenTarget(
+                        coordinate=coordinate,
+                        quarter_turns=quarter_turns,
+                        group_size=len(group),
+                    )
+                )
+            rotated = _rotate_tile_glyph(rotated)
+    token_targets = tuple(
+        sorted(
+            set(token_options),
+            key=lambda target: (
+                -target.group_size,
+                target.coordinate[1],
+                target.coordinate[0],
+                target.quarter_turns,
+            ),
+        )
+    )
+    return TileMazeView(
+        avatar=avatar,
+        shape=tile_shape,
+        landmarks=tuple(landmarks),
+        glyphs=tuple(sorted(glyphs.items(), key=lambda item: (item[0][1], item[0][0]))),
+        token_targets=token_targets,
+        control_tiles=control_tiles,
+    )
 
 
 def optimistic_tile_path(
@@ -661,22 +827,72 @@ class TileMazeNavigator:
     the general graph explorer.
     """
 
+    _MAX_TOKEN_CONTROL_ENTRIES = 4
+
     def __init__(self) -> None:
         self._blocked: set[Coordinate] = set()
+        self._blocked_uniform_values: set[int] = set()
+        self._traversable_uniform_values: set[int] = set()
         self._visited: set[Coordinate] = set()
         self._active: tuple[Coordinate, frozenset[Coordinate]] | None = None
         self._last_avatar: Coordinate | None = None
         self._last_action: str | None = None
+        self._last_view: TileMazeView | None = None
         self._levels_completed: int | None = None
+        # An optional visual relation between an edge token, a compact control,
+        # and a framed board target. These are coordinates inferred fresh from
+        # pixels, never a task layout or an action script.
+        self._token_goal: Coordinate | None = None
+        self._token_control: Coordinate | None = None
+        self._control_entries = 0
+        self._bounce_return: str | None = None
 
     def reset(self) -> None:
         """Forget episode-local geometry after terminal or modal feedback."""
         self._blocked.clear()
+        self._blocked_uniform_values.clear()
+        self._traversable_uniform_values.clear()
         self._visited.clear()
         self._active = None
         self._last_avatar = None
         self._last_action = None
+        self._last_view = None
         self._levels_completed = None
+        self._token_goal = None
+        self._token_control = None
+        self._control_entries = 0
+        self._bounce_return = None
+
+    @staticmethod
+    def _glyph_at(view: TileMazeView, coordinate: Coordinate) -> TileGlyph | None:
+        """Look up one lattice glyph without exposing mutable image state."""
+        for point, glyph in view.glyphs:
+            if point == coordinate:
+                return glyph
+        return None
+
+    def _known_blocked(self, view: TileMazeView) -> set[Coordinate]:
+        """Combine exact collisions with cautiously learned uniform wall style."""
+        blocked = set(self._blocked)
+        for coordinate, glyph in view.glyphs:
+            if (
+                coordinate != view.avatar
+                and _uniform_tile_value(glyph) in self._blocked_uniform_values
+            ):
+                blocked.add(coordinate)
+        return blocked
+
+    def _clear_local_navigation(self) -> None:
+        """Clear assumptions invalidated by an unexpected avatar displacement."""
+        self._blocked.clear()
+        self._blocked_uniform_values.clear()
+        self._traversable_uniform_values.clear()
+        self._visited.clear()
+        self._active = None
+        self._token_goal = None
+        self._token_control = None
+        self._control_entries = 0
+        self._bounce_return = None
 
     def _observe_avatar(self, view: TileMazeView) -> None:
         if self._last_avatar is None or self._last_action is None:
@@ -685,12 +901,30 @@ class TileMazeNavigator:
         expected = (self._last_avatar[0] + dx, self._last_avatar[1] + dy)
         if view.avatar == self._last_avatar:
             self._blocked.add(expected)
-        elif view.avatar != expected:
+            previous_glyph = (
+                self._glyph_at(self._last_view, expected)
+                if self._last_view is not None
+                else None
+            )
+            blocked_value = _uniform_tile_value(previous_glyph)
+            # A visual terrain style is generalized only after we have observed
+            # a different uniform style underneath a successful move. This
+            # preserves the collision-first discipline for dynamic obstacles.
+            if (
+                blocked_value is not None
+                and blocked_value not in self._traversable_uniform_values
+            ):
+                self._blocked_uniform_values.add(blocked_value)
+        elif view.avatar == expected:
+            # Once an avatar leaves a tile, the newly exposed uniform glyph is
+            # direct evidence that this visual style can be traversed.
+            traversed_value = _uniform_tile_value(self._glyph_at(view, self._last_avatar))
+            if traversed_value is not None:
+                self._traversable_uniform_values.add(traversed_value)
+        else:
             # A teleport, moving platform, or a changed tile scale invalidates
-            # a one-step model.  Rebuild it from this ordinary observation.
-            self._blocked.clear()
-            self._visited.clear()
-            self._active = None
+            # a one-step model. Rebuild it from this ordinary observation.
+            self._clear_local_navigation()
 
     @staticmethod
     def _interior_landmarks(view: TileMazeView) -> tuple[tuple[Coordinate, frozenset[Coordinate]], ...]:
@@ -702,6 +936,139 @@ class TileMazeNavigator:
         )
         return interior or view.landmarks
 
+    def _token_target(self, view: TileMazeView) -> TokenTarget | None:
+        """Select one stable badge-to-board relation and its compact control."""
+        if self._token_goal is not None:
+            for target in view.token_targets:
+                if target.coordinate == self._token_goal:
+                    return target
+            return None
+
+        blocked = self._known_blocked(view)
+        options: list[tuple[int, int, int, int, TokenTarget, Coordinate]] = []
+        for target_rank, target in enumerate(view.token_targets):
+            for control in view.control_tiles:
+                if control == target.coordinate:
+                    continue
+                path = optimistic_tile_path(view.avatar, control, view.shape, blocked)
+                if path is None:
+                    continue
+                options.append(
+                    (
+                        target_rank,
+                        len(path),
+                        control[1],
+                        control[0],
+                        target,
+                        control,
+                    )
+                )
+        if not options:
+            return None
+        _, _, _, _, target, control = min(options)
+        self._token_goal = target.coordinate
+        self._token_control = control
+        self._control_entries = 0
+        self._bounce_return = None
+        # Avoid advancing the older landmark model while this stricter visual
+        # relation is active.
+        self._active = None
+        return target
+
+    def _record_maze_action(self, view: TileMazeView, action: str | None) -> None:
+        """Retain only the last visual movement observation for online learning."""
+        self._last_avatar = view.avatar
+        self._last_action = action
+        self._last_view = view
+
+    def _token_bounce_action(self, view: TileMazeView) -> str | None:
+        """Step out of a responsive control so a later step can re-enter it."""
+        if self._token_control is None:
+            return None
+        blocked = self._known_blocked(view)
+        if self._last_avatar is not None and self._last_action in INVERSE_DIRECTIONAL_ACTION:
+            dx, dy = MAZE_DIRECTION_DELTAS[self._last_action]
+            entered = (self._last_avatar[0] + dx, self._last_avatar[1] + dy)
+            exit_action = INVERSE_DIRECTIONAL_ACTION[self._last_action]
+            if entered == self._token_control and self._last_avatar not in blocked:
+                self._bounce_return = self._last_action
+                return exit_action
+        for action in MAZE_ACTION_ORDER:
+            dx, dy = MAZE_DIRECTION_DELTAS[action]
+            neighbour = (view.avatar[0] + dx, view.avatar[1] + dy)
+            if (
+                0 <= neighbour[0] < view.shape[0]
+                and 0 <= neighbour[1] < view.shape[1]
+                and neighbour not in blocked
+            ):
+                self._bounce_return = INVERSE_DIRECTIONAL_ACTION[action]
+                return action
+        return None
+
+    def _token_proposal(self, view: TileMazeView) -> ActionProposal | None:
+        """Navigate a visually matched badge/control/target relation.
+
+        A compact control is revisited locally only while the edge badge still
+        differs from its framed board counterpart. This makes cyclic controls
+        learnable without encoding a colour, a rotation direction, or a count
+        of required presses.
+        """
+        target = self._token_target(view)
+        control = self._token_control
+        if target is None or control is None:
+            return None
+
+        if self._bounce_return is not None:
+            action = self._bounce_return
+            self._bounce_return = None
+            return ActionProposal(
+                action,
+                reasoning={
+                    "policy": "novelty-explorer-v5",
+                    "kind": "tile-badge-control-return",
+                    "target": list(control),
+                    "token_quarter_turns": target.quarter_turns,
+                    "control_entries": self._control_entries,
+                },
+            )
+
+        needs_control = (
+            target.quarter_turns > 0
+            and self._control_entries < self._MAX_TOKEN_CONTROL_ENTRIES
+        )
+        destination = control if needs_control else target.coordinate
+        if view.avatar == control and needs_control:
+            action = self._token_bounce_action(view)
+            if action is None:
+                return None
+            return ActionProposal(
+                action,
+                reasoning={
+                    "policy": "novelty-explorer-v5",
+                    "kind": "tile-badge-control-exit",
+                    "target": list(control),
+                    "token_quarter_turns": target.quarter_turns,
+                    "control_entries": self._control_entries,
+                },
+            )
+        if view.avatar == destination:
+            return None
+
+        path = optimistic_tile_path(view.avatar, destination, view.shape, self._known_blocked(view))
+        if not path:
+            return None
+        return ActionProposal(
+            path[0],
+            reasoning={
+                "policy": "novelty-explorer-v5",
+                "kind": "tile-badge-navigation",
+                "target": list(destination),
+                "token_quarter_turns": target.quarter_turns,
+                "control_entries": self._control_entries,
+                "learned_blocked_tiles": len(self._known_blocked(view)),
+            },
+        )
+
     def choose(self, snapshot: Snapshot) -> ActionProposal | None:
         """Return one legal tile-navigation action, or ``None`` to use graph fallback."""
         view = tile_maze_view(snapshot)
@@ -711,7 +1078,25 @@ class TileMazeNavigator:
         if self._levels_completed is not None and snapshot.levels_completed != self._levels_completed:
             self.reset()
         self._levels_completed = snapshot.levels_completed
+        entered_control = False
+        if (
+            self._token_control is not None
+            and self._last_avatar is not None
+            and self._last_action is not None
+        ):
+            dx, dy = MAZE_DIRECTION_DELTAS[self._last_action]
+            entered_control = (
+                view.avatar == self._token_control
+                and (self._last_avatar[0] + dx, self._last_avatar[1] + dy) == self._token_control
+            )
         self._observe_avatar(view)
+        if entered_control and self._token_control is not None:
+            self._control_entries += 1
+
+        token_proposal = self._token_proposal(view)
+        if token_proposal is not None:
+            self._record_maze_action(view, token_proposal.name)
+            return token_proposal
 
         # A decorative goal halo may span several tiles. Only its chosen centre
         # counts as reached: accepting any halo tile prematurely abandons the
@@ -723,7 +1108,7 @@ class TileMazeNavigator:
         active = self._active
         path: tuple[str, ...] | None = None
         if active is not None:
-            path = optimistic_tile_path(view.avatar, active[0], view.shape, self._blocked)
+            path = optimistic_tile_path(view.avatar, active[0], view.shape, self._known_blocked(view))
             if path is None:
                 self._active = None
 
@@ -732,7 +1117,12 @@ class TileMazeNavigator:
             for representative, cells in self._interior_landmarks(view):
                 if representative in self._visited or view.avatar in cells:
                     continue
-                candidate_path = optimistic_tile_path(view.avatar, representative, view.shape, self._blocked)
+                candidate_path = optimistic_tile_path(
+                    view.avatar,
+                    representative,
+                    view.shape,
+                    self._known_blocked(view),
+                )
                 if candidate_path is None:
                     continue
                 candidates.append(
@@ -746,8 +1136,7 @@ class TileMazeNavigator:
                     )
                 )
             if not candidates:
-                self._last_avatar = view.avatar
-                self._last_action = None
+                self._record_maze_action(view, None)
                 return None
             _, _, _, representative, cells, path = min(candidates)
             self._active = (representative, cells)
@@ -755,20 +1144,18 @@ class TileMazeNavigator:
         if not path:
             # A target that became the current tile is handled on the next
             # observation; do not invent an action merely to make progress.
-            self._last_avatar = view.avatar
-            self._last_action = None
+            self._record_maze_action(view, None)
             return None
         action = path[0]
-        self._last_avatar = view.avatar
-        self._last_action = action
+        self._record_maze_action(view, action)
         return ActionProposal(
             action,
             reasoning={
-                "policy": "novelty-explorer-v4",
+                "policy": "novelty-explorer-v5",
                 "kind": "tile-maze-navigation",
                 "target": list(self._active[0]) if self._active is not None else [],
                 "path_length": len(path),
-                "learned_blocked_tiles": len(self._blocked),
+                "learned_blocked_tiles": len(self._known_blocked(view)),
             },
         )
 
@@ -944,7 +1331,7 @@ class ExplorerPolicy:
             proposal = ActionProposal(
                 action,
                 reasoning={
-                    "policy": "novelty-explorer-v4",
+                    "policy": "novelty-explorer-v5",
                     "kind": "graph-simple-frontier",
                 },
             )
@@ -958,7 +1345,7 @@ class ExplorerPolicy:
                     y=y,
                     reasoning={
                         **reason,
-                        "policy": "novelty-explorer-v4",
+                        "policy": "novelty-explorer-v5",
                         "kind": "graph-click-frontier",
                         "target": [x, y],
                         "salience": salience,
@@ -1086,7 +1473,7 @@ class ExplorerPolicy:
             proposal = ActionProposal(
                 RESET,
                 reasoning={
-                    "policy": "novelty-explorer-v4",
+                    "policy": "novelty-explorer-v5",
                     "kind": "reset",
                     "state": snapshot.state,
                 },
@@ -1098,7 +1485,7 @@ class ExplorerPolicy:
         if not valid:
             proposal = ActionProposal(
                 RESET,
-                reasoning={"policy": "novelty-explorer-v4", "kind": "no-valid-actions"},
+                reasoning={"policy": "novelty-explorer-v5", "kind": "no-valid-actions"},
             )
             self._remember(snapshot, signature, excluded, proposal)
             return proposal
@@ -1113,7 +1500,7 @@ class ExplorerPolicy:
             proposal = ActionProposal(
                 RESET,
                 reasoning={
-                    "policy": "novelty-explorer-v4",
+                    "policy": "novelty-explorer-v5",
                     "kind": "frontier-reset",
                     "state_visits": self._state_visits[signature],
                 },
