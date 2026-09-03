@@ -20,6 +20,12 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 VENDOR = ROOT / "vendor" / "ARC-AGI-3-Agents"
+MAX_POLICY_TRACE_REPORT_STEPS = 1_000
+
+
+def _policy_trace_limit(action_budget: int) -> int:
+    """Keep a report's coordinate-free decision trace bounded and useful."""
+    return min(max(1, action_budget), MAX_POLICY_TRACE_REPORT_STEPS)
 
 
 @dataclass(frozen=True)
@@ -175,7 +181,7 @@ def main() -> None:
             policy_evidence=agent.policy.diagnostics(),
             policy_decisions=agent.policy.decision_evidence(),
             meter_evidence=agent.policy.meter_evidence(),
-            policy_trace=agent.policy.transition_trace(),
+            policy_trace=agent.policy.transition_trace(limit=_policy_trace_limit(args.max_steps)),
         )
         results.append(result)
         print(

@@ -22,6 +22,11 @@ class _Scorecard:
 
 
 class LocalRunnerReportTests(unittest.TestCase):
+    def test_policy_trace_limit_preserves_short_runs_and_bounds_long_ones(self) -> None:
+        self.assertEqual(play_local._policy_trace_limit(17), 17)
+        self.assertEqual(play_local._policy_trace_limit(1_000), 1_000)
+        self.assertEqual(play_local._policy_trace_limit(50_000), 1_000)
+
     def test_state_name_accepts_sdk_like_enums_and_plain_values(self) -> None:
         self.assertEqual(play_local._state_name(_State()), "GAME_OVER")
         self.assertEqual(play_local._state_name("win"), "WIN")
