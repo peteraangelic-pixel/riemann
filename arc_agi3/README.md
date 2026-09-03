@@ -14,7 +14,9 @@ novelty policy:
 - it tracks visible change, level progress, game-over outcomes, and revisited
   states;
 - for standard directional controls, it first verifies the inverse move and
-  schedules reachable shallow frontiers before descending farther; and
+  schedules reachable shallow frontiers before descending farther;
+- when a 5×5 striped-tile maze is visually recognized, it learns failed moves
+  as obstacles and replans to visible interior landmarks; and
 - it never retries the same click in an unchanged visual state.
 
 This is an appropriate starting point for reliable plumbing and ablation. It

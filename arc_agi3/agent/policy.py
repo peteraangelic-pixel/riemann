@@ -10,6 +10,7 @@ is to replace a random-action starter with reproducible exploration that:
 
 * honours the action set advertised by each environment;
 * prioritises visually salient click targets over uniform random pixels;
+* learns local obstacles while navigating visually recognized tile mazes;
 * tracks whether actions changed a state, advanced a level, revisited a state,
   or caused a game-over; and
 * avoids repeating the same click in an unchanged state.
@@ -19,6 +20,7 @@ from __future__ import annotations
 from collections import Counter, defaultdict, deque
 from dataclasses import dataclass, field
 from hashlib import blake2b
+from heapq import heappop, heappush
 from math import sqrt
 from typing import Any, Iterable, Sequence
 
@@ -420,7 +422,7 @@ def rank_click_targets(
                 continue
             score = base_score + (1000 if (x, y) in changed else 0)
             reason = {
-                "policy": "novelty-explorer-v3",
+                "policy": "novelty-explorer-v4",
                 "kind": "salient-component",
                 "color": component.color,
                 "component_size": component_size,
@@ -441,7 +443,7 @@ def rank_click_targets(
             (
                 score,
                 {
-                    "policy": "novelty-explorer-v3",
+                    "policy": "novelty-explorer-v4",
                     "kind": "lattice-fallback",
                     "recent_change": point in changed,
                 },
@@ -455,6 +457,317 @@ def rank_click_targets(
     ]
     ordered.sort(key=lambda item: (-item[0], item[1][1], item[1][0]))
     return tuple(ordered)
+
+TILE_SIZE = 5
+# Canonical control semantics used by ARC's directional protocol.  The order is
+# only a deterministic tie-break for an optimistic path; observed movement is
+# what adds a location to the learned obstacle map.
+MAZE_DIRECTION_DELTAS: dict[str, Coordinate] = {
+    "ACTION1": (0, -1),
+    "ACTION2": (0, 1),
+    "ACTION3": (-1, 0),
+    "ACTION4": (1, 0),
+}
+MAZE_ACTION_ORDER = ("ACTION3", "ACTION1", "ACTION4", "ACTION2")
+
+
+@dataclass(frozen=True)
+class TileMazeView:
+    """A conservative visual view of a regular tile-navigation board.
+
+    This recognizer is deliberately opt-in: it requires a 5×5 two-colour
+    striped avatar and all four directional controls.  It does not inspect a
+    game ID or assume a particular colour palette.  ``landmarks`` are compact
+    non-uniform tile clusters that can be reached as potential switches/goals.
+    """
+
+    avatar: Coordinate
+    shape: tuple[int, int]
+    landmarks: tuple[tuple[Coordinate, frozenset[Coordinate]], ...]
+
+
+def _tile(grid: Grid, x: int, y: int) -> tuple[tuple[int, ...], ...] | None:
+    """Return one complete ``TILE_SIZE`` square, or ``None`` at an edge."""
+    if x < 0 or y < 0 or y + TILE_SIZE > len(grid):
+        return None
+    rows = grid[y : y + TILE_SIZE]
+    if any(x + TILE_SIZE > len(row) for row in rows):
+        return None
+    return tuple(tuple(row[x : x + TILE_SIZE]) for row in rows)
+
+
+def _striped_avatar_origins(grid: Grid) -> tuple[Coordinate, ...]:
+    """Find rare, full 5×5 two-colour horizontal stripe glyphs.
+
+    An avatar is learned from geometry rather than a colour ID: every row in
+    its glyph is solid, exactly two colours form contiguous horizontal bands,
+    and neither is the board's dominant background.  This is intentionally
+    stricter than general component detection so ordinary colourful UI does not
+    seize control from the graph explorer.
+    """
+    width, height = grid_shape(grid)
+    if width < TILE_SIZE or height < TILE_SIZE:
+        return ()
+    counts = Counter(cell for row in grid for cell in row)
+    if not counts:
+        return ()
+    background = counts.most_common(1)[0][0]
+    candidates: list[tuple[int, int, int]] = []
+    for y in range(height - TILE_SIZE + 1):
+        for x in range(width - TILE_SIZE + 1):
+            glyph = _tile(grid, x, y)
+            if glyph is None or any(len(set(row)) != 1 for row in glyph):
+                continue
+            row_colours = tuple(row[0] for row in glyph)
+            colours = set(row_colours)
+            if len(colours) != 2 or background in colours:
+                continue
+            if sum(left != right for left, right in zip(row_colours, row_colours[1:])) != 1:
+                continue
+            # The rarest valid striped glyph is the most likely movable actor.
+            candidates.append((sum(counts[colour] for colour in colours), y, x))
+    return tuple((x, y) for _, y, x in sorted(candidates))
+
+
+def _tile_groups(points: set[Coordinate]) -> tuple[frozenset[Coordinate], ...]:
+    """Group four-connected landmark tiles deterministically."""
+    groups: list[frozenset[Coordinate]] = []
+    remaining = set(points)
+    while remaining:
+        seed = min(remaining, key=lambda point: (point[1], point[0]))
+        remaining.remove(seed)
+        group = {seed}
+        queue: deque[Coordinate] = deque([seed])
+        while queue:
+            x, y = queue.popleft()
+            for neighbour in ((x, y - 1), (x - 1, y), (x + 1, y), (x, y + 1)):
+                if neighbour not in remaining:
+                    continue
+                remaining.remove(neighbour)
+                group.add(neighbour)
+                queue.append(neighbour)
+        groups.append(frozenset(group))
+    return tuple(groups)
+
+
+def _group_representative(group: frozenset[Coordinate]) -> Coordinate:
+    """Choose a central, stable target coordinate for a landmark cluster."""
+    mean_x = sum(x for x, _ in group) / len(group)
+    mean_y = sum(y for _, y in group) / len(group)
+    return min(
+        group,
+        key=lambda point: ((point[0] - mean_x) ** 2 + (point[1] - mean_y) ** 2, point[1], point[0]),
+    )
+
+
+def tile_maze_view(snapshot: Snapshot) -> TileMazeView | None:
+    """Recognize a regular directional tile maze from one visual observation."""
+    if not set(DIRECTIONAL_ACTIONS).issubset(snapshot.available_actions):
+        return None
+    grid = primary_grid(snapshot.planes)
+    width, height = grid_shape(grid)
+    if width < 8 * TILE_SIZE or height < 8 * TILE_SIZE:
+        return None
+    avatars = _striped_avatar_origins(grid)
+    if not avatars:
+        return None
+    avatar_x, avatar_y = avatars[0]
+    offset_x, offset_y = avatar_x % TILE_SIZE, avatar_y % TILE_SIZE
+    origins_x = tuple(range(offset_x, width - TILE_SIZE + 1, TILE_SIZE))
+    origins_y = tuple(range(offset_y, height - TILE_SIZE + 1, TILE_SIZE))
+    if len(origins_x) < 8 or len(origins_y) < 8:
+        return None
+    avatar = ((avatar_x - offset_x) // TILE_SIZE, (avatar_y - offset_y) // TILE_SIZE)
+
+    # A non-uniform grid tile is a possible game object.  Adjacent tiles are
+    # clustered because a goal marker may span several tiles around its actual
+    # enterable centre.  Fully uniform tiles are deliberately not guessed as
+    # walls: unsuccessful moves learn collisions safely from observations.
+    special: set[Coordinate] = set()
+    for tile_y, origin_y in enumerate(origins_y):
+        for tile_x, origin_x in enumerate(origins_x):
+            glyph = _tile(grid, origin_x, origin_y)
+            if glyph is None:
+                continue
+            if len({cell for row in glyph for cell in row}) > 1:
+                special.add((tile_x, tile_y))
+
+    landmarks: list[tuple[Coordinate, frozenset[Coordinate]]] = []
+    for group in _tile_groups(special):
+        if avatar in group:
+            continue
+        landmarks.append((_group_representative(group), group))
+    landmarks.sort(key=lambda item: (item[0][1], item[0][0]))
+    if not landmarks:
+        return None
+    return TileMazeView(avatar=avatar, shape=(len(origins_x), len(origins_y)), landmarks=tuple(landmarks))
+
+
+def optimistic_tile_path(
+    start: Coordinate,
+    target: Coordinate,
+    shape: tuple[int, int],
+    blocked: set[Coordinate] | frozenset[Coordinate],
+) -> tuple[str, ...] | None:
+    """Plan through observed-free and as-yet-unseen tiles with deterministic A*."""
+    if start == target:
+        return ()
+    width, height = shape
+    sequence = 0
+    queue: list[tuple[int, int, int, int, Coordinate, tuple[str, ...]]] = []
+    costs: dict[Coordinate, int] = {start: 0}
+    heappush(
+        queue,
+        (abs(start[0] - target[0]) + abs(start[1] - target[1]), 0, 0, sequence, start, ()),
+    )
+    while queue:
+        _, cost, _, _, point, path = heappop(queue)
+        if cost != costs.get(point):
+            continue
+        if point == target:
+            return path
+        for rank, action in enumerate(MAZE_ACTION_ORDER):
+            dx, dy = MAZE_DIRECTION_DELTAS[action]
+            neighbour = (point[0] + dx, point[1] + dy)
+            if (
+                neighbour in blocked
+                or neighbour[0] < 0
+                or neighbour[1] < 0
+                or neighbour[0] >= width
+                or neighbour[1] >= height
+            ):
+                continue
+            next_cost = cost + 1
+            if next_cost >= costs.get(neighbour, next_cost + 1):
+                continue
+            costs[neighbour] = next_cost
+            sequence += 1
+            heuristic = abs(neighbour[0] - target[0]) + abs(neighbour[1] - target[1])
+            heappush(
+                queue,
+                (next_cost + heuristic, next_cost, rank, sequence, neighbour, path + (action,)),
+            )
+    return None
+
+
+class TileMazeNavigator:
+    """Learn collisions online while steering to visible interior landmarks.
+
+    It is a small navigation primitive, not a game-specific route: a failed
+    directional move records one blocked tile, then optimistic A* replans.  A
+    reached landmark is not selected again in the same episode, which makes a
+    nearby switch naturally precede a farther revealed target.  Any missing
+    avatar/modal frame resets this short-lived model and hands control back to
+    the general graph explorer.
+    """
+
+    def __init__(self) -> None:
+        self._blocked: set[Coordinate] = set()
+        self._visited: set[Coordinate] = set()
+        self._active: tuple[Coordinate, frozenset[Coordinate]] | None = None
+        self._last_avatar: Coordinate | None = None
+        self._last_action: str | None = None
+        self._levels_completed: int | None = None
+
+    def reset(self) -> None:
+        """Forget episode-local geometry after terminal or modal feedback."""
+        self._blocked.clear()
+        self._visited.clear()
+        self._active = None
+        self._last_avatar = None
+        self._last_action = None
+        self._levels_completed = None
+
+    def _observe_avatar(self, view: TileMazeView) -> None:
+        if self._last_avatar is None or self._last_action is None:
+            return
+        dx, dy = MAZE_DIRECTION_DELTAS[self._last_action]
+        expected = (self._last_avatar[0] + dx, self._last_avatar[1] + dy)
+        if view.avatar == self._last_avatar:
+            self._blocked.add(expected)
+        elif view.avatar != expected:
+            # A teleport, moving platform, or a changed tile scale invalidates
+            # a one-step model.  Rebuild it from this ordinary observation.
+            self._blocked.clear()
+            self._visited.clear()
+            self._active = None
+
+    @staticmethod
+    def _interior_landmarks(view: TileMazeView) -> tuple[tuple[Coordinate, frozenset[Coordinate]], ...]:
+        width, height = view.shape
+        interior = tuple(
+            landmark
+            for landmark in view.landmarks
+            if 1 <= landmark[0][0] < width - 1 and 1 <= landmark[0][1] < height - 2
+        )
+        return interior or view.landmarks
+
+    def choose(self, snapshot: Snapshot) -> ActionProposal | None:
+        """Return one legal tile-navigation action, or ``None`` to use graph fallback."""
+        view = tile_maze_view(snapshot)
+        if view is None:
+            self.reset()
+            return None
+        if self._levels_completed is not None and snapshot.levels_completed != self._levels_completed:
+            self.reset()
+        self._levels_completed = snapshot.levels_completed
+        self._observe_avatar(view)
+
+        if self._active is not None and view.avatar in self._active[1]:
+            self._visited.add(self._active[0])
+            self._active = None
+
+        active = self._active
+        path: tuple[str, ...] | None = None
+        if active is not None:
+            path = optimistic_tile_path(view.avatar, active[0], view.shape, self._blocked)
+            if path is None:
+                self._active = None
+
+        if self._active is None:
+            candidates: list[tuple[int, int, int, Coordinate, frozenset[Coordinate], tuple[str, ...]]] = []
+            for representative, cells in self._interior_landmarks(view):
+                if representative in self._visited or view.avatar in cells:
+                    continue
+                candidate_path = optimistic_tile_path(view.avatar, representative, view.shape, self._blocked)
+                if candidate_path is None:
+                    continue
+                candidates.append(
+                    (
+                        len(candidate_path),
+                        abs(view.avatar[0] - representative[0]) + abs(view.avatar[1] - representative[1]),
+                        representative[1],
+                        representative,
+                        cells,
+                        candidate_path,
+                    )
+                )
+            if not candidates:
+                self._last_avatar = view.avatar
+                self._last_action = None
+                return None
+            _, _, _, representative, cells, path = min(candidates)
+            self._active = (representative, cells)
+
+        if not path:
+            # A target that became the current tile is handled on the next
+            # observation; do not invent an action merely to make progress.
+            self._last_avatar = view.avatar
+            self._last_action = None
+            return None
+        action = path[0]
+        self._last_avatar = view.avatar
+        self._last_action = action
+        return ActionProposal(
+            action,
+            reasoning={
+                "policy": "novelty-explorer-v4",
+                "kind": "tile-maze-navigation",
+                "target": list(self._active[0]) if self._active is not None else [],
+                "path_length": len(path),
+                "learned_blocked_tiles": len(self._blocked),
+            },
+        )
 
 
 @dataclass(frozen=True)
@@ -491,11 +804,12 @@ class ExplorerPolicy:
     """Deterministic frontier explorer over visually canonicalized states.
 
     The policy records every attempted state-action edge before observing its
-    result. Fresh directional successors test their protocol inverse first;
-    thereafter it follows known directed edges to the shallowest reachable
-    frontier. This avoids mistaking a ticking HUD for useful progress, walking
-    an entire corridor before testing sibling moves, and repeating one movement
-    that merely changes a status bar.
+    result. A strict visual tile-maze recognizer gets first use of directional
+    controls and learns collision cells online. Otherwise fresh directional
+    successors test their protocol inverse first; thereafter the graph follows
+    known edges to the shallowest reachable frontier. This avoids mistaking a
+    ticking HUD for useful progress, walking an entire corridor before testing
+    sibling moves, and repeating one movement that merely changes a status bar.
     """
 
     def __init__(self) -> None:
@@ -510,6 +824,7 @@ class ExplorerPolicy:
         self._nodes: dict[str, StateNode] = {}
         self._edges: dict[tuple[str, str], GraphEdge] = {}
         self._transition_trace: list[dict[str, Any]] = []
+        self._tile_maze = TileMazeNavigator()
 
     def diagnostics(self) -> dict[str, dict[str, int]]:
         """Return compact, serializable aggregate evidence for a replay."""
@@ -626,7 +941,7 @@ class ExplorerPolicy:
             proposal = ActionProposal(
                 action,
                 reasoning={
-                    "policy": "novelty-explorer-v3",
+                    "policy": "novelty-explorer-v4",
                     "kind": "graph-simple-frontier",
                 },
             )
@@ -640,7 +955,7 @@ class ExplorerPolicy:
                     y=y,
                     reasoning={
                         **reason,
-                        "policy": "novelty-explorer-v3",
+                        "policy": "novelty-explorer-v4",
                         "kind": "graph-click-frontier",
                         "target": [x, y],
                         "salience": salience,
@@ -764,10 +1079,11 @@ class ExplorerPolicy:
         self._state_visits[signature] += 1
 
         if snapshot.state in {"NOT_PLAYED", "GAME_OVER"}:
+            self._tile_maze.reset()
             proposal = ActionProposal(
                 RESET,
                 reasoning={
-                    "policy": "novelty-explorer-v3",
+                    "policy": "novelty-explorer-v4",
                     "kind": "reset",
                     "state": snapshot.state,
                 },
@@ -779,20 +1095,22 @@ class ExplorerPolicy:
         if not valid:
             proposal = ActionProposal(
                 RESET,
-                reasoning={"policy": "novelty-explorer-v3", "kind": "no-valid-actions"},
+                reasoning={"policy": "novelty-explorer-v4", "kind": "no-valid-actions"},
             )
             self._remember(snapshot, signature, excluded, proposal)
             return proposal
 
         self._node(snapshot, signature, changed, excluded)
-        proposal = self._scheduled_frontier(signature)
+        proposal = self._tile_maze.choose(snapshot)
+        if proposal is None:
+            proposal = self._scheduled_frontier(signature)
         if proposal is None or proposal.name not in valid:
             # A reset is the deterministic way to revisit a known root when
             # this directed graph has no safe route to another unexplored node.
             proposal = ActionProposal(
                 RESET,
                 reasoning={
-                    "policy": "novelty-explorer-v3",
+                    "policy": "novelty-explorer-v4",
                     "kind": "frontier-reset",
                     "state_visits": self._state_visits[signature],
                 },

@@ -15,6 +15,7 @@ from policy import (  # noqa: E402
     RESET,
     ExplorerPolicy,
     Snapshot,
+    TileMazeNavigator,
     changed_coordinates,
     connected_components,
     horizontal_hud_mask,
@@ -22,8 +23,10 @@ from policy import (  # noqa: E402
     normalize_action_name,
     normalize_actions,
     normalize_planes,
+    optimistic_tile_path,
     rank_click_targets,
     snapshot_from_frame,
+    tile_maze_view,
 )
 
 
@@ -112,6 +115,29 @@ class ExplorerPolicyTests(unittest.TestCase):
     ) -> Snapshot:
         return Snapshot(state, levels, actions, (grid,))
 
+    @staticmethod
+    def _tile_maze_snapshot(
+        avatar: tuple[int, int] = (6, 8),
+        *,
+        levels: int = 0,
+    ) -> Snapshot:
+        """Make a visual-only 12×12 navigation fixture with no game ID hint."""
+        grid = [[4 for _ in range(64)] for _ in range(64)]
+
+        def paint(cell: tuple[int, int], rows: tuple[int, ...]) -> None:
+            x = 4 + 5 * cell[0]
+            y = 5 * cell[1]
+            for row, color in enumerate(rows):
+                for column in range(5):
+                    grid[y + row][x + column] = color
+
+        # Two non-uniform landmarks; the striped avatar renders over either
+        # landmark when it arrives, as an ordinary sprite layer would.
+        paint((3, 6), (3, 3, 0, 1, 3))
+        paint((6, 2), (5, 9, 5, 9, 5))
+        paint(avatar, (12, 12, 9, 9, 9))
+        return Snapshot("NOT_FINISHED", levels, ("ACTION1", "ACTION2", "ACTION3", "ACTION4"), (tuple(map(tuple, grid)),))
+
     def test_resets_unplayed_and_game_over(self) -> None:
         policy = ExplorerPolicy()
         initial = self._snapshot(state="NOT_PLAYED", actions=())
@@ -151,6 +177,42 @@ class ExplorerPolicyTests(unittest.TestCase):
         self.assertEqual(policy.choose(frontier).name, "ACTION2")
         # Middle is closed; replay its known edge to frontier's remaining action.
         self.assertEqual(policy.choose(middle).name, "ACTION1")
+
+    def test_tile_maze_view_finds_striped_avatar_and_landmark_centres(self) -> None:
+        view = tile_maze_view(self._tile_maze_snapshot())
+        self.assertIsNotNone(view)
+        assert view is not None
+        self.assertEqual(view.avatar, (6, 8))
+        self.assertEqual(view.shape, (12, 12))
+        self.assertIn((3, 6), [representative for representative, _ in view.landmarks])
+        self.assertIn((6, 2), [representative for representative, _ in view.landmarks])
+
+    def test_optimistic_tile_path_replans_around_a_learned_collision(self) -> None:
+        direct = optimistic_tile_path((6, 8), (3, 6), (12, 12), set())
+        self.assertEqual(direct, ("ACTION3", "ACTION3", "ACTION3", "ACTION1", "ACTION1"))
+        blocked = optimistic_tile_path((6, 8), (3, 6), (12, 12), {(5, 8)})
+        self.assertIsNotNone(blocked)
+        assert blocked is not None
+        self.assertEqual(blocked[0], "ACTION1")
+        self.assertNotIn("ACTION6", blocked)
+
+    def test_tile_maze_navigator_marks_a_reached_switch_before_next_landmark(self) -> None:
+        navigator = TileMazeNavigator()
+        # The initial nearest landmark is the switch at (3, 6).
+        self.assertEqual(navigator.choose(self._tile_maze_snapshot()).name, "ACTION3")
+        for avatar in ((5, 8), (4, 8), (3, 8), (3, 7)):
+            self.assertIsNotNone(navigator.choose(self._tile_maze_snapshot(avatar)))
+        next_target = navigator.choose(self._tile_maze_snapshot((3, 6)))
+        self.assertIsNotNone(next_target)
+        assert next_target is not None
+        self.assertEqual(next_target.reasoning["target"], [6, 2])
+
+    def test_policy_uses_tile_maze_navigation_only_when_the_visual_contract_matches(self) -> None:
+        policy = ExplorerPolicy()
+        proposal = policy.choose(self._tile_maze_snapshot())
+        self.assertEqual(proposal.name, "ACTION3")
+        self.assertEqual(proposal.reasoning["kind"], "tile-maze-navigation")
+        self.assertEqual(proposal.reasoning["target"], [3, 6])
 
     def test_clicks_salient_target_then_does_not_repeat_same_click_on_noop(self) -> None:
         policy = ExplorerPolicy()
