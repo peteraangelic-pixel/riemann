@@ -284,6 +284,7 @@ class ExplorerPolicyTests(unittest.TestCase):
         initial = self._snapshot(state="NOT_PLAYED", actions=())
         self.assertEqual(policy.choose(initial).name, RESET)
         self.assertEqual(policy.choose(self._snapshot(state="GAME_OVER", actions=())).name, RESET)
+        self.assertEqual(policy.token_evidence(), {"reset-terminal": 2})
 
     def test_only_emits_advertised_action(self) -> None:
         policy = ExplorerPolicy()

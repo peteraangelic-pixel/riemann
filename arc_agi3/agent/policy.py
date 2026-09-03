@@ -1030,8 +1030,10 @@ class TileMazeNavigator:
         self._route_deferred_resources: set[Coordinate] = set()
         self._meter_deferred_resources: dict[Coordinate, int] = {}
 
-    def reset(self) -> None:
+    def reset(self, *, reason: str | None = None) -> None:
         """Forget episode-local geometry after terminal or modal feedback."""
+        if reason is not None:
+            self._token_evidence[f"reset-{reason}"] += 1
         self._blocked.clear()
         self._blocked_uniform_values.clear()
         self._traversable_uniform_values.clear()
@@ -1135,6 +1137,7 @@ class TileMazeNavigator:
         else:
             # A teleport, moving platform, or a changed tile scale invalidates
             # a one-step model. Rebuild it from this ordinary observation.
+            self._token_evidence["unexpected-avatar-resets"] += 1
             self._clear_local_navigation()
 
     def _observe_bottom_meter(self, snapshot: Snapshot) -> None:
@@ -1769,10 +1772,10 @@ class TileMazeNavigator:
         """Return one legal tile-navigation action, or ``None`` to use graph fallback."""
         view = tile_maze_view(snapshot)
         if view is None:
-            self.reset()
+            self.reset(reason="view-rejected")
             return None
         if self._levels_completed is not None and snapshot.levels_completed != self._levels_completed:
-            self.reset()
+            self.reset(reason="level-changed")
         self._levels_completed = snapshot.levels_completed
         self._observe_bottom_meter(snapshot)
         entered_control = False
@@ -2204,7 +2207,7 @@ class ExplorerPolicy:
         self._state_visits[signature] += 1
 
         if snapshot.state in {"NOT_PLAYED", "GAME_OVER"}:
-            self._tile_maze.reset()
+            self._tile_maze.reset(reason="terminal")
             proposal = ActionProposal(
                 RESET,
                 reasoning={
