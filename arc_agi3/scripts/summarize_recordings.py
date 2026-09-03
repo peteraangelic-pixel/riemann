@@ -183,7 +183,7 @@ def transition_geometry(events: list[dict[str, Any]], limit: int = 64) -> list[s
                 bbox=bbox,
                 edge=edge,
                 state=str(after.get("state", "?")).replace("|", "\\|"),
-                avatar=striped_avatar_tile(after.get("frame")),
+                avatar=striped_avatar_tile(_grid_from_frame(after.get("frame"))),
             )
         )
     return rows
@@ -267,7 +267,7 @@ def checkpoint_transition_geometry(
                 bounds=bounds,
                 edge_band=edge_band,
                 state=after.get("state", "-"),
-                avatar=striped_avatar_tile(after.get("frame")),
+                avatar=striped_avatar_tile(_grid_from_frame(after.get("frame"))),
             )
         )
     if omitted_anchors:

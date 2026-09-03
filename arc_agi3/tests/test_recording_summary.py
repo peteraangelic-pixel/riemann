@@ -74,10 +74,13 @@ class RecordingSummaryTests(unittest.TestCase):
         self.assertIn("| 2 | action 6 at (1, 1) | 1 | `x=1..1, y=1..1` | 1 |", table)
 
     def test_checkpoint_windows_include_later_progress_and_only_safe_policy_kind(self) -> None:
+        def frame(color: int) -> list[list[list[int]]]:
+            return [[[color] * 5 for _ in range(5)]]
+
         events = [
-            {"frame": [[[0]]], "state": "NOT_FINISHED", "levels_completed": 0},
+            {"frame": frame(0), "state": "NOT_FINISHED", "levels_completed": 0},
             {
-                "frame": [[[1]]],
+                "frame": frame(1),
                 "state": "GAME_OVER",
                 "levels_completed": 0,
                 "action_input": {
@@ -86,13 +89,13 @@ class RecordingSummaryTests(unittest.TestCase):
                 },
             },
             {
-                "frame": [[[2]]],
+                "frame": frame(2),
                 "state": "NOT_FINISHED",
                 "levels_completed": 0,
                 "action_input": {"id": 4, "reasoning": {"kind": "bad|secret"}},
             },
             {
-                "frame": [[[3]]],
+                "frame": frame(3),
                 "state": "NOT_FINISHED",
                 "levels_completed": 1,
                 "action_input": {"id": 1, "reasoning": {"kind": "resource-navigation"}},
