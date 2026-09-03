@@ -17,6 +17,8 @@ from policy import (  # noqa: E402
     Snapshot,
     changed_coordinates,
     connected_components,
+    horizontal_hud_mask,
+    masked_signature,
     normalize_action_name,
     normalize_actions,
     normalize_planes,
@@ -77,6 +79,28 @@ class PolicyHelpersTests(unittest.TestCase):
         self.assertEqual(reason["kind"], "salient-component")
         self.assertEqual(reason["color"], 9)
 
+    def test_hud_mask_ignores_outer_progress_strip_for_state_and_clicks(self) -> None:
+        base = [[0 for _ in range(16)] for _ in range(16)]
+        base[0][2] = 9  # A visually salient HUD pixel.
+        base[4][4] = 8  # A visually salient world object.
+        altered = [row[:] for row in base]
+        altered[15][5] = 7
+        interior_change = [row[:] for row in base]
+        interior_change[5][5] = 7
+        snapshot = Snapshot("NOT_FINISHED", 0, (COMPLEX_ACTION,), (tuple(map(tuple, base)),))
+        hud_only = Snapshot("NOT_FINISHED", 0, (COMPLEX_ACTION,), (tuple(map(tuple, altered)),))
+        world_change = Snapshot("NOT_FINISHED", 0, (COMPLEX_ACTION,), (tuple(map(tuple, interior_change)),))
+
+        mask = horizontal_hud_mask(snapshot)
+        self.assertIn((2, 0), mask)
+        self.assertIn((5, 15), mask)
+        self.assertEqual(masked_signature(snapshot, mask), masked_signature(hud_only, mask))
+        self.assertNotEqual(masked_signature(snapshot, mask), masked_signature(world_change, mask))
+        self.assertEqual(changed_coordinates(snapshot.planes, hud_only.planes, mask), set())
+        targets = rank_click_targets(snapshot, excluded=mask)
+        self.assertEqual(targets[0][1], (4, 4))
+        self.assertTrue(all(point not in mask for _, point, _ in targets))
+
 
 class ExplorerPolicyTests(unittest.TestCase):
     @staticmethod
@@ -99,6 +123,31 @@ class ExplorerPolicyTests(unittest.TestCase):
         snapshot = self._snapshot(actions=("ACTION3",))
         proposal = policy.choose(snapshot)
         self.assertEqual(proposal.name, "ACTION3")
+
+    def test_graph_expands_an_untried_edge_after_returning_to_a_known_state(self) -> None:
+        policy = ExplorerPolicy()
+        start = self._snapshot(actions=("ACTION1", "ACTION2"), grid=((0, 0), (0, 9)))
+        middle = self._snapshot(actions=("ACTION1", "ACTION2"), grid=((0, 1), (0, 9)))
+
+        self.assertEqual(policy.choose(start).name, "ACTION1")
+        self.assertEqual(policy.choose(middle).name, "ACTION1")
+        # The second ACTION1 returns to the already expanded start node. Its
+        # first edge is marked tested, so ACTION2 becomes the next frontier.
+        self.assertEqual(policy.choose(start).name, "ACTION2")
+
+    def test_graph_replays_shortest_known_route_to_another_frontier(self) -> None:
+        policy = ExplorerPolicy()
+        start = self._snapshot(actions=("ACTION1",), grid=((0, 0), (0, 9)))
+        middle = self._snapshot(actions=("ACTION1",), grid=((0, 1), (0, 9)))
+        frontier = self._snapshot(actions=("ACTION1", "ACTION2"), grid=((0, 2), (0, 9)))
+
+        self.assertEqual(policy.choose(start).name, "ACTION1")
+        self.assertEqual(policy.choose(middle).name, "ACTION1")
+        self.assertEqual(policy.choose(frontier).name, "ACTION1")
+        # The current middle node has no untried action. Its known ACTION1
+        # edge reaches frontier, where ACTION2 remains untried, so the graph
+        # replays the first action on that shortest route.
+        self.assertEqual(policy.choose(middle).name, "ACTION1")
 
     def test_clicks_salient_target_then_does_not_repeat_same_click_on_noop(self) -> None:
         policy = ExplorerPolicy()
@@ -130,6 +179,17 @@ class ExplorerPolicyTests(unittest.TestCase):
         self.assertTrue(trace[0]["changed"])
         self.assertTrue(trace[-1]["game_over"])
         self.assertEqual(policy.transition_trace(limit=0), [])
+
+    def test_finalize_accounts_for_last_action_once_without_proposing_again(self) -> None:
+        policy = ExplorerPolicy()
+        start = self._snapshot(actions=("ACTION1",), grid=((0, 0), (0, 9)))
+        final = self._snapshot(actions=("ACTION1",), grid=((0, 1), (0, 9)))
+        policy.choose(start)
+        policy.finalize(final)
+        policy.finalize(final)
+        self.assertEqual(policy.diagnostics()["ACTION1"]["attempts"], 1)
+        self.assertEqual(len(policy.transition_trace()), 1)
+        self.assertTrue(policy.transition_trace()[0]["changed"])
 
     def test_action_name_catalog_has_every_protocol_action(self) -> None:
         self.assertEqual(ACTION_NAMES, ("RESET", "ACTION1", "ACTION2", "ACTION3", "ACTION4", "ACTION5", "ACTION6", "ACTION7"))

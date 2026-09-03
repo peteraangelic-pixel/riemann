@@ -240,9 +240,14 @@ def _at(planes: Planes, plane: int, x: int, y: int) -> int | None:
     return row[x] if x < len(row) else None
 
 
-def changed_coordinates(previous: Planes, current: Planes) -> set[Coordinate]:
-    """Find visible coordinates whose value changed in any frame plane."""
+def changed_coordinates(
+    previous: Planes,
+    current: Planes,
+    excluded: set[Coordinate] | frozenset[Coordinate] | None = None,
+) -> set[Coordinate]:
+    """Find coordinates changed in any plane, optionally ignoring HUD cells."""
     changed: set[Coordinate] = set()
+    excluded = excluded or frozenset()
     max_planes = max(len(previous), len(current))
     for plane_idx in range(max_planes):
         before = previous[plane_idx] if plane_idx < len(previous) else ()
@@ -251,9 +256,46 @@ def changed_coordinates(previous: Planes, current: Planes) -> set[Coordinate]:
         height = max(grid_shape(before)[1], grid_shape(after)[1])
         for y in range(height):
             for x in range(width):
+                if (x, y) in excluded:
+                    continue
                 if _at(previous, plane_idx, x, y) != _at(current, plane_idx, x, y):
                     changed.add((x, y))
     return changed
+
+
+def horizontal_hud_mask(snapshot: Snapshot) -> frozenset[Coordinate]:
+    """Mask conservative top/bottom HUD bands on normal-sized ARC frames.
+
+    ARC game frames commonly contain a changing progress/step strip along an
+    outer horizontal edge. Treating that strip as world state makes a blocked
+    move appear novel and breaks graph revisits. Small synthetic grids are left
+    untouched; on a 64×64 frame only the outer four rows at each horizontal
+    edge are excluded.
+    """
+    width, height = grid_shape(primary_grid(snapshot.planes))
+    if width < 12 or height < 12:
+        return frozenset()
+    band = min(4, max(1, height // 16))
+    return frozenset(
+        (x, y)
+        for y in (*range(band), *range(height - band, height))
+        for x in range(width)
+    )
+
+
+def masked_signature(snapshot: Snapshot, excluded: set[Coordinate] | frozenset[Coordinate]) -> str:
+    """Hash an observation after replacing known HUD coordinates with ``-1``."""
+    masked_planes = tuple(
+        tuple(
+            tuple(-1 if (x, y) in excluded else cell for x, cell in enumerate(row))
+            for y, row in enumerate(grid)
+        )
+        for grid in snapshot.planes
+    )
+    payload = repr(
+        (snapshot.state, snapshot.levels_completed, snapshot.available_actions, masked_planes)
+    ).encode("utf-8")
+    return blake2b(payload, digest_size=12).hexdigest()
 
 
 def connected_components(grid: Grid) -> tuple[Component, ...]:
@@ -327,7 +369,11 @@ def _fallback_clicks(width: int, height: int) -> tuple[Coordinate, ...]:
     return tuple(points)
 
 
-def rank_click_targets(snapshot: Snapshot, changed: set[Coordinate] | None = None) -> tuple[tuple[int, Coordinate, dict[str, Any]], ...]:
+def rank_click_targets(
+    snapshot: Snapshot,
+    changed: set[Coordinate] | None = None,
+    excluded: set[Coordinate] | frozenset[Coordinate] | None = None,
+) -> tuple[tuple[int, Coordinate, dict[str, Any]], ...]:
     """Rank likely clickable pixels using rarity, component size, and change.
 
     It intentionally does not assume a colour palette or a game's mechanics.
@@ -340,6 +386,7 @@ def rank_click_targets(snapshot: Snapshot, changed: set[Coordinate] | None = Non
         return ()
 
     changed = changed or set()
+    excluded = excluded or frozenset()
     cells = [cell for row in grid for cell in row]
     color_counts = Counter(cells)
     background = color_counts.most_common(1)[0][0] if color_counts else 0
@@ -357,6 +404,8 @@ def rank_click_targets(snapshot: Snapshot, changed: set[Coordinate] | None = Non
         base_score = max(20, 100 + rarity + compactness + foreground - size_penalty)
 
         for x, y in _component_representatives(component):
+            if (x, y) in excluded:
+                continue
             score = base_score + (1000 if (x, y) in changed else 0)
             reason = {
                 "policy": "novelty-explorer-v1",
@@ -370,6 +419,8 @@ def rank_click_targets(snapshot: Snapshot, changed: set[Coordinate] | None = Non
                 candidates[(x, y)] = (score, reason)
 
     for rank, point in enumerate(_fallback_clicks(width, height)):
+        if point in excluded:
+            continue
         score = 120 - rank
         if point in changed:
             score += 1000
@@ -388,7 +439,7 @@ def rank_click_targets(snapshot: Snapshot, changed: set[Coordinate] | None = Non
     ordered = [
         (score, point, reason)
         for point, (score, reason) in candidates.items()
-        if 0 <= point[0] <= 63 and 0 <= point[1] <= 63
+        if 0 <= point[0] <= 63 and 0 <= point[1] <= 63 and point not in excluded
     ]
     ordered.sort(key=lambda item: (-item[0], item[1][1], item[1][0]))
     return tuple(ordered)
@@ -396,30 +447,53 @@ def rank_click_targets(snapshot: Snapshot, changed: set[Coordinate] | None = Non
 
 @dataclass(frozen=True)
 class Transition:
+    """Observed result of one state-action transition."""
+
     changed: bool
     level_gain: int
     game_over: bool
     revisit: bool
 
 
-class ExplorerPolicy:
-    """State-aware, deterministic exploration policy.
+@dataclass
+class GraphEdge:
+    """A deterministic action edge discovered between semantic game states."""
 
-    The policy maintains a very small state graph keyed by frame fingerprints.
-    It favours actions that visibly changed a board or advanced a level, then
-    probes untried actions. A repeated no-op click is never selected in the
-    same visual state.
+    proposal: ActionProposal
+    successor: str | None = None
+    transition: Transition | None = None
+
+
+@dataclass
+class StateNode:
+    """Lazily generated action frontier for one semantic game state."""
+
+    actions: tuple[ActionProposal, ...]
+    tried: set[str] = field(default_factory=set)
+
+
+class ExplorerPolicy:
+    """Deterministic frontier explorer over visually canonicalized states.
+
+    The policy records every attempted state-action edge before observing its
+    result. At a state it expands an untested high-priority action; once that
+    local frontier is exhausted, it follows known directed edges toward the
+    nearest reachable frontier. This avoids mistaking a ticking HUD for useful
+    progress and avoids the common failure mode of repeating one movement that
+    merely changes a status bar.
     """
 
     def __init__(self) -> None:
         self._previous: Snapshot | None = None
         self._previous_signature: str | None = None
+        self._previous_excluded: frozenset[Coordinate] = frozenset()
         self._pending: ActionProposal | None = None
         self._last_transition: Transition | None = None
         self._state_visits: Counter[str] = Counter()
         self._global_stats: dict[str, ActionStats] = defaultdict(ActionStats)
         self._state_stats: dict[tuple[str, str], ActionStats] = defaultdict(ActionStats)
-        self._tried_clicks: dict[str, set[Coordinate]] = defaultdict(set)
+        self._nodes: dict[str, StateNode] = {}
+        self._edges: dict[tuple[str, str], GraphEdge] = {}
         self._transition_trace: list[dict[str, Any]] = []
 
     def diagnostics(self) -> dict[str, dict[str, int]]:
@@ -436,23 +510,42 @@ class ExplorerPolicy:
         }
 
     def transition_trace(self, limit: int = 80) -> list[dict[str, Any]]:
-        """Return recent action/outcome evidence without retaining grid pixels.
-
-        The compact trace is intended for local and CI smoke reports. It lets a
-        replay show which probes changed a state without exporting frames or any
-        service credential.
-        """
+        """Return recent action/outcome evidence without retaining grid pixels."""
         if limit < 1:
             return []
         return [dict(entry) for entry in self._transition_trace[-limit:]]
 
-    def _observe_transition(self, current: Snapshot, signature: str) -> set[Coordinate]:
+    def finalize(self, snapshot: Snapshot) -> None:
+        """Account for a final environment response when no next action is due.
+
+        Framework loops stop immediately on a win or an action budget, leaving
+        the final step without a subsequent ``choose`` call. The local runner
+        invokes this method solely for accurate diagnostics; it never proposes
+        or executes another action.
+        """
+        if self._pending is None:
+            return
+        excluded = horizontal_hud_mask(snapshot)
+        signature = masked_signature(snapshot, excluded)
+        self._observe_transition(snapshot, signature, excluded)
+        self._pending = None
+
+    def _observe_transition(
+        self,
+        current: Snapshot,
+        signature: str,
+        excluded: frozenset[Coordinate],
+    ) -> set[Coordinate]:
         changed: set[Coordinate] = set()
         self._last_transition = None
         if self._previous is None or self._pending is None or self._previous_signature is None:
             return changed
 
-        changed = changed_coordinates(self._previous.planes, current.planes)
+        changed = changed_coordinates(
+            self._previous.planes,
+            current.planes,
+            set(excluded | self._previous_excluded),
+        )
         level_gain = current.levels_completed - self._previous.levels_completed
         transition = Transition(
             changed=bool(changed) or level_gain > 0,
@@ -473,6 +566,12 @@ class ExplorerPolicy:
             game_over=transition.game_over,
             revisit=transition.revisit,
         )
+        edge = self._edges.setdefault(
+            (self._previous_signature, self._pending.key),
+            GraphEdge(proposal=self._pending),
+        )
+        edge.successor = signature
+        edge.transition = transition
         self._transition_trace.append(
             {
                 "action": self._pending.key,
@@ -496,93 +595,46 @@ class ExplorerPolicy:
             return -80
         return 0
 
-    def _score_simple(self, signature: str, name: str) -> int:
-        key = (signature, name)
-        local = self._state_stats[key]
-        global_stats = self._global_stats[name]
-        score = self._simple_priority(name) + global_stats.utility() + local.utility()
-        if local.attempts == 0:
-            score += 520
-        if self._last_transition and self._pending and self._pending.name == name:
-            if self._last_transition.changed and not self._last_transition.game_over:
-                # Repeating an action that just moved a player is useful, but
-                # less valuable than an explicit level advance.
-                score += 350
-        return score
-
-    def _best_click(
+    def _candidate_actions(
         self,
         snapshot: Snapshot,
-        signature: str,
         changed: set[Coordinate],
-    ) -> tuple[int, ActionProposal] | None:
-        for salience, (x, y), reason in rank_click_targets(snapshot, changed):
-            if (x, y) in self._tried_clicks[signature]:
-                continue
-            proposal = ActionProposal(
-                name=COMPLEX_ACTION,
-                x=x,
-                y=y,
-                reasoning={**reason, "target": [x, y], "salience": salience},
-            )
-            # Salient objects outrank an untried directional button; generic
-            # lattice points do not.
-            return 180 + salience, proposal
-        return None
-
-    def choose(self, snapshot: Snapshot) -> ActionProposal:
-        """Observe ``snapshot`` and return one valid, deterministic proposal."""
-        signature = snapshot.signature
-        changed = self._observe_transition(snapshot, signature)
-        self._state_visits[signature] += 1
-
-        if snapshot.state in {"NOT_PLAYED", "GAME_OVER"}:
-            proposal = ActionProposal(
-                RESET,
-                reasoning={
-                    "policy": "novelty-explorer-v1",
-                    "kind": "reset",
-                    "state": snapshot.state,
-                },
-            )
-            self._remember(snapshot, signature, proposal)
-            return proposal
-
+        excluded: frozenset[Coordinate],
+    ) -> tuple[ActionProposal, ...]:
+        """Build a deterministic, finite action frontier for a new node."""
         valid = tuple(action for action in snapshot.available_actions if action != RESET)
-        if not valid:
-            # The protocol guarantees RESET in terminal states. This defensive
-            # fallback prevents an invalid numbered action on a malformed frame.
-            proposal = ActionProposal(
-                RESET,
-                reasoning={"policy": "novelty-explorer-v1", "kind": "no-valid-actions"},
-            )
-            self._remember(snapshot, signature, proposal)
-            return proposal
-
         candidates: list[tuple[int, int, str, ActionProposal]] = []
+
         for action in valid:
             if action == COMPLEX_ACTION:
                 continue
-            score = self._score_simple(signature, action)
             proposal = ActionProposal(
                 action,
                 reasoning={
-                    "policy": "novelty-explorer-v1",
-                    "kind": "simple-action",
-                    "state_visits": self._state_visits[signature],
+                    "policy": "novelty-explorer-v2",
+                    "kind": "graph-simple-frontier",
                 },
             )
-            candidates.append((score, 1, action, proposal))
+            candidates.append((600 + self._simple_priority(action), 1, action, proposal))
 
         if COMPLEX_ACTION in valid:
-            best_click = self._best_click(snapshot, signature, changed)
-            if best_click is not None:
-                click_score, click_proposal = best_click
-                candidates.append((click_score, 0, click_proposal.key, click_proposal))
+            for salience, (x, y), reason in rank_click_targets(snapshot, changed, excluded):
+                proposal = ActionProposal(
+                    name=COMPLEX_ACTION,
+                    x=x,
+                    y=y,
+                    reasoning={
+                        **reason,
+                        "policy": "novelty-explorer-v2",
+                        "kind": "graph-click-frontier",
+                        "target": [x, y],
+                        "salience": salience,
+                    },
+                )
+                # A visually salient component should beat a directional probe;
+                # the generic lattice remains a lower-priority fallback.
+                candidates.append((200 + salience, 0, proposal.key, proposal))
 
-        # Every valid set contains either a simple action or ACTION6. The sort
-        # makes the policy reproducible when utilities tie (lower action number
-        # wins after utility and action kind).
         candidates.sort(
             key=lambda item: (
                 -item[0],
@@ -592,13 +644,126 @@ class ExplorerPolicy:
                 item[3].x if item[3].x is not None else -1,
             )
         )
-        proposal = candidates[0][3]
-        self._remember(snapshot, signature, proposal)
+        return tuple(item[3] for item in candidates)
+
+    def _node(
+        self,
+        snapshot: Snapshot,
+        signature: str,
+        changed: set[Coordinate],
+        excluded: frozenset[Coordinate],
+    ) -> StateNode:
+        node = self._nodes.get(signature)
+        if node is None:
+            node = StateNode(self._candidate_actions(snapshot, changed, excluded))
+            self._nodes[signature] = node
+        return node
+
+    @staticmethod
+    def _next_untested(node: StateNode) -> ActionProposal | None:
+        return next((action for action in node.actions if action.key not in node.tried), None)
+
+    def _route_to_frontier(self, start: str) -> tuple[ActionProposal, ...]:
+        """Return a shortest known directed route to another untested frontier."""
+        queue: deque[str] = deque([start])
+        parents: dict[str, tuple[str, GraphEdge]] = {}
+        visited = {start}
+        target: str | None = None
+
+        while queue:
+            state = queue.popleft()
+            node = self._nodes.get(state)
+            if state != start and node is not None and self._next_untested(node) is not None:
+                target = state
+                break
+
+            outgoing = [
+                edge
+                for (origin, _), edge in self._edges.items()
+                if origin == state
+                and edge.successor is not None
+                and edge.successor not in visited
+                and (edge.transition is None or not edge.transition.game_over)
+            ]
+            for edge in sorted(outgoing, key=lambda candidate: candidate.proposal.key):
+                assert edge.successor is not None
+                visited.add(edge.successor)
+                parents[edge.successor] = (state, edge)
+                queue.append(edge.successor)
+
+        if target is None:
+            return ()
+        route: list[ActionProposal] = []
+        while target != start:
+            previous, edge = parents[target]
+            route.append(edge.proposal)
+            target = previous
+        return tuple(reversed(route))
+
+    def choose(self, snapshot: Snapshot) -> ActionProposal:
+        """Observe ``snapshot`` and select one legal, systematic probe."""
+        excluded = horizontal_hud_mask(snapshot)
+        signature = masked_signature(snapshot, excluded)
+        changed = self._observe_transition(snapshot, signature, excluded)
+        self._state_visits[signature] += 1
+
+        if snapshot.state in {"NOT_PLAYED", "GAME_OVER"}:
+            proposal = ActionProposal(
+                RESET,
+                reasoning={
+                    "policy": "novelty-explorer-v2",
+                    "kind": "reset",
+                    "state": snapshot.state,
+                },
+            )
+            self._remember(snapshot, signature, excluded, proposal)
+            return proposal
+
+        valid = tuple(action for action in snapshot.available_actions if action != RESET)
+        if not valid:
+            proposal = ActionProposal(
+                RESET,
+                reasoning={"policy": "novelty-explorer-v2", "kind": "no-valid-actions"},
+            )
+            self._remember(snapshot, signature, excluded, proposal)
+            return proposal
+
+        node = self._node(snapshot, signature, changed, excluded)
+        proposal = self._next_untested(node)
+        if proposal is None:
+            route = self._route_to_frontier(signature)
+            if route and route[0].name in valid:
+                proposal = route[0]
+            else:
+                # A reset is the deterministic way to revisit a known root when
+                # this directed graph has no path to another unexplored node.
+                proposal = ActionProposal(
+                    RESET,
+                    reasoning={
+                        "policy": "novelty-explorer-v2",
+                        "kind": "frontier-reset",
+                        "state_visits": self._state_visits[signature],
+                    },
+                )
+
+        self._remember(snapshot, signature, excluded, proposal)
         return proposal
 
-    def _remember(self, snapshot: Snapshot, signature: str, proposal: ActionProposal) -> None:
-        if proposal.name == COMPLEX_ACTION and proposal.x is not None and proposal.y is not None:
-            self._tried_clicks[signature].add((proposal.x, proposal.y))
+    def _remember(
+        self,
+        snapshot: Snapshot,
+        signature: str,
+        excluded: frozenset[Coordinate],
+        proposal: ActionProposal,
+    ) -> None:
+        # Mark an edge before execution. A reset or terminal response can end a
+        # loop before another observation, and must not make this edge appear
+        # untested on the next visit.
+        node = self._nodes.get(signature)
+        if node is not None:
+            node.tried.add(proposal.key)
+        self._edges.setdefault((signature, proposal.key), GraphEdge(proposal=proposal))
         self._previous = snapshot
         self._previous_signature = signature
+        self._previous_excluded = excluded
         self._pending = proposal

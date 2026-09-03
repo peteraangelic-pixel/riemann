@@ -85,6 +85,11 @@ class MyAgent(Agent):
             self._ACTION_LOCK.release()
             raise
 
+    def finalize_diagnostics(self) -> None:
+        """Record the final returned frame without submitting another action."""
+        if self.frames:
+            self.policy.finalize(snapshot_from_frame(self.frames[-1]))
+
     def take_action(self, action: GameAction):  # type: ignore[override]
         try:
             return super().take_action(action)

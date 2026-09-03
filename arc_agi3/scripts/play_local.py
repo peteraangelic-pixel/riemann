@@ -163,6 +163,7 @@ def main() -> None:
             tags=["local-dev", "novelty-v1"],
         )
         agent.main()
+        agent.finalize_diagnostics()
         final = agent.frames[-1]
         result = RunResult(
             game_id=game_id,
