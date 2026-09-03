@@ -579,6 +579,40 @@ class ExplorerPolicyTests(unittest.TestCase):
             },
         )
 
+    def test_tile_maze_navigator_bounds_an_earlier_resource_route_when_meter_learning_arrives(self) -> None:
+        """A speculative ring route cannot outrun a later learned deadline."""
+        navigator = TileMazeNavigator()
+        navigator._token_goal = (7, 2)  # noqa: SLF001 - matched visual route setup
+        navigator._token_control = (2, 6)  # noqa: SLF001 - matched visual route setup
+        navigator._active_resource = (4, 4)  # noqa: SLF001 - chosen before meter inference
+        navigator._last_bottom_meter = BottomEdgeMeter(  # noqa: SLF001 - repeated-tick inference setup
+            row=61,
+            start=13,
+            values=(11,) * 6 + (3,) * 36,
+        )
+        navigator._meter_active_value = 11  # noqa: SLF001 - repeated-tick inference setup
+        navigator._meter_units_per_action = 2  # noqa: SLF001 - repeated-tick inference setup
+
+        # Four tile moves remain to the ring, but the currently visible meter
+        # carries only three. The navigator abandons the impossible detour and
+        # resumes the matched control route without falsely consuming the ring.
+        proposal = navigator.choose(
+            self._token_maze_snapshot(
+                (6, 6),
+                turns_to_target=3,
+                resources=frozenset({(4, 4)}),
+                controls=((2, 6),),
+                meter_active_units=6,
+            )
+        )
+        self.assertIsNotNone(proposal)
+        assert proposal is not None
+        self.assertEqual(proposal.reasoning["kind"], "tile-badge-navigation")
+        self.assertEqual(proposal.reasoning["target"], [2, 6])
+        self.assertIsNone(navigator._active_resource)  # noqa: SLF001
+        self.assertNotIn((4, 4), navigator._used_resources)  # noqa: SLF001
+        self.assertEqual(navigator._meter_deferred_resources, {(4, 4): 3})  # noqa: SLF001
+
     def test_tile_maze_navigator_keeps_an_initial_control_probe_direct_when_meter_is_tight(self) -> None:
         navigator = TileMazeNavigator()
         navigator._token_goal = (7, 2)  # noqa: SLF001 - matched visual route setup

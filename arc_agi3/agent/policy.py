@@ -1598,11 +1598,14 @@ class TileMazeNavigator:
         # unaligned token reaches its control, try the nearest one. Thereafter
         # retain route-neutral rings, plus a reachable detour only when the
         # independently learned bottom meter cannot cover the visible
-        # control-to-target leg.
+        # control-to-target leg. An initially speculative resource route is
+        # immediately upgraded to that same bounded contract once repeated
+        # meter ticks establish an action estimate; it must not walk past a
+        # newly learned deadline merely because it started one frame earlier.
         if self._active_resource is not None:
-            meter_budget = (
-                self._meter_actions_remaining() if self._active_resource_meter_bound else None
-            )
+            meter_budget = self._meter_actions_remaining()
+            if meter_budget is not None:
+                self._active_resource_meter_bound = True
             if self._active_resource_meter_bound and meter_budget is None:
                 # A visual meter route must not silently become unbounded if
                 # its geometry disappears during an animation or modal state.
