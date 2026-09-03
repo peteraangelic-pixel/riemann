@@ -9,13 +9,51 @@ from __future__ import annotations
 
 import argparse
 import importlib
+import json
 import logging
 import subprocess
 import sys
+from dataclasses import asdict, dataclass
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 VENDOR = ROOT / "vendor" / "ARC-AGI-3-Agents"
+
+
+@dataclass(frozen=True)
+class RunResult:
+    """Small, credential-free outcome record for a completed local game."""
+
+    game_id: str
+    state: str
+    levels_completed: int
+    actions: int
+    policy_evidence: dict[str, dict[str, int]]
+
+
+def _state_name(value: object) -> str:
+    """Serialize SDK enums and stand-in values consistently in reports."""
+    raw = getattr(value, "value", value)
+    return str(raw).rsplit(".", 1)[-1].upper()
+
+
+def write_report(
+    path: Path,
+    *,
+    requested_games: list[str],
+    results: list[RunResult],
+    scorecard: object | None,
+) -> None:
+    """Write a compact JSON report without frames, credentials, or API URLs."""
+    score = getattr(scorecard, "score", scorecard)
+    payload = {
+        "schema_version": 1,
+        "requested_games": requested_games,
+        "results": [asdict(result) for result in results],
+        "scorecard": None if score is None else str(score),
+    }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
 def prepare_framework() -> None:
@@ -46,6 +84,11 @@ def main() -> None:
     parser.add_argument("--list", action="store_true", help="List discovered games and exit.")
     parser.add_argument("--max-steps", type=int, default=120, help="Per-game action ceiling.")
     parser.add_argument("--record", action="store_true", help="Save JSONL recordings under recordings/.")
+    parser.add_argument(
+        "--report",
+        type=Path,
+        help="Write a compact JSON outcome report (no frames or credentials).",
+    )
     parser.add_argument("--offline", action="store_true", help="Use only already-downloaded game files.")
     args = parser.parse_args()
 
@@ -91,7 +134,7 @@ def main() -> None:
         raise SystemExit("No games selected.")
 
     MyAgent.MAX_ACTIONS = args.max_steps
-    results: list[tuple[str, object, int, int]] = []
+    results: list[RunResult] = []
     for game_id in game_ids:
         print(f"\n=== {game_id} ===")
         env = arcade.make(game_id, save_recording=args.record)
@@ -109,19 +152,37 @@ def main() -> None:
         )
         agent.main()
         final = agent.frames[-1]
-        results.append((game_id, final.state, final.levels_completed, agent.action_counter))
-        print(
-            f"state={final.state} levels={final.levels_completed} "
-            f"actions={agent.action_counter}"
+        result = RunResult(
+            game_id=game_id,
+            state=_state_name(final.state),
+            levels_completed=int(final.levels_completed),
+            actions=int(agent.action_counter),
+            policy_evidence=agent.policy.diagnostics(),
         )
-        print(f"policy evidence={agent.policy.diagnostics()}")
+        results.append(result)
+        print(
+            f"state={result.state} levels={result.levels_completed} "
+            f"actions={result.actions}"
+        )
+        print(f"policy evidence={result.policy_evidence}")
 
     print("\n=== summary ===")
-    for game_id, state, levels, actions in results:
-        print(f"{game_id}: state={state}, levels={levels}, actions={actions}")
+    for result in results:
+        print(
+            f"{result.game_id}: state={result.state}, "
+            f"levels={result.levels_completed}, actions={result.actions}"
+        )
     scorecard = arcade.get_scorecard()
     if scorecard is not None:
         print(f"local scorecard score={getattr(scorecard, 'score', scorecard)}")
+    if args.report:
+        write_report(
+            args.report,
+            requested_games=game_ids,
+            results=results,
+            scorecard=scorecard,
+        )
+        print(f"outcome report={args.report}")
 
 
 if __name__ == "__main__":

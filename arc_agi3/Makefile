@@ -44,8 +44,8 @@ list-games: ## List environments visible to the local ARC SDK
 play-local: ## Play selected public games locally; GAME=ls20,vc33 STEPS=120
 	$(VENV_PY) scripts/play_local.py --game "$(GAME)" --max-steps $(STEPS) --record
 
-verify-local: ## Short smoke run on ls20 and vc33
-	$(VENV_PY) scripts/play_local.py --game ls20,vc33 --max-steps 50
+verify-local: ## Short smoke run on ls20 and vc33; writes recordings/local-smoke-report.json
+	$(VENV_PY) scripts/play_local.py --game ls20,vc33 --max-steps 50 --report recordings/local-smoke-report.json
 
 notebook: ## Generate ignored notebooks/submission.ipynb; ACCELERATOR=cpu|t4|p100|rtx6000
 	$(VENV_PY) scripts/build_notebook.py --accelerator $(ACCELERATOR)
