@@ -721,6 +721,9 @@ def _bottom_edge_meter(grid: Grid) -> BottomEdgeMeter | None:
     best: tuple[int, int, int, tuple[int, ...]] | None = None
     # HUD indicators conventionally use the final few rows. Requiring two
     # vertically paired pixels filters single-row text and thin maze borders.
+    # Prefer the widest stable run first: an inactive meter colour can coincide
+    # with the row immediately beneath it, creating a shorter false strip one
+    # pixel lower than the full paired indicator.
     for row in range(max(0, height - 4), height - 1):
         paired: list[int | None] = []
         for column in range(width):
@@ -741,13 +744,34 @@ def _bottom_edge_meter(grid: Grid) -> BottomEdgeMeter | None:
                 length = end - start + 1
                 if length < minimum_width:
                     continue
-                candidate = (row, length, -start, tuple(paired[start : end + 1]))
+                candidate = (length, row, -start, tuple(paired[start : end + 1]))
                 if best is None or candidate[:3] > best[:3]:
                     best = candidate
     if best is None:
         return None
-    row, _, negated_start, values = best
+    _, row, negated_start, values = best
     return BottomEdgeMeter(row=row, start=-negated_start, values=values)
+
+
+def _meter_at_geometry(grid: Grid, meter: BottomEdgeMeter) -> BottomEdgeMeter | None:
+    """Read a candidate meter at a prior geometry when its footer is stable."""
+    width, height = grid_shape(grid)
+    if meter.row < 0 or meter.row + 1 >= height or meter.start < 0:
+        return None
+    stop = meter.start + len(meter.values)
+    if stop > width:
+        return None
+    values: list[int] = []
+    for column in range(meter.start, stop):
+        if column >= len(grid[meter.row]) or column >= len(grid[meter.row + 1]):
+            return None
+        upper, lower = grid[meter.row][column], grid[meter.row + 1][column]
+        if upper != lower:
+            return None
+        values.append(upper)
+    if len(set(values)) > 2:
+        return None
+    return BottomEdgeMeter(row=meter.row, start=meter.start, values=tuple(values))
 
 
 def _compact_control_glyph(glyph: TileGlyph | None) -> bool:
@@ -992,6 +1016,7 @@ class TileMazeNavigator:
         self._meter_evidence: Counter[str] = Counter()
         self._bounce_return: str | None = None
         self._active_resource: Coordinate | None = None
+        self._active_resource_meter_bound = False
         self._used_resources: set[Coordinate] = set()
 
     def reset(self) -> None:
@@ -1019,6 +1044,7 @@ class TileMazeNavigator:
         self._meter_units_per_action = None
         self._bounce_return = None
         self._active_resource = None
+        self._active_resource_meter_bound = False
         self._used_resources.clear()
 
     @staticmethod
@@ -1061,6 +1087,7 @@ class TileMazeNavigator:
         self._meter_units_per_action = None
         self._bounce_return = None
         self._active_resource = None
+        self._active_resource_meter_bound = False
         self._used_resources.clear()
 
     def _observe_avatar(self, view: TileMazeView) -> None:
@@ -1097,8 +1124,28 @@ class TileMazeNavigator:
 
     def _observe_bottom_meter(self, snapshot: Snapshot) -> None:
         """Learn a depleting bottom indicator only after repeated small ticks."""
-        meter = _bottom_edge_meter(primary_grid(snapshot.planes))
+        grid = primary_grid(snapshot.planes)
+        meter = _bottom_edge_meter(grid)
         previous = self._last_bottom_meter
+        # At a full reset, a same-colour footer detail can extend a raw run by
+        # one pixel. Retain the prior geometry only when the new raw candidate
+        # substantially overlaps it and every old paired pixel still agrees.
+        if (
+            meter is not None
+            and previous is not None
+            and meter.row == previous.row
+            and (meter.start, len(meter.values)) != (previous.start, len(previous.values))
+        ):
+            overlap = max(
+                0,
+                min(meter.start + len(meter.values), previous.start + len(previous.values))
+                - max(meter.start, previous.start),
+            )
+            if overlap * 4 >= min(len(meter.values), len(previous.values)) * 3:
+                aligned = _meter_at_geometry(grid, previous)
+                if aligned is not None:
+                    meter = aligned
+                    self._meter_evidence["geometry-alignments"] += 1
         self._last_bottom_meter = meter
         if meter is not None:
             self._meter_evidence["candidate-observations"] += 1
@@ -1353,6 +1400,7 @@ class TileMazeNavigator:
         if self._active_resource is not None and view.avatar == self._active_resource:
             self._used_resources.add(self._active_resource)
             self._active_resource = None
+            self._active_resource_meter_bound = False
 
     def _resource_proposal(
         self,
@@ -1420,9 +1468,15 @@ class TileMazeNavigator:
             if self._active_resource is not None:
                 self._used_resources.add(self._active_resource)
                 self._active_resource = None
+                self._active_resource_meter_bound = False
             return None
         _, _, _, _, resource, path = min(routes)
+        previous_active_resource = self._active_resource
         self._active_resource = resource
+        if meter_bounded:
+            self._active_resource_meter_bound = True
+        elif resource != previous_active_resource:
+            self._active_resource_meter_bound = False
         reasoning: dict[str, Any] = {
             "policy": "novelty-explorer-v5",
             "kind": "tile-resource-navigation",
@@ -1474,13 +1528,24 @@ class TileMazeNavigator:
         # independently learned bottom meter cannot cover the visible
         # control-to-target leg.
         if self._active_resource is not None:
-            proposal = self._resource_proposal(
-                view,
-                goal=target.coordinate,
-                require_goal_neutral_route=False,
+            meter_budget = (
+                self._meter_actions_remaining() if self._active_resource_meter_bound else None
             )
-            if proposal is not None:
-                return proposal
+            if self._active_resource_meter_bound and meter_budget is None:
+                # A visual meter route must not silently become unbounded if
+                # its geometry disappears during an animation or modal state.
+                self._meter_evidence["meter-bound-route-lost-estimate"] += 1
+                self._active_resource = None
+                self._active_resource_meter_bound = False
+            else:
+                proposal = self._resource_proposal(
+                    view,
+                    goal=target.coordinate,
+                    require_goal_neutral_route=False,
+                    max_actions_to_resource=meter_budget,
+                )
+                if proposal is not None:
+                    return proposal
         elif needs_adjustment and not self._used_resources:
             proposal = self._resource_proposal(
                 view,

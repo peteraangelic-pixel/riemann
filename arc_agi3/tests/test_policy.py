@@ -108,7 +108,9 @@ class PolicyHelpersTests(unittest.TestCase):
 
     def test_bottom_edge_meter_learns_a_repeated_depleting_tick(self) -> None:
         def snapshot(active_units: int) -> Snapshot:
-            grid = [[4 for _ in range(64)] for _ in range(64)]
+            # The inactive meter colour also fills the row below the strip,
+            # exercising the lower-row partial-run ambiguity.
+            grid = [[3 for _ in range(64)] for _ in range(64)]
             # Distinct compact footer details bound the paired indicator rather
             # than allowing a uniform background to extend the candidate run.
             for column in range(1, 11):
@@ -146,6 +148,13 @@ class PolicyHelpersTests(unittest.TestCase):
                 "regular-tick-observations": 2,
             },
         )
+        navigator._observe_bottom_meter(snapshot(42))  # noqa: SLF001 - full reset state
+        self.assertEqual(
+            (navigator._last_bottom_meter.row, navigator._last_bottom_meter.start, len(navigator._last_bottom_meter.values)),  # noqa: SLF001
+            (61, 13, 42),
+        )
+        self.assertEqual(navigator._meter_actions_remaining(), 21)  # noqa: SLF001
+        self.assertEqual(navigator.meter_evidence()["geometry-alignments"], 1)
 
 
 class ExplorerPolicyTests(unittest.TestCase):
@@ -255,6 +264,12 @@ class ExplorerPolicyTests(unittest.TestCase):
         if meter_active_units is not None:
             for column in range(13, 55):
                 value = 11 if column < 13 + meter_active_units else 3
+                grid[61][column] = value
+                grid[62][column] = value
+            # Keep the paired strip geometrically bounded when its active run
+            # shrinks, rather than letting it merge with uniform footer space.
+            for column in range(55, 64):
+                value = 5 if column % 3 == 1 else 8
                 grid[61][column] = value
                 grid[62][column] = value
         return Snapshot(
@@ -489,6 +504,18 @@ class ExplorerPolicyTests(unittest.TestCase):
         self.assertEqual(evidence["meter-tight-route-checks"], 1)
         self.assertEqual(evidence["meter-resource-route-attempts"], 1)
         self.assertEqual(evidence["meter-bounded-resource-actions"], 1)
+        continued = navigator.choose(
+            self._token_maze_snapshot(
+                (5, 6),
+                turns_to_target=3,
+                resources=frozenset({(4, 4)}),
+                controls=((2, 6),),
+                meter_active_units=8,
+            )
+        )
+        self.assertEqual(continued.reasoning["kind"], "tile-resource-navigation")
+        self.assertEqual(continued.reasoning["meter_budget_actions"], 4)
+
 
     def test_tile_maze_navigator_keeps_an_initial_control_probe_direct_when_meter_is_tight(self) -> None:
         navigator = TileMazeNavigator()
