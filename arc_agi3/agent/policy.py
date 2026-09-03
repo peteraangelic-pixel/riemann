@@ -1479,17 +1479,22 @@ class TileMazeNavigator:
             )
             if proposal is not None:
                 return proposal
-            # A longer meter-bounded diversion is reserved until at least one
-            # compact control has visibly changed the token. This preserves the
-            # low-risk direct probe of an initially selected control and only
-            # spends extra route length on a demonstrated multi-stage relation.
-            has_control_feedback = any(
-                changes_turns or changes_appearance
-                for changes_turns, changes_appearance in self._control_effects.values()
+            # A longer meter-bounded diversion is reserved for a *new* control
+            # after another compact control has visibly changed the token and
+            # been retired. This preserves direct probing and repeated use of a
+            # single effective control; extra route length is spent only on a
+            # demonstrated multi-stage relation.
+            has_staged_control_feedback = (
+                bool(self._retired_controls)
+                and control not in self._retired_controls
+                and any(
+                    changes_turns or changes_appearance
+                    for changes_turns, changes_appearance in self._control_effects.values()
+                )
             )
             meter_budget = (
                 self._resource_is_urgent_before_control(view, target, control)
-                if has_control_feedback
+                if has_staged_control_feedback
                 else None
             )
             if meter_budget is not None:

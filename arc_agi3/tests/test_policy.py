@@ -454,6 +454,7 @@ class ExplorerPolicyTests(unittest.TestCase):
         navigator._token_goal = (7, 2)  # noqa: SLF001 - matched visual route setup
         navigator._token_control = (2, 6)  # noqa: SLF001 - active compact control
         navigator._used_resources.add((6, 6))  # noqa: SLF001 - first ring consumed
+        navigator._retired_controls.add((3, 6))  # noqa: SLF001 - prior control stage completed
         navigator._control_effects[(3, 6)] = (False, True)  # noqa: SLF001 - prior palette feedback
         navigator._last_bottom_meter = BottomEdgeMeter(  # noqa: SLF001 - learned visual meter
             row=61,
@@ -491,6 +492,31 @@ class ExplorerPolicyTests(unittest.TestCase):
             self._token_maze_snapshot(
                 (6, 6),
                 turns_to_target=3,
+                resources=frozenset({(4, 4)}),
+                controls=((2, 6),),
+                meter_active_units=10,
+            )
+        )
+        self.assertEqual(proposal.reasoning["kind"], "tile-badge-navigation")
+        self.assertEqual(proposal.reasoning["target"], [2, 6])
+
+    def test_tile_maze_navigator_keeps_a_single_effective_control_direct_when_meter_is_tight(self) -> None:
+        navigator = TileMazeNavigator()
+        navigator._token_goal = (7, 2)  # noqa: SLF001 - matched visual route setup
+        navigator._token_control = (2, 6)  # noqa: SLF001 - control remains effective
+        navigator._used_resources.add((6, 6))  # noqa: SLF001 - first ring consumed
+        navigator._control_effects[(2, 6)] = (True, False)  # noqa: SLF001 - same-control feedback
+        navigator._last_bottom_meter = BottomEdgeMeter(  # noqa: SLF001 - learned visual meter
+            row=61,
+            start=13,
+            values=(11,) * 10 + (3,) * 32,
+        )
+        navigator._meter_active_value = 11  # noqa: SLF001 - repeated-tick inference setup
+        navigator._meter_units_per_action = 2  # noqa: SLF001 - repeated-tick inference setup
+        proposal = navigator.choose(
+            self._token_maze_snapshot(
+                (6, 6),
+                turns_to_target=2,
                 resources=frozenset({(4, 4)}),
                 controls=((2, 6),),
                 meter_active_units=10,
