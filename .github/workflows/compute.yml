@@ -1,10 +1,9 @@
 name: compute
 
-# Long-running math jobs for the riemann project (Erdős #64/#66/#647,
-# FrontierMath). Public repo => free Actions minutes (2 vCPU / 7 GB runner).
-# Manual dispatch: repo -> Actions -> compute -> Run workflow.
-# Once this workflow is on the default branch, the gadget sampler also runs
-# hourly via cron, auto-rotating res/mod batches (stateless lottery mode).
+# Legacy long-running math jobs for the riemann project (Erdős #64/#66/#647,
+# FrontierMath). GitHub Actions capacity is now reserved for ARC-AGI-3 work.
+# These legacy jobs are available only by explicit manual dispatch or a marked
+# push while the ARC workflow is being prepared; there is no automatic trigger.
 
 on:
   workflow_dispatch:
@@ -29,11 +28,6 @@ on:
   # (works before the workflow lands on the default branch)
   push:
     branches: ["arena/01a0633d-riemann"]
-
-  # daily free-quota sampler (public repo: 2000 min/month; this costs ~30)
-  # (active once this file is on the default branch)
-  schedule:
-    - cron: "0 6 * * *"
 
 jobs:
   hall:
@@ -90,7 +84,7 @@ jobs:
   gadget:
     # Bensmail edge-gadget sampler, cubic girth>=5 graphs on 32 vertices,
     # res/mod batch (stateless; each run covers ~1e-6 of the class)
-    if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.job == 'gadget') || (github.event_name == 'push' && contains(github.event.head_commit.message, '[run-gadget]'))
+    if: (github.event_name == 'workflow_dispatch' && inputs.job == 'gadget') || (github.event_name == 'push' && contains(github.event.head_commit.message, '[run-gadget]'))
     runs-on: ubuntu-latest
     timeout-minutes: 350
     steps:
@@ -111,8 +105,8 @@ jobs:
           echo "Using batch: $b"
       - name: Sample + check
         run: |
-          # scheduled runs are capped (free-quota friendly); manual runs run long
-          if [ "${{ github.event_name }}" = "schedule" ]; then LIMIT=1500; else LIMIT=20000; fi
+          # Legacy manual runs are finite; new Actions capacity is for ARC-AGI-3.
+          LIMIT=20000
           timeout $LIMIT ./nauty2_8_9/geng 32 48:48 -d3 -D3 -c -t -f -q ${{ steps.b.outputs.batch }} \
             | ./gadget_check > gadget_out.txt 2> gadget_err.txt
           tail -2 gadget_err.txt
