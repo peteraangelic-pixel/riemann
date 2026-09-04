@@ -17,3 +17,11 @@ arc_agi3/notebooks/submission.ipynb
 arc_agi3/logs.log
 arc_agi3/**/__pycache__/
 arc_agi3/**/*.pyc
+
+# Kaggriculture local runtime, credentials and generated artifacts
+kaggriculture/.venv/
+kaggriculture/.kaggle/
+kaggriculture/**/__pycache__/
+kaggriculture/**/*.pyc
+kaggriculture/recordings/
+kaggriculture/submission.tar.gz
