@@ -43,12 +43,13 @@ jobs:
           python simulate.py --games 1 --opponent random --steps 720 --seed 11
       - name: Build submission artifact
         working-directory: kaggriculture
-        run: python -c "
-import shutil, tarfile
-shutil.copy('agent.py', 'main.py')
-with tarfile.open('submission.tar.gz', 'w:gz') as t:
-    t.add('main.py')
-"
+        run: |
+          python - <<'PY'
+          import shutil, tarfile
+          shutil.copy('agent.py', 'main.py')
+          with tarfile.open('submission.tar.gz', 'w:gz') as t:
+              t.add('main.py')
+          PY
       - uses: actions/upload-artifact@v4
         with:
           name: kaggriculture-submission-${{ github.run_id }}
