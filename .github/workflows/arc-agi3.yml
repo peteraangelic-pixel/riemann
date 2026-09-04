@@ -2,7 +2,7 @@ name: ARC-AGI-3 checks
 
 on:
   push:
-    branches: ["arena/01a0661a-riemann"]
+    branches: ["arena/**"]
     paths:
       - "arc_agi3/**"
       - ".github/workflows/arc-agi3.yml"
