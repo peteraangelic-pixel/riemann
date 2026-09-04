@@ -985,11 +985,13 @@ class TileMazeNavigator:
     """
 
     _MAX_TOKEN_CONTROL_ENTRIES = 4
-    # A landing tile only becomes a navigation guard after the *same* level has
-    # ended on it at least twice. Repeated explicit GAME_OVER outcomes are far
-    # stronger causal evidence than a mere forced displacement, and the delay
-    # tolerates one unlucky frame or a per-attempt board variant.
-    _MIN_TERMINAL_CONFIRMATIONS = 2
+    # A landing tile becomes a navigation guard after one explicit GAME_OVER on
+    # a level. Repeated runs of the measured public games show a deterministic
+    # board per level (identical death geometry across attempts), so a single
+    # observed landing is reliable causal evidence there; two confirmations
+    # merely wasted an entire doomed ~130-step attempt inside a 400-action cap.
+    # The memory stays isolated per level for games whose boards do differ.
+    _MIN_TERMINAL_CONFIRMATIONS = 1
 
     def __init__(self) -> None:
         self._blocked: set[Coordinate] = set()
@@ -1102,10 +1104,10 @@ class TileMazeNavigator:
 
         The landing tile is the avatar tile of the terminal frame when the tile
         board is still visible; otherwise it is estimated from the tile the
-        last directional action was about to enter. A tile only becomes a
-        navigation guard after the same level has ended on it at least twice
-        (see ``_MIN_TERMINAL_CONFIRMATIONS``), so a single unlucky frame or a
-        one-off board variant never blocks a needed corridor.
+        last directional action was about to enter. A tile becomes a navigation
+        guard after the level has ended on it once (see
+        ``_MIN_TERMINAL_CONFIRMATIONS``); the memory stays isolated per level
+        so boards that do vary between attempts cannot poison a later level.
         """
         landing: Coordinate | None = view.avatar if view is not None else None
         if (
@@ -1125,7 +1127,7 @@ class TileMazeNavigator:
             self._token_evidence["terminal-landings-learned"] += 1
 
     def _confirmed_terminal_tiles(self) -> frozenset[Coordinate]:
-        """Return tiles whose entry twice ended the current level with GAME_OVER."""
+        """Return tiles whose entry ended the current level with GAME_OVER."""
         if self._levels_completed is None:
             return frozenset()
         return frozenset(

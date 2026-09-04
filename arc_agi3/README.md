@@ -24,7 +24,7 @@ novelty policy:
   learns a repeated depleting paired-pixel edge meter, retains an already
   verified token/control relation (and only such a relation) through one
   transient unreadable frame or a visually revalidated spatial displacement,
-  retains a landing tile that has twice ended the same level in GAME_OVER as a
+  retains a landing tile that has ended the current level in GAME_OVER as a
   guarded obstacle until that level changes, and treats framed ring glyphs as
   one-use resources when they are reached, lie on an equally short learned
   route, or (between demonstrated stages of a multi-control response) are
