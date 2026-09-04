@@ -206,6 +206,34 @@ class ExplorerPolicyTests(unittest.TestCase):
         return Snapshot("NOT_FINISHED", levels, ("ACTION1", "ACTION2", "ACTION3", "ACTION4"), (tuple(map(tuple, grid)),))
 
     @staticmethod
+    def _maze_snapshot_custom(
+        avatar: tuple[int, int],
+        landmarks: tuple[tuple[tuple[int, int], tuple[int, ...]], ...],
+        *,
+        state: str = "NOT_FINISHED",
+        levels: int = 0,
+    ) -> Snapshot:
+        """Build a 12×12 visual tile-maze frame with caller-chosen landmarks."""
+        grid = [[4 for _ in range(64)] for _ in range(64)]
+
+        def paint(cell: tuple[int, int], rows: tuple[int, ...]) -> None:
+            x = 4 + 5 * cell[0]
+            y = 5 * cell[1]
+            for row, color in enumerate(rows):
+                for column in range(5):
+                    grid[y + row][x + column] = color
+
+        for cell, rows in landmarks:
+            paint(cell, rows)
+        paint(avatar, (12, 12, 9, 9, 9))
+        return Snapshot(
+            state,
+            levels,
+            ("ACTION1", "ACTION2", "ACTION3", "ACTION4"),
+            (tuple(map(tuple, grid)),),
+        )
+
+    @staticmethod
     def _token_maze_snapshot(
         avatar: tuple[int, int],
         *,
@@ -296,6 +324,53 @@ class ExplorerPolicyTests(unittest.TestCase):
         self.assertEqual(policy.choose(initial).name, RESET)
         self.assertEqual(policy.choose(self._snapshot(state="GAME_OVER", actions=())).name, RESET)
         self.assertEqual(policy.token_evidence(), {"reset-terminal": 2})
+
+    def test_policy_learns_a_terminal_landing_only_after_two_game_overs(self) -> None:
+        policy = ExplorerPolicy()
+        landmark = ((11, 3), (3, 3, 0, 1, 3))
+        death = self._maze_snapshot_custom(
+            avatar=(10, 3), landmarks=(landmark,), state="GAME_OVER", levels=2
+        )
+        self.assertEqual(policy.choose(death).name, RESET)
+        self.assertEqual(policy.choose(death).name, RESET)
+        evidence = policy.token_evidence()
+        self.assertEqual(evidence.get("terminal-landings-seen"), 2)
+        self.assertEqual(evidence.get("terminal-landings-learned"), 1)
+
+    def test_terminal_landing_is_isolated_by_level_and_needs_confirmation(self) -> None:
+        policy = ExplorerPolicy()
+        landmark = ((11, 3), (3, 3, 0, 1, 3))
+        death_level_2 = self._maze_snapshot_custom(
+            avatar=(10, 3), landmarks=(landmark,), state="GAME_OVER", levels=2
+        )
+        death_level_3 = self._maze_snapshot_custom(
+            avatar=(10, 3), landmarks=(landmark,), state="GAME_OVER", levels=3
+        )
+        self.assertEqual(policy.choose(death_level_2).name, RESET)
+        self.assertEqual(policy.choose(death_level_3).name, RESET)
+        evidence = policy.token_evidence()
+        # The same tile on two different levels is not confirmation: the guard
+        # memory must stay isolated per level.
+        self.assertEqual(evidence.get("terminal-landings-seen"), 2)
+        self.assertNotIn("terminal-landings-learned", evidence)
+
+    def test_policy_reroutes_away_from_a_confirmed_terminal_landing(self) -> None:
+        policy = ExplorerPolicy()
+        landmark = ((11, 3), (3, 3, 0, 1, 3))
+        death = self._maze_snapshot_custom(
+            avatar=(10, 3), landmarks=(landmark,), state="GAME_OVER", levels=2
+        )
+        # Two identical GAME_OVER landings on tile (10,3) confirm the guard.
+        self.assertEqual(policy.choose(death).name, RESET)
+        self.assertEqual(policy.choose(death).name, RESET)
+        # The avatar now stands at (9,3); the naive two-step route to the only
+        # landmark at (11,3) enters (10,3) first (ACTION4). The confirmed guard
+        # must divert navigation around that tile instead.
+        live = self._maze_snapshot_custom(avatar=(9, 3), landmarks=(landmark,), levels=2)
+        proposal = policy.choose(live)
+        self.assertEqual(proposal.reasoning.get("kind"), "tile-maze-navigation")
+        self.assertEqual(proposal.name, "ACTION1")
+        self.assertGreaterEqual(policy.token_evidence().get("terminal-landing-rerouted", 0), 1)
 
     def test_only_emits_advertised_action(self) -> None:
         policy = ExplorerPolicy()

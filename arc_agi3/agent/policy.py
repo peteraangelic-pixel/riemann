@@ -985,11 +985,22 @@ class TileMazeNavigator:
     """
 
     _MAX_TOKEN_CONTROL_ENTRIES = 4
+    # A landing tile only becomes a navigation guard after the *same* level has
+    # ended on it at least twice. Repeated explicit GAME_OVER outcomes are far
+    # stronger causal evidence than a mere forced displacement, and the delay
+    # tolerates one unlucky frame or a per-attempt board variant.
+    _MIN_TERMINAL_CONFIRMATIONS = 2
 
     def __init__(self) -> None:
         self._blocked: set[Coordinate] = set()
         self._blocked_uniform_values: set[int] = set()
         self._traversable_uniform_values: set[int] = set()
+        # Landing tiles that explicitly ended an attempt on a level, keyed by
+        # (levels_completed, tile). Unlike episode geometry this deliberately
+        # survives terminal resets so a replay of the same level never repeats
+        # the identical fatal step; level keys stop old boards from influencing
+        # later levels, and the whole policy is one game instance anyway.
+        self._terminal_landing_counts: dict[tuple[int, Coordinate], int] = {}
         self._visited: set[Coordinate] = set()
         self._active: tuple[Coordinate, frozenset[Coordinate]] | None = None
         self._last_avatar: Coordinate | None = None
@@ -1075,7 +1086,7 @@ class TileMazeNavigator:
         return None
 
     def _known_blocked(self, view: TileMazeView) -> set[Coordinate]:
-        """Combine exact collisions with cautiously learned uniform wall style."""
+        """Combine exact collisions, wall style, and confirmed death landings."""
         blocked = set(self._blocked)
         for coordinate, glyph in view.glyphs:
             if (
@@ -1083,7 +1094,46 @@ class TileMazeNavigator:
                 and _uniform_tile_value(glyph) in self._blocked_uniform_values
             ):
                 blocked.add(coordinate)
+        blocked.update(self._confirmed_terminal_tiles())
         return blocked
+
+    def note_terminal_landing(self, snapshot: Snapshot, view: TileMazeView | None) -> None:
+        """Retain one explicit GAME_OVER landing for a level.
+
+        The landing tile is the avatar tile of the terminal frame when the tile
+        board is still visible; otherwise it is estimated from the tile the
+        last directional action was about to enter. A tile only becomes a
+        navigation guard after the same level has ended on it at least twice
+        (see ``_MIN_TERMINAL_CONFIRMATIONS``), so a single unlucky frame or a
+        one-off board variant never blocks a needed corridor.
+        """
+        landing: Coordinate | None = view.avatar if view is not None else None
+        if (
+            landing is None
+            and self._last_action in MAZE_DIRECTION_DELTAS
+            and self._last_avatar is not None
+        ):
+            dx, dy = MAZE_DIRECTION_DELTAS[self._last_action]
+            landing = (self._last_avatar[0] + dx, self._last_avatar[1] + dy)
+        if landing is None:
+            return
+        self._token_evidence["terminal-landings-seen"] += 1
+        key = (snapshot.levels_completed, landing)
+        count = self._terminal_landing_counts.get(key, 0) + 1
+        self._terminal_landing_counts[key] = count
+        if count == self._MIN_TERMINAL_CONFIRMATIONS:
+            self._token_evidence["terminal-landings-learned"] += 1
+
+    def _confirmed_terminal_tiles(self) -> frozenset[Coordinate]:
+        """Return tiles whose entry twice ended the current level with GAME_OVER."""
+        if self._levels_completed is None:
+            return frozenset()
+        return frozenset(
+            tile
+            for (level, tile), count in self._terminal_landing_counts.items()
+            if level == self._levels_completed
+            and count >= self._MIN_TERMINAL_CONFIRMATIONS
+        )
 
     def _clear_spatial_navigation(self) -> None:
         """Discard route geometry while retaining an independently live relation."""
@@ -1876,13 +1926,31 @@ class TileMazeNavigator:
             self._active = None
 
         active = self._active
+        guards = self._confirmed_terminal_tiles()
         path: tuple[str, ...] | None = None
         if active is not None:
-            path = optimistic_tile_path(view.avatar, active[0], view.shape, self._known_blocked(view))
+            guarded_blocked = self._known_blocked(view)
+            path = optimistic_tile_path(view.avatar, active[0], view.shape, guarded_blocked)
             if path is None:
+                # A previously planned route became impassable only because of
+                # a confirmed death landing; count the diversion so a run can
+                # distinguish "no route exists" from "route avoided on purpose".
+                if (
+                    guards
+                    and optimistic_tile_path(
+                        view.avatar,
+                        active[0],
+                        view.shape,
+                        guarded_blocked - guards,
+                    )
+                    is not None
+                ):
+                    self._token_evidence["terminal-landing-diverted"] += 1
                 self._active = None
 
         if self._active is None:
+            guarded_blocked = self._known_blocked(view)
+            naive_blocked = guarded_blocked - guards if guards else guarded_blocked
             candidates: list[tuple[int, int, int, Coordinate, frozenset[Coordinate], tuple[str, ...]]] = []
             for representative, cells in self._interior_landmarks(view):
                 if representative in self._visited or view.avatar in cells:
@@ -1891,8 +1959,19 @@ class TileMazeNavigator:
                     view.avatar,
                     representative,
                     view.shape,
-                    self._known_blocked(view),
+                    guarded_blocked,
                 )
+                if guards:
+                    naive_path = optimistic_tile_path(
+                        view.avatar,
+                        representative,
+                        view.shape,
+                        naive_blocked,
+                    )
+                    if naive_path is not None and (
+                        candidate_path is None or naive_path[0] != candidate_path[0]
+                    ):
+                        self._token_evidence["terminal-landing-rerouted"] += 1
                 if candidate_path is None:
                     continue
                 candidates.append(
@@ -2278,6 +2357,11 @@ class ExplorerPolicy:
         self._state_visits[signature] += 1
 
         if snapshot.state in {"NOT_PLAYED", "GAME_OVER"}:
+            if snapshot.state == "GAME_OVER":
+                # Record the explicit fatal landing before the terminal reset
+                # forgets episode geometry, so a replay of the same level can
+                # avoid repeating the identical death step.
+                self._tile_maze.note_terminal_landing(snapshot, tile_maze_view(snapshot))
             self._tile_maze.reset(reason="terminal")
             proposal = ActionProposal(
                 RESET,
