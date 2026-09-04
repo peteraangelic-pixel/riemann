@@ -95,3 +95,12 @@ evidence counters `terminal-landings-seen/learned` and
 3. Reconsider the per-attempt corridor cost (~130 actions) once the L2
    mechanic is understood; e.g. whether level resets could be avoided
    altogether by not dying.
+
+## 2026-09-04 — DECYZJA: wątek ARC-AGI-3 zamknięty
+
+Właściciel repo rezygnuje z ubiegania się o nagrody ARC Prize 2026 (patrz
+`ARC_AGI3_PLAN.md`): eligibility (open-source, angielskie write-upy, wywiady/
+weryfikacja przy wygranej, KYC) odpada, a realne szanse na leaderboard są
+znikome. Brak dalszych publicznych ewaluacji; kod zostaje jako archiwum.
+Następny cel: do decyzji właściciela (repo zawiera też wstrzymany wątek
+matematyczny Hall/census/gadget).

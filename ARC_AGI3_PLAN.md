@@ -1,10 +1,42 @@
 # ARC-AGI-3 — plan do 30.09.2026
 
-**Status:** aktywny
+**Status:** zamknięty (decyzja z 2026-09-04) — wątek „kasa z ARC-AGI-3" zakończony; kod zostaje jako archiwum/portfolio.
 
-**Horyzont:** 3–30 września 2026
+**Horyzont (historyczny):** 3–30 września 2026
 
-**Priorytet projektu:** ARC-AGI-3 / ARC Prize 2026
+**Priorytet projektu (obecnie):** brak — zasoby GitHub Actions zwolnione, decyzja o kolejnym celu należy do właściciela repo.
+
+## Aktualizacja 2026-09-04 — decyzja o zamknięciu
+
+Wątek zamykamy po analizie (szczegóły w `arc_agi3/EXPERIMENT_LOG.md`):
+
+1. **Eligibility odpada:** nagrody ARC Prize 2026 wymagają open-source (CC0/MIT-0),
+   publicznego notebooka, angielskich write-upów, a przy wygranej weryfikacji
+   przez organizatorów (rozmowy, wyjaśnianie podejścia) oraz KYC/tax przy
+   wypłacie. Właściciel repo świadomie z tego rezygnuje.
+2. **Szanse na LB są kosmicznie niskie niezależnie od formalności:** lider
+   Kaggle ARC-AGI-3 ma ~7.5% (2026-08-31), zwycięzcy Milestone #1 to zespoły
+   z lokalnymi modelami LLM (Qwen 27B / Gemma 31B) + pamięcią; nasz
+   deterministyczny baseline to realnie ~0–1% w metryce RHAE.
+3. **Diagnostyka z 2026-09-04 potwierdziła ścianę mechaniki:** agent z guardami
+   terminal-landing nie kończy ls20 poziomu 2 nawet w 1200 akcjach (8 różnych
+   śmiertelnych kafelków, 9 zgonów) — to nie kwestia budżetu, tylko brak
+   zrozumienia mechaniki strefy badge/control. vc33 pozostaje bez rozpoznanej
+   mechaniki (100% klików).
+4. Grand Prize ($700K za 100%) pozostaje niezdobyty i przechodzi na 2027 —
+   nie jest osiągalny w tym cyklu z obecnej pozycji.
+
+**Co zostaje:** `arc_agi3/` jako kompletny, przetestowany (56 testów) pipeline
+agenta-deterministycznego z workflow CI i logiem eksperymentów — materiał
+portfolio/umiejętności, nie źródło przychodu.
+
+**Co z zasobami:** nie wykonujemy dalszych publicznych ewaluacji ARC. Workflow
+`arc-agi3.yml` pozostaje w repo, ale nic go nie wyzwala bez świadomego commita
+z markerem `[arc-smoke]`/`[arc-eval]` albo ręcznego dispatch.
+
+---
+
+# Poniżej historyczna treść planu (zanim wątek zamknięto).
 
 ## Decyzja kierunkowa
 
