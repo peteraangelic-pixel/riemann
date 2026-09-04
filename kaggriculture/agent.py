@@ -1,55 +1,117 @@
-"""Kaggriculture baseline farmer.
+"""Kaggriculture v2 agent: hands-powered wheat/carrot conveyor.
 
-Deterministic, dependency-light heuristic agent (v0 "wheat belt"): a single
-main farmer plants wheat on the unlocked NW quadrant, waters daily, harvests at
-peak yield, drops produce into the shed and sells it every turn. Later
-iterations add carrots, hands, animals and land expansion.
+v1 (all wheat) verified the machinery: hired hands run daily watering-first
+sweeps of their plan chunks, the farmer harvests/plants overflow, land NE+SW
+is bought when the current area fills, wheat is harvested at age 3, and the
+SE quadrant is never bought (its $4k cannot pay back late in the season).
+Local results: ~20.0k vs passive / ~19.2k self-play (720-turn episodes).
 
-The module is SDK-free on purpose: the game engine only calls ``act`` with a
-plain observation dict, so the policy stays pure-python and testable offline.
+v2 adds a second crop (CARROT) that uses the same 4-day, 3-unit rhythm as
+wheat.  Wheat's price curve is log-shaped above equilibrium so it can absorb
+unlimited supply without crashing, whereas carrot (sqrt above) crashes once
+the market is flooded - but carrot also pays 35 base vs wheat's 25 and its
+price *rises* when the town drains it and nobody supplies it.
 
-Submission entry points (Kaggle simulation runner loads ``main.py`` and calls
-``act``): ``act(obs, config)`` and the ``agent`` alias for local ``env.run``.
+The town's demand is fully public: every unlocked shop instance consumes a
+fixed number of units per day of the products it demands.  We therefore size
+the carrot belt to (a share of) the current town carrot demand, cap it as a
+fraction of the plan, and only plant carrots while their market price still
+justifies the more expensive seed.  Cells are assigned a crop by their rank
+in the canonical plan (carrots get the lowest ranks); because a crop switch
+only happens when a cell is replanted after harvest, the assignment adapts
+smoothly as shops unlock.
+
+Everything else stays deterministic and stateless; ``act`` is a pure function
+of the observation plus the module constants below (tunable for offline
+sweeps).
+
+Entry points: ``act`` / ``agent`` (Kaggle simulator loads ``main.py`` and
+calls ``act``; local ``env.run`` calls either).
 """
 
 from __future__ import annotations
 
 from typing import Any
 
-# Crops the planner knows how to run (add more in later iterations).
-SUPPORTED_CROPS = ("WHEAT", "CARROT")
+# Crops we can run.  Both are one-time crops with the same age-3 rhythm:
+#   WHEAT  seed 10, base 25, 3u/4 tile-days
+#   CARROT seed 20, base 35, 3u/4 tile-days (same watering needs)
+SUPPORTED = ("WHEAT", "CARROT", "MELON")
+SEED_COST = {"WHEAT": 10, "CARROT": 20, "MELON": 80}
+# First harvestable age per crop.  Wheat/carrot are picked at 3 units on age 3
+# (watered through the bonus window); melon pays 6 units on age 10.
+HARVEST_AGE_BY_CROP = {"WHEAT": 3, "CARROT": 3, "MELON": 10}
 
-# Harvest as soon as the crop reaches its max-yield day (with daily watering).
-HARVEST_DAY = {"WHEAT": 4, "CARROT": 3}
+QUAD_ORDER = ("NW", "NE", "SW", "SE")
+LAND_COST = {"NE": 1000, "SW": 2000, "SE": 4000}
+# Cumulative daily cost of hiring 1..10 hands (fib 1,1,2,3,5,8,13,21,34,55).
+FIB_SUM = (1, 2, 4, 7, 12, 20, 33, 54, 88, 143)
 
-# Maximum number of simultaneously tended plants. A single farmer walking a
-# 5x5 quadrant spends ~1 move per tile, so keeping the belt small and watered
-# beats planting everything and letting most of it rot.
-MAX_PLANTS = 8
+# Hands roughly sustain ~10 cells/day each (water + tour + occasional
+# harvest/replant); we also count the farmer as one waterer.
+CELLS_PER_HAND = 10
+HANDS_EXTRA = 1
+HANDS_MAX = 12
 
-SEED_PRICE = {"WHEAT": 10, "CARROT": 20}
+# Never queue more than this many market orders per turn.
+MAX_MARKET_ORDERS = 10
 
-# The four shed-adjacent center tiles on a 10x10 board.
-SHED_ADJACENT = {(4, 4), (5, 4), (4, 5), (5, 5)}
+# Selling below this would mean a crashed market.
+SELL_PRICE_FLOOR = 10
 
-SHED_SPOT = (4, 4)
+# Land purchase triggers.
+LAND_NE_MIN_PLANTED = 6       # NW mostly started
+LAND_SW_MIN_PLANTED = 40      # NW+NE mostly full
+LAND_SW_MAX_DAY = 18          # late purchases cannot pay back
+LAND_RESERVE = 700            # cash kept after the purchase for seeds+wages
+SELL_BUY = False              # SE quadrant purchase disabled (see module docs)
+
+# Carrot belt sizing: cells = clamp(share of town carrot demand that we want
+# to serve, 0..CARROT_MAX_FRAC * plan).  CARROT_KAPPA tunes how aggressively
+# we chase the town's carrot consumption.
+CARROT_KAPPA = 0.70
+CARROT_MAX_FRAC = 0.40
+# Only plant carrots while their price is at least this multiple of the wheat
+# price (carrot seed is twice as expensive).
+CARROT_MIN_PRICE_RATIO = 1.15
+
+# Product demand per day for one shop instance (6 ticks/day; single-product
+# shops consume 2x per tick).
+TICKS_PER_DAY = 6.0
+CARROT_SHOP_MULT = {"PET_CAFE": 2, "FARMERS_MARKET": 1}
+
+# Carrot production per cell per day at the age-3 rhythm (3 units / 4 days).
+CARROT_UNITS_PER_CELL_DAY = 0.75
+
+# Melon cells (explicit NW coordinates).  Melon needs ~11 tile-days per crop
+# (6 units); town-center melon demand is 1/day regardless of shop draws, so a
+# couple of melon cells earn far more per tile-day than wheat/carrot while the
+# market is anywhere near equilibrium.  Number of cells = len(MELON_CELLS).
+MELON_CELLS = [(0, 0), (1, 0), (2, 0), (3, 0)]
+# Melon needs 10 days to mature; a plant started after this day cannot be
+# harvested before the season ends.
+MELON_LAST_PLANT_DAY = 19
 
 
-def _is_shed_adjacent(x: int, y: int, board_size: int) -> bool:
-    """Mirror of the engine rule: shed access tiles at the quadrant corners."""
-    return (x, y) in SHED_ADJACENT and 0 <= x < board_size and 0 <= y < board_size
+def _plan_cells(unlocked: list[str], board: int) -> list[tuple[int, int]]:
+    """Canonical row-major cell list over the unlocked quadrants."""
+    cells: list[tuple[int, int]] = []
+    half = board // 2
+    for q in QUAD_ORDER:
+        if q not in unlocked:
+            continue
+        y0 = half if q in ("SW", "SE") else 0
+        y1 = half if q in ("NW", "NE") else board
+        x0 = half if q in ("NE", "SE") else 0
+        x1 = half if q in ("NW", "SW") else board
+        for y in range(y0, y1):
+            for x in range(x0, x1):
+                cells.append((x, y))
+    return cells
 
 
-def _unlocked(x: int, y: int, unlocked_quadrants: list[str]) -> bool:
-    """Whether tile (x, y) lies in an unlocked quadrant on the 10x10 board."""
-    quadrant = {0: "NW", 1: "NE"}[x // 5]
-    if y // 5 == 1:
-        quadrant = {0: "SW", 1: "SE"}[x // 5]
-    return quadrant in unlocked_quadrants
-
-
-def _walk(fx: int, fy: int, tx: int, ty: int) -> str | None:
-    """One deterministic step toward (tx, ty), or None when already there."""
+def _walk(fx: int, fy: int, tx: int, ty: int) -> str:
+    """One deterministic step toward (tx, ty)."""
     if fx < tx:
         return "EAST"
     if fx > tx:
@@ -58,121 +120,248 @@ def _walk(fx: int, fy: int, tx: int, ty: int) -> str | None:
         return "SOUTH"
     if fy > ty:
         return "NORTH"
-    return None
+    return "PASS"
+
+
+def _near(cells: list[tuple[int, int]], fx: int, fy: int) -> tuple[int, int] | None:
+    """Nearest cell by Manhattan distance; ties by canonical order."""
+    if not cells:
+        return None
+    return min(cells, key=lambda c: (abs(c[0] - fx) + abs(c[1] - fy), c[1], c[0]))
 
 
 class FarmerPlanner:
-    """Keeps the farmer's short-term plan across turns.
+    """Deterministic, stateless planner shared by farmer and hired hands.
 
-    The engine calls us once per turn with the full observation; we answer
-    with exactly one farmer op, zero hands, and market orders. All state here
-    is derived from observations plus a tiny amount of episode memory (crop
-    mix and whether we are carrying harvested goods back to the shed).
+    No episode memory: every decision is a pure function of the observation
+    (plan = currently unlocked quadrants, crop = cell rank + town demand).
     """
-
-    def __init__(self) -> None:
-        self._crop: str | None = None
-        self._returning = False
 
     def decide(self, obs: dict[str, Any]) -> dict[str, Any]:
         player = obs["player"]
-        day = obs.get("day", 0)
         me = obs["farms"][player]
         private = obs["private"]
         tiles = me["tiles"]
         board = len(tiles)
-        fx, fy = me["farmer"]
+        step = int(obs.get("step", 0))
+        day = obs.get("day", step // 24)
+        hour = obs.get("hour", step % 24)
         money = me["money"]
-        seeds = private["seeds"]
-        shed = private["shed"]
+        unlocked = list(me.get("unlocked_quadrants", ["NW"]))
+        hands_now = me.get("hands", []) or []
+        seeds = private.get("seeds", {}) or {}
+        shed = private.get("shed", {}) or {}
+        prices = (obs.get("market", {}) or {}).get("prices", {}) or {}
+        shops = (obs.get("town", {}) or {}).get("unlocked_shops", []) or []
 
-        market: list[Any] = []
+        plan = _plan_cells(unlocked, board)
+        plan_set = set(plan)
+        rank_map = {cell: i for i, cell in enumerate(plan)}
 
-        # Always sell anything parked in the shed (up to the per-turn order
-        # cap; a leftover is sold on a later turn).
-        for item in ("WHEAT", "CARROT", "EGG", "MILK", "WOOL", "TOMATO", "STRAWBERRY", "MELON"):
-            if shed.get(item, 0) > 0 and len(market) < 10:
-                market.append(["SELL", item, shed[item]])
+        # ---- crop layout ----------------------------------------------------
+        carrot_demand_per_day = sum(
+            TICKS_PER_DAY * CARROT_SHOP_MULT.get(s, 0) for s in shops
+        )
+        carrot_cells_max = min(len(plan), int(len(plan) * CARROT_MAX_FRAC))
+        carrot_target = min(
+            carrot_cells_max,
+            int(CARROT_KAPPA * carrot_demand_per_day / CARROT_UNITS_PER_CELL_DAY),
+        )
+        # Replant gate: carrot only while its price still beats wheat clearly.
+        wp = int(prices.get("WHEAT", 0) or 0)
+        cp = int(prices.get("CARROT", 0) or 0)
+        carrot_ok = cp >= max(SELL_PRICE_FLOOR, CARROT_MIN_PRICE_RATIO * max(wp, 1))
 
-        # Pick the crop once per episode (cheapest reliable staple first).
-        if self._crop is None:
-            self._crop = "WHEAT"
-        crop = self._crop
+        def _crop_of_cell(x: int, y: int, rank: int | None) -> str:
+            if (x, y) in MELON_CELLS and day <= MELON_LAST_PLANT_DAY:
+                return "MELON"
+            if rank is not None and carrot_ok and rank < carrot_target:
+                return "CARROT"
+            return "WHEAT"
 
-        # Re-stock seeds when we can afford a full belt.
-        have = seeds.get(crop, 0)
-        if have < MAX_PLANTS and money >= SEED_PRICE[crop] and len(market) < 10:
-            market.append(["BUY_SEED", crop, MAX_PLANTS - have])
+        def _rank_of(x: int, y: int) -> int | None:
+            return rank_map.get((x, y))
 
-        inv = private["inventories"][0] if private.get("inventories") else {}
-
-        # Carrier logic: after a harvest the farmer holds goods; the fastest
-        # way to monetise is to deposit them in the shed (then SELL every turn
-        # drains the shed automatically).
-        if self._returning:
-            if _is_shed_adjacent(fx, fy, board):
-                op: list[Any] = ["DROP"] if inv else ["PASS"]
-                if not inv:
-                    self._returning = False
-                return {"farmer": op, "hands": [], "market": market}
-            move = _walk(fx, fy, *SHED_SPOT)
-            return {
-                "farmer": [move] if move is not None else ["PASS"],
-                "hands": [],
-                "market": market,
-            }
-
-        plant_count = 0
-        best_water: tuple[Any, ...] | None = None
-        best_harvest: tuple[Any, ...] | None = None
-        best_plant: tuple[int, int] | None = None
-
+        # ---- single board scan: collect what every unit needs -------------
+        mature: list[tuple[int, int]] = []      # plants at/over harvest age
+        urgent: list[tuple[int, int]] = []      # unwatered, will die tonight
+        unwatered: list[tuple[int, int]] = []   # any unwatered supported plant
+        empty_cells: dict[str, list[tuple[int, int]]] = {c: [] for c in SUPPORTED}
+        weeds: list[tuple[int, int]] = []
+        planted_per_crop = {c: 0 for c in SUPPORTED}
         for y in range(board):
             for x in range(board):
-                tile = tiles[y][x]
-                if isinstance(tile, str):  # "LOCKED"
+                t = tiles[y][x]
+                if isinstance(t, str):
                     continue
-                if tile is None:
-                    if _unlocked(x, y, me["unlocked_quadrants"]) and best_plant is None:
-                        best_plant = (x, y)
+                if t is None:
+                    if (x, y) in plan_set:
+                        r = _rank_of(x, y)
+                        crop = _crop_of_cell(x, y, r)
+                        empty_cells[crop].append((x, y))
                     continue
-                if tile.get("kind") != "PLANT" or tile.get("crop") != crop:
+                if t.get("kind") == "WEED":
+                    weeds.append((x, y))
                     continue
-                plant_count += 1
+                crop = t.get("crop")
+                if t.get("kind") != "PLANT" or crop not in SUPPORTED:
+                    continue
+                planted_per_crop[crop] += 1
+                age = day - t["planted_day"]
+                if age < 0 or t.get("yield_units", 0) <= 0:
+                    continue
+                if not t.get("watered_today"):
+                    unwatered.append((x, y))
+                    if t.get("consecutive_unwatered", 0) >= 1:
+                        urgent.append((x, y))
+                if age >= HARVEST_AGE_BY_CROP.get(crop, HARVEST_AGE_BY_CROP["WHEAT"]):
+                    mature.append((x, y))
+
+        # ---- market orders -------------------------------------------------
+        orders: list[list[Any]] = []
+        shed_value = 0
+        for item in sorted(shed):
+            qty = shed[item]
+            if qty <= 0:
+                continue
+            price = int(prices.get(item, 0) or 0)
+            if price >= SELL_PRICE_FLOOR:
+                orders.append(["SELL", item, qty])
+                shed_value += qty * max(price, 1)
+
+        est_money = money + shed_value
+
+        # Land: buy the next quadrant when the current one is mostly planted.
+        if hour == 0 and len(unlocked) < len(QUAD_ORDER):
+            nxt = QUAD_ORDER[len(unlocked)]
+            cost = LAND_COST[nxt]
+            ok = False
+            if nxt == "NE":
+                ok = sum(planted_per_crop.values()) >= LAND_NE_MIN_PLANTED
+            elif nxt == "SW":
+                ok = sum(planted_per_crop.values()) >= LAND_SW_MIN_PLANTED and day <= LAND_SW_MAX_DAY
+            elif nxt == "SE":
+                ok = SELL_BUY  # disabled by default (module docstring)
+            if ok and est_money >= cost + LAND_RESERVE:
+                orders.append(["BUY_LAND"])
+
+        # Hands: hire at hour 0 up to a zone-size-derived target.
+        h_target = min(HANDS_MAX, max(2, (len(plan) + CELLS_PER_HAND - 1) // CELLS_PER_HAND + HANDS_EXTRA))
+        to_hire = max(0, h_target - len(hands_now))
+        for h in range(min(to_hire, len(FIB_SUM))):
+            if est_money >= FIB_SUM[h] + 120:
+                orders.append(["HIRE"])
+            else:
+                break
+
+        # Seeds per crop: enough for every planned empty cell plus a reserve.
+        for crop in SUPPORTED:
+            have = int(seeds.get(crop, 0))
+            seed_need = len(empty_cells[crop]) + 4
+            buy_n = min(seed_need - have, 25)
+            if buy_n > 0 and est_money >= buy_n * SEED_COST[crop] + 30 and len(orders) < MAX_MARKET_ORDERS:
+                orders.append(["BUY_SEED", crop, buy_n])
+
+        # ---- decide ops for every unit --------------------------------------
+        # Cap on simultaneous plants and per-crop seed budget (the engine drops
+        # ALL plant ops of a crop if requests exceed that crop's seeds).
+        waterers = 1 + len(hands_now)
+        plant_cap = min(len(plan), waterers * CELLS_PER_HAND)
+        plants_total = sum(planted_per_crop.values())
+        plants_assigned = {c: 0 for c in SUPPORTED}
+
+        def _plant_ok(crop: str) -> bool:
+            if plants_total + sum(plants_assigned.values()) >= plant_cap:
+                return False
+            if plants_assigned[crop] >= int(seeds.get(crop, 0)):
+                return False
+            if hour > 22:
+                return False
+            return True
+
+        def _standing_op(tile: Any, zone_set: set[tuple[int, int]], fx: int, fy: int) -> list[str] | None:
+            """Action on the tile we stand on, or None if nothing to do here."""
+            if isinstance(tile, dict) and tile.get("kind") == "WEED":
+                return ["DIG"]
+            if isinstance(tile, dict) and tile.get("kind") == "PLANT" and tile.get("crop") in SUPPORTED:
                 age = day - tile["planted_day"]
-                if not tile.get("watered_today") and age >= 0:
-                    key = (age, x, y)
-                    if best_water is None or key < best_water:
-                        best_water = key
-                if age >= HARVEST_DAY[crop]:
-                    key = (-age, x, y)
-                    if best_harvest is None or key < best_harvest:
-                        best_harvest = key
+                yld = tile.get("yield_units", 0)
+                hage = HARVEST_AGE_BY_CROP.get(tile["crop"], HARVEST_AGE_BY_CROP["WHEAT"])
+                if age >= hage and yld > 0:
+                    if age == hage and not tile.get("watered_today"):
+                        # Watering on the first harvestable day adds a unit.
+                        return ["WATER"]
+                    return ["HARVEST"]
+                if not tile.get("watered_today"):
+                    return ["WATER"]
+                return None
+            if tile is None and (fx, fy) in zone_set:
+                r = _rank_of(fx, fy)
+                crop = _crop_of_cell(fx, fy, r)
+                if _plant_ok(crop):
+                    plants_assigned[crop] += 1
+                    return ["PLANT", crop]
+            return None
 
-        # Farmer op priority: harvest mature plants first, then water, then
-        # plant on an empty unlocked tile while seeds remain.
-        op: list[Any]
-        if best_harvest is not None:
-            _, hx, hy = best_harvest
-            move = _walk(fx, fy, hx, hy)
-            op = ["HARVEST"] if move is None else [move]
-        elif best_water is not None:
-            _, wx, wy = best_water
-            move = _walk(fx, fy, wx, wy)
-            op = ["WATER"] if move is None else [move]
-        elif best_plant is not None and seeds.get(crop, 0) > 0 and plant_count < MAX_PLANTS:
-            px, py = best_plant
-            move = _walk(fx, fy, px, py)
-            op = ["PLANT", crop] if move is None else [move]
-        else:
-            move = _walk(fx, fy, *SHED_SPOT)
-            op = [move] if move is not None else ["PASS"]
+        def _farm_op(fx: int, fy: int, zone: list[tuple[int, int]]) -> list[str]:
+            """Farmer: harvest/plant across the whole plan."""
+            zone_set = set(zone)
+            op = _standing_op(tiles[fy][fx], zone_set, fx, fy)
+            if op is not None:
+                return op
+            z_mature = [c for c in mature if c in zone_set]
+            z_plant = [c for c in empty_cells["WHEAT"] + empty_cells["CARROT"] if c in zone_set]
+            z_urgent = [c for c in urgent if c in zone_set]
+            z_wet = [c for c in unwatered if c in zone_set]
+            target = _near(z_mature, fx, fy)
+            if target is None:
+                target = _near(z_plant, fx, fy)
+            if target is None:
+                target = _near(z_urgent, fx, fy)
+            if target is None:
+                target = _near(z_wet, fx, fy)
+            if target is None:
+                target = _near([c for c in weeds if c in zone_set], fx, fy)
+            if target is not None:
+                mv = _walk(fx, fy, *target)
+                if mv != "PASS":
+                    return [mv]
+            return ["PASS"]
 
-        if op[0] == "HARVEST":
-            # We will be carrying produce after this action.
-            self._returning = True
+        def _hand_op(fx: int, fy: int, zone: list[tuple[int, int]]) -> list[str]:
+            """Hand: watering-first daily sweep of its chunk."""
+            zone_set = set(zone)
+            op = _standing_op(tiles[fy][fx], zone_set, fx, fy)
+            if op is not None:
+                return op
+            z_urgent = [c for c in urgent if c in zone_set]
+            z_wet = [c for c in unwatered if c in zone_set]
+            z_mature = [c for c in mature if c in zone_set]
+            z_plant = [c for c in empty_cells["WHEAT"] + empty_cells["CARROT"] if c in zone_set]
+            target = _near(z_urgent, fx, fy)
+            if target is None:
+                target = _near(z_wet, fx, fy)
+            if target is None:
+                target = _near(z_mature, fx, fy)
+            if target is None:
+                target = _near(z_plant, fx, fy)
+            if target is not None:
+                mv = _walk(fx, fy, *target)
+                if mv != "PASS":
+                    return [mv]
+            return ["PASS"]
 
-        return {"farmer": op, "hands": [], "market": market}
+        farmer_op = _farm_op(me["farmer"][0], me["farmer"][1], plan)
+
+        hands_ops: list[list[str]] = []
+        n = len(hands_now)
+        if n:
+            for i, (hx, hy) in enumerate(hands_now):
+                lo = i * len(plan) // n
+                hi = (i + 1) * len(plan) // n
+                hands_ops.append(_hand_op(hx, hy, plan[lo:hi] if plan else []))
+
+        return {"farmer": farmer_op, "hands": hands_ops, "market": orders}
 
 
 # ---- engine entry points -------------------------------------------------
