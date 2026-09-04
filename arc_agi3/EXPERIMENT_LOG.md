@@ -63,14 +63,35 @@ evidence counters `terminal-landings-seen/learned` and
   the guard is still isolated per level for games whose boards do differ.
   Rationale: turn the second doomed attempt into a fully diverted ~200-step
   exploration instead of burning it on a repeat death.
+  Result (`9ff53a7`, 400 steps): ls20 game overs drop from the historical
+  repeat-death pattern to two deaths at two *different* tiles
+  (`terminal-landings-learned: 2`, `terminal-landing-rerouted: 82`), L0/L1
+  mode counts identical to baseline, but score stays **5.3585**. Each ls20
+  level-2 attempt costs ~130 actions of corridor approach, so a 400-action
+  run fits only ~3 attempts and the 3rd is truncated ~80 steps in.
+- **Diagnostic** (temporary EVAL_STEPS=1200, workflow change only, since
+  reverted): with the single-death guard the agent learned **8 distinct fatal
+  tiles** (`terminal-landings-learned: 8`, `rerouted: 818`, 9 deaths) but
+  still did not finish ls20 level 2. Death cadence stayed ~133 actions per
+  attempt. **Conclusion: the ls20 plateau is a mechanic wall, not a budget
+  artifact** — avoiding fatal tiles one-by-one never completes the level; the
+  policy must learn *why* the badge/control-area interactions kill (or how to
+  pass them), and per-attempt corridor cost leaves little budget for probing
+  that zone.
 
-## Working hypotheses
+## Working hypotheses (next steps)
 
-1. ~~Retain repeated explicit terminal (GAME_OVER) landings per level; confirm
-   after two deaths~~ — tested; switch to single-death confirmation (iteration
-   2) and see whether the diverted second attempt reaches new ls20 level-2
-   content / a level gain within the 400-action budget.
-2. If ls20 remains stuck at L2 even with the guard active from attempt 2,
-   consider that a different mechanic gates level 3 (e.g. the badge/control
-   exit sequence itself) and inspect recordings near the diversion.
-3. Find vc33 level 1's mechanic from recordings before adding new primitives.
+1. ls20 level 2 completion is gated by the badge/control-area mechanic, not by
+   repeated deaths. The guard is worth keeping (it converts repeat deaths into
+   new-tile discoveries and costs nothing on L0/L1), but the next improvement
+   must come from understanding the killing interaction — study the terminal
+   transitions *inside* the badge region (from recordings of the guard runs,
+   retained 14 days as workflow artifacts) instead of adding more avoidance
+   rules.
+2. vc33 level 1: 394+ clicks/run stay in `graph-click-frontier` — the policy
+   has no structured perception for this game at all. Needs frame-level study
+   of vc33 L1 (which visual affordance should be clicked) before any new
+   primitive.
+3. Reconsider the per-attempt corridor cost (~130 actions) once the L2
+   mechanic is understood; e.g. whether level resets could be avoided
+   altogether by not dying.
