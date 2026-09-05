@@ -386,6 +386,57 @@ jobs:
           summary=$(printf '%s\n' "$output" | tail -1)
           echo "::notice title=V6 routing result::$summary"
 
+  v61-cross-validation:
+    name: V6.1 cross ${{ matrix.id }}
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v61-cross]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        include:
+          - {id: v5-control, args: ""}
+          - {id: v6-t16-end27, args: "--set ADAPT_SHEEP_THRESHOLD=16 --set ENDGAME_SELL_DAY=27"}
+          - {id: m10, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]]"}
+          - {id: m10-t14, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set ADAPT_SHEEP_THRESHOLD=14"}
+          - {id: m10-t16, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set ADAPT_SHEEP_THRESHOLD=16"}
+          - {id: m10-t20, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set ADAPT_SHEEP_THRESHOLD=20"}
+          - {id: m10-noadapt, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set ADAPT_SHEEP_THRESHOLD=999"}
+          - {id: m10-t16-end27, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set ADAPT_SHEEP_THRESHOLD=16 --set ENDGAME_SELL_DAY=27"}
+          - {id: m10-t14-end27, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set ADAPT_SHEEP_THRESHOLD=14 --set ENDGAME_SELL_DAY=27"}
+          - {id: m10-t16-sale0, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set ADAPT_SHEEP_THRESHOLD=16 --set SALE_HOURS=[0]"}
+          - {id: m10-t16-herd9c5s, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set ADAPT_SHEEP_THRESHOLD=16 --set ANIMAL_TARGETS={\"COW\":9,\"SHEEP\":5}"}
+          - {id: m10-t16-herd7c7s, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set ADAPT_SHEEP_THRESHOLD=16 --set ANIMAL_TARGETS={\"COW\":7,\"SHEEP\":7}"}
+          - {id: m10-t16-cut17, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set ADAPT_SHEEP_THRESHOLD=16 --set MELON_LAST_PLANT_DAY=17"}
+          - {id: m10-t16-cut19, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set ADAPT_SHEEP_THRESHOLD=16 --set MELON_LAST_PLANT_DAY=19"}
+          - {id: m9-t16, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2]] --set ADAPT_SHEEP_THRESHOLD=16"}
+          - {id: m11-t16, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2],[2,2]] --set ADAPT_SHEEP_THRESHOLD=16"}
+          - {id: m10-t16-r500, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set ADAPT_SHEEP_THRESHOLD=16 --set LAND_RESERVE=500"}
+          - {id: m10-t16-land6, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set ADAPT_SHEEP_THRESHOLD=16 --set LAND_NE_BUY_DAY=6"}
+          - {id: m10-t16-worker4, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set ADAPT_SHEEP_THRESHOLD=16 --set ANIMALS_PER_WORKER=4"}
+          - {id: m10-t16-extra1, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set ADAPT_SHEEP_THRESHOLD=16 --set LATE_CROP_HAND_BONUS=1"}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install engine
+        run: pip install kaggle-environments
+      - name: Cross-validate finalists on all public and champion replays
+        working-directory: kaggriculture
+        env:
+          VARIANT_ARGS: ${{ matrix.args }}
+        run: |
+          public=$(python replay_benchmark.py --agent agent_v5.py $VARIANT_ARGS)
+          printf '%s\n' "$public"
+          public_summary=$(printf '%s\n' "$public" | tail -1)
+          echo "::notice title=V6.1 cross public::$public_summary"
+          champion=$(python replay_benchmark.py --agent agent_v5.py --archive Downloads.zip $VARIANT_ARGS)
+          printf '%s\n' "$champion"
+          champion_summary=$(printf '%s\n' "$champion" | tail -1)
+          echo "::notice title=V6.1 cross champion::$champion_summary"
+
   v61-champion-stage-b:
     name: V6.1 champion B ${{ matrix.id }}
     if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v61-champion-b]')
