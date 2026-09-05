@@ -34,7 +34,7 @@ jobs:
         run: pip install kaggle-environments
       - name: Compile tracked sources
         working-directory: kaggriculture
-        run: python -m py_compile agent.py simulate.py tests/test_agent.py
+        run: python -m py_compile agent.py simulate.py tune_animals.py tests/test_agent.py
       - name: Run offline tests
         working-directory: kaggriculture
         run: python -m unittest discover -s tests -v

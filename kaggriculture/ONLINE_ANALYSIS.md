@@ -44,17 +44,27 @@ head-to-head. Premium crops cannot simply be added to the existing generic
 watering conveyor: they need labor capacity and the cash flow of a coherent
 animal/fertilizer system.
 
-## v3 direction
+## v3 goose economy
 
-Build and benchmark a complete subsystem rather than copy one crop:
+The first complete animal subsystem uses compact coops and dedicated workers
+for animal placement, wheat pickup, FEED, CARE, egg harvest and fertilizer
+collection. A seven-job GitHub Actions matrix ran 168 matched games (12 seeds,
+both player positions per configuration):
 
-1. deterministic pasture coordinates and build/place state machine;
-2. daily wheat pickup and animal feeding routes;
-3. CARE and fertilizer collection scheduling;
-4. demand-sensitive cow/sheep counts from visible shops and market prices;
-5. sale of milk, wool and fertilizer;
-6. premium crops only when labor and cash-flow constraints are met;
-7. direct v3-v2 head-to-head and multi-seed tests before another submission.
+| Geese | Geese/worker | Feed stock days | W-L | Candidate avg | v2 avg |
+|---:|---:|---:|---:|---:|---:|
+| 5 | 2 | 3 | **24-0** | **40,888** | 26,837 |
+| 4 | 2 | 3 | 24-0 | 38,531 | 27,161 |
+| 5 | 2 | 2 | 24-0 | 34,266 | 26,941 |
+| 5 | 3 | 3 | 24-0 | 33,968 | 25,885 |
+| 6 | 3 | 3 | 3-21 | 25,766 | 26,560 |
+| 5 | 2 | 4 | 0-24 | 24,185 | 26,337 |
+| 6 | 2 | 3 | 0-24 | 20,864 | 26,247 |
+
+Five geese, two per worker and three days of feed stock is the selected v3.
+It also averaged about 38.2k per side in ten-seed v3 self-play. Future work
+can add demand-sensitive cows/sheep and premium crops on top of this validated
+logistics subsystem rather than replacing it.
 
 Compressed public replays and available agent logs live under
 `kaggriculture/online/<episode_id>/`. The `[kaggr-collect]` workflow downloads
