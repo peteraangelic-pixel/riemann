@@ -15,6 +15,8 @@ dziennie; liczą się 2 ostatnie.
   między turami (czysta funkcja obserwacji).
 - Silnik gry działa **offline** (`kaggle-environments`); pełny sezon 720 tur
   to ~2 s, więc iteracja jest tania.
+- Kandydat v2 jest przygotowany do pierwszej walidacji online i zbierania
+  replayów potrzebnych do strojenia przeciw rzeczywistym rywalom.
 - Wyniki lokalne (720 tur; średnia z 10 seedów):
   - vs `pass`: **~29.7k**, vs deterministyczny `random`: **~29.9k**,
     vs wbudowany `starter`: **~29.1k**, self-play: **~26.8k**
