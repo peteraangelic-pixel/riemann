@@ -4,6 +4,11 @@ Kaggriculture to turowa gra-farma Kaggle: 720 tur (30 dni × 24), dwóch
 graczy, wygrywa ten z większą kasą na koniec sezonu. Więcej: strona
 konkursu — https://www.kaggle.com/competitions/kaggriculture
 
+Oficjalne pliki pobrane po dołączeniu do konkursu znajdują się w katalogu
+głównym: [`AGENTS.md`](../AGENTS.md) (agent, submission i CLI) oraz
+[`README.md`](../README.md) (pełne zasady i ekonomia). Ich specyfikacja jest
+zgodna z lokalnie testowanym silnikiem `kaggle-environments 1.32.7`.
+
 **Terminy:** wejście i merge drużyn 2026-09-23, finał submissji 2026-09-30,
 dogrywka LB do ~2026-10-15. Pula $50k (10 × $5k). Dozwolone 5 submissji
 dziennie; liczą się 2 ostatnie.
