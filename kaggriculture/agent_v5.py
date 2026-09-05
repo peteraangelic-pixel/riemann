@@ -64,6 +64,9 @@ HANDS_MAX = 12
 # Replay-driven V6 controls. Defaults retain the selected V5 behavior; Actions
 # sweeps change one family at a time before any interaction profile is built.
 HAND_TASK_MODE = "WATER_FIRST"
+# Unlike the rejected fully-global router, idle stealing preserves each hand's
+# deterministic zone and crosses a boundary only when that zone has no work.
+IDLE_WORK_STEAL = False
 LATE_CROP_HAND_BONUS = 0
 # Optional replay-derived staffing curves. AUTO retains capacity-based hiring.
 LABOR_MODE = "AUTO"
@@ -716,6 +719,13 @@ class FarmerPlanner:
                 target = _near(candidates, fx, fy)
                 if target is not None:
                     break
+            if target is None and IDLE_WORK_STEAL:
+                # Preserve the local-zone priority above; only genuinely idle
+                # hands help the nearest outstanding task elsewhere.
+                for candidates in (urgent, unwatered, mature):
+                    target = _near(candidates, fx, fy)
+                    if target is not None:
+                        break
             if target is not None:
                 mv = _walk(fx, fy, *target)
                 if mv != "PASS":

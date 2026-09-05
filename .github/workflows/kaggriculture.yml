@@ -386,6 +386,70 @@ jobs:
           summary=$(printf '%s\n' "$output" | tail -1)
           echo "::notice title=V6 routing result::$summary"
 
+  v6-replay-stage-b:
+    name: V6 replay B ${{ matrix.id }}
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v6-replay-b]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        include:
+          - {id: control, args: ""}
+          - {id: no-sheep-adapt, args: "--set ADAPT_SHEEP_THRESHOLD=999"}
+          # Refine the only stage-A winner instead of assuming its endpoint.
+          - {id: sheep-t13, args: "--set ADAPT_SHEEP_THRESHOLD=13"}
+          - {id: sheep-t14, args: "--set ADAPT_SHEEP_THRESHOLD=14"}
+          - {id: sheep-t16, args: "--set ADAPT_SHEEP_THRESHOLD=16"}
+          - {id: sheep-t20, args: "--set ADAPT_SHEEP_THRESHOLD=20"}
+          - {id: sheep-t10-c10, args: "--set ADAPT_SHEEP_THRESHOLD=10 --set ADAPT_COW_TARGET=10"}
+          - {id: sheep-t12-c10, args: "--set ADAPT_SHEEP_THRESHOLD=12 --set ADAPT_COW_TARGET=10"}
+          - {id: sheep-t12-c12, args: "--set ADAPT_SHEEP_THRESHOLD=12 --set ADAPT_COW_TARGET=12"}
+          # Reduce ~1,000 PASS operations without discarding zone ownership.
+          - {id: idle-steal, args: "--set IDLE_WORK_STEAL=true"}
+          - {id: noadapt-steal, args: "--set ADAPT_SHEEP_THRESHOLD=999 --set IDLE_WORK_STEAL=true"}
+          # Isolated livestock throughput/capital changes.
+          - {id: animal-worker2, args: "--set ANIMALS_PER_WORKER=2"}
+          - {id: animal-worker4, args: "--set ANIMALS_PER_WORKER=4"}
+          - {id: buy-batch2, args: "--set ANIMAL_BUY_BATCH=2"}
+          - {id: buy-batch4, args: "--set ANIMAL_BUY_BATCH=4"}
+          - {id: feed2, args: "--set FEED_STOCK_DAYS=2"}
+          - {id: feed4, args: "--set FEED_STOCK_DAYS=4"}
+          - {id: service-feed, args: "--set ANIMAL_SERVICE_MODE=FEED_HARVEST_FERT_CARE"}
+          - {id: service-fert, args: "--set ANIMAL_SERVICE_MODE=FEED_FERT_HARVEST_CARE"}
+          - {id: service-care, args: "--set ANIMAL_SERVICE_MODE=FEED_CARE_HARVEST_FERT"}
+          # Top opponents unlock early; vary financing independently.
+          - {id: land9, args: "--set LAND_SW_BUY_DAY=9"}
+          - {id: land11, args: "--set LAND_SW_BUY_DAY=11"}
+          - {id: reserve300, args: "--set LAND_RESERVE=300"}
+          - {id: reserve500, args: "--set LAND_RESERVE=500"}
+          - {id: reserve900, args: "--set LAND_RESERVE=900"}
+          - {id: land9-r300, args: "--set LAND_SW_BUY_DAY=9 --set LAND_RESERVE=300"}
+          - {id: land9-r500, args: "--set LAND_SW_BUY_DAY=9 --set LAND_RESERVE=500"}
+          # Two-change interactions with stage-A's no-adaptation winner.
+          - {id: noadapt-worker2, args: "--set ADAPT_SHEEP_THRESHOLD=999 --set ANIMALS_PER_WORKER=2"}
+          - {id: noadapt-feed2, args: "--set ADAPT_SHEEP_THRESHOLD=999 --set FEED_STOCK_DAYS=2"}
+          - {id: noadapt-batch2, args: "--set ADAPT_SHEEP_THRESHOLD=999 --set ANIMAL_BUY_BATCH=2"}
+          - {id: noadapt-r500, args: "--set ADAPT_SHEEP_THRESHOLD=999 --set LAND_RESERVE=500"}
+          - {id: noadapt-service-feed, args: "--set ADAPT_SHEEP_THRESHOLD=999 --set ANIMAL_SERVICE_MODE=FEED_HARVEST_FERT_CARE"}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install engine
+        run: pip install kaggle-environments
+      - name: Refine V6 replay winners and new operation fixes
+        working-directory: kaggriculture
+        env:
+          VARIANT_ARGS: ${{ matrix.args }}
+        run: |
+          output=$(python replay_benchmark.py --agent agent_v5.py $VARIANT_ARGS)
+          echo "$output"
+          summary=$(printf '%s\n' "$output" | tail -1)
+          echo "::notice title=V6 replay B result::$summary"
+
   v6-replay-stage-a:
     name: V6 replay A ${{ matrix.id }}
     if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v6-replay-a]')
