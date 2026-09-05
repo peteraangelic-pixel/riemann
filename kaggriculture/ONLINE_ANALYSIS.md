@@ -211,3 +211,10 @@ With explicit user approval, the 94,409 finalist was packaged from
 `agent_v5.py` and uploaded to Kaggle by Actions run `33981106256` on
 2026-09-05. Submission evaluation is monitored separately; this approval
 applied only to this upload.
+
+## V6/V6.1 staged replay-driven program
+
+The next cycle starts from the uploaded 94,409 finalist and deliberately tests
+small, separately attributable replay-derived change groups before combining
+only winners. Champion-match telemetry, when available, is kept as a separate
+V6.1 evidence set so it does not contaminate V6 attribution.
