@@ -1,5 +1,10 @@
 # Kaggriculture online analysis
 
+> Submission policy: online uploads consume a limited daily allowance. Never
+> trigger a Kaggle submission without the user's explicit approval. Strategy
+> collection, CI, replay benchmarks, and parallel tuning do not imply upload
+> approval.
+
 Snapshot: 2026-09-05. Submission ref: `56032076` (v2, commit `c393cfe`).
 
 ## Public matches collected
