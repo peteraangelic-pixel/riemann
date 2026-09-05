@@ -15,9 +15,9 @@ dziennie; liczą się 2 ostatnie.
 
 ## Stan (2026-09-05)
 
-- `agent.py` — **v3: pszeniczno-marchewkowy conveyor z melonem, pięcioma
-  gęsiami i dedykowanymi rękami do pracy**. Deterministic, bez zależności poza
-  silnikiem gry; bez pamięci między turami (czysta funkcja obserwacji).
+- `agent.py` — **v3.1: pszeniczno-marchewkowy conveyor z melonem, pięcioma
+  gęsiami, rezerwą paszy i księgowaniem kolejki zakupów**. Deterministic, bez
+  zależności poza silnikiem gry; bez pamięci między turami.
 - Silnik gry działa **offline** (`kaggle-environments`); pełny sezon 720 tur
   to ~2 s, więc iteracja jest tania.
 - Pierwsza v2 przeszła walidację Kaggle; publiczne replaye są automatycznie
@@ -26,6 +26,8 @@ dziennie; liczą się 2 ostatnie.
   - bezpośrednio vs v2: **40.4k vs 26.6k, 10W–0L**,
   - self-play v3: **~38.2k** na stronę (zakres 36.0k–43.4k).
   Pięć gęsi wygrało sweep; sześć przeciążyło budżet i routing (22.6k).
+- Adwersarialny benchmark 18 prawdziwych strumieni akcji: **40.5k v3.1 vs
+  27.0k wersji wysłanych**, średnio +13.4k; szczegóły w `ONLINE_ANALYSIS.md`.
 
 ## Jak działa strategia (v3)
 

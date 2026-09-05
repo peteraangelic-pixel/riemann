@@ -74,10 +74,25 @@ both player positions per configuration):
 | 5 | 2 | 4 | 0-24 | 24,185 | 26,337 |
 | 6 | 2 | 3 | 0-24 | 20,864 | 26,247 |
 
-Five geese, two per worker and three days of feed stock is the selected v3.
-It also averaged about 38.2k per side in ten-seed v3 self-play. Future work
-can add demand-sensitive cows/sheep and premium crops on top of this validated
-logistics subsystem rather than replacing it.
+Five geese, two per worker and three days of feed stock was selected for v3.
+It averaged about 38.2k per side in ten-seed v3 self-play, but its first two
+public matches exposed two coupled bugs: the agent sold all home-grown wheat
+before buying feed back from a scarcity market, and independently checked each
+queued purchase against the same opening balance. Against strong wheat buyers
+this starved the geese and sometimes left no cash to rehire workers.
+
+V3.1 retains a three-day feed reserve and tracks spend across the entire order
+queue while preserving 300 coins of operating cash. Four parallel GitHub
+Actions shards replayed 18 real opponent action streams in their original
+seeds and positions:
+
+- submitted policies: 27,028 average;
+- v3.1 candidate: 40,451 average;
+- average improvement: +13,423;
+- candidate result against scripted opponents: 9 wins, 9 losses.
+
+Future work can add demand-sensitive cows/sheep and high-value crops on top of
+this now adversarially-tested logistics subsystem rather than replacing it.
 
 Compressed public replays and available agent logs live under
 `kaggriculture/online/<episode_id>/`. The `[kaggr-collect]` workflow downloads
