@@ -67,6 +67,8 @@ MAX_MARKET_ORDERS = 10
 
 # Selling below this would mean a crashed market.
 SELL_PRICE_FLOOR = 10
+# Liquidate everything late: inventory has zero terminal value.
+ENDGAME_SELL_DAY = 28
 
 # Land purchase triggers.
 LAND_NE_MIN_PLANTED = 6       # NW mostly started
@@ -128,6 +130,11 @@ ANIMALS_PER_WORKER = 3
 ANIMAL_BUY_BATCH = 3
 PREMIUM_SEED_BATCH = 8
 FEED_STOCK_DAYS = 3
+ADAPT_SHEEP_THRESHOLD = 10
+ADAPT_COW_TARGET = 8
+# Service ordering is sweepable. Feeding first is safer; harvesting first
+# reduces held-cap losses. Both are measured rather than assumed.
+ANIMAL_SERVICE_MODE = "HARVEST_FEED_CARE_FERT"
 
 
 def _plan_cells(unlocked: list[str], board: int) -> list[tuple[int, int]]:
@@ -192,8 +199,11 @@ class FarmerPlanner:
             isinstance(t, dict) and t.get("animal") == "SHEEP"
             for row in opponent_tiles for t in row
         )
-        if opponent_sheep >= 10 and animal_targets.get("SHEEP", 0) > 0:
-            animal_targets = {"COW": max(8, animal_targets.get("COW", 0)), "SHEEP": 0}
+        if opponent_sheep >= ADAPT_SHEEP_THRESHOLD and animal_targets.get("SHEEP", 0) > 0:
+            animal_targets = {
+                "COW": max(ADAPT_COW_TARGET, animal_targets.get("COW", 0)),
+                "SHEEP": 0,
+            }
 
         animal_specs: list[tuple[tuple[int, int], str]] = []
         for kind in ("COW", "SHEEP", "GOOSE"):
@@ -308,7 +318,15 @@ class FarmerPlanner:
         # ---- market orders -------------------------------------------------
         orders: list[list[Any]] = []
         shed_value = 0
-        for item in sorted(shed):
+        # Different products have independent price curves, but high-value
+        # stock goes first so the ten-order cap cannot strand it.
+        sale_items = sorted(
+            shed,
+            key=lambda item: (-int(prices.get(item, 0) or 0), item),
+        )
+        for item in sale_items:
+            if len(orders) >= MAX_MARKET_ORDERS:
+                break
             qty = shed[item]
             if qty <= 0:
                 continue
@@ -316,17 +334,17 @@ class FarmerPlanner:
             # scarcity market. Strong online opponents aggressively consume
             # market wheat, making that round trip both fragile and costly.
             sell_qty = qty
-            if item == "WHEAT":
+            if day < ENDGAME_SELL_DAY and item == "WHEAT":
                 feed_reserve = sum(animal_targets.values()) * FEED_STOCK_DAYS
                 sell_qty = max(0, qty - feed_reserve)
-            elif item == "FERTILIZER":
+            elif day < ENDGAME_SELL_DAY and item == "FERTILIZER":
                 # Fertilizer is worth more when converted into extra premium
-                # harvest than as a $100 raw sale; keep a bounded working stock.
+                # harvest than as a raw sale only in fertilizing profiles.
                 sell_qty = max(0, qty - FERTILIZER_RESERVE)
             if sell_qty <= 0:
                 continue
             price = int(prices.get(item, 0) or 0)
-            if price >= SELL_PRICE_FLOOR:
+            if price >= (1 if day >= ENDGAME_SELL_DAY else SELL_PRICE_FLOOR):
                 orders.append(["SELL", item, sell_qty])
                 shed_value += sell_qty * max(price, 1)
 
@@ -517,14 +535,21 @@ class FarmerPlanner:
                         if int(inventory.get(desired_here, 0)) > 0:
                             return ["PLACE", desired_here, 1]
                     elif tile.get("animal") == desired_here:
-                        if tile.get("yield_units", 0) > 0:
-                            return ["HARVEST"]
-                        if not tile.get("fed_today") and wheat_carried > 0:
-                            return ["FEED"]
-                        if not tile.get("cared_today"):
-                            return ["CARE"]
-                        if tile.get("fertilizer_available"):
-                            return ["COLLECT_FERTILIZER"]
+                        available = {
+                            "HARVEST": tile.get("yield_units", 0) > 0,
+                            "FEED": not tile.get("fed_today") and wheat_carried > 0,
+                            "CARE": not tile.get("cared_today"),
+                            "COLLECT_FERTILIZER": tile.get("fertilizer_available"),
+                        }
+                        modes = {
+                            "HARVEST_FEED_CARE_FERT": ("HARVEST", "FEED", "CARE", "COLLECT_FERTILIZER"),
+                            "FEED_HARVEST_FERT_CARE": ("FEED", "HARVEST", "COLLECT_FERTILIZER", "CARE"),
+                            "FEED_FERT_HARVEST_CARE": ("FEED", "COLLECT_FERTILIZER", "HARVEST", "CARE"),
+                            "FEED_CARE_HARVEST_FERT": ("FEED", "CARE", "HARVEST", "COLLECT_FERTILIZER"),
+                        }
+                        for op in modes.get(ANIMAL_SERVICE_MODE, modes["HARVEST_FEED_CARE_FERT"]):
+                            if available[op]:
+                                return [op]
 
             zone_empty_structures = [c for c in empty_structures if c in zone_set]
             zone_unbuilt = [c for c in unbuilt_animal_cells if c in zone_set]

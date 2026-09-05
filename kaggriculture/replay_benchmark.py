@@ -46,6 +46,10 @@ def main() -> None:
     parser.add_argument("--animal-target", type=int)
     parser.add_argument("--per-worker", type=int)
     parser.add_argument("--feed-days", type=int)
+    parser.add_argument(
+        "--set", action="append", default=[], metavar="NAME=VALUE",
+        help="override an uppercase candidate constant; VALUE is JSON when possible",
+    )
     args = parser.parse_args()
     if not 0 <= args.shard < args.shards:
         parser.error("shard must satisfy 0 <= shard < shards")
@@ -100,6 +104,17 @@ def main() -> None:
         module["ANIMALS_PER_WORKER"] = args.per_worker
     if args.feed_days is not None:
         module["FEED_STOCK_DAYS"] = args.feed_days
+    for override in args.set:
+        if "=" not in override:
+            parser.error(f"invalid --set {override!r}; expected NAME=VALUE")
+        name, raw = override.split("=", 1)
+        if not name.isupper() or name not in module:
+            parser.error(f"unknown or non-constant override {name!r}")
+        try:
+            value = json.loads(raw)
+        except json.JSONDecodeError:
+            value = raw
+        module[name] = value
 
     replay_paths = sorted((HERE / "online").glob("*/replay.json.gz"))
     replay_paths = replay_paths[args.shard :: args.shards]
@@ -141,7 +156,7 @@ def main() -> None:
 
     if scores:
         print(
-            f"SUMMARY agent={args.agent} profile={args.profile or 'default'} "
+            f"SUMMARY agent={args.agent} profile={args.profile or 'default'} overrides={','.join(args.set) or '-'} "
             f"kind={module.get('ANIMAL_KIND')} target={module.get('ANIMAL_TARGET')} "
             f"targets={module.get('ANIMAL_TARGETS', {})} strawberries={module.get('STRAWBERRY_TARGET', 0)} "
             f"per_worker={module['ANIMALS_PER_WORKER']} feed_days={module['FEED_STOCK_DAYS']} "

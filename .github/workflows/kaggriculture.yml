@@ -329,6 +329,84 @@ jobs:
           summary=$(printf '%s\n' "$output" | tail -1)
           echo "::notice title=Replay benchmark result::$summary"
 
+  v5-deep-sweep:
+    name: V5 deep ${{ matrix.id }}
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v5-deep]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        include:
+          - {id: baseline, args: ""}
+          - {id: adapt-t6, args: "--set ADAPT_SHEEP_THRESHOLD=6"}
+          - {id: adapt-t8, args: "--set ADAPT_SHEEP_THRESHOLD=8"}
+          - {id: adapt-t12, args: "--set ADAPT_SHEEP_THRESHOLD=12"}
+          - {id: adapt-t14, args: "--set ADAPT_SHEEP_THRESHOLD=14"}
+          - {id: adapt-t16, args: "--set ADAPT_SHEEP_THRESHOLD=16"}
+          - {id: no-adapt, args: "--set ADAPT_SHEEP_THRESHOLD=99"}
+          - {id: adapt-c9, args: "--set ADAPT_COW_TARGET=9"}
+          - {id: adapt-c10, args: "--set ADAPT_COW_TARGET=10"}
+          - {id: animals-w2, args: "--per-worker 2"}
+          - {id: animals-w4, args: "--per-worker 4"}
+          - {id: animals-w5, args: "--per-worker 5"}
+          - {id: feed2, args: "--feed-days 2"}
+          - {id: feed4, args: "--feed-days 4"}
+          - {id: feed5, args: "--feed-days 5"}
+          - {id: batch1, args: "--set ANIMAL_BUY_BATCH=1"}
+          - {id: batch2, args: "--set ANIMAL_BUY_BATCH=2"}
+          - {id: batch4, args: "--set ANIMAL_BUY_BATCH=4"}
+          - {id: batch5, args: "--set ANIMAL_BUY_BATCH=5"}
+          - {id: cells8, args: "--set CELLS_PER_HAND=8"}
+          - {id: cells9, args: "--set CELLS_PER_HAND=9"}
+          - {id: cells11, args: "--set CELLS_PER_HAND=11"}
+          - {id: cells12, args: "--set CELLS_PER_HAND=12"}
+          - {id: hands-extra0, args: "--set HANDS_EXTRA=0"}
+          - {id: hands-extra2, args: "--set HANDS_EXTRA=2"}
+          - {id: hands-max10, args: "--set HANDS_MAX=10"}
+          - {id: hands-max14, args: "--set HANDS_MAX=14"}
+          - {id: reserve200, args: "--set OPERATING_RESERVE=200"}
+          - {id: reserve400, args: "--set OPERATING_RESERVE=400"}
+          - {id: reserve500, args: "--set OPERATING_RESERVE=500"}
+          - {id: land-reserve500, args: "--set LAND_RESERVE=500"}
+          - {id: land-reserve900, args: "--set LAND_RESERVE=900"}
+          - {id: land-fast, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30"}
+          - {id: land-slow, args: "--set LAND_NE_MIN_PLANTED=10 --set LAND_SW_MIN_PLANTED=50"}
+          - {id: land-day14, args: "--set LAND_SW_MAX_DAY=14"}
+          - {id: land-day22, args: "--set LAND_SW_MAX_DAY=22"}
+          - {id: feed-harvest-fert-care, args: "--set ANIMAL_SERVICE_MODE=FEED_HARVEST_FERT_CARE"}
+          - {id: feed-fert-harvest-care, args: "--set ANIMAL_SERVICE_MODE=FEED_FERT_HARVEST_CARE"}
+          - {id: feed-care-harvest-fert, args: "--set ANIMAL_SERVICE_MODE=FEED_CARE_HARVEST_FERT"}
+          - {id: endgame26, args: "--set ENDGAME_SELL_DAY=26"}
+          - {id: endgame27, args: "--set ENDGAME_SELL_DAY=27"}
+          - {id: endgame29, args: "--set ENDGAME_SELL_DAY=29"}
+          - {id: no-endgame, args: "--set ENDGAME_SELL_DAY=30"}
+          - {id: sell-floor1, args: "--set SELL_PRICE_FLOOR=1"}
+          - {id: sell-floor20, args: "--set SELL_PRICE_FLOOR=20"}
+          - {id: combo-fast, args: "--set ANIMAL_BUY_BATCH=4 --set HANDS_EXTRA=2 --set OPERATING_RESERVE=200"}
+          - {id: combo-safe, args: "--per-worker 2 --feed-days 4 --set OPERATING_RESERVE=500"}
+          - {id: combo-efficient, args: "--per-worker 4 --set CELLS_PER_HAND=12 --set HANDS_EXTRA=0"}
+          - {id: straw4, args: "--set STRAWBERRY_TARGET=4 --set PREMIUM_SEED_BATCH=4 --set FERTILIZER_RESERVE=6"}
+          - {id: straw12, args: "--set STRAWBERRY_TARGET=12 --set PREMIUM_SEED_BATCH=6 --set FERTILIZER_RESERVE=6"}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install engine
+        run: pip install kaggle-environments
+      - name: Benchmark refinement against all real replay streams
+        working-directory: kaggriculture
+        env:
+          VARIANT_ARGS: ${{ matrix.args }}
+        run: |
+          # VARIANT_ARGS is repository-controlled matrix data, not user input.
+          output=$(python replay_benchmark.py --agent agent_v5.py --profile mix8-6-f0 $VARIANT_ARGS)
+          echo "$output"
+          summary=$(printf '%s\n' "$output" | tail -1)
+          echo "::notice title=V5 deep result::$summary"
+
   v5-economy-sweep:
     name: V5 economy ${{ matrix.profile }}
     if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v5-tune]')
