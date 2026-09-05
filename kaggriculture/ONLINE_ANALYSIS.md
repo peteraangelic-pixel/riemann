@@ -186,3 +186,23 @@ Compressed public replays and available agent logs live under
 `kaggriculture/online/<episode_id>/`. The `[kaggr-collect]` workflow downloads
 every missing public episode rather than only the newest one, so matches that
 finish between polling runs are not skipped.
+
+## Advice, scale, and timed-land validation
+
+Runs `33974856409`, `33975880688`, and `33976351405` added **88 full
+32-replay profiles** derived from both advice files and from the 100k–120k
+opponents' visible staffing, land, crop, livestock, fertilizer, and sale
+patterns. Larger economies did not transfer to this planner: eight melons
+peaked at 85,413, ten at 81,135, twelve at 75,152, Dmitri staffing at 78,501,
+and fertilizer reserves fell as low as 66,504. Sale batching was effectively
+a tie (at most +0.2), while global crop-task claiming and reserving fallow
+strawberry cells were harmful and were removed.
+
+One controlled change did survive both the broad and interaction sweeps:
+buying NE no later than day 8 and SW on day 10. The selected day-8/day-10
+profile scored **94,409.0 average and 32/32 wins**, +794 over the 93,615.0
+finalist. NE days 6, 7, and 8 tied exactly when SW remained day 10; SW day 9
+fell to 89,405 and day 11 to 89,758. Reserve and staffing interactions did not
+improve it. Morning-only selling scored 94,409.2, an immaterial two-tenths, so
+immediate selling remains selected. This is still an offline candidate and
+must not be uploaded without explicit approval.

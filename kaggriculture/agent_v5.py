@@ -60,7 +60,6 @@ OPERATING_RESERVE = 300
 # harvest/replant); we also count the farmer as one waterer.
 CELLS_PER_HAND = 10
 HANDS_EXTRA = 1
-GLOBAL_CROP_TASKS = False
 HANDS_MAX = 12
 # Optional replay-derived staffing curves. AUTO retains capacity-based hiring.
 LABOR_MODE = "AUTO"
@@ -82,9 +81,11 @@ LAND_SW_MIN_PLANTED = 30      # measured best over all public replay streams
 LAND_SW_MAX_DAY = 18          # late purchases cannot pay back
 LAND_RESERVE = 700            # cash kept after the purchase for seeds+wages
 SELL_BUY = False              # SE quadrant purchase disabled (see module docs)
-LAND_MODE = "AUTO"
-LAND_NE_BUY_DAY = 7
-LAND_SW_BUY_DAY = 8
+# Across 32 public replay streams, day-8/day-10 timed expansion improved the
+# finalist from 93,615.0 to 94,409.0 without losing a game.
+LAND_MODE = "TIMED"
+LAND_NE_BUY_DAY = 8
+LAND_SW_BUY_DAY = 10
 
 # Carrot belt sizing: cells = clamp(share of town carrot demand that we want
 # to serve, 0..CARROT_MAX_FRAC * plan).  CARROT_KAPPA tunes how aggressively
@@ -115,7 +116,6 @@ MELON_LAST_PLANT_DAY = 18
 # deliberately profile constants so Actions can sweep broad economies.
 STRAWBERRY_TARGET = 0
 STRAWBERRY_START_DAY = 0
-STRAWBERRY_PREP_DAYS = 0
 STRAWBERRY_LAST_PLANT_DAY = 13
 FERTILIZER_RESERVE = 0
 FERTILIZE_PREMIUM_ONLY = True
@@ -270,15 +270,6 @@ class FarmerPlanner:
         def _rank_of(x: int, y: int) -> int | None:
             return rank_map.get((x, y))
 
-        def _hold_for_strawberry(rank: int | None) -> bool:
-            if rank is None or STRAWBERRY_TARGET <= 0 or STRAWBERRY_PREP_DAYS <= 0:
-                return False
-            premium_rank = rank - len(MELON_CELLS)
-            return (
-                0 <= premium_rank < STRAWBERRY_TARGET
-                and STRAWBERRY_START_DAY - STRAWBERRY_PREP_DAYS <= day < STRAWBERRY_START_DAY
-            )
-
         # ---- single board scan: collect what every unit needs -------------
         mature: list[tuple[int, int]] = []      # plants at/over harvest age
         urgent: list[tuple[int, int]] = []      # unwatered, will die tonight
@@ -302,8 +293,6 @@ class FarmerPlanner:
                         unbuilt_animal_cells.append(cell)
                     elif cell in plan_set:
                         r = _rank_of(x, y)
-                        if _hold_for_strawberry(r):
-                            continue
                         crop = _crop_of_cell(x, y, r)
                         empty_cells[crop].append(cell)
                     continue
@@ -520,8 +509,6 @@ class FarmerPlanner:
         plant_cap = min(len(plan), waterers * CELLS_PER_HAND)
         plants_total = sum(planted_per_crop.values())
         plants_assigned = {c: 0 for c in SUPPORTED}
-        claimed_crop_targets: set[tuple[int, int]] = set()
-
         def _plant_ok(crop: str) -> bool:
             if plants_total + sum(plants_assigned.values()) >= plant_cap:
                 return False
@@ -557,8 +544,6 @@ class FarmerPlanner:
                 return None
             if tile is None and (fx, fy) in zone_set:
                 r = _rank_of(fx, fy)
-                if _hold_for_strawberry(r):
-                    return None
                 crop = _crop_of_cell(fx, fy, r)
                 if _plant_ok(crop):
                     plants_assigned[crop] += 1
@@ -696,13 +681,10 @@ class FarmerPlanner:
             op = _standing_op(tiles[fy][fx], zone_set, fx, fy, inventory)
             if op is not None:
                 return op
-            z_urgent = [c for c in urgent if c in zone_set and c not in claimed_crop_targets]
-            z_wet = [c for c in unwatered if c in zone_set and c not in claimed_crop_targets]
-            z_mature = [c for c in mature if c in zone_set and c not in claimed_crop_targets]
-            z_plant = [
-                c for crop in SUPPORTED for c in empty_cells[crop]
-                if c in zone_set and c not in claimed_crop_targets
-            ]
+            z_urgent = [c for c in urgent if c in zone_set]
+            z_wet = [c for c in unwatered if c in zone_set]
+            z_mature = [c for c in mature if c in zone_set]
+            z_plant = [c for crop in SUPPORTED for c in empty_cells[crop] if c in zone_set]
             target = _near(z_urgent, fx, fy)
             if target is None:
                 target = _near(z_wet, fx, fy)
@@ -711,7 +693,6 @@ class FarmerPlanner:
             if target is None:
                 target = _near(z_plant, fx, fy)
             if target is not None:
-                claimed_crop_targets.add(target)
                 mv = _walk(fx, fy, *target)
                 if mv != "PASS":
                     return [mv]
@@ -735,8 +716,7 @@ class FarmerPlanner:
                     crop_i = i - animal_n
                     lo = crop_i * len(plan) // max(crop_n, 1)
                     hi = (crop_i + 1) * len(plan) // max(crop_n, 1)
-                    crop_zone = plan if GLOBAL_CROP_TASKS else (plan[lo:hi] if plan else [])
-                    hands_ops.append(_hand_op(hx, hy, crop_zone, inventory))
+                    hands_ops.append(_hand_op(hx, hy, plan[lo:hi] if plan else [], inventory))
 
         return {"farmer": farmer_op, "hands": hands_ops, "market": orders}
 
