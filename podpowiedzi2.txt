@@ -1,0 +1,118 @@
+Gra Kaggriculture na Kaggle to wyrafinowana symulacja ekonomiczna, w której kluczem do zwycięstwa nie jest „losowe rolnictwo”, ale **precyzyjne skalowanie przemysłowe i manipulacja kolejnością zleceń rynkowych**.
+
+Na podstawie analizy najlepszych agentów i mechaniki gry (stan na wrzesień 2026), oto szczegółowa analiza i prompt dla Twojego agenta.
+
+### Kluczowe obserwacje z gry najlepszych (Top Meta)
+1.  **Dominacja Inwestycji w Inwentarz (8C/4S):** Najlepsze boty porzucają szybkie cykle warzywne na rzecz „Industrialnego Loopu”: 8 krów i 4 owce. Generuje to ok. 96 000 USD przychodu, co deklasuje inne strategie.
+2.  **Skalowanie Pracy (Fibonacci Labor Scaling):** Kluczowe jest szybkie zatrudnianie pomocników (farm hands) zgodnie z krzywą kosztów, aby zwiększyć przepustowość z 24 do 264 akcji na dzień.
+3.  **Priorytetyzacja Rynku (Market Front-Running):** Ceny spadają wraz z podażą w danej turze. Najlepsi gracze umieszczają zlecenia sprzedaży produktów premium (mleko, wełna) **na początku** tablicy akcji rynkowych, aby uniknąć spadku mnożników spowodowanego przez tańsze produkty (pszenica, marchew).
+4.  **Deterministyczne Heurystyki > Czyste RL:** Agenty oparte na czystym Reinforcement Learningu (PPO/SAC) często zawodzą przez „zerową tolerancję” błędów (np. śmierć zwierząt z głodu). Najstabilniejsze boty to **„Expert Route Followers”** – mają sztywne plany na pierwsze 100 tur i adaptują się dopiero w fazie końcowej.
+
+---
+
+### Prompt dla Twojego Agenta (Bot-Builder)
+
+Skopiuj poniższy prompt i przekaż go swojemu agentowi AI, który generuje kod botów:
+
+```markdown
+# ROLE
+Jesteś ekspertem ds. optymalizacji systemów w grze Kaggriculture. Twoim zadaniem jest stworzenie kodu agenta (Python), który zdominuje tabelę wyników poprzez "Industrial Scaling" i "Market Priority Execution".
+
+# CORE STRATEGY: "Industrial 8C/4S Premium"
+Zaimplementuj algorytm oparty na następujących priorytetach:
+
+1. LABOR SCALING: 
+- Agresywnie zatrudniaj farm hands zgodnie z krzywą Fibonacciego. Celem jest osiągnięcie 264 operacji dziennie przed 10. dniem.
+- Skalowanie pracy musi wyprzedzać zakupy inwentarza.
+
+2. LIVESTOCK ECONOMICS:
+- Skup się na cyklu: 8 krów i 4 owce. 
+- Zapewnij "Indefinite Loop" pszenicy: Pszenica musi być sadzona i zbierana wyłącznie jako pasza, nie na sprzedaż (chyba że występuje nadmiar).
+- Nigdy nie dopuść do głodowania zwierząt – priorytet akcji FEED jest absolutny.
+
+3. MARKET ORDER PRIORITY (CRITICAL):
+- W każdej turze sprzedaży (Sell Action), sortuj listę poleceń tak, aby produkty o najwyższej wartości jednostkowej (Milk, Wool) były wysyłane DO RYNKU PIERWSZE.
+- Produkty o niskiej wartości (Wheat, Carrots) muszą być na końcu listy, aby nie obniżały mnożnika popytu dla produktów premium w tej samej mikroturze przetwarzania.
+
+4. CROP SELECTION:
+- Faza wczesna: Marchew (Carrots) dla szybkiego zastrzyku gotówki na pierwszych pomocników.
+- Faza średnia: Przejście całkowicie na pszenicę (Wheat) pod inwentarz.
+- Faza późna: Jeśli kapitał pozwoli, 10-dniowy cykl Melonów w nieużywanych kwadrantach.
+
+5. RISK MANAGEMENT:
+- Zaimplementuj "Safety Buffer" – bot musi zachować min. 500$ gotówki na nieprzewidziane zmiany cen nasion.
+- Jeśli wydajność wody spadnie (brak akcji), priorytetyzuj podlewanie ponad sadzenie nowych roślin.
+
+# TECHNICAL IMPLEMENTATION
+- Użyj deterministycznej maszyny stanów (Finite State Machine) dla logistyki (podlewanie -> karmienie -> zbieranie).
+- Dodaj warstwę dynamiczną dla rynku: sprawdzaj aktualny popyt (Town Demand) przed wystawieniem melona na sprzedaż.
+- Agent musi działać w architekturze "Mock-Sim-First", aby łatwo było go testować lokalnie przed submission.
+```
+
+---
+
+### Dodatkowa rada dla Ciebie:
+Najlepsi gracze obecnie stosują tzw. **"Meta-Agentów"**. Zamiast pisać jeden uniwersalny kod, napisz agenta, który posiada 3-4 gotowe "ścieżki" (np. agresywny start vs. bezpieczne skalowanie) i w ciągu pierwszych 20 tur analizuje ruchy przeciwnika, aby wybrać tę, która najlepiej go kontruje. Jeśli widzisz, że przeciwnik nie kupuje pomocników, Twój bot powinien przejść w tryb maksymalnego skalowania, by zalać rynek swoimi produktami, zanim on zdąży zareagować.
+
+
+
+**Tak, znam Kaggriculture** (Kaggle × Google farming simulation competition). To dwuosobowa gra ekonomiczna/symulacja farmy: 30 dni × 24 tury = **720 tur**, start z $3000, siatka 10×10 (tylko NW 5×5 odblokowane na start). Wygrywa ten, kto ma więcej pieniędzy w banku na końcu (niesprzedane inventory nie liczy się). Rynek dynamiczny (ceny spadają przy oversupply), town shops konsumują produkty okresowo, weeds spawnują, zwierzęta uciekają bez karmienia itp.
+
+### Kluczowe mechaniki (skrót dla agenta)
+- **Jednostki**: 1 farmer + hired hands (re-hire co dzień, koszt fib(n): 1,1,2,3,5,8,13...; full crew ~10-14 hands to ~$200-600/dzień – tanio względem payoff).
+- **Akcje**: farmer/hands: move (N/S/E/W/PASS), PLANT/WATER/HARVEST/FERTILIZE/DIG, BUILD_PASTURE/COOP, FEED/CARE/COLLECT_FERTILIZER/PLACE/PICKUP/DROP. Market (do 10 orderów/turę): BUY_SEED/BUY_ANIMAL/BUY_PRODUCT/SELL/HIRE/BUY_LAND.
+- **Uprawy**: Wheat (feed + baseline), Carrot (słabe), Tomato/Strawberry (ongoing, limited yields), Melon (high value one-time). Water codziennie (nowe planty **musi** water tego samego dnia – planting day liczy się jako unwatered). Fertilizer x2 bonus. Harvest peak dla one-time.
+- **Zwierzęta**: Goose (słabe), **Cow (milk, pasture, co 2 dni)**, **Sheep (wool, pasture, co 3 dni)**. Feed wheat codziennie (2 miss = escape forever). CARE bankuje +1 bonus na next production. Każde zwierzę daje 1 FERTILIZER/dzień (collect). Produce indefinitely.
+- **Land**: BUY_LAND: NE $1k, SW $2k, SE $4k. Top nie kupuje SE (nie opłaca się).
+- **Shed**: cap 100 (non-seeds); overflow discarded EOD. Sell agresywnie.
+- **Rynek/Town**: Ceny base + shape function (glut bije hard premium: melon/strawberry/milk/wool → floor $1). Town center + unlocking shops (co ~3 dni) konsumują. Priority sell high-value first.
+
+**Top wyniki**: Top farms bankują **~100k–158k+**. Meta jest bardzo skondensowana (powyżej ratingu ~2000 tylko ~112 distinct openings).
+
+### Co robią najlepsi (analiza z replays top 100k+, notebooks, mined blueprints)
+Z agregacji top replays (np. 117 episodes ≥100k) i public agents (np. industrial livestock + market priority):
+
+1. **Labor scaling (kluczowe)**: Hands wipe EOD → re-hire **codziennie rano**. Early (day 0-6): 3-5 hands. Mid (7-10): ~8. Steady od day 11: **11-14 hands**. Endgame mniej. Koszt trivial vs. throughput (z 24 → 200+ ops/dzień).
+
+2. **Land**: Tylko 3 kwadranty. NE ~day 7 ($1k), SW ~day 11 ($2k). SE ($4k) **nigdy** (nie payback). Steady state ~75 tiles.
+
+3. **Field composition (steady od ~day 11)**:
+   - **14 PASTURE**: 8 COW + 6 SHEEP (lub warianty 8C+4S).
+   - **42 STRAWBERRY** (ongoing high-value).
+   - **12 MELON**.
+   - **~7 WHEAT** (feed + recycle).
+   - **Zero**: Goose/COOP/EGG, Carrot, Tomato (zdominowane).
+   - Opening day 0: ~6 PASTURE + early cows/sheep + 11 MELON + 7 WHEAT + 5 HIRE. Melony po harvest (~day 20+) recycle w WHEAT (2-day cycle).
+
+4. **Ekonomia zwierząt = silnik**:
+   - Indefinite production + free 1 FERT/dzień + CARE bonus.
+   - Net margins industrial herd (8C+4S) >> melony >> carrots/wheat.
+   - Kup wheat z marketu jako feed (~setki/epizod), sprzedawaj harvest.
+   - Priorytet: FEED > HARVEST product > COLLECT_FERT > CARE.
+
+5. **Market & selling**:
+   - Sell **premium first**: STRAWBERRY > MELON > MILK > WOOL > FERT > WHEAT...
+   - Agresywnie (shed 100 cap, overflow lost). Reserve trochę wheat na feed (3+ dni buffer).
+   - Predictive/front-run town consumption (sell tuż przed ticks).
+   - Reorder market orders: high-value first (żeby nie rozcieńczyć demand tanimi staples).
+   - Hold cash floor (~$350+) na feed/emergency.
+
+6. **Priorytety zadań (multi-unit)**:
+   - Scan farm → list targets: urgent water (esp. consecutive_unwatered≥1 lub bonus window/fert), feed animals, harvest peak/ready, collect fert, care, fertilize ongoing, dig weeds, plant/build, move nearest.
+   - Nearest-target assignment dla farmer + hands (minimize waste steps). Hands align/pad.
+   - New plants: plant + water **same day**.
+   - One-time (melon/wheat): water w bonus window (ceil(max_yield/2) do max), harvest at/near max_yield_day (nie earlier).
+   - Ongoing: fertilize + water dla x2.
+   - Weed repair bez zaburzania timeline.
+
+7. **Inne**:
+   - Deterministic planning + reactive (weeds, shops, prices, opponent visible farm).
+   - Early capital: melony + early animals na cashflow, potem scale herd + straw.
+   - Endgame: harvest everything, sell all, minimal plant.
+   - Against opponent: mirror/adapt land timing, dump supply jeśli glut, exploit ich błędy (np. escaped animals).
+
+Źródła meta: mined z top replays (np. gytdrop policy v5), Amey Thakur industrial livestock + premium-first market, destbreso benchmarks/openings, episode corpora.
+
+### Dokładna podpowiedź (system prompt / instruction) dla Twojego agenta budującego boty
+
+Skopiuj/wklej i dostosuj jako system prompt lub detailed instruction dla LLM-agenta (Cursor/Claude/GPT/etc.), który generuje kod bota (`agent(obs)` returning `{"farmer": [...], "hands": 
