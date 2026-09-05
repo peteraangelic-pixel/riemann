@@ -259,3 +259,37 @@ jobs:
           git add kaggriculture/online
           git commit -m "data(kaggriculture): collect episodes ${{ steps.episodes.outputs.collected_ids }} [skip ci]"
           git push origin "HEAD:$GITHUB_REF_NAME"
+
+  tune:
+    name: Animal sweep g${{ matrix.geese }}-w${{ matrix.per_worker }}-f${{ matrix.feed_days }}
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-tune]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {geese: 4, per_worker: 2, feed_days: 3}
+          - {geese: 5, per_worker: 2, feed_days: 2}
+          - {geese: 5, per_worker: 2, feed_days: 3}
+          - {geese: 5, per_worker: 2, feed_days: 4}
+          - {geese: 5, per_worker: 3, feed_days: 3}
+          - {geese: 6, per_worker: 2, feed_days: 3}
+          - {geese: 6, per_worker: 3, feed_days: 3}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install engine
+        run: pip install kaggle-environments
+      - name: Run matched-seed comparison
+        working-directory: kaggriculture
+        run: |
+          output=$(python tune_animals.py \
+            --geese ${{ matrix.geese }} \
+            --per-worker ${{ matrix.per_worker }} \
+            --feed-days ${{ matrix.feed_days }} \
+            --seeds 12)
+          echo "$output"
+          echo "::notice title=Animal sweep result::$output"

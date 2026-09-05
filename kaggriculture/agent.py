@@ -1,4 +1,4 @@
-"""Kaggriculture v2 agent: hands-powered wheat/carrot conveyor.
+"""Kaggriculture v3 agent: crop conveyor plus a serviced goose economy.
 
 v1 (all wheat) verified the machinery: hired hands run daily watering-first
 sweeps of their plan chunks, the farmer harvests/plants overflow, land NE+SW
@@ -21,9 +21,15 @@ in the canonical plan (carrots get the lowest ranks); because a crop switch
 only happens when a cell is replanted after harvest, the assignment adapts
 smoothly as shops unlock.
 
-Everything else stays deterministic and stateless; ``act`` is a pure function
-of the observation plus the module constants below (tunable for offline
-sweeps).
+v3 adds a compact five-goose subsystem learned from public-match telemetry.
+Dedicated hands build coops, carry animals and feed wheat from the shed, then
+harvest eggs, CARE for the next yield, and collect daily fertilizer. A
+five-goose candidate beat v2 in 10/10 matched-seed games (40.4k vs 26.6k
+average) and remained robust in self-play (~38.2k per side); six geese
+collapsed under setup/labor pressure and were rejected.
+
+Everything stays deterministic and stateless; ``act`` is a pure function of
+the observation plus the module constants below (tunable for offline sweeps).
 
 Entry points: ``act`` / ``agent`` (Kaggle simulator loads ``main.py`` and
 calls ``act``; local ``env.run`` calls either).
@@ -92,6 +98,17 @@ MELON_CELLS = [(0, 0), (1, 0), (2, 0), (3, 0)]
 # harvested before the season ends.
 MELON_LAST_PLANT_DAY = 19
 
+# v3 animal subsystem. Geese are the cheapest animal and produce eggs daily
+# after age 4; every surviving goose also creates one fertilizer per day.
+# Four compact NW cells keep feed trips close to the shed access at (4, 4).
+GOOSE_TARGET = 5
+GOOSE_COST = 300
+# Ordered compact capacity for parameter sweeps; only the first GOOSE_TARGET
+# cells are active in a given policy.
+GOOSE_CELLS = [(4, 4), (4, 3), (3, 4), (4, 2), (2, 4), (4, 1)]
+GEESE_PER_WORKER = 2
+FEED_STOCK_DAYS = 3
+
 
 def _plan_cells(unlocked: list[str], board: int) -> list[tuple[int, int]]:
     """Canonical row-major cell list over the unlocked quadrants."""
@@ -143,6 +160,7 @@ class FarmerPlanner:
         private = obs["private"]
         tiles = me["tiles"]
         board = len(tiles)
+        goose_plan = GOOSE_CELLS[:GOOSE_TARGET]
         step = int(obs.get("step", 0))
         day = obs.get("day", step // 24)
         hour = obs.get("hour", step % 24)
@@ -151,10 +169,13 @@ class FarmerPlanner:
         hands_now = me.get("hands", []) or []
         seeds = private.get("seeds", {}) or {}
         shed = private.get("shed", {}) or {}
+        inventories = private.get("inventories", []) or []
         prices = (obs.get("market", {}) or {}).get("prices", {}) or {}
         shops = (obs.get("town", {}) or {}).get("unlocked_shops", []) or []
 
-        plan = _plan_cells(unlocked, board)
+        # Animal structures are permanent reservations and never enter the
+        # crop conveyor.
+        plan = [c for c in _plan_cells(unlocked, board) if c not in goose_plan]
         plan_set = set(plan)
         rank_map = {cell: i for i, cell in enumerate(plan)}
 
@@ -188,20 +209,32 @@ class FarmerPlanner:
         unwatered: list[tuple[int, int]] = []   # any unwatered supported plant
         empty_cells: dict[str, list[tuple[int, int]]] = {c: [] for c in SUPPORTED}
         weeds: list[tuple[int, int]] = []
+        goose_cells: list[tuple[int, int]] = []
+        empty_coops: list[tuple[int, int]] = []
+        unbuilt_goose_cells: list[tuple[int, int]] = []
         planted_per_crop = {c: 0 for c in SUPPORTED}
         for y in range(board):
             for x in range(board):
                 t = tiles[y][x]
+                cell = (x, y)
                 if isinstance(t, str):
                     continue
                 if t is None:
-                    if (x, y) in plan_set:
+                    if cell in goose_plan:
+                        unbuilt_goose_cells.append(cell)
+                    elif cell in plan_set:
                         r = _rank_of(x, y)
                         crop = _crop_of_cell(x, y, r)
-                        empty_cells[crop].append((x, y))
+                        empty_cells[crop].append(cell)
                     continue
                 if t.get("kind") == "WEED":
-                    weeds.append((x, y))
+                    weeds.append(cell)
+                    continue
+                if cell in goose_plan and t.get("kind") == "COOP":
+                    if t.get("animal") == "GOOSE":
+                        goose_cells.append(cell)
+                    elif not t.get("animal"):
+                        empty_coops.append(cell)
                     continue
                 crop = t.get("crop")
                 if t.get("kind") != "PLANT" or crop not in SUPPORTED:
@@ -245,14 +278,38 @@ class FarmerPlanner:
             if ok and est_money >= cost + LAND_RESERVE:
                 orders.append(["BUY_LAND"])
 
-        # Hands: hire at hour 0 up to a zone-size-derived target.
-        h_target = min(HANDS_MAX, max(2, (len(plan) + CELLS_PER_HAND - 1) // CELLS_PER_HAND + HANDS_EXTRA))
+        # Hands: crop conveyor plus dedicated animal workers.
+        animal_workers_target = (GOOSE_TARGET + GEESE_PER_WORKER - 1) // GEESE_PER_WORKER
+        crop_workers_target = max(2, (len(plan) + CELLS_PER_HAND - 1) // CELLS_PER_HAND + HANDS_EXTRA)
+        h_target = min(HANDS_MAX, crop_workers_target + animal_workers_target)
         to_hire = max(0, h_target - len(hands_now))
         for h in range(min(to_hire, len(FIB_SUM))):
             if est_money >= FIB_SUM[h] + 120:
                 orders.append(["HIRE"])
             else:
                 break
+
+        # Buy the compact goose flock during setup. Animals arrive in the shed
+        # and are placed by dedicated workers once their coops exist.
+        carried_geese = sum(int(inv.get("GOOSE", 0)) for inv in inventories)
+        goose_owned = len(goose_cells) + int(shed.get("GOOSE", 0)) + carried_geese
+        missing_geese = max(0, GOOSE_TARGET - goose_owned)
+        if (
+            missing_geese > 0
+            and day <= 5
+            and est_money >= missing_geese * GOOSE_COST + 500
+            and len(orders) < MAX_MARKET_ORDERS
+        ):
+            orders.append(["BUY_ANIMAL", "GOOSE", missing_geese])
+
+        # Feed is ordinary WHEAT product in the shed, separate from seeds.
+        carried_wheat = sum(int(inv.get("WHEAT", 0)) for inv in inventories)
+        feed_stock = int(shed.get("WHEAT", 0)) + carried_wheat
+        feed_target = max(1, goose_owned) * FEED_STOCK_DAYS
+        buy_feed = min(20, max(0, feed_target - feed_stock))
+        wheat_price = int(prices.get("WHEAT", 25) or 25)
+        if buy_feed > 0 and est_money >= buy_feed * wheat_price + 120 and len(orders) < MAX_MARKET_ORDERS:
+            orders.append(["BUY_PRODUCT", "WHEAT", buy_feed])
 
         # Seeds per crop: enough for every planned empty cell plus a reserve.
         for crop in SUPPORTED:
@@ -302,6 +359,81 @@ class FarmerPlanner:
                     plants_assigned[crop] += 1
                     return ["PLANT", crop]
             return None
+
+        def _animal_op(
+            fx: int,
+            fy: int,
+            zone: list[tuple[int, int]],
+            inventory: dict[str, int],
+        ) -> list[Any]:
+            """Build, stock and service one compact chunk of goose coops."""
+            zone_set = set(zone)
+            cell = (fx, fy)
+            tile = tiles[fy][fx]
+            wheat_carried = int(inventory.get("WHEAT", 0))
+            goose_carried = int(inventory.get("GOOSE", 0))
+
+            if cell in zone_set:
+                if isinstance(tile, dict) and tile.get("kind") == "WEED":
+                    return ["DIG"]
+                if tile is None:
+                    return ["BUILD_COOP"]
+                if isinstance(tile, dict) and tile.get("kind") == "COOP":
+                    if not tile.get("animal"):
+                        if goose_carried > 0:
+                            return ["PLACE", "GOOSE", 1]
+                    elif tile.get("animal") == "GOOSE":
+                        if tile.get("yield_units", 0) > 0:
+                            return ["HARVEST"]
+                        if not tile.get("fed_today") and wheat_carried > 0:
+                            return ["FEED"]
+                        if not tile.get("cared_today"):
+                            return ["CARE"]
+                        if tile.get("fertilizer_available"):
+                            return ["COLLECT_FERTILIZER"]
+
+            zone_empty_coops = [c for c in empty_coops if c in zone_set]
+            zone_unbuilt = [c for c in unbuilt_goose_cells if c in zone_set]
+            zone_geese = [c for c in goose_cells if c in zone_set]
+
+            # Carry a purchased goose from the shed to an empty coop.
+            if zone_empty_coops:
+                if goose_carried <= 0 and int(shed.get("GOOSE", 0)) > 0:
+                    if cell == (4, 4):
+                        return ["PICKUP", "GOOSE", 1]
+                    return [_walk(fx, fy, 4, 4)]
+                if goose_carried > 0:
+                    target = _near(zone_empty_coops, fx, fy)
+                    return [_walk(fx, fy, *target)]
+
+            if zone_unbuilt:
+                target = _near(zone_unbuilt, fx, fy)
+                return [_walk(fx, fy, *target)]
+
+            hungry = [
+                c for c in zone_geese
+                if not tiles[c[1]][c[0]].get("fed_today")
+            ]
+            if hungry and wheat_carried <= 0:
+                if int(shed.get("WHEAT", 0)) > 0 and cell == (4, 4):
+                    return ["PICKUP", "WHEAT", max(2, len(zone_geese) * 2)]
+                return [_walk(fx, fy, 4, 4)]
+
+            service = [
+                c for c in zone_geese
+                if (
+                    tiles[c[1]][c[0]].get("yield_units", 0) > 0
+                    or not tiles[c[1]][c[0]].get("fed_today")
+                    or not tiles[c[1]][c[0]].get("cared_today")
+                    or tiles[c[1]][c[0]].get("fertilizer_available")
+                )
+            ]
+            target = _near(service, fx, fy)
+            if target is not None:
+                move = _walk(fx, fy, *target)
+                if move != "PASS":
+                    return [move]
+            return ["PASS"]
 
         def _farm_op(fx: int, fy: int, zone: list[tuple[int, int]]) -> list[str]:
             """Farmer: harvest/plant across the whole plan."""
@@ -353,13 +485,22 @@ class FarmerPlanner:
 
         farmer_op = _farm_op(me["farmer"][0], me["farmer"][1], plan)
 
-        hands_ops: list[list[str]] = []
+        hands_ops: list[list[Any]] = []
         n = len(hands_now)
+        animal_n = min(n, animal_workers_target)
+        crop_n = n - animal_n
         if n:
             for i, (hx, hy) in enumerate(hands_now):
-                lo = i * len(plan) // n
-                hi = (i + 1) * len(plan) // n
-                hands_ops.append(_hand_op(hx, hy, plan[lo:hi] if plan else []))
+                inventory = inventories[i + 1] if i + 1 < len(inventories) else {}
+                if i < animal_n:
+                    lo = i * len(goose_plan) // animal_n
+                    hi = (i + 1) * len(goose_plan) // animal_n
+                    hands_ops.append(_animal_op(hx, hy, goose_plan[lo:hi], inventory))
+                else:
+                    crop_i = i - animal_n
+                    lo = crop_i * len(plan) // max(crop_n, 1)
+                    hi = (crop_i + 1) * len(plan) // max(crop_n, 1)
+                    hands_ops.append(_hand_op(hx, hy, plan[lo:hi] if plan else []))
 
         return {"farmer": farmer_op, "hands": hands_ops, "market": orders}
 

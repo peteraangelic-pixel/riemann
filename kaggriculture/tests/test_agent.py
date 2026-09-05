@@ -96,6 +96,25 @@ class AgentContractTests(unittest.TestCase):
         second = randomish(obs, env.configuration)
         self.assertEqual(first, second)
 
+    def test_goose_subsystem_completes_a_productive_cycle(self) -> None:
+        from kaggle_environments import make
+        from simulate import passive
+
+        env = make("kaggriculture", configuration={"episodeSteps": 240, "seed": 3})
+        env.run([act, passive])
+        unit_ops: list[list] = []
+        market_ops: list[list] = []
+        for step in env.steps:
+            action = step[0].get("action") or {}
+            unit_ops.extend([action.get("farmer") or []] + (action.get("hands") or []))
+            market_ops.extend(action.get("market") or [])
+
+        self.assertTrue(any(op[:2] == ["BUY_ANIMAL", "GOOSE"] for op in market_ops))
+        for expected in ("BUILD_COOP", "FEED", "CARE", "COLLECT_FERTILIZER"):
+            self.assertTrue(any(op and op[0] == expected for op in unit_ops), expected)
+        self.assertTrue(any(op[:2] == ["SELL", "EGG"] for op in market_ops))
+        self.assertTrue(any(op[:2] == ["SELL", "FERTILIZER"] for op in market_ops))
+
     def test_baseline_beats_an_idle_farm_over_a_full_season(self) -> None:
         from kaggle_environments import make
         from simulate import passive

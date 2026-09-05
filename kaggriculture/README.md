@@ -15,20 +15,19 @@ dziennie; liczą się 2 ostatnie.
 
 ## Stan (2026-09-05)
 
-- `agent.py` — **v2: pszeniczno-marchewkowy conveyor z melonem i rękami
-  do pracy**. Deterministic, bez zależności poza silnikiem gry; bez pamięci
-  między turami (czysta funkcja obserwacji).
+- `agent.py` — **v3: pszeniczno-marchewkowy conveyor z melonem, pięcioma
+  gęsiami i dedykowanymi rękami do pracy**. Deterministic, bez zależności poza
+  silnikiem gry; bez pamięci między turami (czysta funkcja obserwacji).
 - Silnik gry działa **offline** (`kaggle-environments`); pełny sezon 720 tur
   to ~2 s, więc iteracja jest tania.
-- Uczestnictwo konta konkursowego i akceptacja regulaminu zostały potwierdzone;
-  kandydat v2 jest gotowy do walidacji online i zbierania replayów potrzebnych
-  do strojenia przeciw rzeczywistym rywalom.
-- Wyniki lokalne (720 tur; średnia z 10 seedów):
-  - vs `pass`: **~29.7k**, vs deterministyczny `random`: **~29.9k**,
-    vs wbudowany `starter`: **~29.1k**, self-play: **~26.8k**
-    (baseline v0 miało ~3.9k; po 10 seedów na wariant).
+- Pierwsza v2 przeszła walidację Kaggle; publiczne replaye są automatycznie
+  zbierane i opisane w `ONLINE_ANALYSIS.md`.
+- Wyniki lokalne v3 (720 tur; te same 10 seedów):
+  - bezpośrednio vs v2: **40.4k vs 26.6k, 10W–0L**,
+  - self-play v3: **~38.2k** na stronę (zakres 36.0k–43.4k).
+  Pięć gęsi wygrało sweep; sześć przeciążyło budżet i routing (22.6k).
 
-## Jak działa strategia (v2)
+## Jak działa strategia (v3)
 
 1. **Ręce do pracy.** Każdego dnia o godzinie 0 zatrudniamy farmerów pomocniczych
    (koszt fibonacciego 1,1,2,3,5,… resetuje się co dzień). Każda ręka dostaje
@@ -57,7 +56,11 @@ dziennie; liczą się 2 ostatnie.
    jako nieopłacalna — późno w sezonie nie zdąży się zwrócić (self-play z SE:
    ~21.8k vs ~26.8k bez SE).
 6. **Sprzedaż.** Szopa (limit 100) jest opróżniana co turę przez SELL; koniec
-   dnia sam zrzuca inventory do szopy, więc DROP/PICKUP są zbędne.
+   dnia sam zrzuca inventory do szopy.
+7. **Pięć gęsi = druga noga gospodarki.** Dedykowane ręce budują zwarte kurniki
+   przy szopie, przenoszą gęsi, pobierają pszenicę, karmią, wykonują `CARE`,
+   zbierają jajka i codzienny nawóz. Sweep 2–6 gęsi wskazał pięć jako optimum;
+   produkty są sprzedawane przez ten sam mechanizm rynkowy co plony.
 
 ## Użycie
 
