@@ -119,7 +119,7 @@ def main() -> None:
             value = json.loads(raw)
         except json.JSONDecodeError:
             value = raw
-        if name in {"MELON_CELLS", "ANIMAL_CELLS"} and isinstance(value, list):
+        if name in {"MELON_CELLS", "OPPONENT_MELON_CELLS", "ANIMAL_CELLS"} and isinstance(value, list):
             value = [tuple(cell) for cell in value]
         module[name] = value
 

@@ -116,6 +116,14 @@ CARROT_UNITS_PER_CELL_DAY = 0.75
 # couple of melon cells earn far more per tile-day than wheat/carrot while the
 # market is anywhere near equilibrium.  Number of cells = len(MELON_CELLS).
 MELON_CELLS = [(0, 0), (1, 0), (2, 0), (3, 0), (0, 1), (1, 1)]
+# Conditional scale-up can react to a visible melon-heavy opponent without
+# paying the large-melon penalty in every market. Disabled by default.
+OPPONENT_MELON_THRESHOLD = 999
+OPPONENT_MELON_CELLS = [
+    (0, 0), (1, 0), (2, 0), (3, 0),
+    (0, 1), (1, 1), (2, 1), (3, 1),
+    (0, 2), (1, 2),
+]
 # Melon needs 10 days to mature; a plant started after this day cannot be
 # harvested before the season ends.
 MELON_LAST_PLANT_DAY = 18
@@ -233,6 +241,15 @@ class FarmerPlanner:
             isinstance(t, dict) and t.get("animal") == "COW"
             for row in opponent_tiles for t in row
         )
+        opponent_melons = sum(
+            isinstance(t, dict) and t.get("crop") == "MELON"
+            for row in opponent_tiles for t in row
+        )
+        melon_cells = (
+            OPPONENT_MELON_CELLS
+            if opponent_melons >= OPPONENT_MELON_THRESHOLD
+            else MELON_CELLS
+        )
         if opponent_sheep >= ADAPT_SHEEP_THRESHOLD and animal_targets.get("SHEEP", 0) > 0:
             animal_targets = {
                 "COW": max(ADAPT_COW_TARGET, animal_targets.get("COW", 0)),
@@ -285,7 +302,7 @@ class FarmerPlanner:
         carrot_ok = cp >= max(SELL_PRICE_FLOOR, CARROT_MIN_PRICE_RATIO * max(wp, 1))
 
         def _crop_of_cell(x: int, y: int, rank: int | None) -> str:
-            melon_cell = (x, y) in MELON_CELLS
+            melon_cell = (x, y) in melon_cells
             if melon_cell and day <= MELON_LAST_PLANT_DAY:
                 return "MELON"
             # Ongoing strawberries produce four premium harvests. In rotation
@@ -295,11 +312,11 @@ class FarmerPlanner:
             if melon_cell and ROTATE_MELONS_TO_STRAWBERRIES and strawberry_time:
                 return "STRAWBERRY"
             if rank is not None and strawberry_time:
-                rotated = len(MELON_CELLS) if ROTATE_MELONS_TO_STRAWBERRIES else 0
-                premium_rank = rank - len(MELON_CELLS)
+                rotated = len(melon_cells) if ROTATE_MELONS_TO_STRAWBERRIES else 0
+                premium_rank = rank - len(melon_cells)
                 if 0 <= premium_rank < max(0, STRAWBERRY_TARGET - rotated):
                     return "STRAWBERRY"
-            if rank is not None and carrot_ok and rank < carrot_target + len(MELON_CELLS) + STRAWBERRY_TARGET:
+            if rank is not None and carrot_ok and rank < carrot_target + len(melon_cells) + STRAWBERRY_TARGET:
                 return "CARROT"
             return "WHEAT"
 

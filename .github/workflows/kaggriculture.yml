@@ -386,6 +386,49 @@ jobs:
           summary=$(printf '%s\n' "$output" | tail -1)
           echo "::notice title=V6 routing result::$summary"
 
+  v61-adaptive-final:
+    name: V6.1 adaptive ${{ matrix.id }}
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v61-adaptive]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      max-parallel: 16
+      matrix:
+        include:
+          - {id: v6, args: "--set ADAPT_SHEEP_THRESHOLD=16 --set ENDGAME_SELL_DAY=27"}
+          - {id: static-m10, args: "--set ADAPT_SHEEP_THRESHOLD=16 --set ENDGAME_SELL_DAY=27 --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]]"}
+          - {id: opp6, args: "--set ADAPT_SHEEP_THRESHOLD=16 --set ENDGAME_SELL_DAY=27 --set OPPONENT_MELON_THRESHOLD=6"}
+          - {id: opp8, args: "--set ADAPT_SHEEP_THRESHOLD=16 --set ENDGAME_SELL_DAY=27 --set OPPONENT_MELON_THRESHOLD=8"}
+          - {id: opp10, args: "--set ADAPT_SHEEP_THRESHOLD=16 --set ENDGAME_SELL_DAY=27 --set OPPONENT_MELON_THRESHOLD=10"}
+          - {id: opp12, args: "--set ADAPT_SHEEP_THRESHOLD=16 --set ENDGAME_SELL_DAY=27 --set OPPONENT_MELON_THRESHOLD=12"}
+          - {id: opp14, args: "--set ADAPT_SHEEP_THRESHOLD=16 --set ENDGAME_SELL_DAY=27 --set OPPONENT_MELON_THRESHOLD=14"}
+          - {id: opp16, args: "--set ADAPT_SHEEP_THRESHOLD=16 --set ENDGAME_SELL_DAY=27 --set OPPONENT_MELON_THRESHOLD=16"}
+          - {id: opp20, args: "--set ADAPT_SHEEP_THRESHOLD=16 --set ENDGAME_SELL_DAY=27 --set OPPONENT_MELON_THRESHOLD=20"}
+          - {id: opp10-m8, args: "--set ADAPT_SHEEP_THRESHOLD=16 --set ENDGAME_SELL_DAY=27 --set OPPONENT_MELON_THRESHOLD=10 --set OPPONENT_MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]]"}
+          - {id: opp10-m9, args: "--set ADAPT_SHEEP_THRESHOLD=16 --set ENDGAME_SELL_DAY=27 --set OPPONENT_MELON_THRESHOLD=10 --set OPPONENT_MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2]]"}
+          - {id: opp10-m11, args: "--set ADAPT_SHEEP_THRESHOLD=16 --set ENDGAME_SELL_DAY=27 --set OPPONENT_MELON_THRESHOLD=10 --set OPPONENT_MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2],[2,2]]"}
+          - {id: opp12-m9, args: "--set ADAPT_SHEEP_THRESHOLD=16 --set ENDGAME_SELL_DAY=27 --set OPPONENT_MELON_THRESHOLD=12 --set OPPONENT_MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2]]"}
+          - {id: opp12-worker4, args: "--set ADAPT_SHEEP_THRESHOLD=16 --set ENDGAME_SELL_DAY=27 --set OPPONENT_MELON_THRESHOLD=12 --set ANIMALS_PER_WORKER=4"}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install engine
+        run: pip install kaggle-environments
+      - name: Validate conditional champion response on both corpora
+        working-directory: kaggriculture
+        env:
+          VARIANT_ARGS: ${{ matrix.args }}
+        run: |
+          public=$(python replay_benchmark.py --agent agent_v5.py $VARIANT_ARGS)
+          printf '%s\n' "$public"
+          echo "::notice title=V6.1 adaptive public::$(printf '%s\n' "$public" | tail -1)"
+          champion=$(python replay_benchmark.py --agent agent_v5.py --archive Downloads.zip $VARIANT_ARGS)
+          printf '%s\n' "$champion"
+          echo "::notice title=V6.1 adaptive champion::$(printf '%s\n' "$champion" | tail -1)"
+
   v61-cross-validation:
     name: V6.1 cross ${{ matrix.id }}
     if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v61-cross]')
