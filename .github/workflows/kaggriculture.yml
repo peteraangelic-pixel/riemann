@@ -64,7 +64,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
       KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
       KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
     steps:
@@ -73,12 +72,19 @@ jobs:
         with:
           python-version: "3.12"
       - name: Configure Kaggle credentials
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
         run: |
           mkdir -p ~/.kaggle
           if [ -n "$KAGGLE_API_TOKEN" ]; then
-            # Current Kaggle CLI authentication. The job-level environment
-            # variable is also retained for CLI versions that prefer it.
-            printf '%s' "$KAGGLE_API_TOKEN" > ~/.kaggle/access_token
+            # Strip CR/LF or surrounding whitespace accidentally copied into
+            # the GitHub secret; raw whitespace is an invalid HTTP header.
+            clean_token=$(printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]')
+            if [ -z "$clean_token" ]; then
+              echo "::error::KAGGLE_API_TOKEN is empty after whitespace removal"
+              exit 1
+            fi
+            printf '%s' "$clean_token" > ~/.kaggle/access_token
             chmod 600 ~/.kaggle/access_token
           elif [ -n "$KAGGLE_USERNAME" ] && [ -n "$KAGGLE_KEY" ]; then
             # Backward-compatible legacy API credentials.
