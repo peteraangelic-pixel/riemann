@@ -69,7 +69,7 @@ HAND_TASK_MODE = "WATER_FIRST"
 IDLE_WORK_STEAL = False
 LATE_CROP_HAND_BONUS = 0
 # Optional replay-derived staffing curves. AUTO retains capacity-based hiring.
-LABOR_MODE = "RENOIR"
+LABOR_MODE = "AUTO"
 
 # Never queue more than this many market orders per turn.
 MAX_MARKET_ORDERS = 10
@@ -91,8 +91,8 @@ SELL_BUY = False              # SE quadrant purchase disabled (see module docs)
 # Across 32 public replay streams, day-8/day-10 timed expansion improved the
 # finalist from 93,615.0 to 94,409.0 without losing a game.
 LAND_MODE = "TIMED"
-LAND_NE_BUY_DAY = 6
-LAND_SW_BUY_DAY = 11
+LAND_NE_BUY_DAY = 8
+LAND_SW_BUY_DAY = 10
 
 # Carrot belt sizing: cells = clamp(share of town carrot demand that we want
 # to serve, 0..CARROT_MAX_FRAC * plan).  CARROT_KAPPA tunes how aggressively
@@ -115,7 +115,7 @@ CARROT_UNITS_PER_CELL_DAY = 0.75
 # (6 units); town-center melon demand is 1/day regardless of shop draws, so a
 # couple of melon cells earn far more per tile-day than wheat/carrot while the
 # market is anywhere near equilibrium.  Number of cells = len(MELON_CELLS).
-MELON_CELLS = [(3, 0), (4, 0), (2, 1), (3, 1), (4, 1), (1, 2), (2, 2), (3, 2), (1, 3), (2, 3), (0, 4), (1, 4)]
+MELON_CELLS = [(0, 0), (1, 0), (2, 0), (3, 0), (0, 1), (1, 1)]
 # Conditional scale-up can react to a visible melon-heavy opponent without
 # paying the large-melon penalty in every market. Disabled by default.
 OPPONENT_MELON_THRESHOLD = 999
@@ -126,13 +126,13 @@ OPPONENT_MELON_CELLS = [
 ]
 # Melon needs 10 days to mature; a plant started after this day cannot be
 # harvested before the season ends.
-MELON_LAST_PLANT_DAY = 9
+MELON_LAST_PLANT_DAY = 18
 # A validated V6.1 experiment can rotate the startup melon block into the
 # strawberry target after its first harvest, reusing capital-intensive land.
 ROTATE_MELONS_TO_STRAWBERRIES = False
 # V5 reserves premium ongoing crops in deterministic rank bands. These are
 # deliberately profile constants so Actions can sweep broad economies.
-STRAWBERRY_TARGET = 33
+STRAWBERRY_TARGET = 0
 STRAWBERRY_START_DAY = 5
 STRAWBERRY_LAST_PLANT_DAY = 13
 # Explicit phased estate observed in Renoir's 172k match. Locked coordinates
@@ -151,30 +151,23 @@ FERTILIZE_PREMIUM_ONLY = True
 # machinery to geese or sheep for controlled comparisons.
 ANIMAL_KIND = "COW"
 ANIMAL_TARGET = 14  # compatibility: sum of ANIMAL_TARGETS is authoritative in V5
-ANIMAL_TARGETS = {"COW": 8, "SHEEP": 9}
+ANIMAL_TARGETS = {"COW": 8, "SHEEP": 6}
 ANIMAL_COST = {"GOOSE": 300, "COW": 400, "SHEEP": 500}
 ANIMAL_STRUCTURE = {"GOOSE": "COOP", "COW": "PASTURE", "SHEEP": "PASTURE"}
 ANIMAL_BUILD_OP = {"GOOSE": "BUILD_COOP", "COW": "BUILD_PASTURE", "SHEEP": "BUILD_PASTURE"}
 # Ordered compact capacity around all four shed entrances. Locked coordinates
 # activate naturally after land purchase; only the first ANIMAL_TARGET matter.
 ANIMAL_CELLS = [
-    # Two cows + two sheep in the opening core.
-    (4, 4), (3, 4), (4, 3), (3, 3),
-    # Six more cows funded before the first melon harvest.
-    (2, 4), (5, 4), (4, 2), (5, 3), (5, 2), (6, 4),
-    # Seven later sheep complete the 8C/9S estate.
-    (4, 1), (3, 2), (6, 2), (2, 3), (6, 3), (1, 4), (7, 4),
+    (4, 4), (4, 3), (3, 4), (4, 2), (2, 4), (4, 1),
+    (5, 4), (5, 3), (6, 4), (5, 2),
+    (4, 5), (3, 5), (4, 6), (2, 5),
+    (5, 1), (6, 3), (7, 4),
+    (1, 5), (3, 6), (4, 7),
 ]
-ANIMAL_KIND_SEQUENCE = [
-    "COW", "SHEEP", "COW", "SHEEP",
-    "COW", "COW", "COW", "COW", "COW", "COW",
-    "SHEEP", "SHEEP", "SHEEP", "SHEEP", "SHEEP", "SHEEP", "SHEEP",
-]
-# Number of active pasture reservations by day. Future cells remain productive
-# cropland until their phase begins.
-ANIMAL_ACTIVE_BY_DAY = {0: 4, 2: 5, 4: 6, 6: 8, 7: 10, 8: 12, 9: 13, 10: 16, 11: 17}
-EARLY_ANIMAL_SLOTS = 4
-ANIMAL_EXPANSION_DAY = 10
+ANIMAL_KIND_SEQUENCE = []
+ANIMAL_ACTIVE_BY_DAY = {}
+EARLY_ANIMAL_SLOTS = 999
+ANIMAL_EXPANSION_DAY = 0
 ANIMALS_PER_WORKER = 3
 ANIMAL_BUY_BATCH = 3
 PREMIUM_SEED_BATCH = 8
