@@ -22,11 +22,11 @@ jobs:
         include:
           - {id: v6-control, agent: agent_v6.py, args: ""}
           - {id: v7-planner, agent: agent_v7.py, args: ""}
-          - {id: script-auto-clamp, agent: agent_v7_scripted.py, args: ""}
-          - {id: script-auto-raw, agent: agent_v7_scripted.py, args: "--set CLAMP_SELL=false"}
-          - {id: script-p0-clamp, agent: agent_v7_scripted.py, args: "--set SEAT_MODE=P0"}
+          - {id: script-auto-clamp, agent: agent_v7_scripted.py, args: "--set CLAMP_SELL=true"}
+          - {id: script-auto-raw, agent: agent_v7_scripted.py, args: ""}
+          - {id: script-p0-clamp, agent: agent_v7_scripted.py, args: "--set SEAT_MODE=P0 --set CLAMP_SELL=true"}
           - {id: script-p0-raw, agent: agent_v7_scripted.py, args: "--set SEAT_MODE=P0 --set CLAMP_SELL=false"}
-          - {id: script-p1-clamp, agent: agent_v7_scripted.py, args: "--set SEAT_MODE=P1"}
+          - {id: script-p1-clamp, agent: agent_v7_scripted.py, args: "--set SEAT_MODE=P1 --set CLAMP_SELL=true"}
           - {id: script-p1-raw, agent: agent_v7_scripted.py, args: "--set SEAT_MODE=P1 --set CLAMP_SELL=false"}
     steps:
       - uses: actions/checkout@v6
