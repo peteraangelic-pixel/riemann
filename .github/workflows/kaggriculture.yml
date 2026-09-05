@@ -98,5 +98,19 @@ jobs:
       - name: Submit
         working-directory: kaggriculture
         run: |
-          kaggle competitions submit -c kaggriculture -f submission.tar.gz -m "kaggr ci $GITHUB_SHA"
+          set +e
+          output=$(kaggle competitions submit -c kaggriculture -f submission.tar.gz -m "kaggr ci $GITHUB_SHA" 2>&1)
+          status=$?
+          set -e
+          if [ "$status" -ne 0 ]; then
+            # Surface a bounded, token-redacted diagnostic through the Checks
+            # API even when the external Actions log store is unavailable.
+            safe_output=$(printf '%s' "$output" | sed -E 's/KGAT_[A-Za-z0-9_-]+/[REDACTED]/g' | tail -c 3000)
+            safe_output=${safe_output//'%'/'%25'}
+            safe_output=${safe_output//$'\n'/'%0A'}
+            safe_output=${safe_output//$'\r'/'%0D'}
+            echo "::error title=Kaggle submission failed::$safe_output"
+            exit "$status"
+          fi
+          printf '%s\n' "$output"
           kaggle competitions submissions kaggriculture
