@@ -12,8 +12,9 @@ Snapshot: 2026-09-05. Submission ref: `56032076` (v2, commit `c393cfe`).
 | 105789885 | 1 | win | 25,301 | cshara | 23,879 |
 | 105790213 | 0 | win | 23,706 | Khôi Trương | 16,188 |
 | 105790807 | 1 | win | 27,559 | Achintya Rai | 9,461 |
+| 105791750 | 0 | loss | 34,083 | Suresh Chandra Mangena | 49,506 |
 
-Current sample: 3 wins, 3 losses. V2 is stable (23.7k–27.6k), but its
+Current sample: 3 wins, 4 losses. V2 produced 23.7k–34.1k, but its
 wheat/carrot/melon economy has a low earnings ceiling.
 
 ## Pattern separating wins from losses
@@ -26,6 +27,9 @@ All three opponents that beat v2 operated a coherent animal/premium economy:
   melons; requested sales included 164 fertilizer, 157 milk and 75 wool.
 - foundtion peaked at 6 cows, 7 sheep, 25 strawberries and 12 melons; requested
   sales included 251 fertilizer, 102 milk and 94 wool.
+- Suresh Chandra Mangena used a different but related route: up to 13 geese,
+  62 strawberries and 20 melons, with requested sales of 103 eggs, 78
+  fertilizer and 134 strawberries.
 
 The weaker opponents either failed to service their animal economy or stayed
 close to a crop-only baseline. Merely possessing premium crops or structures
