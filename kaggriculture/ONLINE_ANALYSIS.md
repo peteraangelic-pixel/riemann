@@ -218,3 +218,33 @@ The next cycle starts from the uploaded 94,409 finalist and deliberately tests
 small, separately attributable replay-derived change groups before combining
 only winners. Champion-match telemetry, when available, is kept as a separate
 V6.1 evidence set so it does not contaminate V6 attribution.
+
+## V6 selection and the apparent 88k ceiling
+
+The 88k cluster is not an engine score cap. It is a local optimum of the V5
+architecture on the same 70-script replay benchmark: most isolated changes
+leave its six-melon/8C+6S production engine intact, so only shared-market
+adaptation moves the mean by hundreds. Larger static economies can score much
+higher against elite scripts but regress sharply on the broad corpus. Stage C
+selected sheep-response threshold 16 plus endgame day 27 at **88,259.6,
+64/70**, versus V5's 87,642.6/63. This configuration is tracked as `agent_v6.py`.
+
+Renoir's 172,645 replay exposed the architectural difference. Renoir had
+12 melons plus seven wheat and four animals on day 0, harvested the 12 melons
+once around day 10 for roughly 15k startup revenue, and did not maintain a
+static 12-melon field. The released cells became wheat, pasture and part of a
+33-strawberry estate. Renoir reached 8C/9S and 12 hands, then sold 878 wheat,
+873 fertilizer, 722 wool, 750 milk, 572 melon, 768 strawberry and 572 carrot
+units. Our V5 sold 663 wheat, 299 fertilizer, 115 wool, 237 milk, 52 melon and
+three carrot units. Thus the gap comes from sequential reuse of land and much
+higher throughput across every premium stream—not one sale-timing trick.
+
+Champion stages A/B tested 60 profiles over both seats of 12 elite matches.
+Ten static melons improved the elite mean from 48,801.9 to 65,069.7; combining
+it with sheep threshold 16 reached 67,107.3. Direct strawberry, fertilizer,
+12-melon, labor-copy, delayed-pasture and melon-to-strawberry rotations all
+underperformed. Cross-validation showed the tradeoff: static melon10+t16 fell
+to 76,809.2 on the 70 public scripts, while V6 retained 88,259.6 but scored
+52,505.9 on the elite set. Conditional opponent-melon responses also failed
+to dominate. Therefore V6 is the broad finalist; the elite experiments are
+retained as evidence for a redesigned V7 rather than silently regressing V6.
