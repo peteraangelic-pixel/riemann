@@ -1,0 +1,84 @@
+Gra **Kaggriculture** (oraz podobne symulacje wieloagentowe na Kaggle o tematyce rolniczo-zasobowej, łączące zarządzanie surowcami, planowanie przestrzenne i dynamikę rynkową/ekonomiczną) wymaga od botów czegoś więcej niż prostej heurystyki czy czystego uczenia ze wzmocnieniem (RL). 
+
+W tego typu turniejach rywalizacja opiera się na **optymalizacji matematycznej, przewidywaniu zachowań przeciwnika (teoria gier) oraz ścisłym zarządzaniu budżetem czasowym na ruch**.
+
+Poniżej znajdziesz:
+1. **Głęboką analizę tego, co robią najlepsi gracze (Top 1–5% tabeli)**.
+2. **Gotowy, profesjonalny prompt (system prompt)**, który możesz wkleić swojemu agentowi (np. Claude 3.5 Sonnet / GPT-4o), aby napisał lub zoptymalizował kod Twojego bota.
+
+---
+
+### CZĘŚĆ 1: Analiza strategii najlepszych botów
+
+Przeglądając rozwiązania arcymistrzów Kaggle w grach symulacyjnych (np. *Lux AI*, *Kore*, *Halite*, czy specyficzne symulacje typu *Kaggriculture*), wyłania się wspólny wzorzec sukcesu:
+
+#### 1. Matematyczne ROI zamiast chciwego zbierania (Greedy)
+* **Słabe boty:** Zbierają to, co jest najbliżej lub daje natychmiastowy zysk.
+* **Najlepsi:** Obliczają zdyskontowany zysk w czasie:
+  $$\text{Wartość} = \frac{\text{Oczekiwany Zysk ze Zbioru} - \text{Koszt Nasion/Wody/Nawozu}}{\text{Liczba tur do zbioru} + \text{Czas transportu}} \times (1 - \text{Ryzyko zniszczenia/kradzieży})$$
+  Najlepsi gracze biorą pod uwagę cykle pogodowe, degradację gleby i potencjalne wahania cen na rynku.
+
+#### 2. Antycypacja Rynku i Kontr-strategia (Game Theory)
+* Jeśli mechanika gry obejmuje rynek o zmiennych cenach: słabe boty sadzą najdroższą w danej turze roślinę. W efekcie wszyscy sadzą to samo, rynek zostaje zalany (crash cenowy), a zysk drastycznie spada.
+* **Top gracze:** Śledzą, co sadzą przeciwnicy. Wybierają uprawy **kontrcykliczne** (niszowe, na które popyt wzrośnie, bo nikt inny ich nie produkuje) lub sztucznie manipulują rynkiem, sprzedając zbiory partiami.
+
+#### 3. Logistyka: Algorytm Węgierski (Hungarian Algorithm / Munkres)
+* Problem przypisania: Masz $N$ pracowników/pól i $M$ zadań (podlewanie, nawożenie, orka, zbiór).
+* Zamiast pętli `for` wybierającej najbliższe zadanie, czołówka traktuje to jako **Linear Sum Assignment Problem** (rozwiązywany przez `scipy.optimize.linear_sum_assignment`). Pozwala to globalnie zminimalizować straty ruchów.
+
+#### 4. Architektura Hybrydowa (Heurystyka + Local Search)
+* Czyste RL (np. PPO) na Kaggle w grach wieloagentowych często przegrywa z dobrze zoptymalizowaną heurystyką, ponieważ RL jest podatne na nieznane strategie przeciwników ("out of distribution").
+* **Top architektura:** 
+  * **Makro-strategia:** Automat skończony (FSM) lub drzewo decyzyjne określające fazę gry (Wczesna: agresywna ekspansja; Środkowa: optymalizacja plonów; Późna: maksymalizacja zbytu / denial przeciwnika).
+  * **Mikro-zarządzanie:** Szybki algorytm przeszukiwania przestrzennego (BFS/A* lub flood-fill do planowania ścieżek).
+
+#### 5. Denial & Sabotaż (Kontrola Terenu)
+* Najlepsi gracze nie grają w pasjansa – grają przeciwko oponentowi. Jeśli mechanika na to pozwala:
+  * Blokują kluczowe węzły irygacyjne.
+  * Zajmują sąsiednie pola, uniemożliwiając rozrost farm przeciwnika.
+  * Zbierają zasoby tuż przed nosem wroga.
+
+---
+
+### CZĘŚĆ 2: Dokładny prompt dla Twojego Agenta Kodującego
+
+Wklej poniższy prompt swojemu LLM, który ma wygenerować kod bota. Prompt został sformułowany tak, aby wymusić rygor matematyczny, strukturę turniejową i odporność na awarie.
+
+***
+
+```markdown
+Jesteś elitarnym inżynierem oprogramowania i arcymistrzem Kaggle Grandmaster specjalizującym się w grach symulacyjnych (Kaggle Simulations / Multi-Agent Systems). Twoim celem jest zaprojektowanie i napisanie kodu wygrywającego bota do gry "Kaggriculture".
+
+TWOJE PODEJŚCIE I ZASADY ARCHITEKTURY:
+1. ZAKAZ NAIWNEJ HEURYSTYKI: Nie pisz prostego kodu "jeśli widzisz pole, idź i sadź". Każda decyzja musi opierać się na funkcji użyteczności (Utility Function) uwzględniającej koszt alternatywny, czas wykonania akcji (Turn-to-Yield) i dynamikę przeciwników.
+2. BUDŻET CZASOWY (Time Budgeting): Kaggle ma twarde limity czasowe na turę (np. 1-2 sekundy). Kod musi być maksymalnie zoptymalizowany pod kątem Pythona (wykorzystuj wektoryzację NumPy, tablice bitowe lub szybkie algorytmy przeszukiwania A*/BFS z ograniczeniem głębokości).
+3. ARCHITEKTURA HYBRYDOWA:
+   - Moduł Obserwacji: Parsowanie stanu gry, śledzenie zasobów wroga, historii plonów i trendów rynkowych.
+   - Moduł Makro: FSM (Finite State Machine) wybierający strategię globalną (np. Ekspansja, Optymalizacja Marży, Sabotaż/Denial, Konsolidacja).
+   - Moduł Mikro: Przypisywanie zadań przy użyciu problemu optymalizacji liniowej (Hungarian Algorithm / Linear Sum Assignment).
+   - Moduł Bezpieczeństwa (Fail-safe): Zwracanie bezpiecznego ruchu awaryjnego, jeśli czas tury przekroczy 80% limitu.
+
+ZADANIA DO ZAIMPLEMENTOWANIA W KODZIE:
+1. Modelowanie Gleby i Pogody: Predykcja opłacalności upraw na podstawie wilgotności, degradacji gleby i prognozowanych tur wegetacji. Oblicz dokładne ROI: (Yield_Value - Seed_Cost) / (Turns_To_Mature + Travel_Time).
+2. Analiza Rynku i Podaży Przeciwnika: Zabezpieczenie przed "krachem rynkowym". Jeśli bot zauważy, że przeciwnicy masowo sadzą daną uprawę, bot automatycznie przełącza się na uprawy alternatywne o stabilnej marży lub takie, które osiągną zbiór przed przeciwnikiem.
+3. Kontrola Przestrzenna i Logistyka: 
+   - Wykorzystanie algorytmu BFS/A* z unikaniem kolizji.
+   - Optymalne trasy dla jednostek zbierających/irygacyjnych.
+   - Sabotaż: Identyfikacja kluczowych pól wroga i blokowanie dostępu do zasobów (woda/nasiona premium), jeśli mechanika gry na to pozwala.
+
+STRUKTURA KODU (Single-File Submission, zgodna z formatem Kaggle):
+Napisz kompletny, modularny kod w Pythonie zawierający:
+- Klasę `StrategyEngine` (obliczenia ROI, prognozy, FSM)
+- Klasę `AssignmentOptimizer` (przydział jednostek do celów)
+- Główną funkcję `agent(observation, configuration)` / wejściową bota
+- Wbudowany mechanizm try-except z ruchem zapasowym zapobiegającym dyskwalifikacji przez Timeout / Error.
+
+Zanim wygenerujesz ostateczny kod, krótko przedstaw formułę matematyczną Twojej funkcji oceny stanu (Evaluation Function), a następnie przejdź do implementacji produkcyjnego kodu.
+```
+
+***
+
+### Jak dalej iterować z tym botem na Kaggle?
+1. **Self-Play:** Uruchom wygenerowanego bota przeciwko prostym botom bazowym (np. greedy). Zobacz, gdzie traci tury (czy pracownicy nie wchodzą sobie w drogę, czy nie marnuje nasion).
+2. **Logowanie decyzji:** Dodaj do kodu bota prosty mechanizm zapisu logów do `sys.stderr` (Kaggle pokazuje `stderr` w logach pojedynku). Zobacz, na czym polegał błąd w przegranych grach.
+3. **Strojenie wag (Tuning):** Wagi w formule ROI (np. waga ryzyka, waga czasu) wyciągnij jako stałe konfiguracyjne i zoptymalizuj je za pomocą prostego algorytmu przeszukiwania (np. Optuna / algorytm genetyczny), puszczając mecze lokalnie.
