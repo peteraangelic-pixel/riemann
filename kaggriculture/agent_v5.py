@@ -119,6 +119,9 @@ MELON_CELLS = [(0, 0), (1, 0), (2, 0), (3, 0), (0, 1), (1, 1)]
 # Melon needs 10 days to mature; a plant started after this day cannot be
 # harvested before the season ends.
 MELON_LAST_PLANT_DAY = 18
+# A validated V6.1 experiment can rotate the startup melon block into the
+# strawberry target after its first harvest, reusing capital-intensive land.
+ROTATE_MELONS_TO_STRAWBERRIES = False
 # V5 reserves premium ongoing crops in deterministic rank bands. These are
 # deliberately profile constants so Actions can sweep broad economies.
 STRAWBERRY_TARGET = 0
@@ -144,6 +147,10 @@ ANIMAL_CELLS = [
     (5, 1), (6, 3), (7, 4),
     (1, 5), (3, 6), (4, 7),
 ]
+# Champions crop future pasture cells during startup, then expand beyond the
+# first four animals after the melon harvest. Defaults preserve V5.
+EARLY_ANIMAL_SLOTS = 999
+ANIMAL_EXPANSION_DAY = 0
 ANIMALS_PER_WORKER = 3
 ANIMAL_BUY_BATCH = 3
 PREMIUM_SEED_BATCH = 8
@@ -237,15 +244,17 @@ class FarmerPlanner:
                 "SHEEP": ADAPT_COW_RESPONSE_SHEEP,
             }
 
-        animal_specs: list[tuple[tuple[int, int], str]] = []
-        for kind in ("COW", "SHEEP", "GOOSE"):
-            animal_specs.extend((cell, kind) for cell in ANIMAL_CELLS[len(animal_specs):len(animal_specs) + animal_targets.get(kind, 0)])
-        animal_plan = [cell for cell, _ in animal_specs]
-        kind_at = dict(animal_specs)
-        service_animal_plan = [c for c in animal_plan if tiles[c[1]][c[0]] != "LOCKED"]
         step = int(obs.get("step", 0))
         day = obs.get("day", step // 24)
         hour = obs.get("hour", step % 24)
+        animal_specs: list[tuple[tuple[int, int], str]] = []
+        for kind in ("COW", "SHEEP", "GOOSE"):
+            animal_specs.extend((cell, kind) for cell in ANIMAL_CELLS[len(animal_specs):len(animal_specs) + animal_targets.get(kind, 0)])
+        active_slots = len(animal_specs) if day >= ANIMAL_EXPANSION_DAY else min(EARLY_ANIMAL_SLOTS, len(animal_specs))
+        active_specs = animal_specs[:active_slots]
+        animal_plan = [cell for cell, _ in active_specs]
+        kind_at = dict(active_specs)
+        service_animal_plan = [c for c in animal_plan if tiles[c[1]][c[0]] != "LOCKED"]
         money = me["money"]
         unlocked = list(me.get("unlocked_quadrants", ["NW"]))
         hands_now = me.get("hands", []) or []
@@ -276,13 +285,19 @@ class FarmerPlanner:
         carrot_ok = cp >= max(SELL_PRICE_FLOOR, CARROT_MIN_PRICE_RATIO * max(wp, 1))
 
         def _crop_of_cell(x: int, y: int, rank: int | None) -> str:
-            if (x, y) in MELON_CELLS and day <= MELON_LAST_PLANT_DAY:
+            melon_cell = (x, y) in MELON_CELLS
+            if melon_cell and day <= MELON_LAST_PLANT_DAY:
                 return "MELON"
-            # Ongoing strawberries produce four premium harvests. Keep their
-            # band compact and start early enough for the final age-16 tick.
-            if rank is not None and STRAWBERRY_START_DAY <= day <= STRAWBERRY_LAST_PLANT_DAY:
+            # Ongoing strawberries produce four premium harvests. In rotation
+            # profiles, the first-harvest melon block counts toward the total
+            # strawberry target instead of creating a second disjoint block.
+            strawberry_time = STRAWBERRY_START_DAY <= day <= STRAWBERRY_LAST_PLANT_DAY
+            if melon_cell and ROTATE_MELONS_TO_STRAWBERRIES and strawberry_time:
+                return "STRAWBERRY"
+            if rank is not None and strawberry_time:
+                rotated = len(MELON_CELLS) if ROTATE_MELONS_TO_STRAWBERRIES else 0
                 premium_rank = rank - len(MELON_CELLS)
-                if 0 <= premium_rank < STRAWBERRY_TARGET:
+                if 0 <= premium_rank < max(0, STRAWBERRY_TARGET - rotated):
                     return "STRAWBERRY"
             if rank is not None and carrot_ok and rank < carrot_target + len(MELON_CELLS) + STRAWBERRY_TARGET:
                 return "CARROT"
@@ -591,6 +606,12 @@ class FarmerPlanner:
             if cell in zone_set:
                 if isinstance(tile, dict) and tile.get("kind") == "WEED":
                     return ["DIG"]
+                if desired_here and isinstance(tile, dict) and tile.get("kind") == "PLANT":
+                    age = day - tile["planted_day"]
+                    if age >= HARVEST_AGE_BY_CROP.get(tile.get("crop"), 3) and tile.get("yield_units", 0) > 0:
+                        return ["HARVEST"]
+                    if not tile.get("watered_today"):
+                        return ["WATER"]
                 if tile is None and desired_here:
                     return [ANIMAL_BUILD_OP[desired_here]]
                 if desired_here and isinstance(tile, dict) and tile.get("kind") == ANIMAL_STRUCTURE[desired_here]:

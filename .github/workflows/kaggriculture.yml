@@ -386,6 +386,65 @@ jobs:
           summary=$(printf '%s\n' "$output" | tail -1)
           echo "::notice title=V6 routing result::$summary"
 
+  v61-champion-stage-b:
+    name: V6.1 champion B ${{ matrix.id }}
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v61-champion-b]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        include:
+          - {id: control, args: ""}
+          - {id: t16, args: "--set ADAPT_SHEEP_THRESHOLD=16"}
+          # Refine stage A's large melon10 gain and first-harvest cutoff.
+          - {id: melon9, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2]]"}
+          - {id: melon10, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]]"}
+          - {id: melon11, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2],[2,2]]"}
+          - {id: melon10-cut9, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set MELON_LAST_PLANT_DAY=9"}
+          - {id: melon10-cut10, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set MELON_LAST_PLANT_DAY=10"}
+          - {id: melon10-cut11, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set MELON_LAST_PLANT_DAY=11"}
+          - {id: melon10-t16, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set ADAPT_SHEEP_THRESHOLD=16"}
+          # Sequential premium rotation: target is total strawberries, including melons.
+          - {id: rotate10-s10, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set MELON_LAST_PLANT_DAY=9 --set ROTATE_MELONS_TO_STRAWBERRIES=true --set STRAWBERRY_TARGET=10 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=5"}
+          - {id: rotate10-s16, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set MELON_LAST_PLANT_DAY=9 --set ROTATE_MELONS_TO_STRAWBERRIES=true --set STRAWBERRY_TARGET=16 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=6"}
+          - {id: rotate10-s20, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set MELON_LAST_PLANT_DAY=9 --set ROTATE_MELONS_TO_STRAWBERRIES=true --set STRAWBERRY_TARGET=20 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=8"}
+          - {id: rotate10-s24, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set MELON_LAST_PLANT_DAY=9 --set ROTATE_MELONS_TO_STRAWBERRIES=true --set STRAWBERRY_TARGET=24 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=8"}
+          - {id: rotate10-s32, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set MELON_LAST_PLANT_DAY=9 --set ROTATE_MELONS_TO_STRAWBERRIES=true --set STRAWBERRY_TARGET=32 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=10"}
+          - {id: rotate10-s20-t16, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set MELON_LAST_PLANT_DAY=9 --set ROTATE_MELONS_TO_STRAWBERRIES=true --set STRAWBERRY_TARGET=20 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=8 --set ADAPT_SHEEP_THRESHOLD=16"}
+          # Renoir-style initial 12-cell ring and delayed pasture conversion.
+          - {id: ring12, args: "--set MELON_CELLS=[[3,0],[4,0],[2,1],[3,1],[4,1],[1,2],[2,2],[3,2],[1,3],[2,3],[0,4],[1,4]]"}
+          - {id: ring12-cut9, args: "--set MELON_CELLS=[[3,0],[4,0],[2,1],[3,1],[4,1],[1,2],[2,2],[3,2],[1,3],[2,3],[0,4],[1,4]] --set MELON_LAST_PLANT_DAY=9"}
+          - {id: ring12-delay4, args: "--set MELON_CELLS=[[3,0],[4,0],[2,1],[3,1],[4,1],[1,2],[2,2],[3,2],[1,3],[2,3],[0,4],[1,4]] --set MELON_LAST_PLANT_DAY=9 --set EARLY_ANIMAL_SLOTS=4 --set ANIMAL_EXPANSION_DAY=10"}
+          - {id: ring12-delay6, args: "--set MELON_CELLS=[[3,0],[4,0],[2,1],[3,1],[4,1],[1,2],[2,2],[3,2],[1,3],[2,3],[0,4],[1,4]] --set MELON_LAST_PLANT_DAY=9 --set EARLY_ANIMAL_SLOTS=6 --set ANIMAL_EXPANSION_DAY=10"}
+          - {id: ring12-rotate20, args: "--set MELON_CELLS=[[3,0],[4,0],[2,1],[3,1],[4,1],[1,2],[2,2],[3,2],[1,3],[2,3],[0,4],[1,4]] --set MELON_LAST_PLANT_DAY=9 --set ROTATE_MELONS_TO_STRAWBERRIES=true --set STRAWBERRY_TARGET=20 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=8"}
+          - {id: ring12-rotate32, args: "--set MELON_CELLS=[[3,0],[4,0],[2,1],[3,1],[4,1],[1,2],[2,2],[3,2],[1,3],[2,3],[0,4],[1,4]] --set MELON_LAST_PLANT_DAY=9 --set ROTATE_MELONS_TO_STRAWBERRIES=true --set STRAWBERRY_TARGET=32 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=10"}
+          - {id: ring12-delay-rotate, args: "--set MELON_CELLS=[[3,0],[4,0],[2,1],[3,1],[4,1],[1,2],[2,2],[3,2],[1,3],[2,3],[0,4],[1,4]] --set MELON_LAST_PLANT_DAY=9 --set EARLY_ANIMAL_SLOTS=4 --set ANIMAL_EXPANSION_DAY=10 --set ROTATE_MELONS_TO_STRAWBERRIES=true --set STRAWBERRY_TARGET=32 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=10"}
+          # Financing, labor, and fertilizer interactions around melon10.
+          - {id: melon10-labor, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set LABOR_MODE=CHAMPION --set HANDS_MAX=12"}
+          - {id: melon10-land6, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set LAND_NE_BUY_DAY=6"}
+          - {id: melon10-r300, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set LAND_RESERVE=300"}
+          - {id: melon10-fert2, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set FERTILIZER_RESERVE=2"}
+          - {id: melon10-herd9c5s, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set ANIMAL_TARGETS={\"COW\":9,\"SHEEP\":5} --set ADAPT_SHEEP_THRESHOLD=16"}
+          - {id: melon10-end27, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set ENDGAME_SELL_DAY=27"}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install engine
+        run: pip install kaggle-environments
+      - name: Test sequential premium conversion against champions
+        working-directory: kaggriculture
+        env:
+          VARIANT_ARGS: ${{ matrix.args }}
+        run: |
+          output=$(python replay_benchmark.py --agent agent_v5.py --archive Downloads.zip $VARIANT_ARGS)
+          echo "$output"
+          summary=$(printf '%s\n' "$output" | tail -1)
+          echo "::notice title=V6.1 champion B result::$summary"
+
   v61-champion-stage-a:
     name: V6.1 champion A ${{ matrix.id }}
     if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v61-champion-a]')
