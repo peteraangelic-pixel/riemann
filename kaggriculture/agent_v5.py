@@ -61,6 +61,10 @@ OPERATING_RESERVE = 300
 CELLS_PER_HAND = 10
 HANDS_EXTRA = 1
 HANDS_MAX = 12
+# Replay-driven V6 controls. Defaults retain the selected V5 behavior; Actions
+# sweeps change one family at a time before any interaction profile is built.
+HAND_TASK_MODE = "WATER_FIRST"
+LATE_CROP_HAND_BONUS = 0
 # Optional replay-derived staffing curves. AUTO retains capacity-based hiring.
 LABOR_MODE = "AUTO"
 
@@ -143,6 +147,11 @@ PREMIUM_SEED_BATCH = 8
 FEED_STOCK_DAYS = 3
 ADAPT_SHEEP_THRESHOLD = 10
 ADAPT_COW_TARGET = 8
+# Optional mirror response to a cow-heavy opponent. Disabled in V5; V6 sweeps
+# test whether moving exposure from milk to wool helps in the shared market.
+ADAPT_COW_THRESHOLD = 999
+ADAPT_COW_RESPONSE_COWS = 6
+ADAPT_COW_RESPONSE_SHEEP = 8
 # Service ordering is sweepable. Feeding first is safer; harvesting first
 # reduces held-cap losses. Both are measured rather than assumed.
 ANIMAL_SERVICE_MODE = "HARVEST_FEED_CARE_FERT"
@@ -210,10 +219,19 @@ class FarmerPlanner:
             isinstance(t, dict) and t.get("animal") == "SHEEP"
             for row in opponent_tiles for t in row
         )
+        opponent_cows = sum(
+            isinstance(t, dict) and t.get("animal") == "COW"
+            for row in opponent_tiles for t in row
+        )
         if opponent_sheep >= ADAPT_SHEEP_THRESHOLD and animal_targets.get("SHEEP", 0) > 0:
             animal_targets = {
                 "COW": max(ADAPT_COW_TARGET, animal_targets.get("COW", 0)),
                 "SHEEP": 0,
+            }
+        elif opponent_cows >= ADAPT_COW_THRESHOLD:
+            animal_targets = {
+                "COW": ADAPT_COW_RESPONSE_COWS,
+                "SHEEP": ADAPT_COW_RESPONSE_SHEEP,
             }
 
         animal_specs: list[tuple[tuple[int, int], str]] = []
@@ -403,6 +421,8 @@ class FarmerPlanner:
             active_animal_capacity + ANIMALS_PER_WORKER - 1
         ) // ANIMALS_PER_WORKER
         crop_workers_target = max(2, (len(plan) + CELLS_PER_HAND - 1) // CELLS_PER_HAND + HANDS_EXTRA)
+        if "SW" in unlocked:
+            crop_workers_target += LATE_CROP_HAND_BONUS
         h_target = min(HANDS_MAX, crop_workers_target + animal_workers_target)
         if LABOR_MODE == "DMITRI":
             if day <= 7:
@@ -685,13 +705,17 @@ class FarmerPlanner:
             z_wet = [c for c in unwatered if c in zone_set]
             z_mature = [c for c in mature if c in zone_set]
             z_plant = [c for crop in SUPPORTED for c in empty_cells[crop] if c in zone_set]
-            target = _near(z_urgent, fx, fy)
-            if target is None:
-                target = _near(z_wet, fx, fy)
-            if target is None:
-                target = _near(z_mature, fx, fy)
-            if target is None:
-                target = _near(z_plant, fx, fy)
+            task_sets = {
+                "WATER_FIRST": (z_urgent, z_wet, z_mature, z_plant),
+                "HARVEST_FIRST": (z_mature, z_urgent, z_wet, z_plant),
+                "PLANT_FIRST": (z_urgent, z_plant, z_wet, z_mature),
+                "VALUE_FIRST": (z_urgent, z_mature, z_plant, z_wet),
+            }.get(HAND_TASK_MODE, (z_urgent, z_wet, z_mature, z_plant))
+            target = None
+            for candidates in task_sets:
+                target = _near(candidates, fx, fy)
+                if target is not None:
+                    break
             if target is not None:
                 mv = _walk(fx, fy, *target)
                 if mv != "PASS":

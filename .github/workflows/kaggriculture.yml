@@ -386,6 +386,72 @@ jobs:
           summary=$(printf '%s\n' "$output" | tail -1)
           echo "::notice title=V6 routing result::$summary"
 
+  v6-replay-stage-a:
+    name: V6 replay A ${{ matrix.id }}
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v6-replay-a]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        include:
+          - {id: control, args: ""}
+          # Assignment efficiency: one routing policy at a time.
+          - {id: hand-harvest, args: "--set HAND_TASK_MODE=HARVEST_FIRST"}
+          - {id: hand-plant, args: "--set HAND_TASK_MODE=PLANT_FIRST"}
+          - {id: hand-value, args: "--set HAND_TASK_MODE=VALUE_FIRST"}
+          # The strongest opponents use 12-14 hands; isolate late staffing.
+          - {id: late-hand1, args: "--set LATE_CROP_HAND_BONUS=1"}
+          - {id: late-hand2, args: "--set LATE_CROP_HAND_BONUS=2 --set HANDS_MAX=14"}
+          - {id: sparse-hands11, args: "--set CELLS_PER_HAND=11"}
+          - {id: sparse-hands12, args: "--set CELLS_PER_HAND=12"}
+          # Shared milk/wool response, independently from crop changes.
+          - {id: cow-adapt6, args: "--set ADAPT_COW_THRESHOLD=6"}
+          - {id: cow-adapt8, args: "--set ADAPT_COW_THRESHOLD=8"}
+          - {id: cow-adapt10, args: "--set ADAPT_COW_THRESHOLD=10"}
+          - {id: cow-adapt4c10s, args: "--set ADAPT_COW_THRESHOLD=8 --set ADAPT_COW_RESPONSE_COWS=4 --set ADAPT_COW_RESPONSE_SHEEP=10"}
+          - {id: cow-adapt8c6s, args: "--set ADAPT_COW_THRESHOLD=8 --set ADAPT_COW_RESPONSE_COWS=8 --set ADAPT_COW_RESPONSE_SHEEP=6"}
+          - {id: sheep-adapt6, args: "--set ADAPT_SHEEP_THRESHOLD=6"}
+          - {id: sheep-adapt8, args: "--set ADAPT_SHEEP_THRESHOLD=8"}
+          - {id: sheep-adapt12, args: "--set ADAPT_SHEEP_THRESHOLD=12"}
+          - {id: no-sheep-adapt, args: "--set ADAPT_SHEEP_THRESHOLD=999"}
+          # Static herd controls establish whether adaptation itself matters.
+          - {id: herd10c4s, args: "--set ANIMAL_TARGETS={\"COW\":10,\"SHEEP\":4}"}
+          - {id: herd9c5s, args: "--set ANIMAL_TARGETS={\"COW\":9,\"SHEEP\":5}"}
+          - {id: herd7c7s, args: "--set ANIMAL_TARGETS={\"COW\":7,\"SHEEP\":7}"}
+          - {id: herd6c8s, args: "--set ANIMAL_TARGETS={\"COW\":6,\"SHEEP\":8}"}
+          # Premium-field probes remain small so financing and routing effects
+          # are attributable rather than hidden in an all-at-once copy.
+          - {id: straw2, args: "--set STRAWBERRY_TARGET=2 --set STRAWBERRY_START_DAY=10 --set PREMIUM_SEED_BATCH=2"}
+          - {id: straw4, args: "--set STRAWBERRY_TARGET=4 --set STRAWBERRY_START_DAY=10 --set PREMIUM_SEED_BATCH=2"}
+          - {id: straw6, args: "--set STRAWBERRY_TARGET=6 --set STRAWBERRY_START_DAY=10 --set PREMIUM_SEED_BATCH=3"}
+          - {id: carrot35, args: "--set CARROT_KAPPA=0.35"}
+          - {id: carrot100, args: "--set CARROT_KAPPA=1.0"}
+          - {id: carrot-cap25, args: "--set CARROT_MAX_FRAC=0.25"}
+          - {id: melon5, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1]]"}
+          - {id: melon7, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1]]"}
+          # Small two-change groups test only interpretable interactions.
+          - {id: value-late1, args: "--set HAND_TASK_MODE=VALUE_FIRST --set LATE_CROP_HAND_BONUS=1"}
+          - {id: harvest-late1, args: "--set HAND_TASK_MODE=HARVEST_FIRST --set LATE_CROP_HAND_BONUS=1"}
+          - {id: cow8-value, args: "--set ADAPT_COW_THRESHOLD=8 --set HAND_TASK_MODE=VALUE_FIRST"}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install engine
+        run: pip install kaggle-environments
+      - name: Replay V5 opponents with isolated V6 changes
+        working-directory: kaggriculture
+        env:
+          VARIANT_ARGS: ${{ matrix.args }}
+        run: |
+          output=$(python replay_benchmark.py --agent agent_v5.py $VARIANT_ARGS)
+          echo "$output"
+          summary=$(printf '%s\n' "$output" | tail -1)
+          echo "::notice title=V6 replay A result::$summary"
+
   v6-land-tune:
     name: V6 land tune ${{ matrix.id }}
     if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v6-land]')
