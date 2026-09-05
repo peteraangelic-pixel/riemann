@@ -114,6 +114,8 @@ def main() -> None:
             value = json.loads(raw)
         except json.JSONDecodeError:
             value = raw
+        if name == "MELON_CELLS" and isinstance(value, list):
+            value = [tuple(cell) for cell in value]
         module[name] = value
 
     replay_paths = sorted((HERE / "online").glob("*/replay.json.gz"))

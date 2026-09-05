@@ -329,6 +329,73 @@ jobs:
           summary=$(printf '%s\n' "$output" | tail -1)
           echo "::notice title=Replay benchmark result::$summary"
 
+  v5-combo-sweep:
+    name: V5 combo ${{ matrix.id }}
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v5-combo]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        include:
+          - {id: lf, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30"}
+          - {id: lf-lr500, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --set LAND_RESERVE=500"}
+          - {id: lf-w4, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --per-worker 4"}
+          - {id: lf-floor1, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --set SELL_PRICE_FLOOR=1"}
+          - {id: lf-cells11, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --set CELLS_PER_HAND=11"}
+          - {id: lf-cells12, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --set CELLS_PER_HAND=12"}
+          - {id: lf-adaptc9, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --set ADAPT_COW_TARGET=9"}
+          - {id: lf-lr500-w4, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --set LAND_RESERVE=500 --per-worker 4"}
+          - {id: lf-lr500-floor1, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --set LAND_RESERVE=500 --set SELL_PRICE_FLOOR=1"}
+          - {id: lf-w4-floor1, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --per-worker 4 --set SELL_PRICE_FLOOR=1"}
+          - {id: lf-lr500-w4-floor1, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --set LAND_RESERVE=500 --per-worker 4 --set SELL_PRICE_FLOOR=1"}
+          - {id: lf-top-all, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --set LAND_RESERVE=500 --per-worker 4 --set SELL_PRICE_FLOOR=1 --set CELLS_PER_HAND=11 --set ADAPT_COW_TARGET=9"}
+          - {id: ne1-sw25, args: "--set LAND_NE_MIN_PLANTED=1 --set LAND_SW_MIN_PLANTED=25"}
+          - {id: ne1-sw30, args: "--set LAND_NE_MIN_PLANTED=1 --set LAND_SW_MIN_PLANTED=30"}
+          - {id: ne3-sw20, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=20"}
+          - {id: ne3-sw25, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=25"}
+          - {id: ne3-sw35, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=35"}
+          - {id: ne5-sw25, args: "--set LAND_NE_MIN_PLANTED=5 --set LAND_SW_MIN_PLANTED=25"}
+          - {id: ne5-sw30, args: "--set LAND_NE_MIN_PLANTED=5 --set LAND_SW_MIN_PLANTED=30"}
+          - {id: lf-lr400, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --set LAND_RESERVE=400"}
+          - {id: lf-lr600, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --set LAND_RESERVE=600"}
+          - {id: lf-day14, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --set LAND_SW_MAX_DAY=14"}
+          - {id: lf-day22, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --set LAND_SW_MAX_DAY=22"}
+          - {id: herd7c7s, args: "--set ANIMAL_TARGETS={\"COW\":7,\"SHEEP\":7} --set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30"}
+          - {id: herd8c5s, args: "--set ANIMAL_TARGETS={\"COW\":8,\"SHEEP\":5} --set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30"}
+          - {id: herd8c7s, args: "--set ANIMAL_TARGETS={\"COW\":8,\"SHEEP\":7} --set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30"}
+          - {id: herd9c5s, args: "--set ANIMAL_TARGETS={\"COW\":9,\"SHEEP\":5} --set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30"}
+          - {id: herd9c6s, args: "--set ANIMAL_TARGETS={\"COW\":9,\"SHEEP\":6} --set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30"}
+          - {id: herd10c4s, args: "--set ANIMAL_TARGETS={\"COW\":10,\"SHEEP\":4} --set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30"}
+          - {id: herd10c5s, args: "--set ANIMAL_TARGETS={\"COW\":10,\"SHEEP\":5} --set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30"}
+          - {id: lf-batch2, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --set ANIMAL_BUY_BATCH=2"}
+          - {id: lf-batch4, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --set ANIMAL_BUY_BATCH=4"}
+          - {id: lf-feed2, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --feed-days 2"}
+          - {id: lf-feed4, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --feed-days 4"}
+          - {id: lf-w4-cells11, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --per-worker 4 --set CELLS_PER_HAND=11"}
+          - {id: lf-w4-extra0, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --per-worker 4 --set HANDS_EXTRA=0"}
+          - {id: lf-melon0, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --set MELON_CELLS=[]"}
+          - {id: lf-melon2, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --set MELON_CELLS=[[0,0],[1,0]]"}
+          - {id: lf-melon6, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1]]"}
+          - {id: lf-melon8, args: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]]"}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install engine
+        run: pip install kaggle-environments
+      - name: Benchmark combined refinements against all real replay streams
+        working-directory: kaggriculture
+        env:
+          VARIANT_ARGS: ${{ matrix.args }}
+        run: |
+          output=$(python replay_benchmark.py --agent agent_v5.py --profile mix8-6-f0 $VARIANT_ARGS)
+          echo "$output"
+          summary=$(printf '%s\n' "$output" | tail -1)
+          echo "::notice title=V5 combo result::$summary"
+
   v5-deep-sweep:
     name: V5 deep ${{ matrix.id }}
     if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v5-deep]')
