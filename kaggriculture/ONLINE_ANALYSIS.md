@@ -13,27 +13,39 @@ Snapshot: 2026-09-05. Submission ref: `56032076` (v2, commit `c393cfe`).
 | 105790213 | 0 | win | 23,706 | Khôi Trương | 16,188 |
 | 105790807 | 1 | win | 27,559 | Achintya Rai | 9,461 |
 | 105791750 | 0 | loss | 34,083 | Suresh Chandra Mangena | 49,506 |
+| 105792708 | 0 | loss | 27,289 | Sai_Dattu | 37,361 |
+| 105793659 | 0 | loss | 27,811 | Rudransh Singh Rathore | 69,255 |
+| 105794581 | 0 | loss | 26,210 | Pavel Filin | 47,897 |
+| 105795574 | 1 | win | 29,266 | Ivan Zagorulko | 12,697 |
+| 105796497 | 1 | win | 28,864 | Teja Pattem | 16,215 |
+| 105797403 | 0 | loss | 29,163 | phoenix_merk | 66,240 |
+| 105798313 | 1 | loss | 26,546 | dauriel | 70,730 |
+| 105799286 | 0 | win | 30,663 | Shrey Modi | 17,222 |
 
-Current sample: 3 wins, 4 losses. V2 produced 23.7k–34.1k, but its
-wheat/carrot/melon economy has a low earnings ceiling.
+Complete v2 sample at the snapshot: 6 wins, 9 losses. V2 averaged 27,607;
+opponents averaged 45,680. Our output stayed narrow while opponent strength
+varied widely, confirming that the wheat/carrot/melon economy is reliable but
+has a low earnings ceiling.
 
 ## Pattern separating wins from losses
 
-All three opponents that beat v2 operated a coherent animal/premium economy:
+The 15-match sample separates strong and weak opponents quantitatively:
 
-- Team21 peaked at 7 cows, 6 sheep, 27 strawberries and 11 melons; requested
-  sales included 187 fertilizer, 115 milk and 95 wool.
-- Alejandro Rendon B. peaked at 7 cows, 5 sheep, 17 strawberries and 12
-  melons; requested sales included 164 fertilizer, 157 milk and 75 wool.
-- foundtion peaked at 6 cows, 7 sheep, 25 strawberries and 12 melons; requested
-  sales included 251 fertilizer, 102 milk and 94 wool.
-- Suresh Chandra Mangena used a different but related route: up to 13 geese,
-  62 strawberries and 20 melons, with requested sales of 103 eggs, 78
-  fertilizer and 134 strawberries.
+| Matches | Opponent avg | Peak animals avg | Peak strawberries avg | Peak melons avg |
+|---|---:|---:|---:|---:|
+| Our 6 wins | 15,944 | 4.5 | 6.2 | 7.8 |
+| Our 9 losses | 65,503 | 15.1 | 22.1 | 13.1 |
 
-The weaker opponents either failed to service their animal economy or stayed
-close to a crop-only baseline. Merely possessing premium crops or structures
-was not enough.
+The pattern is not tied to one opponent. Strong agents repeatedly combined a
+serviced animal herd with fertilizer and high-value crops. Examples include
+Team21 (7 cows, 6 sheep), Alejandro (7 cows, 5 sheep), foundtion (6 cows, 7
+sheep), Rudransh (6 geese, 6 cows, 8 sheep), and dauriel (31 animals). Suresh
+showed a different viable route with 13 geese, eggs, fertilizer, strawberries
+and melons.
+
+The weaker opponents either failed to service purchased animals or stayed
+close to a crop-only baseline. Merely possessing crops, animals or structures
+was not enough; daily logistics is the differentiator.
 
 ## Rejected experiment
 
