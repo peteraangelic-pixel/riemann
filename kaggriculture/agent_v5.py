@@ -66,13 +66,13 @@ HANDS_MAX = 12
 MAX_MARKET_ORDERS = 10
 
 # Selling below this would mean a crashed market.
-SELL_PRICE_FLOOR = 10
+SELL_PRICE_FLOOR = 1
 # Liquidate everything late: inventory has zero terminal value.
 ENDGAME_SELL_DAY = 28
 
 # Land purchase triggers.
-LAND_NE_MIN_PLANTED = 6       # NW mostly started
-LAND_SW_MIN_PLANTED = 40      # NW+NE mostly full
+LAND_NE_MIN_PLANTED = 3       # unlock early for pasture/field throughput
+LAND_SW_MIN_PLANTED = 30      # measured best over all public replay streams
 LAND_SW_MAX_DAY = 18          # late purchases cannot pay back
 LAND_RESERVE = 700            # cash kept after the purchase for seeds+wages
 SELL_BUY = False              # SE quadrant purchase disabled (see module docs)
@@ -98,22 +98,22 @@ CARROT_UNITS_PER_CELL_DAY = 0.75
 # (6 units); town-center melon demand is 1/day regardless of shop draws, so a
 # couple of melon cells earn far more per tile-day than wheat/carrot while the
 # market is anywhere near equilibrium.  Number of cells = len(MELON_CELLS).
-MELON_CELLS = [(0, 0), (1, 0), (2, 0), (3, 0)]
+MELON_CELLS = [(0, 0), (1, 0), (2, 0), (3, 0), (0, 1), (1, 1)]
 # Melon needs 10 days to mature; a plant started after this day cannot be
 # harvested before the season ends.
-MELON_LAST_PLANT_DAY = 19
+MELON_LAST_PLANT_DAY = 18
 # V5 reserves premium ongoing crops in deterministic rank bands. These are
 # deliberately profile constants so Actions can sweep broad economies.
-STRAWBERRY_TARGET = 16
+STRAWBERRY_TARGET = 0
 STRAWBERRY_LAST_PLANT_DAY = 13
-FERTILIZER_RESERVE = 12
+FERTILIZER_RESERVE = 0
 FERTILIZE_PREMIUM_ONLY = True
 
 # v4 defaults to five cows; GH matrix jobs can switch the same logistics
 # machinery to geese or sheep for controlled comparisons.
 ANIMAL_KIND = "COW"
-ANIMAL_TARGET = 5  # compatibility: sum of ANIMAL_TARGETS is authoritative in V5
-ANIMAL_TARGETS = {"COW": 5, "SHEEP": 4}
+ANIMAL_TARGET = 14  # compatibility: sum of ANIMAL_TARGETS is authoritative in V5
+ANIMAL_TARGETS = {"COW": 8, "SHEEP": 6}
 ANIMAL_COST = {"GOOSE": 300, "COW": 400, "SHEEP": 500}
 ANIMAL_STRUCTURE = {"GOOSE": "COOP", "COW": "PASTURE", "SHEEP": "PASTURE"}
 ANIMAL_BUILD_OP = {"GOOSE": "BUILD_COOP", "COW": "BUILD_PASTURE", "SHEEP": "BUILD_PASTURE"}

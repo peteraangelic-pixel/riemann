@@ -141,7 +141,7 @@ class AgentContractTests(unittest.TestCase):
         self.assertTrue(any(op[:2] == ["SELL", "MILK"] for op in market_ops))
         self.assertTrue(any(op[:2] == ["SELL", "FERTILIZER"] for op in market_ops))
 
-    def test_v5_runs_mixed_livestock_strawberries_and_fertilizer(self) -> None:
+    def test_v5_runs_mixed_livestock_melons_and_fertilizer(self) -> None:
         from kaggle_environments import make
         from simulate import passive
 
@@ -156,11 +156,12 @@ class AgentContractTests(unittest.TestCase):
 
         for animal in ("COW", "SHEEP"):
             self.assertTrue(any(op[:2] == ["BUY_ANIMAL", animal] for op in market_ops), animal)
-        self.assertTrue(any(op[:2] == ["BUY_SEED", "STRAWBERRY"] for op in market_ops))
-        self.assertTrue(any(op and op[0] == "FERTILIZE" for op in unit_ops))
+        self.assertTrue(any(op[:2] == ["BUY_SEED", "MELON"] for op in market_ops))
+        self.assertTrue(any(op and op[0] == "COLLECT_FERTILIZER" for op in unit_ops))
         self.assertTrue(any(op[:2] == ["SELL", "MILK"] for op in market_ops))
         self.assertTrue(any(op[:2] == ["SELL", "WOOL"] for op in market_ops))
-        self.assertTrue(any(op[:2] == ["SELL", "STRAWBERRY"] for op in market_ops))
+        self.assertTrue(any(op[:2] == ["SELL", "MELON"] for op in market_ops))
+        self.assertTrue(any(op[:2] == ["SELL", "FERTILIZER"] for op in market_ops))
 
     def test_baseline_beats_an_idle_farm_over_a_full_season(self) -> None:
         from kaggle_environments import make

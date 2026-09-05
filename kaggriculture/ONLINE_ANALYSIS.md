@@ -145,11 +145,35 @@ supply helped create the wrong shared-market interaction. A deterministic
 counter switches to eight cows when at least ten opposing sheep become
 visible. The exact 32-replay rerun then scored **83,045.7 and 32/32 wins**,
 including 80,999 versus Zikai's replayed 55,121 and 102,324 versus Dmitri's
-96,200. Against cow5 V4 over ten new seeds it averaged 52,282.5 versus
-31,662.4 and won 10/10. Ten-seed adaptive self-play averaged 46,080 per side
-(range 26,800–63,428), so replay performance remains much stronger than a
-same-policy market collision and V5 is still an experimental milestone—not
-approved for submission.
+96,200.
+
+## V5 refinement sweeps
+
+Four further Actions matrices measured **134 refinements** of that adaptive
+8-cow/6-sheep baseline over all 32 real replay streams (`33971136612`,
+`33971836674`, `33972399603`, `33972812879`). They varied land timing, animal
+workers, feed reserve, purchase batches, staffing capacity, service priority,
+operating cash, sell floor, endgame liquidation, opponent-response threshold,
+herd composition, melon count/layout and small strawberry additions.
+
+The large gains came from coherent interactions rather than adding every
+feature: early NE/SW expansion raised the mean to 86,652; six compact melons
+raised it to 92,644; selling even at the $1 floor and ending melon planting on
+day 18 selected the finalist at **93,615 average with 32/32 wins**. It scored
+110,860 against Dmitri's replayed 94,307, 87,815 against Zikai's 60,957, and
+98,927 against Michael Brown's crop-heavy 74,227. Small strawberry additions
+still hurt (72,284 for four; 8,724 for two), proving the current strawberry
+routing/capital schedule is defective rather than that strawberries are
+intrinsically bad.
+
+The finalist defaults now live in `agent_v5.py`: 8 cows, 6 sheep, adaptive
+cow-only response to at least 10 visible opposing sheep, six melons, three
+animals per livestock worker, three feed days, early land thresholds 3/30,
+raw fertilizer sales, $1 sell floor, and melon cutoff day 18. Against cow5 V4
+over ten new seeds it averaged **68,309 versus 34,491 and won 10/10**.
+Ten-seed finalist self-play averaged **51,049 per side**, range
+29,978–70,881. It remains an offline candidate and is not approved for Kaggle
+submission.
 
 `podpowiedzi2.txt` contains useful hypotheses that match real telemetry—mixed
 cows/sheep, larger crews, feed safety, premium crops and endgame sales—but its
