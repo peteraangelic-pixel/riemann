@@ -233,11 +233,13 @@ Renoir's 172,645 replay exposed the architectural difference. Renoir had
 12 melons plus seven wheat and four animals on day 0, harvested the 12 melons
 once around day 10 for roughly 15k startup revenue, and did not maintain a
 static 12-melon field. The released cells became wheat, pasture and part of a
-33-strawberry estate. Renoir reached 8C/9S and 12 hands, then sold 878 wheat,
-873 fertilizer, 722 wool, 750 milk, 572 melon, 768 strawberry and 572 carrot
-units. Our V5 sold 663 wheat, 299 fertilizer, 115 wool, 237 milk, 52 melon and
-three carrot units. Thus the gap comes from sequential reuse of land and much
-higher throughput across every premium stream—not one sale-timing trick.
+33-strawberry estate. Renoir reached 8C/9S and 12 hands. It completed 466
+harvest, 361 feed, 374 care, 379 fertilizer-collection and 75 fertilize
+operations, versus our 395/320/327/313/0. Its submitted SELL quantities are
+not treated as accepted sales because repeated or over-inventory market
+orders can be rejected by the engine. The state and cash curves nevertheless
+show sequential reuse of land and much higher throughput across every premium
+stream—not one sale-timing trick.
 
 Champion stages A/B tested 60 profiles over both seats of 12 elite matches.
 Ten static melons improved the elite mean from 48,801.9 to 65,069.7; combining
