@@ -15,7 +15,9 @@ on:
         type: boolean
 
 permissions:
-  contents: read
+  # Read by default; the explicitly gated collector uses this to persist
+  # compressed public-match telemetry on the current competition branch.
+  contents: write
 
 jobs:
   offline:
@@ -175,3 +177,75 @@ jobs:
           safe_report=${safe_report//$'\n'/'%0A'}
           safe_report=${safe_report//$'\r'/'%0D'}
           echo "::notice title=Kaggriculture online status::$safe_report"
+
+  collect:
+    name: Collect latest public replay
+    if: >-
+      github.event_name == 'push' &&
+      github.ref_name == 'arena/01a0712c-riemann' &&
+      contains(github.event.head_commit.message, '[kaggr-collect]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Configure Kaggle token
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+        run: |
+          mkdir -p ~/.kaggle
+          clean_token=$(printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]')
+          if [ -z "$clean_token" ]; then
+            echo "::error::KAGGLE_API_TOKEN is missing"
+            exit 1
+          fi
+          printf '%s' "$clean_token" > ~/.kaggle/access_token
+          chmod 600 ~/.kaggle/access_token
+      - name: Install Kaggle CLI
+        run: pip install kaggle
+      - name: Download latest public episode
+        id: episode
+        run: |
+          submissions=$(kaggle competitions submissions kaggriculture)
+          submission_ref=$(printf '%s\n' "$submissions" | awk '$1 ~ /^[0-9]+$/ {print $1; exit}')
+          episodes=$(kaggle competitions episodes "$submission_ref")
+          episode_id=$(printf '%s\n' "$episodes" | awk '$1 ~ /^[0-9]+$/ && /PUBLIC/ {print $1; exit}')
+          if [ -z "$episode_id" ]; then
+            echo "::error::No completed public episode found for submission $submission_ref"
+            exit 1
+          fi
+
+          temp_dir=$(mktemp -d)
+          target_dir="kaggriculture/online/$episode_id"
+          mkdir -p "$target_dir"
+          kaggle competitions replay "$episode_id" -p "$temp_dir/replay"
+          replay_file=$(find "$temp_dir/replay" -type f -name '*.json' | head -1)
+          if [ -z "$replay_file" ]; then
+            echo "::error::Replay command produced no JSON file"
+            exit 1
+          fi
+          gzip -9c "$replay_file" > "$target_dir/replay.json.gz"
+
+          for agent_index in 0 1; do
+            mkdir -p "$temp_dir/log-$agent_index"
+            kaggle competitions logs "$episode_id" "$agent_index" -p "$temp_dir/log-$agent_index" || true
+            log_file=$(find "$temp_dir/log-$agent_index" -type f -name '*.json' | head -1)
+            if [ -n "$log_file" ]; then
+              cp "$log_file" "$target_dir/agent-$agent_index-log.json"
+            fi
+          done
+          printf 'submission_ref=%s\nepisode_id=%s\n' "$submission_ref" "$episode_id" > "$target_dir/metadata.txt"
+          echo "episode_id=$episode_id" >> "$GITHUB_OUTPUT"
+      - name: Commit telemetry
+        run: |
+          if git diff --quiet -- kaggriculture/online && [ -z "$(git ls-files --others --exclude-standard kaggriculture/online)" ]; then
+            echo "Episode ${{ steps.episode.outputs.episode_id }} already collected."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add kaggriculture/online
+          git commit -m "data(kaggriculture): collect episode ${{ steps.episode.outputs.episode_id }} [skip ci]"
+          git push origin "HEAD:$GITHUB_REF_NAME"
