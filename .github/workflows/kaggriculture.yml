@@ -154,25 +154,28 @@ jobs:
           leaderboard_status=$?
           set -e
 
-          submission_ref=$(printf '%s\n' "$submissions" | awk '$1 ~ /^[0-9]+$/ {print $1; exit}')
-          if [ -n "$submission_ref" ]; then
-            set +e
-            episodes=$(kaggle competitions episodes "$submission_ref" 2>&1)
-            episodes_status=$?
-            set -e
+          submission_refs=$(printf '%s\n' "$submissions" | awk '$1 ~ /^[0-9]+$/ {print $1}')
+          episodes_report=''
+          if [ -n "$submission_refs" ]; then
+            for submission_ref in $submission_refs; do
+              set +e
+              episodes=$(kaggle competitions episodes "$submission_ref" 2>&1)
+              episodes_status=$?
+              set -e
+              episodes_report=$(printf '%s\n\nSUBMISSION %s (exit %s)\n%s' \
+                "$episodes_report" "$submission_ref" "$episodes_status" \
+                "$(printf '%s' "$episodes" | head -40)")
+            done
           else
-            episodes='Could not parse latest submission ref.'
-            episodes_status=1
+            episodes_report='Could not parse any submission refs.'
           fi
 
-          report=$(printf 'SUBMISSIONS\n%s\n\nEPISODES for %s (exit %s)\n%s\n\nLEADERBOARD (exit %s)\n%s' \
+          report=$(printf 'SUBMISSIONS\n%s\n\nEPISODES%s\n\nLEADERBOARD (exit %s)\n%s' \
             "$(printf '%s' "$submissions" | head -20)" \
-            "$submission_ref" \
-            "$episodes_status" \
-            "$(printf '%s' "$episodes" | head -30)" \
+            "$episodes_report" \
             "$leaderboard_status" \
             "$(printf '%s' "$leaderboard" | head -25)")
-          safe_report=$(printf '%s' "$report" | sed -E 's/KGAT_[A-Za-z0-9_-]+/[REDACTED]/g' | tail -c 15000)
+          safe_report=$(printf '%s' "$report" | sed -E 's/KGAT_[A-Za-z0-9_-]+/[REDACTED]/g' | tail -c 30000)
           safe_report=${safe_report//'%'/'%25'}
           safe_report=${safe_report//$'\n'/'%0A'}
           safe_report=${safe_report//$'\r'/'%0D'}
@@ -209,44 +212,52 @@ jobs:
         id: episodes
         run: |
           submissions=$(kaggle competitions submissions kaggriculture)
-          submission_ref=$(printf '%s\n' "$submissions" | awk '$1 ~ /^[0-9]+$/ {print $1; exit}')
-          episode_table=$(kaggle competitions episodes "$submission_ref")
-          episode_ids=$(printf '%s\n' "$episode_table" | awk '$1 ~ /^[0-9]+$/ && /PUBLIC/ {print $1}')
-          if [ -z "$episode_ids" ]; then
-            echo "::error::No completed public episodes found for submission $submission_ref"
+          submission_refs=$(printf '%s\n' "$submissions" | awk '$1 ~ /^[0-9]+$/ {print $1}')
+          if [ -z "$submission_refs" ]; then
+            echo "::error::No submission refs found"
             exit 1
           fi
 
           collected=''
-          for episode_id in $episode_ids; do
-            target_dir="kaggriculture/online/$episode_id"
-            if [ -s "$target_dir/replay.json.gz" ]; then
-              echo "Episode $episode_id is already present."
-              continue
-            fi
-
-            temp_dir=$(mktemp -d)
-            mkdir -p "$target_dir"
-            kaggle competitions replay "$episode_id" -p "$temp_dir/replay"
-            replay_file=$(find "$temp_dir/replay" -type f -name '*.json' | head -1)
-            if [ -z "$replay_file" ]; then
-              echo "::error::Replay command produced no JSON for episode $episode_id"
-              exit 1
-            fi
-            gzip -9c "$replay_file" > "$target_dir/replay.json.gz"
-
-            for agent_index in 0 1; do
-              mkdir -p "$temp_dir/log-$agent_index"
-              kaggle competitions logs "$episode_id" "$agent_index" -p "$temp_dir/log-$agent_index" || true
-              log_file=$(find "$temp_dir/log-$agent_index" -type f -name '*.json' | head -1)
-              if [ -n "$log_file" ]; then
-                cp "$log_file" "$target_dir/agent-$agent_index-log.json"
+          found_public=0
+          for submission_ref in $submission_refs; do
+            episode_table=$(kaggle competitions episodes "$submission_ref")
+            episode_ids=$(printf '%s\n' "$episode_table" | awk '$1 ~ /^[0-9]+$/ && /PUBLIC/ {print $1}')
+            for episode_id in $episode_ids; do
+              found_public=1
+              target_dir="kaggriculture/online/$episode_id"
+              if [ -s "$target_dir/replay.json.gz" ]; then
+                echo "Episode $episode_id from submission $submission_ref is already present."
+                continue
               fi
+
+              temp_dir=$(mktemp -d)
+              mkdir -p "$target_dir"
+              kaggle competitions replay "$episode_id" -p "$temp_dir/replay"
+              replay_file=$(find "$temp_dir/replay" -type f -name '*.json' | head -1)
+              if [ -z "$replay_file" ]; then
+                echo "::error::Replay command produced no JSON for episode $episode_id"
+                exit 1
+              fi
+              gzip -9c "$replay_file" > "$target_dir/replay.json.gz"
+
+              for agent_index in 0 1; do
+                mkdir -p "$temp_dir/log-$agent_index"
+                kaggle competitions logs "$episode_id" "$agent_index" -p "$temp_dir/log-$agent_index" || true
+                log_file=$(find "$temp_dir/log-$agent_index" -type f -name '*.json' | head -1)
+                if [ -n "$log_file" ]; then
+                  cp "$log_file" "$target_dir/agent-$agent_index-log.json"
+                fi
+              done
+              printf 'submission_ref=%s\nepisode_id=%s\n' "$submission_ref" "$episode_id" > "$target_dir/metadata.txt"
+              collected="${collected:+$collected,}$episode_id"
+              rm -rf "$temp_dir"
             done
-            printf 'submission_ref=%s\nepisode_id=%s\n' "$submission_ref" "$episode_id" > "$target_dir/metadata.txt"
-            collected="${collected:+$collected,}$episode_id"
-            rm -rf "$temp_dir"
           done
+          if [ "$found_public" -eq 0 ]; then
+            echo "::error::No completed public episodes found for any submission"
+            exit 1
+          fi
           echo "collected_ids=${collected:-none}" >> "$GITHUB_OUTPUT"
       - name: Commit telemetry
         run: |
