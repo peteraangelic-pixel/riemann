@@ -138,6 +138,19 @@ than copied as tile counts. The next matrix re-runs against all 32 collected
 real streams and adds 8C/4S, 10C/4S, 8C/8S, 20-animal, 42-strawberry/12-melon,
 and fertilizer-sale variants.
 
+The 28-profile rerun on all 32 streams (`33969901774`) selected 8 cows +
+6 sheep while selling raw fertilizer: **82,552.5 average and 31/32 wins**.
+The only loss was against Zikai Chen's visible 12-cow/21-sheep farm: our wool
+supply helped create the wrong shared-market interaction. A deterministic
+counter switches to eight cows when at least ten opposing sheep become
+visible. The exact 32-replay rerun then scored **83,045.7 and 32/32 wins**,
+including 80,999 versus Zikai's replayed 55,121 and 102,324 versus Dmitri's
+96,200. Against cow5 V4 over ten new seeds it averaged 52,282.5 versus
+31,662.4 and won 10/10. Ten-seed adaptive self-play averaged 46,080 per side
+(range 26,800–63,428), so replay performance remains much stronger than a
+same-policy market collision and V5 is still an experimental milestone—not
+approved for submission.
+
 `podpowiedzi2.txt` contains useful hypotheses that match real telemetry—mixed
 cows/sheep, larger crews, feed safety, premium crops and endgame sales—but its
 claims about 117 mined top games and fixed 96k/158k recipes are not verified

@@ -182,9 +182,22 @@ class FarmerPlanner:
         board = len(tiles)
         # Stable cell-to-species mapping. Cows come first for earlier milk ROI;
         # sheep add independent wool demand and reduce single-market exposure.
+        # A very sheep-heavy visible opponent is the one measured failure of
+        # the mixed profile: shared wool supply crashes both sellers. Because
+        # cows are bought first in batches, switch to eight cows before buying
+        # sheep once that strategy is observable on the board.
+        animal_targets = dict(ANIMAL_TARGETS)
+        opponent_tiles = obs["farms"][1 - player]["tiles"]
+        opponent_sheep = sum(
+            isinstance(t, dict) and t.get("animal") == "SHEEP"
+            for row in opponent_tiles for t in row
+        )
+        if opponent_sheep >= 10 and animal_targets.get("SHEEP", 0) > 0:
+            animal_targets = {"COW": max(8, animal_targets.get("COW", 0)), "SHEEP": 0}
+
         animal_specs: list[tuple[tuple[int, int], str]] = []
         for kind in ("COW", "SHEEP", "GOOSE"):
-            animal_specs.extend((cell, kind) for cell in ANIMAL_CELLS[len(animal_specs):len(animal_specs) + ANIMAL_TARGETS.get(kind, 0)])
+            animal_specs.extend((cell, kind) for cell in ANIMAL_CELLS[len(animal_specs):len(animal_specs) + animal_targets.get(kind, 0)])
         animal_plan = [cell for cell, _ in animal_specs]
         kind_at = dict(animal_specs)
         service_animal_plan = [c for c in animal_plan if tiles[c[1]][c[0]] != "LOCKED"]
@@ -244,7 +257,7 @@ class FarmerPlanner:
         empty_cells: dict[str, list[tuple[int, int]]] = {c: [] for c in SUPPORTED}
         weeds: list[tuple[int, int]] = []
         animal_cells: list[tuple[int, int]] = []
-        animal_cells_by_kind: dict[str, list[tuple[int, int]]] = {k: [] for k in ANIMAL_TARGETS}
+        animal_cells_by_kind: dict[str, list[tuple[int, int]]] = {k: [] for k in animal_targets}
         empty_structures: list[tuple[int, int]] = []
         unbuilt_animal_cells: list[tuple[int, int]] = []
         planted_per_crop = {c: 0 for c in SUPPORTED}
@@ -304,7 +317,7 @@ class FarmerPlanner:
             # market wheat, making that round trip both fragile and costly.
             sell_qty = qty
             if item == "WHEAT":
-                feed_reserve = sum(ANIMAL_TARGETS.values()) * FEED_STOCK_DAYS
+                feed_reserve = sum(animal_targets.values()) * FEED_STOCK_DAYS
                 sell_qty = max(0, qty - feed_reserve)
             elif item == "FERTILIZER":
                 # Fertilizer is worth more when converted into extra premium
@@ -342,7 +355,7 @@ class FarmerPlanner:
         # opening workforce to structures for animals we cannot yet afford.
         present_animals = len(animal_cells) + sum(
             int(shed.get(k, 0)) + sum(int(inv.get(k, 0)) for inv in inventories)
-            for k in ANIMAL_TARGETS
+            for k in animal_targets
         )
         active_animal_capacity = min(len(service_animal_plan), max(2, present_animals + ANIMAL_BUY_BATCH))
         animal_workers_target = (
@@ -386,7 +399,7 @@ class FarmerPlanner:
         animal_buy_budget = ANIMAL_BUY_BATCH
         for kind in ("COW", "SHEEP", "GOOSE"):
             target = min(
-                ANIMAL_TARGETS.get(kind, 0),
+                animal_targets.get(kind, 0),
                 sum(kind_at[c] == kind for c in service_animal_plan),
             )
             carried = sum(int(inv.get(kind, 0)) for inv in inventories)

@@ -33,7 +33,7 @@ def main() -> None:
     parser.add_argument("--shards", type=int, default=1)
     parser.add_argument("--agent", default="agent.py")
     parser.add_argument("--profile", choices=[
-        "cow5", "cow5-s16", "cow8-s16", "sheep6-s16",
+        "cow5", "cow5-s16", "cow8", "cow8-s16", "sheep6-s16",
         "mix5-2", "mix5-2-s8", "mix5-2-s16",
         "mix5-4", "mix5-4-s8", "mix5-4-s16", "mix5-4-s24",
         "mix5-4-s16-f0", "mix5-4-s16-f24", "mix5-4-s16-m8",
@@ -57,6 +57,7 @@ def main() -> None:
     profiles = {
         "cow5": ({"COW": 5, "SHEEP": 0}, 0, 12, 4),
         "cow5-s16": ({"COW": 5, "SHEEP": 0}, 16, 12, 4),
+        "cow8": ({"COW": 8, "SHEEP": 0}, 0, 0, 4),
         "cow8-s16": ({"COW": 8, "SHEEP": 0}, 16, 12, 4),
         "sheep6-s16": ({"COW": 0, "SHEEP": 6}, 16, 12, 4),
         "mix5-2": ({"COW": 5, "SHEEP": 2}, 0, 12, 4),
