@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from agent import FarmerPlanner, act  # noqa: E402
+from agent_v5 import act as act_v5  # noqa: E402
 from simulate import randomish  # noqa: E402
 
 
@@ -139,6 +140,27 @@ class AgentContractTests(unittest.TestCase):
             self.assertTrue(any(op and op[0] == expected for op in unit_ops), expected)
         self.assertTrue(any(op[:2] == ["SELL", "MILK"] for op in market_ops))
         self.assertTrue(any(op[:2] == ["SELL", "FERTILIZER"] for op in market_ops))
+
+    def test_v5_runs_mixed_livestock_strawberries_and_fertilizer(self) -> None:
+        from kaggle_environments import make
+        from simulate import passive
+
+        env = make("kaggriculture", configuration={"episodeSteps": 480, "seed": 3})
+        env.run([act_v5, passive])
+        unit_ops: list[list] = []
+        market_ops: list[list] = []
+        for step in env.steps:
+            action = step[0].get("action") or {}
+            unit_ops.extend([action.get("farmer") or []] + (action.get("hands") or []))
+            market_ops.extend(action.get("market") or [])
+
+        for animal in ("COW", "SHEEP"):
+            self.assertTrue(any(op[:2] == ["BUY_ANIMAL", animal] for op in market_ops), animal)
+        self.assertTrue(any(op[:2] == ["BUY_SEED", "STRAWBERRY"] for op in market_ops))
+        self.assertTrue(any(op and op[0] == "FERTILIZE" for op in unit_ops))
+        self.assertTrue(any(op[:2] == ["SELL", "MILK"] for op in market_ops))
+        self.assertTrue(any(op[:2] == ["SELL", "WOOL"] for op in market_ops))
+        self.assertTrue(any(op[:2] == ["SELL", "STRAWBERRY"] for op in market_ops))
 
     def test_baseline_beats_an_idle_farm_over_a_full_season(self) -> None:
         from kaggle_environments import make

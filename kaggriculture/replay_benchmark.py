@@ -31,6 +31,15 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--shard", type=int, default=0)
     parser.add_argument("--shards", type=int, default=1)
+    parser.add_argument("--agent", default="agent.py")
+    parser.add_argument("--profile", choices=[
+        "cow5", "cow5-s16", "cow8-s16", "sheep6-s16",
+        "mix5-2", "mix5-2-s8", "mix5-2-s16",
+        "mix5-4", "mix5-4-s8", "mix5-4-s16", "mix5-4-s24",
+        "mix5-4-s16-f0", "mix5-4-s16-f24", "mix5-4-s16-m8",
+        "mix6-4", "mix6-4-s8", "mix6-4-s16",
+        "mix6-6-s20", "mix8-6", "mix8-6-s20",
+    ])
     parser.add_argument("--animal-kind", choices=["GOOSE", "COW", "SHEEP"])
     parser.add_argument("--animal-target", type=int)
     parser.add_argument("--per-worker", type=int)
@@ -41,8 +50,37 @@ def main() -> None:
 
     from kaggle_environments import make
 
-    candidate = load_agent(HERE / "agent.py")
+    candidate = load_agent(HERE / args.agent)
     module = candidate.__globals__
+    profiles = {
+        "cow5": ({"COW": 5, "SHEEP": 0}, 0, 12, 4),
+        "cow5-s16": ({"COW": 5, "SHEEP": 0}, 16, 12, 4),
+        "cow8-s16": ({"COW": 8, "SHEEP": 0}, 16, 12, 4),
+        "sheep6-s16": ({"COW": 0, "SHEEP": 6}, 16, 12, 4),
+        "mix5-2": ({"COW": 5, "SHEEP": 2}, 0, 12, 4),
+        "mix5-2-s8": ({"COW": 5, "SHEEP": 2}, 8, 12, 4),
+        "mix5-2-s16": ({"COW": 5, "SHEEP": 2}, 16, 12, 4),
+        "mix5-4": ({"COW": 5, "SHEEP": 4}, 0, 12, 4),
+        "mix5-4-s8": ({"COW": 5, "SHEEP": 4}, 8, 12, 4),
+        "mix5-4-s16": ({"COW": 5, "SHEEP": 4}, 16, 12, 4),
+        "mix5-4-s24": ({"COW": 5, "SHEEP": 4}, 24, 12, 4),
+        "mix5-4-s16-f0": ({"COW": 5, "SHEEP": 4}, 16, 0, 4),
+        "mix5-4-s16-f24": ({"COW": 5, "SHEEP": 4}, 16, 24, 4),
+        "mix5-4-s16-m8": ({"COW": 5, "SHEEP": 4}, 16, 12, 8),
+        "mix6-4": ({"COW": 6, "SHEEP": 4}, 0, 12, 4),
+        "mix6-4-s8": ({"COW": 6, "SHEEP": 4}, 8, 12, 4),
+        "mix6-4-s16": ({"COW": 6, "SHEEP": 4}, 16, 12, 4),
+        "mix6-6-s20": ({"COW": 6, "SHEEP": 6}, 20, 12, 4),
+        "mix8-6": ({"COW": 8, "SHEEP": 6}, 0, 12, 4),
+        "mix8-6-s20": ({"COW": 8, "SHEEP": 6}, 20, 12, 4),
+    }
+    if args.profile:
+        targets, strawberries, fertilizer, melons = profiles[args.profile]
+        module["ANIMAL_TARGETS"] = targets
+        module["STRAWBERRY_TARGET"] = strawberries
+        module["FERTILIZER_RESERVE"] = fertilizer
+        module["MELON_CELLS"] = [(x, y) for y in range(2) for x in range(4)][:melons]
+        module["ANIMAL_TARGET"] = sum(targets.values())
     if args.animal_kind is not None:
         module["ANIMAL_KIND"] = args.animal_kind
     if args.animal_target is not None:
@@ -92,7 +130,9 @@ def main() -> None:
 
     if scores:
         print(
-            f"SUMMARY kind={module['ANIMAL_KIND']} target={module['ANIMAL_TARGET']} "
+            f"SUMMARY agent={args.agent} profile={args.profile or 'default'} "
+            f"kind={module.get('ANIMAL_KIND')} target={module.get('ANIMAL_TARGET')} "
+            f"targets={module.get('ANIMAL_TARGETS', {})} strawberries={module.get('STRAWBERRY_TARGET', 0)} "
             f"per_worker={module['ANIMALS_PER_WORKER']} feed_days={module['FEED_STOCK_DAYS']} "
             f"shard={args.shard}/{args.shards} games={len(scores)} wins={wins} "
             f"candidate_avg={sum(scores) / len(scores):.1f} "

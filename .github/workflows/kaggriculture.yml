@@ -34,7 +34,7 @@ jobs:
         run: pip install kaggle-environments
       - name: Compile tracked sources
         working-directory: kaggriculture
-        run: python -m py_compile agent.py simulate.py tune_animals.py analyze_online.py replay_benchmark.py tests/test_agent.py
+        run: python -m py_compile agent.py agent_v5.py simulate.py tune_animals.py analyze_online.py replay_benchmark.py tests/test_agent.py
       - name: Run offline tests
         working-directory: kaggriculture
         run: python -m unittest discover -s tests -v
@@ -328,6 +328,51 @@ jobs:
           echo "$output"
           summary=$(printf '%s\n' "$output" | tail -1)
           echo "::notice title=Replay benchmark result::$summary"
+
+  v5-economy-sweep:
+    name: V5 economy ${{ matrix.profile }}
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v5-tune]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        profile:
+          - cow5
+          - cow5-s16
+          - cow8-s16
+          - sheep6-s16
+          - mix5-2
+          - mix5-2-s8
+          - mix5-2-s16
+          - mix5-4
+          - mix5-4-s8
+          - mix5-4-s16
+          - mix5-4-s24
+          - mix5-4-s16-f0
+          - mix5-4-s16-f24
+          - mix5-4-s16-m8
+          - mix6-4
+          - mix6-4-s8
+          - mix6-4-s16
+          - mix6-6-s20
+          - mix8-6
+          - mix8-6-s20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install engine
+        run: pip install kaggle-environments
+      - name: Benchmark diversified economy against every real replay
+        working-directory: kaggriculture
+        run: |
+          output=$(python replay_benchmark.py --agent agent_v5.py --profile ${{ matrix.profile }})
+          echo "$output"
+          summary=$(printf '%s\n' "$output" | tail -1)
+          echo "::notice title=V5 economy result::$summary"
 
   species-sweep:
     name: V4 ${{ matrix.kind }}-${{ matrix.target }}-w${{ matrix.per_worker }}
