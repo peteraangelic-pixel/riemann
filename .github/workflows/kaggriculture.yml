@@ -152,11 +152,25 @@ jobs:
           leaderboard_status=$?
           set -e
 
-          report=$(printf 'SUBMISSIONS\n%s\n\nLEADERBOARD (exit %s)\n%s' \
+          submission_ref=$(printf '%s\n' "$submissions" | awk '$1 ~ /^[0-9]+$/ {print $1; exit}')
+          if [ -n "$submission_ref" ]; then
+            set +e
+            episodes=$(kaggle competitions episodes "$submission_ref" 2>&1)
+            episodes_status=$?
+            set -e
+          else
+            episodes='Could not parse latest submission ref.'
+            episodes_status=1
+          fi
+
+          report=$(printf 'SUBMISSIONS\n%s\n\nEPISODES for %s (exit %s)\n%s\n\nLEADERBOARD (exit %s)\n%s' \
             "$(printf '%s' "$submissions" | head -20)" \
+            "$submission_ref" \
+            "$episodes_status" \
+            "$(printf '%s' "$episodes" | head -30)" \
             "$leaderboard_status" \
             "$(printf '%s' "$leaderboard" | head -25)")
-          safe_report=$(printf '%s' "$report" | sed -E 's/KGAT_[A-Za-z0-9_-]+/[REDACTED]/g' | tail -c 6000)
+          safe_report=$(printf '%s' "$report" | sed -E 's/KGAT_[A-Za-z0-9_-]+/[REDACTED]/g' | tail -c 15000)
           safe_report=${safe_report//'%'/'%25'}
           safe_report=${safe_report//$'\n'/'%0A'}
           safe_report=${safe_report//$'\r'/'%0D'}
