@@ -15,8 +15,8 @@ dziennie; liczą się 2 ostatnie.
 
 ## Stan (2026-09-05)
 
-- `agent.py` — **v3.1: pszeniczno-marchewkowy conveyor z melonem, pięcioma
-  gęsiami, rezerwą paszy i księgowaniem kolejki zakupów**. Deterministic, bez
+- `agent.py` — **v4: pszeniczno-marchewkowy conveyor z melonem, pięcioma
+  krowami, rezerwą paszy i księgowaniem kolejki zakupów**. Deterministic, bez
   zależności poza silnikiem gry; bez pamięci między turami.
 - Silnik gry działa **offline** (`kaggle-environments`); pełny sezon 720 tur
   to ~2 s, więc iteracja jest tania.
@@ -26,8 +26,10 @@ dziennie; liczą się 2 ostatnie.
   - bezpośrednio vs v2: **40.4k vs 26.6k, 10W–0L**,
   - self-play v3: **~38.2k** na stronę (zakres 36.0k–43.4k).
   Pięć gęsi wygrało sweep; sześć przeciążyło budżet i routing (22.6k).
-- Adwersarialny benchmark 18 prawdziwych strumieni akcji: **40.5k v3.1 vs
-  27.0k wersji wysłanych**, średnio +13.4k; szczegóły w `ONLINE_ANALYSIS.md`.
+- Adwersarialny benchmark 18 prawdziwych strumieni akcji: **55.3k cow5 vs
+  40.5k goose5/v3.1 vs 27.0k wersji pierwotnych**; cow5 wygrało 16/18.
+- Cow5 vs v3.1 na 10 seedach: **55.7k vs 40.2k, 9W–1L**; self-play cow5:
+  **45.7k** średnio. Szczegóły w `ONLINE_ANALYSIS.md`.
 
 ## Jak działa strategia (v3)
 
@@ -59,10 +61,10 @@ dziennie; liczą się 2 ostatnie.
    ~21.8k vs ~26.8k bez SE).
 6. **Sprzedaż.** Szopa (limit 100) jest opróżniana co turę przez SELL; koniec
    dnia sam zrzuca inventory do szopy.
-7. **Pięć gęsi = druga noga gospodarki.** Dedykowane ręce budują zwarte kurniki
-   przy szopie, przenoszą gęsi, pobierają pszenicę, karmią, wykonują `CARE`,
-   zbierają jajka i codzienny nawóz. Sweep 2–6 gęsi wskazał pięć jako optimum;
-   produkty są sprzedawane przez ten sam mechanizm rynkowy co plony.
+7. **Pięć krów = druga noga gospodarki.** Dedykowane ręce budują zwarte
+   pastwiska przy szopie, przenoszą krowy, pobierają zachowaną pszenicę,
+   karmią, wykonują `CARE`, zbierają mleko i codzienny nawóz. Replay sweep
+   wykazał, że cow5 jest stabilniejsze od cow8 i znacznie lepsze od goose5.
 
 ## Użycie
 

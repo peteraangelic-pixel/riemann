@@ -1,4 +1,4 @@
-"""Kaggriculture v3 agent: crop conveyor plus a serviced goose economy.
+"""Kaggriculture v4 agent: crop conveyor plus a serviced cow economy.
 
 v1 (all wheat) verified the machinery: hired hands run daily watering-first
 sweeps of their plan chunks, the farmer harvests/plants overflow, land NE+SW
@@ -21,12 +21,12 @@ in the canonical plan (carrots get the lowest ranks); because a crop switch
 only happens when a cell is replanted after harvest, the assignment adapts
 smoothly as shops unlock.
 
-v3 adds a compact five-goose subsystem learned from public-match telemetry.
-Dedicated hands build coops, carry animals and feed wheat from the shed, then
-harvest eggs, CARE for the next yield, and collect daily fertilizer. A
-five-goose candidate beat v2 in 10/10 matched-seed games (40.4k vs 26.6k
-average) and remained robust in self-play (~38.2k per side); six geese
-collapsed under setup/labor pressure and were rejected.
+v3 added a compact goose subsystem learned from public-match telemetry. V3.1
+then retained home-grown wheat as feed and fixed overcommitted market queues.
+V4 generalizes the machinery and selects five cows: dedicated hands build
+pastures, carry animals and feed wheat from the shed, then harvest milk, CARE
+for the next yield, and collect daily fertilizer. Across 18 real replay action
+streams cow5 averaged 55.3k with 16 wins, versus 40.5k/9 wins for goose5.
 
 Everything stays deterministic and stateless; ``act`` is a pure function of
 the observation plus the module constants below (tunable for offline sweeps).
@@ -101,9 +101,9 @@ MELON_CELLS = [(0, 0), (1, 0), (2, 0), (3, 0)]
 # harvested before the season ends.
 MELON_LAST_PLANT_DAY = 19
 
-# v4 research surface: the submitted v3.1 defaults to five geese, while GH
-# matrix jobs can switch the same logistics machinery to cows or sheep.
-ANIMAL_KIND = "GOOSE"
+# v4 defaults to five cows; GH matrix jobs can switch the same logistics
+# machinery to geese or sheep for controlled comparisons.
+ANIMAL_KIND = "COW"
 ANIMAL_TARGET = 5
 ANIMAL_COST = {"GOOSE": 300, "COW": 400, "SHEEP": 500}
 ANIMAL_STRUCTURE = {"GOOSE": "COOP", "COW": "PASTURE", "SHEEP": "PASTURE"}

@@ -91,8 +91,24 @@ seeds and positions:
 - average improvement: +13,423;
 - candidate result against scripted opponents: 9 wins, 9 losses.
 
-Future work can add demand-sensitive cows/sheep and high-value crops on top of
-this now adversarially-tested logistics subsystem rather than replacing it.
+## v4 species sweep
+
+The same logistics state machine was generalized to COOP/PASTURE and tested
+with geese, cows and sheep over all 18 collected real opponent streams:
+
+| Candidate | Replay avg | Wins/18 |
+|---|---:|---:|
+| goose5 (v3.1) | 40,451 | 9 |
+| sheep4 | 49,296 | 13 |
+| cow4 | 53,953 | 12 |
+| cow5 | **55,286** | **16** |
+| cow6 | 54,679 | 15 |
+| cow8 | 56,700 | 15 |
+
+Cow8 had the highest replay average but excessive variance in self-play
+(20.1k–62.2k) and only 7/10 wins against v3.1. Cow5 was selected: it averaged
+55.7k versus v3.1's 40.2k with 9/10 wins, and 45.7k in self-play. Future work
+can add mixed herds and fertilized high-value crops on top of cow5.
 
 Compressed public replays and available agent logs live under
 `kaggriculture/online/<episode_id>/`. The `[kaggr-collect]` workflow downloads

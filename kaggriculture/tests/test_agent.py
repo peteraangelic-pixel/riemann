@@ -110,7 +110,7 @@ class AgentContractTests(unittest.TestCase):
             if order[0] == "HIRE":
                 spend += next(hire_costs)
             elif order[0] == "BUY_ANIMAL":
-                spend += 300 * order[2]
+                spend += {"GOOSE": 300, "COW": 400, "SHEEP": 500}[order[1]] * order[2]
             elif order[0] == "BUY_PRODUCT":
                 spend += prices[order[1]] * order[2]
             elif order[0] == "BUY_SEED":
@@ -121,7 +121,7 @@ class AgentContractTests(unittest.TestCase):
         reserved = act(obs, env.configuration)
         self.assertFalse(any(op[:2] == ["SELL", "WHEAT"] for op in reserved["market"]))
 
-    def test_goose_subsystem_completes_a_productive_cycle(self) -> None:
+    def test_cow_subsystem_completes_a_productive_cycle(self) -> None:
         from kaggle_environments import make
         from simulate import passive
 
@@ -134,10 +134,10 @@ class AgentContractTests(unittest.TestCase):
             unit_ops.extend([action.get("farmer") or []] + (action.get("hands") or []))
             market_ops.extend(action.get("market") or [])
 
-        self.assertTrue(any(op[:2] == ["BUY_ANIMAL", "GOOSE"] for op in market_ops))
-        for expected in ("BUILD_COOP", "FEED", "CARE", "COLLECT_FERTILIZER"):
+        self.assertTrue(any(op[:2] == ["BUY_ANIMAL", "COW"] for op in market_ops))
+        for expected in ("BUILD_PASTURE", "FEED", "CARE", "COLLECT_FERTILIZER"):
             self.assertTrue(any(op and op[0] == expected for op in unit_ops), expected)
-        self.assertTrue(any(op[:2] == ["SELL", "EGG"] for op in market_ops))
+        self.assertTrue(any(op[:2] == ["SELL", "MILK"] for op in market_ops))
         self.assertTrue(any(op[:2] == ["SELL", "FERTILIZER"] for op in market_ops))
 
     def test_baseline_beats_an_idle_farm_over_a_full_season(self) -> None:
