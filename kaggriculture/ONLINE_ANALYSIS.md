@@ -206,3 +206,8 @@ fell to 89,405 and day 11 to 89,758. Reserve and staffing interactions did not
 improve it. Morning-only selling scored 94,409.2, an immaterial two-tenths, so
 immediate selling remains selected. This is still an offline candidate and
 must not be uploaded without explicit approval.
+
+With explicit user approval, the 94,409 finalist was packaged from
+`agent_v5.py` and uploaded to Kaggle by Actions run `33981106256` on
+2026-09-05. Submission evaluation is monitored separately; this approval
+applied only to this upload.
