@@ -115,6 +115,36 @@ Cow8 had the highest replay average but excessive variance in self-play
 55.7k versus v3.1's 40.2k with 9/10 wins, and 45.7k in self-play. Future work
 can add mixed herds and fertilized high-value crops on top of cow5.
 
+## New online evidence and diversified V5 search
+
+Submission refs are now confirmed: v3 is `56033159`; v3.1 is `56033582`.
+Across its first five public games v3.1 scored 3-2 and averaged 41,395 versus
+50,369, improving substantially on v3's expanded 11-game record (3-8,
+29,575 versus 57,305) but still losing to scaled economies. New opponents
+reinforce that there is no single mandatory build: Farmville Redux reached
+76,067 with 11 cows, 9 sheep and premium crops; Michael Brown reached 69,721
+with 50 strawberries and 25 melons but no animals; JIUZHOU CHAN reached 97,503
+with 7 cows, 11 strawberries and 21 melons. This diversity is why V5 is a
+multi-profile search rather than another one-dimensional animal count sweep.
+
+The first 20-profile V5 Actions matrix (run `33969663450`) completed over the
+original 18-replay corpus. Mixed livestock without strawberries dominated:
+8 cows + 6 sheep averaged 82,979 (17/18), 6 cows + 4 sheep averaged 78,460
+(18/18), and 5 cows + 4 sheep averaged 74,640 (17/18). A fertilized
+5-cow/4-sheep/16-strawberry profile reached 66,785 (17/18) when raw fertilizer
+was sold rather than stockpiled. Several crop-heavy profiles collapsed,
+showing that premium diversity must be funded and routed coherently rather
+than copied as tile counts. The next matrix re-runs against all 32 collected
+real streams and adds 8C/4S, 10C/4S, 8C/8S, 20-animal, 42-strawberry/12-melon,
+and fertilizer-sale variants.
+
+`podpowiedzi2.txt` contains useful hypotheses that match real telemetry—mixed
+cows/sheep, larger crews, feed safety, premium crops and endgame sales—but its
+claims about 117 mined top games and fixed 96k/158k recipes are not verified
+by files available here. Also, selling wheat cannot lower the milk or wool
+price: every product has an independent market inventory. “Premium first” is
+useful for the ten-order cap, not as cross-product price manipulation.
+
 Compressed public replays and available agent logs live under
 `kaggriculture/online/<episode_id>/`. The `[kaggr-collect]` workflow downloads
 every missing public episode rather than only the newest one, so matches that

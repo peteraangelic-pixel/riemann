@@ -38,7 +38,9 @@ def main() -> None:
         "mix5-4", "mix5-4-s8", "mix5-4-s16", "mix5-4-s24",
         "mix5-4-s16-f0", "mix5-4-s16-f24", "mix5-4-s16-m8",
         "mix6-4", "mix6-4-s8", "mix6-4-s16",
-        "mix6-6-s20", "mix8-6", "mix8-6-s20",
+        "mix6-6-s20", "mix8-4", "mix10-4", "mix8-8",
+        "mix8-6", "mix8-6-f0", "mix8-6-s20", "mix8-6-s28-m12",
+        "mix11-9", "mix12-8", "crop-s42-m12",
     ])
     parser.add_argument("--animal-kind", choices=["GOOSE", "COW", "SHEEP"])
     parser.add_argument("--animal-target", type=int)
@@ -71,8 +73,16 @@ def main() -> None:
         "mix6-4-s8": ({"COW": 6, "SHEEP": 4}, 8, 12, 4),
         "mix6-4-s16": ({"COW": 6, "SHEEP": 4}, 16, 12, 4),
         "mix6-6-s20": ({"COW": 6, "SHEEP": 6}, 20, 12, 4),
+        "mix8-4": ({"COW": 8, "SHEEP": 4}, 0, 12, 4),
+        "mix10-4": ({"COW": 10, "SHEEP": 4}, 0, 12, 4),
+        "mix8-8": ({"COW": 8, "SHEEP": 8}, 0, 12, 4),
         "mix8-6": ({"COW": 8, "SHEEP": 6}, 0, 12, 4),
+        "mix8-6-f0": ({"COW": 8, "SHEEP": 6}, 0, 0, 4),
         "mix8-6-s20": ({"COW": 8, "SHEEP": 6}, 20, 12, 4),
+        "mix8-6-s28-m12": ({"COW": 8, "SHEEP": 6}, 28, 12, 12),
+        "mix11-9": ({"COW": 11, "SHEEP": 9}, 0, 12, 4),
+        "mix12-8": ({"COW": 12, "SHEEP": 8}, 0, 12, 4),
+        "crop-s42-m12": ({"COW": 0, "SHEEP": 0}, 42, 0, 12),
     }
     if args.profile:
         targets, strawberries, fertilizer, melons = profiles[args.profile]

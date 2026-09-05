@@ -357,8 +357,16 @@ jobs:
           - mix6-4-s8
           - mix6-4-s16
           - mix6-6-s20
+          - mix8-4
+          - mix10-4
+          - mix8-8
           - mix8-6
+          - mix8-6-f0
           - mix8-6-s20
+          - mix8-6-s28-m12
+          - mix11-9
+          - mix12-8
+          - crop-s42-m12
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
