@@ -52,6 +52,9 @@ QUAD_ORDER = ("NW", "NE", "SW", "SE")
 LAND_COST = {"NE": 1000, "SW": 2000, "SE": 4000}
 # Cumulative daily cost of hiring 1..10 hands (fib 1,1,2,3,5,8,13,21,34,55).
 FIB_SUM = (1, 2, 4, 7, 12, 20, 33, 54, 88, 143)
+FIB_COST = (1, 1, 2, 3, 5, 8, 13, 21, 34, 55)
+# Keep enough liquid cash for the next day's hands and market volatility.
+OPERATING_RESERVE = 300
 
 # Hands roughly sustain ~10 cells/day each (water + tour + occasional
 # harvest/replant); we also count the farmer as one waterer.
@@ -257,12 +260,25 @@ class FarmerPlanner:
             qty = shed[item]
             if qty <= 0:
                 continue
+            # Never sell tomorrow's animal feed only to buy it back from a
+            # scarcity market. Strong online opponents aggressively consume
+            # market wheat, making that round trip both fragile and costly.
+            sell_qty = qty
+            if item == "WHEAT":
+                feed_reserve = GOOSE_TARGET * FEED_STOCK_DAYS
+                sell_qty = max(0, qty - feed_reserve)
+            if sell_qty <= 0:
+                continue
             price = int(prices.get(item, 0) or 0)
             if price >= SELL_PRICE_FLOOR:
-                orders.append(["SELL", item, qty])
-                shed_value += qty * max(price, 1)
+                orders.append(["SELL", item, sell_qty])
+                shed_value += sell_qty * max(price, 1)
 
         est_money = money + shed_value
+        # Purchases in one market queue are processed sequentially. Track the
+        # remaining cash instead of checking every order against the same
+        # pre-order balance (which used to overcommit the opening bankroll).
+        available_money = est_money
 
         # Land: buy the next quadrant when the current one is mostly planted.
         if hour == 0 and len(unlocked) < len(QUAD_ORDER):
@@ -275,17 +291,24 @@ class FarmerPlanner:
                 ok = sum(planted_per_crop.values()) >= LAND_SW_MIN_PLANTED and day <= LAND_SW_MAX_DAY
             elif nxt == "SE":
                 ok = SELL_BUY  # disabled by default (module docstring)
-            if ok and est_money >= cost + LAND_RESERVE:
+            if ok and available_money >= cost + LAND_RESERVE:
                 orders.append(["BUY_LAND"])
+                available_money -= cost
 
         # Hands: crop conveyor plus dedicated animal workers.
         animal_workers_target = (GOOSE_TARGET + GEESE_PER_WORKER - 1) // GEESE_PER_WORKER
         crop_workers_target = max(2, (len(plan) + CELLS_PER_HAND - 1) // CELLS_PER_HAND + HANDS_EXTRA)
         h_target = min(HANDS_MAX, crop_workers_target + animal_workers_target)
         to_hire = max(0, h_target - len(hands_now))
-        for h in range(min(to_hire, len(FIB_SUM))):
-            if est_money >= FIB_SUM[h] + 120:
+        hires_today = int(me.get("hires_today", len(hands_now)) or 0)
+        for h in range(to_hire):
+            hire_index = hires_today + h
+            if hire_index >= len(FIB_COST) or len(orders) >= MAX_MARKET_ORDERS:
+                break
+            hire_cost = FIB_COST[hire_index]
+            if available_money >= hire_cost + OPERATING_RESERVE:
                 orders.append(["HIRE"])
+                available_money -= hire_cost
             else:
                 break
 
@@ -297,10 +320,11 @@ class FarmerPlanner:
         if (
             missing_geese > 0
             and day <= 5
-            and est_money >= missing_geese * GOOSE_COST + 500
+            and available_money >= missing_geese * GOOSE_COST + OPERATING_RESERVE
             and len(orders) < MAX_MARKET_ORDERS
         ):
             orders.append(["BUY_ANIMAL", "GOOSE", missing_geese])
+            available_money -= missing_geese * GOOSE_COST
 
         # Feed is ordinary WHEAT product in the shed, separate from seeds.
         carried_wheat = sum(int(inv.get("WHEAT", 0)) for inv in inventories)
@@ -308,16 +332,28 @@ class FarmerPlanner:
         feed_target = max(1, goose_owned) * FEED_STOCK_DAYS
         buy_feed = min(20, max(0, feed_target - feed_stock))
         wheat_price = int(prices.get("WHEAT", 25) or 25)
-        if buy_feed > 0 and est_money >= buy_feed * wheat_price + 120 and len(orders) < MAX_MARKET_ORDERS:
+        feed_cost = buy_feed * wheat_price
+        if (
+            buy_feed > 0
+            and available_money >= feed_cost + OPERATING_RESERVE
+            and len(orders) < MAX_MARKET_ORDERS
+        ):
             orders.append(["BUY_PRODUCT", "WHEAT", buy_feed])
+            available_money -= feed_cost
 
         # Seeds per crop: enough for every planned empty cell plus a reserve.
         for crop in SUPPORTED:
             have = int(seeds.get(crop, 0))
             seed_need = len(empty_cells[crop]) + 4
             buy_n = min(seed_need - have, 25)
-            if buy_n > 0 and est_money >= buy_n * SEED_COST[crop] + 30 and len(orders) < MAX_MARKET_ORDERS:
+            seed_cost = buy_n * SEED_COST[crop]
+            if (
+                buy_n > 0
+                and available_money >= seed_cost + OPERATING_RESERVE
+                and len(orders) < MAX_MARKET_ORDERS
+            ):
                 orders.append(["BUY_SEED", crop, buy_n])
+                available_money -= seed_cost
 
         # ---- decide ops for every unit --------------------------------------
         # Cap on simultaneous plants and per-crop seed budget (the engine drops

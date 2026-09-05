@@ -96,6 +96,31 @@ class AgentContractTests(unittest.TestCase):
         second = randomish(obs, env.configuration)
         self.assertEqual(first, second)
 
+    def test_opening_orders_keep_operating_cash_and_feed_reserve(self) -> None:
+        from kaggle_environments import make
+
+        env = make("kaggriculture", configuration={"seed": 9})
+        obs = env.state[0].observation
+        action = act(obs, env.configuration)
+        prices = obs["market"]["prices"]
+        seed_cost = {"WHEAT": 10, "CARROT": 20, "MELON": 80}
+        hire_costs = iter((1, 1, 2, 3, 5, 8, 13, 21))
+        spend = 0
+        for order in action["market"]:
+            if order[0] == "HIRE":
+                spend += next(hire_costs)
+            elif order[0] == "BUY_ANIMAL":
+                spend += 300 * order[2]
+            elif order[0] == "BUY_PRODUCT":
+                spend += prices[order[1]] * order[2]
+            elif order[0] == "BUY_SEED":
+                spend += seed_cost[order[1]] * order[2]
+        self.assertLessEqual(spend, obs["farms"][0]["money"] - 300)
+
+        obs["private"]["shed"]["WHEAT"] = 15
+        reserved = act(obs, env.configuration)
+        self.assertFalse(any(op[:2] == ["SELL", "WHEAT"] for op in reserved["market"]))
+
     def test_goose_subsystem_completes_a_productive_cycle(self) -> None:
         from kaggle_environments import make
         from simulate import passive
