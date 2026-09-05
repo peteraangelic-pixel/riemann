@@ -384,6 +384,65 @@ jobs:
           summary=$(printf '%s\n' "$output" | tail -1)
           echo "::notice title=V6 routing result::$summary"
 
+  v6-land-tune:
+    name: V6 land tune ${{ matrix.id }}
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v6-land]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        include:
+          # Fine timing grid around the routing-sweep winner (NE day 8, SW day 10).
+          - {id: n6-s9, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=6 --set LAND_SW_BUY_DAY=9"}
+          - {id: n6-s10, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=6 --set LAND_SW_BUY_DAY=10"}
+          - {id: n6-s11, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=6 --set LAND_SW_BUY_DAY=11"}
+          - {id: n7-s9, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=7 --set LAND_SW_BUY_DAY=9"}
+          - {id: n7-s10, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=7 --set LAND_SW_BUY_DAY=10"}
+          - {id: n7-s11, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=7 --set LAND_SW_BUY_DAY=11"}
+          - {id: n8-s9, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=8 --set LAND_SW_BUY_DAY=9"}
+          - {id: n8-s10, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=8 --set LAND_SW_BUY_DAY=10"}
+          - {id: n8-s11, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=8 --set LAND_SW_BUY_DAY=11"}
+          - {id: n8-s12, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=8 --set LAND_SW_BUY_DAY=12"}
+          - {id: n9-s10, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=9 --set LAND_SW_BUY_DAY=10"}
+          - {id: n9-s11, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=9 --set LAND_SW_BUY_DAY=11"}
+          - {id: n9-s12, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=9 --set LAND_SW_BUY_DAY=12"}
+          - {id: n10-s11, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=10 --set LAND_SW_BUY_DAY=11"}
+          - {id: n10-s12, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=10 --set LAND_SW_BUY_DAY=12"}
+          # Financing sensitivity and interactions around day 8/10.
+          - {id: reserve0, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=8 --set LAND_SW_BUY_DAY=10 --set LAND_RESERVE=0"}
+          - {id: reserve300, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=8 --set LAND_SW_BUY_DAY=10 --set LAND_RESERVE=300"}
+          - {id: reserve500, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=8 --set LAND_SW_BUY_DAY=10 --set LAND_RESERVE=500"}
+          - {id: reserve900, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=8 --set LAND_SW_BUY_DAY=10 --set LAND_RESERVE=900"}
+          - {id: reserve1100, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=8 --set LAND_SW_BUY_DAY=10 --set LAND_RESERVE=1100"}
+          - {id: sale-morning, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=8 --set LAND_SW_BUY_DAY=10 --set SALE_HOURS=[0]"}
+          - {id: sale-ticks, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=8 --set LAND_SW_BUY_DAY=10 --set SALE_HOURS=[0,4,8,12,16,20]"}
+          - {id: no-carrot, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=8 --set LAND_SW_BUY_DAY=10 --set CARROT_KAPPA=0.0"}
+          - {id: worker8, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=8 --set LAND_SW_BUY_DAY=10 --set CELLS_PER_HAND=8"}
+          - {id: worker9, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=8 --set LAND_SW_BUY_DAY=10 --set CELLS_PER_HAND=9"}
+          - {id: extra2, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=8 --set LAND_SW_BUY_DAY=10 --set HANDS_EXTRA=2"}
+          - {id: melon-cut17, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=8 --set LAND_SW_BUY_DAY=10 --set MELON_LAST_PLANT_DAY=17"}
+          - {id: endgame27, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=8 --set LAND_SW_BUY_DAY=10 --set ENDGAME_SELL_DAY=27"}
+          - {id: herd7c7s, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=8 --set LAND_SW_BUY_DAY=10 --set ANIMAL_TARGETS={\"COW\":7,\"SHEEP\":7}"}
+          - {id: reserve500-sale0, args: "--set LAND_MODE=TIMED --set LAND_NE_BUY_DAY=8 --set LAND_SW_BUY_DAY=10 --set LAND_RESERVE=500 --set SALE_HOURS=[0]"}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install engine
+        run: pip install kaggle-environments
+      - name: Tune timed land interactions
+        working-directory: kaggriculture
+        env:
+          VARIANT_ARGS: ${{ matrix.args }}
+        run: |
+          output=$(python replay_benchmark.py --agent agent_v5.py $VARIANT_ARGS)
+          echo "$output"
+          summary=$(printf '%s\n' "$output" | tail -1)
+          echo "::notice title=V6 land tune result::$summary"
+
   v5-advice-sweep:
     name: V5 advice ${{ matrix.id }}
     if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v5-advice]')
