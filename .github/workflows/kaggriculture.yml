@@ -329,6 +329,52 @@ jobs:
           summary=$(printf '%s\n' "$output" | tail -1)
           echo "::notice title=Replay benchmark result::$summary"
 
+  v5-finalist-sweep:
+    name: V5 finalist ${{ matrix.id }}
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v5-finalist]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      max-parallel: 18
+      matrix:
+        include:
+          - {id: floor1, args: ""}
+          - {id: floor1-last17, args: "--set MELON_LAST_PLANT_DAY=17"}
+          - {id: floor1-last18, args: "--set MELON_LAST_PLANT_DAY=18"}
+          - {id: floor1-last20, args: "--set MELON_LAST_PLANT_DAY=20"}
+          - {id: floor1-sw20, args: "--set LAND_SW_MIN_PLANTED=20"}
+          - {id: floor1-sw25, args: "--set LAND_SW_MIN_PLANTED=25"}
+          - {id: floor1-ne1, args: "--set LAND_NE_MIN_PLANTED=1"}
+          - {id: floor1-lr400, args: "--set LAND_RESERVE=400"}
+          - {id: floor1-lr500, args: "--set LAND_RESERVE=500"}
+          - {id: floor1-adapt8, args: "--set ADAPT_SHEEP_THRESHOLD=8"}
+          - {id: floor1-adapt12, args: "--set ADAPT_SHEEP_THRESHOLD=12"}
+          - {id: floor1-feed-first, args: "--set ANIMAL_SERVICE_MODE=FEED_HARVEST_FERT_CARE"}
+          - {id: floor1-care-first, args: "--set ANIMAL_SERVICE_MODE=FEED_CARE_HARVEST_FERT"}
+          - {id: floor1-herd7c7s, args: "--set ANIMAL_TARGETS={\"COW\":7,\"SHEEP\":7}"}
+          - {id: floor1-m5, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1]]"}
+          - {id: floor1-m7, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1]]"}
+          - {id: floor1-last18-sw25, args: "--set MELON_LAST_PLANT_DAY=18 --set LAND_SW_MIN_PLANTED=25"}
+          - {id: floor1-last18-adapt8, args: "--set MELON_LAST_PLANT_DAY=18 --set ADAPT_SHEEP_THRESHOLD=8"}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install engine
+        run: pip install kaggle-environments
+      - name: Benchmark finalists against all real replay streams
+        working-directory: kaggriculture
+        env:
+          BASE_ARGS: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1]] --set SELL_PRICE_FLOOR=1"
+          VARIANT_ARGS: ${{ matrix.args }}
+        run: |
+          output=$(python replay_benchmark.py --agent agent_v5.py --profile mix8-6-f0 $BASE_ARGS $VARIANT_ARGS)
+          echo "$output"
+          summary=$(printf '%s\n' "$output" | tail -1)
+          echo "::notice title=V5 finalist result::$summary"
+
   v5-elite-sweep:
     name: V5 elite ${{ matrix.id }}
     if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v5-elite]')
