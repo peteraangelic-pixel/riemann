@@ -386,6 +386,50 @@ jobs:
           summary=$(printf '%s\n' "$output" | tail -1)
           echo "::notice title=V6 routing result::$summary"
 
+  v6-replay-stage-c:
+    name: V6 replay C ${{ matrix.id }}
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v6-replay-c]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      max-parallel: 18
+      matrix:
+        include:
+          - {id: control, args: ""}
+          - {id: t14, args: "--set ADAPT_SHEEP_THRESHOLD=14"}
+          - {id: t16, args: "--set ADAPT_SHEEP_THRESHOLD=16"}
+          - {id: t14-sparse12, args: "--set ADAPT_SHEEP_THRESHOLD=14 --set CELLS_PER_HAND=12"}
+          - {id: t16-sparse12, args: "--set ADAPT_SHEEP_THRESHOLD=16 --set CELLS_PER_HAND=12"}
+          - {id: t14-sale0, args: "--set ADAPT_SHEEP_THRESHOLD=14 --set SALE_HOURS=[0]"}
+          - {id: t16-sale0, args: "--set ADAPT_SHEEP_THRESHOLD=16 --set SALE_HOURS=[0]"}
+          - {id: t14-melon17, args: "--set ADAPT_SHEEP_THRESHOLD=14 --set MELON_LAST_PLANT_DAY=17"}
+          - {id: t16-melon17, args: "--set ADAPT_SHEEP_THRESHOLD=16 --set MELON_LAST_PLANT_DAY=17"}
+          - {id: t14-feed-service, args: "--set ADAPT_SHEEP_THRESHOLD=14 --set ANIMAL_SERVICE_MODE=FEED_HARVEST_FERT_CARE"}
+          - {id: t16-feed-service, args: "--set ADAPT_SHEEP_THRESHOLD=16 --set ANIMAL_SERVICE_MODE=FEED_HARVEST_FERT_CARE"}
+          - {id: t14-end27, args: "--set ADAPT_SHEEP_THRESHOLD=14 --set ENDGAME_SELL_DAY=27"}
+          - {id: t16-end27, args: "--set ADAPT_SHEEP_THRESHOLD=16 --set ENDGAME_SELL_DAY=27"}
+          # Three near-complete candidate bundles, configured differently.
+          - {id: alpha, args: "--set ADAPT_SHEEP_THRESHOLD=14 --set CELLS_PER_HAND=12 --set SALE_HOURS=[0] --set MELON_LAST_PLANT_DAY=17"}
+          - {id: beta, args: "--set ADAPT_SHEEP_THRESHOLD=16 --set CELLS_PER_HAND=11 --set SALE_HOURS=[0,4,8,12,16,20] --set ENDGAME_SELL_DAY=27"}
+          - {id: gamma, args: "--set ADAPT_SHEEP_THRESHOLD=999 --set CELLS_PER_HAND=12 --set ANIMAL_SERVICE_MODE=FEED_HARVEST_FERT_CARE --set MELON_LAST_PLANT_DAY=17"}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install engine
+        run: pip install kaggle-environments
+      - name: Test V6 winner interactions and candidate bundles
+        working-directory: kaggriculture
+        env:
+          VARIANT_ARGS: ${{ matrix.args }}
+        run: |
+          output=$(python replay_benchmark.py --agent agent_v5.py $VARIANT_ARGS)
+          echo "$output"
+          summary=$(printf '%s\n' "$output" | tail -1)
+          echo "::notice title=V6 replay C result::$summary"
+
   v6-replay-stage-b:
     name: V6 replay B ${{ matrix.id }}
     if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v6-replay-b]')
