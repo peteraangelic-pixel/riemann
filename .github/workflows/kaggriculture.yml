@@ -49,7 +49,7 @@ jobs:
         run: |
           python - <<'PY'
           import shutil, tarfile
-          shutil.copy('agent.py', 'main.py')
+          shutil.copy('agent_v5.py', 'main.py')
           with tarfile.open('submission.tar.gz', 'w:gz') as t:
               t.add('main.py')
           PY
@@ -98,10 +98,10 @@ jobs:
           fi
       - name: Install Kaggle CLI
         run: pip install kaggle
-      - name: Pack agent
+      - name: Pack selected 94k finalist
         working-directory: kaggriculture
         run: |
-          cp agent.py main.py
+          cp agent_v5.py main.py
           tar -czf submission.tar.gz main.py
       - name: Submit
         working-directory: kaggriculture
