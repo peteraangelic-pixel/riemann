@@ -61,6 +61,8 @@ OPERATING_RESERVE = 300
 CELLS_PER_HAND = 10
 HANDS_EXTRA = 1
 HANDS_MAX = 12
+# Optional replay-derived staffing curves. AUTO retains capacity-based hiring.
+LABOR_MODE = "AUTO"
 
 # Never queue more than this many market orders per turn.
 MAX_MARKET_ORDERS = 10
@@ -69,6 +71,9 @@ MAX_MARKET_ORDERS = 10
 SELL_PRICE_FLOOR = 1
 # Liquidate everything late: inventory has zero terminal value.
 ENDGAME_SELL_DAY = 28
+# Empty means sell whenever stock reaches the shed. Non-empty tuples allow
+# measured batching immediately after town-consumption ticks.
+SALE_HOURS: tuple[int, ...] = ()
 
 # Land purchase triggers.
 LAND_NE_MIN_PLANTED = 3       # unlock early for pasture/field throughput
@@ -105,6 +110,7 @@ MELON_LAST_PLANT_DAY = 18
 # V5 reserves premium ongoing crops in deterministic rank bands. These are
 # deliberately profile constants so Actions can sweep broad economies.
 STRAWBERRY_TARGET = 0
+STRAWBERRY_START_DAY = 0
 STRAWBERRY_LAST_PLANT_DAY = 13
 FERTILIZER_RESERVE = 0
 FERTILIZE_PREMIUM_ONLY = True
@@ -248,7 +254,7 @@ class FarmerPlanner:
                 return "MELON"
             # Ongoing strawberries produce four premium harvests. Keep their
             # band compact and start early enough for the final age-16 tick.
-            if rank is not None and day <= STRAWBERRY_LAST_PLANT_DAY:
+            if rank is not None and STRAWBERRY_START_DAY <= day <= STRAWBERRY_LAST_PLANT_DAY:
                 premium_rank = rank - len(MELON_CELLS)
                 if 0 <= premium_rank < STRAWBERRY_TARGET:
                     return "STRAWBERRY"
@@ -327,6 +333,8 @@ class FarmerPlanner:
         for item in sale_items:
             if len(orders) >= MAX_MARKET_ORDERS:
                 break
+            if day < ENDGAME_SELL_DAY and SALE_HOURS and hour not in SALE_HOURS:
+                continue
             qty = shed[item]
             if qty <= 0:
                 continue
@@ -381,6 +389,22 @@ class FarmerPlanner:
         ) // ANIMALS_PER_WORKER
         crop_workers_target = max(2, (len(plan) + CELLS_PER_HAND - 1) // CELLS_PER_HAND + HANDS_EXTRA)
         h_target = min(HANDS_MAX, crop_workers_target + animal_workers_target)
+        if LABOR_MODE == "DMITRI":
+            if day <= 7:
+                h_target = 3
+            elif day <= 9:
+                h_target = 6
+            elif day == 10:
+                h_target = 7
+            elif day == 18:
+                h_target = 11
+            elif day <= 27:
+                h_target = 10
+            else:
+                h_target = 3
+        elif LABOR_MODE == "INDUSTRIAL":
+            h_target = 5 if day <= 6 else (8 if day <= 9 else (12 if day <= 27 else 4))
+        h_target = min(HANDS_MAX, h_target)
         to_hire = max(0, h_target - len(hands_now))
         hires_today = int(me.get("hires_today", len(hands_now)) or 0)
         for h in range(to_hire):

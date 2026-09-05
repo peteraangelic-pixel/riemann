@@ -329,6 +329,120 @@ jobs:
           summary=$(printf '%s\n' "$output" | tail -1)
           echo "::notice title=Replay benchmark result::$summary"
 
+  v5-advice-sweep:
+    name: V5 advice ${{ matrix.id }}
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v5-advice]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        include:
+          - {id: finalist-control, args: ""}
+          - {id: labor-dmitri, args: "--set LABOR_MODE=DMITRI"}
+          - {id: labor-industrial, args: "--set LABOR_MODE=INDUSTRIAL --set HANDS_MAX=14"}
+          - {id: labor-dmitri-w4, args: "--set LABOR_MODE=DMITRI --per-worker 4"}
+          - {id: sale-after-tick, args: "--set SALE_HOURS=[1,5,9,13,17,21]"}
+          - {id: sale-on-tick, args: "--set SALE_HOURS=[0,4,8,12,16,20]"}
+          - {id: sale-late-tick, args: "--set SALE_HOURS=[2,6,10,14,18,22]"}
+          - {id: sale-morning, args: "--set SALE_HOURS=[0]"}
+          - {id: no-carrot, args: "--set CARROT_KAPPA=0.0"}
+          - {id: fert2, args: "--set FERTILIZER_RESERVE=2"}
+          - {id: fert4, args: "--set FERTILIZER_RESERVE=4"}
+          - {id: fert6, args: "--set FERTILIZER_RESERVE=6"}
+          - {id: feed-first, args: "--set ANIMAL_SERVICE_MODE=FEED_HARVEST_FERT_CARE"}
+          - {id: collect-before-care, args: "--set ANIMAL_SERVICE_MODE=FEED_FERT_HARVEST_CARE"}
+          - {id: care-first, args: "--set ANIMAL_SERVICE_MODE=FEED_CARE_HARVEST_FERT"}
+          - {id: reserve350, args: "--set OPERATING_RESERVE=350"}
+          - {id: reserve500, args: "--set OPERATING_RESERVE=500"}
+          - {id: more-hands, args: "--set CELLS_PER_HAND=7 --set HANDS_EXTRA=2 --set HANDS_MAX=14"}
+          - {id: late-cut, args: "--set LABOR_MODE=DMITRI --set ENDGAME_SELL_DAY=27"}
+          - {id: herd7c7s, args: "--set ANIMAL_TARGETS={\"COW\":7,\"SHEEP\":7}"}
+          - {id: herd7c7s-labor, args: "--set ANIMAL_TARGETS={\"COW\":7,\"SHEEP\":7} --set LABOR_MODE=DMITRI"}
+          - {id: late-straw8, args: "--set STRAWBERRY_TARGET=8 --set STRAWBERRY_START_DAY=8 --set PREMIUM_SEED_BATCH=4"}
+          - {id: late-straw16, args: "--set STRAWBERRY_TARGET=16 --set STRAWBERRY_START_DAY=8 --set PREMIUM_SEED_BATCH=6"}
+          - {id: late-straw28, args: "--set STRAWBERRY_TARGET=28 --set STRAWBERRY_START_DAY=8 --set PREMIUM_SEED_BATCH=8"}
+          - {id: late-straw8-fert4, args: "--set STRAWBERRY_TARGET=8 --set STRAWBERRY_START_DAY=8 --set PREMIUM_SEED_BATCH=4 --set FERTILIZER_RESERVE=4"}
+          - {id: late-straw16-fert6, args: "--set STRAWBERRY_TARGET=16 --set STRAWBERRY_START_DAY=8 --set PREMIUM_SEED_BATCH=6 --set FERTILIZER_RESERVE=6"}
+          - {id: dmitri-lite, args: "--set LABOR_MODE=DMITRI --set STRAWBERRY_TARGET=16 --set STRAWBERRY_START_DAY=8 --set PREMIUM_SEED_BATCH=6 --set FERTILIZER_RESERVE=4"}
+          - {id: advice-combo1, args: "--set LABOR_MODE=DMITRI --set SALE_HOURS=[1,5,9,13,17,21] --set CARROT_KAPPA=0.0"}
+          - {id: advice-combo2, args: "--set LABOR_MODE=INDUSTRIAL --set HANDS_MAX=14 --set FERTILIZER_RESERVE=4 --set CARROT_KAPPA=0.0"}
+          - {id: advice-combo3, args: "--set LABOR_MODE=DMITRI --set STRAWBERRY_TARGET=8 --set STRAWBERRY_START_DAY=8 --set PREMIUM_SEED_BATCH=4 --set FERTILIZER_RESERVE=4 --set CARROT_KAPPA=0.0"}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install engine
+        run: pip install kaggle-environments
+      - name: Test replay-derived and text-file advice
+        working-directory: kaggriculture
+        env:
+          VARIANT_ARGS: ${{ matrix.args }}
+        run: |
+          output=$(python replay_benchmark.py --agent agent_v5.py $VARIANT_ARGS)
+          echo "$output"
+          summary=$(printf '%s\n' "$output" | tail -1)
+          echo "::notice title=V5 advice result::$summary"
+
+  v6-scale-sweep:
+    name: V6 scale ${{ matrix.id }}
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v6-scale]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        include:
+          - {id: m8, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]]"}
+          - {id: m10, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]]"}
+          - {id: m12, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2],[2,2],[3,2]]"}
+          - {id: m8-last17, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]] --set MELON_LAST_PLANT_DAY=17"}
+          - {id: m10-last17, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set MELON_LAST_PLANT_DAY=17"}
+          - {id: m12-last17, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2],[2,2],[3,2]] --set MELON_LAST_PLANT_DAY=17"}
+          - {id: herd7c7s-m8, args: "--set ANIMAL_TARGETS={\"COW\":7,\"SHEEP\":7} --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]]"}
+          - {id: herd9c5s-m8, args: "--set ANIMAL_TARGETS={\"COW\":9,\"SHEEP\":5} --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]]"}
+          - {id: herd10c4s-m8, args: "--set ANIMAL_TARGETS={\"COW\":10,\"SHEEP\":4} --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]]"}
+          - {id: herd8c8s-m6, args: "--set ANIMAL_TARGETS={\"COW\":8,\"SHEEP\":8}"}
+          - {id: herd10c6s-m6, args: "--set ANIMAL_TARGETS={\"COW\":10,\"SHEEP\":6}"}
+          - {id: herd12c8s-m6, args: "--set ANIMAL_TARGETS={\"COW\":12,\"SHEEP\":8}"}
+          - {id: industrial-m8, args: "--set LABOR_MODE=INDUSTRIAL --set HANDS_MAX=14 --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]]"}
+          - {id: industrial-m10, args: "--set LABOR_MODE=INDUSTRIAL --set HANDS_MAX=14 --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]]"}
+          - {id: dmitri-m8, args: "--set LABOR_MODE=DMITRI --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]]"}
+          - {id: dmitri-m12, args: "--set LABOR_MODE=DMITRI --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2],[2,2],[3,2]]"}
+          - {id: fert-m8-r4, args: "--set FERTILIZER_RESERVE=4 --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]]"}
+          - {id: fert-m10-r4, args: "--set FERTILIZER_RESERVE=4 --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]]"}
+          - {id: fert-m12-r6, args: "--set FERTILIZER_RESERVE=6 --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2],[2,2],[3,2]]"}
+          - {id: dmitri-full16, args: "--set LABOR_MODE=DMITRI --set STRAWBERRY_TARGET=16 --set STRAWBERRY_START_DAY=8 --set PREMIUM_SEED_BATCH=6 --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2],[2,2],[3,2]]"}
+          - {id: dmitri-full28, args: "--set LABOR_MODE=DMITRI --set STRAWBERRY_TARGET=28 --set STRAWBERRY_START_DAY=8 --set PREMIUM_SEED_BATCH=8 --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2],[2,2],[3,2]]"}
+          - {id: dmitri-full28-fert, args: "--set LABOR_MODE=DMITRI --set STRAWBERRY_TARGET=28 --set STRAWBERRY_START_DAY=8 --set PREMIUM_SEED_BATCH=8 --set FERTILIZER_RESERVE=6 --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2],[2,2],[3,2]]"}
+          - {id: sale-after-m8, args: "--set SALE_HOURS=[1,5,9,13,17,21] --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]]"}
+          - {id: sale-on-m8, args: "--set SALE_HOURS=[0,4,8,12,16,20] --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]]"}
+          - {id: scale-combo1, args: "--set LABOR_MODE=INDUSTRIAL --set HANDS_MAX=14 --set FERTILIZER_RESERVE=4 --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]]"}
+          - {id: scale-combo2, args: "--set LABOR_MODE=DMITRI --set ANIMAL_TARGETS={\"COW\":7,\"SHEEP\":7} --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]]"}
+          - {id: scale-combo3, args: "--set LABOR_MODE=DMITRI --set FERTILIZER_RESERVE=4 --set CARROT_KAPPA=0.0 --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]]"}
+          - {id: scale-combo4, args: "--set CELLS_PER_HAND=7 --set HANDS_EXTRA=2 --set HANDS_MAX=14 --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]]"}
+          - {id: scale-combo5, args: "--set LABOR_MODE=DMITRI --set SALE_HOURS=[1,5,9,13,17,21] --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]]"}
+          - {id: scale-combo6, args: "--set LABOR_MODE=INDUSTRIAL --set HANDS_MAX=14 --set ANIMAL_TARGETS={\"COW\":7,\"SHEEP\":7} --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]]"}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install engine
+        run: pip install kaggle-environments
+      - name: Search independently for 110k-scale economies
+        working-directory: kaggriculture
+        env:
+          VARIANT_ARGS: ${{ matrix.args }}
+        run: |
+          output=$(python replay_benchmark.py --agent agent_v5.py $VARIANT_ARGS)
+          echo "$output"
+          summary=$(printf '%s\n' "$output" | tail -1)
+          echo "::notice title=V6 scale result::$summary"
+
   v5-finalist-sweep:
     name: V5 finalist ${{ matrix.id }}
     if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v5-finalist]')
