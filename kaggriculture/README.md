@@ -8,7 +8,7 @@ konkursu — https://www.kaggle.com/competitions/kaggriculture
 dogrywka LB do ~2026-10-15. Pula $50k (10 × $5k). Dozwolone 5 submissji
 dziennie; liczą się 2 ostatnie.
 
-## Stan (2026-09-04)
+## Stan (2026-09-05)
 
 - `agent.py` — **v2: pszeniczno-marchewkowy conveyor z melonem i rękami
   do pracy**. Deterministic, bez zależności poza silnikiem gry; bez pamięci
@@ -16,8 +16,9 @@ dziennie; liczą się 2 ostatnie.
 - Silnik gry działa **offline** (`kaggle-environments`); pełny sezon 720 tur
   to ~2 s, więc iteracja jest tania.
 - Wyniki lokalne (720 tur; średnia z 10 seedów):
-  - vs `pass`: **~29.7k**, vs `random`: **~29.8k**, self-play: **~26.8k**
-    (baseline v0 miało ~3.9k).
+  - vs `pass`: **~29.7k**, vs deterministyczny `random`: **~29.9k**,
+    vs wbudowany `starter`: **~29.1k**, self-play: **~26.8k**
+    (baseline v0 miało ~3.9k; po 10 seedów na wariant).
 
 ## Jak działa strategia (v2)
 
@@ -55,8 +56,8 @@ dziennie; liczą się 2 ostatnie.
 ```bash
 make setup       # venv + kaggle-environments (raz)
 make test        # testy offline (kontrakt akcji, determinizm, przewaga nad idle)
-make match       # lokalny mecz vs OPPONENT=pass|random|self
-make benchmark   # szybki przegląd vs pass i random
+make match       # lokalny mecz vs OPPONENT=pass|random|starter|self
+make benchmark   # szybki przegląd vs pass, deterministyczny random i starter
 ```
 
 Strojenie: `bench_tune.py` monkeypatchuje stałe modułu `agent.py` i mierzy
@@ -68,10 +69,10 @@ nie wchodzi do paczki submissji.
 - Sandbox (Arena) **nie ma** łączności z Kaggle; runner GitHub Actions ją ma.
   Dlatego: kod i testy rozwijamy offline, a walidację/submisję odpalamy na GH
   Actions (workflow `kaggriculture.yml`) z sekretami Kaggle.
-- Sekrety **nigdy** nie są w repo. Lokalnie poświadczenia trzymaj w
-  `kaggriculture/.kaggle/` (gitignored); na GitHub użyj secrets
-  `KAGGLE_USERNAME` / `KAGGLE_KEY` (i opcjonalnie `KAGGLE_API_TOKEN` dla
-  nowego formatu klucza `KGAT_...`).
+- Sekrety **nigdy** nie są w repo. Lokalnie aktualny token zapisz jako
+  `~/.kaggle/access_token` (tryb `600`) albo ustaw `KAGGLE_API_TOKEN`.
+  Na GitHub preferowany jest secret `KAGGLE_API_TOKEN`; workflow zachowuje
+  też kompatybilność ze starym duetem `KAGGLE_USERNAME` / `KAGGLE_KEY`.
 
 ## Submisja Kaggle
 

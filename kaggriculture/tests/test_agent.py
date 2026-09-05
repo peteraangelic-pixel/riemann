@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from agent import FarmerPlanner, act  # noqa: E402
-from simulate import load_agent  # noqa: E402
+from simulate import randomish  # noqa: E402
 
 
 class AgentContractTests(unittest.TestCase):
@@ -86,6 +86,15 @@ class AgentContractTests(unittest.TestCase):
             return env.state[0].reward, env.state[1].reward
 
         self.assertEqual(reward(42), reward(42))
+
+    def test_randomish_opponent_is_stateless_and_reproducible(self) -> None:
+        from kaggle_environments import make
+
+        env = make("kaggriculture", configuration={"episodeSteps": 24, "seed": 7})
+        obs = env.state[0].observation
+        first = randomish(obs, env.configuration)
+        second = randomish(obs, env.configuration)
+        self.assertEqual(first, second)
 
     def test_baseline_beats_an_idle_farm_over_a_full_season(self) -> None:
         from kaggle_environments import make
