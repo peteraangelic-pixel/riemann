@@ -12,6 +12,7 @@ import argparse
 import gzip
 import importlib.util
 import json
+import zipfile
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -32,6 +33,10 @@ def main() -> None:
     parser.add_argument("--shard", type=int, default=0)
     parser.add_argument("--shards", type=int, default=1)
     parser.add_argument("--agent", default="agent.py")
+    parser.add_argument(
+        "--archive", type=Path,
+        help="ZIP of external replays; candidate is tested on both sides of each match",
+    )
     parser.add_argument("--profile", choices=[
         "cow5", "cow5-s16", "cow8", "cow8-s16", "sheep6-s16",
         "mix5-2", "mix5-2-s8", "mix5-2-s16",
@@ -118,17 +123,30 @@ def main() -> None:
             value = [tuple(cell) for cell in value]
         module[name] = value
 
-    replay_paths = sorted((HERE / "online").glob("*/replay.json.gz"))
-    replay_paths = replay_paths[args.shard :: args.shards]
+    records: list[tuple[str, dict, int]] = []
+    if args.archive:
+        archive_path = args.archive if args.archive.is_absolute() else HERE.parent / args.archive
+        with zipfile.ZipFile(archive_path) as archive:
+            for member in sorted(n for n in archive.namelist() if n.endswith(".json")):
+                with archive.open(member) as stream:
+                    replay = json.load(stream)
+                # External champion matches do not contain our team. Running
+                # both seats prevents side-specific seeds/layouts from biasing
+                # the small elite corpus.
+                for candidate_side in (0, 1):
+                    records.append((Path(member).stem, replay, candidate_side))
+    else:
+        for path in sorted((HERE / "online").glob("*/replay.json.gz")):
+            with gzip.open(path, "rt") as stream:
+                replay = json.load(stream)
+            records.append((path.parent.name, replay, replay["info"]["TeamNames"].index(OUR_TEAM)))
+    records = records[args.shard :: args.shards]
     scores: list[float] = []
     original_scores: list[float] = []
     wins = 0
 
-    for path in replay_paths:
-        with gzip.open(path, "rt") as stream:
-            replay = json.load(stream)
+    for replay_id, replay, our_side in records:
         names = replay["info"]["TeamNames"]
-        our_side = names.index(OUR_TEAM)
         opponent_side = 1 - our_side
         actions = [step[opponent_side].get("action") or PASS for step in replay["steps"]]
 
@@ -150,7 +168,7 @@ def main() -> None:
         original_scores.append(original_score)
         wins += candidate_score > opponent_score
         print(
-            f"{path.parent.name} side={our_side} opponent={names[opponent_side]!r} "
+            f"{replay_id} side={our_side} opponent={names[opponent_side]!r} "
             f"original={original_score:.0f} candidate={candidate_score:.0f} "
             f"scripted_opponent={opponent_score:.0f} "
             f"result={'WIN' if candidate_score > opponent_score else 'LOSS'}"

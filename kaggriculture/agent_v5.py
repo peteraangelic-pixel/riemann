@@ -442,6 +442,8 @@ class FarmerPlanner:
                 h_target = 3
         elif LABOR_MODE == "INDUSTRIAL":
             h_target = 5 if day <= 6 else (8 if day <= 9 else (12 if day <= 27 else 4))
+        elif LABOR_MODE == "CHAMPION":
+            h_target = 12 if day <= 27 else 4
         h_target = min(HANDS_MAX, h_target)
         to_hire = max(0, h_target - len(hands_now))
         hires_today = int(me.get("hires_today", len(hands_now)) or 0)

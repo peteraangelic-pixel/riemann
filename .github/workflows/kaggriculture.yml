@@ -386,6 +386,69 @@ jobs:
           summary=$(printf '%s\n' "$output" | tail -1)
           echo "::notice title=V6 routing result::$summary"
 
+  v61-champion-stage-a:
+    name: V6.1 champion A ${{ matrix.id }}
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v61-champion-a]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        include:
+          - {id: control, args: ""}
+          # Exact champion timing components, isolated first.
+          - {id: land6-10, args: "--set LAND_NE_BUY_DAY=6 --set LAND_SW_BUY_DAY=10"}
+          - {id: land6-11, args: "--set LAND_NE_BUY_DAY=6 --set LAND_SW_BUY_DAY=11"}
+          - {id: land6-9, args: "--set LAND_NE_BUY_DAY=6 --set LAND_SW_BUY_DAY=9"}
+          - {id: champion-labor, args: "--set LABOR_MODE=CHAMPION --set HANDS_MAX=12"}
+          - {id: industrial-labor, args: "--set LABOR_MODE=INDUSTRIAL --set HANDS_MAX=12"}
+          - {id: handmax14, args: "--set HANDS_MAX=14 --set LATE_CROP_HAND_BONUS=2"}
+          # Champion premium scales, still separated by product.
+          - {id: melon8, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]]"}
+          - {id: melon10, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]]"}
+          - {id: melon12, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2],[2,2],[3,2]]"}
+          - {id: straw8-d5, args: "--set STRAWBERRY_TARGET=8 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=4"}
+          - {id: straw16-d5, args: "--set STRAWBERRY_TARGET=16 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=6"}
+          - {id: straw24-d5, args: "--set STRAWBERRY_TARGET=24 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=8"}
+          - {id: straw33-d5, args: "--set STRAWBERRY_TARGET=33 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=10"}
+          - {id: straw8-d3, args: "--set STRAWBERRY_TARGET=8 --set STRAWBERRY_START_DAY=3 --set PREMIUM_SEED_BATCH=4"}
+          # Mixed-herd breadth and fertilizer are distinct families.
+          - {id: herd9c5s, args: "--set ANIMAL_TARGETS={\"COW\":9,\"SHEEP\":5} --set ADAPT_SHEEP_THRESHOLD=16"}
+          - {id: herd6c11s, args: "--set ANIMAL_TARGETS={\"COW\":6,\"SHEEP\":11} --set ADAPT_SHEEP_THRESHOLD=16"}
+          - {id: herd4c13s, args: "--set ANIMAL_TARGETS={\"COW\":4,\"SHEEP\":13} --set ADAPT_SHEEP_THRESHOLD=16"}
+          - {id: herd11c6s, args: "--set ANIMAL_TARGETS={\"COW\":11,\"SHEEP\":6} --set ADAPT_SHEEP_THRESHOLD=16"}
+          - {id: fert2, args: "--set FERTILIZER_RESERVE=2"}
+          - {id: fert4, args: "--set FERTILIZER_RESERVE=4"}
+          - {id: fert8, args: "--set FERTILIZER_RESERVE=8"}
+          - {id: fert12, args: "--set FERTILIZER_RESERVE=12"}
+          - {id: se-land, args: "--set SELL_BUY=true"}
+          # Limited two-component probes for interactions visible in all 12 games.
+          - {id: land6-11-labor, args: "--set LAND_NE_BUY_DAY=6 --set LAND_SW_BUY_DAY=11 --set LABOR_MODE=CHAMPION --set HANDS_MAX=12"}
+          - {id: melon8-straw8, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]] --set STRAWBERRY_TARGET=8 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=4"}
+          - {id: melon12-straw8, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2],[2,2],[3,2]] --set STRAWBERRY_TARGET=8 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=4"}
+          - {id: straw8-fert2, args: "--set STRAWBERRY_TARGET=8 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=4 --set FERTILIZER_RESERVE=2"}
+          - {id: herd9c5s-labor, args: "--set ANIMAL_TARGETS={\"COW\":9,\"SHEEP\":5} --set ADAPT_SHEEP_THRESHOLD=16 --set LABOR_MODE=CHAMPION --set HANDS_MAX=12"}
+          - {id: land6-11-melon8, args: "--set LAND_NE_BUY_DAY=6 --set LAND_SW_BUY_DAY=11 --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]]"}
+          - {id: t16-control, args: "--set ADAPT_SHEEP_THRESHOLD=16"}
+          - {id: t14-control, args: "--set ADAPT_SHEEP_THRESHOLD=14"}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install engine
+        run: pip install kaggle-environments
+      - name: Test isolated champion-match lessons on both seats
+        working-directory: kaggriculture
+        env:
+          VARIANT_ARGS: ${{ matrix.args }}
+        run: |
+          output=$(python replay_benchmark.py --agent agent_v5.py --archive Downloads.zip $VARIANT_ARGS)
+          echo "$output"
+          summary=$(printf '%s\n' "$output" | tail -1)
+          echo "::notice title=V6.1 champion A result::$summary"
+
   v6-replay-stage-c:
     name: V6 replay C ${{ matrix.id }}
     if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v6-replay-c]')
