@@ -31,6 +31,10 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--shard", type=int, default=0)
     parser.add_argument("--shards", type=int, default=1)
+    parser.add_argument("--animal-kind", choices=["GOOSE", "COW", "SHEEP"])
+    parser.add_argument("--animal-target", type=int)
+    parser.add_argument("--per-worker", type=int)
+    parser.add_argument("--feed-days", type=int)
     args = parser.parse_args()
     if not 0 <= args.shard < args.shards:
         parser.error("shard must satisfy 0 <= shard < shards")
@@ -38,6 +42,16 @@ def main() -> None:
     from kaggle_environments import make
 
     candidate = load_agent(HERE / "agent.py")
+    module = candidate.__globals__
+    if args.animal_kind is not None:
+        module["ANIMAL_KIND"] = args.animal_kind
+    if args.animal_target is not None:
+        module["ANIMAL_TARGET"] = args.animal_target
+    if args.per_worker is not None:
+        module["ANIMALS_PER_WORKER"] = args.per_worker
+    if args.feed_days is not None:
+        module["FEED_STOCK_DAYS"] = args.feed_days
+
     replay_paths = sorted((HERE / "online").glob("*/replay.json.gz"))
     replay_paths = replay_paths[args.shard :: args.shards]
     scores: list[float] = []
@@ -78,7 +92,9 @@ def main() -> None:
 
     if scores:
         print(
-            f"SUMMARY shard={args.shard}/{args.shards} games={len(scores)} wins={wins} "
+            f"SUMMARY kind={module['ANIMAL_KIND']} target={module['ANIMAL_TARGET']} "
+            f"per_worker={module['ANIMALS_PER_WORKER']} feed_days={module['FEED_STOCK_DAYS']} "
+            f"shard={args.shard}/{args.shards} games={len(scores)} wins={wins} "
             f"candidate_avg={sum(scores) / len(scores):.1f} "
             f"original_avg={sum(original_scores) / len(original_scores):.1f} "
             f"delta_avg={(sum(scores) - sum(original_scores)) / len(scores):+.1f}"

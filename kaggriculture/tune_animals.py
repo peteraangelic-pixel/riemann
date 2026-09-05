@@ -32,8 +32,9 @@ def main() -> None:
 
     candidate = load("candidate", HERE / "agent.py")
     baseline = load("submitted_v2", HERE.parent / "main.py")
-    candidate.GOOSE_TARGET = args.geese
-    candidate.GEESE_PER_WORKER = args.per_worker
+    candidate.ANIMAL_KIND = "GOOSE"
+    candidate.ANIMAL_TARGET = args.geese
+    candidate.ANIMALS_PER_WORKER = args.per_worker
     candidate.FEED_STOCK_DAYS = args.feed_days
 
     candidate_scores: list[float] = []

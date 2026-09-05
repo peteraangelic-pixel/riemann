@@ -328,3 +328,39 @@ jobs:
           echo "$output"
           summary=$(printf '%s\n' "$output" | tail -1)
           echo "::notice title=Replay benchmark result::$summary"
+
+  species-sweep:
+    name: V4 ${{ matrix.kind }}-${{ matrix.target }}-w${{ matrix.per_worker }}
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v4-tune]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {kind: GOOSE, target: 5, per_worker: 2}
+          - {kind: COW, target: 4, per_worker: 2}
+          - {kind: COW, target: 5, per_worker: 2}
+          - {kind: COW, target: 6, per_worker: 2}
+          - {kind: COW, target: 8, per_worker: 2}
+          - {kind: SHEEP, target: 4, per_worker: 2}
+          - {kind: SHEEP, target: 5, per_worker: 2}
+          - {kind: SHEEP, target: 6, per_worker: 2}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install engine
+        run: pip install kaggle-environments
+      - name: Benchmark species against real replay actions
+        working-directory: kaggriculture
+        run: |
+          output=$(python replay_benchmark.py \
+            --animal-kind ${{ matrix.kind }} \
+            --animal-target ${{ matrix.target }} \
+            --per-worker ${{ matrix.per_worker }} \
+            --feed-days 3)
+          echo "$output"
+          summary=$(printf '%s\n' "$output" | tail -1)
+          echo "::notice title=V4 species result::$summary"
