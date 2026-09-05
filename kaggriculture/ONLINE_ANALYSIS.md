@@ -21,9 +21,10 @@ Snapshot: 2026-09-05. Submission ref: `56032076` (v2, commit `c393cfe`).
 | 105797403 | 0 | loss | 29,163 | phoenix_merk | 66,240 |
 | 105798313 | 1 | loss | 26,546 | dauriel | 70,730 |
 | 105799286 | 0 | win | 30,663 | Shrey Modi | 17,222 |
+| 105800261 | 0 | loss | 23,809 | revv0o | 33,784 |
 
-Complete v2 sample at the snapshot: 6 wins, 9 losses. V2 averaged 27,607;
-opponents averaged 45,680. Our output stayed narrow while opponent strength
+Complete v2 sample at the snapshot: 6 wins, 10 losses. V2 averaged 27,370;
+opponents averaged 44,936. Our output stayed narrow while opponent strength
 varied widely, confirming that the wheat/carrot/melon economy is reliable but
 has a low earnings ceiling.
 
@@ -34,7 +35,7 @@ The 15-match sample separates strong and weak opponents quantitatively:
 | Matches | Opponent avg | Peak animals avg | Peak strawberries avg | Peak melons avg |
 |---|---:|---:|---:|---:|
 | Our 6 wins | 15,944 | 4.5 | 6.2 | 7.8 |
-| Our 9 losses | 65,503 | 15.1 | 22.1 | 13.1 |
+| Our 10 losses | 62,332 | 13.8 | 19.9 | 15.2 |
 
 The pattern is not tied to one opponent. Strong agents repeatedly combined a
 serviced animal herd with fertilizer and high-value crops. Examples include
