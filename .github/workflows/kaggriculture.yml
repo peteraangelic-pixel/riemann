@@ -3,8 +3,13 @@ name: Kaggriculture checks
 on:
   push:
     branches: ["arena/**"]
+    # Historical V4-V6 matrix archive. V7 has a dedicated workflow so false
+    # legacy jobs no longer clutter each staged run.
     paths:
-      - "kaggriculture/**"
+      - "kaggriculture/agent.py"
+      - "kaggriculture/agent_v5.py"
+      - "kaggriculture/agent_v6.py"
+      - "kaggriculture/tests/**"
       - ".github/workflows/kaggriculture.yml"
   workflow_dispatch:
     inputs:
