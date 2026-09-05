@@ -329,6 +329,60 @@ jobs:
           summary=$(printf '%s\n' "$output" | tail -1)
           echo "::notice title=Replay benchmark result::$summary"
 
+  v5-elite-sweep:
+    name: V5 elite ${{ matrix.id }}
+    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v5-elite]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        include:
+          - {id: best-m6, args: ""}
+          - {id: m5, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1]]"}
+          - {id: m7, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1]]"}
+          - {id: m6-floor1, args: "--set SELL_PRICE_FLOOR=1"}
+          - {id: m6-lr500, args: "--set LAND_RESERVE=500"}
+          - {id: m6-w4, args: "--per-worker 4"}
+          - {id: m6-cells11, args: "--set CELLS_PER_HAND=11"}
+          - {id: m6-cells12, args: "--set CELLS_PER_HAND=12"}
+          - {id: m6-adaptc9, args: "--set ADAPT_COW_TARGET=9"}
+          - {id: m6-feed2, args: "--feed-days 2"}
+          - {id: m6-ne3sw20, args: "--set LAND_SW_MIN_PLANTED=20"}
+          - {id: m6-ne3sw25, args: "--set LAND_SW_MIN_PLANTED=25"}
+          - {id: m6-ne1sw25, args: "--set LAND_NE_MIN_PLANTED=1 --set LAND_SW_MIN_PLANTED=25"}
+          - {id: m6-top-all, args: "--set LAND_RESERVE=500 --per-worker 4 --set SELL_PRICE_FLOOR=1 --set CELLS_PER_HAND=11 --set ADAPT_COW_TARGET=9"}
+          - {id: m6-lr500-w4, args: "--set LAND_RESERVE=500 --per-worker 4"}
+          - {id: m6-w4-floor1, args: "--per-worker 4 --set SELL_PRICE_FLOOR=1"}
+          - {id: m6-herd7c7s, args: "--set ANIMAL_TARGETS={\"COW\":7,\"SHEEP\":7}"}
+          - {id: m6-herd8c5s, args: "--set ANIMAL_TARGETS={\"COW\":8,\"SHEEP\":5}"}
+          - {id: m6-herd9c5s, args: "--set ANIMAL_TARGETS={\"COW\":9,\"SHEEP\":5}"}
+          - {id: m6-herd9c6s, args: "--set ANIMAL_TARGETS={\"COW\":9,\"SHEEP\":6}"}
+          - {id: m6-2x3, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[0,1],[1,1],[2,1]]"}
+          - {id: m6-last17, args: "--set MELON_LAST_PLANT_DAY=17"}
+          - {id: m6-last18, args: "--set MELON_LAST_PLANT_DAY=18"}
+          - {id: m6-last20, args: "--set MELON_LAST_PLANT_DAY=20"}
+          - {id: m6-straw2, args: "--set STRAWBERRY_TARGET=2 --set PREMIUM_SEED_BATCH=2 --set FERTILIZER_RESERVE=2"}
+          - {id: m6-straw4, args: "--set STRAWBERRY_TARGET=4 --set PREMIUM_SEED_BATCH=2 --set FERTILIZER_RESERVE=2"}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install engine
+        run: pip install kaggle-environments
+      - name: Benchmark elite refinements against all real replay streams
+        working-directory: kaggriculture
+        env:
+          BASE_ARGS: "--set LAND_NE_MIN_PLANTED=3 --set LAND_SW_MIN_PLANTED=30 --set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1]]"
+          VARIANT_ARGS: ${{ matrix.args }}
+        run: |
+          output=$(python replay_benchmark.py --agent agent_v5.py --profile mix8-6-f0 $BASE_ARGS $VARIANT_ARGS)
+          echo "$output"
+          summary=$(printf '%s\n' "$output" | tail -1)
+          echo "::notice title=V5 elite result::$summary"
+
   v5-combo-sweep:
     name: V5 combo ${{ matrix.id }}
     if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-v5-combo]')
