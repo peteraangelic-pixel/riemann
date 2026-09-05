@@ -1,66 +1,33 @@
-name: Kaggriculture V7 phased sweeps
+name: Kaggriculture V7 replay reconstruction
 
 on:
   push:
     branches: ["arena/01a0712c-riemann"]
     paths:
       - "kaggriculture/agent_v7.py"
+      - "kaggriculture/agent_v7_scripted.py"
       - "kaggriculture/replay_benchmark.py"
       - ".github/workflows/kaggriculture-v7.yml"
 
 jobs:
-  forward-selection:
-    name: V7 phase B ${{ matrix.id }}
-    if: contains(github.event.head_commit.message, '[kaggr-v7-phase-b]')
+  reconstruction:
+    name: V7 reconstruction ${{ matrix.id }}
+    if: contains(github.event.head_commit.message, '[kaggr-v7-reconstruct]')
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
     strategy:
       fail-fast: false
-      max-parallel: 24
+      max-parallel: 10
       matrix:
         include:
-          - {id: control, args: ""}
-          # One-cycle startup melon capital, independently of later phases.
-          - {id: m8-cut8, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]] --set MELON_LAST_PLANT_DAY=8"}
-          - {id: m8-cut9, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]] --set MELON_LAST_PLANT_DAY=9"}
-          - {id: m8-repeat, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]]"}
-          - {id: m10-cut8, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set MELON_LAST_PLANT_DAY=8"}
-          - {id: m10-cut9, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set MELON_LAST_PLANT_DAY=9"}
-          - {id: m10-cut10, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set MELON_LAST_PLANT_DAY=10"}
-          - {id: m10-repeat, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]]"}
-          - {id: ring12-cut9, args: "--set MELON_CELLS=[[3,0],[4,0],[2,1],[3,1],[4,1],[1,2],[2,2],[3,2],[1,3],[2,3],[0,4],[1,4]] --set MELON_LAST_PLANT_DAY=9"}
-          # Future pasture cells stay productive until staged conversion.
-          - {id: phase4-8-14, args: "--set ANIMAL_ACTIVE_BY_DAY={\"0\":4,\"6\":8,\"10\":14}"}
-          - {id: phase4-10-14, args: "--set ANIMAL_ACTIVE_BY_DAY={\"0\":4,\"7\":10,\"10\":14}"}
-          - {id: phase6-10-14, args: "--set ANIMAL_ACTIVE_BY_DAY={\"0\":6,\"7\":10,\"10\":14}"}
-          - {id: phase4-8-12-14, args: "--set ANIMAL_ACTIVE_BY_DAY={\"0\":4,\"6\":8,\"9\":12,\"11\":14}"}
-          - {id: phase4-late, args: "--set ANIMAL_ACTIVE_BY_DAY={\"0\":4,\"8\":8,\"12\":14}"}
-          # Small explicit strawberry estates before testing industrial scale.
-          - {id: straw5, args: "--set STRAWBERRY_TARGET=5 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=3"}
-          - {id: straw13, args: "--set STRAWBERRY_TARGET=13 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=5"}
-          - {id: straw20, args: "--set STRAWBERRY_TARGET=20 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=6"}
-          - {id: straw33, args: "--set STRAWBERRY_TARGET=33 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=8"}
-          - {id: straw13-d7, args: "--set STRAWBERRY_TARGET=13 --set STRAWBERRY_START_DAY=7 --set PREMIUM_SEED_BATCH=5"}
-          # Staffing and land are isolated before combination.
-          - {id: labor-renoir, args: "--set LABOR_MODE=RENOIR"}
-          - {id: labor-industrial, args: "--set LABOR_MODE=INDUSTRIAL"}
-          - {id: land6-10, args: "--set LAND_NE_BUY_DAY=6"}
-          - {id: land6-11, args: "--set LAND_NE_BUY_DAY=6 --set LAND_SW_BUY_DAY=11"}
-          - {id: mixed-sequence, args: "--set ANIMAL_KIND_SEQUENCE=[\"COW\",\"SHEEP\",\"COW\",\"SHEEP\",\"COW\",\"COW\",\"COW\",\"COW\",\"COW\",\"COW\",\"SHEEP\",\"SHEEP\",\"SHEEP\",\"SHEEP\"]"}
-          # Two-component forward-selection candidates.
-          - {id: m8-phase, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]] --set MELON_LAST_PLANT_DAY=9 --set ANIMAL_ACTIVE_BY_DAY={\"0\":4,\"6\":8,\"10\":14}"}
-          - {id: m10-phase, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set MELON_LAST_PLANT_DAY=9 --set ANIMAL_ACTIVE_BY_DAY={\"0\":4,\"6\":8,\"10\":14}"}
-          - {id: m10-straw5, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set MELON_LAST_PLANT_DAY=9 --set STRAWBERRY_TARGET=5 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=3"}
-          - {id: m10-straw13, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set MELON_LAST_PLANT_DAY=9 --set STRAWBERRY_TARGET=13 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=5"}
-          - {id: phase-straw5, args: "--set ANIMAL_ACTIVE_BY_DAY={\"0\":4,\"6\":8,\"10\":14} --set STRAWBERRY_TARGET=5 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=3"}
-          - {id: phase-straw13, args: "--set ANIMAL_ACTIVE_BY_DAY={\"0\":4,\"6\":8,\"10\":14} --set STRAWBERRY_TARGET=13 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=5"}
-          - {id: m10-labor, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set MELON_LAST_PLANT_DAY=9 --set LABOR_MODE=RENOIR"}
-          - {id: m10-land6, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set MELON_LAST_PLANT_DAY=9 --set LAND_NE_BUY_DAY=6"}
-          # Three-component candidates are included only after their parts above.
-          - {id: m8-phase-straw5, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1]] --set MELON_LAST_PLANT_DAY=9 --set ANIMAL_ACTIVE_BY_DAY={\"0\":4,\"6\":8,\"10\":14} --set STRAWBERRY_TARGET=5 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=3"}
-          - {id: m10-phase-straw5, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set MELON_LAST_PLANT_DAY=9 --set ANIMAL_ACTIVE_BY_DAY={\"0\":4,\"6\":8,\"10\":14} --set STRAWBERRY_TARGET=5 --set STRAWBERRY_START_DAY=5 --set PREMIUM_SEED_BATCH=3"}
-          - {id: m10-phase-labor, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set MELON_LAST_PLANT_DAY=9 --set ANIMAL_ACTIVE_BY_DAY={\"0\":4,\"6\":8,\"10\":14} --set LABOR_MODE=RENOIR"}
-          - {id: m10-phase-land6, args: "--set MELON_CELLS=[[0,0],[1,0],[2,0],[3,0],[0,1],[1,1],[2,1],[3,1],[0,2],[1,2]] --set MELON_LAST_PLANT_DAY=9 --set ANIMAL_ACTIVE_BY_DAY={\"0\":4,\"6\":8,\"10\":14} --set LAND_NE_BUY_DAY=6"}
+          - {id: v6-control, agent: agent_v6.py, args: ""}
+          - {id: v7-planner, agent: agent_v7.py, args: ""}
+          - {id: script-auto-clamp, agent: agent_v7_scripted.py, args: ""}
+          - {id: script-auto-raw, agent: agent_v7_scripted.py, args: "--set CLAMP_SELL=false"}
+          - {id: script-p0-clamp, agent: agent_v7_scripted.py, args: "--set SEAT_MODE=P0"}
+          - {id: script-p0-raw, agent: agent_v7_scripted.py, args: "--set SEAT_MODE=P0 --set CLAMP_SELL=false"}
+          - {id: script-p1-clamp, agent: agent_v7_scripted.py, args: "--set SEAT_MODE=P1"}
+          - {id: script-p1-raw, agent: agent_v7_scripted.py, args: "--set SEAT_MODE=P1 --set CLAMP_SELL=false"}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -68,14 +35,21 @@ jobs:
           python-version: "3.12"
       - name: Install engine
         run: pip install kaggle-environments
-      - name: Forward-select phased components before new replay archives
+      - name: Cross-validate reconstructed schedule on four corpora
         working-directory: kaggriculture
         env:
+          AGENT: ${{ matrix.agent }}
           VARIANT_ARGS: ${{ matrix.args }}
         run: |
-          public=$(python replay_benchmark.py --agent agent_v7.py $VARIANT_ARGS)
+          public=$(python replay_benchmark.py --agent "$AGENT" $VARIANT_ARGS)
           printf '%s\n' "$public"
-          echo "::notice title=V7 phase B public::$(printf '%s\n' "$public" | tail -1)"
-          champion=$(python replay_benchmark.py --agent agent_v7.py --archive Downloads.zip $VARIANT_ARGS)
-          printf '%s\n' "$champion"
-          echo "::notice title=V7 phase B champion::$(printf '%s\n' "$champion" | tail -1)"
+          echo "::notice title=V7 reconstruct public::$(printf '%s\n' "$public" | tail -1)"
+          champions=$(python replay_benchmark.py --agent "$AGENT" --archive Downloads.zip $VARIANT_ARGS)
+          printf '%s\n' "$champions"
+          echo "::notice title=V7 reconstruct champions::$(printf '%s\n' "$champions" | tail -1)"
+          renoir=$(python replay_benchmark.py --agent "$AGENT" --archive Renoir.zip $VARIANT_ARGS)
+          printf '%s\n' "$renoir"
+          echo "::notice title=V7 reconstruct renoir::$(printf '%s\n' "$renoir" | tail -1)"
+          others=$(python replay_benchmark.py --agent "$AGENT" --archive inni.zip $VARIANT_ARGS)
+          printf '%s\n' "$others"
+          echo "::notice title=V7 reconstruct others::$(printf '%s\n' "$others" | tail -1)"
