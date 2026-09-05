@@ -53,4 +53,6 @@ Build and benchmark a complete subsystem rather than copy one crop:
 7. direct v3-v2 head-to-head and multi-seed tests before another submission.
 
 Compressed public replays and available agent logs live under
-`kaggriculture/online/<episode_id>/`.
+`kaggriculture/online/<episode_id>/`. The `[kaggr-collect]` workflow downloads
+every missing public episode rather than only the newest one, so matches that
+finish between polling runs are not skipped.
