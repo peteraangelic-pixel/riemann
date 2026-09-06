@@ -1,0 +1,45 @@
+name: Kaggriculture TOP49 policy screen
+
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths:
+      - "kaggriculture/research/benchmark_top49.py"
+      - ".github/workflows/kaggriculture-top49-screen.yml"
+
+jobs:
+  screen:
+    if: contains(github.event.head_commit.message, '[kaggr-top49-screen]')
+    name: ${{ matrix.agent_label }} vs ${{ matrix.player }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        agent_label: [aastik, hybrid]
+        player: ["Aastik Rajan15", "我都先道歉", "get some fries", "SJY321"]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install engine
+        run: pip install kaggle-environments
+      - name: Run both-seat tape screen
+        env:
+          AGENT_LABEL: ${{ matrix.agent_label }}
+          PLAYER: ${{ matrix.player }}
+        run: |
+          if [ "$AGENT_LABEL" = aastik ]; then
+            agent=kaggriculture/agent_v8_aastik.py
+          else
+            agent=kaggriculture/agent_v8_hybrid.py
+          fi
+          output=$(python kaggriculture/research/benchmark_top49.py --agent "$agent" --player "$PLAYER")
+          printf '%s\n' "$output"
+          summary=$(printf '%s\n' "$output" | grep '^SUMMARY_JSON=' | tail -1 | cut -c1-6000)
+          summary=${summary//'%'/'%25'}
+          summary=${summary//$'\n'/'%0A'}
+          summary=${summary//$'\r'/'%0D'}
+          echo "::notice title=$AGENT_LABEL vs $PLAYER::$summary"
