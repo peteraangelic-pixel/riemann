@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# bulky raw run data lives in reports/ (regenerable)
+reports/
+artifacts/
+*.tar.gz
+# large external corpus - reference your full online/ folder by path
+corpus/full/
+# results/ IS tracked (UTF-8 validation summaries you commit/share)
+!results/
