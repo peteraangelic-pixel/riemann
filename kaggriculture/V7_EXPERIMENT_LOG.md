@@ -123,3 +123,10 @@ Low premium prices are strongly associated with low outcomes. Independently test
 - A perfect per-episode oracle over only these two policies would score 77/85, versus Aastik's 73/85. Therefore policy selection has a maximum gain of four wins on this corpus; Aastik already dominates the pair for rating.
 - Shared failures are 105990797, 105992649, 105994529, 106006563, 106017709, 106027867, 106029787, and 106037741. These require a genuinely new policy rather than selecting Renoir.
 - First-day opponent orders do not give a trivial separator: rescued and shared-loss episodes include both Renoir/Aastik-like openings and unusual incremental openings. Before fitting a selector, test whether the physically identical first day permits stable Aastik/Renoir handoff at days 1-4.
+
+## V8 early-fusion Stage I results
+
+- Full Aastik remains the win leader at 88,660.4/73W. Renoir-to-Aastik at day 3 ties 73W but falls to 88,558.6; it rescues two Aastik losses and creates two new losses.
+- Renoir-to-Aastik at day 1 reaches 89,104.8/72W and a new simulated maximum of **203,785**, the first 200k result produced by any candidate in the replay benchmark. It rescues episode 106034285 but creates losses on 105999165 and 106033362.
+- Renoir-to-Aastik day 4 falls to 61W; day 2 falls to 50W. Aastik-to-Renoir switches return toward Renoir's money profile but only 50-58 wins. Coupled state handoff is highly non-monotonic.
+- Because Aastik and Renoir physical actions are identical through the first day, the useful day-1 result isolates the **opening market tape**: Renoir market for steps 0-23 followed by full Aastik. Stage J tests every exact switch boundary from step 0 through 24 while keeping Aastik physical actions fixed, seeking Aastik's 73 wins plus the hybrid's higher mean/200k upside.

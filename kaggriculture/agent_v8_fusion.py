@@ -20,6 +20,9 @@ MOTION_SWITCH_DAY = 0
 MARKET_EARLY = 'RENOIR'
 MARKET_LATE = 'RENOIR'
 MARKET_SWITCH_DAY = 0
+# Non-negative values override MARKET_SWITCH_DAY and permit isolated opening
+# market handoffs at an exact turn while keeping one physical trajectory.
+MARKET_SWITCH_STEP = -1
 ORDER_DAYS = []
 def _source(name, player, step):
     if name == "RENOIR":
@@ -33,7 +36,8 @@ def act(observation, configuration):
     step = min(int(observation.get("step", 0)), 719)
     day = step // 24
     motion_name = MOTION_LATE if day >= MOTION_SWITCH_DAY else MOTION_EARLY
-    market_name = MARKET_LATE if day >= MARKET_SWITCH_DAY else MARKET_EARLY
+    market_late = step >= MARKET_SWITCH_STEP if MARKET_SWITCH_STEP >= 0 else day >= MARKET_SWITCH_DAY
+    market_name = MARKET_LATE if market_late else MARKET_EARLY
     motion = _source(motion_name, player, step)
     market = _source(market_name, player, step)
     action = {"farmer": copy.deepcopy(motion["farmer"]),
