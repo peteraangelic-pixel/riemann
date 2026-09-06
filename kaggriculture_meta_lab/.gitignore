@@ -6,6 +6,8 @@ __pycache__/
 reports/
 artifacts/
 *.tar.gz
+# generated sweep variants (regenerated from sweeps/*.json by scripts/sweep.py)
+agents/sweeps/
 # large external corpus - reference your full online/ folder by path
 corpus/full/
 # results/ IS tracked (UTF-8 validation summaries you commit/share)
