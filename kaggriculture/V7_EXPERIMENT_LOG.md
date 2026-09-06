@@ -138,3 +138,11 @@ Low premium prices are strongly associated with low outcomes. Independently test
 - Switch 1 collapses to 64,760.7/6W because Renoir buys 30 wheat but Aastik sells only 9, leaving an incompatible inventory. Switches 2/4 reach 71W at 85-86k; switches 6-11 reach 70W at 85,175.3.
 - The useful minimal fusion is switch 3: Renoir's first three market actions normalize wheat inventory before handing the complete physical and later market schedule to Aastik. It gains 444 average cash and a 32.6k higher maximum over Aastik at the cost of one net win.
 - Next: validate switch 3 and switch 5 on all holdouts. If they remain equivalent, prefer switch 3 as the minimal attributed fusion. Keep full Aastik as the rating leader and the opening hybrid as the high-money candidate.
+
+## V8 opening-finalist Stage K results
+
+- Full Aastik remains the rating choice: live 88,660.4/73W; champions 82,876.9/13W; Renoir 114,177.0/6W; others 78,076.2/5W; new leaders 97,601.0/4W.
+- Minimal switch 3 is the high-money fusion: live 89,104.7/72W with median 84,561 and 203,785 maximum in episode 105988979; champions 83,474.8/12W; Renoir 114,073.1/6W; others 85,944.8/5W; new leaders 94,477.5/4W.
+- Switch 5 ties switch 3 on live, Renoir, and new-leader results. It improves champion mean to 84,037.0 but drops others to 83,693.6/4W. Since switch 3 is smaller, has equal or better win counts, and much stronger other-player robustness, reject switch 5.
+- The 200k hybrid is not the competition-rating winner: versus Aastik it loses one live and one champion win and lowers new-leader mean by 3,123.5. Its value is a distinct high-money experiment, not evidence of greater Bradley-Terry strength.
+- Prepared standalone, dependency-free candidates `agent_v8_aastik.py` and `agent_v8_hybrid.py`. Their actions match the corresponding fusion laboratory profiles on all 720 observations of a checked replay. No upload is authorized or performed yet.
