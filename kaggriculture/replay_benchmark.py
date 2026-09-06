@@ -34,6 +34,10 @@ def main() -> None:
     parser.add_argument("--shards", type=int, default=1)
     parser.add_argument("--agent", default="agent.py")
     parser.add_argument(
+        "--submission", action="append", default=[], metavar="REF",
+        help="only use online replays collected for this submission (repeatable)",
+    )
+    parser.add_argument(
         "--archive", type=Path,
         help="ZIP of external replays; candidate is tested on both sides of each match",
     )
@@ -136,7 +140,18 @@ def main() -> None:
                 for candidate_side in (0, 1):
                     records.append((Path(member).stem, replay, candidate_side))
     else:
+        selected_submissions = set(args.submission)
         for path in sorted((HERE / "online").glob("*/replay.json.gz")):
+            if selected_submissions:
+                metadata_path = path.parent / "metadata.txt"
+                metadata = metadata_path.read_text() if metadata_path.exists() else ""
+                submission_ref = next(
+                    (line.split("=", 1)[1] for line in metadata.splitlines()
+                     if line.startswith("submission_ref=")),
+                    "",
+                )
+                if submission_ref not in selected_submissions:
+                    continue
             with gzip.open(path, "rt") as stream:
                 replay = json.load(stream)
             records.append((path.parent.name, replay, replay["info"]["TeamNames"].index(OUR_TEAM)))

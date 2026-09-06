@@ -1,4 +1,4 @@
-name: Kaggriculture V7 market day isolation
+name: Kaggriculture V7 market refinement
 
 on:
   push:
@@ -10,9 +10,9 @@ on:
       - ".github/workflows/kaggriculture-v7.yml"
 
 jobs:
-  market-refinement:
-    name: V7 market B ${{ matrix.id }}
-    if: contains(github.event.head_commit.message, '[kaggr-v7-market-b]')
+  market-refinement-c:
+    name: V7 market C ${{ matrix.id }}
+    if: contains(github.event.head_commit.message, '[kaggr-v7-market-c]')
     runs-on: ubuntu-latest
     timeout-minutes: 30
     strategy:
@@ -20,38 +20,32 @@ jobs:
       max-parallel: 24
       matrix:
         include:
-          - {id: control, args: ""}
-          - {id: sell-all-days, args: "--set ORDER_MODE=SELL_FIRST"}
-          - {id: sell-day-00, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[0]"}
-          - {id: sell-day-01, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[1]"}
-          - {id: sell-day-02, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[2]"}
-          - {id: sell-day-03, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[3]"}
-          - {id: sell-day-04, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[4]"}
-          - {id: sell-day-05, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[5]"}
-          - {id: sell-day-06, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[6]"}
-          - {id: sell-day-07, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[7]"}
-          - {id: sell-day-08, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[8]"}
-          - {id: sell-day-09, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[9]"}
-          - {id: sell-day-10, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[10]"}
-          - {id: sell-day-11, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[11]"}
-          - {id: sell-day-12, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[12]"}
-          - {id: sell-day-13, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[13]"}
-          - {id: sell-day-14, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[14]"}
-          - {id: sell-day-15, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[15]"}
-          - {id: sell-day-16, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[16]"}
-          - {id: sell-day-17, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[17]"}
-          - {id: sell-day-18, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[18]"}
-          - {id: sell-day-19, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[19]"}
-          - {id: sell-day-20, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[20]"}
-          - {id: sell-day-21, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[21]"}
-          - {id: sell-day-22, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[22]"}
-          - {id: sell-day-23, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[23]"}
-          - {id: sell-day-24, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[24]"}
-          - {id: sell-day-25, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[25]"}
-          - {id: sell-day-26, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[26]"}
-          - {id: sell-day-27, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[27]"}
-          - {id: sell-day-28, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[28]"}
-          - {id: sell-day-29, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[29]"}
+          - {id: control, days: "[]"}
+          - {id: d04, days: "[4]"}
+          - {id: d08, days: "[8]"}
+          - {id: d15, days: "[15]"}
+          - {id: d16, days: "[16]"}
+          - {id: d21, days: "[21]"}
+          - {id: d26, days: "[26]"}
+          - {id: d27, days: "[27]"}
+          - {id: d04-08, days: "[4,8]"}
+          - {id: d08-15, days: "[8,15]"}
+          - {id: d08-16, days: "[8,16]"}
+          - {id: d08-21, days: "[8,21]"}
+          - {id: d08-26, days: "[8,26]"}
+          - {id: d08-27, days: "[8,27]"}
+          - {id: d15-16, days: "[15,16]"}
+          - {id: d21-26, days: "[21,26]"}
+          - {id: d26-27, days: "[26,27]"}
+          - {id: d08-15-16, days: "[8,15,16]"}
+          - {id: d08-21-26, days: "[8,21,26]"}
+          - {id: d08-26-27, days: "[8,26,27]"}
+          - {id: d15-16-21, days: "[15,16,21]"}
+          - {id: d21-26-27, days: "[21,26,27]"}
+          - {id: d08-15-16-21, days: "[8,15,16,21]"}
+          - {id: d08-21-26-27, days: "[8,21,26,27]"}
+          - {id: d08-15-16-21-26-27, days: "[8,15,16,21,26,27]"}
+          - {id: d04-08-15-16-21-26-27, days: "[4,8,15,16,21,26,27]"}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -59,20 +53,25 @@ jobs:
           python-version: "3.12"
       - name: Install engine
         run: pip install kaggle-environments
-      - name: Isolate sell-first ordering one day at a time
+      - name: Test independently beneficial sell-first days and interactions
         working-directory: kaggriculture
         env:
-          VARIANT_ARGS: ${{ matrix.args }}
+          ORDER_DAYS: ${{ matrix.days }}
         run: |
-          public=$(python replay_benchmark.py --agent agent_v7_market.py $VARIANT_ARGS)
+          if [ "$ORDER_DAYS" = "[]" ]; then
+            variant_args=()
+          else
+            variant_args=(--set ORDER_MODE=SELL_FIRST --set "ORDER_DAYS=$ORDER_DAYS")
+          fi
+          public=$(python replay_benchmark.py --agent agent_v7_market.py --submission 56044395 "${variant_args[@]}")
           printf '%s\n' "$public"
-          echo "::notice title=V7 market public::$(printf '%s\n' "$public" | tail -1)"
-          champions=$(python replay_benchmark.py --agent agent_v7_market.py --archive Downloads.zip $VARIANT_ARGS)
+          echo "::notice title=V7 market public-live::$(printf '%s\n' "$public" | tail -1)"
+          champions=$(python replay_benchmark.py --agent agent_v7_market.py --archive Downloads.zip "${variant_args[@]}")
           printf '%s\n' "$champions"
           echo "::notice title=V7 market champions::$(printf '%s\n' "$champions" | tail -1)"
-          renoir=$(python replay_benchmark.py --agent agent_v7_market.py --archive Renoir.zip $VARIANT_ARGS)
+          renoir=$(python replay_benchmark.py --agent agent_v7_market.py --archive Renoir.zip "${variant_args[@]}")
           printf '%s\n' "$renoir"
           echo "::notice title=V7 market renoir::$(printf '%s\n' "$renoir" | tail -1)"
-          others=$(python replay_benchmark.py --agent agent_v7_market.py --archive inni.zip $VARIANT_ARGS)
+          others=$(python replay_benchmark.py --agent agent_v7_market.py --archive inni.zip "${variant_args[@]}")
           printf '%s\n' "$others"
           echo "::notice title=V7 market others::$(printf '%s\n' "$others" | tail -1)"

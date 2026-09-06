@@ -162,6 +162,14 @@ jobs:
           leaderboard_status=$?
           set -e
 
+          # Keep leaderboard in its own annotation: GitHub truncates long
+          # annotations, and the episode tables otherwise hide this section.
+          safe_leaderboard=$(printf '%s' "$leaderboard" | head -30 | sed -E 's/KGAT_[A-Za-z0-9_-]+/[REDACTED]/g')
+          safe_leaderboard=${safe_leaderboard//'%'/'%25'}
+          safe_leaderboard=${safe_leaderboard//$'\n'/'%0A'}
+          safe_leaderboard=${safe_leaderboard//$'\r'/'%0D'}
+          echo "::notice title=Kaggriculture leaderboard::$safe_leaderboard"
+
           submission_refs=$(printf '%s\n' "$submissions" | awk '$1 ~ /^[0-9]+$/ {print $1}')
           episodes_report=''
           if [ -n "$submission_refs" ]; then

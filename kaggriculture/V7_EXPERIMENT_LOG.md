@@ -34,3 +34,21 @@ Keep Renoir's verified physical schedule fixed. Search only market schedules and
 ## Next hypothesis
 
 The extra SELL-first win may originate on one particular day, while applying it globally causes the score loss. Stage B changes ordering on each day 0-29 independently (30 ablations plus control/global) before combining only beneficial days.
+
+## Market stage B results
+
+- Day 4 is the strongest 70-public mean result: 147,975.4/69W. It also improves the champion mean to 87,996.3, but lowers Renoir to 112,334.4/6W and others to 87,436.8/6W.
+- Day 8 is the best balanced isolated change: public 147,548.4/69W, champions 87,198.0/15W, Renoir 116,724.0/8W, and others unchanged at 91,689.1/6W.
+- Days 15, 16, 21, 26, and 27 independently reach 69 public wins with approximately neutral means. Days 16 and 21 also reach 7/10 Renoir wins.
+- Days 6, 7, 10, and 22-24 regress and are excluded from combination testing.
+
+## Live V7 evidence (85 public matches collected 2026-09-06)
+
+- Submitted V7 is 59-26, averages 91,365.8 cash against 81,581.1, median 86,702, and ranges from 44,801 to 171,146. Its leaderboard score increased from the earlier 1188.0 snapshot to 2179.9 as more matches completed.
+- Top games are 171,146-99,739 against XiweiZhou, 167,694-78,660 against soumic 1088, and 161,710-159,403 against momoon.
+- The strongest observed opponent score is 159,403 (momoon). None of our 85 collected matches, nor the supplied champion/Renoir/inni archives, contains a 200k result yet.
+- Most runs reach the identical intended physical maxima (8 cows, 9 sheep, 12 melons, 41 wheat, 33 strawberries, 23 carrots), despite a 126k cash range. Shared demand, sale priority, and the opponent's liquidation dominate final-money variance; the physical schedule itself already demonstrates 170k capability.
+
+## Market stage C design
+
+Test singles, selected pairs, and increasingly broad bundles composed only of days 4, 8, 15, 16, 21, 26, and 27. Report the current 85-match V7 public corpus, champions, Renoir, and others separately. Day 4 remains isolated in most bundles because its larger public gain trades away elite robustness. The public benchmark is explicitly filtered to submission 56044395 so future replay collection cannot silently change the corpus.
