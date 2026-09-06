@@ -35,6 +35,39 @@ free cow fertilizer (plus cheap bought fertilizer) doubles watering bonuses on
 melon/strawberry. This is exactly the elite "virtuous cycle" (cheap fertilizer →
 higher yields → more cash → more hands/land).
 
+## 1b. V8 fertilizer fix — DONE and passed the Wilson gate
+
+`agents/variants/agent_v8_fert.py` is V7 with the fertilizer subsystem fixed
+(routed, not just bought). What the closed-loop lab measured:
+
+1. **Never store fertilizer in the shed.** Retaining it with `FERTILIZER_RESERVE>0`
+   still collapses the farm (to ~300-800) even with the farmer detour removed:
+   cheap fertilizer fills the 100-cap shed and, because sales sort high-value
+   first, it drops last and **blocks the end-of-day deposit of premium product**.
+   `FERTILIZER_RESERVE = 0` is kept; fertilizer is applied DIRECTLY in the field.
+2. **Apply it where it is collected.** The animal hand that does
+   `COLLECT_FERTILIZER` (carries 1 fert) now applies it to a nearby fertilizable
+   premium cell with a **bounded 2-tile detour**, and only when its animal chores
+   are caught up. Detour radius sweep: r2 beat V7 4/5, r4/r99 regressed (detour
+   disrupted feeding more than the extra fert was worth).
+3. **Do NOT bundle crop-mix changes.** Adding 12 strawberries loses to pure V7
+   (-2.8k) even though fertilizer helps *within* the strawberry mix; strawberry
+   expansion is market-negative on its own and is a separate demand-driven
+   decision. V8 keeps the crop mix identical to V7 (`STRAWBERRY_TARGET=0`).
+
+**Final closed-loop result (V8 fert-only vs pure V7, 20 seeds × 2 seats = 40 games):**
+
+```
+27 W / 13 L / 0 T, score rate 67.5% (95% Wilson CI 52.0-79.9)
+mean margin +634, errors 0, balanced on both seats (13-7 / 14-6)
+-> Wilson gate PASS (lower bound 52% > 50%).
+```
+
+A small, **regime-independent, zero-crash** gain — exactly the kind of stable
+edge the final Bradley–Terry ranking rewards. Bigger fertilizer upside (the
+elite ~2× premium-yield cycle) requires the demand-driven crop-mix study
+(strawberries/ongoing crops), which is the next project, not a V8 side-effect.
+
 ## 2. Closed loop vs open loop
 
 - V7's `replay_benchmark.py` (open loop) faithfully reproduces Kaggle scores for

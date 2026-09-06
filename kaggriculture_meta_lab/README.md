@@ -20,7 +20,7 @@ state. True win-rate needs a **closed loop**. This lab gives you both:
 | Did I break the shared-market schedule? | `run_corpus.py` | open-loop (real elite replays) |
 | Does my change actually BEAT another live policy? | `run_tournament.py` | **closed loop** |
 | Who is strongest across a pool (Elo/BT)? | `rate.py` | closed loop |
-| Does cheap fertilizer help? | `fert_probe.py` / `fert_buyer.py` | both |
+| Does the fertilizer fix beat V7? | `run_tournament.py` vs `agent_v8_fert.py` | closed loop |
 | Is a mutation safe to submit? | `--gate` (Wilson CI) | decision rule |
 
 ## Setup (Windows / PowerShell)
@@ -76,13 +76,21 @@ python scripts\rate.py --agents v7=agents\ref\agent_v7.py `
   --games 60 --workers 16
 ```
 
-## Variants (wrappers — proven V7 code is never edited)
+## Variants
 
-A variant is `wrap:<base policy>:<wrapper module>`. The wrapper post-processes
-the base action, so experiments can't corrupt the verified planner.
+Two kinds of experiment:
 
-`agents/variants/fert_buyer.py` is the fertilizer experiment — **and the lab
-already ran it to ground truth** (see `docs/FINDINGS.md`).
+- **Standalone policy** — `agents/variants/agent_v8_fert.py` is V7 with the
+  fertilizer subsystem fixed (applied in-field by the animal hand that collects
+  it, never stored in the shed, same crop mix as V7). The lab ran it through the
+  closed-loop gate: **67.5% score rate vs pure V7 over 40 games (95% Wilson CI
+  52–80), +634 margin, zero crashes** — promoted. See `docs/FINDINGS.md`.
+- **Wrapper** — `wrap:<base policy>:<wrapper module>` post-processes a base
+  action for quick market-layer probes without touching the verified planner.
+
+Promote a candidate only when `run_tournament.py --gate` passes (Wilson low >
+50%, positive margin, no error games) **and** the open-loop corpus does not
+regress.
 
 ## Experiment loop
 
