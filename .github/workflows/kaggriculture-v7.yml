@@ -1,4 +1,4 @@
-name: Kaggriculture V7 market refinement
+name: Kaggriculture V7 market day isolation
 
 on:
   push:
@@ -11,8 +11,8 @@ on:
 
 jobs:
   market-refinement:
-    name: V7 market A ${{ matrix.id }}
-    if: contains(github.event.head_commit.message, '[kaggr-v7-market-a]')
+    name: V7 market B ${{ matrix.id }}
+    if: contains(github.event.head_commit.message, '[kaggr-v7-market-b]')
     runs-on: ubuntu-latest
     timeout-minutes: 30
     strategy:
@@ -20,46 +20,38 @@ jobs:
       max-parallel: 24
       matrix:
         include:
-          # Whole demonstrated market schedules; physical actions stay Renoir.
-          - {id: renoir-auto, args: ""}
-          - {id: renoir-p0, args: "--set MARKET_MODE=RENOIR_P0"}
-          - {id: renoir-p1, args: "--set MARKET_MODE=RENOIR_P1"}
-          - {id: coordi, args: "--set MARKET_MODE=COORDI"}
-          - {id: jordi, args: "--set MARKET_MODE=JORDI"}
-          - {id: zhongyi, args: "--set MARKET_MODE=ZHONGYI"}
-          - {id: jesse, args: "--set MARKET_MODE=JESSE"}
-          # Order priority tests isolate the few observed market-order differences.
-          - {id: renoir-hire-first, args: "--set ORDER_MODE=HIRE_FIRST"}
-          - {id: renoir-sell-first, args: "--set ORDER_MODE=SELL_FIRST"}
-          - {id: renoir-buy-first, args: "--set ORDER_MODE=BUY_FIRST"}
-          - {id: coordi-hire-first, args: "--set MARKET_MODE=COORDI --set ORDER_MODE=HIRE_FIRST"}
-          - {id: coordi-sell-first, args: "--set MARKET_MODE=COORDI --set ORDER_MODE=SELL_FIRST"}
-          - {id: jordi-hire-first, args: "--set MARKET_MODE=JORDI --set ORDER_MODE=HIRE_FIRST"}
-          - {id: jordi-sell-first, args: "--set MARKET_MODE=JORDI --set ORDER_MODE=SELL_FIRST"}
-          - {id: zhongyi-hire-first, args: "--set MARKET_MODE=ZHONGYI --set ORDER_MODE=HIRE_FIRST"}
-          - {id: zhongyi-sell-first, args: "--set MARKET_MODE=ZHONGYI --set ORDER_MODE=SELL_FIRST"}
-          - {id: jesse-hire-first, args: "--set MARKET_MODE=JESSE --set ORDER_MODE=HIRE_FIRST"}
-          - {id: jesse-sell-first, args: "--set MARKET_MODE=JESSE --set ORDER_MODE=SELL_FIRST"}
-          # Late-market transplants preserve Renoir's financing and physical plan.
-          - {id: end27-coordi, args: "--set ENDGAME_MARKET_MODE=COORDI --set ENDGAME_START_DAY=27"}
-          - {id: end28-coordi, args: "--set ENDGAME_MARKET_MODE=COORDI --set ENDGAME_START_DAY=28"}
-          - {id: end29-coordi, args: "--set ENDGAME_MARKET_MODE=COORDI --set ENDGAME_START_DAY=29"}
-          - {id: end27-jordi, args: "--set ENDGAME_MARKET_MODE=JORDI --set ENDGAME_START_DAY=27"}
-          - {id: end28-jordi, args: "--set ENDGAME_MARKET_MODE=JORDI --set ENDGAME_START_DAY=28"}
-          - {id: end29-jordi, args: "--set ENDGAME_MARKET_MODE=JORDI --set ENDGAME_START_DAY=29"}
-          - {id: end27-zhongyi, args: "--set ENDGAME_MARKET_MODE=ZHONGYI --set ENDGAME_START_DAY=27"}
-          - {id: end28-zhongyi, args: "--set ENDGAME_MARKET_MODE=ZHONGYI --set ENDGAME_START_DAY=28"}
-          - {id: end29-zhongyi, args: "--set ENDGAME_MARKET_MODE=ZHONGYI --set ENDGAME_START_DAY=29"}
-          - {id: end27-jesse, args: "--set ENDGAME_MARKET_MODE=JESSE --set ENDGAME_START_DAY=27"}
-          - {id: end28-jesse, args: "--set ENDGAME_MARKET_MODE=JESSE --set ENDGAME_START_DAY=28"}
-          - {id: end29-jesse, args: "--set ENDGAME_MARKET_MODE=JESSE --set ENDGAME_START_DAY=29"}
-          # Cross-source hybrids suggested by the supplied replay leaders.
-          - {id: coordi-end28-zhongyi, args: "--set MARKET_MODE=COORDI --set ENDGAME_MARKET_MODE=ZHONGYI --set ENDGAME_START_DAY=28"}
-          - {id: jordi-end28-zhongyi, args: "--set MARKET_MODE=JORDI --set ENDGAME_MARKET_MODE=ZHONGYI --set ENDGAME_START_DAY=28"}
-          - {id: zhongyi-end28-renoir, args: "--set MARKET_MODE=ZHONGYI --set ENDGAME_MARKET_MODE=RENOIR_AUTO --set ENDGAME_START_DAY=28"}
-          - {id: jesse-end28-zhongyi, args: "--set MARKET_MODE=JESSE --set ENDGAME_MARKET_MODE=ZHONGYI --set ENDGAME_START_DAY=28"}
-          - {id: coordi-end29-jesse, args: "--set MARKET_MODE=COORDI --set ENDGAME_MARKET_MODE=JESSE --set ENDGAME_START_DAY=29"}
-          - {id: zhongyi-end29-jesse, args: "--set MARKET_MODE=ZHONGYI --set ENDGAME_MARKET_MODE=JESSE --set ENDGAME_START_DAY=29"}
+          - {id: control, args: ""}
+          - {id: sell-all-days, args: "--set ORDER_MODE=SELL_FIRST"}
+          - {id: sell-day-00, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[0]"}
+          - {id: sell-day-01, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[1]"}
+          - {id: sell-day-02, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[2]"}
+          - {id: sell-day-03, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[3]"}
+          - {id: sell-day-04, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[4]"}
+          - {id: sell-day-05, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[5]"}
+          - {id: sell-day-06, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[6]"}
+          - {id: sell-day-07, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[7]"}
+          - {id: sell-day-08, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[8]"}
+          - {id: sell-day-09, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[9]"}
+          - {id: sell-day-10, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[10]"}
+          - {id: sell-day-11, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[11]"}
+          - {id: sell-day-12, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[12]"}
+          - {id: sell-day-13, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[13]"}
+          - {id: sell-day-14, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[14]"}
+          - {id: sell-day-15, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[15]"}
+          - {id: sell-day-16, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[16]"}
+          - {id: sell-day-17, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[17]"}
+          - {id: sell-day-18, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[18]"}
+          - {id: sell-day-19, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[19]"}
+          - {id: sell-day-20, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[20]"}
+          - {id: sell-day-21, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[21]"}
+          - {id: sell-day-22, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[22]"}
+          - {id: sell-day-23, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[23]"}
+          - {id: sell-day-24, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[24]"}
+          - {id: sell-day-25, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[25]"}
+          - {id: sell-day-26, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[26]"}
+          - {id: sell-day-27, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[27]"}
+          - {id: sell-day-28, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[28]"}
+          - {id: sell-day-29, args: "--set ORDER_MODE=SELL_FIRST --set ORDER_DAYS=[29]"}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -67,7 +59,7 @@ jobs:
           python-version: "3.12"
       - name: Install engine
         run: pip install kaggle-environments
-      - name: Test market-only V7 refinements on four corpora
+      - name: Isolate sell-first ordering one day at a time
         working-directory: kaggriculture
         env:
           VARIANT_ARGS: ${{ matrix.args }}

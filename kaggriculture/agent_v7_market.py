@@ -15,6 +15,9 @@ MARKET_MODE = "RENOIR_AUTO"
 ENDGAME_MARKET_MODE = "SAME"
 ENDGAME_START_DAY = 29
 ORDER_MODE = "ORIGINAL"
+# Empty means apply ORDER_MODE on every day. Non-empty lists isolate the exact
+# day whose sequential market ordering is being changed.
+ORDER_DAYS = []
 
 def _mode(name, player):
     if name == "RENOIR_AUTO": return "RENOIR_P0" if player == 0 else "RENOIR_P1"
@@ -27,7 +30,7 @@ def act(observation, configuration):
     if ENDGAME_MARKET_MODE != "SAME" and step // 24 >= ENDGAME_START_DAY:
         mode = _mode(ENDGAME_MARKET_MODE, player)
     orders = copy.deepcopy(MARKETS[mode][step])
-    if ORDER_MODE != "ORIGINAL":
+    if ORDER_MODE != "ORIGINAL" and (not ORDER_DAYS or step // 24 in ORDER_DAYS):
         priority = {
           "HIRE_FIRST": {"HIRE": 0, "BUY_SEED": 1, "BUY_PRODUCT": 2, "BUY_ANIMAL": 3, "BUY_LAND": 4, "SELL": 5},
           "SELL_FIRST": {"SELL": 0, "HIRE": 1, "BUY_SEED": 2, "BUY_PRODUCT": 3, "BUY_ANIMAL": 4, "BUY_LAND": 5},
