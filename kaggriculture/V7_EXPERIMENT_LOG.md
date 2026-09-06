@@ -130,3 +130,11 @@ Low premium prices are strongly associated with low outcomes. Independently test
 - Renoir-to-Aastik at day 1 reaches 89,104.8/72W and a new simulated maximum of **203,785**, the first 200k result produced by any candidate in the replay benchmark. It rescues episode 106034285 but creates losses on 105999165 and 106033362.
 - Renoir-to-Aastik day 4 falls to 61W; day 2 falls to 50W. Aastik-to-Renoir switches return toward Renoir's money profile but only 50-58 wins. Coupled state handoff is highly non-monotonic.
 - Because Aastik and Renoir physical actions are identical through the first day, the useful day-1 result isolates the **opening market tape**: Renoir market for steps 0-23 followed by full Aastik. Stage J tests every exact switch boundary from step 0 through 24 while keeping Aastik physical actions fixed, seeking Aastik's 73 wins plus the hybrid's higher mean/200k upside.
+
+## V8 opening-market Stage J results
+
+- No exact boundary combines 73 wins with the 200k upside. Full Aastik at switch 0 remains 88,660.4/73W with maximum 171,211.
+- Switches 3 and 5, and every switch from 12 through 24, converge to approximately 89,104.8/72W, median 84,561, margin +11,668, and maximum **203,785**. Thus only a small set of opening wheat transactions causes the high-money regime; later first-day Renoir orders are behaviorally irrelevant.
+- Switch 1 collapses to 64,760.7/6W because Renoir buys 30 wheat but Aastik sells only 9, leaving an incompatible inventory. Switches 2/4 reach 71W at 85-86k; switches 6-11 reach 70W at 85,175.3.
+- The useful minimal fusion is switch 3: Renoir's first three market actions normalize wheat inventory before handing the complete physical and later market schedule to Aastik. It gains 444 average cash and a 32.6k higher maximum over Aastik at the cost of one net win.
+- Next: validate switch 3 and switch 5 on all holdouts. If they remain equivalent, prefer switch 3 as the minimal attributed fusion. Keep full Aastik as the rating leader and the opening hybrid as the high-money candidate.

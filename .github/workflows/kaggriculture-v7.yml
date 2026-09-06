@@ -1,4 +1,4 @@
-name: Kaggriculture V8 opening fusion
+name: Kaggriculture V8 opening finalists
 
 on:
   push:
@@ -9,16 +9,18 @@ on:
       - ".github/workflows/kaggriculture-v7.yml"
 
 jobs:
-  opening-fusion-j:
-    name: V8 opening J switch-${{ matrix.switch }}
-    if: contains(github.event.head_commit.message, '[kaggr-v8-opening-j]')
+  opening-finalists-k:
+    name: V8 opening K ${{ matrix.id }}
+    if: contains(github.event.head_commit.message, '[kaggr-v8-opening-k]')
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 35
     strategy:
       fail-fast: false
-      max-parallel: 24
       matrix:
-        switch: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+        include:
+          - {id: aastik, early: AASTIK_087, switch: 0}
+          - {id: hybrid-s03, early: RENOIR, switch: 3}
+          - {id: hybrid-s05, early: RENOIR, switch: 5}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -26,12 +28,21 @@ jobs:
           python-version: "3.12"
       - name: Install engine
         run: pip install kaggle-environments
-      - name: Isolate Renoir opening market turns over Aastik physical schedule
+      - name: Validate minimal opening fusion on all holdouts
         working-directory: kaggriculture
         env:
+          EARLY: ${{ matrix.early }}
           SWITCH_STEP: ${{ matrix.switch }}
         run: |
-          args=(--set MOTION_EARLY=AASTIK_087 --set MOTION_LATE=AASTIK_087 --set MARKET_EARLY=RENOIR --set MARKET_LATE=AASTIK_087 --set "MARKET_SWITCH_STEP=$SWITCH_STEP")
-          result=$(python replay_benchmark.py --agent agent_v8_fusion.py --submission 56044395 "${args[@]}")
-          printf '%s\n' "$result"
-          echo "::notice title=V8 opening public-live::$(printf '%s\n' "$result" | tail -1)"
+          args=(--set MOTION_EARLY=AASTIK_087 --set MOTION_LATE=AASTIK_087 --set "MARKET_EARLY=$EARLY" --set MARKET_LATE=AASTIK_087 --set "MARKET_SWITCH_STEP=$SWITCH_STEP")
+          run_corpus() {
+            local title="$1"; shift
+            result=$(python replay_benchmark.py --agent agent_v8_fusion.py "$@" "${args[@]}")
+            printf '%s\n' "$result"
+            echo "::notice title=V8 opening $title::$(printf '%s\n' "$result" | tail -1)"
+          }
+          run_corpus public-live --submission 56044395
+          run_corpus champions --archive Downloads.zip
+          run_corpus renoir --archive Renoir.zip
+          run_corpus others --archive inni.zip
+          run_corpus new-leaders --archive nowe.zip

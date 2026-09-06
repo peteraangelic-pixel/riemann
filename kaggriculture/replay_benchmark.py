@@ -158,6 +158,7 @@ def main() -> None:
             records.append((path.parent.name, replay, replay["info"]["TeamNames"].index(OUR_TEAM)))
     records = records[args.shard :: args.shards]
     scores: list[float] = []
+    score_ids: list[str] = []
     opponent_scores: list[float] = []
     original_scores: list[float] = []
     wins = 0
@@ -183,6 +184,7 @@ def main() -> None:
         opponent_score = env.state[opponent_side].reward
         original_score = replay["rewards"][our_side]
         scores.append(candidate_score)
+        score_ids.append(replay_id)
         opponent_scores.append(opponent_score)
         original_scores.append(original_score)
         wins += candidate_score > opponent_score
@@ -206,6 +208,8 @@ def main() -> None:
             f"candidate_avg={statistics.mean(scores):.1f} "
             f"candidate_median={statistics.median(scores):.1f} "
             f"candidate_range={min(scores):.0f}-{max(scores):.0f} "
+            f"min_id={score_ids[scores.index(min(scores))]} "
+            f"max_id={score_ids[scores.index(max(scores))]} "
             f"opponent_avg={statistics.mean(opponent_scores):.1f} "
             f"margin_avg={statistics.mean(a - b for a, b in zip(scores, opponent_scores)):+.1f} "
             f"original_avg={statistics.mean(original_scores):.1f} "
