@@ -1,0 +1,40 @@
+name: Kaggriculture V9 delayed-opening primitives
+
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths:
+      - "kaggriculture/v9_candidates/primitives/**"
+      - "kaggriculture/research/build_delayed28_primitives.py"
+      - ".github/workflows/kaggriculture-v9-primitives.yml"
+
+jobs:
+  common-loss:
+    if: contains(github.event.head_commit.message, '[kaggr-v9-primitives]')
+    name: ${{ matrix.mode }}-${{ matrix.duration }} common-loss
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      max-parallel: 12
+      matrix:
+        mode: [market, full]
+        duration: [1, 2, 3, 5, 8, 16]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install kaggle-environments
+      - name: Test isolated opening on eight shared losses
+        working-directory: kaggriculture
+        run: |
+          duration=$(printf '%02d' '${{ matrix.duration }}')
+          output=$(python replay_benchmark.py \
+            --agent "v9_candidates/primitives/agent_v9_d28_${{ matrix.mode }}_${duration}.py" \
+            --episode 105990797 --episode 105992649 --episode 105994529 --episode 106006563 \
+            --episode 106017709 --episode 106027867 --episode 106029787 --episode 106037741)
+          printf '%s\n' "$output"
+          summary=$(printf '%s\n' "$output" | tail -1 | cut -c1-10000)
+          summary=${summary//'%'/'%25'}; summary=${summary//$'\n'/'%0A'}; summary=${summary//$'\r'/'%0D'}
+          echo "::notice title=${{ matrix.mode }}-${duration}::$summary"
