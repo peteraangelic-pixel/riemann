@@ -1,0 +1,1310 @@
+{
+  "source": "per_replay.zip",
+  "limitations": [
+    "generic export has null final scores/winners",
+    "product labels and quantities were lost by the generic action parser",
+    "only turns 0-24 have state snapshots",
+    "clusters are discovery aids, not evidence that a policy beats V8"
+  ],
+  "metadata": {
+    "records": 245,
+    "players": 49,
+    "unique_episodes": 196,
+    "duplicate_episode_records": 49,
+    "parser_counts": {
+      "kaggriculture_native_v1": 245
+    }
+  },
+  "feature_count": 327,
+  "k_scores": {
+    "2": {
+      "silhouette": 0.6834416857753026,
+      "sse": 4188.245668010694
+    },
+    "3": {
+      "silhouette": 0.5599776589113924,
+      "sse": 3569.1569168840565
+    },
+    "4": {
+      "silhouette": 0.5381496025079424,
+      "sse": 3030.2464846301004
+    },
+    "5": {
+      "silhouette": 0.4244230492619183,
+      "sse": 2455.1139227344197
+    },
+    "6": {
+      "silhouette": 0.31014175610916656,
+      "sse": 1850.5383528531645
+    },
+    "7": {
+      "silhouette": 0.2989004087293106,
+      "sse": 1577.538682696982
+    },
+    "8": {
+      "silhouette": 0.29241361695058243,
+      "sse": 1464.5237259911107
+    },
+    "9": {
+      "silhouette": 0.32022568768346404,
+      "sse": 1238.506604456455
+    },
+    "10": {
+      "silhouette": 0.32769733492624936,
+      "sse": 1025.726598270884
+    }
+  },
+  "selected_k": 3,
+  "clusters": {
+    "0": [
+      "Aastik Rajan15",
+      "Agent 0",
+      "Andrey Tikhomirov",
+      "Ant",
+      "Beyond",
+      "CemBas",
+      "Crop Dusta",
+      "Dhruvik Chauhan",
+      "Dresden",
+      "Driz Lo",
+      "Foxure",
+      "JamesJJJJJ",
+      "Jiro2",
+      "John Doge",
+      "Kenneth Alonso",
+      "KongKongDe",
+      "LI Mufeng",
+      "Marlubie",
+      "Mengfei Li",
+      "Milan Leonard",
+      "MtN",
+      "OceanMix",
+      "Raya and the Last Dragon",
+      "SJY321",
+      "Scott Willis",
+      "Suliman Tadros",
+      "Syed Asad Ali",
+      "THIRD FARM CLUB",
+      "Tiannan Zhang",
+      "Tomoki Hirose",
+      "Ueddy",
+      "daulettoibazar",
+      "elmo",
+      "hana87hana",
+      "keiz",
+      "liyuting",
+      "mandgeee",
+      "mikelou1",
+      "peikopon",
+      "pensukesan",
+      "rian",
+      "sunyuxiang136",
+      "t-enstar",
+      "taiseiu",
+      "tetsuya & yuanzhe zhou",
+      "yfy",
+      "ymg_aq"
+    ],
+    "1": [
+      "我都先道歉"
+    ],
+    "2": [
+      "get some fries"
+    ]
+  },
+  "distance_from_aastik": {
+    "Aastik Rajan15": 0.0,
+    "Agent 0": 11.377557460648683,
+    "Andrey Tikhomirov": 13.70324041107211,
+    "Ant": 13.793423208397185,
+    "Beyond": 11.834651813006612,
+    "CemBas": 9.943598842181444,
+    "Crop Dusta": 22.255449387099876,
+    "daulettoibazar": 4.01233703037679,
+    "Dhruvik Chauhan": 10.247107388579506,
+    "Dresden": 15.77916952107711,
+    "Driz Lo": 7.535966412437508,
+    "elmo": 4.521308878976202,
+    "Foxure": 4.144016997213522,
+    "get some fries": 26.38307534098192,
+    "hana87hana": 3.481143420658697,
+    "JamesJJJJJ": 12.597725882404827,
+    "Jiro2": 13.470162240972655,
+    "John Doge": 4.4006367146625,
+    "keiz": 10.567630586294483,
+    "Kenneth Alonso": 3.998511289120629,
+    "KongKongDe": 7.796774361266945,
+    "liyuting": 3.194701039148909,
+    "LI Mufeng": 6.806249653451531,
+    "mandgeee": 4.115816474283304,
+    "Marlubie": 3.981811695436229,
+    "Mengfei Li": 4.875275535354409,
+    "mikelou1": 3.9803325364039197,
+    "Milan Leonard": 24.727723920158684,
+    "MtN": 6.655477876324717,
+    "OceanMix": 7.7381799302294425,
+    "peikopon": 14.773515545756492,
+    "pensukesan": 4.390796006257215,
+    "Raya and the Last Dragon": 9.997249683742597,
+    "我都先道歉": 38.47998991607871,
+    "rian": 3.4014249888537362,
+    "Scott Willis": 7.91000949680873,
+    "SJY321": 17.025663788549952,
+    "Suliman Tadros": 12.978469101548322,
+    "sunyuxiang136": 6.772958630130327,
+    "Syed Asad Ali": 3.469777476701062,
+    "t-enstar": 6.8269681461733445,
+    "taiseiu": 11.534041407796193,
+    "tetsuya & yuanzhe zhou": 5.833484726211392,
+    "THIRD FARM CLUB": 3.9693697968357275,
+    "Tiannan Zhang": 6.653912745436709,
+    "Tomoki Hirose": 4.035389414907378,
+    "Ueddy": 11.246462693921954,
+    "yfy": 3.716821807429752,
+    "ymg_aq": 16.12386679996591
+  },
+  "within_player_instability": {
+    "Aastik Rajan15": 6.14019890061953,
+    "Agent 0": 10.60671409490794,
+    "Andrey Tikhomirov": 12.63621223298016,
+    "Ant": 5.004650957197385,
+    "Beyond": 7.702994868644102,
+    "CemBas": 14.587594337379489,
+    "Crop Dusta": 12.476433254685793,
+    "daulettoibazar": 1.5565916987246262,
+    "Dhruvik Chauhan": 10.832925558202605,
+    "Dresden": 9.368978568872189,
+    "Driz Lo": 7.306749676383627,
+    "elmo": 4.30927976421803,
+    "Foxure": 5.758013713234618,
+    "get some fries": 14.324905446661251,
+    "hana87hana": 3.9894425890740637,
+    "JamesJJJJJ": 5.676339972297763,
+    "Jiro2": 13.37287047242759,
+    "John Doge": 2.5956497526608446,
+    "keiz": 10.909752768130563,
+    "Kenneth Alonso": 0.3279425781240926,
+    "KongKongDe": 8.362142352357433,
+    "liyuting": 3.8224508690375374,
+    "LI Mufeng": 9.350625824590098,
+    "mandgeee": 4.053101117459512,
+    "Marlubie": 0.4600316555046592,
+    "Mengfei Li": 1.2082981602712213,
+    "mikelou1": 0.2082887225465136,
+    "Milan Leonard": 21.810514154299323,
+    "MtN": 8.245837853782392,
+    "OceanMix": 10.161028364465746,
+    "peikopon": 17.11700115614143,
+    "pensukesan": 4.48199997131646,
+    "Raya and the Last Dragon": 5.1506963399619785,
+    "我都先道歉": 0.5935184035087564,
+    "rian": 3.2382202327580076,
+    "Scott Willis": 4.15652352252216,
+    "SJY321": 10.136800827001991,
+    "Suliman Tadros": 14.39308900533411,
+    "sunyuxiang136": 10.686750590228637,
+    "Syed Asad Ali": 2.666485865510828,
+    "t-enstar": 9.276465572160456,
+    "taiseiu": 5.897828499659555,
+    "tetsuya & yuanzhe zhou": 6.130831545174237,
+    "THIRD FARM CLUB": 7.084670272927468,
+    "Tiannan Zhang": 8.620832860585569,
+    "Tomoki Hirose": 0.2710442464361836,
+    "Ueddy": 15.3965416253539,
+    "yfy": 2.098386148776723,
+    "ymg_aq": 14.4240954291348
+  },
+  "stable_cutoff": 7.084670272927468,
+  "distinct_stable_shortlist": [
+    "我都先道歉",
+    "Ant",
+    "JamesJJJJJ",
+    "taiseiu",
+    "Raya and the Last Dragon",
+    "Scott Willis",
+    "tetsuya & yuanzhe zhou",
+    "Mengfei Li",
+    "elmo",
+    "John Doge"
+  ],
+  "nearest_neighbors": {
+    "Aastik Rajan15": [
+      {
+        "player": "liyuting",
+        "distance": 3.194701039148909
+      },
+      {
+        "player": "rian",
+        "distance": 3.4014249888537362
+      },
+      {
+        "player": "Syed Asad Ali",
+        "distance": 3.469777476701062
+      },
+      {
+        "player": "hana87hana",
+        "distance": 3.481143420658697
+      },
+      {
+        "player": "yfy",
+        "distance": 3.716821807429752
+      }
+    ],
+    "Agent 0": [
+      {
+        "player": "Scott Willis",
+        "distance": 7.332568579169476
+      },
+      {
+        "player": "KongKongDe",
+        "distance": 7.900116046854422
+      },
+      {
+        "player": "Suliman Tadros",
+        "distance": 8.068851149826274
+      },
+      {
+        "player": "Driz Lo",
+        "distance": 8.364807782169972
+      },
+      {
+        "player": "Andrey Tikhomirov",
+        "distance": 9.307407325242051
+      }
+    ],
+    "Andrey Tikhomirov": [
+      {
+        "player": "Dresden",
+        "distance": 7.869187453902678
+      },
+      {
+        "player": "Ant",
+        "distance": 8.06456046897672
+      },
+      {
+        "player": "Agent 0",
+        "distance": 9.307407325242051
+      },
+      {
+        "player": "OceanMix",
+        "distance": 9.354017676175031
+      },
+      {
+        "player": "KongKongDe",
+        "distance": 9.675066039015197
+      }
+    ],
+    "Ant": [
+      {
+        "player": "Dresden",
+        "distance": 6.5062871831530105
+      },
+      {
+        "player": "Andrey Tikhomirov",
+        "distance": 8.06456046897672
+      },
+      {
+        "player": "Agent 0",
+        "distance": 9.9550240952875
+      },
+      {
+        "player": "KongKongDe",
+        "distance": 10.046060469902867
+      },
+      {
+        "player": "Driz Lo",
+        "distance": 10.997247275677635
+      }
+    ],
+    "Beyond": [
+      {
+        "player": "taiseiu",
+        "distance": 2.83585301007824
+      },
+      {
+        "player": "JamesJJJJJ",
+        "distance": 3.699450609177423
+      },
+      {
+        "player": "KongKongDe",
+        "distance": 8.843200041802099
+      },
+      {
+        "player": "Scott Willis",
+        "distance": 8.976355444336818
+      },
+      {
+        "player": "Driz Lo",
+        "distance": 9.432477355633976
+      }
+    ],
+    "CemBas": [
+      {
+        "player": "Jiro2",
+        "distance": 6.414685833737506
+      },
+      {
+        "player": "pensukesan",
+        "distance": 9.323708205651988
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "distance": 9.348715322956297
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "distance": 9.37860129077898
+      },
+      {
+        "player": "elmo",
+        "distance": 9.416805664489244
+      }
+    ],
+    "Crop Dusta": [
+      {
+        "player": "ymg_aq",
+        "distance": 14.781537940162648
+      },
+      {
+        "player": "SJY321",
+        "distance": 15.088057379254254
+      },
+      {
+        "player": "keiz",
+        "distance": 17.297165953657842
+      },
+      {
+        "player": "peikopon",
+        "distance": 17.38356894567103
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "distance": 17.886427529614064
+      }
+    ],
+    "daulettoibazar": [
+      {
+        "player": "mikelou1",
+        "distance": 1.0377775602747452
+      },
+      {
+        "player": "Marlubie",
+        "distance": 1.0457785830808222
+      },
+      {
+        "player": "Tomoki Hirose",
+        "distance": 1.169104817084249
+      },
+      {
+        "player": "Kenneth Alonso",
+        "distance": 1.2236378302850068
+      },
+      {
+        "player": "yfy",
+        "distance": 1.7919362226606692
+      }
+    ],
+    "Dhruvik Chauhan": [
+      {
+        "player": "Raya and the Last Dragon",
+        "distance": 6.48632071076938
+      },
+      {
+        "player": "MtN",
+        "distance": 6.947373553540571
+      },
+      {
+        "player": "Tiannan Zhang",
+        "distance": 7.038404719580005
+      },
+      {
+        "player": "keiz",
+        "distance": 7.52567414390874
+      },
+      {
+        "player": "LI Mufeng",
+        "distance": 7.626770987874919
+      }
+    ],
+    "Dresden": [
+      {
+        "player": "Ant",
+        "distance": 6.5062871831530105
+      },
+      {
+        "player": "Andrey Tikhomirov",
+        "distance": 7.869187453902678
+      },
+      {
+        "player": "peikopon",
+        "distance": 11.190734920645884
+      },
+      {
+        "player": "Agent 0",
+        "distance": 11.974747800879825
+      },
+      {
+        "player": "keiz",
+        "distance": 12.207945292471326
+      }
+    ],
+    "Driz Lo": [
+      {
+        "player": "KongKongDe",
+        "distance": 3.4912655403812307
+      },
+      {
+        "player": "Scott Willis",
+        "distance": 5.86476355491256
+      },
+      {
+        "player": "OceanMix",
+        "distance": 7.250872039226149
+      },
+      {
+        "player": "pensukesan",
+        "distance": 7.341565898443345
+      },
+      {
+        "player": "elmo",
+        "distance": 7.35972600101778
+      }
+    ],
+    "elmo": [
+      {
+        "player": "pensukesan",
+        "distance": 0.516787757470051
+      },
+      {
+        "player": "Tomoki Hirose",
+        "distance": 2.684651503719496
+      },
+      {
+        "player": "mikelou1",
+        "distance": 2.6978146349660665
+      },
+      {
+        "player": "Marlubie",
+        "distance": 2.698180321036252
+      },
+      {
+        "player": "Kenneth Alonso",
+        "distance": 2.701329664318636
+      }
+    ],
+    "Foxure": [
+      {
+        "player": "hana87hana",
+        "distance": 2.198123103087824
+      },
+      {
+        "player": "liyuting",
+        "distance": 2.7210663373052877
+      },
+      {
+        "player": "rian",
+        "distance": 2.78945337721937
+      },
+      {
+        "player": "mandgeee",
+        "distance": 2.9301060083030284
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "distance": 2.993012943052026
+      }
+    ],
+    "get some fries": [
+      {
+        "player": "sunyuxiang136",
+        "distance": 24.280706313066393
+      },
+      {
+        "player": "Ueddy",
+        "distance": 25.096047677052315
+      },
+      {
+        "player": "keiz",
+        "distance": 25.804226470234827
+      },
+      {
+        "player": "Tiannan Zhang",
+        "distance": 25.83642758803594
+      },
+      {
+        "player": "peikopon",
+        "distance": 25.900149785264887
+      }
+    ],
+    "hana87hana": [
+      {
+        "player": "rian",
+        "distance": 0.9690903580956666
+      },
+      {
+        "player": "liyuting",
+        "distance": 1.5464422643189009
+      },
+      {
+        "player": "mandgeee",
+        "distance": 1.9405487452327905
+      },
+      {
+        "player": "Syed Asad Ali",
+        "distance": 2.0627549996368906
+      },
+      {
+        "player": "Foxure",
+        "distance": 2.198123103087824
+      }
+    ],
+    "JamesJJJJJ": [
+      {
+        "player": "taiseiu",
+        "distance": 2.969508940767642
+      },
+      {
+        "player": "Beyond",
+        "distance": 3.699450609177423
+      },
+      {
+        "player": "Scott Willis",
+        "distance": 9.120778359354148
+      },
+      {
+        "player": "KongKongDe",
+        "distance": 9.674497547781199
+      },
+      {
+        "player": "Driz Lo",
+        "distance": 11.036502096737083
+      }
+    ],
+    "Jiro2": [
+      {
+        "player": "CemBas",
+        "distance": 6.414685833737506
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "distance": 8.835983421827668
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "distance": 10.085646925489954
+      },
+      {
+        "player": "keiz",
+        "distance": 10.987874639124668
+      },
+      {
+        "player": "pensukesan",
+        "distance": 12.081518239021598
+      }
+    ],
+    "John Doge": [
+      {
+        "player": "daulettoibazar",
+        "distance": 4.111263451587181
+      },
+      {
+        "player": "Aastik Rajan15",
+        "distance": 4.4006367146625
+      },
+      {
+        "player": "mikelou1",
+        "distance": 4.520428019357826
+      },
+      {
+        "player": "Marlubie",
+        "distance": 4.593844262536527
+      },
+      {
+        "player": "Kenneth Alonso",
+        "distance": 4.621367687375175
+      }
+    ],
+    "keiz": [
+      {
+        "player": "Dhruvik Chauhan",
+        "distance": 7.52567414390874
+      },
+      {
+        "player": "MtN",
+        "distance": 8.709524700292523
+      },
+      {
+        "player": "Tiannan Zhang",
+        "distance": 8.78399216223278
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "distance": 9.22170996415775
+      },
+      {
+        "player": "LI Mufeng",
+        "distance": 9.504963038235767
+      }
+    ],
+    "Kenneth Alonso": [
+      {
+        "player": "mikelou1",
+        "distance": 0.1913327447713631
+      },
+      {
+        "player": "Tomoki Hirose",
+        "distance": 0.23428031353460893
+      },
+      {
+        "player": "Marlubie",
+        "distance": 0.435460576652191
+      },
+      {
+        "player": "daulettoibazar",
+        "distance": 1.2236378302850068
+      },
+      {
+        "player": "Syed Asad Ali",
+        "distance": 2.0546139256649245
+      }
+    ],
+    "KongKongDe": [
+      {
+        "player": "Driz Lo",
+        "distance": 3.4912655403812307
+      },
+      {
+        "player": "Scott Willis",
+        "distance": 5.405033707284062
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "distance": 6.884176089745412
+      },
+      {
+        "player": "OceanMix",
+        "distance": 6.897805140959403
+      },
+      {
+        "player": "Foxure",
+        "distance": 7.2472630426608555
+      }
+    ],
+    "liyuting": [
+      {
+        "player": "hana87hana",
+        "distance": 1.5464422643189009
+      },
+      {
+        "player": "rian",
+        "distance": 1.593661870624162
+      },
+      {
+        "player": "mandgeee",
+        "distance": 1.8387816352466053
+      },
+      {
+        "player": "Syed Asad Ali",
+        "distance": 2.091021998077415
+      },
+      {
+        "player": "daulettoibazar",
+        "distance": 2.4879667660925207
+      }
+    ],
+    "LI Mufeng": [
+      {
+        "player": "t-enstar",
+        "distance": 0.7026928199300855
+      },
+      {
+        "player": "MtN",
+        "distance": 3.351192525296679
+      },
+      {
+        "player": "Tiannan Zhang",
+        "distance": 4.518652388619431
+      },
+      {
+        "player": "pensukesan",
+        "distance": 5.435224682078027
+      },
+      {
+        "player": "elmo",
+        "distance": 5.5242340911246135
+      }
+    ],
+    "mandgeee": [
+      {
+        "player": "Syed Asad Ali",
+        "distance": 1.797185684497115
+      },
+      {
+        "player": "liyuting",
+        "distance": 1.8387816352466053
+      },
+      {
+        "player": "hana87hana",
+        "distance": 1.9405487452327905
+      },
+      {
+        "player": "rian",
+        "distance": 2.0055192311510464
+      },
+      {
+        "player": "daulettoibazar",
+        "distance": 2.6487484206108447
+      }
+    ],
+    "Marlubie": [
+      {
+        "player": "Tomoki Hirose",
+        "distance": 0.2660352386466092
+      },
+      {
+        "player": "mikelou1",
+        "distance": 0.3869233692484545
+      },
+      {
+        "player": "Kenneth Alonso",
+        "distance": 0.435460576652191
+      },
+      {
+        "player": "daulettoibazar",
+        "distance": 1.0457785830808222
+      },
+      {
+        "player": "yfy",
+        "distance": 1.9217813120220615
+      }
+    ],
+    "Mengfei Li": [
+      {
+        "player": "Marlubie",
+        "distance": 2.320472814186295
+      },
+      {
+        "player": "Kenneth Alonso",
+        "distance": 2.3403169701053894
+      },
+      {
+        "player": "Tomoki Hirose",
+        "distance": 2.3419233315700314
+      },
+      {
+        "player": "mikelou1",
+        "distance": 2.3612517180751933
+      },
+      {
+        "player": "daulettoibazar",
+        "distance": 2.6402727520712714
+      }
+    ],
+    "mikelou1": [
+      {
+        "player": "Kenneth Alonso",
+        "distance": 0.1913327447713631
+      },
+      {
+        "player": "Tomoki Hirose",
+        "distance": 0.2667566162946075
+      },
+      {
+        "player": "Marlubie",
+        "distance": 0.3869233692484545
+      },
+      {
+        "player": "daulettoibazar",
+        "distance": 1.0377775602747452
+      },
+      {
+        "player": "Syed Asad Ali",
+        "distance": 1.9671902019875698
+      }
+    ],
+    "Milan Leonard": [
+      {
+        "player": "SJY321",
+        "distance": 22.246939663964874
+      },
+      {
+        "player": "Ueddy",
+        "distance": 23.185407054097315
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "distance": 23.443886542359653
+      },
+      {
+        "player": "peikopon",
+        "distance": 23.673459416320018
+      },
+      {
+        "player": "MtN",
+        "distance": 23.706576913820765
+      }
+    ],
+    "MtN": [
+      {
+        "player": "LI Mufeng",
+        "distance": 3.351192525296679
+      },
+      {
+        "player": "t-enstar",
+        "distance": 3.608152143214536
+      },
+      {
+        "player": "Tiannan Zhang",
+        "distance": 3.777735868850407
+      },
+      {
+        "player": "pensukesan",
+        "distance": 5.0666129811860845
+      },
+      {
+        "player": "elmo",
+        "distance": 5.145008951278351
+      }
+    ],
+    "OceanMix": [
+      {
+        "player": "THIRD FARM CLUB",
+        "distance": 6.671762510168609
+      },
+      {
+        "player": "KongKongDe",
+        "distance": 6.897805140959403
+      },
+      {
+        "player": "Driz Lo",
+        "distance": 7.250872039226149
+      },
+      {
+        "player": "Foxure",
+        "distance": 7.576532605086842
+      },
+      {
+        "player": "mandgeee",
+        "distance": 7.703793237329289
+      }
+    ],
+    "peikopon": [
+      {
+        "player": "Ueddy",
+        "distance": 8.425947131393
+      },
+      {
+        "player": "keiz",
+        "distance": 10.356343832723052
+      },
+      {
+        "player": "Dresden",
+        "distance": 11.190734920645884
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "distance": 11.307353798427082
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "distance": 12.439239960942373
+      }
+    ],
+    "pensukesan": [
+      {
+        "player": "elmo",
+        "distance": 0.516787757470051
+      },
+      {
+        "player": "Marlubie",
+        "distance": 2.6926038265534333
+      },
+      {
+        "player": "Tomoki Hirose",
+        "distance": 2.718219093132765
+      },
+      {
+        "player": "mikelou1",
+        "distance": 2.71878797396113
+      },
+      {
+        "player": "Kenneth Alonso",
+        "distance": 2.731800619706903
+      }
+    ],
+    "Raya and the Last Dragon": [
+      {
+        "player": "Dhruvik Chauhan",
+        "distance": 6.48632071076938
+      },
+      {
+        "player": "pensukesan",
+        "distance": 8.02189405215367
+      },
+      {
+        "player": "elmo",
+        "distance": 8.067622103860591
+      },
+      {
+        "player": "tetsuya & yuanzhe zhou",
+        "distance": 8.61164489537355
+      },
+      {
+        "player": "Jiro2",
+        "distance": 8.835983421827668
+      }
+    ],
+    "我都先道歉": [
+      {
+        "player": "Ueddy",
+        "distance": 35.35358385443723
+      },
+      {
+        "player": "sunyuxiang136",
+        "distance": 36.752396608483636
+      },
+      {
+        "player": "SJY321",
+        "distance": 36.782939207997195
+      },
+      {
+        "player": "peikopon",
+        "distance": 37.832511537493794
+      },
+      {
+        "player": "ymg_aq",
+        "distance": 38.095558180798974
+      }
+    ],
+    "rian": [
+      {
+        "player": "hana87hana",
+        "distance": 0.9690903580956666
+      },
+      {
+        "player": "Syed Asad Ali",
+        "distance": 1.5191704017647591
+      },
+      {
+        "player": "liyuting",
+        "distance": 1.593661870624162
+      },
+      {
+        "player": "Marlubie",
+        "distance": 1.9262855937955687
+      },
+      {
+        "player": "mandgeee",
+        "distance": 2.0055192311510464
+      }
+    ],
+    "Scott Willis": [
+      {
+        "player": "KongKongDe",
+        "distance": 5.405033707284062
+      },
+      {
+        "player": "Driz Lo",
+        "distance": 5.86476355491256
+      },
+      {
+        "player": "Agent 0",
+        "distance": 7.332568579169476
+      },
+      {
+        "player": "liyuting",
+        "distance": 7.504974929129075
+      },
+      {
+        "player": "Foxure",
+        "distance": 7.669472669875214
+      }
+    ],
+    "SJY321": [
+      {
+        "player": "ymg_aq",
+        "distance": 14.635468508969778
+      },
+      {
+        "player": "Crop Dusta",
+        "distance": 15.088057379254254
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "distance": 15.89850966730624
+      },
+      {
+        "player": "MtN",
+        "distance": 16.016668973250894
+      },
+      {
+        "player": "Ueddy",
+        "distance": 16.176783611838893
+      }
+    ],
+    "Suliman Tadros": [
+      {
+        "player": "Agent 0",
+        "distance": 8.068851149826274
+      },
+      {
+        "player": "LI Mufeng",
+        "distance": 8.439706422640937
+      },
+      {
+        "player": "t-enstar",
+        "distance": 8.547070320804432
+      },
+      {
+        "player": "MtN",
+        "distance": 9.658763283981612
+      },
+      {
+        "player": "Tiannan Zhang",
+        "distance": 10.755923777178696
+      }
+    ],
+    "sunyuxiang136": [
+      {
+        "player": "hana87hana",
+        "distance": 5.624136291041014
+      },
+      {
+        "player": "Foxure",
+        "distance": 5.702091734046279
+      },
+      {
+        "player": "rian",
+        "distance": 5.868774423732311
+      },
+      {
+        "player": "liyuting",
+        "distance": 5.871619999306031
+      },
+      {
+        "player": "mandgeee",
+        "distance": 5.92744977270504
+      }
+    ],
+    "Syed Asad Ali": [
+      {
+        "player": "rian",
+        "distance": 1.5191704017647591
+      },
+      {
+        "player": "mandgeee",
+        "distance": 1.797185684497115
+      },
+      {
+        "player": "daulettoibazar",
+        "distance": 1.805589021442575
+      },
+      {
+        "player": "Marlubie",
+        "distance": 1.9610087017536886
+      },
+      {
+        "player": "mikelou1",
+        "distance": 1.9671902019875698
+      }
+    ],
+    "t-enstar": [
+      {
+        "player": "LI Mufeng",
+        "distance": 0.7026928199300855
+      },
+      {
+        "player": "MtN",
+        "distance": 3.608152143214536
+      },
+      {
+        "player": "Tiannan Zhang",
+        "distance": 4.502917899371953
+      },
+      {
+        "player": "pensukesan",
+        "distance": 5.363061499480354
+      },
+      {
+        "player": "elmo",
+        "distance": 5.441678537469091
+      }
+    ],
+    "taiseiu": [
+      {
+        "player": "Beyond",
+        "distance": 2.83585301007824
+      },
+      {
+        "player": "JamesJJJJJ",
+        "distance": 2.969508940767642
+      },
+      {
+        "player": "Scott Willis",
+        "distance": 8.447784145699272
+      },
+      {
+        "player": "KongKongDe",
+        "distance": 8.843365880800471
+      },
+      {
+        "player": "Driz Lo",
+        "distance": 9.545399127435099
+      }
+    ],
+    "tetsuya & yuanzhe zhou": [
+      {
+        "player": "elmo",
+        "distance": 2.80990354163781
+      },
+      {
+        "player": "pensukesan",
+        "distance": 2.832732468752858
+      },
+      {
+        "player": "Kenneth Alonso",
+        "distance": 3.977122015836411
+      },
+      {
+        "player": "mikelou1",
+        "distance": 3.985310624120703
+      },
+      {
+        "player": "Tomoki Hirose",
+        "distance": 4.000490734815817
+      }
+    ],
+    "THIRD FARM CLUB": [
+      {
+        "player": "Foxure",
+        "distance": 2.993012943052026
+      },
+      {
+        "player": "hana87hana",
+        "distance": 3.6053517321893223
+      },
+      {
+        "player": "rian",
+        "distance": 3.8394495843152305
+      },
+      {
+        "player": "liyuting",
+        "distance": 3.865932994384578
+      },
+      {
+        "player": "Aastik Rajan15",
+        "distance": 3.9693697968357275
+      }
+    ],
+    "Tiannan Zhang": [
+      {
+        "player": "MtN",
+        "distance": 3.777735868850407
+      },
+      {
+        "player": "t-enstar",
+        "distance": 4.502917899371953
+      },
+      {
+        "player": "LI Mufeng",
+        "distance": 4.518652388619431
+      },
+      {
+        "player": "pensukesan",
+        "distance": 4.9904857083461875
+      },
+      {
+        "player": "elmo",
+        "distance": 5.104854871735006
+      }
+    ],
+    "Tomoki Hirose": [
+      {
+        "player": "Kenneth Alonso",
+        "distance": 0.23428031353460893
+      },
+      {
+        "player": "Marlubie",
+        "distance": 0.2660352386466092
+      },
+      {
+        "player": "mikelou1",
+        "distance": 0.2667566162946075
+      },
+      {
+        "player": "daulettoibazar",
+        "distance": 1.169104817084249
+      },
+      {
+        "player": "rian",
+        "distance": 2.0161191041180486
+      }
+    ],
+    "Ueddy": [
+      {
+        "player": "peikopon",
+        "distance": 8.425947131393
+      },
+      {
+        "player": "sunyuxiang136",
+        "distance": 8.551169227192865
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "distance": 9.590821760441827
+      },
+      {
+        "player": "Tiannan Zhang",
+        "distance": 9.604723102263366
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "distance": 9.606156691759137
+      }
+    ],
+    "yfy": [
+      {
+        "player": "daulettoibazar",
+        "distance": 1.7919362226606692
+      },
+      {
+        "player": "Marlubie",
+        "distance": 1.9217813120220615
+      },
+      {
+        "player": "mikelou1",
+        "distance": 2.0071722450540213
+      },
+      {
+        "player": "Tomoki Hirose",
+        "distance": 2.0185639028822204
+      },
+      {
+        "player": "Kenneth Alonso",
+        "distance": 2.0919086311453623
+      }
+    ],
+    "ymg_aq": [
+      {
+        "player": "Suliman Tadros",
+        "distance": 11.949783479902518
+      },
+      {
+        "player": "t-enstar",
+        "distance": 13.58992151443019
+      },
+      {
+        "player": "LI Mufeng",
+        "distance": 13.646869086010854
+      },
+      {
+        "player": "MtN",
+        "distance": 13.99103851753501
+      },
+      {
+        "player": "Tiannan Zhang",
+        "distance": 14.039277240108667
+      }
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+name: Kaggriculture TOP49 replay retrieval
+
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths:
+      - "kaggriculture/research/top49_selected_episodes.json"
+      - ".github/workflows/kaggriculture-top49.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    name: Fetch selected full public TOP49 replays
+    if: contains(github.event.head_commit.message, '[kaggr-top49-fetch]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Configure Kaggle token
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+        run: |
+          mkdir -p ~/.kaggle
+          clean_token=$(printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]')
+          if [ -z "$clean_token" ]; then
+            echo "::error::KAGGLE_API_TOKEN is missing"
+            exit 1
+          fi
+          printf '%s' "$clean_token" > ~/.kaggle/access_token
+          chmod 600 ~/.kaggle/access_token
+      - name: Install Kaggle CLI
+        run: pip install kaggle
+      - name: Fetch unique selected episodes
+        run: |
+          python - <<'PY' > /tmp/episodes.txt
+          import json
+          data = json.load(open("kaggriculture/research/top49_selected_episodes.json", encoding="utf8"))
+          print("\n".join(map(str, sorted({episode for row in data["players"] for episode in row["episodes"]}))))
+          PY
+          while read -r episode; do
+            target="kaggriculture/top49_full/$episode/replay.json.gz"
+            if [ -s "$target" ]; then
+              echo "Episode $episode already present"
+              continue
+            fi
+            temp=$(mktemp -d)
+            mkdir -p "$(dirname "$target")"
+            kaggle competitions replay "$episode" -p "$temp"
+            source=$(find "$temp" -type f -name '*.json' | head -1)
+            if [ -z "$source" ]; then
+              echo "::error::Replay command produced no JSON for episode $episode"
+              exit 1
+            fi
+            gzip -9c "$source" > "$target"
+            rm -rf "$temp"
+          done < /tmp/episodes.txt
+      - name: Commit full replay subset
+        run: |
+          if git diff --quiet -- kaggriculture/top49_full && [ -z "$(git ls-files --others --exclude-standard kaggriculture/top49_full)" ]; then
+            echo "Selected replay subset already complete"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add kaggriculture/top49_full
+          git commit -m "data(kaggriculture): fetch selected TOP49 full replays [skip ci]"
+          git push origin "HEAD:$GITHUB_REF_NAME"

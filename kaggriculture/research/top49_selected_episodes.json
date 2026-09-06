@@ -1,0 +1,90 @@
+{
+  "source": "per_replay.zip",
+  "purpose": "full replay retrieval for executable third-policy discovery; no submission",
+  "players": [
+    {
+      "player": "Aastik Rajan15",
+      "slug": "aastik-rajan15",
+      "reason": "control: known Aastik family",
+      "episodes": [
+        106182451,
+        106178812,
+        106178262,
+        106177905,
+        106177460
+      ]
+    },
+    {
+      "player": "我都先道歉",
+      "slug": "player",
+      "reason": "primary: isolated stable cluster; first sale at turn 28",
+      "episodes": [
+        106180736,
+        106179828,
+        106178915,
+        106178015,
+        106177102
+      ]
+    },
+    {
+      "player": "get some fries",
+      "slug": "get-some-fries",
+      "reason": "primary: isolated high-turnover market cluster",
+      "episodes": [
+        106183105,
+        106182188,
+        106181519,
+        106181292,
+        106180356
+      ]
+    },
+    {
+      "player": "JamesJJJJJ",
+      "slug": "jamesjjjjj",
+      "reason": "secondary: stable delayed-sale turn-31 family representative",
+      "episodes": [
+        106180048,
+        106179277,
+        106175209,
+        106174747,
+        106172662
+      ]
+    },
+    {
+      "player": "SJY321",
+      "slug": "sjy321",
+      "reason": "secondary: delayed-sale turn-49 family distinct from Aastik",
+      "episodes": [
+        106180964,
+        106178286,
+        106176371,
+        106173709,
+        106171098
+      ]
+    },
+    {
+      "player": "Ant",
+      "slug": "ant",
+      "reason": "secondary: invariant five-game policy with elevated market activity",
+      "episodes": [
+        106182894,
+        106179154,
+        106177931,
+        106176431,
+        106174282
+      ]
+    },
+    {
+      "player": "Mengfei Li",
+      "slug": "mengfei-li",
+      "reason": "secondary: internally stable non-Aastik trajectory",
+      "episodes": [
+        106180736,
+        106180186,
+        106179828,
+        106178915,
+        106178015
+      ]
+    }
+  ]
+}
