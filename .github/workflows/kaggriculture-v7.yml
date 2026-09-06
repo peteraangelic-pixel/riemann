@@ -1,4 +1,4 @@
-name: Kaggriculture V8 fusion validation
+name: Kaggriculture V8 regime analysis
 
 on:
   push:
@@ -9,26 +9,17 @@ on:
       - ".github/workflows/kaggriculture-v7.yml"
 
 jobs:
-  fusion-validate-g:
-    name: V8 fusion G ${{ matrix.id }}
-    if: contains(github.event.head_commit.message, '[kaggr-v8-fusion-g]')
+  regime-analysis-h:
+    name: V8 regime H ${{ matrix.id }}
+    if: contains(github.event.head_commit.message, '[kaggr-v8-regime-h]')
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 25
     strategy:
       fail-fast: false
-      max-parallel: 12
       matrix:
         include:
           - {id: renoir-d08-21, source: RENOIR, days: "[8,21]"}
           - {id: aastik-control, source: AASTIK_087, days: "[]"}
-          - {id: aastik-d04, source: AASTIK_087, days: "[4]"}
-          - {id: aastik-d08, source: AASTIK_087, days: "[8]"}
-          - {id: aastik-d15, source: AASTIK_087, days: "[15]"}
-          - {id: aastik-d16, source: AASTIK_087, days: "[16]"}
-          - {id: aastik-d21, source: AASTIK_087, days: "[21]"}
-          - {id: aastik-d26, source: AASTIK_087, days: "[26]"}
-          - {id: aastik-d27, source: AASTIK_087, days: "[27]"}
-          - {id: aastik-d08-21, source: AASTIK_087, days: "[8,21]"}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -36,21 +27,13 @@ jobs:
           python-version: "3.12"
       - name: Install engine
         run: pip install kaggle-environments
-      - name: Validate rating winner and isolate market-order days
+      - name: Emit exact loss sets for regime attribution
         working-directory: kaggriculture
         env:
           SOURCE: ${{ matrix.source }}
           DAYS: ${{ matrix.days }}
         run: |
           args=(--set "MOTION_EARLY=$SOURCE" --set "MOTION_LATE=$SOURCE" --set "MARKET_EARLY=$SOURCE" --set "MARKET_LATE=$SOURCE" --set "ORDER_DAYS=$DAYS")
-          run_corpus() {
-            local title="$1"; shift
-            result=$(python replay_benchmark.py --agent agent_v8_fusion.py "$@" "${args[@]}")
-            printf '%s\n' "$result"
-            echo "::notice title=V8 fusion $title::$(printf '%s\n' "$result" | tail -1)"
-          }
-          run_corpus public-live --submission 56044395
-          run_corpus champions --archive Downloads.zip
-          run_corpus renoir --archive Renoir.zip
-          run_corpus others --archive inni.zip
-          run_corpus new-leaders --archive nowe.zip
+          result=$(python replay_benchmark.py --agent agent_v8_fusion.py --submission 56044395 "${args[@]}")
+          printf '%s\n' "$result"
+          echo "::notice title=V8 regime public-live::$(printf '%s\n' "$result" | tail -1)"

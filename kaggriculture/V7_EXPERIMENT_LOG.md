@@ -108,3 +108,11 @@ Low premium prices are strongly associated with low outcomes. Independently test
 - `aastik087` is the only leader trajectory that transfers strongly. Renoir-to-Aastik at day 8 reaches 89,557.3/60W; Aastik-to-Renoir reaches 91,101.5/48W. The complete coupled Aastik schedule is responsible for the 73 wins.
 - Raw Crop Dusta and keiz trajectories score only 59-84k and 9-19 wins live. Separating any leader's physical schedule from its market often collapses below 20k, sometimes nearly to zero. This confirms that movement, worker logistics, purchases, and liquidation are tightly coupled.
 - Next: validate Aastik full and a small number of Aastik market-order variants on all holdout corpora. If the 73/85 advantage survives, use Aastik as the rating branch and Renoir 8+21 as the money branch rather than averaging their objectives.
+
+## V8 fusion Stage G results
+
+- Aastik's live advantage is confirmed: 88,660.4/73W, median 83,475, range 45,744-171,211, and average replay margin +11,280.3. Renoir 8+21 is 91,373.4/59W, median 86,700, range 45,514-171,146, margin +9,820.4.
+- Aastik is weaker on every small external holdout by win count: champions 82,876.9/13W versus Renoir 87,195.6/15W; Renoir archive 114,177.0/6W versus 116,745.7/8W; others 78,076.2/5W versus 91,714.9/6W; new leaders 97,601.0/4W versus 97,631.2/5W.
+- Thus Aastik is a high-value rating candidate against the broad 85-match live population, not a universal replacement. The fourteen extra live wins warrant opponent/market-regime analysis before selection.
+- All tested SELL-first day changes on the Aastik tape are exact no-ops (apart from a 0.1 rounding change on two tiny corpora), showing its market orders are already SELL-first or non-conflicting on those days. Stop tuning Aastik with Renoir's ordering-day mutations.
+- Next attribution step: emit exact loss episode IDs for Aastik and Renoir, measure overlap and early observable market fingerprints, then test whether a legal early selector can retain Aastik's broad win rate while routing its bad regimes to Renoir.

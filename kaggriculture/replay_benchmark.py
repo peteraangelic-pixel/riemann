@@ -161,6 +161,7 @@ def main() -> None:
     opponent_scores: list[float] = []
     original_scores: list[float] = []
     wins = 0
+    loss_ids: list[str] = []
 
     for replay_id, replay, our_side in records:
         names = replay["info"]["TeamNames"]
@@ -185,6 +186,8 @@ def main() -> None:
         opponent_scores.append(opponent_score)
         original_scores.append(original_score)
         wins += candidate_score > opponent_score
+        if candidate_score <= opponent_score:
+            loss_ids.append(replay_id)
         print(
             f"{replay_id} side={our_side} opponent={names[opponent_side]!r} "
             f"original={original_score:.0f} candidate={candidate_score:.0f} "
@@ -206,7 +209,8 @@ def main() -> None:
             f"opponent_avg={statistics.mean(opponent_scores):.1f} "
             f"margin_avg={statistics.mean(a - b for a, b in zip(scores, opponent_scores)):+.1f} "
             f"original_avg={statistics.mean(original_scores):.1f} "
-            f"delta_avg={statistics.mean(scores) - statistics.mean(original_scores):+.1f}"
+            f"delta_avg={statistics.mean(scores) - statistics.mean(original_scores):+.1f} "
+            f"loss_ids={','.join(loss_ids) or '-'}"
         )
 
 
