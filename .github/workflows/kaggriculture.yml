@@ -39,7 +39,7 @@ jobs:
         run: pip install kaggle-environments
       - name: Compile tracked sources
         working-directory: kaggriculture
-        run: python -m py_compile agent.py agent_v5.py agent_v6.py agent_v7.py agent_v7_scripted.py simulate.py tune_animals.py analyze_online.py replay_benchmark.py tests/test_agent.py
+        run: python -m py_compile agent.py agent_v5.py agent_v6.py agent_v7.py agent_v7_scripted.py agent_v8_aastik.py agent_v8_hybrid.py simulate.py tune_animals.py analyze_online.py replay_benchmark.py tests/test_agent.py
       - name: Run offline tests
         working-directory: kaggriculture
         run: python -m unittest discover -s tests -v
@@ -1296,3 +1296,50 @@ jobs:
           echo "$output"
           summary=$(printf '%s\n' "$output" | tail -1)
           echo "::notice title=V4 species result::$summary"
+
+  submit-v8-pair:
+    name: Upload approved V8 rating and 200k agents
+    if: >-
+      github.event_name == 'push' &&
+      github.ref_name == 'arena/01a0712c-riemann' &&
+      contains(github.event.head_commit.message, '[kaggr-submit-v8-both]')
+    needs: offline
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Configure Kaggle token
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+        run: |
+          mkdir -p ~/.kaggle
+          clean_token=$(printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]')
+          if [ -z "$clean_token" ]; then
+            echo "::error::KAGGLE_API_TOKEN is missing"
+            exit 1
+          fi
+          printf '%s' "$clean_token" > ~/.kaggle/access_token
+          chmod 600 ~/.kaggle/access_token
+      - name: Install Kaggle CLI
+        run: pip install kaggle
+      - name: Upload both explicitly approved V8 finalists
+        working-directory: kaggriculture
+        run: |
+          submit_agent() {
+            local source="$1" description="$2" archive="$3"
+            rm -f main.py "$archive"
+            cp "$source" main.py
+            tar -czf "$archive" main.py
+            output=$(kaggle competitions submit -c kaggriculture -f "$archive" -m "$description" 2>&1)
+            printf '%s\n' "$output"
+            safe=$(printf '%s' "$output" | sed -E 's/KGAT_[A-Za-z0-9_-]+/[REDACTED]/g')
+            safe=${safe//'%'/'%25'}
+            safe=${safe//$'\n'/'%0A'}
+            safe=${safe//$'\r'/'%0D'}
+            echo "::notice title=$description::$safe"
+          }
+          submit_agent agent_v8_aastik.py "V8 Aastik rating 73of85 $GITHUB_SHA" submission-v8-aastik.tar.gz
+          submit_agent agent_v8_hybrid.py "V8 hybrid 200k 72of85 $GITHUB_SHA" submission-v8-hybrid.tar.gz
