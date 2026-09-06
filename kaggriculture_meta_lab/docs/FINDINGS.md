@@ -72,6 +72,39 @@ fertilizer upside (the elite ~2× premium-yield cycle) requires the
 demand-driven crop-mix study (strawberries/ongoing crops), which is the next
 project, not a V8 side-effect.
 
+## 1c. V9 demand-adaptive animal mix — built, tested, NOT promoted (negative)
+
+V9 (`agents/variants/agent_v9_adapt.py`, shipped with `ADAPT_ANIMALS=False` so
+it is byte-identical in behaviour to V8) sizes the sheep flock from the town's
+visible shop demand (`town.unlocked_shops`): wool is demanded only by
+YARN_STORE (2 units/interval), milk by PIZZA/ICE_CREAM/SMOOTHIE. The mechanism
+is verified correct (flag-off control is exactly 50.0% / margin 0 vs V8).
+
+Closed-loop findings (screen over the `sweeps/v9_adapt.json` family):
+
+```
+static 8 sheep vs V7:   0% (12 games)   <- adding animals outright is bad
+static 7 sheep vs V7:   8.3%
+aggressive adapt (y1/y2 -> 8-9 sheep, d8): 50-58%
+conservative adapt (d12, need 3 yarn shops): 62.5% (40 games, margin +460)
+v8_control (V8 as-is):  66.7% screen / 67.5-73.3% full gates
+```
+
+**Why it loses / is neutral:** the routing/hand system is calibrated to a fixed
+14-animal estate (8 cows + 6 sheep). Buying extra sheep pulls animal-hand time
+from field service, and a wool-heavy town is not common enough for the extra
+3 sheep to pay back before the season ends. The hand/hours budget is the real
+constraint, not information — so the first adaptive lever should target the
+*field* (ongoing crops: strawberries/tomatoes are planted AFTER the early
+animal build-out and don't steal animal-service time), not more animals.
+
+The demand signal itself is real and cheap (`town.unlocked_shops`,
+`market.prices`, `market.inventory` are all in the observation and shared
+between farms). V9 is kept as the template + testbed; the `v9_adapt.json`
+funnel is the way to revisit it (e.g. sheep REDUCTION when yarn demand is
+absent, or swapping crops instead of animals). The next adaptive project is
+ongoing-crop adaptation, gated the same way.
+
 ## 2. Closed loop vs open loop
 
 - V7's `replay_benchmark.py` (open loop) faithfully reproduces Kaggle scores for

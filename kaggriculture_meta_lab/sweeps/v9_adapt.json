@@ -1,0 +1,23 @@
+{
+  "name": "v9_adapt",
+  "base": "agents/variants/agent_v9_adapt.py",
+  "baseline": "agents/ref/agent_v7.py",
+  "start_seed": 20263000,
+  "screen_games": 8,
+  "promote_games": 250,
+  "final_games": 250,
+  "top_k": 8,
+
+  "note": "Adaptive animal-mix family (V9 = V8 + demand-driven sheep flock). The baseline opponent is V7; BASE_agent_v9_adapt is V9 with the default policy (adaptive d8/y2/h9). Variants sweep decision day, yarn trigger, high-flock size, and add static 7/8-sheep controls (their own base files in sweeps/_bases) to test whether ANY non-6 flock beats the fixed mix. Promote only if a variant clears the 250-seed Wilson gate AND wins the Bradley-Terry finals; otherwise V8 stays champion. NOTE: V9 is the candidate here, so run the finals round-robin is among V9 variants; to compare against V8 directly include it as a variant with an empty params block (see v8_control).",
+
+  "variants": [
+    {"name": "v8_champion",  "base": "agents/variants/agent_v8_fert.py", "params": {"STRAWBERRY_TARGET": 0}},
+    {"name": "v9_d8_y2_h9",  "params": {"ADAPT_ANIMALS": true, "ADAPT_DECISION_DAY": 8, "ADAPT_YARN_SHOPS": 2, "ADAPT_SHEEP_HIGH": 9}},
+    {"name": "v9_d8_y1_h8",  "params": {"ADAPT_ANIMALS": true, "ADAPT_DECISION_DAY": 8, "ADAPT_YARN_SHOPS": 1, "ADAPT_SHEEP_HIGH": 8}},
+    {"name": "v9_d8_y2_h8",  "params": {"ADAPT_ANIMALS": true, "ADAPT_DECISION_DAY": 8, "ADAPT_YARN_SHOPS": 2, "ADAPT_SHEEP_HIGH": 8}},
+    {"name": "v9_d12_y2_h9", "params": {"ADAPT_ANIMALS": true, "ADAPT_DECISION_DAY": 12, "ADAPT_YARN_SHOPS": 2, "ADAPT_SHEEP_HIGH": 9}},
+    {"name": "v9_d12_y3_h9", "params": {"ADAPT_ANIMALS": true, "ADAPT_DECISION_DAY": 12, "ADAPT_YARN_SHOPS": 3, "ADAPT_SHEEP_HIGH": 9}},
+    {"name": "static_sheep7", "base": "sweeps/_bases/static_sheep7.py", "params": {}},
+    {"name": "static_sheep8", "base": "sweeps/_bases/static_sheep8.py", "params": {}}
+  ]
+}

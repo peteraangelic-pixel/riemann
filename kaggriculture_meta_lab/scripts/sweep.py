@@ -70,7 +70,7 @@ def expand_config(cfg: dict) -> list[dict]:
     # de-duplicate by params, keep explicit names
     seen, uniq = set(), []
     for v in out:
-        sig = json.dumps(v["params"], sort_keys=True)
+        sig = (v.get("base", ""), json.dumps(v["params"], sort_keys=True))
         if sig in seen:
             continue
         seen.add(sig)
@@ -227,9 +227,11 @@ def main() -> int:
     variants = []
     lines.append(f"{len(specs)} configurations:")
     for v in specs:
-        path = make_variant(base, v["name"], v["params"])
+        vbase = (ROOT / v["base"]) if v.get("base") else base
+        path = make_variant(vbase, v["name"], v["params"])
         variants.append((v["name"], path))
-        lines.append(f"  {v['name']:<22} {json.dumps(v['params'], sort_keys=True)}")
+        lines.append(f"  {v['name']:<22} {json.dumps(v['params'], sort_keys=True)}"
+                     + ("" if vbase == base else f"  [base {vbase.name}]"))
     lines.append("")
     print("\n".join(lines[-len(specs) - 2:]))
 
