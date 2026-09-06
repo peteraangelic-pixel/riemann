@@ -130,6 +130,7 @@ jobs:
           printf '%s\n' "$output"
           kaggle competitions submissions kaggriculture
 
+  # Status checks never submit; they only read submission/episode tables.
   monitor:
     name: Read Kaggle status
     if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-status]')
