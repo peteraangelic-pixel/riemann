@@ -1,0 +1,51 @@
+name: Kaggriculture V9 third-policy validation
+
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths:
+      - "kaggriculture/replay_benchmark.py"
+      - ".github/workflows/kaggriculture-v9-third-validate.yml"
+
+jobs:
+  validate:
+    if: contains(github.event.head_commit.message, '[kaggr-v9-third-validate]')
+    name: ${{ matrix.agent }} on ${{ matrix.corpus }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 15
+      matrix:
+        agent: [aastik, hybrid, delayed28-01, delayed28-02, delayed28-03]
+        corpus: [scripted-v7, current-v8, common-loss]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install engine
+        run: pip install kaggle-environments
+      - name: Run isolated replay validation
+        env:
+          AGENT: ${{ matrix.agent }}
+          CORPUS: ${{ matrix.corpus }}
+        working-directory: kaggriculture
+        run: |
+          case "$AGENT" in
+            aastik) agent=agent_v8_aastik.py ;;
+            hybrid) agent=agent_v8_hybrid.py ;;
+            delayed28-*) agent="v9_candidates/agent_v9_third_${AGENT/-/_}.py" ;;
+          esac
+          case "$CORPUS" in
+            scripted-v7) filter="--submission 56044395" ;;
+            current-v8) filter="--submission 56054137 --submission 56054139" ;;
+            common-loss) filter="--episode 105990797 --episode 105992649 --episode 105994529 --episode 106006563 --episode 106017709 --episode 106027867 --episode 106029787 --episode 106037741" ;;
+          esac
+          output=$(python replay_benchmark.py --agent "$agent" $filter)
+          printf '%s\n' "$output"
+          summary=$(printf '%s\n' "$output" | tail -1 | cut -c1-12000)
+          summary=${summary//'%'/'%25'}
+          summary=${summary//$'\n'/'%0A'}
+          summary=${summary//$'\r'/'%0D'}
+          echo "::notice title=$AGENT on $CORPUS::$summary"

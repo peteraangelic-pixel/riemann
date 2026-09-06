@@ -39,6 +39,10 @@ def main() -> None:
         help="only use online replays collected for this submission (repeatable)",
     )
     parser.add_argument(
+        "--episode", action="append", default=[], metavar="ID",
+        help="only use these collected episode IDs (repeatable; combines with --submission)",
+    )
+    parser.add_argument(
         "--archive", type=Path,
         help="ZIP of external replays; candidate is tested on both sides of each match",
     )
@@ -142,7 +146,10 @@ def main() -> None:
                     records.append((Path(member).stem, replay, candidate_side))
     else:
         selected_submissions = set(args.submission)
+        selected_episodes = set(args.episode)
         for path in sorted((HERE / "online").glob("*/replay.json.gz")):
+            if selected_episodes and path.parent.name not in selected_episodes:
+                continue
             if selected_submissions:
                 metadata_path = path.parent / "metadata.txt"
                 metadata = metadata_path.read_text() if metadata_path.exists() else ""
