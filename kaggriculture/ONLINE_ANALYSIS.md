@@ -250,3 +250,37 @@ to 76,809.2 on the 70 public scripts, while V6 retained 88,259.6 but scored
 52,505.9 on the elite set. Conditional opponent-melon responses also failed
 to dominate. Therefore V6 is the broad finalist; the elite experiments are
 retained as evidence for a redesigned V7 rather than silently regressing V6.
+
+## V7 forward selection and replay-schedule reconstruction
+
+The first 36-profile phased-planner ablation failed: full imitation scored
+58,759.9/46W, while removing strawberries recovered only 70,646.4. A second
+36-profile forward-selection run reset V7 to the V6 baseline and added each
+phase independently. No phase beat V6: control and phase6-10-14 both scored
+88,229.4/64W; early land tied; the best actual phase change was lower. This
+closed stage 1 before `Renoir.zip` and `inni.zip` were examined.
+
+The new archives revealed a stronger fact than the asset counts. Across six
+Renoir games, all 720 farmer actions and all 720 complete hand-action arrays
+were identical. Exact full actions differed on only 0-4 turns, all in market
+order ordering or final quantities. Several other elite players use almost
+the same deterministic 12-melon/33-strawberry/17-animal schedule. Therefore
+the missing advantage was the complete spatial-temporal action schedule, not
+a set of target constants that the old zone router could reproduce.
+
+`agent_v7_scripted.py` embeds two seat demonstrations in 25 KB and chooses by
+player seat. Raw market orders are essential: clamping SELL to the pre-action
+shed incorrectly deletes products dropped into the shed by hands in the same
+turn. The raw reconstruction produced:
+
+- 70 public scripts: **147,543.1 average, 68/70 wins** (V6: 88,259.6/64),
+- 24 two-seat champion trials: **87,178.3, 15/24** (V6: 52,505.9/0),
+- 10 two-seat Renoir trials: **116,519.3, 4/10**, only 413 below the original
+  Renoir/player mean of 116,932.4,
+- 10 two-seat `inni.zip` trials: **91,689.1, 6/10**, +11,943 over originals.
+
+P0, P1 and automatic raw schedules tied on all four aggregate results;
+pre-shed clamping collapsed the candidate to 60,714.7 on public scripts and
+roughly 42-52k on elite archives. The selected offline V7 is therefore the
+raw automatic-seat reconstruction. These are counterfactual scripted-opponent
+benchmarks, not a claimed Kaggle score, and no upload is authorized yet.
