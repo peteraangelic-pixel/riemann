@@ -4,7 +4,8 @@ on:
   push:
     branches: ["arena/01a0712c-riemann"]
     paths:
-      - "kaggriculture/v9_candidates/**"
+      - "kaggriculture/v9_candidates/agent_v9_third_*.py"
+      - "kaggriculture/v9_candidates/manifest.json"
       - "kaggriculture/research/build_top49_candidates.py"
       - ".github/workflows/kaggriculture-v9-third-screen.yml"
 

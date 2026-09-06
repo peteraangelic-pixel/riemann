@@ -71,6 +71,22 @@ main agent.
 - Reject delayed28-02/03 as promotion candidates.
 - Retain delayed28-01 only for primitive extraction and selector research.
 - Keep V8 Aastik as the rating-first baseline; no submission.
-- Next isolate delayed28-01's no-wheat/early-estate opening at exact boundaries,
-  then test whether a small module can retain its four common-loss rescues
-  without sacrificing Aastik's broad win rate.
+## Stage O — exact opening-boundary attribution
+
+Actions run `34054841810` tested 12 isolated delayed28-01 → Aastik transfers:
+market-only and full-action prefixes ending after steps 1, 2, 3, 5, 8, and 16.
+Every variant scored **0/8** on the common-loss set. Market-only variants fell
+to roughly 0–20k mean cash; full-prefix variants to roughly 0–28k. Replacing
+only step 0 could even produce zero reward because delayed28 buys seven hands
+and a different estate while the resumed Aastik logistics assume its original
+five-hand/wheat opening.
+
+This is decisive negative attribution: the four rescues are not carried by a
+small opening primitive. The delayed28 economy is tightly coupled across its
+full trajectory. Do not run these boundary variants on broader corpora and do
+not fuse the opening into Aastik.
+
+- Do not extract delayed28-01's opening into Aastik; Stage O rejected it.
+- Continue contrastive feature analysis of the four rescued versus four
+  unrescued common losses, but any selector must acknowledge that the policies
+  diverge at step 0 before opponent style is observable.
