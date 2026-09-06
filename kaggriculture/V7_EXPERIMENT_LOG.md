@@ -84,3 +84,12 @@ Low premium prices are strongly associated with low outcomes. Independently test
 - keiz likewise shifts from 11 cows/6 sheep/1 goose to 7 cows/6 sheep/1 goose and adds 20 tomato plots when milk demand collapses. All three leaders still converge on 12 workers and three unlocked quadrants.
 - The leaders sell products continuously rather than waiting for quote recovery, consistent with Stage D's negative result. Their robustness comes primarily from adapting what they produce to demand, not merely delaying liquidation.
 - Strategic implication: Renoir remains a strong fixed physical schedule and reaches much higher favorable-market cash (161-171k), but top-rating robustness likely requires a separate adaptive-production generation. Do not silently alter the verified Renoir finalist; first use the new archive as an additional holdout for the day-8 market finalists.
+
+## Market stage E results
+
+- Four finalists were validated on all four established corpora plus both seats of the three new leader matches (six new-leader trials).
+- Control: live 91,365.8/59W; champions 87,178.3/15W; Renoir 116,519.3/4W; others 91,689.1/6W; new leaders 97,575.5/5W.
+- Day 8: live 91,373.7/59W; champions 87,198.0/15W; Renoir 116,724.0/8W; others 91,689.1/6W; new leaders 97,575.5/5W.
+- Days 8+21: live 91,373.4/59W; champions 87,195.6/15W; Renoir 116,745.7/8W; others 91,714.9/6W; new leaders 97,631.2/5W.
+- Days 8+16: live 91,372.2/59W; champions 87,199.9/15W; Renoir 116,730.6/8W; others 91,691.0/6W; new leaders 97,577.8/5W.
+- Final-money choice: day 8 has the highest frozen-live mean, by only 0.3 over 8+21. Robustness/rating choice: 8+21 is preferred because it has the best Renoir, other, and new-leader means while retaining every corpus win count. Neither tiny change alone can close the rating gap to adaptive leaders.
