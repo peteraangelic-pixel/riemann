@@ -55,18 +55,22 @@ higher yields → more cash → more hands/land).
    expansion is market-negative on its own and is a separate demand-driven
    decision. V8 keeps the crop mix identical to V7 (`STRAWBERRY_TARGET=0`).
 
-**Final closed-loop result (V8 fert-only vs pure V7, 20 seeds × 2 seats = 40 games):**
+**Closed-loop result (V8 fert-only vs pure V7):**
 
 ```
-27 W / 13 L / 0 T, score rate 67.5% (95% Wilson CI 52.0-79.9)
-mean margin +634, errors 0, balanced on both seats (13-7 / 14-6)
--> Wilson gate PASS (lower bound 52% > 50%).
+40 games  (20 seeds × 2 seats):  27 W / 13 L / 0 T, 67.5% (CI 52.0-79.9), margin +634
+200 games (100 seeds × 2 seats, user's 5950X, 2026-09-06):
+  146 W / 54 L / 0 T, score 73.0% (95% Wilson CI 66.5-78.7)
+  mean margin +733 (median +528), errors 0, seats balanced (73-27 / 73-27)
+  -> Wilson gate PASS decisively (lower bound 66.5% >> 50%).
+  Full report: results/validate-windows-5950x-200games.md
 ```
 
-A small, **regime-independent, zero-crash** gain — exactly the kind of stable
-edge the final Bradley–Terry ranking rewards. Bigger fertilizer upside (the
-elite ~2× premium-yield cycle) requires the demand-driven crop-mix study
-(strawberries/ongoing crops), which is the next project, not a V8 side-effect.
+A small-margin but **large-rate, regime-independent, zero-crash** gain — exactly
+the kind of stable edge the final Bradley–Terry ranking rewards. Bigger
+fertilizer upside (the elite ~2× premium-yield cycle) requires the
+demand-driven crop-mix study (strawberries/ongoing crops), which is the next
+project, not a V8 side-effect.
 
 ## 2. Closed loop vs open loop
 

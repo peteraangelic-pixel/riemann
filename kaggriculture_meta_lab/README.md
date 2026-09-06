@@ -61,13 +61,18 @@ to `results/validate-<timestamp>.md` (+ `.json`):
 new file and push — that is how the team shares verified numbers. Worker count
 is auto-clamped to available RAM (~0.45 GB/worker); on a 5950X/64 GB use 16.
 
-Current baseline result (deterministic, re-runs to identical numbers):
+Current baseline result (V8 vs V7, user's Ryzen 9 5950X, 2026-09-06;
+see `results/validate-windows-5950x-200games.md`):
 
 ```
-27W 13L 0T  score 67.5%  95% Wilson 52.0-79.9
-mean margin +634  errors 0   seat0 13-7 | seat1 14-6   GATE: PASS
+200 closed-loop games (100 seeds x 2 seats):
+146W 54L 0T  score 73.0%  95% Wilson 66.5-78.7
+mean margin +733  errors 0   seat0 73-27 | seat1 73-27   GATE: PASS
 corpus 8W 0L over 8 episodes, candidate mean cash 84.9k vs recorded 26.9k
 ```
+
+The 40-game run is deterministic and re-runs to identical numbers
+(27W 13L, 67.5%); the 200-game run tightens the picture to a solid 73%.
 
 ## Closed-loop tournament (the headline tool)
 
