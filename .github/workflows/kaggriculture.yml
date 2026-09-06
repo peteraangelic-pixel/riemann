@@ -133,7 +133,9 @@ jobs:
   # Status checks never submit; they only read submission and episode tables.
   monitor:
     name: Read Kaggle status
-    if: github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-status]')
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'push' && contains(github.event.head_commit.message, '[kaggr-status]'))
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
