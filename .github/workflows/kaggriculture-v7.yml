@@ -1,33 +1,65 @@
-name: Kaggriculture V7 replay reconstruction
+name: Kaggriculture V7 market refinement
 
 on:
   push:
     branches: ["arena/01a0712c-riemann"]
     paths:
-      - "kaggriculture/agent_v7.py"
-      - "kaggriculture/agent_v7_scripted.py"
+      - "kaggriculture/agent_v7_market.py"
       - "kaggriculture/replay_benchmark.py"
+      - "kaggriculture/V7_EXPERIMENT_LOG.md"
       - ".github/workflows/kaggriculture-v7.yml"
 
 jobs:
-  reconstruction:
-    name: V7 reconstruction ${{ matrix.id }}
-    if: contains(github.event.head_commit.message, '[kaggr-v7-reconstruct]')
+  market-refinement:
+    name: V7 market A ${{ matrix.id }}
+    if: contains(github.event.head_commit.message, '[kaggr-v7-market-a]')
     runs-on: ubuntu-latest
     timeout-minutes: 30
     strategy:
       fail-fast: false
-      max-parallel: 10
+      max-parallel: 24
       matrix:
         include:
-          - {id: v6-control, agent: agent_v6.py, args: ""}
-          - {id: v7-planner, agent: agent_v7.py, args: ""}
-          - {id: script-auto-clamp, agent: agent_v7_scripted.py, args: "--set CLAMP_SELL=true"}
-          - {id: script-auto-raw, agent: agent_v7_scripted.py, args: ""}
-          - {id: script-p0-clamp, agent: agent_v7_scripted.py, args: "--set SEAT_MODE=P0 --set CLAMP_SELL=true"}
-          - {id: script-p0-raw, agent: agent_v7_scripted.py, args: "--set SEAT_MODE=P0 --set CLAMP_SELL=false"}
-          - {id: script-p1-clamp, agent: agent_v7_scripted.py, args: "--set SEAT_MODE=P1 --set CLAMP_SELL=true"}
-          - {id: script-p1-raw, agent: agent_v7_scripted.py, args: "--set SEAT_MODE=P1 --set CLAMP_SELL=false"}
+          # Whole demonstrated market schedules; physical actions stay Renoir.
+          - {id: renoir-auto, args: ""}
+          - {id: renoir-p0, args: "--set MARKET_MODE=RENOIR_P0"}
+          - {id: renoir-p1, args: "--set MARKET_MODE=RENOIR_P1"}
+          - {id: coordi, args: "--set MARKET_MODE=COORDI"}
+          - {id: jordi, args: "--set MARKET_MODE=JORDI"}
+          - {id: zhongyi, args: "--set MARKET_MODE=ZHONGYI"}
+          - {id: jesse, args: "--set MARKET_MODE=JESSE"}
+          # Order priority tests isolate the few observed market-order differences.
+          - {id: renoir-hire-first, args: "--set ORDER_MODE=HIRE_FIRST"}
+          - {id: renoir-sell-first, args: "--set ORDER_MODE=SELL_FIRST"}
+          - {id: renoir-buy-first, args: "--set ORDER_MODE=BUY_FIRST"}
+          - {id: coordi-hire-first, args: "--set MARKET_MODE=COORDI --set ORDER_MODE=HIRE_FIRST"}
+          - {id: coordi-sell-first, args: "--set MARKET_MODE=COORDI --set ORDER_MODE=SELL_FIRST"}
+          - {id: jordi-hire-first, args: "--set MARKET_MODE=JORDI --set ORDER_MODE=HIRE_FIRST"}
+          - {id: jordi-sell-first, args: "--set MARKET_MODE=JORDI --set ORDER_MODE=SELL_FIRST"}
+          - {id: zhongyi-hire-first, args: "--set MARKET_MODE=ZHONGYI --set ORDER_MODE=HIRE_FIRST"}
+          - {id: zhongyi-sell-first, args: "--set MARKET_MODE=ZHONGYI --set ORDER_MODE=SELL_FIRST"}
+          - {id: jesse-hire-first, args: "--set MARKET_MODE=JESSE --set ORDER_MODE=HIRE_FIRST"}
+          - {id: jesse-sell-first, args: "--set MARKET_MODE=JESSE --set ORDER_MODE=SELL_FIRST"}
+          # Late-market transplants preserve Renoir's financing and physical plan.
+          - {id: end27-coordi, args: "--set ENDGAME_MARKET_MODE=COORDI --set ENDGAME_START_DAY=27"}
+          - {id: end28-coordi, args: "--set ENDGAME_MARKET_MODE=COORDI --set ENDGAME_START_DAY=28"}
+          - {id: end29-coordi, args: "--set ENDGAME_MARKET_MODE=COORDI --set ENDGAME_START_DAY=29"}
+          - {id: end27-jordi, args: "--set ENDGAME_MARKET_MODE=JORDI --set ENDGAME_START_DAY=27"}
+          - {id: end28-jordi, args: "--set ENDGAME_MARKET_MODE=JORDI --set ENDGAME_START_DAY=28"}
+          - {id: end29-jordi, args: "--set ENDGAME_MARKET_MODE=JORDI --set ENDGAME_START_DAY=29"}
+          - {id: end27-zhongyi, args: "--set ENDGAME_MARKET_MODE=ZHONGYI --set ENDGAME_START_DAY=27"}
+          - {id: end28-zhongyi, args: "--set ENDGAME_MARKET_MODE=ZHONGYI --set ENDGAME_START_DAY=28"}
+          - {id: end29-zhongyi, args: "--set ENDGAME_MARKET_MODE=ZHONGYI --set ENDGAME_START_DAY=29"}
+          - {id: end27-jesse, args: "--set ENDGAME_MARKET_MODE=JESSE --set ENDGAME_START_DAY=27"}
+          - {id: end28-jesse, args: "--set ENDGAME_MARKET_MODE=JESSE --set ENDGAME_START_DAY=28"}
+          - {id: end29-jesse, args: "--set ENDGAME_MARKET_MODE=JESSE --set ENDGAME_START_DAY=29"}
+          # Cross-source hybrids suggested by the supplied replay leaders.
+          - {id: coordi-end28-zhongyi, args: "--set MARKET_MODE=COORDI --set ENDGAME_MARKET_MODE=ZHONGYI --set ENDGAME_START_DAY=28"}
+          - {id: jordi-end28-zhongyi, args: "--set MARKET_MODE=JORDI --set ENDGAME_MARKET_MODE=ZHONGYI --set ENDGAME_START_DAY=28"}
+          - {id: zhongyi-end28-renoir, args: "--set MARKET_MODE=ZHONGYI --set ENDGAME_MARKET_MODE=RENOIR_AUTO --set ENDGAME_START_DAY=28"}
+          - {id: jesse-end28-zhongyi, args: "--set MARKET_MODE=JESSE --set ENDGAME_MARKET_MODE=ZHONGYI --set ENDGAME_START_DAY=28"}
+          - {id: coordi-end29-jesse, args: "--set MARKET_MODE=COORDI --set ENDGAME_MARKET_MODE=JESSE --set ENDGAME_START_DAY=29"}
+          - {id: zhongyi-end29-jesse, args: "--set MARKET_MODE=ZHONGYI --set ENDGAME_MARKET_MODE=JESSE --set ENDGAME_START_DAY=29"}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -35,21 +67,20 @@ jobs:
           python-version: "3.12"
       - name: Install engine
         run: pip install kaggle-environments
-      - name: Cross-validate reconstructed schedule on four corpora
+      - name: Test market-only V7 refinements on four corpora
         working-directory: kaggriculture
         env:
-          AGENT: ${{ matrix.agent }}
           VARIANT_ARGS: ${{ matrix.args }}
         run: |
-          public=$(python replay_benchmark.py --agent "$AGENT" $VARIANT_ARGS)
+          public=$(python replay_benchmark.py --agent agent_v7_market.py $VARIANT_ARGS)
           printf '%s\n' "$public"
-          echo "::notice title=V7 reconstruct public::$(printf '%s\n' "$public" | tail -1)"
-          champions=$(python replay_benchmark.py --agent "$AGENT" --archive Downloads.zip $VARIANT_ARGS)
+          echo "::notice title=V7 market public::$(printf '%s\n' "$public" | tail -1)"
+          champions=$(python replay_benchmark.py --agent agent_v7_market.py --archive Downloads.zip $VARIANT_ARGS)
           printf '%s\n' "$champions"
-          echo "::notice title=V7 reconstruct champions::$(printf '%s\n' "$champions" | tail -1)"
-          renoir=$(python replay_benchmark.py --agent "$AGENT" --archive Renoir.zip $VARIANT_ARGS)
+          echo "::notice title=V7 market champions::$(printf '%s\n' "$champions" | tail -1)"
+          renoir=$(python replay_benchmark.py --agent agent_v7_market.py --archive Renoir.zip $VARIANT_ARGS)
           printf '%s\n' "$renoir"
-          echo "::notice title=V7 reconstruct renoir::$(printf '%s\n' "$renoir" | tail -1)"
-          others=$(python replay_benchmark.py --agent "$AGENT" --archive inni.zip $VARIANT_ARGS)
+          echo "::notice title=V7 market renoir::$(printf '%s\n' "$renoir" | tail -1)"
+          others=$(python replay_benchmark.py --agent agent_v7_market.py --archive inni.zip $VARIANT_ARGS)
           printf '%s\n' "$others"
-          echo "::notice title=V7 reconstruct others::$(printf '%s\n' "$others" | tail -1)"
+          echo "::notice title=V7 market others::$(printf '%s\n' "$others" | tail -1)"
