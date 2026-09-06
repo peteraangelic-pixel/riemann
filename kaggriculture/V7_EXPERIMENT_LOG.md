@@ -147,3 +147,11 @@ Low premium prices are strongly associated with low outcomes. Independently test
 - The 200k hybrid is not the competition-rating winner: versus Aastik it loses one live and one champion win and lowers new-leader mean by 3,123.5. Its value is a distinct high-money experiment, not evidence of greater Bradley-Terry strength.
 - Prepared standalone, dependency-free candidates `agent_v8_aastik.py` and `agent_v8_hybrid.py`. Their actions match the corresponding fusion laboratory profiles on all 720 observations of a checked replay.
 - User explicitly authorized both uploads. V8 Aastik was submitted as **56054137** and the switch-3 200k hybrid as **56054139** on 2026-09-06. Both were `PENDING` at the first status check; no episodes existed yet.
+
+## V8 primitive-mining Stage L results
+
+- None of 34 additional opening primitives beats full Aastik on the broad live corpus. Aastik remains 88,660.4/73W; Renoir opening remains 89,104.8/72W.
+- Keiz opening primitives collapse to 83-85k and 24-28W live, although several reach 5/6 against the tiny new-leader holdout. This is classic holdout-specific tradeoff and is not promotable.
+- Crop Dusta opening primitives are incompatible with Aastik: market-only variants score 18-23k/0W and full-day openings 30-35k/2-4W.
+- Different replay trajectories from the same player often produce exactly identical opening results (three Crop tapes; two Keiz tapes), indicating shared opening families before later adaptation.
+- Conclusion: the primitive-library architecture is valid, but the six supplied leader trajectories contain no new transferable opening beyond Renoir's known three-action wheat module. Stop combining these tapes blindly; expand to the daily TOP20/TOP50 archive and mine distinct fingerprints.
