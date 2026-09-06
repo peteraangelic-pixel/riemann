@@ -48,7 +48,23 @@ The extra SELL-first win may originate on one particular day, while applying it 
 - Top games are 171,146-99,739 against XiweiZhou, 167,694-78,660 against soumic 1088, and 161,710-159,403 against momoon.
 - The strongest observed opponent score is 159,403 (momoon). None of our 85 collected matches, nor the supplied champion/Renoir/inni archives, contains a 200k result yet.
 - Most runs reach the identical intended physical maxima (8 cows, 9 sheep, 12 melons, 41 wheat, 33 strawberries, 23 carrots), despite a 126k cash range. Shared demand, sale priority, and the opponent's liquidation dominate final-money variance; the physical schedule itself already demonstrates 170k capability.
+- Across all 85 games, the sum of requested SELL quantity times the contemporaneous quote correlates 0.890 with final cash. This is diagnostic rather than realized revenue because requested quantities can exceed accepted inventory.
+- Premium quotes separate the score tails. In the bottom ten games (53,687.9 mean), mean quotes at our sale turns are milk 43.7, strawberries 61.8, wool 22.5, and melons 167.6. In the top ten (140,748.6 mean), they are milk 190.7, strawberries 204.8, wool 83.7, and melons 182.9. Product-level correlations with final cash are milk 0.726, strawberries 0.614, melons 0.428, fertilizer 0.371, wool 0.206, wheat -0.064, and carrots -0.224.
+- The 171,146 game combines exceptional milk (237.9 mean quote at sale turns) and wool (201.6); the 167,694 game combines milk 230.8 and strawberries 244.0; the 161,710 game has milk 193.1, wool 211.6, and strawberries 196.4. There is no single required premium product, but at least two high-price premium channels appear in every 160k+ game.
+- Follow-up after Stage C: test price-aware deferral/priority for milk and strawberries while preserving all physical actions. It must be replay-tested because delaying low-price sales can overflow the shed or miss later demand; static quote correlation alone does not establish causality.
 
 ## Market stage C design
 
 Test singles, selected pairs, and increasingly broad bundles composed only of days 4, 8, 15, 16, 21, 26, and 27. Report the current 85-match V7 public corpus, champions, Renoir, and others separately. Day 4 remains isolated in most bundles because its larger public gain trades away elite robustness. The public benchmark is explicitly filtered to submission 56044395 so future replay collection cannot silently change the corpus.
+
+## Market stage C results
+
+- On the frozen 85-match live corpus, day 8 is the clear isolated winner: 91,373.7/59W versus control 91,365.8/59W. It also remains 87,198.0/15W champions, 116,724.0/8W Renoir, and 91,689.1/6W others.
+- Day 8 plus day 21 is nearly tied on live money (91,373.4/59W), improves Renoir further to 116,745.7/8W, and gives the best useful other-player gain (91,714.9/6W). Day 8+16 reaches 91,372.2/59W live and 116,730.6/8W Renoir.
+- The broad non-day-4 bundle [8,15,16,21,26,27] maximizes Renoir at 116,753.1/8W and champions at 87,229.4/15W, but slips to 91,357.3/59W live. Interactions do not justify bundling all individually neutral days.
+- Day 4 does not transfer to current matches: 91,337.0/58W live, losing one real win. Adding day 8 gives only 91,344.9/58W. Day 4 and all bundles containing it are rejected despite their 70-replay and champion mean gains.
+- Conclusion: retain day 8 as the robust ordering finalist; optionally compare day 8+21 when optimizing cross-corpus robustness. The changes are tiny in final money but the Renoir win gain from 4/10 to 8/10 is repeatable.
+
+## Market stage D hypothesis
+
+Low premium prices are strongly associated with low outcomes. Independently test deferring Renoir SELL orders for one product when its current quote is below a threshold, always releasing by a configured late day. First isolate milk, strawberries, wool, and melon threshold/hold-day pairs; combine only thresholds that improve the frozen live corpus without damaging champion/Renoir/other robustness. Deferral can also starve same-turn purchases or overflow storage, so it is an experiment rather than an assumed improvement.

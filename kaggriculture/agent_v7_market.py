@@ -18,6 +18,12 @@ ORDER_MODE = "ORIGINAL"
 # Empty means apply ORDER_MODE on every day. Non-empty lists isolate the exact
 # day whose sequential market ordering is being changed.
 ORDER_DAYS = []
+# Optional price-aware deferral laboratory. Only matching SELL orders are held;
+# the original schedule's later 500-unit SELL naturally catches up. Never hold
+# on or after HOLD_UNTIL_DAY, so liquidation still has a fixed deadline.
+HOLD_PRODUCT = ""
+HOLD_MIN_PRICE = 0
+HOLD_UNTIL_DAY = 29
 
 def _mode(name, player):
     if name == "RENOIR_AUTO": return "RENOIR_P0" if player == 0 else "RENOIR_P1"
@@ -38,6 +44,13 @@ def act(observation, configuration):
         }[ORDER_MODE]
         orders = sorted(enumerate(orders), key=lambda x: (priority.get(x[1][0] if x[1] else "", 9), x[0]))
         orders = [x for _, x in orders]
+    day = step // 24
+    prices = (observation.get("market") or {}).get("prices") or {}
+    if HOLD_PRODUCT and day < HOLD_UNTIL_DAY and prices.get(HOLD_PRODUCT, 0) < HOLD_MIN_PRICE:
+        orders = [
+            order for order in orders
+            if not (order and order[0] == "SELL" and len(order) > 1 and order[1] == HOLD_PRODUCT)
+        ]
     action["market"] = orders
     hands = (observation.get("farms") or [])[player].get("hands") or []
     action["hands"] = action["hands"][:len(hands)]
