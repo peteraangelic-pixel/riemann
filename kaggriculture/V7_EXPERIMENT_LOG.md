@@ -93,3 +93,10 @@ Low premium prices are strongly associated with low outcomes. Independently test
 - Days 8+21: live 91,373.4/59W; champions 87,195.6/15W; Renoir 116,745.7/8W; others 91,714.9/6W; new leaders 97,631.2/5W.
 - Days 8+16: live 91,372.2/59W; champions 87,199.9/15W; Renoir 116,730.6/8W; others 91,691.0/6W; new leaders 97,577.8/5W.
 - Final-money choice: day 8 has the highest frozen-live mean, by only 0.3 over 8+21. Robustness/rating choice: 8+21 is preferred because it has the best Renoir, other, and new-leader means while retaining every corpus win count. Neither tiny change alone can close the rating gap to adaptive leaders.
+
+## V8 fusion Stage F design
+
+- Extract six correctly aligned top-player action trajectories from `nowe.zip`: three Crop Dusta, two keiz, and one Aastik. Replay state N+1 stores the action selected from observation N; extraction was verified at 719/719 actions for Aastik.
+- Screen 32 isolated profiles: Renoir control and 8+21; six complete leader trajectories; Renoir physical actions with each leader market; each leader's physical actions with Renoir market; Renoir-to-leader day-8 switches; and leader-to-Renoir day-8 switches.
+- Stage F intentionally runs only the frozen 85 live matches and six new-leader trials. The older champion/Renoir/other archives are holdouts, not source material that must be repeatedly re-analyzed. Only Stage F winners advance to those holdouts, reducing Actions load without weakening evidence.
+- These raw trajectory fusions are attribution probes, not presumed deployable policies. Switching coupled physical states may fail; those failures reveal which components can or cannot transfer before implementing semantic adaptive production.
