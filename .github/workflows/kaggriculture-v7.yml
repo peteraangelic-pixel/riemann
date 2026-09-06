@@ -9,41 +9,20 @@ on:
       - ".github/workflows/kaggriculture-v7.yml"
 
 jobs:
-  market-refinement-d:
-    name: V7 market D ${{ matrix.id }}
-    if: contains(github.event.head_commit.message, '[kaggr-v7-market-d]')
+  market-refinement-e:
+    name: V7 market E ${{ matrix.id }}
+    if: contains(github.event.head_commit.message, '[kaggr-v7-market-e]')
     runs-on: ubuntu-latest
     timeout-minutes: 30
     strategy:
       fail-fast: false
-      max-parallel: 24
+      max-parallel: 4
       matrix:
         include:
-          - {id: control, product: "", price: 0, until: 29, order_days: "[]"}
-          - {id: day08-control, product: "", price: 0, until: 29, order_days: "[8]"}
-          - {id: milk-p080-d29, product: MILK, price: 80, until: 29, order_days: "[]"}
-          - {id: milk-p120-d29, product: MILK, price: 120, until: 29, order_days: "[]"}
-          - {id: milk-p160-d29, product: MILK, price: 160, until: 29, order_days: "[]"}
-          - {id: milk-p200-d29, product: MILK, price: 200, until: 29, order_days: "[]"}
-          - {id: milk-p160-d15, product: MILK, price: 160, until: 15, order_days: "[]"}
-          - {id: milk-p160-d21, product: MILK, price: 160, until: 21, order_days: "[]"}
-          - {id: milk-p160-d24, product: MILK, price: 160, until: 24, order_days: "[]"}
-          - {id: milk-p160-d27, product: MILK, price: 160, until: 27, order_days: "[]"}
-          - {id: strawberry-p080-d29, product: STRAWBERRY, price: 80, until: 29, order_days: "[]"}
-          - {id: strawberry-p120-d29, product: STRAWBERRY, price: 120, until: 29, order_days: "[]"}
-          - {id: strawberry-p160-d29, product: STRAWBERRY, price: 160, until: 29, order_days: "[]"}
-          - {id: strawberry-p200-d29, product: STRAWBERRY, price: 200, until: 29, order_days: "[]"}
-          - {id: strawberry-p160-d15, product: STRAWBERRY, price: 160, until: 15, order_days: "[]"}
-          - {id: strawberry-p160-d21, product: STRAWBERRY, price: 160, until: 21, order_days: "[]"}
-          - {id: strawberry-p160-d24, product: STRAWBERRY, price: 160, until: 24, order_days: "[]"}
-          - {id: strawberry-p160-d27, product: STRAWBERRY, price: 160, until: 27, order_days: "[]"}
-          - {id: wool-p060-d29, product: WOOL, price: 60, until: 29, order_days: "[]"}
-          - {id: wool-p100-d29, product: WOOL, price: 100, until: 29, order_days: "[]"}
-          - {id: wool-p140-d29, product: WOOL, price: 140, until: 29, order_days: "[]"}
-          - {id: wool-p180-d29, product: WOOL, price: 180, until: 29, order_days: "[]"}
-          - {id: melon-p100-d29, product: MELON, price: 100, until: 29, order_days: "[]"}
-          - {id: melon-p150-d29, product: MELON, price: 150, until: 29, order_days: "[]"}
-          - {id: melon-p200-d29, product: MELON, price: 200, until: 29, order_days: "[]"}
+          - {id: control, days: "[]"}
+          - {id: day08, days: "[8]"}
+          - {id: day08-21, days: "[8,21]"}
+          - {id: day08-16, days: "[8,16]"}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -51,30 +30,23 @@ jobs:
           python-version: "3.12"
       - name: Install engine
         run: pip install kaggle-environments
-      - name: Isolate one premium-product deferral rule
+      - name: Validate market finalists on all corpora and new leaders
         working-directory: kaggriculture
         env:
-          HOLD_PRODUCT: ${{ matrix.product }}
-          HOLD_PRICE: ${{ matrix.price }}
-          HOLD_UNTIL: ${{ matrix.until }}
-          ORDER_DAYS: ${{ matrix.order_days }}
+          ORDER_DAYS: ${{ matrix.days }}
         run: |
           variant_args=()
-          if [ -n "$HOLD_PRODUCT" ]; then
-            variant_args+=(--set "HOLD_PRODUCT=$HOLD_PRODUCT" --set "HOLD_MIN_PRICE=$HOLD_PRICE" --set "HOLD_UNTIL_DAY=$HOLD_UNTIL")
-          fi
           if [ "$ORDER_DAYS" != "[]" ]; then
-            variant_args+=(--set ORDER_MODE=SELL_FIRST --set "ORDER_DAYS=$ORDER_DAYS")
+            variant_args=(--set ORDER_MODE=SELL_FIRST --set "ORDER_DAYS=$ORDER_DAYS")
           fi
-          public=$(python replay_benchmark.py --agent agent_v7_market.py --submission 56044395 "${variant_args[@]}")
-          printf '%s\n' "$public"
-          echo "::notice title=V7 market public-live::$(printf '%s\n' "$public" | tail -1)"
-          champions=$(python replay_benchmark.py --agent agent_v7_market.py --archive Downloads.zip "${variant_args[@]}")
-          printf '%s\n' "$champions"
-          echo "::notice title=V7 market champions::$(printf '%s\n' "$champions" | tail -1)"
-          renoir=$(python replay_benchmark.py --agent agent_v7_market.py --archive Renoir.zip "${variant_args[@]}")
-          printf '%s\n' "$renoir"
-          echo "::notice title=V7 market renoir::$(printf '%s\n' "$renoir" | tail -1)"
-          others=$(python replay_benchmark.py --agent agent_v7_market.py --archive inni.zip "${variant_args[@]}")
-          printf '%s\n' "$others"
-          echo "::notice title=V7 market others::$(printf '%s\n' "$others" | tail -1)"
+          run_corpus() {
+            local title="$1"; shift
+            result=$(python replay_benchmark.py --agent agent_v7_market.py "$@" "${variant_args[@]}")
+            printf '%s\n' "$result"
+            echo "::notice title=V7 market $title::$(printf '%s\n' "$result" | tail -1)"
+          }
+          run_corpus public-live --submission 56044395
+          run_corpus champions --archive Downloads.zip
+          run_corpus renoir --archive Renoir.zip
+          run_corpus others --archive inni.zip
+          run_corpus new-leaders --archive nowe.zip

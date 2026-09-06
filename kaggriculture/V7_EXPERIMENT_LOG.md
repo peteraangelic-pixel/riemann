@@ -68,3 +68,19 @@ Test singles, selected pairs, and increasingly broad bundles composed only of da
 ## Market stage D hypothesis
 
 Low premium prices are strongly associated with low outcomes. Independently test deferring Renoir SELL orders for one product when its current quote is below a threshold, always releasing by a configured late day. First isolate milk, strawberries, wool, and melon threshold/hold-day pairs; combine only thresholds that improve the frozen live corpus without damaging champion/Renoir/other robustness. Deferral can also starve same-turn purchases or overflow storage, so it is an experiment rather than an assumed improvement.
+
+## Market stage D results
+
+- Every active price-deferral profile regressed, often catastrophically. Day 8 remains the best profile at 91,373.7/59W live, 87,198.0/15W champions, 116,724.0/8W Renoir, and 91,689.1/6W others.
+- The only threshold profiles tying control were no-ops on the tested trajectories: strawberry 160 released by day 15 and melon 100. They did not improve any corpus.
+- Even the mild milk-80 hold fell to 82,983.1/19W live; milk-200 fell to 79,465.5/15W. Strawberry-80 fell to 84,293.1/33W, wool-60 to 78,110.2/26W, and melon-150 to 89,772.9/44W.
+- Therefore premium-price correlation is not causal evidence that inventory should be held. Immediate sales fund coupled purchases and avoid storage/terminal liquidation losses. Reject all threshold deferral and do not combine any Stage D profile.
+
+## Three new leader replays (`nowe.zip`)
+
+- Episodes 106047294, 106051087, and 106054811 feature current leaderboard leaders Crop Dusta, keiz, and Aastik Rajan15. Scores are 84,518-83,583; 135,704-124,555; and 70,706-74,014. They are excellent rating-policy evidence, but none is a 200k cash game.
+- Unlike Renoir, Crop Dusta is highly adaptive: pairwise equality across its three trajectories is only 205-245/720 farmer actions, 77-147/720 hand arrays, and 331-379/720 market arrays.
+- Crop Dusta changes peak livestock from 11 cows/2 sheep/2 geese, to 10 cows/13 sheep, to 3 cows/4 sheep/7 geese. In the low-milk game it also pivots into tomatoes and geese; in the high-milk/high-wool game it expands to 23 total cows/sheep.
+- keiz likewise shifts from 11 cows/6 sheep/1 goose to 7 cows/6 sheep/1 goose and adds 20 tomato plots when milk demand collapses. All three leaders still converge on 12 workers and three unlocked quadrants.
+- The leaders sell products continuously rather than waiting for quote recovery, consistent with Stage D's negative result. Their robustness comes primarily from adapting what they produce to demand, not merely delaying liquidation.
+- Strategic implication: Renoir remains a strong fixed physical schedule and reaches much higher favorable-market cash (161-171k), but top-rating robustness likely requires a separate adaptive-production generation. Do not silently alter the verified Renoir finalist; first use the new archive as an additional holdout for the day-8 market finalists.
