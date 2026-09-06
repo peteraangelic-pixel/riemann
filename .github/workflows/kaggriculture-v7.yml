@@ -1,4 +1,4 @@
-name: Kaggriculture V8 opening finalists
+name: Kaggriculture V8 primitive mining
 
 on:
   push:
@@ -9,18 +9,17 @@ on:
       - ".github/workflows/kaggriculture-v7.yml"
 
 jobs:
-  opening-finalists-k:
-    name: V8 opening K ${{ matrix.id }}
-    if: contains(github.event.head_commit.message, '[kaggr-v8-opening-k]')
+  market-primitives-l:
+    name: V8 primitive L market-${{ matrix.source }}-s${{ matrix.switch }}
+    if: contains(github.event.head_commit.message, '[kaggr-v8-primitives-l]')
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 30
     strategy:
       fail-fast: false
+      max-parallel: 24
       matrix:
-        include:
-          - {id: aastik, early: AASTIK_087, switch: 0}
-          - {id: hybrid-s03, early: RENOIR, switch: 3}
-          - {id: hybrid-s05, early: RENOIR, switch: 5}
+        source: [RENOIR, CROP_294, KEIZ_294, AASTIK_087, CROP_087, KEIZ_811, CROP_811]
+        switch: [3, 5, 12, 24]
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -28,21 +27,46 @@ jobs:
           python-version: "3.12"
       - name: Install engine
         run: pip install kaggle-environments
-      - name: Validate minimal opening fusion on all holdouts
+      - name: Test one opening market primitive over Aastik
         working-directory: kaggriculture
         env:
-          EARLY: ${{ matrix.early }}
+          SOURCE: ${{ matrix.source }}
           SWITCH_STEP: ${{ matrix.switch }}
         run: |
-          args=(--set MOTION_EARLY=AASTIK_087 --set MOTION_LATE=AASTIK_087 --set "MARKET_EARLY=$EARLY" --set MARKET_LATE=AASTIK_087 --set "MARKET_SWITCH_STEP=$SWITCH_STEP")
-          run_corpus() {
-            local title="$1"; shift
-            result=$(python replay_benchmark.py --agent agent_v8_fusion.py "$@" "${args[@]}")
-            printf '%s\n' "$result"
-            echo "::notice title=V8 opening $title::$(printf '%s\n' "$result" | tail -1)"
-          }
-          run_corpus public-live --submission 56044395
-          run_corpus champions --archive Downloads.zip
-          run_corpus renoir --archive Renoir.zip
-          run_corpus others --archive inni.zip
-          run_corpus new-leaders --archive nowe.zip
+          args=(--set MOTION_EARLY=AASTIK_087 --set MOTION_LATE=AASTIK_087 --set "MARKET_EARLY=$SOURCE" --set MARKET_LATE=AASTIK_087 --set "MARKET_SWITCH_STEP=$SWITCH_STEP")
+          public=$(python replay_benchmark.py --agent agent_v8_fusion.py --submission 56044395 "${args[@]}")
+          printf '%s\n' "$public"
+          echo "::notice title=V8 primitive public-live::$(printf '%s\n' "$public" | tail -1)"
+          leaders=$(python replay_benchmark.py --agent agent_v8_fusion.py --archive nowe.zip "${args[@]}")
+          printf '%s\n' "$leaders"
+          echo "::notice title=V8 primitive new-leaders::$(printf '%s\n' "$leaders" | tail -1)"
+
+  full-opening-primitives-l:
+    name: V8 primitive L full-${{ matrix.source }}-d1
+    if: contains(github.event.head_commit.message, '[kaggr-v8-primitives-l]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 12
+      matrix:
+        source: [RENOIR, CROP_294, KEIZ_294, CROP_087, KEIZ_811, CROP_811]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install engine
+        run: pip install kaggle-environments
+      - name: Test a complete one-day opening primitive before Aastik
+        working-directory: kaggriculture
+        env:
+          SOURCE: ${{ matrix.source }}
+        run: |
+          args=(--set "MOTION_EARLY=$SOURCE" --set MOTION_LATE=AASTIK_087 --set MOTION_SWITCH_DAY=1 --set "MARKET_EARLY=$SOURCE" --set MARKET_LATE=AASTIK_087 --set MARKET_SWITCH_STEP=24)
+          public=$(python replay_benchmark.py --agent agent_v8_fusion.py --submission 56044395 "${args[@]}")
+          printf '%s\n' "$public"
+          echo "::notice title=V8 primitive public-live::$(printf '%s\n' "$public" | tail -1)"
+          leaders=$(python replay_benchmark.py --agent agent_v8_fusion.py --archive nowe.zip "${args[@]}")
+          printf '%s\n' "$leaders"
+          echo "::notice title=V8 primitive new-leaders::$(printf '%s\n' "$leaders" | tail -1)"
