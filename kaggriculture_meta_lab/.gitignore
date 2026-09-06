@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+reports/*.json
+reports/*.csv
+artifacts/
+*.tar.gz
+# large external corpus - reference your full online/ folder by path
+corpus/full/

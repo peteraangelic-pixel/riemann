@@ -7,6 +7,7 @@ win/loss summary plus average final money.
 Usage:
     .venv/bin/python simulate.py --games 4 --opponent pass --steps 720
     .venv/bin/python simulate.py --games 4 --opponent random --steps 720
+    .venv/bin/python simulate.py --games 4 --opponent starter --steps 720
     .venv/bin/python simulate.py --games 4 --opponent self --steps 720
 """
 
@@ -34,9 +35,15 @@ def passive(obs, config):
 
 
 def randomish(obs, config):
-    """A crude 'does something' opponent: random moves, occasional planting."""
-    rng = random
+    """A reproducible crude opponent: random-looking moves and planting.
+
+    This intentionally uses a fresh RNG derived only from the observation.
+    Re-running a match with the same environment seed therefore yields the
+    same result, without mutable module state leaking between games.
+    """
     player = obs["player"]
+    rng = random.Random((int(obs["step"]) + 1) * 1_000_003 + player * 97)
+
     me = obs["farms"][player]
     private = obs["private"]
     fx, fy = me["farmer"]
@@ -56,7 +63,7 @@ def randomish(obs, config):
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--games", type=int, default=3)
-    parser.add_argument("--opponent", choices=["pass", "random", "self"], default="pass")
+    parser.add_argument("--opponent", choices=["pass", "random", "starter", "self"], default="pass")
     parser.add_argument("--steps", type=int, default=720)
     parser.add_argument("--seed", type=int, default=0)
     args = parser.parse_args()
@@ -64,7 +71,7 @@ def main() -> int:
     from kaggle_environments import make
 
     mine = load_agent(HERE / "agent.py")
-    opponents = {"pass": passive, "random": randomish, "self": mine}
+    opponents = {"pass": passive, "random": randomish, "starter": "starter", "self": mine}
     opponent = opponents[args.opponent]
 
     wins = losses = ties = 0

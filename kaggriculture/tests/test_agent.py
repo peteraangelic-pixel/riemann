@@ -10,7 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from agent import FarmerPlanner, act  # noqa: E402
-from simulate import load_agent  # noqa: E402
+from agent_v5 import act as act_v5  # noqa: E402
+from simulate import randomish  # noqa: E402
 
 
 class AgentContractTests(unittest.TestCase):
@@ -86,6 +87,81 @@ class AgentContractTests(unittest.TestCase):
             return env.state[0].reward, env.state[1].reward
 
         self.assertEqual(reward(42), reward(42))
+
+    def test_randomish_opponent_is_stateless_and_reproducible(self) -> None:
+        from kaggle_environments import make
+
+        env = make("kaggriculture", configuration={"episodeSteps": 24, "seed": 7})
+        obs = env.state[0].observation
+        first = randomish(obs, env.configuration)
+        second = randomish(obs, env.configuration)
+        self.assertEqual(first, second)
+
+    def test_opening_orders_keep_operating_cash_and_feed_reserve(self) -> None:
+        from kaggle_environments import make
+
+        env = make("kaggriculture", configuration={"seed": 9})
+        obs = env.state[0].observation
+        action = act(obs, env.configuration)
+        prices = obs["market"]["prices"]
+        seed_cost = {"WHEAT": 10, "CARROT": 20, "MELON": 80}
+        hire_costs = iter((1, 1, 2, 3, 5, 8, 13, 21))
+        spend = 0
+        for order in action["market"]:
+            if order[0] == "HIRE":
+                spend += next(hire_costs)
+            elif order[0] == "BUY_ANIMAL":
+                spend += {"GOOSE": 300, "COW": 400, "SHEEP": 500}[order[1]] * order[2]
+            elif order[0] == "BUY_PRODUCT":
+                spend += prices[order[1]] * order[2]
+            elif order[0] == "BUY_SEED":
+                spend += seed_cost[order[1]] * order[2]
+        self.assertLessEqual(spend, obs["farms"][0]["money"] - 300)
+
+        obs["private"]["shed"]["WHEAT"] = 15
+        reserved = act(obs, env.configuration)
+        self.assertFalse(any(op[:2] == ["SELL", "WHEAT"] for op in reserved["market"]))
+
+    def test_cow_subsystem_completes_a_productive_cycle(self) -> None:
+        from kaggle_environments import make
+        from simulate import passive
+
+        env = make("kaggriculture", configuration={"episodeSteps": 240, "seed": 3})
+        env.run([act, passive])
+        unit_ops: list[list] = []
+        market_ops: list[list] = []
+        for step in env.steps:
+            action = step[0].get("action") or {}
+            unit_ops.extend([action.get("farmer") or []] + (action.get("hands") or []))
+            market_ops.extend(action.get("market") or [])
+
+        self.assertTrue(any(op[:2] == ["BUY_ANIMAL", "COW"] for op in market_ops))
+        for expected in ("BUILD_PASTURE", "FEED", "CARE", "COLLECT_FERTILIZER"):
+            self.assertTrue(any(op and op[0] == expected for op in unit_ops), expected)
+        self.assertTrue(any(op[:2] == ["SELL", "MILK"] for op in market_ops))
+        self.assertTrue(any(op[:2] == ["SELL", "FERTILIZER"] for op in market_ops))
+
+    def test_v5_runs_mixed_livestock_melons_and_fertilizer(self) -> None:
+        from kaggle_environments import make
+        from simulate import passive
+
+        env = make("kaggriculture", configuration={"episodeSteps": 480, "seed": 3})
+        env.run([act_v5, passive])
+        unit_ops: list[list] = []
+        market_ops: list[list] = []
+        for step in env.steps:
+            action = step[0].get("action") or {}
+            unit_ops.extend([action.get("farmer") or []] + (action.get("hands") or []))
+            market_ops.extend(action.get("market") or [])
+
+        for animal in ("COW", "SHEEP"):
+            self.assertTrue(any(op[:2] == ["BUY_ANIMAL", animal] for op in market_ops), animal)
+        self.assertTrue(any(op[:2] == ["BUY_SEED", "MELON"] for op in market_ops))
+        self.assertTrue(any(op and op[0] == "COLLECT_FERTILIZER" for op in unit_ops))
+        self.assertTrue(any(op[:2] == ["SELL", "MILK"] for op in market_ops))
+        self.assertTrue(any(op[:2] == ["SELL", "WOOL"] for op in market_ops))
+        self.assertTrue(any(op[:2] == ["SELL", "MELON"] for op in market_ops))
+        self.assertTrue(any(op[:2] == ["SELL", "FERTILIZER"] for op in market_ops))
 
     def test_baseline_beats_an_idle_farm_over_a_full_season(self) -> None:
         from kaggle_environments import make

@@ -1,0 +1,5 @@
+# The kaggriculture environment IS in kaggle-environments on PyPI (>=1.32.4).
+# Pin to whatever the competition server currently runs.
+kaggle-environments==1.32.7
+pandas>=2.0,<3
+pytest>=8,<9
