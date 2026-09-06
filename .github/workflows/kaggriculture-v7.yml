@@ -1,4 +1,4 @@
-name: Kaggriculture V8 regime analysis
+name: Kaggriculture V8 early fusion
 
 on:
   push:
@@ -9,17 +9,26 @@ on:
       - ".github/workflows/kaggriculture-v7.yml"
 
 jobs:
-  regime-analysis-h:
-    name: V8 regime H ${{ matrix.id }}
-    if: contains(github.event.head_commit.message, '[kaggr-v8-regime-h]')
+  early-fusion-i:
+    name: V8 early I ${{ matrix.id }}
+    if: contains(github.event.head_commit.message, '[kaggr-v8-early-i]')
     runs-on: ubuntu-latest
     timeout-minutes: 25
     strategy:
       fail-fast: false
+      max-parallel: 12
       matrix:
         include:
-          - {id: renoir-d08-21, source: RENOIR, days: "[8,21]"}
-          - {id: aastik-control, source: AASTIK_087, days: "[]"}
+          - {id: renoir, early: RENOIR, late: RENOIR, day: 0, days: "[8,21]"}
+          - {id: aastik, early: AASTIK_087, late: AASTIK_087, day: 0, days: "[]"}
+          - {id: a-to-r-d01, early: AASTIK_087, late: RENOIR, day: 1, days: "[8,21]"}
+          - {id: r-to-a-d01, early: RENOIR, late: AASTIK_087, day: 1, days: "[]"}
+          - {id: a-to-r-d02, early: AASTIK_087, late: RENOIR, day: 2, days: "[8,21]"}
+          - {id: r-to-a-d02, early: RENOIR, late: AASTIK_087, day: 2, days: "[]"}
+          - {id: a-to-r-d03, early: AASTIK_087, late: RENOIR, day: 3, days: "[8,21]"}
+          - {id: r-to-a-d03, early: RENOIR, late: AASTIK_087, day: 3, days: "[]"}
+          - {id: a-to-r-d04, early: AASTIK_087, late: RENOIR, day: 4, days: "[8,21]"}
+          - {id: r-to-a-d04, early: RENOIR, late: AASTIK_087, day: 4, days: "[]"}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -27,13 +36,15 @@ jobs:
           python-version: "3.12"
       - name: Install engine
         run: pip install kaggle-environments
-      - name: Emit exact loss sets for regime attribution
+      - name: Test early coupled handoff boundaries
         working-directory: kaggriculture
         env:
-          SOURCE: ${{ matrix.source }}
+          EARLY: ${{ matrix.early }}
+          LATE: ${{ matrix.late }}
+          DAY: ${{ matrix.day }}
           DAYS: ${{ matrix.days }}
         run: |
-          args=(--set "MOTION_EARLY=$SOURCE" --set "MOTION_LATE=$SOURCE" --set "MARKET_EARLY=$SOURCE" --set "MARKET_LATE=$SOURCE" --set "ORDER_DAYS=$DAYS")
+          args=(--set "MOTION_EARLY=$EARLY" --set "MOTION_LATE=$LATE" --set "MOTION_SWITCH_DAY=$DAY" --set "MARKET_EARLY=$EARLY" --set "MARKET_LATE=$LATE" --set "MARKET_SWITCH_DAY=$DAY" --set "ORDER_DAYS=$DAYS")
           result=$(python replay_benchmark.py --agent agent_v8_fusion.py --submission 56044395 "${args[@]}")
           printf '%s\n' "$result"
-          echo "::notice title=V8 regime public-live::$(printf '%s\n' "$result" | tail -1)"
+          echo "::notice title=V8 early public-live::$(printf '%s\n' "$result" | tail -1)"

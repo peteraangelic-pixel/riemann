@@ -116,3 +116,10 @@ Low premium prices are strongly associated with low outcomes. Independently test
 - Thus Aastik is a high-value rating candidate against the broad 85-match live population, not a universal replacement. The fourteen extra live wins warrant opponent/market-regime analysis before selection.
 - All tested SELL-first day changes on the Aastik tape are exact no-ops (apart from a 0.1 rounding change on two tiny corpora), showing its market orders are already SELL-first or non-conflicting on those days. Stop tuning Aastik with Renoir's ordering-day mutations.
 - Next attribution step: emit exact loss episode IDs for Aastik and Renoir, measure overlap and early observable market fingerprints, then test whether a legal early selector can retain Aastik's broad win rate while routing its bad regimes to Renoir.
+
+## V8 regime Stage H results
+
+- Aastik loses 12 live episodes; Renoir 8+21 loses 26. Eight losses are shared. Aastik wins 18 episodes that Renoir loses, while Renoir rescues only four Aastik losses: 105993612, 106002908, 106023296, and 106034285.
+- A perfect per-episode oracle over only these two policies would score 77/85, versus Aastik's 73/85. Therefore policy selection has a maximum gain of four wins on this corpus; Aastik already dominates the pair for rating.
+- Shared failures are 105990797, 105992649, 105994529, 106006563, 106017709, 106027867, 106029787, and 106037741. These require a genuinely new policy rather than selecting Renoir.
+- First-day opponent orders do not give a trivial separator: rescued and shared-loss episodes include both Renoir/Aastik-like openings and unusual incremental openings. Before fitting a selector, test whether the physically identical first day permits stable Aastik/Renoir handoff at days 1-4.
