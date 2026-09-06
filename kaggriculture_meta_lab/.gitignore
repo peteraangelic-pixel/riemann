@@ -12,3 +12,8 @@ agents/sweeps/
 corpus/full/
 # results/ IS tracked (UTF-8 validation summaries you commit/share)
 !results/
+
+# raw console dumps / misplaced outputs at LAB ROOT (results/ IS tracked)
+/wyniki.txt
+/validate-*.md
+/validate-*.json
