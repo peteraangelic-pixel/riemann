@@ -1,0 +1,54 @@
+name: Kaggriculture V9 third-policy screen
+
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths:
+      - "kaggriculture/v9_candidates/**"
+      - "kaggriculture/research/build_top49_candidates.py"
+      - ".github/workflows/kaggriculture-v9-third-screen.yml"
+
+jobs:
+  screen:
+    if: contains(github.event.head_commit.message, '[kaggr-v9-third-screen]')
+    name: ${{ matrix.candidate }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        candidate:
+          - agent_v9_third_delayed28_01
+          - agent_v9_third_delayed28_02
+          - agent_v9_third_delayed28_03
+          - agent_v9_third_delayed28_04
+          - agent_v9_third_delayed28_05
+          - agent_v9_third_sjy321_01
+          - agent_v9_third_sjy321_02
+          - agent_v9_third_sjy321_03
+          - agent_v9_third_sjy321_04
+          - agent_v9_third_sjy321_05
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install engine
+        run: pip install kaggle-environments
+      - name: Screen full policy against four families
+        env:
+          CANDIDATE: ${{ matrix.candidate }}
+        run: |
+          : > /tmp/summaries.txt
+          for player in "Aastik Rajan15" "我都先道歉" "get some fries" "SJY321"; do
+            python kaggriculture/research/benchmark_top49.py \
+              --agent "kaggriculture/v9_candidates/$CANDIDATE.py" --player "$player" \
+              | tee /tmp/one.txt
+            grep '^SUMMARY_JSON=' /tmp/one.txt >> /tmp/summaries.txt
+          done
+          safe=$(cat /tmp/summaries.txt | cut -c1-20000)
+          safe=${safe//'%'/'%25'}
+          safe=${safe//$'\n'/'%0A'}
+          safe=${safe//$'\r'/'%0D'}
+          echo "::notice title=$CANDIDATE::$safe"

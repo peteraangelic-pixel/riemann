@@ -1,0 +1,82 @@
+[
+  {
+    "name": "agent_v9_third_delayed28_01",
+    "path": "kaggriculture/v9_candidates/agent_v9_third_delayed28_01.py",
+    "source_player": "我都先道歉",
+    "source_episode": 106180736,
+    "source_side": 1,
+    "actions": 720
+  },
+  {
+    "name": "agent_v9_third_delayed28_02",
+    "path": "kaggriculture/v9_candidates/agent_v9_third_delayed28_02.py",
+    "source_player": "我都先道歉",
+    "source_episode": 106179828,
+    "source_side": 1,
+    "actions": 720
+  },
+  {
+    "name": "agent_v9_third_delayed28_03",
+    "path": "kaggriculture/v9_candidates/agent_v9_third_delayed28_03.py",
+    "source_player": "我都先道歉",
+    "source_episode": 106178915,
+    "source_side": 1,
+    "actions": 720
+  },
+  {
+    "name": "agent_v9_third_delayed28_04",
+    "path": "kaggriculture/v9_candidates/agent_v9_third_delayed28_04.py",
+    "source_player": "我都先道歉",
+    "source_episode": 106178015,
+    "source_side": 1,
+    "actions": 720
+  },
+  {
+    "name": "agent_v9_third_delayed28_05",
+    "path": "kaggriculture/v9_candidates/agent_v9_third_delayed28_05.py",
+    "source_player": "我都先道歉",
+    "source_episode": 106177102,
+    "source_side": 1,
+    "actions": 720
+  },
+  {
+    "name": "agent_v9_third_sjy321_01",
+    "path": "kaggriculture/v9_candidates/agent_v9_third_sjy321_01.py",
+    "source_player": "SJY321",
+    "source_episode": 106180964,
+    "source_side": 1,
+    "actions": 720
+  },
+  {
+    "name": "agent_v9_third_sjy321_02",
+    "path": "kaggriculture/v9_candidates/agent_v9_third_sjy321_02.py",
+    "source_player": "SJY321",
+    "source_episode": 106178286,
+    "source_side": 1,
+    "actions": 720
+  },
+  {
+    "name": "agent_v9_third_sjy321_03",
+    "path": "kaggriculture/v9_candidates/agent_v9_third_sjy321_03.py",
+    "source_player": "SJY321",
+    "source_episode": 106176371,
+    "source_side": 1,
+    "actions": 720
+  },
+  {
+    "name": "agent_v9_third_sjy321_04",
+    "path": "kaggriculture/v9_candidates/agent_v9_third_sjy321_04.py",
+    "source_player": "SJY321",
+    "source_episode": 106173709,
+    "source_side": 0,
+    "actions": 720
+  },
+  {
+    "name": "agent_v9_third_sjy321_05",
+    "path": "kaggriculture/v9_candidates/agent_v9_third_sjy321_05.py",
+    "source_player": "SJY321",
+    "source_episode": 106171098,
+    "source_side": 1,
+    "actions": 720
+  }
+]
