@@ -39,7 +39,7 @@ jobs:
         run: pip install kaggle-environments
       - name: Compile tracked sources
         working-directory: kaggriculture
-        run: python -m py_compile agent.py agent_v5.py agent_v6.py simulate.py tune_animals.py analyze_online.py replay_benchmark.py tests/test_agent.py
+        run: python -m py_compile agent.py agent_v5.py agent_v6.py agent_v7.py agent_v7_scripted.py simulate.py tune_animals.py analyze_online.py replay_benchmark.py tests/test_agent.py
       - name: Run offline tests
         working-directory: kaggriculture
         run: python -m unittest discover -s tests -v
@@ -54,7 +54,7 @@ jobs:
         run: |
           python - <<'PY'
           import shutil, tarfile
-          shutil.copy('agent_v5.py', 'main.py')
+          shutil.copy('agent_v7_scripted.py', 'main.py')
           with tarfile.open('submission.tar.gz', 'w:gz') as t:
               t.add('main.py')
           PY
@@ -105,10 +105,10 @@ jobs:
           fi
       - name: Install Kaggle CLI
         run: pip install kaggle
-      - name: Pack selected 94k finalist
+      - name: Pack selected 147k V7 reconstruction
         working-directory: kaggriculture
         run: |
-          cp agent_v5.py main.py
+          cp agent_v7_scripted.py main.py
           tar -czf submission.tar.gz main.py
       - name: Submit
         working-directory: kaggriculture
