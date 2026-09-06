@@ -100,3 +100,11 @@ Low premium prices are strongly associated with low outcomes. Independently test
 - Screen 32 isolated profiles: Renoir control and 8+21; six complete leader trajectories; Renoir physical actions with each leader market; each leader's physical actions with Renoir market; Renoir-to-leader day-8 switches; and leader-to-Renoir day-8 switches.
 - Stage F intentionally runs only the frozen 85 live matches and six new-leader trials. The older champion/Renoir/other archives are holdouts, not source material that must be repeatedly re-analyzed. Only Stage F winners advance to those holdouts, reducing Actions load without weakening evidence.
 - These raw trajectory fusions are attribution probes, not presumed deployable policies. Switching coupled physical states may fail; those failures reveal which components can or cannot transfer before implementing semantic adaptive production.
+
+## V8 fusion Stage F results
+
+- The major discovery is `aastik087-full`: **88,660.4/73W on 85 live matches**, versus Renoir control 91,365.8/59W and Renoir 8+21 91,373.4/59W. It trades 2,705 average cash for fourteen additional wins, directly separating rating optimization from final-money optimization.
+- On the six new-leader trials, Aastik full scores 97,601.0/4W. Renoir 8+21 remains stronger there at 97,631.2/5W, so Aastik is not uniformly dominant; its value is broad live win conversion.
+- `aastik087` is the only leader trajectory that transfers strongly. Renoir-to-Aastik at day 8 reaches 89,557.3/60W; Aastik-to-Renoir reaches 91,101.5/48W. The complete coupled Aastik schedule is responsible for the 73 wins.
+- Raw Crop Dusta and keiz trajectories score only 59-84k and 9-19 wins live. Separating any leader's physical schedule from its market often collapses below 20k, sometimes nearly to zero. This confirms that movement, worker logistics, purchases, and liquidation are tightly coupled.
+- Next: validate Aastik full and a small number of Aastik market-order variants on all holdout corpora. If the 73/85 advantage survives, use Aastik as the rating branch and Renoir 8+21 as the money branch rather than averaging their objectives.

@@ -12,6 +12,7 @@ import argparse
 import gzip
 import importlib.util
 import json
+import statistics
 import zipfile
 from pathlib import Path
 
@@ -157,6 +158,7 @@ def main() -> None:
             records.append((path.parent.name, replay, replay["info"]["TeamNames"].index(OUR_TEAM)))
     records = records[args.shard :: args.shards]
     scores: list[float] = []
+    opponent_scores: list[float] = []
     original_scores: list[float] = []
     wins = 0
 
@@ -180,6 +182,7 @@ def main() -> None:
         opponent_score = env.state[opponent_side].reward
         original_score = replay["rewards"][our_side]
         scores.append(candidate_score)
+        opponent_scores.append(opponent_score)
         original_scores.append(original_score)
         wins += candidate_score > opponent_score
         print(
@@ -197,9 +200,13 @@ def main() -> None:
             f"per_worker={module.get('ANIMALS_PER_WORKER', '-')} "
             f"feed_days={module.get('FEED_STOCK_DAYS', '-')} "
             f"shard={args.shard}/{args.shards} games={len(scores)} wins={wins} "
-            f"candidate_avg={sum(scores) / len(scores):.1f} "
-            f"original_avg={sum(original_scores) / len(original_scores):.1f} "
-            f"delta_avg={(sum(scores) - sum(original_scores)) / len(scores):+.1f}"
+            f"candidate_avg={statistics.mean(scores):.1f} "
+            f"candidate_median={statistics.median(scores):.1f} "
+            f"candidate_range={min(scores):.0f}-{max(scores):.0f} "
+            f"opponent_avg={statistics.mean(opponent_scores):.1f} "
+            f"margin_avg={statistics.mean(a - b for a, b in zip(scores, opponent_scores)):+.1f} "
+            f"original_avg={statistics.mean(original_scores):.1f} "
+            f"delta_avg={statistics.mean(scores) - statistics.mean(original_scores):+.1f}"
         )
 
 

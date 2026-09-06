@@ -1,4 +1,4 @@
-name: Kaggriculture V8 fusion screening
+name: Kaggriculture V8 fusion validation
 
 on:
   push:
@@ -9,48 +9,26 @@ on:
       - ".github/workflows/kaggriculture-v7.yml"
 
 jobs:
-  fusion-screen-f:
-    name: V8 fusion F ${{ matrix.id }}
-    if: contains(github.event.head_commit.message, '[kaggr-v8-fusion-f]')
+  fusion-validate-g:
+    name: V8 fusion G ${{ matrix.id }}
+    if: contains(github.event.head_commit.message, '[kaggr-v8-fusion-g]')
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 35
     strategy:
       fail-fast: false
-      max-parallel: 24
+      max-parallel: 12
       matrix:
         include:
-          - {id: renoir-control, me: RENOIR, ml: RENOIR, ms: 0, ke: RENOIR, kl: RENOIR, ks: 0, days: "[]"}
-          - {id: renoir-d08-21, me: RENOIR, ml: RENOIR, ms: 0, ke: RENOIR, kl: RENOIR, ks: 0, days: "[8,21]"}
-          - {id: crop294-full, me: CROP_294, ml: CROP_294, ms: 0, ke: CROP_294, kl: CROP_294, ks: 0, days: "[]"}
-          - {id: crop294-rmotion, me: RENOIR, ml: RENOIR, ms: 0, ke: CROP_294, kl: CROP_294, ks: 0, days: "[]"}
-          - {id: crop294-rmarket, me: CROP_294, ml: CROP_294, ms: 0, ke: RENOIR, kl: RENOIR, ks: 0, days: "[]"}
-          - {id: crop294-r-to-l-d08, me: RENOIR, ml: CROP_294, ms: 8, ke: RENOIR, kl: CROP_294, ks: 8, days: "[]"}
-          - {id: crop294-l-to-r-d08, me: CROP_294, ml: RENOIR, ms: 8, ke: CROP_294, kl: RENOIR, ks: 8, days: "[]"}
-          - {id: keiz294-full, me: KEIZ_294, ml: KEIZ_294, ms: 0, ke: KEIZ_294, kl: KEIZ_294, ks: 0, days: "[]"}
-          - {id: keiz294-rmotion, me: RENOIR, ml: RENOIR, ms: 0, ke: KEIZ_294, kl: KEIZ_294, ks: 0, days: "[]"}
-          - {id: keiz294-rmarket, me: KEIZ_294, ml: KEIZ_294, ms: 0, ke: RENOIR, kl: RENOIR, ks: 0, days: "[]"}
-          - {id: keiz294-r-to-l-d08, me: RENOIR, ml: KEIZ_294, ms: 8, ke: RENOIR, kl: KEIZ_294, ks: 8, days: "[]"}
-          - {id: keiz294-l-to-r-d08, me: KEIZ_294, ml: RENOIR, ms: 8, ke: KEIZ_294, kl: RENOIR, ks: 8, days: "[]"}
-          - {id: aastik087-full, me: AASTIK_087, ml: AASTIK_087, ms: 0, ke: AASTIK_087, kl: AASTIK_087, ks: 0, days: "[]"}
-          - {id: aastik087-rmotion, me: RENOIR, ml: RENOIR, ms: 0, ke: AASTIK_087, kl: AASTIK_087, ks: 0, days: "[]"}
-          - {id: aastik087-rmarket, me: AASTIK_087, ml: AASTIK_087, ms: 0, ke: RENOIR, kl: RENOIR, ks: 0, days: "[]"}
-          - {id: aastik087-r-to-l-d08, me: RENOIR, ml: AASTIK_087, ms: 8, ke: RENOIR, kl: AASTIK_087, ks: 8, days: "[]"}
-          - {id: aastik087-l-to-r-d08, me: AASTIK_087, ml: RENOIR, ms: 8, ke: AASTIK_087, kl: RENOIR, ks: 8, days: "[]"}
-          - {id: crop087-full, me: CROP_087, ml: CROP_087, ms: 0, ke: CROP_087, kl: CROP_087, ks: 0, days: "[]"}
-          - {id: crop087-rmotion, me: RENOIR, ml: RENOIR, ms: 0, ke: CROP_087, kl: CROP_087, ks: 0, days: "[]"}
-          - {id: crop087-rmarket, me: CROP_087, ml: CROP_087, ms: 0, ke: RENOIR, kl: RENOIR, ks: 0, days: "[]"}
-          - {id: crop087-r-to-l-d08, me: RENOIR, ml: CROP_087, ms: 8, ke: RENOIR, kl: CROP_087, ks: 8, days: "[]"}
-          - {id: crop087-l-to-r-d08, me: CROP_087, ml: RENOIR, ms: 8, ke: CROP_087, kl: RENOIR, ks: 8, days: "[]"}
-          - {id: keiz811-full, me: KEIZ_811, ml: KEIZ_811, ms: 0, ke: KEIZ_811, kl: KEIZ_811, ks: 0, days: "[]"}
-          - {id: keiz811-rmotion, me: RENOIR, ml: RENOIR, ms: 0, ke: KEIZ_811, kl: KEIZ_811, ks: 0, days: "[]"}
-          - {id: keiz811-rmarket, me: KEIZ_811, ml: KEIZ_811, ms: 0, ke: RENOIR, kl: RENOIR, ks: 0, days: "[]"}
-          - {id: keiz811-r-to-l-d08, me: RENOIR, ml: KEIZ_811, ms: 8, ke: RENOIR, kl: KEIZ_811, ks: 8, days: "[]"}
-          - {id: keiz811-l-to-r-d08, me: KEIZ_811, ml: RENOIR, ms: 8, ke: KEIZ_811, kl: RENOIR, ks: 8, days: "[]"}
-          - {id: crop811-full, me: CROP_811, ml: CROP_811, ms: 0, ke: CROP_811, kl: CROP_811, ks: 0, days: "[]"}
-          - {id: crop811-rmotion, me: RENOIR, ml: RENOIR, ms: 0, ke: CROP_811, kl: CROP_811, ks: 0, days: "[]"}
-          - {id: crop811-rmarket, me: CROP_811, ml: CROP_811, ms: 0, ke: RENOIR, kl: RENOIR, ks: 0, days: "[]"}
-          - {id: crop811-r-to-l-d08, me: RENOIR, ml: CROP_811, ms: 8, ke: RENOIR, kl: CROP_811, ks: 8, days: "[]"}
-          - {id: crop811-l-to-r-d08, me: CROP_811, ml: RENOIR, ms: 8, ke: CROP_811, kl: RENOIR, ks: 8, days: "[]"}
+          - {id: renoir-d08-21, source: RENOIR, days: "[8,21]"}
+          - {id: aastik-control, source: AASTIK_087, days: "[]"}
+          - {id: aastik-d04, source: AASTIK_087, days: "[4]"}
+          - {id: aastik-d08, source: AASTIK_087, days: "[8]"}
+          - {id: aastik-d15, source: AASTIK_087, days: "[15]"}
+          - {id: aastik-d16, source: AASTIK_087, days: "[16]"}
+          - {id: aastik-d21, source: AASTIK_087, days: "[21]"}
+          - {id: aastik-d26, source: AASTIK_087, days: "[26]"}
+          - {id: aastik-d27, source: AASTIK_087, days: "[27]"}
+          - {id: aastik-d08-21, source: AASTIK_087, days: "[8,21]"}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -58,21 +36,21 @@ jobs:
           python-version: "3.12"
       - name: Install engine
         run: pip install kaggle-environments
-      - name: Screen physical, market, and day-8 fusion boundaries
+      - name: Validate rating winner and isolate market-order days
         working-directory: kaggriculture
         env:
-          ME: ${{ matrix.me }}
-          ML: ${{ matrix.ml }}
-          MS: ${{ matrix.ms }}
-          KE: ${{ matrix.ke }}
-          KL: ${{ matrix.kl }}
-          KS: ${{ matrix.ks }}
+          SOURCE: ${{ matrix.source }}
           DAYS: ${{ matrix.days }}
         run: |
-          args=(--set "MOTION_EARLY=$ME" --set "MOTION_LATE=$ML" --set "MOTION_SWITCH_DAY=$MS" --set "MARKET_EARLY=$KE" --set "MARKET_LATE=$KL" --set "MARKET_SWITCH_DAY=$KS" --set "ORDER_DAYS=$DAYS")
-          public=$(python replay_benchmark.py --agent agent_v8_fusion.py --submission 56044395 "${args[@]}")
-          printf '%s\n' "$public"
-          echo "::notice title=V8 fusion public-live::$(printf '%s\n' "$public" | tail -1)"
-          leaders=$(python replay_benchmark.py --agent agent_v8_fusion.py --archive nowe.zip "${args[@]}")
-          printf '%s\n' "$leaders"
-          echo "::notice title=V8 fusion new-leaders::$(printf '%s\n' "$leaders" | tail -1)"
+          args=(--set "MOTION_EARLY=$SOURCE" --set "MOTION_LATE=$SOURCE" --set "MARKET_EARLY=$SOURCE" --set "MARKET_LATE=$SOURCE" --set "ORDER_DAYS=$DAYS")
+          run_corpus() {
+            local title="$1"; shift
+            result=$(python replay_benchmark.py --agent agent_v8_fusion.py "$@" "${args[@]}")
+            printf '%s\n' "$result"
+            echo "::notice title=V8 fusion $title::$(printf '%s\n' "$result" | tail -1)"
+          }
+          run_corpus public-live --submission 56044395
+          run_corpus champions --archive Downloads.zip
+          run_corpus renoir --archive Renoir.zip
+          run_corpus others --archive inni.zip
+          run_corpus new-leaders --archive nowe.zip
