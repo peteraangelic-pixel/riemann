@@ -9,7 +9,7 @@ SEED        ?= 0
 help:
 	@echo "make setup       - create venv and install kaggle-environments"
 	@echo "make test        - run offline unit tests"
-	@echo "make match       - local match vs OPPONENT=pass|random|self (GAMES, STEPS, SEED)"
+	@echo "make match       - local match vs OPPONENT=pass|random|starter|self (GAMES, STEPS, SEED)"
 	@echo "make benchmark   - quick 3-game benchmark vs each opponent at STEPS=360"
 	@echo "make pack        - build submission.tar.gz (offline)"
 
@@ -27,6 +27,7 @@ match:
 benchmark:
 	$(PYTHON) simulate.py --games 3 --opponent pass --steps 360 --seed 1
 	$(PYTHON) simulate.py --games 3 --opponent random --steps 360 --seed 1
+	$(PYTHON) simulate.py --games 3 --opponent starter --steps 360 --seed 1
 
 pack:
 	rm -rf build_submission && mkdir -p build_submission
