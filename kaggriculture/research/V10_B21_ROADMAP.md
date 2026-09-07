@@ -55,9 +55,17 @@ Required controls:
 
 ## B. Seat-specific openings
 
-Introduce candidate-only constants for P0 and P1 buy/sell amounts. Test one seat
-at a time before a factorial combination. Market order changes prices, so the
-best P0 and P1 opening need not match. Never modify frozen V7 or frozen B21.
+Candidate-only P0/P1 constants were implemented and tested on all 245 TOP49
+player-tape records, both seats. P0-only B20/S15, P1-only B20/S15, and both-seat
+B20/S15 all retained exactly 184/490 wins but reduced mean margin versus frozen
+B21 by 107, 100, and 207 coins respectively. No record changed win status.
+
+The average hides a useful conditional pattern: 155 records improved margin,
+77 were identical, and only 13 declined; just three `ymg_aq` records caused
+material drops of roughly 8k-19k. Therefore B is complete as an unconditional
+seat test with no promotion. P1 was marginally less harmful than P0, but neither
+seat-specific policy is a general replacement. Preserve these rows to derive a
+market-state condition; never identify the condition by opponent nickname.
 
 ## C. Conditional step-1 sale
 
@@ -116,13 +124,13 @@ changes until each passes independently.
 ### Finish before nested TOP10/20/30 curriculum
 
 1. Symmetric opening A: **complete; no replacement promoted**.
-2. Collect and classify new B21 live replays: **pending**.
-3. D comparison versus V7: **14 changed records identified; action attribution pending**.
-4. E near-loss pool: **27 records / 23 unique episodes identified; endgame action audit pending**.
-5. B seat-specific opening: **next candidate experiment**, using B20/S15 as the
-   only retained alternate and changing one seat at a time.
-6. C conditional step-1 sale: run only after replay-derived market thresholds
-   exist; fallback must remain exact B21.
+2. Collect and classify new B21 live replays: **complete for all 99 currently public B21 episodes**.
+3. B seat-specific opening: **complete; no unconditional replacement promoted**.
+4. D comparison versus V7: **14 changed records identified; action attribution pending**.
+5. E near-loss pool: **27 controlled records / 23 unique episodes plus 14 live
+   losses within 2,500 identified; endgame action audit pending**.
+6. C conditional step-1 sale: use the three material seat-test failures and
+   replay market state to derive thresholds; fallback must remain exact B21.
 
 These steps remain valuable before curriculum because they create the controlled
 mutation vocabulary that curriculum will select among. They were not cancelled

@@ -34,9 +34,14 @@ them.
 ## Source B — our GitHub TOP49 same-record/both-seat gate
 
 - `[USED]` B21 remains the symmetric-opening control: 184/490, score 89,115, margin +835.
-- `[ACTIVE]` B20/S15 retained 184 wins but fell to 88,811 and +628. It is not a general
-  replacement, but is the only lower-transaction opening worth retaining as a
-  seat-specific/conditional component.
+- `[USED]` B20/S15 retained 184 wins but fell to 88,811 and +628. Isolating it
+  on P0 or P1 also retained all 184 wins but reduced mean margin by 107 or 100;
+  no player-tape record changed win status. Reject it as an unconditional
+  seat-specific replacement.
+- `[ACTIVE]` The seat test exposed a conditional shape: 155/245 records improved,
+  77 were identical, and 13 declined, with three `ymg_aq` tapes causing nearly
+  all material harm (roughly -8k to -19k). Derive a condition from observable
+  market state—not nickname—with exact B21 fallback.
 - `[REJECTED]` B19/S14 retained 184 wins with negative margin; B18/S13 fell to 178 wins.
   B18 is an anti-B21 mirror specialist and must not be promoted as a generalist.
 - `[ACTIVE]` Exact V7/B21 comparison changed 14 player-tape records: V7 gained both-seat
