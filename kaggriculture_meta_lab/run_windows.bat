@@ -23,7 +23,11 @@ pip install -r requirements.txt
 
 echo.
 echo [1/2] unit tests
-python -m pytest -q
+REM Scope pytest to THIS folder's tests only (a nested "LAB centralny" copy
+REM of the lab would otherwise cause same-named test-module collisions).
+if exist tests\__pycache__ rmdir /s /q tests\__pycache__
+if exist kaggriculture_lab\__pycache__ rmdir /s /q kaggriculture_lab\__pycache__
+python -m pytest tests -q --import-mode=importlib
 if errorlevel 1 goto :err
 
 echo.

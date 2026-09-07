@@ -162,9 +162,15 @@ def main() -> int:
                      f"{a.score_rate*100:7.1f} {f'{a.ci_low*100:.0f}-{a.ci_high*100:.0f}':>13} "
                      f"{a.mean_margin:+9.0f} {a.errors:3d}")
     lines.append("")
-    lines.append("Score is vs the champion tape: 50% = identical opener. Only a "
-                 "variant whose Wilson lower bound clears 50% with positive margin "
-                 "is a better opener.")
+    lines.append("Score is vs the champion tape: 50% = identical opener.")
+    lines.append("")
+    lines.append("WARNING: a high win-rate with ~$0 median margin (near-tie "
+                 "mirror games) is a tie-break artefact, NOT strength. Two near-"
+                 "identical tapes differ by a handful of dollars; that breaks "
+                 "coin-flip games one way. PROMOTE only a variant that ALSO shows "
+                 "higher ABSOLUTE cash vs a DIVERSE opponent (run validate.py with "
+                 "--baseline agents/current/agent_v7_scripted.py) AND vs the TOP49 "
+                 "open-loop corpus. Mirror win-rate alone proves nothing.")
     lines.append(f"\nelapsed {time.perf_counter()-t0:.0f}s")
 
     out = ROOT / "results" / f"opening-sweep-{time.strftime('%Y%m%d-%H%M%S')}.md"
