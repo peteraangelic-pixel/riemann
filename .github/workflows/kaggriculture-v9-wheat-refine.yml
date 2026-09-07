@@ -1,0 +1,37 @@
+name: Kaggriculture V9 TOP49 wheat refinement
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths:
+      - ".github/workflows/kaggriculture-v9-wheat-refine.yml"
+jobs:
+  refine:
+    if: contains(github.event.head_commit.message, '[kaggr-v9-refine]')
+    name: ${{ matrix.agent }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        agent: [agent_v9_wheat_b05_s01, agent_v9_wheat_b07_s03, agent_v9_wheat_b08_s04, agent_v9_wheat_b10_s06, agent_v9_wheat_b11_s07, agent_v9_wheat_b12_s08]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install kaggle-environments
+      - name: Screen refinement against all TOP49 representatives
+        env: {AGENT: "${{ matrix.agent }}"}
+        run: |
+          : > /tmp/all.txt
+          for shard in 0 1 2 3 4 5 6; do
+            python kaggriculture/research/screen_top49.py --agent "kaggriculture/v9_candidates/wheat_grid/$AGENT.py" --shard "$shard" --shards 7 >> /tmp/all.txt
+          done
+          summary=$(python - <<'PY'
+          import json
+          rows=[json.loads(x[12:]) for x in open('/tmp/all.txt',encoding='utf8') if x.startswith('PLAYER_JSON=')]
+          print('GRID_JSON='+json.dumps({'players':len(rows),'games':sum(x['games'] for x in rows),'wins':sum(x['wins'] for x in rows),'our_mean':sum(x['our_mean'] for x in rows)/len(rows),'opponent_mean':sum(x['opponent_mean'] for x in rows)/len(rows),'margin_mean':sum(x['margin_mean'] for x in rows)/len(rows),'loss_players':[x['player'] for x in rows if x['wins']==0]},ensure_ascii=False,separators=(',',':')))
+          PY
+          )
+          summary=${summary//'%'/'%25'};summary=${summary//$'\n'/'%0A'};summary=${summary//$'\r'/'%0D'}
+          echo "::notice title=$AGENT::$summary"

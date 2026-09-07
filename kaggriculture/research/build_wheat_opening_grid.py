@@ -8,7 +8,7 @@ def load():
  s=importlib.util.spec_from_file_location('a',ROOT/'kaggriculture/agent_v8_aastik.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return m.ACTIONS
 def main():
  base=load();OUT.mkdir(parents=True,exist_ok=True);manifest=[]
- for buy in (9,13,17,21,25,30):
+ for buy in (5,7,8,9,10,11,12,13,17,21,25,30):
   for reserve in (4,2,0):
    sell=buy-reserve;actions=json.loads(json.dumps(base));actions[0]['market']=[['BUY_PRODUCT','WHEAT',buy]]
    orders=actions[1]['market'];orders[0]=['SELL','WHEAT',sell]

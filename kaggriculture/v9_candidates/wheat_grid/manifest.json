@@ -1,5 +1,59 @@
 [
   {
+    "name": "agent_v9_wheat_b05_s01",
+    "buy": 5,
+    "sell": 1,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b05_s03",
+    "buy": 5,
+    "sell": 3,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b05_s05",
+    "buy": 5,
+    "sell": 5,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b07_s03",
+    "buy": 7,
+    "sell": 3,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b07_s05",
+    "buy": 7,
+    "sell": 5,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b07_s07",
+    "buy": 7,
+    "sell": 7,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b08_s04",
+    "buy": 8,
+    "sell": 4,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b08_s06",
+    "buy": 8,
+    "sell": 6,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b08_s08",
+    "buy": 8,
+    "sell": 8,
+    "control": false
+  },
+  {
     "name": "agent_v9_wheat_b09_s05",
     "buy": 9,
     "sell": 5,
@@ -15,6 +69,60 @@
     "name": "agent_v9_wheat_b09_s09",
     "buy": 9,
     "sell": 9,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b10_s06",
+    "buy": 10,
+    "sell": 6,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b10_s08",
+    "buy": 10,
+    "sell": 8,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b10_s10",
+    "buy": 10,
+    "sell": 10,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b11_s07",
+    "buy": 11,
+    "sell": 7,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b11_s09",
+    "buy": 11,
+    "sell": 9,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b11_s11",
+    "buy": 11,
+    "sell": 11,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b12_s08",
+    "buy": 12,
+    "sell": 8,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b12_s10",
+    "buy": 12,
+    "sell": 10,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b12_s12",
+    "buy": 12,
+    "sell": 12,
     "control": false
   },
   {
