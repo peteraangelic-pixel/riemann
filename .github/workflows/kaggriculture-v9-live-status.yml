@@ -1,4 +1,5 @@
 name: Kaggriculture V9 live status
+# Status-only: never packages or uploads a submission.
 on:
   push:
     branches: ["arena/01a0712c-riemann"]
