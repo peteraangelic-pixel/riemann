@@ -1,0 +1,144 @@
+name: ARC-AGI-3 checks
+
+on:
+  push:
+    branches: ["arena/**"]
+    paths:
+      - "arc_agi3/**"
+      - ".github/workflows/arc-agi3.yml"
+  pull_request:
+    paths:
+      - "arc_agi3/**"
+      - ".github/workflows/arc-agi3.yml"
+  workflow_dispatch:
+    inputs:
+      local_smoke:
+        description: "Run the public ARC SDK smoke test (requires ARC service connectivity)"
+        required: false
+        default: false
+        type: boolean
+      public_eval:
+        description: "Run the bounded 400-step public graph evaluation"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+  checks: write # publish the compact public-game outcome on the job's check
+
+jobs:
+  unit:
+    name: Offline policy and notebook checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile tracked source
+        run: |
+          python -m py_compile \
+            arc_agi3/agent/policy.py \
+            arc_agi3/agent/my_agent.py \
+            arc_agi3/scripts/configure_kaggle.py \
+            arc_agi3/scripts/prepare_framework.py \
+            arc_agi3/scripts/play_local.py \
+            arc_agi3/scripts/build_notebook.py \
+            arc_agi3/scripts/summarize_recordings.py \
+            arc_agi3/scripts/publish_check_summary.py
+      - name: Run offline regression tests
+        run: python -m unittest discover -s arc_agi3/tests -v
+
+  local-smoke:
+    name: Public ARC SDK smoke test
+    if: (github.event_name == 'workflow_dispatch' && inputs.local_smoke) || (github.event_name == 'push' && contains(github.event.head_commit.message, '[arc-smoke]'))
+    needs: unit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install SDK and reference framework
+        working-directory: arc_agi3
+        run: make setup
+      - name: Play two public environments
+        working-directory: arc_agi3
+        run: |
+          set -o pipefail
+          make verify-local | tee local-smoke.log
+      - name: Sketch first and final public frames
+        if: always()
+        working-directory: arc_agi3
+        run: .venv/bin/python scripts/summarize_recordings.py recordings --output recording-summary.md
+      - name: Publish compact smoke outcome on this check
+        if: always()
+        working-directory: arc_agi3
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          .venv/bin/python scripts/publish_check_summary.py \
+            --check-name "Public ARC SDK smoke test" \
+            --report recordings/local-smoke-report.json \
+            --sketches recording-summary.md \
+            --log local-smoke.log
+      - name: Upload public smoke recordings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: arc-agi3-local-smoke-${{ github.run_id }}
+          path: |
+            arc_agi3/local-smoke.log
+            arc_agi3/recording-summary.md
+            arc_agi3/recordings/
+          if-no-files-found: warn
+          retention-days: 14
+
+  public-eval:
+    name: Public ARC graph evaluation
+    if: (github.event_name == 'workflow_dispatch' && inputs.public_eval) || (github.event_name == 'push' && contains(github.event.head_commit.message, '[arc-eval]'))
+    needs: unit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install SDK and reference framework
+        working-directory: arc_agi3
+        run: make setup
+      - name: Evaluate public graph explorer
+        working-directory: arc_agi3
+        run: |
+          set -o pipefail
+          make evaluate-public | tee public-eval.log
+      - name: Sketch first and final public frames
+        if: always()
+        working-directory: arc_agi3
+        run: .venv/bin/python scripts/summarize_recordings.py recordings --output public-eval-summary.md
+      - name: Publish compact evaluation outcome on this check
+        if: always()
+        working-directory: arc_agi3
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          .venv/bin/python scripts/publish_check_summary.py \
+            --check-name "Public ARC graph evaluation" \
+            --report recordings/public-eval-report.json \
+            --sketches public-eval-summary.md \
+            --log public-eval.log
+      - name: Upload public graph-evaluation recordings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: arc-agi3-public-eval-${{ github.run_id }}
+          path: |
+            arc_agi3/public-eval.log
+            arc_agi3/public-eval-summary.md
+            arc_agi3/recordings/
+          if-no-files-found: warn
+          retention-days: 14
