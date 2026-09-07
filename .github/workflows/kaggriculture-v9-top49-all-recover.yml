@@ -1,0 +1,42 @@
+name: Kaggriculture retain all-five result
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v9-top49-all-recover.yml"]
+permissions:
+  actions: read
+  contents: write
+jobs:
+  retain:
+    if: contains(github.event.head_commit.message, '[kaggr-all5-retain]')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: result-*
+          path: results
+          merge-multiple: true
+          run-id: 34079558032
+          github-token: ${{ github.token }}
+      - run: |
+          python - <<'PY'
+          import collections,glob,json,os
+          groups=collections.defaultdict(list); output=[]
+          for path in glob.glob('results/*.json'):
+              agent=os.path.basename(path).rsplit('_',1)[0]
+              groups[agent].append(json.load(open(path)))
+          for agent, rows in sorted(groups.items()):
+              episodes=sum(x['episodes'] for x in rows); games=sum(x['games'] for x in rows)
+              avg=lambda key: sum(x[key]*x['episodes'] for x in rows)/episodes
+              output.append({'agent':agent,'shards':len(rows),'episodes':episodes,'games':games,'wins':sum(x['wins'] for x in rows),'our_mean':avg('our_mean'),'opponent_mean':avg('opponent_mean'),'margin_mean':avg('margin_mean')})
+          assert len(output)==5 and all(x['shards']==7 and x['episodes']==245 for x in output), output
+          os.makedirs('kaggriculture/research',exist_ok=True)
+          open('kaggriculture/research/TOP49_ALL5_RESULTS.json','w').write(json.dumps(output,indent=2)+'\n')
+          PY
+          cat kaggriculture/research/TOP49_ALL5_RESULTS.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add kaggriculture/research/TOP49_ALL5_RESULTS.json
+          git commit -m "research(kaggriculture): record all-five TOP49 validation [skip ci]"
+          git push origin "HEAD:$GITHUB_REF_NAME"
