@@ -23,7 +23,7 @@ jobs:
           python - <<'PY'
           import collections,glob,json,os
           groups=collections.defaultdict(list); output=[]
-          for path in glob.glob('results/*.json'):
+          for path in glob.glob('results/**/*.json',recursive=True):
               agent=os.path.basename(path).rsplit('_',1)[0]
               groups[agent].append(json.load(open(path)))
           for agent, rows in sorted(groups.items()):
