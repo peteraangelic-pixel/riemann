@@ -51,13 +51,12 @@ jobs:
         run: python tools/ci_run.py cargo build --release --locked
       - name: Python adapter and CLI tests
         run: |
-          if [ -f tests/test_cli.py ]; then python tools/ci_run.py python -m unittest discover -s tests -v; fi
+          test -x target/release/kg_sim
+          python tools/ci_run.py python -m unittest discover -s tests -v
       - name: Differential tests against the pinned Python engine
-        run: |
-          if [ -f tools/check.py ]; then python tools/ci_run.py python tools/check.py --check --seeds 64 --threads 4; fi
+        run: python tools/ci_run.py python tools/check.py --check --seeds 64 --threads 4
       - name: Benchmark (informational, not a noisy timing gate)
-        run: |
-          if [ -f tools/benchmark.py ]; then python tools/ci_run.py python tools/benchmark.py --games 64 --threads 4 --repeats 3; fi
+        run: python tools/ci_run.py python tools/benchmark.py --games 64 --threads 4 --repeats 3
       - name: Enforce checks and tracked formatting
         env:
           CLIPPY_RESULT: ${{ steps.clippy.outcome }}
