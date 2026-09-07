@@ -74,9 +74,16 @@ them.
 
 - `[USED]` Rating uses W/L/T, not coin margin. Small wins are valuable, but mirror-only
   wins can be misleading when the live opponent population is diverse.
-- `[PENDING]` B21 has demonstrated occasional 155k+ games and a promising early climb, yet
-  its aggregate live rating trailed older controls at the last status query.
-  New completed B21 episodes remain a required holdout.
+- `[USED]` The focused refresh collected all 99 available public B21/S16 episodes:
+  56-43, mean cash 89,595, mean margin +4,092, but median margin only +590.
+  Positive mean margin did not produce a dominant W/L record.
+- `[ACTIVE]` The live recovery pool contains 14 losses within 2,500 coins and 14
+  losses where B21 still exceeded 100,000 cash. Treat close high-output losses
+  separately from low-output structural failures.
+- `[PENDING]` Opponent board fingerprints suggest targeted pressure from
+  3-goose/9-cow/5-sheep and several 6-cow/11-sheep families. This is
+  descriptive live evidence only; test goose and cow/sheep mechanisms in
+  controlled isolation.
 
 ## Active decisions
 
