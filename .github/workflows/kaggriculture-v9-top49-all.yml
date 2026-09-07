@@ -1,0 +1,40 @@
+name: Kaggriculture V9 all-five TOP49 validation
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths:
+      - "kaggriculture/research/screen_top49_all.py"
+      - ".github/workflows/kaggriculture-v9-top49-all.yml"
+jobs:
+  validate:
+    if: contains(github.event.head_commit.message, '[kaggr-v9-all5]')
+    name: ${{ matrix.agent }} shard ${{ matrix.shard }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        agent: [v7_scripted, v8_aastik, v8_hybrid, v9_b09_s05, v9_b11_s07]
+        shard: [0, 1, 2, 3, 4, 5, 6]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install kaggle-environments
+      - name: Validate on all five tapes
+        env:
+          AGENT: ${{ matrix.agent }}
+          SHARD: ${{ matrix.shard }}
+        run: |
+          case "$AGENT" in
+            v7_scripted) path=kaggriculture/agent_v7_scripted.py ;;
+            v8_aastik) path=kaggriculture/agent_v8_aastik.py ;;
+            v8_hybrid) path=kaggriculture/agent_v8_hybrid.py ;;
+            v9_b09_s05) path=kaggriculture/v9_candidates/wheat_grid/agent_v9_wheat_b09_s05.py ;;
+            v9_b11_s07) path=kaggriculture/v9_candidates/wheat_grid/agent_v9_wheat_b11_s07.py ;;
+          esac
+          python kaggriculture/research/screen_top49_all.py --agent "$path" --shard "$SHARD" | tee /tmp/result.txt
+          summary=$(grep '^SHARD_JSON=' /tmp/result.txt | tail -1)
+          summary=${summary//'%'/'%25'}; summary=${summary//$'\n'/'%0A'}; summary=${summary//$'\r'/'%0D'}
+          echo "::notice title=$AGENT shard $SHARD::$summary"
