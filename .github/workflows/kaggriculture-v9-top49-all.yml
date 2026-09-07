@@ -36,6 +36,7 @@ jobs:
             v9_b09_s05) path=kaggriculture/v9_candidates/wheat_grid/agent_v9_wheat_b09_s05.py ;;
             v9_b11_s07) path=kaggriculture/v9_candidates/wheat_grid/agent_v9_wheat_b11_s07.py ;;
           esac
+          set -o pipefail
           python kaggriculture/research/screen_top49_all.py --agent "$path" --shard "$SHARD" | tee /tmp/output.txt
           mkdir -p result
           grep '^SHARD_JSON=' /tmp/output.txt | tail -1 | sed 's/^SHARD_JSON=//' > "result/${AGENT}_${SHARD}.json"
