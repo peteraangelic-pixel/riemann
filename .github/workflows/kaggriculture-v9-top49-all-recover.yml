@@ -34,11 +34,14 @@ jobs:
               avg=lambda key: sum(x[key]*x['episodes'] for x in rows)/episodes
               output.append({'agent':agent,'shards':len(rows),'episodes':episodes,'games':games,'wins':sum(x['wins'] for x in rows),'our_mean':avg('our_mean'),'opponent_mean':avg('opponent_mean'),'margin_mean':avg('margin_mean')})
           os.makedirs('kaggriculture/research',exist_ok=True)
+          if not output:
+              output=[{'debug_path':p,'debug_head':open(p,errors='replace').read(200)} for p in glob.glob('results/**/*',recursive=True) if os.path.isfile(p)]
           open('kaggriculture/research/TOP49_ALL5_RESULTS.json','w').write(json.dumps(output,indent=2)+'\n')
           PY
           cat kaggriculture/research/TOP49_ALL5_RESULTS.json
           content=$(base64 -w0 kaggriculture/research/TOP49_ALL5_RESULTS.json)
-          jq -n --arg message "research(kaggriculture): record all-five TOP49 validation [skip ci]" --arg content "$content" --arg branch "$GITHUB_REF_NAME" '{message:$message,content:$content,branch:$branch}' > /tmp/body.json
+          sha=$(curl -fsSL -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/repos/$GITHUB_REPOSITORY/contents/kaggriculture/research/TOP49_ALL5_RESULTS.json?ref=$GITHUB_REF_NAME" | jq -r '.sha // empty')
+          jq -n --arg message "research(kaggriculture): record all-five TOP49 validation [skip ci]" --arg content "$content" --arg branch "$GITHUB_REF_NAME" --arg sha "$sha" '{message:$message,content:$content,branch:$branch} + (if $sha=="" then {} else {sha:$sha} end)' > /tmp/body.json
           curl --fail-with-body -X PUT -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/$GITHUB_REPOSITORY/contents/kaggriculture/research/TOP49_ALL5_RESULTS.json" --data-binary @/tmp/body.json
         env:
           GITHUB_TOKEN: ${{ github.token }}
