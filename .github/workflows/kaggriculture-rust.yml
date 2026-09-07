@@ -11,11 +11,6 @@ on:
       - "kaggriculture_meta_lab/rust_port/**"
       - ".github/workflows/kaggriculture-rust.yml"
   workflow_dispatch:
-    inputs:
-      export_toolchain:
-        description: "Export an offline Rust toolchain and vendored dependencies for restricted build environments"
-        type: boolean
-        default: false
 
 permissions:
   contents: read
@@ -23,7 +18,7 @@ permissions:
 jobs:
   simulator:
     runs-on: ubuntu-22.04
-    timeout-minutes: 20
+    timeout-minutes: 15
     defaults:
       run:
         working-directory: kaggriculture_meta_lab/rust_port
@@ -32,28 +27,51 @@ jobs:
       - uses: dtolnay/rust-toolchain@1.85.1
         with:
           components: rustfmt, clippy
-      - name: Resolve dependencies
-        run: cargo fetch
-      - name: Rust checks
-        run: |
-          cargo fmt --all -- --check
-          cargo clippy --all-targets --locked -- -D warnings
-          cargo test --locked
-          cargo build --release --locked
-      - name: Export offline build kit (opt-in)
-        if: inputs.export_toolchain || contains(github.event.head_commit.message, '[rust-bootstrap]')
-        run: |
-          mkdir -p "$RUNNER_TEMP/kg-offline"
-          cargo vendor --locked "$RUNNER_TEMP/kg-offline/vendor" > "$RUNNER_TEMP/kg-offline/config.toml"
-          cp Cargo.lock "$RUNNER_TEMP/kg-offline/"
-          tar -C "$(rustc --print sysroot)" -cJf "$RUNNER_TEMP/kg-offline/toolchain.tar.xz" bin lib
-          tar -C "$RUNNER_TEMP/kg-offline" -cJf "$RUNNER_TEMP/kg-offline/vendor.tar.xz" vendor
-      - uses: actions/upload-artifact@v4
-        if: inputs.export_toolchain || contains(github.event.head_commit.message, '[rust-bootstrap]')
+      - uses: actions/setup-python@v5
         with:
-          name: kg-offline-build-kit
+          python-version: "3.12"
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: kaggriculture_meta_lab/rust_port
+      - name: Dependencies and reproducible lockfile
+        run: |
+          if [ -f Cargo.lock ]; then cargo fetch --locked; else cargo fetch; fi
+          python tools/ci_run.py --lockfile
+      - name: Format diagnostics
+        run: python tools/ci_run.py --format
+      - name: Clippy
+        id: clippy
+        continue-on-error: true
+        run: python tools/ci_run.py cargo clippy --all-targets --locked -- -D warnings
+      - name: Rust tests (including zero-allocation and CPython fingerprints)
+        id: rust_tests
+        continue-on-error: true
+        run: python tools/ci_run.py cargo test --locked
+      - name: Release binary
+        run: python tools/ci_run.py cargo build --release --locked
+      - name: Python adapter and CLI tests
+        run: |
+          if [ -f tests/test_cli.py ]; then python tools/ci_run.py python -m unittest discover -s tests -v; fi
+      - name: Differential tests against the pinned Python engine
+        run: |
+          if [ -f tools/check.py ]; then python tools/ci_run.py python tools/check.py --check --seeds 64 --threads 4; fi
+      - name: Benchmark (informational, not a noisy timing gate)
+        run: |
+          if [ -f tools/benchmark.py ]; then python tools/ci_run.py python tools/benchmark.py --games 64 --threads 4 --repeats 3; fi
+      - name: Enforce checks and tracked formatting
+        env:
+          CLIPPY_RESULT: ${{ steps.clippy.outcome }}
+          RUST_TEST_RESULT: ${{ steps.rust_tests.outcome }}
+        run: |
+          test "$CLIPPY_RESULT" = success
+          test "$RUST_TEST_RESULT" = success
+          git diff --exit-code -- '*.rs'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kg-sim-${{ github.sha }}
           path: |
-            ${{ runner.temp }}/kg-offline/toolchain.tar.xz
-            ${{ runner.temp }}/kg-offline/vendor.tar.xz
-            ${{ runner.temp }}/kg-offline/Cargo.lock
-          retention-days: 1
+            kaggriculture_meta_lab/rust_port/target/release/kg_sim
+            kaggriculture_meta_lab/rust_port/work/check-report.json
+            kaggriculture_meta_lab/rust_port/work/benchmark.json
+          retention-days: 7
