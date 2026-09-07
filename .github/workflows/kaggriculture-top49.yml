@@ -5,6 +5,7 @@ on:
     branches: ["arena/01a0712c-riemann"]
     paths:
       - "kaggriculture/research/top49_selected_episodes.json"
+      - "kaggriculture/research/top49_latest_episodes.json"
       - ".github/workflows/kaggriculture-top49.yml"
 
 permissions:
@@ -39,8 +40,11 @@ jobs:
         run: |
           python - <<'PY' > /tmp/episodes.txt
           import json
-          data = json.load(open("kaggriculture/research/top49_selected_episodes.json", encoding="utf8"))
-          print("\n".join(map(str, sorted({episode for row in data["players"] for episode in row["episodes"]}))))
+          selected = json.load(open("kaggriculture/research/top49_selected_episodes.json", encoding="utf8"))
+          latest = json.load(open("kaggriculture/research/top49_latest_episodes.json", encoding="utf8"))
+          episodes = {episode for row in selected["players"] for episode in row["episodes"]}
+          episodes.update(row["episode"] for row in latest["players"])
+          print("\n".join(map(str, sorted(episodes))))
           PY
           while read -r episode; do
             target="kaggriculture/top49_full/$episode/replay.json.gz"
