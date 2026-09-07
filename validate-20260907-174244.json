@@ -1,0 +1,46 @@
+{
+  "candidate": "agents/variants/agent_v8_fert.py",
+  "baseline": "agents/current/agent_v9_b21_s16.py",
+  "closed_loop": {
+    "games": 200,
+    "wins": 0,
+    "losses": 200,
+    "ties": 0,
+    "errors": 0,
+    "win_rate": 0.0,
+    "score_rate": 0.0,
+    "ci_low": 1.734723475976807e-18,
+    "ci_high": 0.018845326377266575,
+    "mean_margin": -66342.705,
+    "median_margin": -69639.0,
+    "p10_margin": -82371.0,
+    "mean_self": 51104.01,
+    "mean_opp": 117446.715
+  },
+  "gate_pass": false,
+  "gate_reasons": [
+    "95% CI low 0.0% <= 50% (score rate 0.0%)",
+    "mean margin -66343 <= 0"
+  ],
+  "corpus": {
+    "games": 8,
+    "errors": 0,
+    "wins": 8,
+    "losses": 0,
+    "ties": 0,
+    "mean_self": 84914.5,
+    "median_self": 78835.0,
+    "mean_rec": 26948.5,
+    "episodes": [
+      "105790807",
+      "105790213",
+      "105788063",
+      "105789885",
+      "105792708",
+      "105787151",
+      "105788970",
+      "105791750"
+    ]
+  },
+  "elapsed_s": 65.1546648000367
+}
