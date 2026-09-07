@@ -1,0 +1,65 @@
+name: Kaggriculture V10 B21 live replay refresh
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v10-b21-live-refresh.yml"]
+permissions:
+  contents: write
+jobs:
+  collect:
+    if: contains(github.event.head_commit.message, '[kaggr-v10-b21-refresh]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - name: Configure Kaggle token
+        env: {KAGGLE_API_TOKEN: "${{ secrets.KAGGLE_API_TOKEN }}"}
+        run: |
+          mkdir -p ~/.kaggle
+          clean_token=$(printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]')
+          test -n "$clean_token" || { echo "::error::KAGGLE_API_TOKEN missing"; exit 1; }
+          printf '%s' "$clean_token" > ~/.kaggle/access_token
+          chmod 600 ~/.kaggle/access_token
+      - run: pip install kaggle
+      - name: Download missing B21 public episodes
+        id: episodes
+        env: {SUBMISSION_REF: "56071535"}
+        run: |
+          set -o pipefail
+          kaggle competitions submissions kaggriculture | tee /tmp/submissions
+          table=$(kaggle competitions episodes "$SUBMISSION_REF")
+          printf '%s\n' "$table"
+          episode_ids=$(printf '%s\n' "$table" | awk '$1 ~ /^[0-9]+$/ && /PUBLIC/ {print $1}')
+          test -n "$episode_ids" || { echo "::error::No public B21 episodes found"; exit 1; }
+          collected=''; total=0; existing=0
+          for episode_id in $episode_ids; do
+            total=$((total+1)); target="kaggriculture/online/$episode_id"
+            if [ -s "$target/replay.json.gz" ]; then existing=$((existing+1)); continue; fi
+            tmp=$(mktemp -d); mkdir -p "$target" "$tmp/replay"
+            kaggle competitions replay "$episode_id" -p "$tmp/replay"
+            replay=$(find "$tmp/replay" -type f -name '*.json' | head -1)
+            test -n "$replay" || { echo "::error::No replay JSON for $episode_id"; exit 1; }
+            gzip -9c "$replay" > "$target/replay.json.gz"
+            for idx in 0 1; do
+              mkdir -p "$tmp/log-$idx"
+              kaggle competitions logs "$episode_id" "$idx" -p "$tmp/log-$idx" || true
+              log=$(find "$tmp/log-$idx" -type f -name '*.json' | head -1)
+              [ -z "$log" ] || cp "$log" "$target/agent-$idx-log.json"
+            done
+            printf 'submission_ref=%s\nepisode_id=%s\nagent=B21_S16\n' "$SUBMISSION_REF" "$episode_id" > "$target/metadata.txt"
+            collected="${collected:+$collected,}$episode_id"; rm -rf "$tmp"
+          done
+          echo "total=$total existing=$existing collected=${collected:-none}"
+          echo "collected_ids=${collected:-none}" >> "$GITHUB_OUTPUT"
+      - name: Commit public telemetry
+        run: |
+          if git diff --quiet -- kaggriculture/online && [ -z "$(git ls-files --others --exclude-standard kaggriculture/online)" ]; then
+            echo "All B21 episodes already present"; exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add kaggriculture/online
+          git commit -m "data(kaggriculture): refresh B21 episodes ${{ steps.episodes.outputs.collected_ids }} [skip ci]"
+          git push origin "HEAD:$GITHUB_REF_NAME"
