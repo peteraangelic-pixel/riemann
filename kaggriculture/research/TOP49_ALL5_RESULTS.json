@@ -1,142 +1,52 @@
 [
   {
-    "debug_path": "results/v7_scripted_6.json",
-    "debug_head": ""
+    "agent": "v7_scripted",
+    "shards": 7,
+    "episodes": 245,
+    "games": 490,
+    "wins": 188,
+    "our_mean": 88409.19795918367,
+    "opponent_mean": 89310.5306122449,
+    "margin_mean": -901.3326530612245
   },
   {
-    "debug_path": "results/v9_b11_s07_2.json",
-    "debug_head": ""
+    "agent": "v8_aastik",
+    "shards": 7,
+    "episodes": 245,
+    "games": 490,
+    "wins": 140,
+    "our_mean": 86591.15714285715,
+    "opponent_mean": 88587.31836734693,
+    "margin_mean": -1996.1612244897958
   },
   {
-    "debug_path": "results/v9_b09_s05_1.json",
-    "debug_head": ""
+    "agent": "v8_hybrid",
+    "shards": 7,
+    "episodes": 245,
+    "games": 490,
+    "wins": 140,
+    "our_mean": 85483.8612244898,
+    "opponent_mean": 89384.6530612245,
+    "margin_mean": -3900.791836734694
   },
   {
-    "debug_path": "results/v7_scripted_1.json",
-    "debug_head": ""
+    "agent": "v9_b09_s05",
+    "shards": 7,
+    "episodes": 245,
+    "games": 490,
+    "wins": 168,
+    "our_mean": 85950.68979591837,
+    "opponent_mean": 87652.1530612245,
+    "margin_mean": -1701.4632653061224
   },
   {
-    "debug_path": "results/v8_aastik_0.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v9_b09_s05_2.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v9_b09_s05_5.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v8_hybrid_6.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v9_b11_s07_0.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v7_scripted_2.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v8_hybrid_3.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v8_hybrid_1.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v7_scripted_3.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v8_hybrid_5.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v8_hybrid_4.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v9_b11_s07_6.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v8_aastik_6.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v8_aastik_1.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v7_scripted_4.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v9_b09_s05_6.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v8_hybrid_0.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v7_scripted_5.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v9_b11_s07_4.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v8_aastik_4.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v9_b11_s07_5.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v9_b09_s05_3.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v9_b11_s07_1.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v9_b09_s05_0.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v7_scripted_0.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v9_b09_s05_4.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v8_aastik_2.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v8_aastik_3.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v8_hybrid_2.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v9_b11_s07_3.json",
-    "debug_head": ""
-  },
-  {
-    "debug_path": "results/v8_aastik_5.json",
-    "debug_head": ""
+    "agent": "v9_b11_s07",
+    "shards": 7,
+    "episodes": 245,
+    "games": 490,
+    "wins": 165,
+    "our_mean": 86692.00612244898,
+    "opponent_mean": 87211.10612244898,
+    "margin_mean": -519.1
   }
 ]
