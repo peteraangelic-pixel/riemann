@@ -1,0 +1,373 @@
+{
+  "counts": {
+    "both_lose": 161,
+    "v7_v9_both_lose": 123,
+    "both_win": 64,
+    "aastik_only": 10,
+    "v9_only": 24,
+    "hybrid_only": 10,
+    "v7_only": 35
+  },
+  "v7_only_players": [
+    [
+      "SJY321",
+      3
+    ],
+    [
+      "Syed Asad Ali",
+      3
+    ],
+    [
+      "Andrey Tikhomirov",
+      2
+    ],
+    [
+      "JamesJJJJJ",
+      2
+    ],
+    [
+      "Kenneth Alonso",
+      2
+    ],
+    [
+      "liyuting",
+      2
+    ],
+    [
+      "我都先道歉",
+      2
+    ],
+    [
+      "Beyond",
+      1
+    ],
+    [
+      "Crop Dusta",
+      1
+    ],
+    [
+      "Dresden",
+      1
+    ],
+    [
+      "KongKongDe",
+      1
+    ],
+    [
+      "LI Mufeng",
+      1
+    ],
+    [
+      "Milan Leonard",
+      1
+    ],
+    [
+      "OceanMix",
+      1
+    ],
+    [
+      "Raya and the Last Dragon",
+      1
+    ],
+    [
+      "Tiannan Zhang",
+      1
+    ],
+    [
+      "Tomoki Hirose",
+      1
+    ],
+    [
+      "Ueddy",
+      1
+    ],
+    [
+      "elmo",
+      1
+    ],
+    [
+      "keiz",
+      1
+    ],
+    [
+      "peikopon",
+      1
+    ],
+    [
+      "pensukesan",
+      1
+    ],
+    [
+      "t-enstar",
+      1
+    ],
+    [
+      "taiseiu",
+      1
+    ],
+    [
+      "tetsuya & yuanzhe zhou",
+      1
+    ],
+    [
+      "yfy",
+      1
+    ]
+  ],
+  "v9_only_players": [
+    [
+      "CemBas",
+      2
+    ],
+    [
+      "Dhruvik Chauhan",
+      2
+    ],
+    [
+      "Driz Lo",
+      2
+    ],
+    [
+      "KongKongDe",
+      2
+    ],
+    [
+      "OceanMix",
+      2
+    ],
+    [
+      "Scott Willis",
+      2
+    ],
+    [
+      "mandgeee",
+      2
+    ],
+    [
+      "Agent 0",
+      1
+    ],
+    [
+      "Andrey Tikhomirov",
+      1
+    ],
+    [
+      "John Doge",
+      1
+    ],
+    [
+      "Mengfei Li",
+      1
+    ],
+    [
+      "SJY321",
+      1
+    ],
+    [
+      "rian",
+      1
+    ],
+    [
+      "sunyuxiang136",
+      1
+    ],
+    [
+      "taiseiu",
+      1
+    ],
+    [
+      "yfy",
+      1
+    ],
+    [
+      "ymg_aq",
+      1
+    ]
+  ],
+  "contrasts": {
+    "v7_only_vs_v9_only": [
+      {
+        "feature": "t5:SELL:WHEAT",
+        "left_mean": 8.371428571428572,
+        "right_mean": 29.083333333333332,
+        "standardized_delta": -1.1799249117234873
+      },
+      {
+        "feature": "t5:BUY_PRODUCT:WHEAT",
+        "left_mean": 12.971428571428572,
+        "right_mean": 33.916666666666664,
+        "standardized_delta": -1.1623255118208162
+      },
+      {
+        "feature": "t20:SELL:WHEAT",
+        "left_mean": 13.971428571428572,
+        "right_mean": 79.66666666666667,
+        "standardized_delta": -1.0547552532089794
+      },
+      {
+        "feature": "t20:BUY_PRODUCT:WHEAT",
+        "left_mean": 20.085714285714285,
+        "right_mean": 85,
+        "standardized_delta": -1.040671572615184
+      },
+      {
+        "feature": "t2:BUY_PRODUCT:WHEAT",
+        "left_mean": 10.971428571428572,
+        "right_mean": 23.958333333333332,
+        "standardized_delta": -0.7938743771769203
+      },
+      {
+        "feature": "t1:BUY_PRODUCT:WHEAT",
+        "left_mean": 10.228571428571428,
+        "right_mean": 23.583333333333332,
+        "standardized_delta": -0.7925723728871613
+      },
+      {
+        "feature": "t2:SELL:WHEAT",
+        "left_mean": 7.457142857142857,
+        "right_mean": 19.416666666666668,
+        "standardized_delta": -0.7647571787808418
+      },
+      {
+        "feature": "t1:SELL:WHEAT",
+        "left_mean": 0,
+        "right_mean": 10.916666666666666,
+        "standardized_delta": -0.6979826620020648
+      },
+      {
+        "feature": "t720:HIRE",
+        "left_mean": 287.42857142857144,
+        "right_mean": 282.7083333333333,
+        "standardized_delta": 0.5349999098408047
+      },
+      {
+        "feature": "t1:BUY_ANIMAL:COW",
+        "left_mean": 0.8285714285714286,
+        "right_mean": 0.25,
+        "standardized_delta": 0.4900592587020008
+      },
+      {
+        "feature": "t2:BUY_ANIMAL:SHEEP",
+        "left_mean": 1.7714285714285714,
+        "right_mean": 1.4583333333333333,
+        "standardized_delta": 0.4583903450365156
+      },
+      {
+        "feature": "t1:HIRE",
+        "left_mean": 1.0285714285714285,
+        "right_mean": 0.3333333333333333,
+        "standardized_delta": 0.3802953743286241
+      },
+      {
+        "feature": "t20:BUY_ANIMAL:COW",
+        "left_mean": 2.3142857142857145,
+        "right_mean": 2.0833333333333335,
+        "standardized_delta": 0.37705340498311374
+      },
+      {
+        "feature": "t2:BUY_ANIMAL:COW",
+        "left_mean": 2.3142857142857145,
+        "right_mean": 2.0833333333333335,
+        "standardized_delta": 0.37705340498311374
+      },
+      {
+        "feature": "t5:BUY_ANIMAL:COW",
+        "left_mean": 2.3142857142857145,
+        "right_mean": 2.0833333333333335,
+        "standardized_delta": 0.37705340498311374
+      }
+    ],
+    "both_lose_vs_both_win": [
+      {
+        "feature": "t2:BUY_ANIMAL:SHEEP",
+        "left_mean": 1.7577639751552796,
+        "right_mean": 2.03125,
+        "standardized_delta": -0.5171867379573052
+      },
+      {
+        "feature": "t720:BUY_ANIMAL:GOOSE",
+        "left_mean": 2,
+        "right_mean": 1.1875,
+        "standardized_delta": 0.5000666653868472
+      },
+      {
+        "feature": "t2:BUY_PRODUCT:WHEAT",
+        "left_mean": 14.527950310559007,
+        "right_mean": 19.34375,
+        "standardized_delta": -0.3557193249325924
+      },
+      {
+        "feature": "t5:BUY_PRODUCT:WHEAT",
+        "left_mean": 19.012422360248447,
+        "right_mean": 24.25,
+        "standardized_delta": -0.33092347501030145
+      },
+      {
+        "feature": "t2:SELL:WHEAT",
+        "left_mean": 10.801242236024844,
+        "right_mean": 14.90625,
+        "standardized_delta": -0.32079606499311014
+      },
+      {
+        "feature": "t720:BUY_ANIMAL:COW",
+        "left_mean": 8.397515527950311,
+        "right_mean": 8.890625,
+        "standardized_delta": -0.3120282562158481
+      },
+      {
+        "feature": "t20:BUY_ANIMAL:SHEEP",
+        "left_mean": 1.9813664596273293,
+        "right_mean": 2.046875,
+        "standardized_delta": -0.31073429065610253
+      },
+      {
+        "feature": "t5:BUY_ANIMAL:SHEEP",
+        "left_mean": 1.9813664596273293,
+        "right_mean": 2.046875,
+        "standardized_delta": -0.31073429065610253
+      },
+      {
+        "feature": "t5:SELL:WHEAT",
+        "left_mean": 14.428571428571429,
+        "right_mean": 19.203125,
+        "standardized_delta": -0.31054628975179827
+      },
+      {
+        "feature": "t1:BUY_PRODUCT:WHEAT",
+        "left_mean": 14.397515527950311,
+        "right_mean": 18.609375,
+        "standardized_delta": -0.30555255539019194
+      },
+      {
+        "feature": "t720:BUY_ANIMAL:SHEEP",
+        "left_mean": 6.521739130434782,
+        "right_mean": 7.25,
+        "standardized_delta": -0.3017629950749063
+      },
+      {
+        "feature": "t1:BUY_ANIMAL:SHEEP",
+        "left_mean": 0.14285714285714285,
+        "right_mean": 0.3125,
+        "standardized_delta": -0.2982731643095877
+      },
+      {
+        "feature": "t20:HIRE",
+        "left_mean": 5.055900621118012,
+        "right_mean": 4.9375,
+        "standardized_delta": 0.28479507338882176
+      },
+      {
+        "feature": "t2:HIRE",
+        "left_mean": 5.055900621118012,
+        "right_mean": 4.9375,
+        "standardized_delta": 0.28479507338882176
+      },
+      {
+        "feature": "t5:HIRE",
+        "left_mean": 5.055900621118012,
+        "right_mean": 4.9375,
+        "standardized_delta": 0.28479507338882176
+      }
+    ]
+  }
+}

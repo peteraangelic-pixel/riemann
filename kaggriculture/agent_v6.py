@@ -1,4 +1,4 @@
-"""Kaggriculture v4 agent: crop conveyor plus a serviced cow economy.
+"""Kaggriculture v6 candidate: mixed premium crops and livestock.
 
 v1 (all wheat) verified the machinery: hired hands run daily watering-first
 sweeps of their plan chunks, the farmer harvests/plants overflow, land NE+SW
@@ -42,11 +42,11 @@ from typing import Any
 # Crops we can run.  Both are one-time crops with the same age-3 rhythm:
 #   WHEAT  seed 10, base 25, 3u/4 tile-days
 #   CARROT seed 20, base 35, 3u/4 tile-days (same watering needs)
-SUPPORTED = ("WHEAT", "CARROT", "MELON")
-SEED_COST = {"WHEAT": 10, "CARROT": 20, "MELON": 80}
+SUPPORTED = ("WHEAT", "CARROT", "MELON", "STRAWBERRY")
+SEED_COST = {"WHEAT": 10, "CARROT": 20, "MELON": 80, "STRAWBERRY": 100}
 # First harvestable age per crop.  Wheat/carrot are picked at 3 units on age 3
 # (watered through the bonus window); melon pays 6 units on age 10.
-HARVEST_AGE_BY_CROP = {"WHEAT": 3, "CARROT": 3, "MELON": 10}
+HARVEST_AGE_BY_CROP = {"WHEAT": 3, "CARROT": 3, "MELON": 10, "STRAWBERRY": 10}
 
 QUAD_ORDER = ("NW", "NE", "SW", "SE")
 LAND_COST = {"NE": 1000, "SW": 2000, "SE": 4000}
@@ -61,19 +61,38 @@ OPERATING_RESERVE = 300
 CELLS_PER_HAND = 10
 HANDS_EXTRA = 1
 HANDS_MAX = 12
+# Replay-driven V6 controls. Defaults retain the selected V5 behavior; Actions
+# sweeps change one family at a time before any interaction profile is built.
+HAND_TASK_MODE = "WATER_FIRST"
+# Unlike the rejected fully-global router, idle stealing preserves each hand's
+# deterministic zone and crosses a boundary only when that zone has no work.
+IDLE_WORK_STEAL = False
+LATE_CROP_HAND_BONUS = 0
+# Optional replay-derived staffing curves. AUTO retains capacity-based hiring.
+LABOR_MODE = "AUTO"
 
 # Never queue more than this many market orders per turn.
 MAX_MARKET_ORDERS = 10
 
 # Selling below this would mean a crashed market.
-SELL_PRICE_FLOOR = 10
+SELL_PRICE_FLOOR = 1
+# Liquidate everything late: inventory has zero terminal value.
+ENDGAME_SELL_DAY = 27
+# Empty means sell whenever stock reaches the shed. Non-empty tuples allow
+# measured batching immediately after town-consumption ticks.
+SALE_HOURS: tuple[int, ...] = ()
 
 # Land purchase triggers.
-LAND_NE_MIN_PLANTED = 6       # NW mostly started
-LAND_SW_MIN_PLANTED = 40      # NW+NE mostly full
+LAND_NE_MIN_PLANTED = 3       # unlock early for pasture/field throughput
+LAND_SW_MIN_PLANTED = 30      # measured best over all public replay streams
 LAND_SW_MAX_DAY = 18          # late purchases cannot pay back
 LAND_RESERVE = 700            # cash kept after the purchase for seeds+wages
 SELL_BUY = False              # SE quadrant purchase disabled (see module docs)
+# Across 32 public replay streams, day-8/day-10 timed expansion improved the
+# finalist from 93,615.0 to 94,409.0 without losing a game.
+LAND_MODE = "TIMED"
+LAND_NE_BUY_DAY = 8
+LAND_SW_BUY_DAY = 10
 
 # Carrot belt sizing: cells = clamp(share of town carrot demand that we want
 # to serve, 0..CARROT_MAX_FRAC * plan).  CARROT_KAPPA tunes how aggressively
@@ -96,15 +115,34 @@ CARROT_UNITS_PER_CELL_DAY = 0.75
 # (6 units); town-center melon demand is 1/day regardless of shop draws, so a
 # couple of melon cells earn far more per tile-day than wheat/carrot while the
 # market is anywhere near equilibrium.  Number of cells = len(MELON_CELLS).
-MELON_CELLS = [(0, 0), (1, 0), (2, 0), (3, 0)]
+MELON_CELLS = [(0, 0), (1, 0), (2, 0), (3, 0), (0, 1), (1, 1)]
+# Conditional scale-up can react to a visible melon-heavy opponent without
+# paying the large-melon penalty in every market. Disabled by default.
+OPPONENT_MELON_THRESHOLD = 999
+OPPONENT_MELON_CELLS = [
+    (0, 0), (1, 0), (2, 0), (3, 0),
+    (0, 1), (1, 1), (2, 1), (3, 1),
+    (0, 2), (1, 2),
+]
 # Melon needs 10 days to mature; a plant started after this day cannot be
 # harvested before the season ends.
-MELON_LAST_PLANT_DAY = 19
+MELON_LAST_PLANT_DAY = 18
+# A validated V6.1 experiment can rotate the startup melon block into the
+# strawberry target after its first harvest, reusing capital-intensive land.
+ROTATE_MELONS_TO_STRAWBERRIES = False
+# V5 reserves premium ongoing crops in deterministic rank bands. These are
+# deliberately profile constants so Actions can sweep broad economies.
+STRAWBERRY_TARGET = 0
+STRAWBERRY_START_DAY = 0
+STRAWBERRY_LAST_PLANT_DAY = 13
+FERTILIZER_RESERVE = 0
+FERTILIZE_PREMIUM_ONLY = True
 
 # v4 defaults to five cows; GH matrix jobs can switch the same logistics
 # machinery to geese or sheep for controlled comparisons.
 ANIMAL_KIND = "COW"
-ANIMAL_TARGET = 5
+ANIMAL_TARGET = 14  # compatibility: sum of ANIMAL_TARGETS is authoritative in V5
+ANIMAL_TARGETS = {"COW": 8, "SHEEP": 6}
 ANIMAL_COST = {"GOOSE": 300, "COW": 400, "SHEEP": 500}
 ANIMAL_STRUCTURE = {"GOOSE": "COOP", "COW": "PASTURE", "SHEEP": "PASTURE"}
 ANIMAL_BUILD_OP = {"GOOSE": "BUILD_COOP", "COW": "BUILD_PASTURE", "SHEEP": "BUILD_PASTURE"}
@@ -114,9 +152,27 @@ ANIMAL_CELLS = [
     (4, 4), (4, 3), (3, 4), (4, 2), (2, 4), (4, 1),
     (5, 4), (5, 3), (6, 4), (5, 2),
     (4, 5), (3, 5), (4, 6), (2, 5),
+    (5, 1), (6, 3), (7, 4),
+    (1, 5), (3, 6), (4, 7),
 ]
-ANIMALS_PER_WORKER = 2
+# Champions crop future pasture cells during startup, then expand beyond the
+# first four animals after the melon harvest. Defaults preserve V5.
+EARLY_ANIMAL_SLOTS = 999
+ANIMAL_EXPANSION_DAY = 0
+ANIMALS_PER_WORKER = 3
+ANIMAL_BUY_BATCH = 3
+PREMIUM_SEED_BATCH = 8
 FEED_STOCK_DAYS = 3
+ADAPT_SHEEP_THRESHOLD = 16
+ADAPT_COW_TARGET = 8
+# Optional mirror response to a cow-heavy opponent. Disabled in V5; V6 sweeps
+# test whether moving exposure from milk to wool helps in the shared market.
+ADAPT_COW_THRESHOLD = 999
+ADAPT_COW_RESPONSE_COWS = 6
+ADAPT_COW_RESPONSE_SHEEP = 8
+# Service ordering is sweepable. Feeding first is safer; harvesting first
+# reduces held-cap losses. Both are measured rather than assumed.
+ANIMAL_SERVICE_MODE = "HARVEST_FEED_CARE_FERT"
 
 
 def _plan_cells(unlocked: list[str], board: int) -> list[tuple[int, int]]:
@@ -169,13 +225,53 @@ class FarmerPlanner:
         private = obs["private"]
         tiles = me["tiles"]
         board = len(tiles)
-        animal_plan = ANIMAL_CELLS[:ANIMAL_TARGET]
-        service_animal_plan = [c for c in animal_plan if tiles[c[1]][c[0]] != "LOCKED"]
-        animal_structure = ANIMAL_STRUCTURE[ANIMAL_KIND]
-        animal_build_op = ANIMAL_BUILD_OP[ANIMAL_KIND]
+        # Stable cell-to-species mapping. Cows come first for earlier milk ROI;
+        # sheep add independent wool demand and reduce single-market exposure.
+        # A very sheep-heavy visible opponent is the one measured failure of
+        # the mixed profile: shared wool supply crashes both sellers. Because
+        # cows are bought first in batches, switch to eight cows before buying
+        # sheep once that strategy is observable on the board.
+        animal_targets = dict(ANIMAL_TARGETS)
+        opponent_tiles = obs["farms"][1 - player]["tiles"]
+        opponent_sheep = sum(
+            isinstance(t, dict) and t.get("animal") == "SHEEP"
+            for row in opponent_tiles for t in row
+        )
+        opponent_cows = sum(
+            isinstance(t, dict) and t.get("animal") == "COW"
+            for row in opponent_tiles for t in row
+        )
+        opponent_melons = sum(
+            isinstance(t, dict) and t.get("crop") == "MELON"
+            for row in opponent_tiles for t in row
+        )
+        melon_cells = (
+            OPPONENT_MELON_CELLS
+            if opponent_melons >= OPPONENT_MELON_THRESHOLD
+            else MELON_CELLS
+        )
+        if opponent_sheep >= ADAPT_SHEEP_THRESHOLD and animal_targets.get("SHEEP", 0) > 0:
+            animal_targets = {
+                "COW": max(ADAPT_COW_TARGET, animal_targets.get("COW", 0)),
+                "SHEEP": 0,
+            }
+        elif opponent_cows >= ADAPT_COW_THRESHOLD:
+            animal_targets = {
+                "COW": ADAPT_COW_RESPONSE_COWS,
+                "SHEEP": ADAPT_COW_RESPONSE_SHEEP,
+            }
+
         step = int(obs.get("step", 0))
         day = obs.get("day", step // 24)
         hour = obs.get("hour", step % 24)
+        animal_specs: list[tuple[tuple[int, int], str]] = []
+        for kind in ("COW", "SHEEP", "GOOSE"):
+            animal_specs.extend((cell, kind) for cell in ANIMAL_CELLS[len(animal_specs):len(animal_specs) + animal_targets.get(kind, 0)])
+        active_slots = len(animal_specs) if day >= ANIMAL_EXPANSION_DAY else min(EARLY_ANIMAL_SLOTS, len(animal_specs))
+        active_specs = animal_specs[:active_slots]
+        animal_plan = [cell for cell, _ in active_specs]
+        kind_at = dict(active_specs)
+        service_animal_plan = [c for c in animal_plan if tiles[c[1]][c[0]] != "LOCKED"]
         money = me["money"]
         unlocked = list(me.get("unlocked_quadrants", ["NW"]))
         hands_now = me.get("hands", []) or []
@@ -206,9 +302,21 @@ class FarmerPlanner:
         carrot_ok = cp >= max(SELL_PRICE_FLOOR, CARROT_MIN_PRICE_RATIO * max(wp, 1))
 
         def _crop_of_cell(x: int, y: int, rank: int | None) -> str:
-            if (x, y) in MELON_CELLS and day <= MELON_LAST_PLANT_DAY:
+            melon_cell = (x, y) in melon_cells
+            if melon_cell and day <= MELON_LAST_PLANT_DAY:
                 return "MELON"
-            if rank is not None and carrot_ok and rank < carrot_target:
+            # Ongoing strawberries produce four premium harvests. In rotation
+            # profiles, the first-harvest melon block counts toward the total
+            # strawberry target instead of creating a second disjoint block.
+            strawberry_time = STRAWBERRY_START_DAY <= day <= STRAWBERRY_LAST_PLANT_DAY
+            if melon_cell and ROTATE_MELONS_TO_STRAWBERRIES and strawberry_time:
+                return "STRAWBERRY"
+            if rank is not None and strawberry_time:
+                rotated = len(melon_cells) if ROTATE_MELONS_TO_STRAWBERRIES else 0
+                premium_rank = rank - len(melon_cells)
+                if 0 <= premium_rank < max(0, STRAWBERRY_TARGET - rotated):
+                    return "STRAWBERRY"
+            if rank is not None and carrot_ok and rank < carrot_target + len(melon_cells) + STRAWBERRY_TARGET:
                 return "CARROT"
             return "WHEAT"
 
@@ -219,9 +327,11 @@ class FarmerPlanner:
         mature: list[tuple[int, int]] = []      # plants at/over harvest age
         urgent: list[tuple[int, int]] = []      # unwatered, will die tonight
         unwatered: list[tuple[int, int]] = []   # any unwatered supported plant
+        fertilizable: list[tuple[int, int]] = []
         empty_cells: dict[str, list[tuple[int, int]]] = {c: [] for c in SUPPORTED}
         weeds: list[tuple[int, int]] = []
         animal_cells: list[tuple[int, int]] = []
+        animal_cells_by_kind: dict[str, list[tuple[int, int]]] = {k: [] for k in animal_targets}
         empty_structures: list[tuple[int, int]] = []
         unbuilt_animal_cells: list[tuple[int, int]] = []
         planted_per_crop = {c: 0 for c in SUPPORTED}
@@ -242,9 +352,11 @@ class FarmerPlanner:
                 if t.get("kind") == "WEED":
                     weeds.append(cell)
                     continue
-                if cell in animal_plan and t.get("kind") == animal_structure:
-                    if t.get("animal") == ANIMAL_KIND:
+                desired_kind = kind_at.get(cell)
+                if desired_kind and t.get("kind") == ANIMAL_STRUCTURE[desired_kind]:
+                    if t.get("animal") == desired_kind:
                         animal_cells.append(cell)
+                        animal_cells_by_kind[desired_kind].append(cell)
                     elif not t.get("animal"):
                         empty_structures.append(cell)
                     continue
@@ -259,13 +371,28 @@ class FarmerPlanner:
                     unwatered.append((x, y))
                     if t.get("consecutive_unwatered", 0) >= 1:
                         urgent.append((x, y))
+                if (
+                    int(t.get("fertilized_until_day", -1)) < day
+                    and (not FERTILIZE_PREMIUM_ONLY or crop in ("MELON", "STRAWBERRY"))
+                ):
+                    fertilizable.append((x, y))
                 if age >= HARVEST_AGE_BY_CROP.get(crop, HARVEST_AGE_BY_CROP["WHEAT"]):
                     mature.append((x, y))
 
         # ---- market orders -------------------------------------------------
         orders: list[list[Any]] = []
         shed_value = 0
-        for item in sorted(shed):
+        # Different products have independent price curves, but high-value
+        # stock goes first so the ten-order cap cannot strand it.
+        sale_items = sorted(
+            shed,
+            key=lambda item: (-int(prices.get(item, 0) or 0), item),
+        )
+        for item in sale_items:
+            if len(orders) >= MAX_MARKET_ORDERS:
+                break
+            if day < ENDGAME_SELL_DAY and SALE_HOURS and hour not in SALE_HOURS:
+                continue
             qty = shed[item]
             if qty <= 0:
                 continue
@@ -273,13 +400,17 @@ class FarmerPlanner:
             # scarcity market. Strong online opponents aggressively consume
             # market wheat, making that round trip both fragile and costly.
             sell_qty = qty
-            if item == "WHEAT":
-                feed_reserve = ANIMAL_TARGET * FEED_STOCK_DAYS
+            if day < ENDGAME_SELL_DAY and item == "WHEAT":
+                feed_reserve = sum(animal_targets.values()) * FEED_STOCK_DAYS
                 sell_qty = max(0, qty - feed_reserve)
+            elif day < ENDGAME_SELL_DAY and item == "FERTILIZER":
+                # Fertilizer is worth more when converted into extra premium
+                # harvest than as a raw sale only in fertilizing profiles.
+                sell_qty = max(0, qty - FERTILIZER_RESERVE)
             if sell_qty <= 0:
                 continue
             price = int(prices.get(item, 0) or 0)
-            if price >= SELL_PRICE_FLOOR:
+            if price >= (1 if day >= ENDGAME_SELL_DAY else SELL_PRICE_FLOOR):
                 orders.append(["SELL", item, sell_qty])
                 shed_value += sell_qty * max(price, 1)
 
@@ -289,27 +420,63 @@ class FarmerPlanner:
         # pre-order balance (which used to overcommit the opening bankroll).
         available_money = est_money
 
-        # Land: buy the next quadrant when the current one is mostly planted.
-        if hour == 0 and len(unlocked) < len(QUAD_ORDER):
+        # Land: AUTO uses measured fill thresholds. TIMED reproduces the
+        # industrial opponents that unlock NE and SW in rapid succession even
+        # while premium fields are still being converted.
+        if len(unlocked) < len(QUAD_ORDER):
             nxt = QUAD_ORDER[len(unlocked)]
             cost = LAND_COST[nxt]
             ok = False
-            if nxt == "NE":
-                ok = sum(planted_per_crop.values()) >= LAND_NE_MIN_PLANTED
-            elif nxt == "SW":
-                ok = sum(planted_per_crop.values()) >= LAND_SW_MIN_PLANTED and day <= LAND_SW_MAX_DAY
-            elif nxt == "SE":
-                ok = SELL_BUY  # disabled by default (module docstring)
+            if LAND_MODE == "TIMED":
+                if nxt == "NE":
+                    ok = day >= LAND_NE_BUY_DAY
+                elif nxt == "SW":
+                    ok = day >= LAND_SW_BUY_DAY
+                elif nxt == "SE":
+                    ok = SELL_BUY
+            elif hour == 0:
+                if nxt == "NE":
+                    ok = sum(planted_per_crop.values()) >= LAND_NE_MIN_PLANTED
+                elif nxt == "SW":
+                    ok = sum(planted_per_crop.values()) >= LAND_SW_MIN_PLANTED and day <= LAND_SW_MAX_DAY
+                elif nxt == "SE":
+                    ok = SELL_BUY
             if ok and available_money >= cost + LAND_RESERVE:
                 orders.append(["BUY_LAND"])
                 available_money -= cost
 
-        # Hands: crop conveyor plus dedicated animal workers.
+        # Hands: stage livestock setup instead of assigning nearly the whole
+        # opening workforce to structures for animals we cannot yet afford.
+        present_animals = len(animal_cells) + sum(
+            int(shed.get(k, 0)) + sum(int(inv.get(k, 0)) for inv in inventories)
+            for k in animal_targets
+        )
+        active_animal_capacity = min(len(service_animal_plan), max(2, present_animals + ANIMAL_BUY_BATCH))
         animal_workers_target = (
-            len(service_animal_plan) + ANIMALS_PER_WORKER - 1
+            active_animal_capacity + ANIMALS_PER_WORKER - 1
         ) // ANIMALS_PER_WORKER
         crop_workers_target = max(2, (len(plan) + CELLS_PER_HAND - 1) // CELLS_PER_HAND + HANDS_EXTRA)
+        if "SW" in unlocked:
+            crop_workers_target += LATE_CROP_HAND_BONUS
         h_target = min(HANDS_MAX, crop_workers_target + animal_workers_target)
+        if LABOR_MODE == "DMITRI":
+            if day <= 7:
+                h_target = 3
+            elif day <= 9:
+                h_target = 6
+            elif day == 10:
+                h_target = 7
+            elif day == 18:
+                h_target = 11
+            elif day <= 27:
+                h_target = 10
+            else:
+                h_target = 3
+        elif LABOR_MODE == "INDUSTRIAL":
+            h_target = 5 if day <= 6 else (8 if day <= 9 else (12 if day <= 27 else 4))
+        elif LABOR_MODE == "CHAMPION":
+            h_target = 12 if day <= 27 else 4
+        h_target = min(HANDS_MAX, h_target)
         to_hire = max(0, h_target - len(hands_now))
         hires_today = int(me.get("hires_today", len(hands_now)) or 0)
         for h in range(to_hire):
@@ -323,18 +490,43 @@ class FarmerPlanner:
             else:
                 break
 
-        # Buy the compact goose flock during setup. Animals arrive in the shed
-        # and are placed by dedicated workers once their coops exist.
-        carried_animals = sum(int(inv.get(ANIMAL_KIND, 0)) for inv in inventories)
-        animal_owned = len(animal_cells) + int(shed.get(ANIMAL_KIND, 0)) + carried_animals
-        purchase_target = min(ANIMAL_TARGET, len(service_animal_plan))
-        missing_animals = max(0, purchase_target - animal_owned)
-        unit_animal_cost = ANIMAL_COST[ANIMAL_KIND]
-        affordable_animals = max(0, int((available_money - OPERATING_RESERVE) // unit_animal_cost))
-        buy_animals = min(missing_animals, affordable_animals)
-        if buy_animals > 0 and day <= 18 and len(orders) < MAX_MARKET_ORDERS:
-            orders.append(["BUY_ANIMAL", ANIMAL_KIND, buy_animals])
-            available_money -= buy_animals * unit_animal_cost
+        # Fund the long-lived premium crop before livestock can consume the
+        # whole opening bankroll. Generic seed purchasing below skips it.
+        if STRAWBERRY_TARGET > 0:
+            have_strawberry = int(seeds.get("STRAWBERRY", 0))
+            need_strawberry = min(
+                PREMIUM_SEED_BATCH,
+                max(0, len(empty_cells["STRAWBERRY"]) + 2 - have_strawberry),
+            )
+            cost_strawberry = need_strawberry * SEED_COST["STRAWBERRY"]
+            if (
+                need_strawberry > 0
+                and available_money >= cost_strawberry + OPERATING_RESERVE
+                and len(orders) < MAX_MARKET_ORDERS
+            ):
+                orders.append(["BUY_SEED", "STRAWBERRY", need_strawberry])
+                available_money -= cost_strawberry
+
+        # Buy each species independently. Sequential accounting prevents a
+        # mixed herd from promising the same cash to cows and sheep.
+        animal_owned = 0
+        animal_buy_budget = ANIMAL_BUY_BATCH
+        for kind in ("COW", "SHEEP", "GOOSE"):
+            target = min(
+                animal_targets.get(kind, 0),
+                sum(kind_at[c] == kind for c in service_animal_plan),
+            )
+            carried = sum(int(inv.get(kind, 0)) for inv in inventories)
+            owned = len(animal_cells_by_kind.get(kind, [])) + int(shed.get(kind, 0)) + carried
+            animal_owned += owned
+            missing = max(0, target - owned)
+            affordable = max(0, int((available_money - OPERATING_RESERVE) // ANIMAL_COST[kind]))
+            buy_n = min(missing, affordable, animal_buy_budget)
+            if buy_n > 0 and day <= 18 and len(orders) < MAX_MARKET_ORDERS:
+                orders.append(["BUY_ANIMAL", kind, buy_n])
+                available_money -= buy_n * ANIMAL_COST[kind]
+                animal_owned += buy_n
+                animal_buy_budget -= buy_n
 
         # Feed is ordinary WHEAT product in the shed, separate from seeds.
         carried_wheat = sum(int(inv.get("WHEAT", 0)) for inv in inventories)
@@ -353,6 +545,8 @@ class FarmerPlanner:
 
         # Seeds per crop: enough for every planned empty cell plus a reserve.
         for crop in SUPPORTED:
+            if crop == "STRAWBERRY":
+                continue
             have = int(seeds.get(crop, 0))
             seed_need = len(empty_cells[crop]) + 4
             buy_n = min(seed_need - have, 25)
@@ -372,7 +566,6 @@ class FarmerPlanner:
         plant_cap = min(len(plan), waterers * CELLS_PER_HAND)
         plants_total = sum(planted_per_crop.values())
         plants_assigned = {c: 0 for c in SUPPORTED}
-
         def _plant_ok(crop: str) -> bool:
             if plants_total + sum(plants_assigned.values()) >= plant_cap:
                 return False
@@ -382,7 +575,13 @@ class FarmerPlanner:
                 return False
             return True
 
-        def _standing_op(tile: Any, zone_set: set[tuple[int, int]], fx: int, fy: int) -> list[str] | None:
+        def _standing_op(
+            tile: Any,
+            zone_set: set[tuple[int, int]],
+            fx: int,
+            fy: int,
+            inventory: dict[str, int],
+        ) -> list[str] | None:
             """Action on the tile we stand on, or None if nothing to do here."""
             if isinstance(tile, dict) and tile.get("kind") == "WEED":
                 return ["DIG"]
@@ -390,6 +589,8 @@ class FarmerPlanner:
                 age = day - tile["planted_day"]
                 yld = tile.get("yield_units", 0)
                 hage = HARVEST_AGE_BY_CROP.get(tile["crop"], HARVEST_AGE_BY_CROP["WHEAT"])
+                if (fx, fy) in fertilizable and int(inventory.get("FERTILIZER", 0)) > 0:
+                    return ["FERTILIZE"]
                 if age >= hage and yld > 0:
                     if age == hage and not tile.get("watered_today"):
                         # Watering on the first harvestable day adds a unit.
@@ -412,44 +613,58 @@ class FarmerPlanner:
             zone: list[tuple[int, int]],
             inventory: dict[str, int],
         ) -> list[Any]:
-            """Build, stock and service one compact chunk of goose coops."""
+            """Build, stock and service one compact mixed-species chunk."""
             zone_set = set(zone)
             cell = (fx, fy)
             tile = tiles[fy][fx]
             wheat_carried = int(inventory.get("WHEAT", 0))
-            animal_carried = int(inventory.get(ANIMAL_KIND, 0))
+            desired_here = kind_at.get(cell)
 
             if cell in zone_set:
                 if isinstance(tile, dict) and tile.get("kind") == "WEED":
                     return ["DIG"]
-                if tile is None:
-                    return [animal_build_op]
-                if isinstance(tile, dict) and tile.get("kind") == animal_structure:
+                if desired_here and isinstance(tile, dict) and tile.get("kind") == "PLANT":
+                    age = day - tile["planted_day"]
+                    if age >= HARVEST_AGE_BY_CROP.get(tile.get("crop"), 3) and tile.get("yield_units", 0) > 0:
+                        return ["HARVEST"]
+                    if not tile.get("watered_today"):
+                        return ["WATER"]
+                if tile is None and desired_here:
+                    return [ANIMAL_BUILD_OP[desired_here]]
+                if desired_here and isinstance(tile, dict) and tile.get("kind") == ANIMAL_STRUCTURE[desired_here]:
                     if not tile.get("animal"):
-                        if animal_carried > 0:
-                            return ["PLACE", ANIMAL_KIND, 1]
-                    elif tile.get("animal") == ANIMAL_KIND:
-                        if tile.get("yield_units", 0) > 0:
-                            return ["HARVEST"]
-                        if not tile.get("fed_today") and wheat_carried > 0:
-                            return ["FEED"]
-                        if not tile.get("cared_today"):
-                            return ["CARE"]
-                        if tile.get("fertilizer_available"):
-                            return ["COLLECT_FERTILIZER"]
+                        if int(inventory.get(desired_here, 0)) > 0:
+                            return ["PLACE", desired_here, 1]
+                    elif tile.get("animal") == desired_here:
+                        available = {
+                            "HARVEST": tile.get("yield_units", 0) > 0,
+                            "FEED": not tile.get("fed_today") and wheat_carried > 0,
+                            "CARE": not tile.get("cared_today"),
+                            "COLLECT_FERTILIZER": tile.get("fertilizer_available"),
+                        }
+                        modes = {
+                            "HARVEST_FEED_CARE_FERT": ("HARVEST", "FEED", "CARE", "COLLECT_FERTILIZER"),
+                            "FEED_HARVEST_FERT_CARE": ("FEED", "HARVEST", "COLLECT_FERTILIZER", "CARE"),
+                            "FEED_FERT_HARVEST_CARE": ("FEED", "COLLECT_FERTILIZER", "HARVEST", "CARE"),
+                            "FEED_CARE_HARVEST_FERT": ("FEED", "CARE", "HARVEST", "COLLECT_FERTILIZER"),
+                        }
+                        for op in modes.get(ANIMAL_SERVICE_MODE, modes["HARVEST_FEED_CARE_FERT"]):
+                            if available[op]:
+                                return [op]
 
             zone_empty_structures = [c for c in empty_structures if c in zone_set]
             zone_unbuilt = [c for c in unbuilt_animal_cells if c in zone_set]
             zone_animals = [c for c in animal_cells if c in zone_set]
 
-            # Carry a purchased goose from the shed to an empty coop.
+            # Carry the correct purchased species to its reserved structure.
             if zone_empty_structures:
-                if animal_carried <= 0 and int(shed.get(ANIMAL_KIND, 0)) > 0:
+                target = _near(zone_empty_structures, fx, fy)
+                target_kind = kind_at[target]
+                if int(inventory.get(target_kind, 0)) <= 0 and int(shed.get(target_kind, 0)) > 0:
                     if cell == (4, 4):
-                        return ["PICKUP", ANIMAL_KIND, 1]
+                        return ["PICKUP", target_kind, 1]
                     return [_walk(fx, fy, 4, 4)]
-                if animal_carried > 0:
-                    target = _near(zone_empty_structures, fx, fy)
+                if int(inventory.get(target_kind, 0)) > 0:
                     return [_walk(fx, fy, *target)]
 
             if zone_unbuilt:
@@ -481,17 +696,29 @@ class FarmerPlanner:
                     return [move]
             return ["PASS"]
 
-        def _farm_op(fx: int, fy: int, zone: list[tuple[int, int]]) -> list[str]:
-            """Farmer: harvest/plant across the whole plan."""
+        def _farm_op(
+            fx: int,
+            fy: int,
+            zone: list[tuple[int, int]],
+            inventory: dict[str, int],
+        ) -> list[str]:
+            """Farmer: fertilize premium cells, then harvest/plant."""
             zone_set = set(zone)
-            op = _standing_op(tiles[fy][fx], zone_set, fx, fy)
+            op = _standing_op(tiles[fy][fx], zone_set, fx, fy, inventory)
             if op is not None:
                 return op
             z_mature = [c for c in mature if c in zone_set]
-            z_plant = [c for c in empty_cells["WHEAT"] + empty_cells["CARROT"] if c in zone_set]
+            z_plant = [c for crop in SUPPORTED for c in empty_cells[crop] if c in zone_set]
             z_urgent = [c for c in urgent if c in zone_set]
             z_wet = [c for c in unwatered if c in zone_set]
-            target = _near(z_mature, fx, fy)
+            z_fertilize = [c for c in fertilizable if c in zone_set]
+            if z_fertilize and int(inventory.get("FERTILIZER", 0)) <= 0 and int(shed.get("FERTILIZER", 0)) > 0:
+                if (fx, fy) == (4, 4):
+                    return ["PICKUP", "FERTILIZER", min(FERTILIZER_RESERVE, int(shed["FERTILIZER"]))]
+                return [_walk(fx, fy, 4, 4)]
+            target = _near(z_fertilize, fx, fy) if int(inventory.get("FERTILIZER", 0)) > 0 else None
+            if target is None:
+                target = _near(z_mature, fx, fy)
             if target is None:
                 target = _near(z_plant, fx, fy)
             if target is None:
@@ -506,30 +733,47 @@ class FarmerPlanner:
                     return [mv]
             return ["PASS"]
 
-        def _hand_op(fx: int, fy: int, zone: list[tuple[int, int]]) -> list[str]:
+        def _hand_op(
+            fx: int,
+            fy: int,
+            zone: list[tuple[int, int]],
+            inventory: dict[str, int],
+        ) -> list[str]:
             """Hand: watering-first daily sweep of its chunk."""
             zone_set = set(zone)
-            op = _standing_op(tiles[fy][fx], zone_set, fx, fy)
+            op = _standing_op(tiles[fy][fx], zone_set, fx, fy, inventory)
             if op is not None:
                 return op
             z_urgent = [c for c in urgent if c in zone_set]
             z_wet = [c for c in unwatered if c in zone_set]
             z_mature = [c for c in mature if c in zone_set]
-            z_plant = [c for c in empty_cells["WHEAT"] + empty_cells["CARROT"] if c in zone_set]
-            target = _near(z_urgent, fx, fy)
-            if target is None:
-                target = _near(z_wet, fx, fy)
-            if target is None:
-                target = _near(z_mature, fx, fy)
-            if target is None:
-                target = _near(z_plant, fx, fy)
+            z_plant = [c for crop in SUPPORTED for c in empty_cells[crop] if c in zone_set]
+            task_sets = {
+                "WATER_FIRST": (z_urgent, z_wet, z_mature, z_plant),
+                "HARVEST_FIRST": (z_mature, z_urgent, z_wet, z_plant),
+                "PLANT_FIRST": (z_urgent, z_plant, z_wet, z_mature),
+                "VALUE_FIRST": (z_urgent, z_mature, z_plant, z_wet),
+            }.get(HAND_TASK_MODE, (z_urgent, z_wet, z_mature, z_plant))
+            target = None
+            for candidates in task_sets:
+                target = _near(candidates, fx, fy)
+                if target is not None:
+                    break
+            if target is None and IDLE_WORK_STEAL:
+                # Preserve the local-zone priority above; only genuinely idle
+                # hands help the nearest outstanding task elsewhere.
+                for candidates in (urgent, unwatered, mature):
+                    target = _near(candidates, fx, fy)
+                    if target is not None:
+                        break
             if target is not None:
                 mv = _walk(fx, fy, *target)
                 if mv != "PASS":
                     return [mv]
             return ["PASS"]
 
-        farmer_op = _farm_op(me["farmer"][0], me["farmer"][1], plan)
+        farmer_inventory = inventories[0] if inventories else {}
+        farmer_op = _farm_op(me["farmer"][0], me["farmer"][1], plan, farmer_inventory)
 
         hands_ops: list[list[Any]] = []
         n = len(hands_now)
@@ -546,7 +790,7 @@ class FarmerPlanner:
                     crop_i = i - animal_n
                     lo = crop_i * len(plan) // max(crop_n, 1)
                     hi = (crop_i + 1) * len(plan) // max(crop_n, 1)
-                    hands_ops.append(_hand_op(hx, hy, plan[lo:hi] if plan else []))
+                    hands_ops.append(_hand_op(hx, hy, plan[lo:hi] if plan else [], inventory))
 
         return {"farmer": farmer_op, "hands": hands_ops, "market": orders}
 

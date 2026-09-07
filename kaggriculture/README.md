@@ -4,22 +4,34 @@ Kaggriculture to turowa gra-farma Kaggle: 720 tur (30 dni × 24), dwóch
 graczy, wygrywa ten z większą kasą na koniec sezonu. Więcej: strona
 konkursu — https://www.kaggle.com/competitions/kaggriculture
 
+Oficjalne pliki pobrane po dołączeniu do konkursu znajdują się w katalogu
+głównym: [`AGENTS.md`](../AGENTS.md) (agent, submission i CLI) oraz
+[`README.md`](../README.md) (pełne zasady i ekonomia). Ich specyfikacja jest
+zgodna z lokalnie testowanym silnikiem `kaggle-environments 1.32.7`.
+
 **Terminy:** wejście i merge drużyn 2026-09-23, finał submissji 2026-09-30,
 dogrywka LB do ~2026-10-15. Pula $50k (10 × $5k). Dozwolone 5 submissji
 dziennie; liczą się 2 ostatnie.
 
-## Stan (2026-09-04)
+## Stan (2026-09-05)
 
-- `agent.py` — **v2: pszeniczno-marchewkowy conveyor z melonem i rękami
-  do pracy**. Deterministic, bez zależności poza silnikiem gry; bez pamięci
-  między turami (czysta funkcja obserwacji).
+- `agent.py` — **v4: pszeniczno-marchewkowy conveyor z melonem, pięcioma
+  krowami, rezerwą paszy i księgowaniem kolejki zakupów**. Deterministic, bez
+  zależności poza silnikiem gry; bez pamięci między turami.
 - Silnik gry działa **offline** (`kaggle-environments`); pełny sezon 720 tur
   to ~2 s, więc iteracja jest tania.
-- Wyniki lokalne (720 tur; średnia z 10 seedów):
-  - vs `pass`: **~29.7k**, vs `random`: **~29.8k**, self-play: **~26.8k**
-    (baseline v0 miało ~3.9k).
+- Pierwsza v2 przeszła walidację Kaggle; publiczne replaye są automatycznie
+  zbierane i opisane w `ONLINE_ANALYSIS.md`.
+- Wyniki lokalne v3 (720 tur; te same 10 seedów):
+  - bezpośrednio vs v2: **40.4k vs 26.6k, 10W–0L**,
+  - self-play v3: **~38.2k** na stronę (zakres 36.0k–43.4k).
+  Pięć gęsi wygrało sweep; sześć przeciążyło budżet i routing (22.6k).
+- Adwersarialny benchmark 18 prawdziwych strumieni akcji: **55.3k cow5 vs
+  40.5k goose5/v3.1 vs 27.0k wersji pierwotnych**; cow5 wygrało 16/18.
+- Cow5 vs v3.1 na 10 seedach: **55.7k vs 40.2k, 9W–1L**; self-play cow5:
+  **45.7k** średnio. Szczegóły w `ONLINE_ANALYSIS.md`.
 
-## Jak działa strategia (v2)
+## Jak działa strategia (v3)
 
 1. **Ręce do pracy.** Każdego dnia o godzinie 0 zatrudniamy farmerów pomocniczych
    (koszt fibonacciego 1,1,2,3,5,… resetuje się co dzień). Każda ręka dostaje
@@ -48,15 +60,19 @@ dziennie; liczą się 2 ostatnie.
    jako nieopłacalna — późno w sezonie nie zdąży się zwrócić (self-play z SE:
    ~21.8k vs ~26.8k bez SE).
 6. **Sprzedaż.** Szopa (limit 100) jest opróżniana co turę przez SELL; koniec
-   dnia sam zrzuca inventory do szopy, więc DROP/PICKUP są zbędne.
+   dnia sam zrzuca inventory do szopy.
+7. **Pięć krów = druga noga gospodarki.** Dedykowane ręce budują zwarte
+   pastwiska przy szopie, przenoszą krowy, pobierają zachowaną pszenicę,
+   karmią, wykonują `CARE`, zbierają mleko i codzienny nawóz. Replay sweep
+   wykazał, że cow5 jest stabilniejsze od cow8 i znacznie lepsze od goose5.
 
 ## Użycie
 
 ```bash
 make setup       # venv + kaggle-environments (raz)
 make test        # testy offline (kontrakt akcji, determinizm, przewaga nad idle)
-make match       # lokalny mecz vs OPPONENT=pass|random|self
-make benchmark   # szybki przegląd vs pass i random
+make match       # lokalny mecz vs OPPONENT=pass|random|starter|self
+make benchmark   # szybki przegląd vs pass, deterministyczny random i starter
 ```
 
 Strojenie: `bench_tune.py` monkeypatchuje stałe modułu `agent.py` i mierzy
@@ -68,10 +84,10 @@ nie wchodzi do paczki submissji.
 - Sandbox (Arena) **nie ma** łączności z Kaggle; runner GitHub Actions ją ma.
   Dlatego: kod i testy rozwijamy offline, a walidację/submisję odpalamy na GH
   Actions (workflow `kaggriculture.yml`) z sekretami Kaggle.
-- Sekrety **nigdy** nie są w repo. Lokalnie poświadczenia trzymaj w
-  `kaggriculture/.kaggle/` (gitignored); na GitHub użyj secrets
-  `KAGGLE_USERNAME` / `KAGGLE_KEY` (i opcjonalnie `KAGGLE_API_TOKEN` dla
-  nowego formatu klucza `KGAT_...`).
+- Sekrety **nigdy** nie są w repo. Lokalnie aktualny token zapisz jako
+  `~/.kaggle/access_token` (tryb `600`) albo ustaw `KAGGLE_API_TOKEN`.
+  Na GitHub preferowany jest secret `KAGGLE_API_TOKEN`; workflow zachowuje
+  też kompatybilność ze starym duetem `KAGGLE_USERNAME` / `KAGGLE_KEY`.
 
 ## Submisja Kaggle
 
