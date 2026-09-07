@@ -15,7 +15,7 @@ def main():
     actions[0]['market']=[['BUY_PRODUCT','WHEAT',buy]]
     actions[1]['market'][0]=['SELL','WHEAT',sell]
    payload=base64.b85encode(zlib.compress(json.dumps(schedules,separators=(',',':')).encode(),9)).decode();name=f'agent_v9_v7w_b{buy:02d}_s{sell:02d}'
-   source='''"""V7 with isolated two-seat t0/t1 wheat quantities."""\nimport base64,copy,json,zlib\nACTIONS=json.loads(zlib.decompress(base64.b85decode(PAYLOAD)).decode())\ndef agent(observation,configuration):\n p=int(observation.get("player",0)); step=min(int(observation.get("step",0)),719); action=copy.deepcopy(ACTIONS[p][step]); farms=observation.get("farms") or []; hands=(farms[p].get("hands") or []) if p<len(farms) else []; action["hands"]=(action.get("hands") or [])[:len(hands)]; return action\n'''.replace('PAYLOAD',repr(payload))
+   source='''"""V7 with isolated two-seat t0/t1 wheat quantities."""\nimport base64,copy,json,zlib\nACTIONS=json.loads(zlib.decompress(base64.b85decode(PAYLOAD)).decode())\ndef agent(observation,configuration):\n p=int(observation.get("player",0)); step=min(int(observation.get("step",0)),719); action=copy.deepcopy(ACTIONS[p][step]); farms=observation.get("farms") or []; hands=(farms[p].get("hands") or []) if p<len(farms) else []; action["hands"]=(action.get("hands") or [])[:len(hands)]; return action\nact=agent\n'''.replace('PAYLOAD',repr(payload))
    (OUT/f'{name}.py').write_text(source,encoding='utf8');manifest.append({'name':name,'buy':buy,'sell':sell,'reserve':reserve,'control':buy==30 and sell==25})
  (OUT/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n');print('built',len(manifest))
 if __name__=='__main__':main()
