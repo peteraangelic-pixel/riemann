@@ -19,5 +19,5 @@ def main():
    for ours in (0,1):
     cfg=dict(r['configuration']);cfg['seed']=r['info']['seed'];agents=[opponent,opponent];agents[ours]=agent;env=make('kaggriculture',configuration=cfg);env.run(agents);scores.append((float(env.state[ours].reward or 0),float(env.state[1-ours].reward or 0)))
    row={'player':item['player'],'episode':episode,'wins':sum(x>y for x,y in scores),'our_mean':statistics.mean(x for x,y in scores),'opponent_mean':statistics.mean(y for x,y in scores),'margin_mean':statistics.mean(x-y for x,y in scores)};rows.append(row);print('EPISODE_JSON='+json.dumps(row,ensure_ascii=False,separators=(',',':')))
- out={'players':len(players),'episodes':len(rows),'games':2*len(rows),'wins':sum(x['wins'] for x in rows),'our_mean':statistics.mean(x['our_mean'] for x in rows),'opponent_mean':statistics.mean(x['opponent_mean'] for x in rows),'margin_mean':statistics.mean(x['margin_mean'] for x in rows)};print('SHARD_JSON='+json.dumps(out,separators=(',',':')))
+ out={'players':len(players),'episodes':len(rows),'games':2*len(rows),'wins':sum(x['wins'] for x in rows),'our_mean':statistics.mean(x['our_mean'] for x in rows),'opponent_mean':statistics.mean(x['opponent_mean'] for x in rows),'margin_mean':statistics.mean(x['margin_mean'] for x in rows),'rows':rows};print('SHARD_JSON='+json.dumps(out,separators=(',',':')))
 if __name__=='__main__':main()

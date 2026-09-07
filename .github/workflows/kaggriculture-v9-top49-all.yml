@@ -59,7 +59,7 @@ jobs:
         run: |
           python - <<'PY' | tee summary.txt
           import collections,glob,json
-          groups=collections.defaultdict(list); output=[]
+          groups=collections.defaultdict(list); output=[]; detail={}
           for path in glob.glob('results/*.json'):
               agent=path.rsplit('/',1)[-1].rsplit('_',1)[0]
               groups[agent].append(json.load(open(path)))
@@ -67,8 +67,10 @@ jobs:
               episodes=sum(x['episodes'] for x in rows); games=sum(x['games'] for x in rows)
               avg=lambda key: sum(x[key]*x['episodes'] for x in rows)/episodes
               out={'agent':agent,'shards':len(rows),'episodes':episodes,'games':games,'wins':sum(x['wins'] for x in rows),'our_mean':avg('our_mean'),'opponent_mean':avg('opponent_mean'),'margin_mean':avg('margin_mean')}
-              output.append(out); print('ALL5_JSON='+json.dumps(out,separators=(',',':')))
+              output.append(out); detail[agent]=sorted((r for shard in rows for r in shard['rows']),key=lambda x:(x['player'],x['episode'])); print('ALL5_JSON='+json.dumps(out,separators=(',',':')))
+          assert all(len(rows)==245 for rows in detail.values())
           open('kaggriculture_top49_all5_results.json','w').write(json.dumps(output,indent=2)+'\n')
+          open('kaggriculture_top49_all5_episodes.json','w').write(json.dumps(detail,ensure_ascii=False,indent=2)+'\n')
           PY
           while read -r summary; do
             title=$(python -c 'import json,sys;print(json.loads(sys.argv[1][10:])["agent"])' "$summary")
@@ -77,6 +79,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           mv kaggriculture_top49_all5_results.json kaggriculture/research/TOP49_ALL5_RESULTS.json
-          git add kaggriculture/research/TOP49_ALL5_RESULTS.json
+          mv kaggriculture_top49_all5_episodes.json kaggriculture/research/TOP49_ALL5_EPISODES.json
+          git add kaggriculture/research/TOP49_ALL5_RESULTS.json kaggriculture/research/TOP49_ALL5_EPISODES.json
           git commit -m "research(kaggriculture): record all-five TOP49 validation [skip ci]"
           git push origin "HEAD:$GITHUB_REF_NAME"
