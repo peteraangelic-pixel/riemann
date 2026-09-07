@@ -34,8 +34,16 @@ from kaggriculture_lab.tournament import (  # noqa: E402
     _available_mem_gb, build_jobs, default_workers, run,
 )
 
-V8 = "agents/variants/agent_v8_fert.py"
-V7 = "agents/ref/agent_v7.py"
+# Current controls (branch arena/01a0712c, 2026-09-07). CHAMPION is the live
+# Kaggle submission (V9 B21/S16 tape, 100% live, ~142-155k) and the baseline a
+# new candidate must beat. V8_FERT is our best reactive policy (~70k, kept for
+# porting its fertilizer mechanism); V7_REACT is the pre-tape reactive baseline.
+CHAMPION = "agents/current/agent_v9_b21_s16.py"
+V8_FERT = "agents/variants/agent_v8_fert.py"
+V7_REACT = "agents/ref/agent_v7.py"
+# Backwards-compatible aliases used elsewhere
+V8 = V8_FERT
+V7 = CHAMPION
 
 
 def _corpus_job(args):
@@ -96,8 +104,8 @@ def run_corpus(corpus: Path, candidate: str, team: list[str], workers: int, limi
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--candidate", default=V8)
-    ap.add_argument("--baseline", default=V7)
+    ap.add_argument("--candidate", default=V8_FERT)
+    ap.add_argument("--baseline", default=CHAMPION)
     ap.add_argument("--games", type=int, default=20, help="seeds (x2 seats) for closed loop")
     ap.add_argument("--workers", type=int, default=default_workers())
     ap.add_argument("--start-seed", type=int, default=20262000)

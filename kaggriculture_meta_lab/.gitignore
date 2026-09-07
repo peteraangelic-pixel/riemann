@@ -17,3 +17,5 @@ corpus/full/
 /wyniki.txt
 /validate-*.md
 /validate-*.json
+agents/openings/
+agents/sweeps/

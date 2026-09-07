@@ -10,7 +10,7 @@ REM  says "SMOKE", you have an old copy - git pull / redownload.
 REM ============================================================
 chcp 65001 >nul
 set PYTHONUTF8=1
-if "%GAMES%"=="" set GAMES=20
+if "%GAMES%"=="" set GAMES=100
 if "%WORKERS%"=="" set WORKERS=8
 
 if not exist .venv (

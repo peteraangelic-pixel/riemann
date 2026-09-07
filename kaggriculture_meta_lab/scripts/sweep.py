@@ -210,7 +210,7 @@ def main() -> int:
         cfg_path = ROOT / cfg_path
     cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
     base = (ROOT / cfg["base"]) if not Path(cfg["base"]).is_absolute() else Path(cfg["base"])
-    baseline = cfg.get("baseline", "agents/ref/agent_v7.py")
+    baseline = cfg.get("baseline", "agents/current/agent_v9_b21_s16.py")
     seed0 = cfg.get("start_seed", 20262000)
     screen_games = args.screen_games or cfg.get("screen_games", 10)
     promote_games = args.promote_games or cfg.get("promote_games", 100)

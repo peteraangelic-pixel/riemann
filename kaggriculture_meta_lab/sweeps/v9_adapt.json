@@ -1,7 +1,7 @@
 {
   "name": "v9_adapt",
   "base": "agents/variants/agent_v9_adapt.py",
-  "baseline": "agents/ref/agent_v7.py",
+  "baseline": "agents/current/agent_v9_b21_s16.py",
   "start_seed": 20263000,
   "screen_games": 8,
   "promote_games": 250,
