@@ -1,1 +1,142 @@
-[]
+[
+  {
+    "debug_path": "results/v7_scripted_6.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v9_b11_s07_2.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v9_b09_s05_1.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v7_scripted_1.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v8_aastik_0.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v9_b09_s05_2.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v9_b09_s05_5.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v8_hybrid_6.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v9_b11_s07_0.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v7_scripted_2.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v8_hybrid_3.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v8_hybrid_1.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v7_scripted_3.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v8_hybrid_5.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v8_hybrid_4.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v9_b11_s07_6.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v8_aastik_6.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v8_aastik_1.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v7_scripted_4.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v9_b09_s05_6.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v8_hybrid_0.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v7_scripted_5.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v9_b11_s07_4.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v8_aastik_4.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v9_b11_s07_5.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v9_b09_s05_3.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v9_b11_s07_1.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v9_b09_s05_0.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v7_scripted_0.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v9_b09_s05_4.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v8_aastik_2.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v8_aastik_3.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v8_hybrid_2.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v9_b11_s07_3.json",
+    "debug_head": ""
+  },
+  {
+    "debug_path": "results/v8_aastik_5.json",
+    "debug_head": ""
+  }
+]
