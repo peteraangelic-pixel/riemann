@@ -1,0 +1,52 @@
+# Copyright 2020 Kaggle Inc
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+# Unmodified function from kaggle-environments==1.32.7/utils.py.
+import random
+from typing import Any, Callable
+
+def resolve_episode_seed(
+    env: Any,
+    *,
+    config_key: str = "seed",
+    fallback: Callable[[], int] | None = None,
+) -> int:
+    """Resolve, scrub, and persist an episode seed for envs with hidden state.
+
+    Used by interpreters whose initial state depends on a seed that agents
+    must not be able to read (e.g. random maze layout, comet schedules,
+    weather rolls). The seed is taken from the first available source:
+    ``env.info["seed"]`` (preserved across re-initialization), then
+    ``configuration[config_key]``, then ``fallback()`` (defaulting to a random
+    31-bit int). The value is then cleared from ``configuration`` so agents
+    can't read it via the observation, and stored on ``env.info["seed"]`` so
+    it persists into the replay.
+    """
+    if not hasattr(env, "info") or env.info is None:
+        env.info = {}
+    seed = env.info.get("seed")
+    config = env.configuration
+    if seed is None:
+        seed = getattr(config, config_key, None)
+        if seed is None and isinstance(config, dict):
+            seed = config.get(config_key)
+    if seed is None:
+        seed = fallback() if fallback is not None else random.randrange(2**31)
+    try:
+        setattr(config, config_key, None)
+    except (AttributeError, TypeError):
+        config[config_key] = None
+    env.info["seed"] = seed
+    return seed

@@ -21,13 +21,27 @@ if "%GAMES%"=="" set GAMES=50
 if "%WORKERS%"=="" set WORKERS=16
 if "%CANDIDATE%"=="" set CANDIDATE=agents\current\agent_v9_b21_s16.py
 
+REM ---- robust venv setup: works even when the `py` launcher is absent
+REM (Microsoft Store Python). Falls back to `python` on PATH. ----
+set PYEXE=
+where py >nul 2>&1 && set PYEXE=py
+if "%PYEXE%"=="" where python >nul 2>&1 && set PYEXE=python
+if "%PYEXE%"=="" (
+  echo [setup] ERROR: no Python found. Install Python 3.10+ and put it on PATH.
+  pause & exit /b 1
+)
+
 if not exist .venv (
-  echo [setup] creating virtual environment...
-  py -m venv .venv
+  echo [setup] creating virtual environment with %PYEXE% ...
+  %PYEXE% -m venv .venv
+  if errorlevel 1 (
+    echo [setup] venv creation failed. On Store Python, run: python -m pip install --user virtualenv
+    pause & exit /b 1
+  )
 )
 call .venv\Scripts\activate.bat
-python -m pip install -U pip
-pip install -r requirements.txt
+python -m pip install -U pip -q
+pip install -q -r requirements.txt
 
 echo.
 echo [1/2] unit tests
