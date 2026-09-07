@@ -1,8 +1,15 @@
-use std::{collections::HashMap, fs::File, io::{self, BufReader, BufWriter, Write}, path::{Path, PathBuf}, process::ExitCode, sync::Arc};
 use clap::{Parser, ValueEnum};
 use kg_sim::{Config, Outcome, PreparedTape, Replay, Tape};
 use rayon::prelude::*;
 use serde_json::Value;
+use std::{
+    collections::HashMap,
+    fs::File,
+    io::{self, BufReader, BufWriter, Write},
+    path::{Path, PathBuf},
+    process::ExitCode,
+    sync::Arc,
+};
 
 type Result<T> = std::result::Result<T, String>;
 
@@ -15,13 +22,21 @@ enum StepMode {
 }
 
 #[derive(Parser, Debug)]
-#[command(version, about = "Deterministic Kaggriculture 1.32.7 tape simulator (shared market, Rayon batches)")]
+#[command(
+    version,
+    about = "Deterministic Kaggriculture 1.32.7 tape simulator (shared market, Rayon batches)"
+)]
 struct Args {
     #[arg(long, required_unless_present = "jobs", conflicts_with = "jobs")]
     tape_a: Option<PathBuf>,
     #[arg(long, required_unless_present = "jobs", conflicts_with = "jobs")]
     tape_b: Option<PathBuf>,
-    #[arg(long, required_unless_present = "jobs", conflicts_with = "jobs", allow_hyphen_values = true)]
+    #[arg(
+        long,
+        required_unless_present = "jobs",
+        conflicts_with = "jobs",
+        allow_hyphen_values = true
+    )]
     seed: Option<i64>,
     /// CSV: seed,tape_a,tape_b,reverse. Paths are relative to the CSV's directory.
     #[arg(long)]
@@ -60,11 +75,17 @@ struct TapeCache<'a> {
 
 impl TapeCache<'_> {
     fn load(&mut self, path: &Path) -> Result<Arc<PreparedTape>> {
-        let path = path.canonicalize().map_err(|e| format!("{}: {e}", path.display()))?;
-        self.entries.entry(path.clone()).or_insert_with(|| {
-            let tape = Tape::from_json(&read_json(&path)?).map_err(|e| format!("{}: {e}", path.display()))?;
-            Ok(Arc::new(PreparedTape::new(tape, self.config, self.turns)))
-        }).clone()
+        let path = path
+            .canonicalize()
+            .map_err(|e| format!("{}: {e}", path.display()))?;
+        self.entries
+            .entry(path.clone())
+            .or_insert_with(|| {
+                let tape = Tape::from_json(&read_json(&path)?)
+                    .map_err(|e| format!("{}: {e}", path.display()))?;
+                Ok(Arc::new(PreparedTape::new(tape, self.config, self.turns)))
+            })
+            .clone()
     }
 }
 
@@ -76,17 +97,28 @@ struct Job {
 }
 
 fn parse_job(record: &csv::StringRecord, dir: &Path, cache: &mut TapeCache<'_>) -> Result<Job> {
-    if record.len() != 4 { return Err("expected four CSV fields: seed,tape_a,tape_b,reverse".into()); }
-    let seed = record[0].parse::<i64>().map_err(|e| format!("invalid seed: {e}"))?;
+    if record.len() != 4 {
+        return Err("expected four CSV fields: seed,tape_a,tape_b,reverse".into());
+    }
+    let seed = record[0]
+        .parse::<i64>()
+        .map_err(|e| format!("invalid seed: {e}"))?;
     let reverse = match record[3].to_ascii_lowercase().as_str() {
         "0" | "false" => false,
         "1" | "true" => true,
         _ => return Err("reverse must be 0, 1, false, or true".into()),
     };
-    if record[1].is_empty() || record[2].is_empty() { return Err("tape paths must not be empty".into()); }
+    if record[1].is_empty() || record[2].is_empty() {
+        return Err("tape paths must not be empty".into());
+    }
     let a = cache.load(&dir.join(&record[1]))?;
     let b = cache.load(&dir.join(&record[2]))?;
-    Ok(Job { seed, a, b, reverse })
+    Ok(Job {
+        seed,
+        a,
+        b,
+        reverse,
+    })
 }
 
 fn write_json_line(writer: &mut impl Write, value: &impl serde::Serialize) -> Result<()> {
@@ -100,25 +132,43 @@ fn execute(args: Args) -> Result<bool> {
         None => Config::default(),
     };
     let steps = args.steps.unwrap_or(config.episode_steps);
-    if steps > i32::MAX as usize { return Err("--steps exceeds i32::MAX".into()); }
-    let turns = match args.step_mode {
-        StepMode::Kaggle if steps == 0 => return Err("Kaggle episodeSteps must be >= 1; use --step-mode turns for a zero-turn replay".into()),
-        // Kaggle's reset starts ACTIVE even for episodeSteps=1: one action still runs.
-        StepMode::Kaggle => steps.saturating_sub(1).max(1),
-        StepMode::Turns => steps,
+    if steps > i32::MAX as usize {
+        return Err("--steps exceeds i32::MAX".into());
+    }
+    let turns =
+        match args.step_mode {
+            StepMode::Kaggle if steps == 0 => return Err(
+                "Kaggle episodeSteps must be >= 1; use --step-mode turns for a zero-turn replay"
+                    .into(),
+            ),
+            // Kaggle's reset starts ACTIVE even for episodeSteps=1: one action still runs.
+            StepMode::Kaggle => steps.saturating_sub(1).max(1),
+            StepMode::Turns => steps,
+        };
+    if args.threads == Some(0) {
+        return Err("--threads must be >= 1".into());
+    }
+    let mut cache = TapeCache {
+        config: &config,
+        turns,
+        entries: HashMap::new(),
     };
-    if args.threads == Some(0) { return Err("--threads must be >= 1".into()); }
-    let mut cache = TapeCache { config: &config, turns, entries: HashMap::new() };
     let mut stdout = BufWriter::new(io::stdout().lock());
     let failed;
     if let Some(path) = &args.jobs {
         let file = File::open(path).map_err(|e| format!("{}: {e}", path.display()))?;
         let dir = path.parent().unwrap_or_else(|| Path::new("."));
-        let mut reader = csv::ReaderBuilder::new().has_headers(false).flexible(true).trim(csv::Trim::All).from_reader(file);
+        let mut reader = csv::ReaderBuilder::new()
+            .has_headers(false)
+            .flexible(true)
+            .trim(csv::Trim::All)
+            .from_reader(file);
         let mut jobs = Vec::new();
         for (i, record) in reader.records().enumerate() {
             let parsed = record.map_err(|e| e.to_string()).and_then(|r| {
-                if i == 0 && r.iter().eq(["seed", "tape_a", "tape_b", "reverse"]) { return Ok(None); }
+                if i == 0 && r.iter().eq(["seed", "tape_a", "tape_b", "reverse"]) {
+                    return Ok(None);
+                }
                 parse_job(&r, dir, &mut cache).map(Some)
             });
             match parsed {
@@ -128,26 +178,53 @@ fn execute(args: Args) -> Result<bool> {
             }
         }
         let mut builder = rayon::ThreadPoolBuilder::new();
-        if let Some(n) = args.threads { builder = builder.num_threads(n); }
+        if let Some(n) = args.threads {
+            builder = builder.num_threads(n);
+        }
         let pool = builder.build().map_err(|e| format!("Rayon: {e}"))?;
         // Indexed parallel collect preserves CSV order. No mutable global RNG/market.
-        let outcomes: Vec<Outcome> = pool.install(|| jobs.par_iter().map(|job| match job {
-            Ok(job) => Replay::new(&config, &job.a, &job.b, job.seed, job.reverse, args.trim_hands).run(),
-            Err(e) => Outcome::error(e),
-        }).collect());
+        let outcomes: Vec<Outcome> = pool.install(|| {
+            jobs.par_iter()
+                .map(|job| match job {
+                    Ok(job) => Replay::new(
+                        &config,
+                        &job.a,
+                        &job.b,
+                        job.seed,
+                        job.reverse,
+                        args.trim_hands,
+                    )
+                    .run(),
+                    Err(e) => Outcome::error(e),
+                })
+                .collect()
+        });
         failed = outcomes.iter().any(|o| !o.errors.is_empty());
-        for outcome in outcomes { write_json_line(&mut stdout, &outcome)?; }
+        for outcome in outcomes {
+            write_json_line(&mut stdout, &outcome)?;
+        }
     } else {
         let a = cache.load(args.tape_a.as_deref().expect("clap requires tape-a"))?;
         let b = cache.load(args.tape_b.as_deref().expect("clap requires tape-b"))?;
-        let mut replay = Replay::new(&config, &a, &b, args.seed.expect("clap requires seed"), args.reverse_seats, args.trim_hands);
+        let mut replay = Replay::new(
+            &config,
+            &a,
+            &b,
+            args.seed.expect("clap requires seed"),
+            args.reverse_seats,
+            args.trim_hands,
+        );
         if let Some(path) = &args.trace {
             let file = File::create(path).map_err(|e| format!("{}: {e}", path.display()))?;
             let mut trace = BufWriter::new(file);
             write_json_line(&mut trace, &replay.game.snapshot())?;
-            while replay.advance() { write_json_line(&mut trace, &replay.game.snapshot())?; }
+            while replay.advance() {
+                write_json_line(&mut trace, &replay.game.snapshot())?;
+            }
             trace.flush().map_err(|e| e.to_string())?;
-        } else { while replay.advance() {} }
+        } else {
+            while replay.advance() {}
+        }
         let outcome = replay.outcome();
         failed = !outcome.errors.is_empty();
         write_json_line(&mut stdout, &outcome)?;

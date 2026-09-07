@@ -12,8 +12,8 @@ pub mod tape;
 
 pub use config::Config;
 pub use engine::Game;
-pub use tape::Tape;
 use serde::Serialize;
+pub use tape::Tape;
 
 /// Immutable actions and per-seat allocation bounds, reusable across all seeds.
 pub struct PreparedTape {
@@ -27,7 +27,13 @@ pub struct PreparedTape {
 impl PreparedTape {
     pub fn new(tape: Tape, config: &Config, turns: usize) -> Self {
         let hand_capacities = std::array::from_fn(|i| tape.hand_capacity(i, turns, config));
-        Self { tape, turns, turns_per_day: config.turns_per_day, max_orders: config.max_market_orders, hand_capacities }
+        Self {
+            tape,
+            turns,
+            turns_per_day: config.turns_per_day,
+            max_orders: config.max_market_orders,
+            hand_capacities,
+        }
     }
 }
 
@@ -40,7 +46,10 @@ pub struct Outcome {
 
 impl Outcome {
     pub fn error(message: impl Into<String>) -> Self {
-        Self { rewards: None, errors: vec![message.into()] }
+        Self {
+            rewards: None,
+            errors: vec![message.into()],
+        }
     }
 }
 
@@ -53,35 +62,84 @@ pub struct Replay<'a> {
 }
 
 impl<'a> Replay<'a> {
-    pub fn new(config: &'a Config, tape_a: &'a PreparedTape, tape_b: &'a PreparedTape, seed: i64, reverse: bool, trim_hands: bool) -> Self {
-        assert_eq!(tape_a.turns, tape_b.turns, "tapes must be prepared for the same number of turns");
+    pub fn new(
+        config: &'a Config,
+        tape_a: &'a PreparedTape,
+        tape_b: &'a PreparedTape,
+        seed: i64,
+        reverse: bool,
+        trim_hands: bool,
+    ) -> Self {
+        assert_eq!(
+            tape_a.turns, tape_b.turns,
+            "tapes must be prepared for the same number of turns"
+        );
         for tape in [tape_a, tape_b] {
-            assert_eq!(tape.turns_per_day, config.turns_per_day, "prepare tapes again after changing turnsPerDay");
-            assert_eq!(tape.max_orders, config.max_market_orders, "prepare tapes again after changing maxMarketOrdersPerTurn");
+            assert_eq!(
+                tape.turns_per_day, config.turns_per_day,
+                "prepare tapes again after changing turnsPerDay"
+            );
+            assert_eq!(
+                tape.max_orders, config.max_market_orders,
+                "prepare tapes again after changing maxMarketOrdersPerTurn"
+            );
         }
-        let tapes = if reverse { [tape_b, tape_a] } else { [tape_a, tape_b] };
-        let game = Game::new(config, seed, [tapes[0].hand_capacities[0], tapes[1].hand_capacities[1]]);
-        Self { game, tapes, reverse, trim_hands, turns: tape_a.turns }
+        let tapes = if reverse {
+            [tape_b, tape_a]
+        } else {
+            [tape_a, tape_b]
+        };
+        let game = Game::new(
+            config,
+            seed,
+            [tapes[0].hand_capacities[0], tapes[1].hand_capacities[1]],
+        );
+        Self {
+            game,
+            tapes,
+            reverse,
+            trim_hands,
+            turns: tape_a.turns,
+        }
     }
 
     /// Execute one turn, returning false once the requested horizon is reached.
     pub fn advance(&mut self) -> bool {
         let turn = self.game.turn();
-        if turn >= self.turns { return false; }
-        self.game.step([self.tapes[0].tape.action(0, turn), self.tapes[1].tape.action(1, turn)], self.trim_hands);
+        if turn >= self.turns {
+            return false;
+        }
+        self.game.step(
+            [
+                self.tapes[0].tape.action(0, turn),
+                self.tapes[1].tape.action(1, turn),
+            ],
+            self.trim_hands,
+        );
         true
     }
 
     pub fn outcome(&self) -> Outcome {
         let mut rewards = self.game.rewards();
-        if self.reverse { rewards.swap(0, 1); }
+        if self.reverse {
+            rewards.swap(0, 1);
+        }
         if !rewards.iter().all(|v| v.is_finite()) {
-            return Outcome::error("non-finite money; configuration exceeds supported numeric range");
+            return Outcome::error(
+                "non-finite money; configuration exceeds supported numeric range",
+            );
         }
         let mut errors = Vec::new();
         let aborted = self.game.market_loop_aborts();
-        if aborted > 0 { errors.push(format!("market loop reached the Python 100k-iteration guard {aborted} time(s)")); }
-        Outcome { rewards: Some(rewards), errors }
+        if aborted > 0 {
+            errors.push(format!(
+                "market loop reached the Python 100k-iteration guard {aborted} time(s)"
+            ));
+        }
+        Outcome {
+            rewards: Some(rewards),
+            errors,
+        }
     }
 
     pub fn run(mut self) -> Outcome {

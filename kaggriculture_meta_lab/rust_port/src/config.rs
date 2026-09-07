@@ -1,5 +1,8 @@
+use crate::{
+    data::{BOARD_SIZE, ITEM_NAMES, PRODUCT_COUNT},
+    market::{default_params, PriceCurve},
+};
 use serde_json::{Map, Value};
-use crate::{data::{BOARD_SIZE, ITEM_NAMES, PRODUCT_COUNT}, market::{default_params, PriceCurve}};
 
 /// Validated configuration, shared immutably by all Rayon workers.
 #[derive(Clone, Debug)]
@@ -28,7 +31,10 @@ impl Config {
     /// Accept either flat overrides or the supplied Kaggle specification JSON.
     /// Irrelevant framework fields (timeouts, seed, etc.) are not simulated.
     pub fn from_json(input: &Value) -> Result<Self, String> {
-        let root = input.get("configuration").unwrap_or(input).as_object()
+        let root = input
+            .get("configuration")
+            .unwrap_or(input)
+            .as_object()
             .ok_or("configuration must be a JSON object")?;
         let mut flat = Map::new();
         for (key, value) in root {
@@ -36,38 +42,59 @@ impl Config {
         }
         let integer = |name: &str, default: i64, min: i64| -> Result<i64, String> {
             let v = match flat.get(name) {
-                Some(value) => value.as_i64().ok_or_else(|| format!("{name} must be an integer"))?,
+                Some(value) => value
+                    .as_i64()
+                    .ok_or_else(|| format!("{name} must be an integer"))?,
                 None => default,
             };
-            if v < min { return Err(format!("{name} must be >= {min}")); }
+            if v < min {
+                return Err(format!("{name} must be >= {min}"));
+            }
             Ok(v)
         };
         let positive = |name: &str, default: i64| -> Result<usize, String> {
             // Bound arithmetic used for day/lifespan calculations on all platforms.
             let n = integer(name, default, 1)?;
-            if n > i64::from(i32::MAX) { return Err(format!("{name} exceeds i32::MAX")); }
+            if n > i64::from(i32::MAX) {
+                return Err(format!("{name} exceeds i32::MAX"));
+            }
             Ok(n as usize)
         };
         if integer("boardSize", 10, 4)? != BOARD_SIZE as i64 {
             return Err("this fixed-array simulator supports boardSize=10 only".into());
         }
-        let weed_chance = flat.get("weedSpawnChance").map_or(Some(0.005), Value::as_f64)
+        let weed_chance = flat
+            .get("weedSpawnChance")
+            .map_or(Some(0.005), Value::as_f64)
             .filter(|n| n.is_finite() && *n >= 0.0)
             .ok_or("weedSpawnChance must be finite and >= 0")?;
         let mut params = default_params();
         let mut has_overrides = false;
         if let Some(overrides) = flat.get("marketParams") {
-            let overrides = overrides.as_object().ok_or("marketParams must be an object")?;
+            let overrides = overrides
+                .as_object()
+                .ok_or("marketParams must be an object")?;
             has_overrides = !overrides.is_empty();
             for (item, patch) in overrides {
-                if let (Some(base), Some(patch)) = (params.get_mut(item).and_then(Value::as_object_mut), patch.as_object()) {
-                    for (k, v) in patch { base.insert(k.clone(), v.clone()); }
+                if let (Some(base), Some(patch)) = (
+                    params.get_mut(item).and_then(Value::as_object_mut),
+                    patch.as_object(),
+                ) {
+                    for (k, v) in patch {
+                        base.insert(k.clone(), v.clone());
+                    }
                 }
             }
         }
-        let curves = ITEM_NAMES[..PRODUCT_COUNT].iter()
-            .map(|name| PriceCurve::from_json(&params[name]).map_err(|e| format!("marketParams.{name}: {e}")))
-            .collect::<Result<Vec<_>, _>>()?.try_into().expect("nine products");
+        let curves = ITEM_NAMES[..PRODUCT_COUNT]
+            .iter()
+            .map(|name| {
+                PriceCurve::from_json(&params[name])
+                    .map_err(|e| format!("marketParams.{name}: {e}"))
+            })
+            .collect::<Result<Vec<_>, _>>()?
+            .try_into()
+            .expect("nine products");
         Ok(Self {
             episode_steps: positive("episodeSteps", 720)?,
             starting_money: integer("startingMoney", 3000, 0)? as f64,

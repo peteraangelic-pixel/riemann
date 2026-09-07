@@ -17,28 +17,42 @@ impl PythonRandom {
         for (i, word) in key.iter_mut().enumerate().take(len) {
             *word = (value >> (32 * i)) as u32;
         }
-        let mut rng = Self { state: [0; N], index: N };
+        let mut rng = Self {
+            state: [0; N],
+            index: N,
+        };
         rng.state[0] = 19_650_218;
         for i in 1..N {
             let prev = rng.state[i - 1];
-            rng.state[i] = 1_812_433_253_u32.wrapping_mul(prev ^ (prev >> 30)).wrapping_add(i as u32);
+            rng.state[i] = 1_812_433_253_u32
+                .wrapping_mul(prev ^ (prev >> 30))
+                .wrapping_add(i as u32);
         }
         let (mut i, mut j) = (1, 0);
         for _ in 0..N.max(len) {
             let prev = rng.state[i - 1];
             rng.state[i] = (rng.state[i] ^ (prev ^ (prev >> 30)).wrapping_mul(1_664_525))
-                .wrapping_add(key[j]).wrapping_add(j as u32);
+                .wrapping_add(key[j])
+                .wrapping_add(j as u32);
             i += 1;
             j += 1;
-            if i >= N { rng.state[0] = rng.state[N - 1]; i = 1; }
-            if j >= len { j = 0; }
+            if i >= N {
+                rng.state[0] = rng.state[N - 1];
+                i = 1;
+            }
+            if j >= len {
+                j = 0;
+            }
         }
         for _ in 0..N - 1 {
             let prev = rng.state[i - 1];
             rng.state[i] = (rng.state[i] ^ (prev ^ (prev >> 30)).wrapping_mul(1_566_083_941))
                 .wrapping_sub(i as u32);
             i += 1;
-            if i >= N { rng.state[0] = rng.state[N - 1]; i = 1; }
+            if i >= N {
+                rng.state[0] = rng.state[N - 1];
+                i = 1;
+            }
         }
         rng.state[0] = 0x8000_0000;
         rng
@@ -52,13 +66,16 @@ impl PythonRandom {
     fn twist(&mut self) {
         for i in 0..N {
             let y = (self.state[i] & 0x8000_0000) | (self.state[(i + 1) % N] & 0x7fff_ffff);
-            self.state[i] = self.state[(i + 397) % N] ^ (y >> 1) ^ (if y & 1 != 0 { 0x9908_b0df } else { 0 });
+            self.state[i] =
+                self.state[(i + 397) % N] ^ (y >> 1) ^ (if y & 1 != 0 { 0x9908_b0df } else { 0 });
         }
         self.index = 0;
     }
 
     pub fn next_u32(&mut self) -> u32 {
-        if self.index == N { self.twist(); }
+        if self.index == N {
+            self.twist();
+        }
         let mut y = self.state[self.index];
         self.index += 1;
         y ^= y >> 11;
@@ -78,7 +95,9 @@ impl PythonRandom {
         // _randbelow(8) uses 8.bit_length() == 4, including rejection draws.
         loop {
             let value = self.next_u32() >> 28;
-            if value < 8 { return value as u8; }
+            if value < 8 {
+                return value as u8;
+            }
         }
     }
 }
@@ -90,17 +109,28 @@ mod tests {
     #[test]
     fn cpython_seed_zero() {
         let mut rng = PythonRandom::new(0);
-        for expected in [0.8444218515250481_f64, 0.7579544029403025, 0.420571580830845, 0.25891675029296335, 0.5112747213686085] {
+        for expected in [
+            0.8444218515250481_f64,
+            0.7579544029403025,
+            0.420571580830845,
+            0.25891675029296335,
+            0.5112747213686085,
+        ] {
             assert_eq!(rng.random().to_bits(), expected.to_bits());
         }
         let mut rng = PythonRandom::new(0);
-        assert_eq!((0..10).map(|_| rng.choice8()).collect::<Vec<_>>(), [6, 6, 0, 4, 7, 6, 4, 7, 5, 3]);
+        assert_eq!(
+            (0..10).map(|_| rng.choice8()).collect::<Vec<_>>(),
+            [6, 6, 0, 4, 7, 6, 4, 7, 5, 3]
+        );
     }
 
     #[test]
     fn negative_integer_seeds_use_magnitude() {
         let mut a = PythonRandom::new(-12_345_678_901_234_567_890);
         let mut b = PythonRandom::new(12_345_678_901_234_567_890);
-        for _ in 0..2000 { assert_eq!(a.next_u32(), b.next_u32()); }
+        for _ in 0..2000 {
+            assert_eq!(a.next_u32(), b.next_u32());
+        }
     }
 }

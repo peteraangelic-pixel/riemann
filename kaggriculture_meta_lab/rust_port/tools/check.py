@@ -141,6 +141,7 @@ def main():
     for name, tape in tapes.items():
         write_tape(paths[name], tape)
     seeds = list(dict.fromkeys(list(range(args.seeds)) + [-1, 2**32, -(2**63), 2**63 - 1]))
+    checked_seeds = set(seeds)
     reward_checks = 0
     state_checks = 0
     batch_modes = []
@@ -171,6 +172,7 @@ def main():
             state_checks += trace_check(args.binary, work, (paths[a], paths[b]), (tapes[a], tapes[b]), seed, reverse=reverse, trim_hands=trim)
 
     # Exact-turns mode covers the true final daily refresh, including shop RNG.
+    checked_seeds.update((17, 41))
     for steps in [0, 1, 23, 24, 25, 72, 720, 721, 769]:
         state_checks += trace_check(args.binary, work, (paths["example"], paths["asymmetric"]), (example, asymmetric), 17, steps=steps, step_mode="turns")
         reward_checks += 1
@@ -186,10 +188,12 @@ def main():
          "marketParams": {"WHEAT": {"base": 25.5, "I0": 400.5, "T": 3, "below_func": "log10", "below_target": 0.2, "above_func": "hinge"}, "CARROT": {"below_func": "sq"}, "MILK": {"above_func": "log10"}, "FERTILIZER": {"below_func": "unknown-fallback", "note": "preserve sparse overrides"}, "WOOL": 7, "UNKNOWN": {"base": 99}}},
     ]
     for i, config in enumerate(configs):
+        checked_seeds.add(-17 - i)
         state_checks += trace_check(args.binary, work, (paths["example"], paths["asymmetric"]), (example, asymmetric), -17 - i, config=config, step_mode="turns")
         reward_checks += 1
 
     for i in range(12):
+        checked_seeds.add(100000 + i)
         tape = random_tape(1000 + i)
         path = work / "random.json"
         write_tape(path, tape)
@@ -200,7 +204,7 @@ def main():
     report = {
         "status": "passed", "engine": manifest["upstream_version"],
         "simulator_sha256": manifest["files"]["kaggriculture_sim.py"],
-        "distinct_episode_seeds": len(seeds), "reward_comparisons": reward_checks,
+        "batch_seed_count": len(seeds), "distinct_episode_seeds": len(checked_seeds), "reward_comparisons": reward_checks,
         "full_state_comparisons": state_checks, "reward_comparison": "IEEE-754 binary64 byte equality (no tolerance)",
         "batches": batch_modes, "elapsed_seconds": round(time.perf_counter() - started, 3),
     }

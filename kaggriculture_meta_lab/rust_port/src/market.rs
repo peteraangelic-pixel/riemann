@@ -1,9 +1,16 @@
 // Rust reimplementation of Kaggriculture 1.32.7 market_price / _shape.
-use serde_json::{json, Value};
 use crate::data::PRODUCT_COUNT;
+use serde_json::{json, Value};
 
 #[derive(Clone, Copy, Debug)]
-enum Shape { Linear, Square, Sqrt, Log, Log10, Hinge }
+enum Shape {
+    Linear,
+    Square,
+    Sqrt,
+    Log,
+    Log10,
+    Hinge,
+}
 
 impl Shape {
     fn parse(name: &str) -> Self {
@@ -47,11 +54,15 @@ pub struct PriceCurve {
 impl PriceCurve {
     pub fn from_json(value: &Value) -> Result<Self, String> {
         fn number(v: &Value, key: &str) -> Result<f64, String> {
-            v.get(key).and_then(Value::as_f64).filter(|v| v.is_finite())
+            v.get(key)
+                .and_then(Value::as_f64)
+                .filter(|v| v.is_finite())
                 .ok_or_else(|| format!("market parameter {key} must be a finite number"))
         }
         fn shape(v: &Value, key: &str) -> Result<Shape, String> {
-            v.get(key).and_then(Value::as_str).map(Shape::parse)
+            v.get(key)
+                .and_then(Value::as_str)
+                .map(Shape::parse)
                 .ok_or_else(|| format!("market parameter {key} must be a string"))
         }
         let base = number(value, "base")?;
@@ -64,7 +75,15 @@ impl PriceCurve {
         if !below_amp.is_finite() || !above_amp.is_finite() {
             return Err("market T/targets produce an undefined price curve".into());
         }
-        Ok(Self { base, i0, t, below, above, below_amp, above_amp })
+        Ok(Self {
+            base,
+            i0,
+            t,
+            below,
+            above,
+            below_amp,
+            above_amp,
+        })
     }
 
     #[inline]
@@ -93,11 +112,14 @@ pub fn default_params() -> Value {
     ];
     let mut map = serde_json::Map::new();
     for (i, &(base, t, below, below_target, above, above_target)) in rows.iter().enumerate() {
-        map.insert(crate::data::ITEM_NAMES[i].into(), json!({
-            "base": base, "I0": 10000, "T": t,
-            "below_func": below, "below_target": below_target,
-            "above_func": above, "above_target": above_target,
-        }));
+        map.insert(
+            crate::data::ITEM_NAMES[i].into(),
+            json!({
+                "base": base, "I0": 10000, "T": t,
+                "below_func": below, "below_target": below_target,
+                "above_func": above, "above_target": above_target,
+            }),
+        );
     }
     Value::Object(map)
 }
@@ -112,7 +134,8 @@ mod tests {
             "base": 10, "I0": 0, "T": 10,
             "below_func": "linear", "below_target": 0.5,
             "above_func": "linear", "above_target": 0.5
-        })).unwrap();
+        }))
+        .unwrap();
         assert_eq!(curve.price(-1.0), 10.0); // 10.5 -> even
         assert_eq!(curve.price(-3.0), 12.0); // 11.5 -> even
         assert_eq!(curve.price(1.0), 10.0); // 9.5 -> even

@@ -1,9 +1,13 @@
 //! Optional, allocation-heavy diagnostics. Never called by the fast replay loop.
+use crate::{
+    data::*,
+    engine::{Animal, Farm, Game, Inventory, Plant, Tile},
+};
 use serde_json::{json, Map, Value};
-use crate::{data::*, engine::{Animal, Farm, Game, Inventory, Plant, Tile}};
 
 fn inventory_json(inv: &Inventory) -> Value {
-    let map: Map<String, Value> = inv.order[..inv.len].iter()
+    let map: Map<String, Value> = inv.order[..inv.len]
+        .iter()
         .map(|&item| (item.name().into(), json!(inv.amounts[item.index()])))
         .collect();
     Value::Object(map)
@@ -51,8 +55,14 @@ fn farm_json(farm: &Farm) -> Value {
 }
 
 fn private_json(farm: &Farm) -> Value {
-    let shed: Map<String, Value> = ITEMS.iter().map(|item| (item.name().into(), json!(farm.shed[item.index()]))).collect();
-    let seeds: Map<String, Value> = ITEMS[..CROP_COUNT].iter().map(|item| (item.name().into(), json!(farm.seeds[item.index()]))).collect();
+    let shed: Map<String, Value> = ITEMS
+        .iter()
+        .map(|item| (item.name().into(), json!(farm.shed[item.index()])))
+        .collect();
+    let seeds: Map<String, Value> = ITEMS[..CROP_COUNT]
+        .iter()
+        .map(|item| (item.name().into(), json!(farm.seeds[item.index()])))
+        .collect();
     json!({
         "shed": shed, "seeds": seeds,
         "inventories": farm.units.iter().map(|u| inventory_json(&u.inventory)).collect::<Vec<_>>(),
@@ -63,15 +73,31 @@ impl Game<'_> {
     /// Full mechanics state, in physical seat order, initial state included at turn 0.
     /// Framework-only observation fields (timeouts/status/replay log) are excluded.
     pub fn snapshot(&self) -> Value {
-        let inventory: Map<String, Value> = ITEMS[..PRODUCT_COUNT].iter()
-            .map(|item| (item.name().into(), json!(self.market_inventory[item.index()]))).collect();
-        let prices: Map<String, Value> = ITEMS[..PRODUCT_COUNT].iter().map(|item| {
-            let i = item.index();
-            let price = if self.turn == 0 { self.config.curves[i].base } else { self.config.curves[i].price(self.market_inventory[i]) };
-            (item.name().into(), json!(price))
-        }).collect();
+        let inventory: Map<String, Value> = ITEMS[..PRODUCT_COUNT]
+            .iter()
+            .map(|item| {
+                (
+                    item.name().into(),
+                    json!(self.market_inventory[item.index()]),
+                )
+            })
+            .collect();
+        let prices: Map<String, Value> = ITEMS[..PRODUCT_COUNT]
+            .iter()
+            .map(|item| {
+                let i = item.index();
+                let price = if self.turn == 0 {
+                    self.config.curves[i].base
+                } else {
+                    self.config.curves[i].price(self.market_inventory[i])
+                };
+                (item.name().into(), json!(price))
+            })
+            .collect();
         let mut market = json!({"inventory": inventory, "prices": prices});
-        if let Some(params) = &self.config.resolved_params { market["params"] = params.clone(); }
+        if let Some(params) = &self.config.resolved_params {
+            market["params"] = params.clone();
+        }
         json!({
             "step": self.turn,
             "day": self.turn / self.config.turns_per_day,
