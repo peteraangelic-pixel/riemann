@@ -32,6 +32,13 @@ rating finalists, not promoted agents; the focused fresh-seed final must measure
 their direct ordering and the rare-loss family before current-control/TOP49
 gates.
 
+**Status after the focused run:** symmetric opening search is complete. The
+3,000-game final created a stable mirror ladder (B18 > B19 > B20 > B21 at about
+94% per neighboring matchup), but TOP49 rejected it as general strength: B18
+fell to 178 wins, B19/B20 tied B21's 184 while lowering score/margin. Keep B21
+as control and B20 only as a seat-specific/conditional component. Do not spend
+more compute on symmetric mirror opening quantities.
+
 Search buys 18-25 and sales around 15-20, but do not assume that only retained
 wheat matters. The run showed discontinuities: B21/S17 and B25/S19 collapsed,
 while adjacent configurations did not. The fixed later trajectory can depend
@@ -72,6 +79,12 @@ Use episode rows, not aggregate means, to classify:
 The target is to preserve B21 economics while gaining at least five strict wins,
 thus exceeding V7's 188/490 rather than optimizing score alone.
 
+**Attribution progress:** the net four-win difference comes from 14 changed
+player-tape records, not four records: V7 wins both seats on eight records where
+B21 loses both, while B21 wins both seats on six records where V7 loses both.
+The next analysis must preserve the six B21 gains while targeting the eight V7
+recoveries.
+
 ## E. Close near losses through endgame actions
 
 For narrow losses, inspect the final selling window, product order, unused shed
@@ -79,6 +92,10 @@ inventory, fertilizer/milk/wool disposal, oversized or invalid orders, and a
 one-tick sale delay. Test each endgame mutation independently. The old
 `endgame24` result is only a hypothesis from another planner, not a patch to
 copy.
+
+**Target set identified:** B21 has 27 near-loss player-tape records within 2,500
+coins, corresponding to 23 unique underlying episodes. Start with the three
+within 500 coins, then seven within 1,000, preserving episode deduplication.
 
 ## F. Separate solution for high-score losses to 100k+ opponents
 
@@ -94,13 +111,39 @@ Opening tuning cannot solve games where B21 scores above 100k but loses to
 These are structural candidates and must not be bundled with opening/endgame
 changes until each passes independently.
 
-## Promotion order
+## Execution order and status
 
-1. Collect and classify new B21 live replays.
-2. Fix the local opening experiment so untouched B21 is the direct control.
-3. Run A, then B, then C as separate families.
-4. Use D and E to promote by strict wins and recover near losses.
-5. Develop F separately for elite high-score loss families.
-6. Combine only independently demonstrated winners in named V10 bundles.
-7. Re-run paired current controls, TOP49 both seats, then old archive holdouts.
-8. A Kaggle upload requires a new explicit user approval.
+### Finish before nested TOP10/20/30 curriculum
+
+1. Symmetric opening A: **complete; no replacement promoted**.
+2. Collect and classify new B21 live replays: **pending**.
+3. D comparison versus V7: **14 changed records identified; action attribution pending**.
+4. E near-loss pool: **27 records / 23 unique episodes identified; endgame action audit pending**.
+5. B seat-specific opening: **next candidate experiment**, using B20/S15 as the
+   only retained alternate and changing one seat at a time.
+6. C conditional step-1 sale: run only after replay-derived market thresholds
+   exist; fallback must remain exact B21.
+
+These steps remain valuable before curriculum because they create the controlled
+mutation vocabulary that curriculum will select among. They were not cancelled
+or replaced by the TOP10 idea.
+
+### User-specified nested elite curriculum (no TOP31-49 training)
+
+1. Evaluate frozen B21 only on TOP10, extract failure mechanisms, and generate
+   many isolated configurations against TOP10 discovery records.
+2. Freeze the best `C10` specialist and test it without retraining on TOP11-20.
+3. If transfer is useful, clone C10, incorporate the transfer findings, and
+   train the clone cumulatively on TOP20; preserve original C10.
+4. Test frozen C20 on TOP10 and unseen TOP21-30, compare with C10 and B21, and
+   extract mechanisms.
+5. If useful, clone C20 and train that clone specifically/cumulatively with the
+   TOP21-30 evidence; preserve C20 and call the result C30.
+6. Final matrix: C10, C20, C30, and B21 on TOP10, TOP11-20, TOP21-30, and
+   cumulative TOP20/TOP30 views. Do not add a TOP31-49 curriculum stage.
+
+At every stage retain same-record/both-seat results, deduplicate underlying
+episodes, report strict wins separately from score/margin, and use temporally
+new live episodes as the final holdout. Develop F separately for high-score loss
+families, then combine only independently demonstrated winners. Any Kaggle
+upload still requires a new explicit user approval.
