@@ -37,7 +37,6 @@ from kaggriculture_lab.stats import aggregate, bradley_terry, promotion_gate  # 
 from kaggriculture_lab.tournament import (  # noqa: E402
     _available_mem_gb, build_jobs, default_workers, run,
 )
-from kaggriculture_lab import rust_backend  # noqa: E402
 
 SWEEP_DIR = ROOT / "agents" / "sweeps"
 
@@ -99,8 +98,7 @@ def _agg_by_tag(rows: list[dict]) -> dict[str, object]:
 
 
 def stage_screen(variants: list[tuple[str, Path]], baseline: str,
-                 games: int, seed: int, workers: int, lines: list,
-                 runner=run) -> dict:
+                 games: int, seed: int, workers: int, lines: list) -> dict:
     jobs = []
     for name, path in variants:
         jobs += build_jobs(str(path), [baseline], games, seed,
@@ -108,7 +106,7 @@ def stage_screen(variants: list[tuple[str, Path]], baseline: str,
     lines.append(f"[1/3] SCREEN: {len(variants)} variants x {games} seeds x 2 seats "
                  f"= {len(jobs)} games ...")
     print(lines[-1])
-    rows = runner(jobs, workers, progress_every=max(50, len(jobs) // 5))
+    rows = run(jobs, workers, progress_every=max(50, len(jobs) // 5))
     aggs = _agg_by_tag(rows)
     ranked = sorted(aggs.items(),
                     key=lambda kv: (kv[1].score_rate, kv[1].mean_margin), reverse=True)
@@ -125,8 +123,7 @@ def stage_screen(variants: list[tuple[str, Path]], baseline: str,
 
 def stage_promote(survivors: list[tuple[str, Path]], baseline: str,
                   games: int, seed: int, workers: int, min_games: int,
-                  lines: list, promotion_objective: str = "balanced",
-                  runner=run) -> list[tuple[str, object, Path]]:
+                  lines: list, promotion_objective: str = "balanced") -> list[tuple[str, object, Path]]:
     jobs = []
     for name, path in survivors:
         jobs += build_jobs(str(path), [baseline], games, seed,
@@ -135,7 +132,7 @@ def stage_promote(survivors: list[tuple[str, Path]], baseline: str,
     lines.append(f"[2/3] PROMOTE: {len(survivors)} variants x {games} seeds x 2 seats "
                  f"= {len(jobs)} games (Wilson gate vs baseline; objective={promotion_objective}) ...")
     print(lines[-1])
-    rows = runner(jobs, workers, progress_every=max(50, len(jobs) // 4))
+    rows = run(jobs, workers, progress_every=max(50, len(jobs) // 4))
     aggs = _agg_by_tag(rows)
     lines.append("")
     passed = []
@@ -158,7 +155,7 @@ def stage_promote(survivors: list[tuple[str, Path]], baseline: str,
 
 
 def stage_finals(finalists: list[tuple[str, Path]], games: int, seed: int,
-                 workers: int, lines: list, runner=run) -> dict:
+                 workers: int, lines: list) -> dict:
     names = [n for n, _ in finalists]
     stem2name = {p.stem: n for n, p in finalists}  # opponent path stem -> tag
     jobs, wins, games_map = [], {}, {}
@@ -169,7 +166,7 @@ def stage_finals(finalists: list[tuple[str, Path]], games: int, seed: int,
     lines.append(f"[3/3] FINALS: round-robin of {len(names)} variants, "
                  f"{games} seeds x 2 seats per pair = {len(jobs)} games ...")
     print(lines[-1])
-    rows = runner(jobs, workers, progress_every=max(20, len(jobs) // 4))
+    rows = run(jobs, workers, progress_every=max(20, len(jobs) // 4))
     # rows are tagged with the FIRST-listed agent of each pair; opponent path
     # stem maps back to its tag. Accumulate from a's perspective, then mirror.
     for r in rows:
@@ -219,34 +216,12 @@ def main() -> int:
     ap.add_argument("--max-total-games", type=int, default=3000,
                     help="refuse larger projected sweeps unless --allow-large")
     ap.add_argument("--allow-large", action="store_true")
-    ap.add_argument("--backend", choices=["auto", "rust", "python"], default="auto",
-                    help="auto=use the Rust kg_sim binary for tape games if built, "
-                         "else fall back to the Python engine; rust/python force one")
     args = ap.parse_args()
 
     mem_safe = max(1, int(_available_mem_gb() / 0.45))
     if args.workers > mem_safe:
         print(f"[note] --workers {args.workers} clamped to {mem_safe} (RAM)")
         args.workers = mem_safe
-
-    # Game runner: Rust+Rayon for tape-vs-tape (fast), reactive/builtin agents
-    # and a missing binary transparently fall back to the Python engine.
-    if args.backend == "python":
-        runner = run
-        print("[backend] Python engine (forced)")
-    elif args.backend == "rust":
-        if rust_backend.rust_binary() is None:
-            print("[backend] --backend rust but kg_sim binary not found; "
-                  "build it: cd rust_port && cargo build --release --locked", flush=True)
-            return 2
-        runner = lambda jobs, workers, progress_every=200: rust_backend.run_rust(  # noqa: E731
-            jobs, workers, progress_every=progress_every)
-        print(f"[backend] Rust kg_sim ({rust_backend.rust_binary()})")
-    else:
-        have = rust_backend.rust_binary()
-        runner = (lambda jobs, workers, progress_every=200:  # noqa: E731
-                  rust_backend.run_auto(jobs, workers, progress_every=progress_every))
-        print(f"[backend] auto -> {'Rust kg_sim + Python fallback' if have else 'Python engine (kg_sim not built)'}")
 
     cfg_path = Path(args.config)
     if not cfg_path.is_absolute():
@@ -294,18 +269,10 @@ def main() -> int:
     lines.append(f"{len(specs)} configurations:")
     for v in specs:
         vbase = (ROOT / v["base"]) if v.get("base") else base
-        if v.get("path"):
-            # pre-built variant file (e.g. structural_gen.py outputs) - use as-is
-            vp = Path(v["path"])
-            path = vp if vp.is_absolute() else ROOT / vp
-            if not path.exists():
-                raise SystemExit(f"[sweep] variant {v['name']!r} path not found: {path}")
-        else:
-            path = make_variant(vbase, v["name"], v.get("params", {}))
+        path = make_variant(vbase, v["name"], v["params"])
         variants.append((v["name"], path))
-        lines.append(f"  {v['name']:<22} {json.dumps(v.get('params', {}), sort_keys=True)}"
-                     + ("  [prebuilt]" if v.get("path") else
-                        ("" if vbase == base else f"  [base {vbase.name}]")))
+        lines.append(f"  {v['name']:<22} {json.dumps(v['params'], sort_keys=True)}"
+                     + ("" if vbase == base else f"  [base {vbase.name}]"))
     lines.append("")
     print("\n".join(lines[-len(specs) - 2:]))
 
@@ -323,7 +290,7 @@ def main() -> int:
               "promotion_objective": promotion_objective}
 
     screened = stage_screen(variants, baseline, screen_games, seed0,
-                            args.workers, lines, runner=runner)
+                            args.workers, lines)
     result["screen"] = {n: a.to_dict() for n, a in screened.items()}
     if args.stage == "screen":
         ranked_names = [n for n, _ in sorted(screened.items(),
@@ -338,8 +305,7 @@ def main() -> int:
         lines.append("")
         promoted = stage_promote(top, baseline, promote_games, seed0 + 10000,
                                  args.workers, min_games=max(20, promote_games),
-                                 lines=lines, promotion_objective=promotion_objective,
-                                 runner=runner)
+                                 lines=lines, promotion_objective=promotion_objective)
         result["promoted"] = [n for n, _, _ in promoted]
         final_pool = [(n, p) for n, _, p in promoted]
         if finals_include_baseline and promoted:
@@ -348,8 +314,7 @@ def main() -> int:
             lines.append("")
         if args.stage != "promote" and len(final_pool) >= 2:
             finals = stage_finals(final_pool, final_games,
-                                  seed0 + 20000, args.workers, lines,
-                                  runner=runner)
+                                  seed0 + 20000, args.workers, lines)
             result["finals"] = finals
             lines.append(f"  WINNER: {finals['ranked'][0]}")
         elif args.stage != "promote":
