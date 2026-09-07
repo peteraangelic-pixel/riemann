@@ -1,0 +1,38 @@
+name: Kaggriculture submit approved V9 B21-S16
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-submit-v9-b21.yml"]
+permissions:
+  contents: read
+jobs:
+  submit:
+    if: contains(github.event.head_commit.message, '[kaggr-submit-v9-b21]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - name: Compile approved standalone agent
+        run: python -m py_compile kaggriculture/v9_candidates/v7_opening_grid/agent_v9_v7w_b21_s16.py
+      - name: Configure Kaggle token
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+        run: |
+          mkdir -p ~/.kaggle
+          clean_token=$(printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]')
+          test -n "$clean_token" || { echo '::error::KAGGLE_API_TOKEN is missing'; exit 1; }
+          printf '%s' "$clean_token" > ~/.kaggle/access_token
+          chmod 600 ~/.kaggle/access_token
+      - run: pip install kaggle
+      - name: Package and upload explicitly approved B21-S16
+        working-directory: kaggriculture
+        run: |
+          cp v9_candidates/v7_opening_grid/agent_v9_v7w_b21_s16.py main.py
+          tar -czf submission-v9-b21-s16.tar.gz main.py
+          output=$(kaggle competitions submit -c kaggriculture -f submission-v9-b21-s16.tar.gz -m "V9 B21-S16 TOP49 184of490 margin+835 $GITHUB_SHA" 2>&1)
+          printf '%s\n' "$output"
+          safe=$(printf '%s' "$output" | sed -E 's/KGAT_[A-Za-z0-9_-]+/[REDACTED]/g')
+          safe=${safe//'%'/'%25'}; safe=${safe//$'\n'/'%0A'}; safe=${safe//$'\r'/'%0D'}
+          echo "::notice title=V9 B21-S16 Kaggle upload::$safe"
