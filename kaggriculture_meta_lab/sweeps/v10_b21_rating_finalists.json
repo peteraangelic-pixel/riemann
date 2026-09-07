@@ -1,0 +1,20 @@
+{
+  "name": "v10_b21_rating_finalists",
+  "base": "agents/current/agent_v9_b21_s16.py",
+  "baseline": "agents/current/agent_v9_b21_s16.py",
+  "baseline_name": "CONTROL_B21_S16",
+  "include_untouched_base": false,
+  "finals_include_baseline": true,
+  "promotion_objective": "rating",
+  "start_seed": 20271000,
+  "screen_games": 30,
+  "promote_games": 120,
+  "final_games": 175,
+  "top_k": 3,
+  "note": "Focused fresh-seed confirmation of the three 186-14 rating candidates from the 20260907 Windows direct sweep. Kaggle/Bradley-Terry promotion uses W/L/T Wilson confidence and reports coin margin separately. Exactly 3,000 worst-case games including untouched B21 as direct opponent and finals anchor.",
+  "variants": [
+    {"name":"b18s13","params":{"BUY_WHEAT":18,"SELL_WHEAT":13}},
+    {"name":"b19s14","params":{"BUY_WHEAT":19,"SELL_WHEAT":14}},
+    {"name":"b20s15","params":{"BUY_WHEAT":20,"SELL_WHEAT":15}}
+  ]
+}

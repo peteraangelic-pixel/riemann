@@ -78,6 +78,19 @@ def expand_config(cfg: dict) -> list[dict]:
     return uniq
 
 
+def project_game_budget(spec_count: int, include_base: bool, top_k: int,
+                        screen_games: int, promote_games: int, final_games: int,
+                        finals_include_baseline: bool) -> dict[str, int]:
+    """Worst-case full-game budget, including an optional finals control anchor."""
+    variant_count = spec_count + int(include_base)
+    screen = variant_count * screen_games * 2
+    promote = min(top_k, variant_count) * promote_games * 2
+    finalist_cap = min(top_k, variant_count) + int(finals_include_baseline)
+    finals = finalist_cap * (finalist_cap - 1) // 2 * final_games * 2
+    return {"screen": screen, "promote": promote, "finals": finals,
+            "total": screen + promote + finals}
+
+
 # ------------------------------------------------------------------ stages ---
 def _agg_by_tag(rows: list[dict]) -> dict[str, object]:
     tags = sorted({r["tag"] for r in rows})
@@ -110,13 +123,14 @@ def stage_screen(variants: list[tuple[str, Path]], baseline: str,
 
 def stage_promote(survivors: list[tuple[str, Path]], baseline: str,
                   games: int, seed: int, workers: int, min_games: int,
-                  lines: list) -> list[tuple[str, object, Path]]:
+                  lines: list, promotion_objective: str = "balanced") -> list[tuple[str, object, Path]]:
     jobs = []
     for name, path in survivors:
         jobs += build_jobs(str(path), [baseline], games, seed,
                            swap_seats=True, steps=720, tag=name)
+    rating_only = promotion_objective == "rating"
     lines.append(f"[2/3] PROMOTE: {len(survivors)} variants x {games} seeds x 2 seats "
-                 f"= {len(jobs)} games (Wilson gate vs baseline) ...")
+                 f"= {len(jobs)} games (Wilson gate vs baseline; objective={promotion_objective}) ...")
     print(lines[-1])
     rows = run(jobs, workers, progress_every=max(50, len(jobs) // 4))
     aggs = _agg_by_tag(rows)
@@ -126,7 +140,8 @@ def stage_promote(survivors: list[tuple[str, Path]], baseline: str,
                  f"{'margin':>8}  gate")
     for name, path in survivors:
         a = aggs[name]
-        ok, reasons = promotion_gate(a, min_games=min_games)
+        ok, reasons = promotion_gate(
+            a, min_games=min_games, require_positive_margin=not rating_only)
         mark = "PASS" if ok else "fail"
         lines.append(f"  {name:<22} {f'{a.wins}-{a.losses}-{a.ties}':>9} "
                      f"{a.score_rate*100:7.1f} {f'{a.ci_low*100:.0f}-{a.ci_high*100:.0f}':>13} "
@@ -198,6 +213,9 @@ def main() -> int:
     ap.add_argument("--top-k", type=int, default=0, help="override config")
     ap.add_argument("--screen-games", type=int, default=0)
     ap.add_argument("--promote-games", type=int, default=0)
+    ap.add_argument("--max-total-games", type=int, default=3000,
+                    help="refuse larger projected sweeps unless --allow-large")
+    ap.add_argument("--allow-large", action="store_true")
     args = ap.parse_args()
 
     mem_safe = max(1, int(_available_mem_gb() / 0.45))
@@ -210,7 +228,16 @@ def main() -> int:
         cfg_path = ROOT / cfg_path
     cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
     base = (ROOT / cfg["base"]) if not Path(cfg["base"]).is_absolute() else Path(cfg["base"])
-    baseline = cfg.get("baseline", "agents/current/agent_v9_b21_s16.py")
+    baseline = cfg.get("baseline", "agents/ref/agent_v7.py")
+    baseline_path = Path(baseline)
+    if not baseline_path.is_absolute():
+        baseline_path = ROOT / baseline_path
+    include_base = cfg.get("include_untouched_base", True)
+    finals_include_baseline = cfg.get("finals_include_baseline", False)
+    baseline_name = cfg.get("baseline_name", "CONTROL_" + baseline_path.stem)
+    promotion_objective = cfg.get("promotion_objective", "balanced")
+    if promotion_objective not in {"balanced", "rating"}:
+        raise SystemExit("promotion_objective must be 'balanced' or 'rating'")
     seed0 = cfg.get("start_seed", 20262000)
     screen_games = args.screen_games or cfg.get("screen_games", 10)
     promote_games = args.promote_games or cfg.get("promote_games", 100)
@@ -221,9 +248,23 @@ def main() -> int:
     lines = [f"# Sweep: {cfg.get('name', cfg_path.stem)}",
              f"base={base.name}  baseline={Path(baseline).name}  workers={args.workers}",
              f"screen={screen_games} seeds, promote={promote_games} seeds, "
-             f"finals={final_games} seeds, top_k={top_k}", ""]
+             f"finals={final_games} seeds, top_k={top_k}",
+             f"untouched_base_variant={include_base}  finals_control_anchor={finals_include_baseline}",
+             f"promotion_objective={promotion_objective}", ""]
 
     specs = expand_config(cfg)
+    # For ordinary sweeps the untouched base remains a tested variant. For a
+    # local refinement sweep it can instead be the direct opponent in every
+    # screen/promote game and an anchored finalist (`include_untouched_base=false`,
+    # `baseline=base`, `finals_include_baseline=true`). This prevents a noisy
+    # top-K screen from silently dropping the champion we are trying to beat.
+    budget = project_game_budget(len(specs), include_base, top_k, screen_games,
+                                 promote_games, final_games, finals_include_baseline)
+    print(f"[budget] worst-case full games: {budget['total']} "
+          f"(screen {budget['screen']}, promote {budget['promote']}, finals {budget['finals']})")
+    if budget["total"] > args.max_total_games and not args.allow_large:
+        raise SystemExit(f"[budget] refusing projected {budget['total']} games; "
+                         f"reduce games/top_k, raise --max-total-games, or explicitly pass --allow-large")
     variants = []
     lines.append(f"{len(specs)} configurations:")
     for v in specs:
@@ -235,12 +276,18 @@ def main() -> int:
     lines.append("")
     print("\n".join(lines[-len(specs) - 2:]))
 
-    # always include the untouched base as a control variant
+    # Ordinary sweeps test the untouched base as another variant. A direct
+    # champion-refinement config uses it as `baseline` instead, so it is already
+    # present in every candidate game and cannot be removed by top-K selection.
     ctrl = ("BASE_" + base.stem, base)
-    if ctrl[0] not in [n for n, _ in variants]:
+    if include_base and ctrl[0] not in [n for n, _ in variants]:
         variants.append(ctrl)
 
-    result = {"config": cfg_path.name, "variants": [v[0] for v in variants]}
+    result = {"config": cfg_path.name, "variants": [v[0] for v in variants],
+              "baseline": str(baseline), "baseline_name": baseline_name,
+              "include_untouched_base": include_base,
+              "finals_include_baseline": finals_include_baseline,
+              "promotion_objective": promotion_objective}
 
     screened = stage_screen(variants, baseline, screen_games, seed0,
                             args.workers, lines)
@@ -258,15 +305,21 @@ def main() -> int:
         lines.append("")
         promoted = stage_promote(top, baseline, promote_games, seed0 + 10000,
                                  args.workers, min_games=max(20, promote_games),
-                                 lines=lines)
+                                 lines=lines, promotion_objective=promotion_objective)
         result["promoted"] = [n for n, _, _ in promoted]
-        if args.stage != "promote" and len(promoted) >= 2:
-            finals = stage_finals([(n, p) for n, _, p in promoted], final_games,
+        final_pool = [(n, p) for n, _, p in promoted]
+        if finals_include_baseline and promoted:
+            final_pool.append((baseline_name, baseline_path))
+            lines.append(f"  anchored finalist: {baseline_name} ({baseline_path.name})")
+            lines.append("")
+        if args.stage != "promote" and len(final_pool) >= 2:
+            finals = stage_finals(final_pool, final_games,
                                   seed0 + 20000, args.workers, lines)
             result["finals"] = finals
             lines.append(f"  WINNER: {finals['ranked'][0]}")
         elif args.stage != "promote":
-            lines.append("[3/3] FINALS skipped (need >=2 promoted variants)")
+            reason = "no mutation passed the direct control gate" if finals_include_baseline else "need >=2 promoted variants"
+            lines.append(f"[3/3] FINALS skipped ({reason})")
 
     lines.append("")
     lines.append(f"elapsed {time.perf_counter()-t0:.0f}s")

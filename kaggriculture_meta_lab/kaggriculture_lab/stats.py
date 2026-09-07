@@ -100,12 +100,12 @@ def bradley_terry(wins: dict[tuple[str, str], float],
 
 
 def promotion_gate(agg: Aggregate, min_games: int = 200, ci_threshold: float = 0.5,
-                   max_errors: int = 0) -> tuple[bool, list[str]]:
+                   max_errors: int = 0, require_positive_margin: bool = True) -> tuple[bool, list[str]]:
     """Decide whether a candidate is safe to promote over the baseline pool.
 
-    Returns (passed, reasons). A mutation passes only if it has enough games,
-    the lower 95% Wilson bound on score rate beats 0.5, mean margin is positive,
-    and there are no crashes.
+    Rating-focused searches may set ``require_positive_margin=False`` because
+    Kaggle and final Bradley-Terry use W/L/T rather than coin margin. The safer
+    default retains the positive-margin requirement for general validation.
     """
     reasons: list[str] = []
     ok = True
@@ -119,7 +119,7 @@ def promotion_gate(agg: Aggregate, min_games: int = 200, ci_threshold: float = 0
         ok = False
         reasons.append(f"95% CI low {agg.ci_low*100:.1f}% <= {ci_threshold*100:.0f}% "
                        f"(score rate {agg.score_rate*100:.1f}%)")
-    if agg.mean_margin <= 0:
+    if require_positive_margin and agg.mean_margin <= 0:
         ok = False
         reasons.append(f"mean margin {agg.mean_margin:.0f} <= 0")
     if ok:
