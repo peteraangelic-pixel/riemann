@@ -1,0 +1,29 @@
+name: Kaggriculture V8 TOP49 diagnosis
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths:
+      - "kaggriculture/research/screen_top49.py"
+      - ".github/workflows/kaggriculture-v8-top49-diagnose.yml"
+jobs:
+  diagnose:
+    if: contains(github.event.head_commit.message, '[kaggr-v8-top49]')
+    name: Aastik TOP49 shard ${{ matrix.shard }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0,1,2,3,4,5,6]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install kaggle-environments
+      - name: Screen latest TOP49 representatives
+        run: |
+          output=$(python kaggriculture/research/screen_top49.py --agent kaggriculture/agent_v8_aastik.py --shard ${{ matrix.shard }} --shards 7)
+          printf '%s\n' "$output"
+          summary=$(printf '%s\n' "$output" | tail -1 | cut -c1-20000)
+          summary=${summary//'%'/'%25'};summary=${summary//$'\n'/'%0A'};summary=${summary//$'\r'/'%0D'}
+          echo "::notice title=Aastik TOP49 shard ${{ matrix.shard }}::$summary"
