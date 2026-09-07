@@ -25,3 +25,11 @@ kaggriculture/**/__pycache__/
 kaggriculture/**/*.pyc
 kaggriculture/recordings/
 kaggriculture/submission.tar.gz
+
+# Rust simulator build products and local validation data
+.cache/
+kaggriculture_meta_lab/rust_port/target/
+kaggriculture_meta_lab/rust_port/work/
+kaggriculture_meta_lab/rust_port/**/__pycache__/
+kaggriculture_meta_lab/rust_port/**/*.pyc
+

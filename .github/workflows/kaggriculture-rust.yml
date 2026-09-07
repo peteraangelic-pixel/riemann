@@ -1,0 +1,59 @@
+name: Kaggriculture Rust simulator
+
+on:
+  push:
+    branches: ["arena/**"]
+    paths:
+      - "kaggriculture_meta_lab/rust_port/**"
+      - ".github/workflows/kaggriculture-rust.yml"
+  pull_request:
+    paths:
+      - "kaggriculture_meta_lab/rust_port/**"
+      - ".github/workflows/kaggriculture-rust.yml"
+  workflow_dispatch:
+    inputs:
+      export_toolchain:
+        description: "Export an offline Rust toolchain and vendored dependencies for restricted build environments"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  simulator:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: kaggriculture_meta_lab/rust_port
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@1.85.1
+        with:
+          components: rustfmt, clippy
+      - name: Resolve dependencies
+        run: cargo fetch
+      - name: Rust checks
+        run: |
+          cargo fmt --all -- --check
+          cargo clippy --all-targets --locked -- -D warnings
+          cargo test --locked
+          cargo build --release --locked
+      - name: Export offline build kit (opt-in)
+        if: inputs.export_toolchain || contains(github.event.head_commit.message, '[rust-bootstrap]')
+        run: |
+          mkdir -p "$RUNNER_TEMP/kg-offline"
+          cargo vendor --locked "$RUNNER_TEMP/kg-offline/vendor" > "$RUNNER_TEMP/kg-offline/config.toml"
+          cp Cargo.lock "$RUNNER_TEMP/kg-offline/"
+          tar -C "$(rustc --print sysroot)" -cJf "$RUNNER_TEMP/kg-offline/toolchain.tar.xz" bin lib
+          tar -C "$RUNNER_TEMP/kg-offline" -cJf "$RUNNER_TEMP/kg-offline/vendor.tar.xz" vendor
+      - uses: actions/upload-artifact@v4
+        if: inputs.export_toolchain || contains(github.event.head_commit.message, '[rust-bootstrap]')
+        with:
+          name: kg-offline-build-kit
+          path: |
+            ${{ runner.temp }}/kg-offline/toolchain.tar.xz
+            ${{ runner.temp }}/kg-offline/vendor.tar.xz
+            ${{ runner.temp }}/kg-offline/Cargo.lock
+          retention-days: 1
