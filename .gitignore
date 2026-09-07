@@ -30,6 +30,6 @@ kaggriculture/submission.tar.gz
 .cache/
 kaggriculture_meta_lab/rust_port/target/
 kaggriculture_meta_lab/rust_port/work/
-kaggriculture_meta_lab/rust_port/**/__pycache__/
-kaggriculture_meta_lab/rust_port/**/*.pyc
+kaggriculture_meta_lab/**/__pycache__/
+kaggriculture_meta_lab/**/*.pyc
 

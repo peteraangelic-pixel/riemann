@@ -1,0 +1,757 @@
+{
+  "source_branch": "arena/01a0712c-riemann",
+  "code_snapshot": "f2c085f06df0e00997e640de66f3c0b882a1bbca",
+  "latest_docs_snapshot": "3dd47f25fa6cd2a2523a427b0c612b171121ed44",
+  "live_status": {
+    "as_of_utc": "2026-09-07T17:21:50.280047+00:00",
+    "competition": "kaggriculture",
+    "mode": "read-only",
+    "errors": [],
+    "leaderboard_rows": 8064,
+    "leaderboard_headers": [
+      "Rank",
+      "TeamId",
+      "TeamName",
+      "LastSubmissionDate",
+      "Score",
+      "SubmissionCount",
+      "TeamMemberUserNames"
+    ],
+    "our_team": [
+      {
+        "rank": "804",
+        "teamid": "16839754",
+        "teamname": "Lauresowe 3D",
+        "score": "2113.0",
+        "lastsubmissiondate": "2026-09-07 07:14:06"
+      }
+    ],
+    "top10": [
+      {
+        "rank": "1",
+        "teamid": "16732403",
+        "teamname": "ymg_aq",
+        "score": "2925.9",
+        "lastsubmissiondate": "2026-09-07 13:10:59"
+      },
+      {
+        "rank": "2",
+        "teamid": "16723620",
+        "teamname": "3정훈",
+        "score": "2888.3",
+        "lastsubmissiondate": "2026-09-06 22:45:02"
+      },
+      {
+        "rank": "3",
+        "teamid": "16640510",
+        "teamname": "SpaTaro",
+        "score": "2876.2",
+        "lastsubmissiondate": "2026-09-06 23:16:25"
+      },
+      {
+        "rank": "4",
+        "teamid": "16622349",
+        "teamname": "Mengfei Li",
+        "score": "2854.5",
+        "lastsubmissiondate": "2026-09-06 05:20:24"
+      },
+      {
+        "rank": "5",
+        "teamid": "16665237",
+        "teamname": "get some fries",
+        "score": "2851.5",
+        "lastsubmissiondate": "2026-09-06 15:16:34"
+      },
+      {
+        "rank": "6",
+        "teamid": "16654704",
+        "teamname": "mandgeee",
+        "score": "2834.1",
+        "lastsubmissiondate": "2026-09-07 12:22:34"
+      },
+      {
+        "rank": "7",
+        "teamid": "16840447",
+        "teamname": "Suliman Tadros",
+        "score": "2821.3",
+        "lastsubmissiondate": "2026-09-06 17:15:40"
+      },
+      {
+        "rank": "8",
+        "teamid": "16711752",
+        "teamname": "Atakan Aldemir",
+        "score": "2811.4",
+        "lastsubmissiondate": "2026-09-07 11:47:37"
+      },
+      {
+        "rank": "9",
+        "teamid": "16622198",
+        "teamname": "THUNDER THUNDER",
+        "score": "2799.2",
+        "lastsubmissiondate": "2026-09-07 13:55:50"
+      },
+      {
+        "rank": "10",
+        "teamid": "16685556",
+        "teamname": "binghua",
+        "score": "2794.4",
+        "lastsubmissiondate": "2026-09-06 14:51:28"
+      }
+    ],
+    "recent_submission_public_scores": [
+      {
+        "ref": 56071535,
+        "date": "2026-09-07 07:14:06.533000",
+        "status": "SubmissionStatus.COMPLETE",
+        "public_score": "2113.0"
+      },
+      {
+        "ref": 56054139,
+        "date": "2026-09-06 11:37:46.603000",
+        "status": "SubmissionStatus.COMPLETE",
+        "public_score": "2095.0"
+      },
+      {
+        "ref": 56054137,
+        "date": "2026-09-06 11:37:44.677000",
+        "status": "SubmissionStatus.COMPLETE",
+        "public_score": "2215.3"
+      },
+      {
+        "ref": 56044395,
+        "date": "2026-09-06 01:43:49.250000",
+        "status": "SubmissionStatus.COMPLETE",
+        "public_score": "2193.5"
+      },
+      {
+        "ref": 56037841,
+        "date": "2026-09-05 17:31:03.340000",
+        "status": "SubmissionStatus.COMPLETE",
+        "public_score": "608.4"
+      },
+      {
+        "ref": 56033582,
+        "date": "2026-09-05 13:16:29.907000",
+        "status": "SubmissionStatus.COMPLETE",
+        "public_score": "492.0"
+      },
+      {
+        "ref": 56033159,
+        "date": "2026-09-05 12:51:53.900000",
+        "status": "SubmissionStatus.COMPLETE",
+        "public_score": "469.3"
+      },
+      {
+        "ref": 56032076,
+        "date": "2026-09-05 11:53:41.323000",
+        "status": "SubmissionStatus.COMPLETE",
+        "public_score": "396.5"
+      }
+    ]
+  },
+  "seed_reproduction": [
+    {
+      "episode": "105787151",
+      "seed": 1791635561,
+      "recorded": [
+        26090.0,
+        69035.0
+      ],
+      "correct_seed": [
+        26090.0,
+        69035.0
+      ],
+      "seed_zero": [
+        27820.0,
+        61696.0
+      ]
+    },
+    {
+      "episode": "105788063",
+      "seed": 1726805159,
+      "recorded": [
+        26308.0,
+        98306.0
+      ],
+      "correct_seed": [
+        26308.0,
+        98306.0
+      ],
+      "seed_zero": [
+        27326.0,
+        21386.0
+      ]
+    },
+    {
+      "episode": "105788970",
+      "seed": 1628706259,
+      "recorded": [
+        81201.0,
+        25252.0
+      ],
+      "correct_seed": [
+        81201.0,
+        25252.0
+      ],
+      "seed_zero": [
+        85973.0,
+        24844.0
+      ]
+    },
+    {
+      "episode": "105789885",
+      "seed": 796478886,
+      "recorded": [
+        23879.0,
+        25301.0
+      ],
+      "correct_seed": [
+        23879.0,
+        25301.0
+      ],
+      "seed_zero": [
+        17848.0,
+        24876.0
+      ]
+    },
+    {
+      "episode": "105790213",
+      "seed": 965844761,
+      "recorded": [
+        23706.0,
+        16188.0
+      ],
+      "correct_seed": [
+        23706.0,
+        16188.0
+      ],
+      "seed_zero": [
+        23629.0,
+        16189.0
+      ]
+    },
+    {
+      "episode": "105790807",
+      "seed": 171709382,
+      "recorded": [
+        9461.0,
+        27559.0
+      ],
+      "correct_seed": [
+        9461.0,
+        27559.0
+      ],
+      "seed_zero": [
+        9519.0,
+        25412.0
+      ]
+    },
+    {
+      "episode": "105791750",
+      "seed": 1858264334,
+      "recorded": [
+        34083.0,
+        49506.0
+      ],
+      "correct_seed": [
+        34083.0,
+        49506.0
+      ],
+      "seed_zero": [
+        23481.0,
+        51424.0
+      ]
+    },
+    {
+      "episode": "105792708",
+      "seed": 2072051928,
+      "recorded": [
+        27289.0,
+        37361.0
+      ],
+      "correct_seed": [
+        27289.0,
+        37361.0
+      ],
+      "seed_zero": [
+        25859.0,
+        36790.0
+      ]
+    }
+  ],
+  "terminal_discovery": {
+    "source_ref": "f2c085f06df0e00997e640de66f3c0b882a1bbca",
+    "engine": "1.32.7",
+    "discovery_only": true,
+    "promotion": false,
+    "independent_holdout": false,
+    "games": 48,
+    "replay_sha256": {
+      "106178365": "39cd465ae64320310a93a611f8411cc884a006467406bb0f14d869f4ed18e701",
+      "106180186": "0091aadcc85901f62f32adaabc7c02f0b7c03644e0778f8edc4a2381583bee62",
+      "106180027": "5b0504d2b4a73724e7ff5f4e5c022be6b0838844fa12ee2068b04f01c5b920e3"
+    },
+    "rows": [
+      {
+        "owner": "Kenneth Alonso",
+        "episode": 106178365,
+        "model": "control",
+        "rewards": [
+          [
+            83784.0,
+            83865.0
+          ],
+          [
+            83784.0,
+            83865.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 83784.0,
+        "margin_mean": -81.0
+      },
+      {
+        "owner": "Kenneth Alonso",
+        "episode": 106178365,
+        "model": "sell",
+        "rewards": [
+          [
+            83784.0,
+            83865.0
+          ],
+          [
+            83784.0,
+            83865.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 83784.0,
+        "margin_mean": -81.0
+      },
+      {
+        "owner": "Kenneth Alonso",
+        "episode": 106178365,
+        "model": "drop",
+        "rewards": [
+          [
+            83784.0,
+            83865.0
+          ],
+          [
+            83784.0,
+            83865.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 83784.0,
+        "margin_mean": -81.0
+      },
+      {
+        "owner": "Kenneth Alonso",
+        "episode": 106178365,
+        "model": "clear",
+        "rewards": [
+          [
+            83784.0,
+            83865.0
+          ],
+          [
+            83784.0,
+            83865.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 83784.0,
+        "margin_mean": -81.0
+      },
+      {
+        "owner": "Kenneth Alonso",
+        "episode": 106178365,
+        "model": "home",
+        "rewards": [
+          [
+            83784.0,
+            83865.0
+          ],
+          [
+            83784.0,
+            83865.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 83784.0,
+        "margin_mean": -81.0
+      },
+      {
+        "owner": "Kenneth Alonso",
+        "episode": 106178365,
+        "model": "harvest4",
+        "rewards": [
+          [
+            83782.0,
+            83864.0
+          ],
+          [
+            83782.0,
+            83864.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 83782.0,
+        "margin_mean": -82.0
+      },
+      {
+        "owner": "Kenneth Alonso",
+        "episode": 106178365,
+        "model": "harvest6",
+        "rewards": [
+          [
+            83747.0,
+            83864.0
+          ],
+          [
+            83747.0,
+            83864.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 83747.0,
+        "margin_mean": -117.0
+      },
+      {
+        "owner": "Kenneth Alonso",
+        "episode": 106178365,
+        "model": "harvest8",
+        "rewards": [
+          [
+            83745.0,
+            83864.0
+          ],
+          [
+            83745.0,
+            83864.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 83745.0,
+        "margin_mean": -119.0
+      },
+      {
+        "owner": "Mengfei Li",
+        "episode": 106180186,
+        "model": "control",
+        "rewards": [
+          [
+            57726.0,
+            58006.0
+          ],
+          [
+            57726.0,
+            58006.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 57726.0,
+        "margin_mean": -280.0
+      },
+      {
+        "owner": "Mengfei Li",
+        "episode": 106180186,
+        "model": "sell",
+        "rewards": [
+          [
+            57726.0,
+            58006.0
+          ],
+          [
+            57726.0,
+            58006.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 57726.0,
+        "margin_mean": -280.0
+      },
+      {
+        "owner": "Mengfei Li",
+        "episode": 106180186,
+        "model": "drop",
+        "rewards": [
+          [
+            57726.0,
+            58006.0
+          ],
+          [
+            57726.0,
+            58006.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 57726.0,
+        "margin_mean": -280.0
+      },
+      {
+        "owner": "Mengfei Li",
+        "episode": 106180186,
+        "model": "clear",
+        "rewards": [
+          [
+            57726.0,
+            58006.0
+          ],
+          [
+            57726.0,
+            58006.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 57726.0,
+        "margin_mean": -280.0
+      },
+      {
+        "owner": "Mengfei Li",
+        "episode": 106180186,
+        "model": "home",
+        "rewards": [
+          [
+            57726.0,
+            58006.0
+          ],
+          [
+            57726.0,
+            58006.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 57726.0,
+        "margin_mean": -280.0
+      },
+      {
+        "owner": "Mengfei Li",
+        "episode": 106180186,
+        "model": "harvest4",
+        "rewards": [
+          [
+            57722.0,
+            58005.0
+          ],
+          [
+            57722.0,
+            58005.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 57722.0,
+        "margin_mean": -283.0
+      },
+      {
+        "owner": "Mengfei Li",
+        "episode": 106180186,
+        "model": "harvest6",
+        "rewards": [
+          [
+            57699.0,
+            57998.0
+          ],
+          [
+            57699.0,
+            57998.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 57699.0,
+        "margin_mean": -299.0
+      },
+      {
+        "owner": "Mengfei Li",
+        "episode": 106180186,
+        "model": "harvest8",
+        "rewards": [
+          [
+            57696.0,
+            58000.0
+          ],
+          [
+            57696.0,
+            58000.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 57696.0,
+        "margin_mean": -304.0
+      },
+      {
+        "owner": "elmo",
+        "episode": 106180027,
+        "model": "control",
+        "rewards": [
+          [
+            126740.0,
+            127443.0
+          ],
+          [
+            127013.0,
+            127134.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 126876.5,
+        "margin_mean": -412.0
+      },
+      {
+        "owner": "elmo",
+        "episode": 106180027,
+        "model": "sell",
+        "rewards": [
+          [
+            126740.0,
+            127443.0
+          ],
+          [
+            127013.0,
+            127134.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 126876.5,
+        "margin_mean": -412.0
+      },
+      {
+        "owner": "elmo",
+        "episode": 106180027,
+        "model": "drop",
+        "rewards": [
+          [
+            126740.0,
+            127443.0
+          ],
+          [
+            127013.0,
+            127134.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 126876.5,
+        "margin_mean": -412.0
+      },
+      {
+        "owner": "elmo",
+        "episode": 106180027,
+        "model": "clear",
+        "rewards": [
+          [
+            126740.0,
+            127443.0
+          ],
+          [
+            127013.0,
+            127134.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 126876.5,
+        "margin_mean": -412.0
+      },
+      {
+        "owner": "elmo",
+        "episode": 106180027,
+        "model": "home",
+        "rewards": [
+          [
+            126740.0,
+            127443.0
+          ],
+          [
+            127013.0,
+            127134.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 126876.5,
+        "margin_mean": -412.0
+      },
+      {
+        "owner": "elmo",
+        "episode": 106180027,
+        "model": "harvest4",
+        "rewards": [
+          [
+            126737.0,
+            127443.0
+          ],
+          [
+            127010.0,
+            127134.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 126873.5,
+        "margin_mean": -415.0
+      },
+      {
+        "owner": "elmo",
+        "episode": 106180027,
+        "model": "harvest6",
+        "rewards": [
+          [
+            126700.0,
+            127445.0
+          ],
+          [
+            126973.0,
+            127136.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 126836.5,
+        "margin_mean": -454.0
+      },
+      {
+        "owner": "elmo",
+        "episode": 106180027,
+        "model": "harvest8",
+        "rewards": [
+          [
+            126700.0,
+            127444.0
+          ],
+          [
+            126973.0,
+            127135.0
+          ]
+        ],
+        "wins": 0,
+        "own_mean": 126836.5,
+        "margin_mean": -453.0
+      }
+    ]
+  },
+  "patch_tests": {
+    "passed": 26,
+    "engine": "kaggle-environments==1.32.7",
+    "method": "actual pinned core with offline package namespace; no game rules stubbed"
+  },
+  "prototype_logic_tests": {
+    "passed": 7,
+    "not_strength_evidence": true
+  },
+  "promotion": false,
+  "competition_submissions_made": 0,
+  "top10_name_coverage": {
+    "matched": [
+      "ymg_aq",
+      "Mengfei Li",
+      "get some fries",
+      "mandgeee",
+      "Suliman Tadros"
+    ],
+    "not_matched": [
+      "3정훈",
+      "SpaTaro",
+      "Atakan Aldemir",
+      "THUNDER THUNDER",
+      "binghua"
+    ],
+    "caveat": "names only; renames cannot be excluded without stable TeamId mapping"
+  }
+}
