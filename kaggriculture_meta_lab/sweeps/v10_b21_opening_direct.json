@@ -5,6 +5,7 @@
   "baseline_name": "CONTROL_B21_S16",
   "include_untouched_base": false,
   "finals_include_baseline": true,
+  "promotion_objective": "rating",
   "start_seed": 20268000,
   "screen_games": 18,
   "promote_games": 100,

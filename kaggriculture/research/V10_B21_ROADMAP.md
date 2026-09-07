@@ -22,6 +22,16 @@ No experiment may overwrite the frozen B21/S16 submission source.
 
 ## A. Fine local opening search around B21/S16
 
+The first direct Windows run completed 1,628 games in 612 seconds. Three
+same-remainder candidates (`B18/S13`, `B19/S14`, `B20/S15`) each scored
+**186W-14L (93%, Wilson 89-96%)** against untouched B21 over 200 fresh promotion
+games. Their mean margins were respectively -14, -16, and -21: many tiny wins
+and a small family of large losses. The old balanced gate incorrectly rejected
+them on margin even though Kaggle's rating objective is W/L/T. They are now
+rating finalists, not promoted agents; the focused fresh-seed final must measure
+their direct ordering and the rare-loss family before current-control/TOP49
+gates.
+
 Search buys 18-25 and sales around 15-20, but do not assume that only retained
 wheat matters. The run showed discontinuities: B21/S17 and B25/S19 collapsed,
 while adjacent configurations did not. The fixed later trajectory can depend

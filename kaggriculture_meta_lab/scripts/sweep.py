@@ -123,13 +123,14 @@ def stage_screen(variants: list[tuple[str, Path]], baseline: str,
 
 def stage_promote(survivors: list[tuple[str, Path]], baseline: str,
                   games: int, seed: int, workers: int, min_games: int,
-                  lines: list) -> list[tuple[str, object, Path]]:
+                  lines: list, promotion_objective: str = "balanced") -> list[tuple[str, object, Path]]:
     jobs = []
     for name, path in survivors:
         jobs += build_jobs(str(path), [baseline], games, seed,
                            swap_seats=True, steps=720, tag=name)
+    rating_only = promotion_objective == "rating"
     lines.append(f"[2/3] PROMOTE: {len(survivors)} variants x {games} seeds x 2 seats "
-                 f"= {len(jobs)} games (Wilson gate vs baseline) ...")
+                 f"= {len(jobs)} games (Wilson gate vs baseline; objective={promotion_objective}) ...")
     print(lines[-1])
     rows = run(jobs, workers, progress_every=max(50, len(jobs) // 4))
     aggs = _agg_by_tag(rows)
@@ -139,7 +140,8 @@ def stage_promote(survivors: list[tuple[str, Path]], baseline: str,
                  f"{'margin':>8}  gate")
     for name, path in survivors:
         a = aggs[name]
-        ok, reasons = promotion_gate(a, min_games=min_games)
+        ok, reasons = promotion_gate(
+            a, min_games=min_games, require_positive_margin=not rating_only)
         mark = "PASS" if ok else "fail"
         lines.append(f"  {name:<22} {f'{a.wins}-{a.losses}-{a.ties}':>9} "
                      f"{a.score_rate*100:7.1f} {f'{a.ci_low*100:.0f}-{a.ci_high*100:.0f}':>13} "
@@ -233,6 +235,9 @@ def main() -> int:
     include_base = cfg.get("include_untouched_base", True)
     finals_include_baseline = cfg.get("finals_include_baseline", False)
     baseline_name = cfg.get("baseline_name", "CONTROL_" + baseline_path.stem)
+    promotion_objective = cfg.get("promotion_objective", "balanced")
+    if promotion_objective not in {"balanced", "rating"}:
+        raise SystemExit("promotion_objective must be 'balanced' or 'rating'")
     seed0 = cfg.get("start_seed", 20262000)
     screen_games = args.screen_games or cfg.get("screen_games", 10)
     promote_games = args.promote_games or cfg.get("promote_games", 100)
@@ -244,7 +249,8 @@ def main() -> int:
              f"base={base.name}  baseline={Path(baseline).name}  workers={args.workers}",
              f"screen={screen_games} seeds, promote={promote_games} seeds, "
              f"finals={final_games} seeds, top_k={top_k}",
-             f"untouched_base_variant={include_base}  finals_control_anchor={finals_include_baseline}", ""]
+             f"untouched_base_variant={include_base}  finals_control_anchor={finals_include_baseline}",
+             f"promotion_objective={promotion_objective}", ""]
 
     specs = expand_config(cfg)
     # For ordinary sweeps the untouched base remains a tested variant. For a
@@ -280,7 +286,8 @@ def main() -> int:
     result = {"config": cfg_path.name, "variants": [v[0] for v in variants],
               "baseline": str(baseline), "baseline_name": baseline_name,
               "include_untouched_base": include_base,
-              "finals_include_baseline": finals_include_baseline}
+              "finals_include_baseline": finals_include_baseline,
+              "promotion_objective": promotion_objective}
 
     screened = stage_screen(variants, baseline, screen_games, seed0,
                             args.workers, lines)
@@ -298,7 +305,7 @@ def main() -> int:
         lines.append("")
         promoted = stage_promote(top, baseline, promote_games, seed0 + 10000,
                                  args.workers, min_games=max(20, promote_games),
-                                 lines=lines)
+                                 lines=lines, promotion_objective=promotion_objective)
         result["promoted"] = [n for n, _, _ in promoted]
         final_pool = [(n, p) for n, _, p in promoted]
         if finals_include_baseline and promoted:

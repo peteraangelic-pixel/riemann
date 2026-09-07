@@ -77,4 +77,16 @@ def test_direct_b21_config_anchors_untouched_control():
     assert cfg["include_untouched_base"] is False
     assert cfg["finals_include_baseline"] is True
     assert cfg["baseline_name"] == "CONTROL_B21_S16"
+    assert cfg["promotion_objective"] == "rating"
     assert len(expand_config(cfg)) == 23
+
+
+def test_rating_finalist_config_is_exactly_3000_games():
+    cfg = json.loads((ROOT / "sweeps" / "v10_b21_rating_finalists.json").read_text(encoding="utf-8"))
+    budget = project_game_budget(
+        len(expand_config(cfg)), cfg["include_untouched_base"], cfg["top_k"],
+        cfg["screen_games"], cfg["promote_games"], cfg["final_games"],
+        cfg["finals_include_baseline"],
+    )
+    assert budget["total"] == 3000
+    assert cfg["promotion_objective"] == "rating"

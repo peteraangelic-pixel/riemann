@@ -20,13 +20,20 @@ It uses identical seeds and both seats against all three current controls. For a
 focused opening sweep, double-click `run_sweep.bat` or run:
 
 ```powershell
-python scripts\sweep.py --config sweeps\v10_b21_opening_direct.json --workers 16
+python scripts\sweep.py --config sweeps\v10_b21_rating_finalists.json --workers 30
 ```
 
-The direct B21 refinement projects exactly 2,988 worst-case full games. Every
-mutation plays untouched B21/S16 in screen and promotion, and B21 is forcibly
-anchored in the finals so noisy top-K selection cannot discard the champion.
-`sweep.py` prints the projected
+The first direct B21 run discovered three rating candidates (`b18s13`,
+`b19s14`, `b20s15`) at **186W-14L each over 200 fresh promotion games** against
+untouched B21, but the old balanced gate rejected them solely because their
+mean coin margins were -14 to -21. Kaggle and final Bradley-Terry use W/L/T, not
+coin margin, so `promotion_objective="rating"` now applies the Wilson/no-error
+gate and reports margin separately. The focused confirmation above projects
+exactly 3,000 games and anchors untouched B21 in finals.
+
+Every mutation plays untouched B21/S16 in screen and promotion, and B21 is
+forcibly anchored in the finals so noisy top-K selection cannot discard the
+champion. `sweep.py` prints the projected
 cost and refuses more than 3,000 games unless `--allow-large` is explicitly
 passed. The previous `v8_tuning.json` worst case was about **18,240 full
 720-step games** (240 screen + 4,000 promotion + 14,000 finals), explaining the

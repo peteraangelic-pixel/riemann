@@ -41,6 +41,16 @@ def test_gate():
     assert not ok2 and reasons
 
 
+def test_rating_gate_separates_wins_from_coin_margin():
+    rows = _rows(186, 0, margin=1.0) + _rows(0, 14, margin=200.0)
+    agg = aggregate(rows)
+    assert agg.score_rate == 0.93 and agg.mean_margin < 0
+    balanced, _ = promotion_gate(agg, min_games=200)
+    rating, _ = promotion_gate(agg, min_games=200, require_positive_margin=False)
+    assert not balanced
+    assert rating
+
+
 def test_bradley_terry_ordering():
     labels = ["strong", "weak"]
     # strong beats weak 90% of the time, both seats
