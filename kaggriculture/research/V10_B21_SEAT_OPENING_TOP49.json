@@ -1,0 +1,7899 @@
+{
+  "source_run": 34144645075,
+  "dataset": {
+    "player_tape_records": 245,
+    "both_seats": true
+  },
+  "summaries": [
+    {
+      "agent": "control_b21s16",
+      "shards": 7,
+      "episodes": 245,
+      "games": 490,
+      "wins": 184,
+      "our_mean": 89115.06326530612,
+      "opponent_mean": 88279.8081632653,
+      "margin_mean": 835.2551020408164
+    },
+    {
+      "agent": "p1_b20s15",
+      "shards": 7,
+      "episodes": 245,
+      "games": 490,
+      "wins": 184,
+      "our_mean": 88968.48367346938,
+      "opponent_mean": 88233.25102040816,
+      "margin_mean": 735.2326530612245
+    },
+    {
+      "agent": "p0_b20s15",
+      "shards": 7,
+      "episodes": 245,
+      "games": 490,
+      "wins": 184,
+      "our_mean": 88957.48367346938,
+      "opponent_mean": 88229.62448979591,
+      "margin_mean": 727.8591836734694
+    },
+    {
+      "agent": "both_b20s15",
+      "shards": 7,
+      "episodes": 245,
+      "games": 490,
+      "wins": 184,
+      "our_mean": 88810.90408163266,
+      "opponent_mean": 88183.06734693877,
+      "margin_mean": 627.8367346938777
+    }
+  ],
+  "rows": {
+    "control_b21s16": [
+      {
+        "player": "Andrey Tikhomirov",
+        "episode": 106182537,
+        "wins": 2,
+        "our_mean": 111441.0,
+        "opponent_mean": 102497.0,
+        "margin_mean": 8944.0
+      },
+      {
+        "player": "Andrey Tikhomirov",
+        "episode": 106180714,
+        "wins": 1,
+        "our_mean": 103059.5,
+        "opponent_mean": 104300.0,
+        "margin_mean": -1240.5
+      },
+      {
+        "player": "Andrey Tikhomirov",
+        "episode": 106180056,
+        "wins": 0,
+        "our_mean": 42894.0,
+        "opponent_mean": 55403.0,
+        "margin_mean": -12509.0
+      },
+      {
+        "player": "Andrey Tikhomirov",
+        "episode": 106179229,
+        "wins": 0,
+        "our_mean": 70597.0,
+        "opponent_mean": 72962.0,
+        "margin_mean": -2365.0
+      },
+      {
+        "player": "Andrey Tikhomirov",
+        "episode": 106178223,
+        "wins": 2,
+        "our_mean": 99341.0,
+        "opponent_mean": 78942.0,
+        "margin_mean": 20399.0
+      },
+      {
+        "player": "Driz Lo",
+        "episode": 106183411,
+        "wins": 0,
+        "our_mean": 95756.0,
+        "opponent_mean": 107581.0,
+        "margin_mean": -11825.0
+      },
+      {
+        "player": "Driz Lo",
+        "episode": 106182411,
+        "wins": 0,
+        "our_mean": 49107.0,
+        "opponent_mean": 54319.0,
+        "margin_mean": -5212.0
+      },
+      {
+        "player": "Driz Lo",
+        "episode": 106181623,
+        "wins": 2,
+        "our_mean": 94475.0,
+        "opponent_mean": 93465.0,
+        "margin_mean": 1010.0
+      },
+      {
+        "player": "Driz Lo",
+        "episode": 106180945,
+        "wins": 0,
+        "our_mean": 69420.0,
+        "opponent_mean": 75247.0,
+        "margin_mean": -5827.0
+      },
+      {
+        "player": "Driz Lo",
+        "episode": 106180083,
+        "wins": 0,
+        "our_mean": 77820.0,
+        "opponent_mean": 91317.5,
+        "margin_mean": -13497.5
+      },
+      {
+        "player": "LI Mufeng",
+        "episode": 106182913,
+        "wins": 2,
+        "our_mean": 83170.0,
+        "opponent_mean": 80462.0,
+        "margin_mean": 2708.0
+      },
+      {
+        "player": "LI Mufeng",
+        "episode": 106180754,
+        "wins": 2,
+        "our_mean": 74344.0,
+        "opponent_mean": 71112.0,
+        "margin_mean": 3232.0
+      },
+      {
+        "player": "LI Mufeng",
+        "episode": 106179152,
+        "wins": 2,
+        "our_mean": 121045.0,
+        "opponent_mean": 116733.0,
+        "margin_mean": 4312.0
+      },
+      {
+        "player": "LI Mufeng",
+        "episode": 106178906,
+        "wins": 2,
+        "our_mean": 60255.0,
+        "opponent_mean": 59939.0,
+        "margin_mean": 316.0
+      },
+      {
+        "player": "LI Mufeng",
+        "episode": 106177434,
+        "wins": 0,
+        "our_mean": 83791.0,
+        "opponent_mean": 93668.0,
+        "margin_mean": -9877.0
+      },
+      {
+        "player": "SJY321",
+        "episode": 106180964,
+        "wins": 2,
+        "our_mean": 97048.0,
+        "opponent_mean": 86103.0,
+        "margin_mean": 10945.0
+      },
+      {
+        "player": "SJY321",
+        "episode": 106178286,
+        "wins": 2,
+        "our_mean": 118940.0,
+        "opponent_mean": 93514.0,
+        "margin_mean": 25426.0
+      },
+      {
+        "player": "SJY321",
+        "episode": 106176371,
+        "wins": 0,
+        "our_mean": 85083.0,
+        "opponent_mean": 99155.0,
+        "margin_mean": -14072.0
+      },
+      {
+        "player": "SJY321",
+        "episode": 106173709,
+        "wins": 2,
+        "our_mean": 131400.5,
+        "opponent_mean": 69810.5,
+        "margin_mean": 61590.0
+      },
+      {
+        "player": "SJY321",
+        "episode": 106171098,
+        "wins": 1,
+        "our_mean": 93561.0,
+        "opponent_mean": 97057.0,
+        "margin_mean": -3496.0
+      },
+      {
+        "player": "Ueddy",
+        "episode": 106180964,
+        "wins": 0,
+        "our_mean": 83306.0,
+        "opponent_mean": 90780.0,
+        "margin_mean": -7474.0
+      },
+      {
+        "player": "Ueddy",
+        "episode": 106180962,
+        "wins": 0,
+        "our_mean": 71815.0,
+        "opponent_mean": 77553.0,
+        "margin_mean": -5738.0
+      },
+      {
+        "player": "Ueddy",
+        "episode": 106176369,
+        "wins": 0,
+        "our_mean": 100067.0,
+        "opponent_mean": 113669.0,
+        "margin_mean": -13602.0
+      },
+      {
+        "player": "Ueddy",
+        "episode": 106175612,
+        "wins": 0,
+        "our_mean": 62689.0,
+        "opponent_mean": 63635.0,
+        "margin_mean": -946.0
+      },
+      {
+        "player": "Ueddy",
+        "episode": 106175554,
+        "wins": 2,
+        "our_mean": 74118.0,
+        "opponent_mean": 71931.0,
+        "margin_mean": 2187.0
+      },
+      {
+        "player": "mandgeee",
+        "episode": 106181341,
+        "wins": 0,
+        "our_mean": 86183.0,
+        "opponent_mean": 97861.0,
+        "margin_mean": -11678.0
+      },
+      {
+        "player": "mandgeee",
+        "episode": 106181316,
+        "wins": 2,
+        "our_mean": 69506.0,
+        "opponent_mean": 69077.0,
+        "margin_mean": 429.0
+      },
+      {
+        "player": "mandgeee",
+        "episode": 106180972,
+        "wins": 0,
+        "our_mean": 127683.5,
+        "opponent_mean": 139212.5,
+        "margin_mean": -11529.0
+      },
+      {
+        "player": "mandgeee",
+        "episode": 106180444,
+        "wins": 0,
+        "our_mean": 71614.0,
+        "opponent_mean": 73057.0,
+        "margin_mean": -1443.0
+      },
+      {
+        "player": "mandgeee",
+        "episode": 106180403,
+        "wins": 0,
+        "our_mean": 103240.0,
+        "opponent_mean": 111247.0,
+        "margin_mean": -8007.0
+      },
+      {
+        "player": "taiseiu",
+        "episode": 106182372,
+        "wins": 0,
+        "our_mean": 89448.0,
+        "opponent_mean": 93869.0,
+        "margin_mean": -4421.0
+      },
+      {
+        "player": "taiseiu",
+        "episode": 106182007,
+        "wins": 0,
+        "our_mean": 90824.0,
+        "opponent_mean": 93842.0,
+        "margin_mean": -3018.0
+      },
+      {
+        "player": "taiseiu",
+        "episode": 106181030,
+        "wins": 1,
+        "our_mean": 97689.5,
+        "opponent_mean": 97571.5,
+        "margin_mean": 118.0
+      },
+      {
+        "player": "taiseiu",
+        "episode": 106180917,
+        "wins": 0,
+        "our_mean": 39895.0,
+        "opponent_mean": 45731.0,
+        "margin_mean": -5836.0
+      },
+      {
+        "player": "taiseiu",
+        "episode": 106178961,
+        "wins": 0,
+        "our_mean": 89714.0,
+        "opponent_mean": 97519.0,
+        "margin_mean": -7805.0
+      },
+      {
+        "player": "Crop Dusta",
+        "episode": 106180968,
+        "wins": 2,
+        "our_mean": 119108.0,
+        "opponent_mean": 99534.0,
+        "margin_mean": 19574.0
+      },
+      {
+        "player": "Crop Dusta",
+        "episode": 106180966,
+        "wins": 2,
+        "our_mean": 119929.0,
+        "opponent_mean": 48995.0,
+        "margin_mean": 70934.0
+      },
+      {
+        "player": "Crop Dusta",
+        "episode": 106178266,
+        "wins": 2,
+        "our_mean": 94615.0,
+        "opponent_mean": 38514.5,
+        "margin_mean": 56100.5
+      },
+      {
+        "player": "Crop Dusta",
+        "episode": 106176376,
+        "wins": 0,
+        "our_mean": 63495.0,
+        "opponent_mean": 68487.0,
+        "margin_mean": -4992.0
+      },
+      {
+        "player": "Crop Dusta",
+        "episode": 106173398,
+        "wins": 2,
+        "our_mean": 116313.0,
+        "opponent_mean": 61579.0,
+        "margin_mean": 54734.0
+      },
+      {
+        "player": "John Doge",
+        "episode": 106182806,
+        "wins": 0,
+        "our_mean": 72873.0,
+        "opponent_mean": 74276.0,
+        "margin_mean": -1403.0
+      },
+      {
+        "player": "John Doge",
+        "episode": 106182788,
+        "wins": 0,
+        "our_mean": 53021.0,
+        "opponent_mean": 63810.0,
+        "margin_mean": -10789.0
+      },
+      {
+        "player": "John Doge",
+        "episode": 106182702,
+        "wins": 0,
+        "our_mean": 54035.0,
+        "opponent_mean": 65770.0,
+        "margin_mean": -11735.0
+      },
+      {
+        "player": "John Doge",
+        "episode": 106178322,
+        "wins": 2,
+        "our_mean": 105304.0,
+        "opponent_mean": 104507.0,
+        "margin_mean": 797.0
+      },
+      {
+        "player": "John Doge",
+        "episode": 106178292,
+        "wins": 0,
+        "our_mean": 124038.0,
+        "opponent_mean": 124851.0,
+        "margin_mean": -813.0
+      },
+      {
+        "player": "MtN",
+        "episode": 106183227,
+        "wins": 0,
+        "our_mean": 59421.0,
+        "opponent_mean": 60569.0,
+        "margin_mean": -1148.0
+      },
+      {
+        "player": "MtN",
+        "episode": 106182988,
+        "wins": 1,
+        "our_mean": 78281.5,
+        "opponent_mean": 78306.5,
+        "margin_mean": -25.0
+      },
+      {
+        "player": "MtN",
+        "episode": 106182909,
+        "wins": 2,
+        "our_mean": 109883.0,
+        "opponent_mean": 106599.0,
+        "margin_mean": 3284.0
+      },
+      {
+        "player": "MtN",
+        "episode": 106182096,
+        "wins": 0,
+        "our_mean": 80342.0,
+        "opponent_mean": 93693.0,
+        "margin_mean": -13351.0
+      },
+      {
+        "player": "MtN",
+        "episode": 106181640,
+        "wins": 2,
+        "our_mean": 142899.0,
+        "opponent_mean": 128516.0,
+        "margin_mean": 14383.0
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "episode": 106184573,
+        "wins": 0,
+        "our_mean": 63145.0,
+        "opponent_mean": 72624.0,
+        "margin_mean": -9479.0
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "episode": 106184395,
+        "wins": 0,
+        "our_mean": 85597.0,
+        "opponent_mean": 92089.0,
+        "margin_mean": -6492.0
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "episode": 106183475,
+        "wins": 0,
+        "our_mean": 71061.0,
+        "opponent_mean": 73603.5,
+        "margin_mean": -2542.5
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "episode": 106182585,
+        "wins": 1,
+        "our_mean": 95894.5,
+        "opponent_mean": 98914.0,
+        "margin_mean": -3019.5
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "episode": 106182332,
+        "wins": 0,
+        "our_mean": 112364.0,
+        "opponent_mean": 122191.0,
+        "margin_mean": -9827.0
+      },
+      {
+        "player": "hana87hana",
+        "episode": 106181831,
+        "wins": 0,
+        "our_mean": 58574.5,
+        "opponent_mean": 65895.5,
+        "margin_mean": -7321.0
+      },
+      {
+        "player": "hana87hana",
+        "episode": 106181685,
+        "wins": 2,
+        "our_mean": 77319.0,
+        "opponent_mean": 71716.0,
+        "margin_mean": 5603.0
+      },
+      {
+        "player": "hana87hana",
+        "episode": 106180606,
+        "wins": 0,
+        "our_mean": 63526.0,
+        "opponent_mean": 71413.0,
+        "margin_mean": -7887.0
+      },
+      {
+        "player": "hana87hana",
+        "episode": 106179197,
+        "wins": 0,
+        "our_mean": 37809.0,
+        "opponent_mean": 46790.0,
+        "margin_mean": -8981.0
+      },
+      {
+        "player": "hana87hana",
+        "episode": 106176989,
+        "wins": 0,
+        "our_mean": 137702.0,
+        "opponent_mean": 144576.0,
+        "margin_mean": -6874.0
+      },
+      {
+        "player": "rian",
+        "episode": 106183326,
+        "wins": 0,
+        "our_mean": 63880.0,
+        "opponent_mean": 69142.5,
+        "margin_mean": -5262.5
+      },
+      {
+        "player": "rian",
+        "episode": 106181341,
+        "wins": 0,
+        "our_mean": 86300.0,
+        "opponent_mean": 94427.0,
+        "margin_mean": -8127.0
+      },
+      {
+        "player": "rian",
+        "episode": 106180595,
+        "wins": 0,
+        "our_mean": 43962.0,
+        "opponent_mean": 50456.0,
+        "margin_mean": -6494.0
+      },
+      {
+        "player": "rian",
+        "episode": 106180176,
+        "wins": 0,
+        "our_mean": 56743.0,
+        "opponent_mean": 58439.0,
+        "margin_mean": -1696.0
+      },
+      {
+        "player": "rian",
+        "episode": 106180175,
+        "wins": 0,
+        "our_mean": 89696.0,
+        "opponent_mean": 95487.0,
+        "margin_mean": -5791.0
+      },
+      {
+        "player": "我都先道歉",
+        "episode": 106180736,
+        "wins": 0,
+        "our_mean": 98068.0,
+        "opponent_mean": 117601.0,
+        "margin_mean": -19533.0
+      },
+      {
+        "player": "我都先道歉",
+        "episode": 106179828,
+        "wins": 0,
+        "our_mean": 129936.0,
+        "opponent_mean": 130983.0,
+        "margin_mean": -1047.0
+      },
+      {
+        "player": "我都先道歉",
+        "episode": 106178915,
+        "wins": 0,
+        "our_mean": 70285.0,
+        "opponent_mean": 81114.0,
+        "margin_mean": -10829.0
+      },
+      {
+        "player": "我都先道歉",
+        "episode": 106178015,
+        "wins": 2,
+        "our_mean": 101049.0,
+        "opponent_mean": 85583.0,
+        "margin_mean": 15466.0
+      },
+      {
+        "player": "我都先道歉",
+        "episode": 106177102,
+        "wins": 2,
+        "our_mean": 125406.0,
+        "opponent_mean": 111796.0,
+        "margin_mean": 13610.0
+      },
+      {
+        "player": "Agent 0",
+        "episode": 106180175,
+        "wins": 0,
+        "our_mean": 95184.0,
+        "opponent_mean": 109230.0,
+        "margin_mean": -14046.0
+      },
+      {
+        "player": "Agent 0",
+        "episode": 106177355,
+        "wins": 0,
+        "our_mean": 96017.0,
+        "opponent_mean": 111608.0,
+        "margin_mean": -15591.0
+      },
+      {
+        "player": "Agent 0",
+        "episode": 106177079,
+        "wins": 2,
+        "our_mean": 88207.0,
+        "opponent_mean": 76829.0,
+        "margin_mean": 11378.0
+      },
+      {
+        "player": "Agent 0",
+        "episode": 106175660,
+        "wins": 0,
+        "our_mean": 78142.0,
+        "opponent_mean": 100108.0,
+        "margin_mean": -21966.0
+      },
+      {
+        "player": "Agent 0",
+        "episode": 106173847,
+        "wins": 0,
+        "our_mean": 91600.0,
+        "opponent_mean": 101815.0,
+        "margin_mean": -10215.0
+      },
+      {
+        "player": "Dresden",
+        "episode": 106181316,
+        "wins": 2,
+        "our_mean": 88713.0,
+        "opponent_mean": 86079.0,
+        "margin_mean": 2634.0
+      },
+      {
+        "player": "Dresden",
+        "episode": 106180123,
+        "wins": 0,
+        "our_mean": 92762.0,
+        "opponent_mean": 94429.0,
+        "margin_mean": -1667.0
+      },
+      {
+        "player": "Dresden",
+        "episode": 106179277,
+        "wins": 0,
+        "our_mean": 73267.0,
+        "opponent_mean": 89602.0,
+        "margin_mean": -16335.0
+      },
+      {
+        "player": "Dresden",
+        "episode": 106179209,
+        "wins": 0,
+        "our_mean": 101549.0,
+        "opponent_mean": 107479.0,
+        "margin_mean": -5930.0
+      },
+      {
+        "player": "Dresden",
+        "episode": 106175573,
+        "wins": 0,
+        "our_mean": 62305.0,
+        "opponent_mean": 73618.0,
+        "margin_mean": -11313.0
+      },
+      {
+        "player": "KongKongDe",
+        "episode": 106180174,
+        "wins": 0,
+        "our_mean": 84251.0,
+        "opponent_mean": 88424.0,
+        "margin_mean": -4173.0
+      },
+      {
+        "player": "KongKongDe",
+        "episode": 106179276,
+        "wins": 0,
+        "our_mean": 87351.5,
+        "opponent_mean": 99951.0,
+        "margin_mean": -12599.5
+      },
+      {
+        "player": "KongKongDe",
+        "episode": 106179154,
+        "wins": 0,
+        "our_mean": 74577.0,
+        "opponent_mean": 88306.0,
+        "margin_mean": -13729.0
+      },
+      {
+        "player": "KongKongDe",
+        "episode": 106178992,
+        "wins": 2,
+        "our_mean": 86049.0,
+        "opponent_mean": 82593.0,
+        "margin_mean": 3456.0
+      },
+      {
+        "player": "KongKongDe",
+        "episode": 106178262,
+        "wins": 0,
+        "our_mean": 104607.0,
+        "opponent_mean": 119947.0,
+        "margin_mean": -15340.0
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "episode": 106184111,
+        "wins": 0,
+        "our_mean": 109367.0,
+        "opponent_mean": 113090.0,
+        "margin_mean": -3723.0
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "episode": 106183199,
+        "wins": 0,
+        "our_mean": 117088.5,
+        "opponent_mean": 127220.5,
+        "margin_mean": -10132.0
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "episode": 106182297,
+        "wins": 2,
+        "our_mean": 108058.5,
+        "opponent_mean": 105746.5,
+        "margin_mean": 2312.0
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "episode": 106181911,
+        "wins": 0,
+        "our_mean": 89154.0,
+        "opponent_mean": 93466.0,
+        "margin_mean": -4312.0
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "episode": 106181389,
+        "wins": 0,
+        "our_mean": 87575.0,
+        "opponent_mean": 103152.0,
+        "margin_mean": -15577.0
+      },
+      {
+        "player": "Tomoki Hirose",
+        "episode": 106183774,
+        "wins": 2,
+        "our_mean": 60522.0,
+        "opponent_mean": 59336.0,
+        "margin_mean": 1186.0
+      },
+      {
+        "player": "Tomoki Hirose",
+        "episode": 106183447,
+        "wins": 0,
+        "our_mean": 78810.0,
+        "opponent_mean": 90057.0,
+        "margin_mean": -11247.0
+      },
+      {
+        "player": "Tomoki Hirose",
+        "episode": 106183314,
+        "wins": 0,
+        "our_mean": 103080.0,
+        "opponent_mean": 112418.0,
+        "margin_mean": -9338.0
+      },
+      {
+        "player": "Tomoki Hirose",
+        "episode": 106183152,
+        "wins": 0,
+        "our_mean": 114297.0,
+        "opponent_mean": 116662.0,
+        "margin_mean": -2365.0
+      },
+      {
+        "player": "Tomoki Hirose",
+        "episode": 106180176,
+        "wins": 0,
+        "our_mean": 56681.0,
+        "opponent_mean": 58569.0,
+        "margin_mean": -1888.0
+      },
+      {
+        "player": "liyuting",
+        "episode": 106183242,
+        "wins": 0,
+        "our_mean": 90350.0,
+        "opponent_mean": 100889.0,
+        "margin_mean": -10539.0
+      },
+      {
+        "player": "liyuting",
+        "episode": 106182540,
+        "wins": 2,
+        "our_mean": 97820.0,
+        "opponent_mean": 94251.0,
+        "margin_mean": 3569.0
+      },
+      {
+        "player": "liyuting",
+        "episode": 106182330,
+        "wins": 0,
+        "our_mean": 92772.0,
+        "opponent_mean": 94333.0,
+        "margin_mean": -1561.0
+      },
+      {
+        "player": "liyuting",
+        "episode": 106182216,
+        "wins": 0,
+        "our_mean": 64436.0,
+        "opponent_mean": 72052.0,
+        "margin_mean": -7616.0
+      },
+      {
+        "player": "liyuting",
+        "episode": 106182007,
+        "wins": 2,
+        "our_mean": 93339.0,
+        "opponent_mean": 87195.0,
+        "margin_mean": 6144.0
+      },
+      {
+        "player": "t-enstar",
+        "episode": 106183820,
+        "wins": 0,
+        "our_mean": 101613.0,
+        "opponent_mean": 105751.0,
+        "margin_mean": -4138.0
+      },
+      {
+        "player": "t-enstar",
+        "episode": 106181905,
+        "wins": 0,
+        "our_mean": 42153.0,
+        "opponent_mean": 43717.0,
+        "margin_mean": -1564.0
+      },
+      {
+        "player": "t-enstar",
+        "episode": 106180090,
+        "wins": 2,
+        "our_mean": 86833.0,
+        "opponent_mean": 86075.0,
+        "margin_mean": 758.0
+      },
+      {
+        "player": "t-enstar",
+        "episode": 106177409,
+        "wins": 2,
+        "our_mean": 77212.0,
+        "opponent_mean": 77115.0,
+        "margin_mean": 97.0
+      },
+      {
+        "player": "t-enstar",
+        "episode": 106175421,
+        "wins": 0,
+        "our_mean": 118107.0,
+        "opponent_mean": 129472.0,
+        "margin_mean": -11365.0
+      },
+      {
+        "player": "Ant",
+        "episode": 106182894,
+        "wins": 0,
+        "our_mean": 48684.0,
+        "opponent_mean": 52631.0,
+        "margin_mean": -3947.0
+      },
+      {
+        "player": "Ant",
+        "episode": 106179154,
+        "wins": 0,
+        "our_mean": 60292.0,
+        "opponent_mean": 63171.0,
+        "margin_mean": -2879.0
+      },
+      {
+        "player": "Ant",
+        "episode": 106177931,
+        "wins": 2,
+        "our_mean": 104113.0,
+        "opponent_mean": 101508.0,
+        "margin_mean": 2605.0
+      },
+      {
+        "player": "Ant",
+        "episode": 106176431,
+        "wins": 0,
+        "our_mean": 41863.0,
+        "opponent_mean": 48365.0,
+        "margin_mean": -6502.0
+      },
+      {
+        "player": "Ant",
+        "episode": 106174282,
+        "wins": 0,
+        "our_mean": 53676.0,
+        "opponent_mean": 58175.0,
+        "margin_mean": -4499.0
+      },
+      {
+        "player": "Foxure",
+        "episode": 106183427,
+        "wins": 2,
+        "our_mean": 95903.0,
+        "opponent_mean": 91943.0,
+        "margin_mean": 3960.0
+      },
+      {
+        "player": "Foxure",
+        "episode": 106182571,
+        "wins": 2,
+        "our_mean": 84541.0,
+        "opponent_mean": 80838.0,
+        "margin_mean": 3703.0
+      },
+      {
+        "player": "Foxure",
+        "episode": 106181999,
+        "wins": 2,
+        "our_mean": 86679.0,
+        "opponent_mean": 82050.5,
+        "margin_mean": 4628.5
+      },
+      {
+        "player": "Foxure",
+        "episode": 106181539,
+        "wins": 2,
+        "our_mean": 88643.0,
+        "opponent_mean": 88461.0,
+        "margin_mean": 182.0
+      },
+      {
+        "player": "Foxure",
+        "episode": 106180990,
+        "wins": 0,
+        "our_mean": 115096.0,
+        "opponent_mean": 125789.0,
+        "margin_mean": -10693.0
+      },
+      {
+        "player": "Marlubie",
+        "episode": 106180722,
+        "wins": 0,
+        "our_mean": 133063.0,
+        "opponent_mean": 141508.0,
+        "margin_mean": -8445.0
+      },
+      {
+        "player": "Marlubie",
+        "episode": 106180186,
+        "wins": 0,
+        "our_mean": 57520.0,
+        "opponent_mean": 58394.0,
+        "margin_mean": -874.0
+      },
+      {
+        "player": "Marlubie",
+        "episode": 106179792,
+        "wins": 2,
+        "our_mean": 87032.0,
+        "opponent_mean": 86212.5,
+        "margin_mean": 819.5
+      },
+      {
+        "player": "Marlubie",
+        "episode": 106179150,
+        "wins": 0,
+        "our_mean": 77505.5,
+        "opponent_mean": 83804.5,
+        "margin_mean": -6299.0
+      },
+      {
+        "player": "Marlubie",
+        "episode": 106178977,
+        "wins": 0,
+        "our_mean": 75895.0,
+        "opponent_mean": 83266.0,
+        "margin_mean": -7371.0
+      },
+      {
+        "player": "Scott Willis",
+        "episode": 106184143,
+        "wins": 0,
+        "our_mean": 70564.0,
+        "opponent_mean": 80507.0,
+        "margin_mean": -9943.0
+      },
+      {
+        "player": "Scott Willis",
+        "episode": 106182374,
+        "wins": 0,
+        "our_mean": 88931.0,
+        "opponent_mean": 91042.0,
+        "margin_mean": -2111.0
+      },
+      {
+        "player": "Scott Willis",
+        "episode": 106181312,
+        "wins": 2,
+        "our_mean": 92373.0,
+        "opponent_mean": 91844.0,
+        "margin_mean": 529.0
+      },
+      {
+        "player": "Scott Willis",
+        "episode": 106180737,
+        "wins": 0,
+        "our_mean": 99292.0,
+        "opponent_mean": 101746.0,
+        "margin_mean": -2454.0
+      },
+      {
+        "player": "Scott Willis",
+        "episode": 106179807,
+        "wins": 0,
+        "our_mean": 45165.0,
+        "opponent_mean": 61445.0,
+        "margin_mean": -16280.0
+      },
+      {
+        "player": "daulettoibazar",
+        "episode": 106184277,
+        "wins": 0,
+        "our_mean": 87476.0,
+        "opponent_mean": 93957.0,
+        "margin_mean": -6481.0
+      },
+      {
+        "player": "daulettoibazar",
+        "episode": 106183634,
+        "wins": 0,
+        "our_mean": 65792.0,
+        "opponent_mean": 74403.0,
+        "margin_mean": -8611.0
+      },
+      {
+        "player": "daulettoibazar",
+        "episode": 106183362,
+        "wins": 0,
+        "our_mean": 134636.0,
+        "opponent_mean": 144784.0,
+        "margin_mean": -10148.0
+      },
+      {
+        "player": "daulettoibazar",
+        "episode": 106183224,
+        "wins": 1,
+        "our_mean": 88128.5,
+        "opponent_mean": 86794.5,
+        "margin_mean": 1334.0
+      },
+      {
+        "player": "daulettoibazar",
+        "episode": 106182451,
+        "wins": 0,
+        "our_mean": 47556.0,
+        "opponent_mean": 51063.0,
+        "margin_mean": -3507.0
+      },
+      {
+        "player": "mikelou1",
+        "episode": 106181921,
+        "wins": 0,
+        "our_mean": 83955.0,
+        "opponent_mean": 88702.0,
+        "margin_mean": -4747.0
+      },
+      {
+        "player": "mikelou1",
+        "episode": 106181798,
+        "wins": 2,
+        "our_mean": 60477.0,
+        "opponent_mean": 59528.0,
+        "margin_mean": 949.0
+      },
+      {
+        "player": "mikelou1",
+        "episode": 106177434,
+        "wins": 0,
+        "our_mean": 83808.0,
+        "opponent_mean": 93896.0,
+        "margin_mean": -10088.0
+      },
+      {
+        "player": "mikelou1",
+        "episode": 106176780,
+        "wins": 2,
+        "our_mean": 103907.0,
+        "opponent_mean": 100006.0,
+        "margin_mean": 3901.0
+      },
+      {
+        "player": "mikelou1",
+        "episode": 106174745,
+        "wins": 0,
+        "our_mean": 40082.0,
+        "opponent_mean": 45090.0,
+        "margin_mean": -5008.0
+      },
+      {
+        "player": "tetsuya & yuanzhe zhou",
+        "episode": 106183339,
+        "wins": 0,
+        "our_mean": 112851.0,
+        "opponent_mean": 122990.0,
+        "margin_mean": -10139.0
+      },
+      {
+        "player": "tetsuya & yuanzhe zhou",
+        "episode": 106182747,
+        "wins": 0,
+        "our_mean": 85273.0,
+        "opponent_mean": 94814.0,
+        "margin_mean": -9541.0
+      },
+      {
+        "player": "tetsuya & yuanzhe zhou",
+        "episode": 106181911,
+        "wins": 0,
+        "our_mean": 83819.0,
+        "opponent_mean": 90326.0,
+        "margin_mean": -6507.0
+      },
+      {
+        "player": "tetsuya & yuanzhe zhou",
+        "episode": 106180157,
+        "wins": 0,
+        "our_mean": 118675.0,
+        "opponent_mean": 123154.0,
+        "margin_mean": -4479.0
+      },
+      {
+        "player": "tetsuya & yuanzhe zhou",
+        "episode": 106179195,
+        "wins": 2,
+        "our_mean": 79438.0,
+        "opponent_mean": 78887.0,
+        "margin_mean": 551.0
+      },
+      {
+        "player": "CemBas",
+        "episode": 106181714,
+        "wins": 0,
+        "our_mean": 68261.0,
+        "opponent_mean": 71267.0,
+        "margin_mean": -3006.0
+      },
+      {
+        "player": "CemBas",
+        "episode": 106180731,
+        "wins": 2,
+        "our_mean": 83268.0,
+        "opponent_mean": 79852.0,
+        "margin_mean": 3416.0
+      },
+      {
+        "player": "CemBas",
+        "episode": 106180122,
+        "wins": 0,
+        "our_mean": 130978.0,
+        "opponent_mean": 132465.0,
+        "margin_mean": -1487.0
+      },
+      {
+        "player": "CemBas",
+        "episode": 106178933,
+        "wins": 0,
+        "our_mean": 102178.0,
+        "opponent_mean": 105224.0,
+        "margin_mean": -3046.0
+      },
+      {
+        "player": "CemBas",
+        "episode": 106177460,
+        "wins": 0,
+        "our_mean": 36178.0,
+        "opponent_mean": 42890.0,
+        "margin_mean": -6712.0
+      },
+      {
+        "player": "Jiro2",
+        "episode": 106180966,
+        "wins": 2,
+        "our_mean": 140796.0,
+        "opponent_mean": 113129.0,
+        "margin_mean": 27667.0
+      },
+      {
+        "player": "Jiro2",
+        "episode": 106180962,
+        "wins": 0,
+        "our_mean": 70576.0,
+        "opponent_mean": 76135.0,
+        "margin_mean": -5559.0
+      },
+      {
+        "player": "Jiro2",
+        "episode": 106180791,
+        "wins": 0,
+        "our_mean": 73458.0,
+        "opponent_mean": 83411.0,
+        "margin_mean": -9953.0
+      },
+      {
+        "player": "Jiro2",
+        "episode": 106179519,
+        "wins": 2,
+        "our_mean": 102793.5,
+        "opponent_mean": 91857.5,
+        "margin_mean": 10936.0
+      },
+      {
+        "player": "Jiro2",
+        "episode": 106178384,
+        "wins": 0,
+        "our_mean": 60115.0,
+        "opponent_mean": 65327.0,
+        "margin_mean": -5212.0
+      },
+      {
+        "player": "Milan Leonard",
+        "episode": 106180845,
+        "wins": 2,
+        "our_mean": 50179.5,
+        "opponent_mean": 28786.0,
+        "margin_mean": 21393.5
+      },
+      {
+        "player": "Milan Leonard",
+        "episode": 106180174,
+        "wins": 2,
+        "our_mean": 104100.0,
+        "opponent_mean": 102343.0,
+        "margin_mean": 1757.0
+      },
+      {
+        "player": "Milan Leonard",
+        "episode": 106175659,
+        "wins": 2,
+        "our_mean": 87879.0,
+        "opponent_mean": 66062.0,
+        "margin_mean": 21817.0
+      },
+      {
+        "player": "Milan Leonard",
+        "episode": 106175612,
+        "wins": 0,
+        "our_mean": 83025.0,
+        "opponent_mean": 94517.0,
+        "margin_mean": -11492.0
+      },
+      {
+        "player": "Milan Leonard",
+        "episode": 106175560,
+        "wins": 0,
+        "our_mean": 136210.0,
+        "opponent_mean": 162310.0,
+        "margin_mean": -26100.0
+      },
+      {
+        "player": "Syed Asad Ali",
+        "episode": 106180114,
+        "wins": 0,
+        "our_mean": 89191.0,
+        "opponent_mean": 92436.0,
+        "margin_mean": -3245.0
+      },
+      {
+        "player": "Syed Asad Ali",
+        "episode": 106179926,
+        "wins": 2,
+        "our_mean": 125649.0,
+        "opponent_mean": 121147.0,
+        "margin_mean": 4502.0
+      },
+      {
+        "player": "Syed Asad Ali",
+        "episode": 106179279,
+        "wins": 0,
+        "our_mean": 100208.0,
+        "opponent_mean": 104199.0,
+        "margin_mean": -3991.0
+      },
+      {
+        "player": "Syed Asad Ali",
+        "episode": 106178992,
+        "wins": 2,
+        "our_mean": 86684.0,
+        "opponent_mean": 85582.0,
+        "margin_mean": 1102.0
+      },
+      {
+        "player": "Syed Asad Ali",
+        "episode": 106178608,
+        "wins": 2,
+        "our_mean": 85358.0,
+        "opponent_mean": 85032.0,
+        "margin_mean": 326.0
+      },
+      {
+        "player": "get some fries",
+        "episode": 106183105,
+        "wins": 0,
+        "our_mean": 69623.0,
+        "opponent_mean": 73840.0,
+        "margin_mean": -4217.0
+      },
+      {
+        "player": "get some fries",
+        "episode": 106182188,
+        "wins": 2,
+        "our_mean": 88451.0,
+        "opponent_mean": 75586.0,
+        "margin_mean": 12865.0
+      },
+      {
+        "player": "get some fries",
+        "episode": 106181519,
+        "wins": 0,
+        "our_mean": 82369.0,
+        "opponent_mean": 111276.5,
+        "margin_mean": -28907.5
+      },
+      {
+        "player": "get some fries",
+        "episode": 106181292,
+        "wins": 0,
+        "our_mean": 86306.0,
+        "opponent_mean": 89248.0,
+        "margin_mean": -2942.0
+      },
+      {
+        "player": "get some fries",
+        "episode": 106180356,
+        "wins": 2,
+        "our_mean": 76239.5,
+        "opponent_mean": 74928.0,
+        "margin_mean": 1311.5
+      },
+      {
+        "player": "pensukesan",
+        "episode": 106183257,
+        "wins": 0,
+        "our_mean": 97032.0,
+        "opponent_mean": 98938.0,
+        "margin_mean": -1906.0
+      },
+      {
+        "player": "pensukesan",
+        "episode": 106181714,
+        "wins": 1,
+        "our_mean": 60235.0,
+        "opponent_mean": 61423.0,
+        "margin_mean": -1188.0
+      },
+      {
+        "player": "pensukesan",
+        "episode": 106180972,
+        "wins": 0,
+        "our_mean": 127782.5,
+        "opponent_mean": 136824.0,
+        "margin_mean": -9041.5
+      },
+      {
+        "player": "pensukesan",
+        "episode": 106180791,
+        "wins": 0,
+        "our_mean": 76652.0,
+        "opponent_mean": 81235.0,
+        "margin_mean": -4583.0
+      },
+      {
+        "player": "pensukesan",
+        "episode": 106179678,
+        "wins": 2,
+        "our_mean": 59415.0,
+        "opponent_mean": 54787.0,
+        "margin_mean": 4628.0
+      },
+      {
+        "player": "ymg_aq",
+        "episode": 106180731,
+        "wins": 2,
+        "our_mean": 144557.5,
+        "opponent_mean": 46840.0,
+        "margin_mean": 97717.5
+      },
+      {
+        "player": "ymg_aq",
+        "episode": 106180714,
+        "wins": 2,
+        "our_mean": 134137.5,
+        "opponent_mean": 29566.0,
+        "margin_mean": 104571.5
+      },
+      {
+        "player": "ymg_aq",
+        "episode": 106179825,
+        "wins": 2,
+        "our_mean": 128279.0,
+        "opponent_mean": 33496.0,
+        "margin_mean": 94783.0
+      },
+      {
+        "player": "ymg_aq",
+        "episode": 106179794,
+        "wins": 2,
+        "our_mean": 133003.0,
+        "opponent_mean": 83447.0,
+        "margin_mean": 49556.0
+      },
+      {
+        "player": "ymg_aq",
+        "episode": 106178889,
+        "wins": 2,
+        "our_mean": 107482.5,
+        "opponent_mean": 38889.5,
+        "margin_mean": 68593.0
+      },
+      {
+        "player": "Aastik Rajan15",
+        "episode": 106182451,
+        "wins": 0,
+        "our_mean": 47629.0,
+        "opponent_mean": 51843.0,
+        "margin_mean": -4214.0
+      },
+      {
+        "player": "Aastik Rajan15",
+        "episode": 106178812,
+        "wins": 2,
+        "our_mean": 59437.0,
+        "opponent_mean": 49767.0,
+        "margin_mean": 9670.0
+      },
+      {
+        "player": "Aastik Rajan15",
+        "episode": 106178262,
+        "wins": 2,
+        "our_mean": 129283.0,
+        "opponent_mean": 97918.0,
+        "margin_mean": 31365.0
+      },
+      {
+        "player": "Aastik Rajan15",
+        "episode": 106177905,
+        "wins": 2,
+        "our_mean": 137741.0,
+        "opponent_mean": 108029.0,
+        "margin_mean": 29712.0
+      },
+      {
+        "player": "Aastik Rajan15",
+        "episode": 106177460,
+        "wins": 0,
+        "our_mean": 37145.0,
+        "opponent_mean": 45935.0,
+        "margin_mean": -8790.0
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "episode": 106184374,
+        "wins": 0,
+        "our_mean": 85831.5,
+        "opponent_mean": 93212.0,
+        "margin_mean": -7380.5
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "episode": 106181859,
+        "wins": 2,
+        "our_mean": 93616.0,
+        "opponent_mean": 91463.0,
+        "margin_mean": 2153.0
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "episode": 106181840,
+        "wins": 0,
+        "our_mean": 56862.0,
+        "opponent_mean": 61887.5,
+        "margin_mean": -5025.5
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "episode": 106177290,
+        "wins": 0,
+        "our_mean": 62344.0,
+        "opponent_mean": 64531.0,
+        "margin_mean": -2187.0
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "episode": 106177150,
+        "wins": 2,
+        "our_mean": 115606.0,
+        "opponent_mean": 113746.0,
+        "margin_mean": 1860.0
+      },
+      {
+        "player": "Kenneth Alonso",
+        "episode": 106182909,
+        "wins": 2,
+        "our_mean": 106185.0,
+        "opponent_mean": 103685.0,
+        "margin_mean": 2500.0
+      },
+      {
+        "player": "Kenneth Alonso",
+        "episode": 106178649,
+        "wins": 0,
+        "our_mean": 111541.0,
+        "opponent_mean": 121282.0,
+        "margin_mean": -9741.0
+      },
+      {
+        "player": "Kenneth Alonso",
+        "episode": 106178365,
+        "wins": 0,
+        "our_mean": 83784.0,
+        "opponent_mean": 83865.0,
+        "margin_mean": -81.0
+      },
+      {
+        "player": "Kenneth Alonso",
+        "episode": 106178252,
+        "wins": 0,
+        "our_mean": 46585.0,
+        "opponent_mean": 53194.0,
+        "margin_mean": -6609.0
+      },
+      {
+        "player": "Kenneth Alonso",
+        "episode": 106178001,
+        "wins": 0,
+        "our_mean": 62514.0,
+        "opponent_mean": 69212.0,
+        "margin_mean": -6698.0
+      },
+      {
+        "player": "OceanMix",
+        "episode": 106183616,
+        "wins": 0,
+        "our_mean": 107529.0,
+        "opponent_mean": 129820.0,
+        "margin_mean": -22291.0
+      },
+      {
+        "player": "OceanMix",
+        "episode": 106180759,
+        "wins": 2,
+        "our_mean": 126863.0,
+        "opponent_mean": 119463.0,
+        "margin_mean": 7400.0
+      },
+      {
+        "player": "OceanMix",
+        "episode": 106180399,
+        "wins": 0,
+        "our_mean": 89435.0,
+        "opponent_mean": 93809.0,
+        "margin_mean": -4374.0
+      },
+      {
+        "player": "OceanMix",
+        "episode": 106178964,
+        "wins": 0,
+        "our_mean": 62918.0,
+        "opponent_mean": 71570.0,
+        "margin_mean": -8652.0
+      },
+      {
+        "player": "OceanMix",
+        "episode": 106178373,
+        "wins": 0,
+        "our_mean": 87629.0,
+        "opponent_mean": 90772.0,
+        "margin_mean": -3143.0
+      },
+      {
+        "player": "Tiannan Zhang",
+        "episode": 106181921,
+        "wins": 0,
+        "our_mean": 84209.0,
+        "opponent_mean": 89021.0,
+        "margin_mean": -4812.0
+      },
+      {
+        "player": "Tiannan Zhang",
+        "episode": 106180185,
+        "wins": 2,
+        "our_mean": 106389.0,
+        "opponent_mean": 104571.0,
+        "margin_mean": 1818.0
+      },
+      {
+        "player": "Tiannan Zhang",
+        "episode": 106180112,
+        "wins": 0,
+        "our_mean": 63892.0,
+        "opponent_mean": 71163.0,
+        "margin_mean": -7271.0
+      },
+      {
+        "player": "Tiannan Zhang",
+        "episode": 106178266,
+        "wins": 0,
+        "our_mean": 88738.0,
+        "opponent_mean": 89919.5,
+        "margin_mean": -1181.5
+      },
+      {
+        "player": "Tiannan Zhang",
+        "episode": 106175573,
+        "wins": 0,
+        "our_mean": 65587.0,
+        "opponent_mean": 75426.0,
+        "margin_mean": -9839.0
+      },
+      {
+        "player": "keiz",
+        "episode": 106180404,
+        "wins": 2,
+        "our_mean": 136778.0,
+        "opponent_mean": 102762.0,
+        "margin_mean": 34016.0
+      },
+      {
+        "player": "keiz",
+        "episode": 106179497,
+        "wins": 2,
+        "our_mean": 64835.0,
+        "opponent_mean": 64771.0,
+        "margin_mean": 64.0
+      },
+      {
+        "player": "keiz",
+        "episode": 106178578,
+        "wins": 0,
+        "our_mean": 68778.0,
+        "opponent_mean": 69906.0,
+        "margin_mean": -1128.0
+      },
+      {
+        "player": "keiz",
+        "episode": 106177981,
+        "wins": 2,
+        "our_mean": 109160.5,
+        "opponent_mean": 75717.5,
+        "margin_mean": 33443.0
+      },
+      {
+        "player": "keiz",
+        "episode": 106177682,
+        "wins": 2,
+        "our_mean": 103324.5,
+        "opponent_mean": 69344.0,
+        "margin_mean": 33980.5
+      },
+      {
+        "player": "sunyuxiang136",
+        "episode": 106182411,
+        "wins": 2,
+        "our_mean": 58370.0,
+        "opponent_mean": 50341.0,
+        "margin_mean": 8029.0
+      },
+      {
+        "player": "sunyuxiang136",
+        "episode": 106182238,
+        "wins": 0,
+        "our_mean": 68076.5,
+        "opponent_mean": 71707.0,
+        "margin_mean": -3630.5
+      },
+      {
+        "player": "sunyuxiang136",
+        "episode": 106181519,
+        "wins": 2,
+        "our_mean": 102651.5,
+        "opponent_mean": 96835.0,
+        "margin_mean": 5816.5
+      },
+      {
+        "player": "sunyuxiang136",
+        "episode": 106181338,
+        "wins": 2,
+        "our_mean": 78104.5,
+        "opponent_mean": 68151.0,
+        "margin_mean": 9953.5
+      },
+      {
+        "player": "sunyuxiang136",
+        "episode": 106180456,
+        "wins": 0,
+        "our_mean": 149008.0,
+        "opponent_mean": 152050.0,
+        "margin_mean": -3042.0
+      },
+      {
+        "player": "Beyond",
+        "episode": 106180444,
+        "wins": 2,
+        "our_mean": 71846.0,
+        "opponent_mean": 69154.0,
+        "margin_mean": 2692.0
+      },
+      {
+        "player": "Beyond",
+        "episode": 106180403,
+        "wins": 0,
+        "our_mean": 123512.0,
+        "opponent_mean": 129366.0,
+        "margin_mean": -5854.0
+      },
+      {
+        "player": "Beyond",
+        "episode": 106180157,
+        "wins": 0,
+        "our_mean": 101899.0,
+        "opponent_mean": 103153.0,
+        "margin_mean": -1254.0
+      },
+      {
+        "player": "Beyond",
+        "episode": 106180122,
+        "wins": 0,
+        "our_mean": 130535.0,
+        "opponent_mean": 131084.0,
+        "margin_mean": -549.0
+      },
+      {
+        "player": "Beyond",
+        "episode": 106179879,
+        "wins": 0,
+        "our_mean": 82671.0,
+        "opponent_mean": 102284.0,
+        "margin_mean": -19613.0
+      },
+      {
+        "player": "JamesJJJJJ",
+        "episode": 106180048,
+        "wins": 2,
+        "our_mean": 66653.0,
+        "opponent_mean": 62339.0,
+        "margin_mean": 4314.0
+      },
+      {
+        "player": "JamesJJJJJ",
+        "episode": 106179277,
+        "wins": 0,
+        "our_mean": 59999.0,
+        "opponent_mean": 63509.0,
+        "margin_mean": -3510.0
+      },
+      {
+        "player": "JamesJJJJJ",
+        "episode": 106175209,
+        "wins": 0,
+        "our_mean": 60023.0,
+        "opponent_mean": 66549.0,
+        "margin_mean": -6526.0
+      },
+      {
+        "player": "JamesJJJJJ",
+        "episode": 106174747,
+        "wins": 2,
+        "our_mean": 66122.0,
+        "opponent_mean": 64675.0,
+        "margin_mean": 1447.0
+      },
+      {
+        "player": "JamesJJJJJ",
+        "episode": 106172662,
+        "wins": 0,
+        "our_mean": 103253.0,
+        "opponent_mean": 109347.0,
+        "margin_mean": -6094.0
+      },
+      {
+        "player": "Mengfei Li",
+        "episode": 106180736,
+        "wins": 0,
+        "our_mean": 99373.0,
+        "opponent_mean": 147872.0,
+        "margin_mean": -48499.0
+      },
+      {
+        "player": "Mengfei Li",
+        "episode": 106180186,
+        "wins": 0,
+        "our_mean": 57726.0,
+        "opponent_mean": 58006.0,
+        "margin_mean": -280.0
+      },
+      {
+        "player": "Mengfei Li",
+        "episode": 106179828,
+        "wins": 0,
+        "our_mean": 131994.0,
+        "opponent_mean": 134472.0,
+        "margin_mean": -2478.0
+      },
+      {
+        "player": "Mengfei Li",
+        "episode": 106178915,
+        "wins": 2,
+        "our_mean": 125179.0,
+        "opponent_mean": 111057.0,
+        "margin_mean": 14122.0
+      },
+      {
+        "player": "Mengfei Li",
+        "episode": 106178015,
+        "wins": 0,
+        "our_mean": 53620.0,
+        "opponent_mean": 67789.0,
+        "margin_mean": -14169.0
+      },
+      {
+        "player": "Suliman Tadros",
+        "episode": 106180114,
+        "wins": 0,
+        "our_mean": 109436.0,
+        "opponent_mean": 122333.0,
+        "margin_mean": -12897.0
+      },
+      {
+        "player": "Suliman Tadros",
+        "episode": 106179794,
+        "wins": 2,
+        "our_mean": 107625.0,
+        "opponent_mean": 90244.0,
+        "margin_mean": 17381.0
+      },
+      {
+        "player": "Suliman Tadros",
+        "episode": 106178889,
+        "wins": 2,
+        "our_mean": 79308.0,
+        "opponent_mean": 79246.0,
+        "margin_mean": 62.0
+      },
+      {
+        "player": "Suliman Tadros",
+        "episode": 106176376,
+        "wins": 2,
+        "our_mean": 109744.0,
+        "opponent_mean": 104229.0,
+        "margin_mean": 5515.0
+      },
+      {
+        "player": "Suliman Tadros",
+        "episode": 106175239,
+        "wins": 2,
+        "our_mean": 119373.0,
+        "opponent_mean": 103658.0,
+        "margin_mean": 15715.0
+      },
+      {
+        "player": "elmo",
+        "episode": 106181859,
+        "wins": 0,
+        "our_mean": 94072.0,
+        "opponent_mean": 99654.0,
+        "margin_mean": -5582.0
+      },
+      {
+        "player": "elmo",
+        "episode": 106181529,
+        "wins": 2,
+        "our_mean": 81250.0,
+        "opponent_mean": 80821.0,
+        "margin_mean": 429.0
+      },
+      {
+        "player": "elmo",
+        "episode": 106181492,
+        "wins": 0,
+        "our_mean": 90006.0,
+        "opponent_mean": 95148.0,
+        "margin_mean": -5142.0
+      },
+      {
+        "player": "elmo",
+        "episode": 106180659,
+        "wins": 0,
+        "our_mean": 85209.0,
+        "opponent_mean": 89336.0,
+        "margin_mean": -4127.0
+      },
+      {
+        "player": "elmo",
+        "episode": 106180027,
+        "wins": 0,
+        "our_mean": 126876.5,
+        "opponent_mean": 127288.5,
+        "margin_mean": -412.0
+      },
+      {
+        "player": "peikopon",
+        "episode": 106180968,
+        "wins": 2,
+        "our_mean": 105121.0,
+        "opponent_mean": 103656.0,
+        "margin_mean": 1465.0
+      },
+      {
+        "player": "peikopon",
+        "episode": 106180123,
+        "wins": 2,
+        "our_mean": 139625.0,
+        "opponent_mean": 135531.0,
+        "margin_mean": 4094.0
+      },
+      {
+        "player": "peikopon",
+        "episode": 106179279,
+        "wins": 0,
+        "our_mean": 128571.0,
+        "opponent_mean": 139034.0,
+        "margin_mean": -10463.0
+      },
+      {
+        "player": "peikopon",
+        "episode": 106179276,
+        "wins": 1,
+        "our_mean": 106143.5,
+        "opponent_mean": 105249.0,
+        "margin_mean": 894.5
+      },
+      {
+        "player": "peikopon",
+        "episode": 106175659,
+        "wins": 2,
+        "our_mean": 72805.0,
+        "opponent_mean": 72346.0,
+        "margin_mean": 459.0
+      },
+      {
+        "player": "yfy",
+        "episode": 106181935,
+        "wins": 2,
+        "our_mean": 151781.0,
+        "opponent_mean": 98912.0,
+        "margin_mean": 52869.0
+      },
+      {
+        "player": "yfy",
+        "episode": 106180185,
+        "wins": 2,
+        "our_mean": 106789.0,
+        "opponent_mean": 104296.0,
+        "margin_mean": 2493.0
+      },
+      {
+        "player": "yfy",
+        "episode": 106177450,
+        "wins": 2,
+        "our_mean": 91439.0,
+        "opponent_mean": 64545.0,
+        "margin_mean": 26894.0
+      },
+      {
+        "player": "yfy",
+        "episode": 106175677,
+        "wins": 0,
+        "our_mean": 105065.0,
+        "opponent_mean": 107619.0,
+        "margin_mean": -2554.0
+      },
+      {
+        "player": "yfy",
+        "episode": 106175563,
+        "wins": 0,
+        "our_mean": 82750.0,
+        "opponent_mean": 89098.0,
+        "margin_mean": -6348.0
+      }
+    ],
+    "p1_b20s15": [
+      {
+        "player": "Agent 0",
+        "episode": 106180175,
+        "wins": 0,
+        "our_mean": 95184.0,
+        "opponent_mean": 109229.0,
+        "margin_mean": -14045.0
+      },
+      {
+        "player": "Agent 0",
+        "episode": 106177355,
+        "wins": 0,
+        "our_mean": 96017.0,
+        "opponent_mean": 111607.0,
+        "margin_mean": -15590.0
+      },
+      {
+        "player": "Agent 0",
+        "episode": 106177079,
+        "wins": 2,
+        "our_mean": 88207.0,
+        "opponent_mean": 76828.0,
+        "margin_mean": 11379.0
+      },
+      {
+        "player": "Agent 0",
+        "episode": 106175660,
+        "wins": 0,
+        "our_mean": 78142.0,
+        "opponent_mean": 100107.0,
+        "margin_mean": -21965.0
+      },
+      {
+        "player": "Agent 0",
+        "episode": 106173847,
+        "wins": 0,
+        "our_mean": 91600.0,
+        "opponent_mean": 101814.0,
+        "margin_mean": -10214.0
+      },
+      {
+        "player": "Dresden",
+        "episode": 106181316,
+        "wins": 2,
+        "our_mean": 88720.5,
+        "opponent_mean": 86078.5,
+        "margin_mean": 2642.0
+      },
+      {
+        "player": "Dresden",
+        "episode": 106180123,
+        "wins": 0,
+        "our_mean": 92762.5,
+        "opponent_mean": 94429.5,
+        "margin_mean": -1667.0
+      },
+      {
+        "player": "Dresden",
+        "episode": 106179277,
+        "wins": 0,
+        "our_mean": 73267.5,
+        "opponent_mean": 89602.5,
+        "margin_mean": -16335.0
+      },
+      {
+        "player": "Dresden",
+        "episode": 106179209,
+        "wins": 0,
+        "our_mean": 101549.5,
+        "opponent_mean": 107479.5,
+        "margin_mean": -5930.0
+      },
+      {
+        "player": "Dresden",
+        "episode": 106175573,
+        "wins": 0,
+        "our_mean": 62305.5,
+        "opponent_mean": 73618.5,
+        "margin_mean": -11313.0
+      },
+      {
+        "player": "KongKongDe",
+        "episode": 106180174,
+        "wins": 0,
+        "our_mean": 84251.0,
+        "opponent_mean": 88423.0,
+        "margin_mean": -4172.0
+      },
+      {
+        "player": "KongKongDe",
+        "episode": 106179276,
+        "wins": 0,
+        "our_mean": 87351.5,
+        "opponent_mean": 99950.0,
+        "margin_mean": -12598.5
+      },
+      {
+        "player": "KongKongDe",
+        "episode": 106179154,
+        "wins": 0,
+        "our_mean": 74577.0,
+        "opponent_mean": 88305.0,
+        "margin_mean": -13728.0
+      },
+      {
+        "player": "KongKongDe",
+        "episode": 106178992,
+        "wins": 2,
+        "our_mean": 86049.0,
+        "opponent_mean": 82592.0,
+        "margin_mean": 3457.0
+      },
+      {
+        "player": "KongKongDe",
+        "episode": 106178262,
+        "wins": 0,
+        "our_mean": 104607.0,
+        "opponent_mean": 119946.0,
+        "margin_mean": -15339.0
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "episode": 106184111,
+        "wins": 0,
+        "our_mean": 109367.5,
+        "opponent_mean": 113090.5,
+        "margin_mean": -3723.0
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "episode": 106183199,
+        "wins": 0,
+        "our_mean": 117089.0,
+        "opponent_mean": 127221.0,
+        "margin_mean": -10132.0
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "episode": 106182297,
+        "wins": 2,
+        "our_mean": 108059.0,
+        "opponent_mean": 105747.0,
+        "margin_mean": 2312.0
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "episode": 106181911,
+        "wins": 0,
+        "our_mean": 89154.5,
+        "opponent_mean": 93466.5,
+        "margin_mean": -4312.0
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "episode": 106181389,
+        "wins": 0,
+        "our_mean": 87575.5,
+        "opponent_mean": 103152.5,
+        "margin_mean": -15577.0
+      },
+      {
+        "player": "Tomoki Hirose",
+        "episode": 106183774,
+        "wins": 2,
+        "our_mean": 60522.0,
+        "opponent_mean": 59335.0,
+        "margin_mean": 1187.0
+      },
+      {
+        "player": "Tomoki Hirose",
+        "episode": 106183447,
+        "wins": 0,
+        "our_mean": 78810.0,
+        "opponent_mean": 90056.0,
+        "margin_mean": -11246.0
+      },
+      {
+        "player": "Tomoki Hirose",
+        "episode": 106183314,
+        "wins": 0,
+        "our_mean": 103080.0,
+        "opponent_mean": 112417.0,
+        "margin_mean": -9337.0
+      },
+      {
+        "player": "Tomoki Hirose",
+        "episode": 106183152,
+        "wins": 0,
+        "our_mean": 114297.0,
+        "opponent_mean": 116661.0,
+        "margin_mean": -2364.0
+      },
+      {
+        "player": "Tomoki Hirose",
+        "episode": 106180176,
+        "wins": 0,
+        "our_mean": 56681.0,
+        "opponent_mean": 58568.0,
+        "margin_mean": -1887.0
+      },
+      {
+        "player": "liyuting",
+        "episode": 106183242,
+        "wins": 0,
+        "our_mean": 90350.0,
+        "opponent_mean": 100888.0,
+        "margin_mean": -10538.0
+      },
+      {
+        "player": "liyuting",
+        "episode": 106182540,
+        "wins": 2,
+        "our_mean": 97820.0,
+        "opponent_mean": 94250.0,
+        "margin_mean": 3570.0
+      },
+      {
+        "player": "liyuting",
+        "episode": 106182330,
+        "wins": 0,
+        "our_mean": 92772.0,
+        "opponent_mean": 94332.0,
+        "margin_mean": -1560.0
+      },
+      {
+        "player": "liyuting",
+        "episode": 106182216,
+        "wins": 0,
+        "our_mean": 64436.0,
+        "opponent_mean": 72051.0,
+        "margin_mean": -7615.0
+      },
+      {
+        "player": "liyuting",
+        "episode": 106182007,
+        "wins": 2,
+        "our_mean": 93339.0,
+        "opponent_mean": 87194.0,
+        "margin_mean": 6145.0
+      },
+      {
+        "player": "t-enstar",
+        "episode": 106183820,
+        "wins": 0,
+        "our_mean": 101613.0,
+        "opponent_mean": 105750.0,
+        "margin_mean": -4137.0
+      },
+      {
+        "player": "t-enstar",
+        "episode": 106181905,
+        "wins": 0,
+        "our_mean": 42153.0,
+        "opponent_mean": 43716.0,
+        "margin_mean": -1563.0
+      },
+      {
+        "player": "t-enstar",
+        "episode": 106180090,
+        "wins": 2,
+        "our_mean": 86833.0,
+        "opponent_mean": 86074.0,
+        "margin_mean": 759.0
+      },
+      {
+        "player": "t-enstar",
+        "episode": 106177409,
+        "wins": 2,
+        "our_mean": 77212.0,
+        "opponent_mean": 77114.0,
+        "margin_mean": 98.0
+      },
+      {
+        "player": "t-enstar",
+        "episode": 106175421,
+        "wins": 0,
+        "our_mean": 118107.0,
+        "opponent_mean": 129471.0,
+        "margin_mean": -11364.0
+      },
+      {
+        "player": "Aastik Rajan15",
+        "episode": 106182451,
+        "wins": 0,
+        "our_mean": 47629.0,
+        "opponent_mean": 51842.0,
+        "margin_mean": -4213.0
+      },
+      {
+        "player": "Aastik Rajan15",
+        "episode": 106178812,
+        "wins": 2,
+        "our_mean": 59435.5,
+        "opponent_mean": 49767.5,
+        "margin_mean": 9668.0
+      },
+      {
+        "player": "Aastik Rajan15",
+        "episode": 106178262,
+        "wins": 2,
+        "our_mean": 129283.0,
+        "opponent_mean": 97917.0,
+        "margin_mean": 31366.0
+      },
+      {
+        "player": "Aastik Rajan15",
+        "episode": 106177905,
+        "wins": 2,
+        "our_mean": 137739.5,
+        "opponent_mean": 108029.5,
+        "margin_mean": 29710.0
+      },
+      {
+        "player": "Aastik Rajan15",
+        "episode": 106177460,
+        "wins": 0,
+        "our_mean": 37145.0,
+        "opponent_mean": 45934.0,
+        "margin_mean": -8789.0
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "episode": 106184374,
+        "wins": 0,
+        "our_mean": 85832.0,
+        "opponent_mean": 93211.5,
+        "margin_mean": -7379.5
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "episode": 106181859,
+        "wins": 2,
+        "our_mean": 93616.5,
+        "opponent_mean": 91462.5,
+        "margin_mean": 2154.0
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "episode": 106181840,
+        "wins": 0,
+        "our_mean": 56862.5,
+        "opponent_mean": 61887.0,
+        "margin_mean": -5024.5
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "episode": 106177290,
+        "wins": 0,
+        "our_mean": 62344.5,
+        "opponent_mean": 64530.5,
+        "margin_mean": -2186.0
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "episode": 106177150,
+        "wins": 2,
+        "our_mean": 115606.5,
+        "opponent_mean": 113745.5,
+        "margin_mean": 1861.0
+      },
+      {
+        "player": "Kenneth Alonso",
+        "episode": 106182909,
+        "wins": 2,
+        "our_mean": 106185.0,
+        "opponent_mean": 103684.0,
+        "margin_mean": 2501.0
+      },
+      {
+        "player": "Kenneth Alonso",
+        "episode": 106178649,
+        "wins": 0,
+        "our_mean": 111541.0,
+        "opponent_mean": 121281.0,
+        "margin_mean": -9740.0
+      },
+      {
+        "player": "Kenneth Alonso",
+        "episode": 106178365,
+        "wins": 0,
+        "our_mean": 83784.0,
+        "opponent_mean": 83864.0,
+        "margin_mean": -80.0
+      },
+      {
+        "player": "Kenneth Alonso",
+        "episode": 106178252,
+        "wins": 0,
+        "our_mean": 46585.0,
+        "opponent_mean": 53193.0,
+        "margin_mean": -6608.0
+      },
+      {
+        "player": "Kenneth Alonso",
+        "episode": 106178001,
+        "wins": 0,
+        "our_mean": 62514.0,
+        "opponent_mean": 69211.0,
+        "margin_mean": -6697.0
+      },
+      {
+        "player": "OceanMix",
+        "episode": 106183616,
+        "wins": 0,
+        "our_mean": 107529.0,
+        "opponent_mean": 129819.0,
+        "margin_mean": -22290.0
+      },
+      {
+        "player": "OceanMix",
+        "episode": 106180759,
+        "wins": 2,
+        "our_mean": 126863.0,
+        "opponent_mean": 119463.0,
+        "margin_mean": 7400.0
+      },
+      {
+        "player": "OceanMix",
+        "episode": 106180399,
+        "wins": 0,
+        "our_mean": 89435.0,
+        "opponent_mean": 93809.0,
+        "margin_mean": -4374.0
+      },
+      {
+        "player": "OceanMix",
+        "episode": 106178964,
+        "wins": 0,
+        "our_mean": 62918.0,
+        "opponent_mean": 71569.0,
+        "margin_mean": -8651.0
+      },
+      {
+        "player": "OceanMix",
+        "episode": 106178373,
+        "wins": 0,
+        "our_mean": 87629.0,
+        "opponent_mean": 90772.0,
+        "margin_mean": -3143.0
+      },
+      {
+        "player": "Tiannan Zhang",
+        "episode": 106181921,
+        "wins": 0,
+        "our_mean": 84209.0,
+        "opponent_mean": 89020.0,
+        "margin_mean": -4811.0
+      },
+      {
+        "player": "Tiannan Zhang",
+        "episode": 106180185,
+        "wins": 2,
+        "our_mean": 106389.0,
+        "opponent_mean": 104570.0,
+        "margin_mean": 1819.0
+      },
+      {
+        "player": "Tiannan Zhang",
+        "episode": 106180112,
+        "wins": 0,
+        "our_mean": 63892.0,
+        "opponent_mean": 71162.0,
+        "margin_mean": -7270.0
+      },
+      {
+        "player": "Tiannan Zhang",
+        "episode": 106178266,
+        "wins": 0,
+        "our_mean": 88738.0,
+        "opponent_mean": 89918.5,
+        "margin_mean": -1180.5
+      },
+      {
+        "player": "Tiannan Zhang",
+        "episode": 106175573,
+        "wins": 0,
+        "our_mean": 65587.0,
+        "opponent_mean": 75425.0,
+        "margin_mean": -9838.0
+      },
+      {
+        "player": "keiz",
+        "episode": 106180404,
+        "wins": 2,
+        "our_mean": 136779.5,
+        "opponent_mean": 102762.0,
+        "margin_mean": 34017.5
+      },
+      {
+        "player": "keiz",
+        "episode": 106179497,
+        "wins": 2,
+        "our_mean": 64836.5,
+        "opponent_mean": 64771.0,
+        "margin_mean": 65.5
+      },
+      {
+        "player": "keiz",
+        "episode": 106178578,
+        "wins": 0,
+        "our_mean": 68779.5,
+        "opponent_mean": 69906.0,
+        "margin_mean": -1126.5
+      },
+      {
+        "player": "keiz",
+        "episode": 106177981,
+        "wins": 2,
+        "our_mean": 109159.5,
+        "opponent_mean": 75717.5,
+        "margin_mean": 33442.0
+      },
+      {
+        "player": "keiz",
+        "episode": 106177682,
+        "wins": 2,
+        "our_mean": 103326.0,
+        "opponent_mean": 69344.0,
+        "margin_mean": 33982.0
+      },
+      {
+        "player": "sunyuxiang136",
+        "episode": 106182411,
+        "wins": 2,
+        "our_mean": 58370.0,
+        "opponent_mean": 50340.0,
+        "margin_mean": 8030.0
+      },
+      {
+        "player": "sunyuxiang136",
+        "episode": 106182238,
+        "wins": 0,
+        "our_mean": 68076.5,
+        "opponent_mean": 71706.0,
+        "margin_mean": -3629.5
+      },
+      {
+        "player": "sunyuxiang136",
+        "episode": 106181519,
+        "wins": 2,
+        "our_mean": 102651.5,
+        "opponent_mean": 96834.0,
+        "margin_mean": 5817.5
+      },
+      {
+        "player": "sunyuxiang136",
+        "episode": 106181338,
+        "wins": 2,
+        "our_mean": 78104.5,
+        "opponent_mean": 68150.0,
+        "margin_mean": 9954.5
+      },
+      {
+        "player": "sunyuxiang136",
+        "episode": 106180456,
+        "wins": 0,
+        "our_mean": 149008.0,
+        "opponent_mean": 152049.0,
+        "margin_mean": -3041.0
+      },
+      {
+        "player": "Andrey Tikhomirov",
+        "episode": 106182537,
+        "wins": 2,
+        "our_mean": 111441.0,
+        "opponent_mean": 102497.0,
+        "margin_mean": 8944.0
+      },
+      {
+        "player": "Andrey Tikhomirov",
+        "episode": 106180714,
+        "wins": 1,
+        "our_mean": 103060.0,
+        "opponent_mean": 104300.5,
+        "margin_mean": -1240.5
+      },
+      {
+        "player": "Andrey Tikhomirov",
+        "episode": 106180056,
+        "wins": 0,
+        "our_mean": 42894.0,
+        "opponent_mean": 55403.0,
+        "margin_mean": -12509.0
+      },
+      {
+        "player": "Andrey Tikhomirov",
+        "episode": 106179229,
+        "wins": 0,
+        "our_mean": 70597.5,
+        "opponent_mean": 72962.5,
+        "margin_mean": -2365.0
+      },
+      {
+        "player": "Andrey Tikhomirov",
+        "episode": 106178223,
+        "wins": 2,
+        "our_mean": 99341.0,
+        "opponent_mean": 78942.0,
+        "margin_mean": 20399.0
+      },
+      {
+        "player": "Driz Lo",
+        "episode": 106183411,
+        "wins": 0,
+        "our_mean": 95756.0,
+        "opponent_mean": 107580.0,
+        "margin_mean": -11824.0
+      },
+      {
+        "player": "Driz Lo",
+        "episode": 106182411,
+        "wins": 0,
+        "our_mean": 49107.0,
+        "opponent_mean": 54318.0,
+        "margin_mean": -5211.0
+      },
+      {
+        "player": "Driz Lo",
+        "episode": 106181623,
+        "wins": 2,
+        "our_mean": 94496.0,
+        "opponent_mean": 93444.5,
+        "margin_mean": 1051.5
+      },
+      {
+        "player": "Driz Lo",
+        "episode": 106180945,
+        "wins": 0,
+        "our_mean": 69420.0,
+        "opponent_mean": 75246.0,
+        "margin_mean": -5826.0
+      },
+      {
+        "player": "Driz Lo",
+        "episode": 106180083,
+        "wins": 0,
+        "our_mean": 77820.0,
+        "opponent_mean": 91316.5,
+        "margin_mean": -13496.5
+      },
+      {
+        "player": "LI Mufeng",
+        "episode": 106182913,
+        "wins": 2,
+        "our_mean": 83170.5,
+        "opponent_mean": 80460.0,
+        "margin_mean": 2710.5
+      },
+      {
+        "player": "LI Mufeng",
+        "episode": 106180754,
+        "wins": 2,
+        "our_mean": 74344.0,
+        "opponent_mean": 71111.0,
+        "margin_mean": 3233.0
+      },
+      {
+        "player": "LI Mufeng",
+        "episode": 106179152,
+        "wins": 2,
+        "our_mean": 121045.0,
+        "opponent_mean": 116732.0,
+        "margin_mean": 4313.0
+      },
+      {
+        "player": "LI Mufeng",
+        "episode": 106178906,
+        "wins": 2,
+        "our_mean": 60255.5,
+        "opponent_mean": 59937.5,
+        "margin_mean": 318.0
+      },
+      {
+        "player": "LI Mufeng",
+        "episode": 106177434,
+        "wins": 0,
+        "our_mean": 83791.0,
+        "opponent_mean": 93667.0,
+        "margin_mean": -9876.0
+      },
+      {
+        "player": "SJY321",
+        "episode": 106180964,
+        "wins": 2,
+        "our_mean": 97048.0,
+        "opponent_mean": 86103.0,
+        "margin_mean": 10945.0
+      },
+      {
+        "player": "SJY321",
+        "episode": 106178286,
+        "wins": 2,
+        "our_mean": 118940.0,
+        "opponent_mean": 93514.0,
+        "margin_mean": 25426.0
+      },
+      {
+        "player": "SJY321",
+        "episode": 106176371,
+        "wins": 0,
+        "our_mean": 85083.0,
+        "opponent_mean": 99155.0,
+        "margin_mean": -14072.0
+      },
+      {
+        "player": "SJY321",
+        "episode": 106173709,
+        "wins": 2,
+        "our_mean": 131400.5,
+        "opponent_mean": 69810.5,
+        "margin_mean": 61590.0
+      },
+      {
+        "player": "SJY321",
+        "episode": 106171098,
+        "wins": 1,
+        "our_mean": 93561.0,
+        "opponent_mean": 97057.0,
+        "margin_mean": -3496.0
+      },
+      {
+        "player": "Ueddy",
+        "episode": 106180964,
+        "wins": 0,
+        "our_mean": 83306.0,
+        "opponent_mean": 90779.0,
+        "margin_mean": -7473.0
+      },
+      {
+        "player": "Ueddy",
+        "episode": 106180962,
+        "wins": 0,
+        "our_mean": 71815.0,
+        "opponent_mean": 77552.0,
+        "margin_mean": -5737.0
+      },
+      {
+        "player": "Ueddy",
+        "episode": 106176369,
+        "wins": 0,
+        "our_mean": 100067.0,
+        "opponent_mean": 113668.0,
+        "margin_mean": -13601.0
+      },
+      {
+        "player": "Ueddy",
+        "episode": 106175612,
+        "wins": 0,
+        "our_mean": 62689.0,
+        "opponent_mean": 63634.0,
+        "margin_mean": -945.0
+      },
+      {
+        "player": "Ueddy",
+        "episode": 106175554,
+        "wins": 2,
+        "our_mean": 74118.0,
+        "opponent_mean": 71930.0,
+        "margin_mean": 2188.0
+      },
+      {
+        "player": "mandgeee",
+        "episode": 106181341,
+        "wins": 0,
+        "our_mean": 86183.5,
+        "opponent_mean": 97860.5,
+        "margin_mean": -11677.0
+      },
+      {
+        "player": "mandgeee",
+        "episode": 106181316,
+        "wins": 2,
+        "our_mean": 69506.5,
+        "opponent_mean": 69076.5,
+        "margin_mean": 430.0
+      },
+      {
+        "player": "mandgeee",
+        "episode": 106180972,
+        "wins": 0,
+        "our_mean": 127684.0,
+        "opponent_mean": 139212.0,
+        "margin_mean": -11528.0
+      },
+      {
+        "player": "mandgeee",
+        "episode": 106180444,
+        "wins": 0,
+        "our_mean": 71614.5,
+        "opponent_mean": 73056.5,
+        "margin_mean": -1442.0
+      },
+      {
+        "player": "mandgeee",
+        "episode": 106180403,
+        "wins": 0,
+        "our_mean": 103240.5,
+        "opponent_mean": 111246.5,
+        "margin_mean": -8006.0
+      },
+      {
+        "player": "taiseiu",
+        "episode": 106182372,
+        "wins": 0,
+        "our_mean": 89448.0,
+        "opponent_mean": 93869.0,
+        "margin_mean": -4421.0
+      },
+      {
+        "player": "taiseiu",
+        "episode": 106182007,
+        "wins": 0,
+        "our_mean": 90824.0,
+        "opponent_mean": 93842.0,
+        "margin_mean": -3018.0
+      },
+      {
+        "player": "taiseiu",
+        "episode": 106181030,
+        "wins": 1,
+        "our_mean": 97689.5,
+        "opponent_mean": 97571.5,
+        "margin_mean": 118.0
+      },
+      {
+        "player": "taiseiu",
+        "episode": 106180917,
+        "wins": 0,
+        "our_mean": 39895.0,
+        "opponent_mean": 45731.0,
+        "margin_mean": -5836.0
+      },
+      {
+        "player": "taiseiu",
+        "episode": 106178961,
+        "wins": 0,
+        "our_mean": 89714.0,
+        "opponent_mean": 97519.0,
+        "margin_mean": -7805.0
+      },
+      {
+        "player": "Crop Dusta",
+        "episode": 106180968,
+        "wins": 2,
+        "our_mean": 119108.0,
+        "opponent_mean": 99534.0,
+        "margin_mean": 19574.0
+      },
+      {
+        "player": "Crop Dusta",
+        "episode": 106180966,
+        "wins": 2,
+        "our_mean": 119929.0,
+        "opponent_mean": 48995.0,
+        "margin_mean": 70934.0
+      },
+      {
+        "player": "Crop Dusta",
+        "episode": 106178266,
+        "wins": 2,
+        "our_mean": 94615.0,
+        "opponent_mean": 38514.5,
+        "margin_mean": 56100.5
+      },
+      {
+        "player": "Crop Dusta",
+        "episode": 106176376,
+        "wins": 0,
+        "our_mean": 63495.0,
+        "opponent_mean": 68487.0,
+        "margin_mean": -4992.0
+      },
+      {
+        "player": "Crop Dusta",
+        "episode": 106173398,
+        "wins": 2,
+        "our_mean": 116313.0,
+        "opponent_mean": 61579.0,
+        "margin_mean": 54734.0
+      },
+      {
+        "player": "John Doge",
+        "episode": 106182806,
+        "wins": 0,
+        "our_mean": 72874.5,
+        "opponent_mean": 74276.0,
+        "margin_mean": -1401.5
+      },
+      {
+        "player": "John Doge",
+        "episode": 106182788,
+        "wins": 0,
+        "our_mean": 53022.5,
+        "opponent_mean": 63810.0,
+        "margin_mean": -10787.5
+      },
+      {
+        "player": "John Doge",
+        "episode": 106182702,
+        "wins": 0,
+        "our_mean": 54036.5,
+        "opponent_mean": 65770.0,
+        "margin_mean": -11733.5
+      },
+      {
+        "player": "John Doge",
+        "episode": 106178322,
+        "wins": 2,
+        "our_mean": 105305.5,
+        "opponent_mean": 104507.0,
+        "margin_mean": 798.5
+      },
+      {
+        "player": "John Doge",
+        "episode": 106178292,
+        "wins": 0,
+        "our_mean": 124039.5,
+        "opponent_mean": 124851.0,
+        "margin_mean": -811.5
+      },
+      {
+        "player": "MtN",
+        "episode": 106183227,
+        "wins": 0,
+        "our_mean": 59421.0,
+        "opponent_mean": 60569.0,
+        "margin_mean": -1148.0
+      },
+      {
+        "player": "MtN",
+        "episode": 106182988,
+        "wins": 1,
+        "our_mean": 78281.5,
+        "opponent_mean": 78306.5,
+        "margin_mean": -25.0
+      },
+      {
+        "player": "MtN",
+        "episode": 106182909,
+        "wins": 2,
+        "our_mean": 109883.0,
+        "opponent_mean": 106599.0,
+        "margin_mean": 3284.0
+      },
+      {
+        "player": "MtN",
+        "episode": 106182096,
+        "wins": 0,
+        "our_mean": 80342.0,
+        "opponent_mean": 93693.0,
+        "margin_mean": -13351.0
+      },
+      {
+        "player": "MtN",
+        "episode": 106181640,
+        "wins": 2,
+        "our_mean": 142899.0,
+        "opponent_mean": 128516.0,
+        "margin_mean": 14383.0
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "episode": 106184573,
+        "wins": 0,
+        "our_mean": 63145.0,
+        "opponent_mean": 72623.0,
+        "margin_mean": -9478.0
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "episode": 106184395,
+        "wins": 0,
+        "our_mean": 85597.0,
+        "opponent_mean": 92088.0,
+        "margin_mean": -6491.0
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "episode": 106183475,
+        "wins": 0,
+        "our_mean": 71061.0,
+        "opponent_mean": 73602.0,
+        "margin_mean": -2541.0
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "episode": 106182585,
+        "wins": 1,
+        "our_mean": 95894.5,
+        "opponent_mean": 98913.0,
+        "margin_mean": -3018.5
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "episode": 106182332,
+        "wins": 0,
+        "our_mean": 112364.0,
+        "opponent_mean": 122190.0,
+        "margin_mean": -9826.0
+      },
+      {
+        "player": "hana87hana",
+        "episode": 106181831,
+        "wins": 0,
+        "our_mean": 58574.5,
+        "opponent_mean": 65894.5,
+        "margin_mean": -7320.0
+      },
+      {
+        "player": "hana87hana",
+        "episode": 106181685,
+        "wins": 2,
+        "our_mean": 77319.0,
+        "opponent_mean": 71715.0,
+        "margin_mean": 5604.0
+      },
+      {
+        "player": "hana87hana",
+        "episode": 106180606,
+        "wins": 0,
+        "our_mean": 63526.0,
+        "opponent_mean": 71412.0,
+        "margin_mean": -7886.0
+      },
+      {
+        "player": "hana87hana",
+        "episode": 106179197,
+        "wins": 0,
+        "our_mean": 37809.0,
+        "opponent_mean": 46789.0,
+        "margin_mean": -8980.0
+      },
+      {
+        "player": "hana87hana",
+        "episode": 106176989,
+        "wins": 0,
+        "our_mean": 137702.0,
+        "opponent_mean": 144575.0,
+        "margin_mean": -6873.0
+      },
+      {
+        "player": "rian",
+        "episode": 106183326,
+        "wins": 0,
+        "our_mean": 63880.0,
+        "opponent_mean": 69141.5,
+        "margin_mean": -5261.5
+      },
+      {
+        "player": "rian",
+        "episode": 106181341,
+        "wins": 0,
+        "our_mean": 86300.0,
+        "opponent_mean": 94426.0,
+        "margin_mean": -8126.0
+      },
+      {
+        "player": "rian",
+        "episode": 106180595,
+        "wins": 0,
+        "our_mean": 43962.0,
+        "opponent_mean": 50455.0,
+        "margin_mean": -6493.0
+      },
+      {
+        "player": "rian",
+        "episode": 106180176,
+        "wins": 0,
+        "our_mean": 56743.0,
+        "opponent_mean": 58438.0,
+        "margin_mean": -1695.0
+      },
+      {
+        "player": "rian",
+        "episode": 106180175,
+        "wins": 0,
+        "our_mean": 89696.0,
+        "opponent_mean": 95486.0,
+        "margin_mean": -5790.0
+      },
+      {
+        "player": "我都先道歉",
+        "episode": 106180736,
+        "wins": 0,
+        "our_mean": 98068.0,
+        "opponent_mean": 117601.0,
+        "margin_mean": -19533.0
+      },
+      {
+        "player": "我都先道歉",
+        "episode": 106179828,
+        "wins": 0,
+        "our_mean": 129936.0,
+        "opponent_mean": 130983.0,
+        "margin_mean": -1047.0
+      },
+      {
+        "player": "我都先道歉",
+        "episode": 106178915,
+        "wins": 0,
+        "our_mean": 70285.0,
+        "opponent_mean": 81114.0,
+        "margin_mean": -10829.0
+      },
+      {
+        "player": "我都先道歉",
+        "episode": 106178015,
+        "wins": 2,
+        "our_mean": 101049.0,
+        "opponent_mean": 85583.0,
+        "margin_mean": 15466.0
+      },
+      {
+        "player": "我都先道歉",
+        "episode": 106177102,
+        "wins": 2,
+        "our_mean": 125406.0,
+        "opponent_mean": 111796.0,
+        "margin_mean": 13610.0
+      },
+      {
+        "player": "Ant",
+        "episode": 106182894,
+        "wins": 0,
+        "our_mean": 48684.5,
+        "opponent_mean": 52631.5,
+        "margin_mean": -3947.0
+      },
+      {
+        "player": "Ant",
+        "episode": 106179154,
+        "wins": 0,
+        "our_mean": 60292.5,
+        "opponent_mean": 63171.5,
+        "margin_mean": -2879.0
+      },
+      {
+        "player": "Ant",
+        "episode": 106177931,
+        "wins": 2,
+        "our_mean": 104113.5,
+        "opponent_mean": 101508.5,
+        "margin_mean": 2605.0
+      },
+      {
+        "player": "Ant",
+        "episode": 106176431,
+        "wins": 0,
+        "our_mean": 41863.5,
+        "opponent_mean": 48365.5,
+        "margin_mean": -6502.0
+      },
+      {
+        "player": "Ant",
+        "episode": 106174282,
+        "wins": 0,
+        "our_mean": 53676.5,
+        "opponent_mean": 58175.5,
+        "margin_mean": -4499.0
+      },
+      {
+        "player": "Foxure",
+        "episode": 106183427,
+        "wins": 2,
+        "our_mean": 95903.0,
+        "opponent_mean": 91942.0,
+        "margin_mean": 3961.0
+      },
+      {
+        "player": "Foxure",
+        "episode": 106182571,
+        "wins": 2,
+        "our_mean": 84541.0,
+        "opponent_mean": 80837.0,
+        "margin_mean": 3704.0
+      },
+      {
+        "player": "Foxure",
+        "episode": 106181999,
+        "wins": 2,
+        "our_mean": 86679.0,
+        "opponent_mean": 82049.5,
+        "margin_mean": 4629.5
+      },
+      {
+        "player": "Foxure",
+        "episode": 106181539,
+        "wins": 2,
+        "our_mean": 88643.0,
+        "opponent_mean": 88460.0,
+        "margin_mean": 183.0
+      },
+      {
+        "player": "Foxure",
+        "episode": 106180990,
+        "wins": 0,
+        "our_mean": 115096.0,
+        "opponent_mean": 125788.0,
+        "margin_mean": -10692.0
+      },
+      {
+        "player": "Marlubie",
+        "episode": 106180722,
+        "wins": 0,
+        "our_mean": 133063.0,
+        "opponent_mean": 141507.0,
+        "margin_mean": -8444.0
+      },
+      {
+        "player": "Marlubie",
+        "episode": 106180186,
+        "wins": 0,
+        "our_mean": 57520.0,
+        "opponent_mean": 58393.0,
+        "margin_mean": -873.0
+      },
+      {
+        "player": "Marlubie",
+        "episode": 106179792,
+        "wins": 2,
+        "our_mean": 87032.0,
+        "opponent_mean": 86211.5,
+        "margin_mean": 820.5
+      },
+      {
+        "player": "Marlubie",
+        "episode": 106179150,
+        "wins": 0,
+        "our_mean": 77505.5,
+        "opponent_mean": 83803.5,
+        "margin_mean": -6298.0
+      },
+      {
+        "player": "Marlubie",
+        "episode": 106178977,
+        "wins": 0,
+        "our_mean": 75895.0,
+        "opponent_mean": 83265.0,
+        "margin_mean": -7370.0
+      },
+      {
+        "player": "Scott Willis",
+        "episode": 106184143,
+        "wins": 0,
+        "our_mean": 70564.0,
+        "opponent_mean": 80506.0,
+        "margin_mean": -9942.0
+      },
+      {
+        "player": "Scott Willis",
+        "episode": 106182374,
+        "wins": 0,
+        "our_mean": 88931.0,
+        "opponent_mean": 91041.0,
+        "margin_mean": -2110.0
+      },
+      {
+        "player": "Scott Willis",
+        "episode": 106181312,
+        "wins": 2,
+        "our_mean": 92373.0,
+        "opponent_mean": 91843.0,
+        "margin_mean": 530.0
+      },
+      {
+        "player": "Scott Willis",
+        "episode": 106180737,
+        "wins": 0,
+        "our_mean": 99292.0,
+        "opponent_mean": 101745.0,
+        "margin_mean": -2453.0
+      },
+      {
+        "player": "Scott Willis",
+        "episode": 106179807,
+        "wins": 0,
+        "our_mean": 45165.0,
+        "opponent_mean": 61444.0,
+        "margin_mean": -16279.0
+      },
+      {
+        "player": "daulettoibazar",
+        "episode": 106184277,
+        "wins": 0,
+        "our_mean": 87476.0,
+        "opponent_mean": 93956.0,
+        "margin_mean": -6480.0
+      },
+      {
+        "player": "daulettoibazar",
+        "episode": 106183634,
+        "wins": 0,
+        "our_mean": 65792.0,
+        "opponent_mean": 74402.0,
+        "margin_mean": -8610.0
+      },
+      {
+        "player": "daulettoibazar",
+        "episode": 106183362,
+        "wins": 0,
+        "our_mean": 134636.0,
+        "opponent_mean": 144783.0,
+        "margin_mean": -10147.0
+      },
+      {
+        "player": "daulettoibazar",
+        "episode": 106183224,
+        "wins": 1,
+        "our_mean": 88128.5,
+        "opponent_mean": 86793.5,
+        "margin_mean": 1335.0
+      },
+      {
+        "player": "daulettoibazar",
+        "episode": 106182451,
+        "wins": 0,
+        "our_mean": 47557.0,
+        "opponent_mean": 51060.0,
+        "margin_mean": -3503.0
+      },
+      {
+        "player": "mikelou1",
+        "episode": 106181921,
+        "wins": 0,
+        "our_mean": 83955.0,
+        "opponent_mean": 88701.0,
+        "margin_mean": -4746.0
+      },
+      {
+        "player": "mikelou1",
+        "episode": 106181798,
+        "wins": 2,
+        "our_mean": 60477.0,
+        "opponent_mean": 59527.0,
+        "margin_mean": 950.0
+      },
+      {
+        "player": "mikelou1",
+        "episode": 106177434,
+        "wins": 0,
+        "our_mean": 83808.0,
+        "opponent_mean": 93895.0,
+        "margin_mean": -10087.0
+      },
+      {
+        "player": "mikelou1",
+        "episode": 106176780,
+        "wins": 2,
+        "our_mean": 103907.0,
+        "opponent_mean": 100005.0,
+        "margin_mean": 3902.0
+      },
+      {
+        "player": "mikelou1",
+        "episode": 106174745,
+        "wins": 0,
+        "our_mean": 40082.0,
+        "opponent_mean": 45089.0,
+        "margin_mean": -5007.0
+      },
+      {
+        "player": "tetsuya & yuanzhe zhou",
+        "episode": 106183339,
+        "wins": 0,
+        "our_mean": 112852.0,
+        "opponent_mean": 122990.0,
+        "margin_mean": -10138.0
+      },
+      {
+        "player": "tetsuya & yuanzhe zhou",
+        "episode": 106182747,
+        "wins": 0,
+        "our_mean": 85274.0,
+        "opponent_mean": 94814.0,
+        "margin_mean": -9540.0
+      },
+      {
+        "player": "tetsuya & yuanzhe zhou",
+        "episode": 106181911,
+        "wins": 0,
+        "our_mean": 83820.0,
+        "opponent_mean": 90326.0,
+        "margin_mean": -6506.0
+      },
+      {
+        "player": "tetsuya & yuanzhe zhou",
+        "episode": 106180157,
+        "wins": 0,
+        "our_mean": 118676.0,
+        "opponent_mean": 123154.0,
+        "margin_mean": -4478.0
+      },
+      {
+        "player": "tetsuya & yuanzhe zhou",
+        "episode": 106179195,
+        "wins": 2,
+        "our_mean": 79439.0,
+        "opponent_mean": 78887.0,
+        "margin_mean": 552.0
+      },
+      {
+        "player": "Beyond",
+        "episode": 106180444,
+        "wins": 2,
+        "our_mean": 71846.0,
+        "opponent_mean": 69154.0,
+        "margin_mean": 2692.0
+      },
+      {
+        "player": "Beyond",
+        "episode": 106180403,
+        "wins": 0,
+        "our_mean": 123512.0,
+        "opponent_mean": 129366.0,
+        "margin_mean": -5854.0
+      },
+      {
+        "player": "Beyond",
+        "episode": 106180157,
+        "wins": 0,
+        "our_mean": 101899.0,
+        "opponent_mean": 103153.0,
+        "margin_mean": -1254.0
+      },
+      {
+        "player": "Beyond",
+        "episode": 106180122,
+        "wins": 0,
+        "our_mean": 130535.0,
+        "opponent_mean": 131084.0,
+        "margin_mean": -549.0
+      },
+      {
+        "player": "Beyond",
+        "episode": 106179879,
+        "wins": 0,
+        "our_mean": 82671.0,
+        "opponent_mean": 102284.0,
+        "margin_mean": -19613.0
+      },
+      {
+        "player": "JamesJJJJJ",
+        "episode": 106180048,
+        "wins": 2,
+        "our_mean": 66653.0,
+        "opponent_mean": 62339.0,
+        "margin_mean": 4314.0
+      },
+      {
+        "player": "JamesJJJJJ",
+        "episode": 106179277,
+        "wins": 0,
+        "our_mean": 59999.0,
+        "opponent_mean": 63509.0,
+        "margin_mean": -3510.0
+      },
+      {
+        "player": "JamesJJJJJ",
+        "episode": 106175209,
+        "wins": 0,
+        "our_mean": 60023.0,
+        "opponent_mean": 66549.0,
+        "margin_mean": -6526.0
+      },
+      {
+        "player": "JamesJJJJJ",
+        "episode": 106174747,
+        "wins": 2,
+        "our_mean": 66122.0,
+        "opponent_mean": 64675.0,
+        "margin_mean": 1447.0
+      },
+      {
+        "player": "JamesJJJJJ",
+        "episode": 106172662,
+        "wins": 0,
+        "our_mean": 103253.0,
+        "opponent_mean": 109347.0,
+        "margin_mean": -6094.0
+      },
+      {
+        "player": "Mengfei Li",
+        "episode": 106180736,
+        "wins": 0,
+        "our_mean": 99373.0,
+        "opponent_mean": 147871.0,
+        "margin_mean": -48498.0
+      },
+      {
+        "player": "Mengfei Li",
+        "episode": 106180186,
+        "wins": 0,
+        "our_mean": 57726.0,
+        "opponent_mean": 58005.0,
+        "margin_mean": -279.0
+      },
+      {
+        "player": "Mengfei Li",
+        "episode": 106179828,
+        "wins": 0,
+        "our_mean": 131994.0,
+        "opponent_mean": 134471.0,
+        "margin_mean": -2477.0
+      },
+      {
+        "player": "Mengfei Li",
+        "episode": 106178915,
+        "wins": 2,
+        "our_mean": 125179.0,
+        "opponent_mean": 111056.0,
+        "margin_mean": 14123.0
+      },
+      {
+        "player": "Mengfei Li",
+        "episode": 106178015,
+        "wins": 0,
+        "our_mean": 53620.0,
+        "opponent_mean": 67788.0,
+        "margin_mean": -14168.0
+      },
+      {
+        "player": "Suliman Tadros",
+        "episode": 106180114,
+        "wins": 0,
+        "our_mean": 109437.5,
+        "opponent_mean": 122330.0,
+        "margin_mean": -12892.5
+      },
+      {
+        "player": "Suliman Tadros",
+        "episode": 106179794,
+        "wins": 2,
+        "our_mean": 107625.0,
+        "opponent_mean": 90243.0,
+        "margin_mean": 17382.0
+      },
+      {
+        "player": "Suliman Tadros",
+        "episode": 106178889,
+        "wins": 2,
+        "our_mean": 79308.0,
+        "opponent_mean": 79245.0,
+        "margin_mean": 63.0
+      },
+      {
+        "player": "Suliman Tadros",
+        "episode": 106176376,
+        "wins": 2,
+        "our_mean": 109744.0,
+        "opponent_mean": 104228.0,
+        "margin_mean": 5516.0
+      },
+      {
+        "player": "Suliman Tadros",
+        "episode": 106175239,
+        "wins": 2,
+        "our_mean": 119373.0,
+        "opponent_mean": 103657.0,
+        "margin_mean": 15716.0
+      },
+      {
+        "player": "elmo",
+        "episode": 106181859,
+        "wins": 0,
+        "our_mean": 94072.0,
+        "opponent_mean": 99653.0,
+        "margin_mean": -5581.0
+      },
+      {
+        "player": "elmo",
+        "episode": 106181529,
+        "wins": 2,
+        "our_mean": 81250.0,
+        "opponent_mean": 80820.0,
+        "margin_mean": 430.0
+      },
+      {
+        "player": "elmo",
+        "episode": 106181492,
+        "wins": 0,
+        "our_mean": 90006.0,
+        "opponent_mean": 95147.0,
+        "margin_mean": -5141.0
+      },
+      {
+        "player": "elmo",
+        "episode": 106180659,
+        "wins": 0,
+        "our_mean": 85209.0,
+        "opponent_mean": 89335.0,
+        "margin_mean": -4126.0
+      },
+      {
+        "player": "elmo",
+        "episode": 106180027,
+        "wins": 0,
+        "our_mean": 126876.5,
+        "opponent_mean": 127287.5,
+        "margin_mean": -411.0
+      },
+      {
+        "player": "peikopon",
+        "episode": 106180968,
+        "wins": 2,
+        "our_mean": 105121.5,
+        "opponent_mean": 103656.5,
+        "margin_mean": 1465.0
+      },
+      {
+        "player": "peikopon",
+        "episode": 106180123,
+        "wins": 2,
+        "our_mean": 139625.5,
+        "opponent_mean": 135531.5,
+        "margin_mean": 4094.0
+      },
+      {
+        "player": "peikopon",
+        "episode": 106179279,
+        "wins": 0,
+        "our_mean": 128571.5,
+        "opponent_mean": 139034.5,
+        "margin_mean": -10463.0
+      },
+      {
+        "player": "peikopon",
+        "episode": 106179276,
+        "wins": 1,
+        "our_mean": 106144.0,
+        "opponent_mean": 105249.5,
+        "margin_mean": 894.5
+      },
+      {
+        "player": "peikopon",
+        "episode": 106175659,
+        "wins": 2,
+        "our_mean": 72805.5,
+        "opponent_mean": 72346.5,
+        "margin_mean": 459.0
+      },
+      {
+        "player": "yfy",
+        "episode": 106181935,
+        "wins": 2,
+        "our_mean": 151780.0,
+        "opponent_mean": 98912.0,
+        "margin_mean": 52868.0
+      },
+      {
+        "player": "yfy",
+        "episode": 106180185,
+        "wins": 2,
+        "our_mean": 106789.0,
+        "opponent_mean": 104295.0,
+        "margin_mean": 2494.0
+      },
+      {
+        "player": "yfy",
+        "episode": 106177450,
+        "wins": 2,
+        "our_mean": 91438.0,
+        "opponent_mean": 64545.0,
+        "margin_mean": 26893.0
+      },
+      {
+        "player": "yfy",
+        "episode": 106175677,
+        "wins": 0,
+        "our_mean": 105065.0,
+        "opponent_mean": 107618.0,
+        "margin_mean": -2553.0
+      },
+      {
+        "player": "yfy",
+        "episode": 106175563,
+        "wins": 0,
+        "our_mean": 82750.0,
+        "opponent_mean": 89097.0,
+        "margin_mean": -6347.0
+      },
+      {
+        "player": "CemBas",
+        "episode": 106181714,
+        "wins": 0,
+        "our_mean": 68261.5,
+        "opponent_mean": 71267.5,
+        "margin_mean": -3006.0
+      },
+      {
+        "player": "CemBas",
+        "episode": 106180731,
+        "wins": 2,
+        "our_mean": 83268.5,
+        "opponent_mean": 79852.5,
+        "margin_mean": 3416.0
+      },
+      {
+        "player": "CemBas",
+        "episode": 106180122,
+        "wins": 0,
+        "our_mean": 130978.5,
+        "opponent_mean": 132465.5,
+        "margin_mean": -1487.0
+      },
+      {
+        "player": "CemBas",
+        "episode": 106178933,
+        "wins": 0,
+        "our_mean": 102178.5,
+        "opponent_mean": 105224.5,
+        "margin_mean": -3046.0
+      },
+      {
+        "player": "CemBas",
+        "episode": 106177460,
+        "wins": 0,
+        "our_mean": 36178.5,
+        "opponent_mean": 42890.5,
+        "margin_mean": -6712.0
+      },
+      {
+        "player": "Jiro2",
+        "episode": 106180966,
+        "wins": 2,
+        "our_mean": 140795.0,
+        "opponent_mean": 113128.5,
+        "margin_mean": 27666.5
+      },
+      {
+        "player": "Jiro2",
+        "episode": 106180962,
+        "wins": 0,
+        "our_mean": 70575.0,
+        "opponent_mean": 76134.5,
+        "margin_mean": -5559.5
+      },
+      {
+        "player": "Jiro2",
+        "episode": 106180791,
+        "wins": 0,
+        "our_mean": 73457.0,
+        "opponent_mean": 83410.5,
+        "margin_mean": -9953.5
+      },
+      {
+        "player": "Jiro2",
+        "episode": 106179519,
+        "wins": 2,
+        "our_mean": 102792.5,
+        "opponent_mean": 91857.0,
+        "margin_mean": 10935.5
+      },
+      {
+        "player": "Jiro2",
+        "episode": 106178384,
+        "wins": 0,
+        "our_mean": 60114.0,
+        "opponent_mean": 65326.5,
+        "margin_mean": -5212.5
+      },
+      {
+        "player": "Milan Leonard",
+        "episode": 106180845,
+        "wins": 2,
+        "our_mean": 50179.5,
+        "opponent_mean": 28786.0,
+        "margin_mean": 21393.5
+      },
+      {
+        "player": "Milan Leonard",
+        "episode": 106180174,
+        "wins": 2,
+        "our_mean": 104100.0,
+        "opponent_mean": 102343.0,
+        "margin_mean": 1757.0
+      },
+      {
+        "player": "Milan Leonard",
+        "episode": 106175659,
+        "wins": 2,
+        "our_mean": 87879.0,
+        "opponent_mean": 66062.0,
+        "margin_mean": 21817.0
+      },
+      {
+        "player": "Milan Leonard",
+        "episode": 106175612,
+        "wins": 0,
+        "our_mean": 83025.0,
+        "opponent_mean": 94517.0,
+        "margin_mean": -11492.0
+      },
+      {
+        "player": "Milan Leonard",
+        "episode": 106175560,
+        "wins": 0,
+        "our_mean": 136210.0,
+        "opponent_mean": 162310.0,
+        "margin_mean": -26100.0
+      },
+      {
+        "player": "Syed Asad Ali",
+        "episode": 106180114,
+        "wins": 0,
+        "our_mean": 89191.0,
+        "opponent_mean": 92435.0,
+        "margin_mean": -3244.0
+      },
+      {
+        "player": "Syed Asad Ali",
+        "episode": 106179926,
+        "wins": 2,
+        "our_mean": 125649.0,
+        "opponent_mean": 121146.0,
+        "margin_mean": 4503.0
+      },
+      {
+        "player": "Syed Asad Ali",
+        "episode": 106179279,
+        "wins": 0,
+        "our_mean": 100208.0,
+        "opponent_mean": 104198.0,
+        "margin_mean": -3990.0
+      },
+      {
+        "player": "Syed Asad Ali",
+        "episode": 106178992,
+        "wins": 2,
+        "our_mean": 86684.0,
+        "opponent_mean": 85581.0,
+        "margin_mean": 1103.0
+      },
+      {
+        "player": "Syed Asad Ali",
+        "episode": 106178608,
+        "wins": 2,
+        "our_mean": 85358.0,
+        "opponent_mean": 85031.0,
+        "margin_mean": 327.0
+      },
+      {
+        "player": "get some fries",
+        "episode": 106183105,
+        "wins": 0,
+        "our_mean": 69623.0,
+        "opponent_mean": 73840.0,
+        "margin_mean": -4217.0
+      },
+      {
+        "player": "get some fries",
+        "episode": 106182188,
+        "wins": 2,
+        "our_mean": 88451.0,
+        "opponent_mean": 75586.0,
+        "margin_mean": 12865.0
+      },
+      {
+        "player": "get some fries",
+        "episode": 106181519,
+        "wins": 0,
+        "our_mean": 82369.0,
+        "opponent_mean": 111276.5,
+        "margin_mean": -28907.5
+      },
+      {
+        "player": "get some fries",
+        "episode": 106181292,
+        "wins": 0,
+        "our_mean": 86306.0,
+        "opponent_mean": 89248.0,
+        "margin_mean": -2942.0
+      },
+      {
+        "player": "get some fries",
+        "episode": 106180356,
+        "wins": 2,
+        "our_mean": 76239.5,
+        "opponent_mean": 74928.0,
+        "margin_mean": 1311.5
+      },
+      {
+        "player": "pensukesan",
+        "episode": 106183257,
+        "wins": 0,
+        "our_mean": 97032.0,
+        "opponent_mean": 98937.0,
+        "margin_mean": -1905.0
+      },
+      {
+        "player": "pensukesan",
+        "episode": 106181714,
+        "wins": 1,
+        "our_mean": 60235.0,
+        "opponent_mean": 61422.0,
+        "margin_mean": -1187.0
+      },
+      {
+        "player": "pensukesan",
+        "episode": 106180972,
+        "wins": 0,
+        "our_mean": 127782.5,
+        "opponent_mean": 136823.0,
+        "margin_mean": -9040.5
+      },
+      {
+        "player": "pensukesan",
+        "episode": 106180791,
+        "wins": 0,
+        "our_mean": 76653.0,
+        "opponent_mean": 81233.5,
+        "margin_mean": -4580.5
+      },
+      {
+        "player": "pensukesan",
+        "episode": 106179678,
+        "wins": 2,
+        "our_mean": 59415.0,
+        "opponent_mean": 54786.0,
+        "margin_mean": 4629.0
+      },
+      {
+        "player": "ymg_aq",
+        "episode": 106180731,
+        "wins": 2,
+        "our_mean": 128131.0,
+        "opponent_mean": 38341.0,
+        "margin_mean": 89790.0
+      },
+      {
+        "player": "ymg_aq",
+        "episode": 106180714,
+        "wins": 2,
+        "our_mean": 138211.5,
+        "opponent_mean": 25229.0,
+        "margin_mean": 112982.5
+      },
+      {
+        "player": "ymg_aq",
+        "episode": 106179825,
+        "wins": 2,
+        "our_mean": 129608.0,
+        "opponent_mean": 32037.0,
+        "margin_mean": 97571.0
+      },
+      {
+        "player": "ymg_aq",
+        "episode": 106179794,
+        "wins": 2,
+        "our_mean": 129543.5,
+        "opponent_mean": 88859.5,
+        "margin_mean": 40684.0
+      },
+      {
+        "player": "ymg_aq",
+        "episode": 106178889,
+        "wins": 2,
+        "our_mean": 85995.0,
+        "opponent_mean": 36513.5,
+        "margin_mean": 49481.5
+      }
+    ],
+    "both_b20s15": [
+      {
+        "player": "Andrey Tikhomirov",
+        "episode": 106182537,
+        "wins": 2,
+        "our_mean": 111441.0,
+        "opponent_mean": 102497.0,
+        "margin_mean": 8944.0
+      },
+      {
+        "player": "Andrey Tikhomirov",
+        "episode": 106180714,
+        "wins": 1,
+        "our_mean": 103060.5,
+        "opponent_mean": 104301.0,
+        "margin_mean": -1240.5
+      },
+      {
+        "player": "Andrey Tikhomirov",
+        "episode": 106180056,
+        "wins": 0,
+        "our_mean": 42894.0,
+        "opponent_mean": 55403.0,
+        "margin_mean": -12509.0
+      },
+      {
+        "player": "Andrey Tikhomirov",
+        "episode": 106179229,
+        "wins": 0,
+        "our_mean": 70598.0,
+        "opponent_mean": 72963.0,
+        "margin_mean": -2365.0
+      },
+      {
+        "player": "Andrey Tikhomirov",
+        "episode": 106178223,
+        "wins": 2,
+        "our_mean": 99341.0,
+        "opponent_mean": 78942.0,
+        "margin_mean": 20399.0
+      },
+      {
+        "player": "Driz Lo",
+        "episode": 106183411,
+        "wins": 0,
+        "our_mean": 95756.0,
+        "opponent_mean": 107579.0,
+        "margin_mean": -11823.0
+      },
+      {
+        "player": "Driz Lo",
+        "episode": 106182411,
+        "wins": 0,
+        "our_mean": 49107.0,
+        "opponent_mean": 54317.0,
+        "margin_mean": -5210.0
+      },
+      {
+        "player": "Driz Lo",
+        "episode": 106181623,
+        "wins": 2,
+        "our_mean": 94517.0,
+        "opponent_mean": 93424.0,
+        "margin_mean": 1093.0
+      },
+      {
+        "player": "Driz Lo",
+        "episode": 106180945,
+        "wins": 0,
+        "our_mean": 69420.0,
+        "opponent_mean": 75245.0,
+        "margin_mean": -5825.0
+      },
+      {
+        "player": "Driz Lo",
+        "episode": 106180083,
+        "wins": 0,
+        "our_mean": 77820.0,
+        "opponent_mean": 91315.5,
+        "margin_mean": -13495.5
+      },
+      {
+        "player": "LI Mufeng",
+        "episode": 106182913,
+        "wins": 2,
+        "our_mean": 83171.0,
+        "opponent_mean": 80458.0,
+        "margin_mean": 2713.0
+      },
+      {
+        "player": "LI Mufeng",
+        "episode": 106180754,
+        "wins": 2,
+        "our_mean": 74344.0,
+        "opponent_mean": 71110.0,
+        "margin_mean": 3234.0
+      },
+      {
+        "player": "LI Mufeng",
+        "episode": 106179152,
+        "wins": 2,
+        "our_mean": 121045.0,
+        "opponent_mean": 116731.0,
+        "margin_mean": 4314.0
+      },
+      {
+        "player": "LI Mufeng",
+        "episode": 106178906,
+        "wins": 2,
+        "our_mean": 60256.0,
+        "opponent_mean": 59936.0,
+        "margin_mean": 320.0
+      },
+      {
+        "player": "LI Mufeng",
+        "episode": 106177434,
+        "wins": 0,
+        "our_mean": 83791.0,
+        "opponent_mean": 93666.0,
+        "margin_mean": -9875.0
+      },
+      {
+        "player": "SJY321",
+        "episode": 106180964,
+        "wins": 2,
+        "our_mean": 97048.0,
+        "opponent_mean": 86103.0,
+        "margin_mean": 10945.0
+      },
+      {
+        "player": "SJY321",
+        "episode": 106178286,
+        "wins": 2,
+        "our_mean": 118940.0,
+        "opponent_mean": 93514.0,
+        "margin_mean": 25426.0
+      },
+      {
+        "player": "SJY321",
+        "episode": 106176371,
+        "wins": 0,
+        "our_mean": 85083.0,
+        "opponent_mean": 99155.0,
+        "margin_mean": -14072.0
+      },
+      {
+        "player": "SJY321",
+        "episode": 106173709,
+        "wins": 2,
+        "our_mean": 131400.5,
+        "opponent_mean": 69810.5,
+        "margin_mean": 61590.0
+      },
+      {
+        "player": "SJY321",
+        "episode": 106171098,
+        "wins": 1,
+        "our_mean": 93561.0,
+        "opponent_mean": 97057.0,
+        "margin_mean": -3496.0
+      },
+      {
+        "player": "Ueddy",
+        "episode": 106180964,
+        "wins": 0,
+        "our_mean": 83306.0,
+        "opponent_mean": 90778.0,
+        "margin_mean": -7472.0
+      },
+      {
+        "player": "Ueddy",
+        "episode": 106180962,
+        "wins": 0,
+        "our_mean": 71815.0,
+        "opponent_mean": 77551.0,
+        "margin_mean": -5736.0
+      },
+      {
+        "player": "Ueddy",
+        "episode": 106176369,
+        "wins": 0,
+        "our_mean": 100067.0,
+        "opponent_mean": 113667.0,
+        "margin_mean": -13600.0
+      },
+      {
+        "player": "Ueddy",
+        "episode": 106175612,
+        "wins": 0,
+        "our_mean": 62689.0,
+        "opponent_mean": 63633.0,
+        "margin_mean": -944.0
+      },
+      {
+        "player": "Ueddy",
+        "episode": 106175554,
+        "wins": 2,
+        "our_mean": 74118.0,
+        "opponent_mean": 71929.0,
+        "margin_mean": 2189.0
+      },
+      {
+        "player": "mandgeee",
+        "episode": 106181341,
+        "wins": 0,
+        "our_mean": 86184.0,
+        "opponent_mean": 97860.0,
+        "margin_mean": -11676.0
+      },
+      {
+        "player": "mandgeee",
+        "episode": 106181316,
+        "wins": 2,
+        "our_mean": 69507.0,
+        "opponent_mean": 69076.0,
+        "margin_mean": 431.0
+      },
+      {
+        "player": "mandgeee",
+        "episode": 106180972,
+        "wins": 0,
+        "our_mean": 127684.5,
+        "opponent_mean": 139211.5,
+        "margin_mean": -11527.0
+      },
+      {
+        "player": "mandgeee",
+        "episode": 106180444,
+        "wins": 0,
+        "our_mean": 71615.0,
+        "opponent_mean": 73056.0,
+        "margin_mean": -1441.0
+      },
+      {
+        "player": "mandgeee",
+        "episode": 106180403,
+        "wins": 0,
+        "our_mean": 103241.0,
+        "opponent_mean": 111246.0,
+        "margin_mean": -8005.0
+      },
+      {
+        "player": "taiseiu",
+        "episode": 106182372,
+        "wins": 0,
+        "our_mean": 89448.0,
+        "opponent_mean": 93869.0,
+        "margin_mean": -4421.0
+      },
+      {
+        "player": "taiseiu",
+        "episode": 106182007,
+        "wins": 0,
+        "our_mean": 90824.0,
+        "opponent_mean": 93842.0,
+        "margin_mean": -3018.0
+      },
+      {
+        "player": "taiseiu",
+        "episode": 106181030,
+        "wins": 1,
+        "our_mean": 97689.5,
+        "opponent_mean": 97571.5,
+        "margin_mean": 118.0
+      },
+      {
+        "player": "taiseiu",
+        "episode": 106180917,
+        "wins": 0,
+        "our_mean": 39895.0,
+        "opponent_mean": 45731.0,
+        "margin_mean": -5836.0
+      },
+      {
+        "player": "taiseiu",
+        "episode": 106178961,
+        "wins": 0,
+        "our_mean": 89714.0,
+        "opponent_mean": 97519.0,
+        "margin_mean": -7805.0
+      },
+      {
+        "player": "Aastik Rajan15",
+        "episode": 106182451,
+        "wins": 0,
+        "our_mean": 47629.0,
+        "opponent_mean": 51841.0,
+        "margin_mean": -4212.0
+      },
+      {
+        "player": "Aastik Rajan15",
+        "episode": 106178812,
+        "wins": 2,
+        "our_mean": 59434.0,
+        "opponent_mean": 49768.0,
+        "margin_mean": 9666.0
+      },
+      {
+        "player": "Aastik Rajan15",
+        "episode": 106178262,
+        "wins": 2,
+        "our_mean": 129283.0,
+        "opponent_mean": 97916.0,
+        "margin_mean": 31367.0
+      },
+      {
+        "player": "Aastik Rajan15",
+        "episode": 106177905,
+        "wins": 2,
+        "our_mean": 137738.0,
+        "opponent_mean": 108030.0,
+        "margin_mean": 29708.0
+      },
+      {
+        "player": "Aastik Rajan15",
+        "episode": 106177460,
+        "wins": 0,
+        "our_mean": 37145.0,
+        "opponent_mean": 45933.0,
+        "margin_mean": -8788.0
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "episode": 106184374,
+        "wins": 0,
+        "our_mean": 85832.5,
+        "opponent_mean": 93211.0,
+        "margin_mean": -7378.5
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "episode": 106181859,
+        "wins": 2,
+        "our_mean": 93617.0,
+        "opponent_mean": 91462.0,
+        "margin_mean": 2155.0
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "episode": 106181840,
+        "wins": 0,
+        "our_mean": 56863.0,
+        "opponent_mean": 61886.5,
+        "margin_mean": -5023.5
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "episode": 106177290,
+        "wins": 0,
+        "our_mean": 62345.0,
+        "opponent_mean": 64530.0,
+        "margin_mean": -2185.0
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "episode": 106177150,
+        "wins": 2,
+        "our_mean": 115607.0,
+        "opponent_mean": 113745.0,
+        "margin_mean": 1862.0
+      },
+      {
+        "player": "Kenneth Alonso",
+        "episode": 106182909,
+        "wins": 2,
+        "our_mean": 106185.0,
+        "opponent_mean": 103683.0,
+        "margin_mean": 2502.0
+      },
+      {
+        "player": "Kenneth Alonso",
+        "episode": 106178649,
+        "wins": 0,
+        "our_mean": 111541.0,
+        "opponent_mean": 121280.0,
+        "margin_mean": -9739.0
+      },
+      {
+        "player": "Kenneth Alonso",
+        "episode": 106178365,
+        "wins": 0,
+        "our_mean": 83784.0,
+        "opponent_mean": 83863.0,
+        "margin_mean": -79.0
+      },
+      {
+        "player": "Kenneth Alonso",
+        "episode": 106178252,
+        "wins": 0,
+        "our_mean": 46585.0,
+        "opponent_mean": 53192.0,
+        "margin_mean": -6607.0
+      },
+      {
+        "player": "Kenneth Alonso",
+        "episode": 106178001,
+        "wins": 0,
+        "our_mean": 62514.0,
+        "opponent_mean": 69210.0,
+        "margin_mean": -6696.0
+      },
+      {
+        "player": "OceanMix",
+        "episode": 106183616,
+        "wins": 0,
+        "our_mean": 107529.0,
+        "opponent_mean": 129818.0,
+        "margin_mean": -22289.0
+      },
+      {
+        "player": "OceanMix",
+        "episode": 106180759,
+        "wins": 2,
+        "our_mean": 126863.0,
+        "opponent_mean": 119463.0,
+        "margin_mean": 7400.0
+      },
+      {
+        "player": "OceanMix",
+        "episode": 106180399,
+        "wins": 0,
+        "our_mean": 89435.0,
+        "opponent_mean": 93809.0,
+        "margin_mean": -4374.0
+      },
+      {
+        "player": "OceanMix",
+        "episode": 106178964,
+        "wins": 0,
+        "our_mean": 62918.0,
+        "opponent_mean": 71568.0,
+        "margin_mean": -8650.0
+      },
+      {
+        "player": "OceanMix",
+        "episode": 106178373,
+        "wins": 0,
+        "our_mean": 87629.0,
+        "opponent_mean": 90772.0,
+        "margin_mean": -3143.0
+      },
+      {
+        "player": "Tiannan Zhang",
+        "episode": 106181921,
+        "wins": 0,
+        "our_mean": 84209.0,
+        "opponent_mean": 89019.0,
+        "margin_mean": -4810.0
+      },
+      {
+        "player": "Tiannan Zhang",
+        "episode": 106180185,
+        "wins": 2,
+        "our_mean": 106389.0,
+        "opponent_mean": 104569.0,
+        "margin_mean": 1820.0
+      },
+      {
+        "player": "Tiannan Zhang",
+        "episode": 106180112,
+        "wins": 0,
+        "our_mean": 63892.0,
+        "opponent_mean": 71161.0,
+        "margin_mean": -7269.0
+      },
+      {
+        "player": "Tiannan Zhang",
+        "episode": 106178266,
+        "wins": 0,
+        "our_mean": 88738.0,
+        "opponent_mean": 89917.5,
+        "margin_mean": -1179.5
+      },
+      {
+        "player": "Tiannan Zhang",
+        "episode": 106175573,
+        "wins": 0,
+        "our_mean": 65587.0,
+        "opponent_mean": 75424.0,
+        "margin_mean": -9837.0
+      },
+      {
+        "player": "keiz",
+        "episode": 106180404,
+        "wins": 2,
+        "our_mean": 136781.0,
+        "opponent_mean": 102762.0,
+        "margin_mean": 34019.0
+      },
+      {
+        "player": "keiz",
+        "episode": 106179497,
+        "wins": 2,
+        "our_mean": 64838.0,
+        "opponent_mean": 64771.0,
+        "margin_mean": 67.0
+      },
+      {
+        "player": "keiz",
+        "episode": 106178578,
+        "wins": 0,
+        "our_mean": 68781.0,
+        "opponent_mean": 69906.0,
+        "margin_mean": -1125.0
+      },
+      {
+        "player": "keiz",
+        "episode": 106177981,
+        "wins": 2,
+        "our_mean": 109158.5,
+        "opponent_mean": 75717.5,
+        "margin_mean": 33441.0
+      },
+      {
+        "player": "keiz",
+        "episode": 106177682,
+        "wins": 2,
+        "our_mean": 103327.5,
+        "opponent_mean": 69344.0,
+        "margin_mean": 33983.5
+      },
+      {
+        "player": "sunyuxiang136",
+        "episode": 106182411,
+        "wins": 2,
+        "our_mean": 58370.0,
+        "opponent_mean": 50339.0,
+        "margin_mean": 8031.0
+      },
+      {
+        "player": "sunyuxiang136",
+        "episode": 106182238,
+        "wins": 0,
+        "our_mean": 68076.5,
+        "opponent_mean": 71705.0,
+        "margin_mean": -3628.5
+      },
+      {
+        "player": "sunyuxiang136",
+        "episode": 106181519,
+        "wins": 2,
+        "our_mean": 102651.5,
+        "opponent_mean": 96833.0,
+        "margin_mean": 5818.5
+      },
+      {
+        "player": "sunyuxiang136",
+        "episode": 106181338,
+        "wins": 2,
+        "our_mean": 78104.5,
+        "opponent_mean": 68149.0,
+        "margin_mean": 9955.5
+      },
+      {
+        "player": "sunyuxiang136",
+        "episode": 106180456,
+        "wins": 0,
+        "our_mean": 149008.0,
+        "opponent_mean": 152048.0,
+        "margin_mean": -3040.0
+      },
+      {
+        "player": "Ant",
+        "episode": 106182894,
+        "wins": 0,
+        "our_mean": 48685.0,
+        "opponent_mean": 52632.0,
+        "margin_mean": -3947.0
+      },
+      {
+        "player": "Ant",
+        "episode": 106179154,
+        "wins": 0,
+        "our_mean": 60293.0,
+        "opponent_mean": 63172.0,
+        "margin_mean": -2879.0
+      },
+      {
+        "player": "Ant",
+        "episode": 106177931,
+        "wins": 2,
+        "our_mean": 104114.0,
+        "opponent_mean": 101509.0,
+        "margin_mean": 2605.0
+      },
+      {
+        "player": "Ant",
+        "episode": 106176431,
+        "wins": 0,
+        "our_mean": 41864.0,
+        "opponent_mean": 48366.0,
+        "margin_mean": -6502.0
+      },
+      {
+        "player": "Ant",
+        "episode": 106174282,
+        "wins": 0,
+        "our_mean": 53677.0,
+        "opponent_mean": 58176.0,
+        "margin_mean": -4499.0
+      },
+      {
+        "player": "Foxure",
+        "episode": 106183427,
+        "wins": 2,
+        "our_mean": 95903.0,
+        "opponent_mean": 91941.0,
+        "margin_mean": 3962.0
+      },
+      {
+        "player": "Foxure",
+        "episode": 106182571,
+        "wins": 2,
+        "our_mean": 84541.0,
+        "opponent_mean": 80836.0,
+        "margin_mean": 3705.0
+      },
+      {
+        "player": "Foxure",
+        "episode": 106181999,
+        "wins": 2,
+        "our_mean": 86679.0,
+        "opponent_mean": 82048.5,
+        "margin_mean": 4630.5
+      },
+      {
+        "player": "Foxure",
+        "episode": 106181539,
+        "wins": 2,
+        "our_mean": 88643.0,
+        "opponent_mean": 88459.0,
+        "margin_mean": 184.0
+      },
+      {
+        "player": "Foxure",
+        "episode": 106180990,
+        "wins": 0,
+        "our_mean": 115096.0,
+        "opponent_mean": 125787.0,
+        "margin_mean": -10691.0
+      },
+      {
+        "player": "Marlubie",
+        "episode": 106180722,
+        "wins": 0,
+        "our_mean": 133063.0,
+        "opponent_mean": 141506.0,
+        "margin_mean": -8443.0
+      },
+      {
+        "player": "Marlubie",
+        "episode": 106180186,
+        "wins": 0,
+        "our_mean": 57520.0,
+        "opponent_mean": 58392.0,
+        "margin_mean": -872.0
+      },
+      {
+        "player": "Marlubie",
+        "episode": 106179792,
+        "wins": 2,
+        "our_mean": 87032.0,
+        "opponent_mean": 86210.5,
+        "margin_mean": 821.5
+      },
+      {
+        "player": "Marlubie",
+        "episode": 106179150,
+        "wins": 0,
+        "our_mean": 77505.5,
+        "opponent_mean": 83802.5,
+        "margin_mean": -6297.0
+      },
+      {
+        "player": "Marlubie",
+        "episode": 106178977,
+        "wins": 0,
+        "our_mean": 75895.0,
+        "opponent_mean": 83264.0,
+        "margin_mean": -7369.0
+      },
+      {
+        "player": "Scott Willis",
+        "episode": 106184143,
+        "wins": 0,
+        "our_mean": 70564.0,
+        "opponent_mean": 80505.0,
+        "margin_mean": -9941.0
+      },
+      {
+        "player": "Scott Willis",
+        "episode": 106182374,
+        "wins": 0,
+        "our_mean": 88931.0,
+        "opponent_mean": 91040.0,
+        "margin_mean": -2109.0
+      },
+      {
+        "player": "Scott Willis",
+        "episode": 106181312,
+        "wins": 2,
+        "our_mean": 92373.0,
+        "opponent_mean": 91842.0,
+        "margin_mean": 531.0
+      },
+      {
+        "player": "Scott Willis",
+        "episode": 106180737,
+        "wins": 0,
+        "our_mean": 99292.0,
+        "opponent_mean": 101744.0,
+        "margin_mean": -2452.0
+      },
+      {
+        "player": "Scott Willis",
+        "episode": 106179807,
+        "wins": 0,
+        "our_mean": 45165.0,
+        "opponent_mean": 61443.0,
+        "margin_mean": -16278.0
+      },
+      {
+        "player": "daulettoibazar",
+        "episode": 106184277,
+        "wins": 0,
+        "our_mean": 87476.0,
+        "opponent_mean": 93955.0,
+        "margin_mean": -6479.0
+      },
+      {
+        "player": "daulettoibazar",
+        "episode": 106183634,
+        "wins": 0,
+        "our_mean": 65792.0,
+        "opponent_mean": 74401.0,
+        "margin_mean": -8609.0
+      },
+      {
+        "player": "daulettoibazar",
+        "episode": 106183362,
+        "wins": 0,
+        "our_mean": 134636.0,
+        "opponent_mean": 144782.0,
+        "margin_mean": -10146.0
+      },
+      {
+        "player": "daulettoibazar",
+        "episode": 106183224,
+        "wins": 1,
+        "our_mean": 88128.5,
+        "opponent_mean": 86792.5,
+        "margin_mean": 1336.0
+      },
+      {
+        "player": "daulettoibazar",
+        "episode": 106182451,
+        "wins": 0,
+        "our_mean": 47558.0,
+        "opponent_mean": 51057.0,
+        "margin_mean": -3499.0
+      },
+      {
+        "player": "mikelou1",
+        "episode": 106181921,
+        "wins": 0,
+        "our_mean": 83955.0,
+        "opponent_mean": 88700.0,
+        "margin_mean": -4745.0
+      },
+      {
+        "player": "mikelou1",
+        "episode": 106181798,
+        "wins": 2,
+        "our_mean": 60477.0,
+        "opponent_mean": 59526.0,
+        "margin_mean": 951.0
+      },
+      {
+        "player": "mikelou1",
+        "episode": 106177434,
+        "wins": 0,
+        "our_mean": 83808.0,
+        "opponent_mean": 93894.0,
+        "margin_mean": -10086.0
+      },
+      {
+        "player": "mikelou1",
+        "episode": 106176780,
+        "wins": 2,
+        "our_mean": 103907.0,
+        "opponent_mean": 100004.0,
+        "margin_mean": 3903.0
+      },
+      {
+        "player": "mikelou1",
+        "episode": 106174745,
+        "wins": 0,
+        "our_mean": 40082.0,
+        "opponent_mean": 45088.0,
+        "margin_mean": -5006.0
+      },
+      {
+        "player": "tetsuya & yuanzhe zhou",
+        "episode": 106183339,
+        "wins": 0,
+        "our_mean": 112853.0,
+        "opponent_mean": 122990.0,
+        "margin_mean": -10137.0
+      },
+      {
+        "player": "tetsuya & yuanzhe zhou",
+        "episode": 106182747,
+        "wins": 0,
+        "our_mean": 85275.0,
+        "opponent_mean": 94814.0,
+        "margin_mean": -9539.0
+      },
+      {
+        "player": "tetsuya & yuanzhe zhou",
+        "episode": 106181911,
+        "wins": 0,
+        "our_mean": 83821.0,
+        "opponent_mean": 90326.0,
+        "margin_mean": -6505.0
+      },
+      {
+        "player": "tetsuya & yuanzhe zhou",
+        "episode": 106180157,
+        "wins": 0,
+        "our_mean": 118677.0,
+        "opponent_mean": 123154.0,
+        "margin_mean": -4477.0
+      },
+      {
+        "player": "tetsuya & yuanzhe zhou",
+        "episode": 106179195,
+        "wins": 2,
+        "our_mean": 79440.0,
+        "opponent_mean": 78887.0,
+        "margin_mean": 553.0
+      },
+      {
+        "player": "Crop Dusta",
+        "episode": 106180968,
+        "wins": 2,
+        "our_mean": 119108.0,
+        "opponent_mean": 99534.0,
+        "margin_mean": 19574.0
+      },
+      {
+        "player": "Crop Dusta",
+        "episode": 106180966,
+        "wins": 2,
+        "our_mean": 119929.0,
+        "opponent_mean": 48995.0,
+        "margin_mean": 70934.0
+      },
+      {
+        "player": "Crop Dusta",
+        "episode": 106178266,
+        "wins": 2,
+        "our_mean": 94615.0,
+        "opponent_mean": 38514.5,
+        "margin_mean": 56100.5
+      },
+      {
+        "player": "Crop Dusta",
+        "episode": 106176376,
+        "wins": 0,
+        "our_mean": 63495.0,
+        "opponent_mean": 68487.0,
+        "margin_mean": -4992.0
+      },
+      {
+        "player": "Crop Dusta",
+        "episode": 106173398,
+        "wins": 2,
+        "our_mean": 116313.0,
+        "opponent_mean": 61579.0,
+        "margin_mean": 54734.0
+      },
+      {
+        "player": "John Doge",
+        "episode": 106182806,
+        "wins": 0,
+        "our_mean": 72876.0,
+        "opponent_mean": 74276.0,
+        "margin_mean": -1400.0
+      },
+      {
+        "player": "John Doge",
+        "episode": 106182788,
+        "wins": 0,
+        "our_mean": 53024.0,
+        "opponent_mean": 63810.0,
+        "margin_mean": -10786.0
+      },
+      {
+        "player": "John Doge",
+        "episode": 106182702,
+        "wins": 0,
+        "our_mean": 54038.0,
+        "opponent_mean": 65770.0,
+        "margin_mean": -11732.0
+      },
+      {
+        "player": "John Doge",
+        "episode": 106178322,
+        "wins": 2,
+        "our_mean": 105307.0,
+        "opponent_mean": 104507.0,
+        "margin_mean": 800.0
+      },
+      {
+        "player": "John Doge",
+        "episode": 106178292,
+        "wins": 0,
+        "our_mean": 124041.0,
+        "opponent_mean": 124851.0,
+        "margin_mean": -810.0
+      },
+      {
+        "player": "MtN",
+        "episode": 106183227,
+        "wins": 0,
+        "our_mean": 59421.0,
+        "opponent_mean": 60569.0,
+        "margin_mean": -1148.0
+      },
+      {
+        "player": "MtN",
+        "episode": 106182988,
+        "wins": 1,
+        "our_mean": 78281.5,
+        "opponent_mean": 78306.5,
+        "margin_mean": -25.0
+      },
+      {
+        "player": "MtN",
+        "episode": 106182909,
+        "wins": 2,
+        "our_mean": 109883.0,
+        "opponent_mean": 106599.0,
+        "margin_mean": 3284.0
+      },
+      {
+        "player": "MtN",
+        "episode": 106182096,
+        "wins": 0,
+        "our_mean": 80342.0,
+        "opponent_mean": 93693.0,
+        "margin_mean": -13351.0
+      },
+      {
+        "player": "MtN",
+        "episode": 106181640,
+        "wins": 2,
+        "our_mean": 142899.0,
+        "opponent_mean": 128516.0,
+        "margin_mean": 14383.0
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "episode": 106184573,
+        "wins": 0,
+        "our_mean": 63145.0,
+        "opponent_mean": 72622.0,
+        "margin_mean": -9477.0
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "episode": 106184395,
+        "wins": 0,
+        "our_mean": 85597.0,
+        "opponent_mean": 92087.0,
+        "margin_mean": -6490.0
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "episode": 106183475,
+        "wins": 0,
+        "our_mean": 71061.5,
+        "opponent_mean": 73601.0,
+        "margin_mean": -2539.5
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "episode": 106182585,
+        "wins": 1,
+        "our_mean": 95894.5,
+        "opponent_mean": 98911.5,
+        "margin_mean": -3017.0
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "episode": 106182332,
+        "wins": 0,
+        "our_mean": 112364.0,
+        "opponent_mean": 122189.0,
+        "margin_mean": -9825.0
+      },
+      {
+        "player": "hana87hana",
+        "episode": 106181831,
+        "wins": 0,
+        "our_mean": 58574.5,
+        "opponent_mean": 65893.5,
+        "margin_mean": -7319.0
+      },
+      {
+        "player": "hana87hana",
+        "episode": 106181685,
+        "wins": 2,
+        "our_mean": 77319.0,
+        "opponent_mean": 71714.0,
+        "margin_mean": 5605.0
+      },
+      {
+        "player": "hana87hana",
+        "episode": 106180606,
+        "wins": 0,
+        "our_mean": 63526.0,
+        "opponent_mean": 71411.0,
+        "margin_mean": -7885.0
+      },
+      {
+        "player": "hana87hana",
+        "episode": 106179197,
+        "wins": 0,
+        "our_mean": 37809.0,
+        "opponent_mean": 46788.0,
+        "margin_mean": -8979.0
+      },
+      {
+        "player": "hana87hana",
+        "episode": 106176989,
+        "wins": 0,
+        "our_mean": 137702.0,
+        "opponent_mean": 144574.0,
+        "margin_mean": -6872.0
+      },
+      {
+        "player": "rian",
+        "episode": 106183326,
+        "wins": 0,
+        "our_mean": 63880.0,
+        "opponent_mean": 69140.5,
+        "margin_mean": -5260.5
+      },
+      {
+        "player": "rian",
+        "episode": 106181341,
+        "wins": 0,
+        "our_mean": 86300.0,
+        "opponent_mean": 94425.0,
+        "margin_mean": -8125.0
+      },
+      {
+        "player": "rian",
+        "episode": 106180595,
+        "wins": 0,
+        "our_mean": 43962.0,
+        "opponent_mean": 50454.0,
+        "margin_mean": -6492.0
+      },
+      {
+        "player": "rian",
+        "episode": 106180176,
+        "wins": 0,
+        "our_mean": 56743.0,
+        "opponent_mean": 58437.0,
+        "margin_mean": -1694.0
+      },
+      {
+        "player": "rian",
+        "episode": 106180175,
+        "wins": 0,
+        "our_mean": 89696.0,
+        "opponent_mean": 95485.0,
+        "margin_mean": -5789.0
+      },
+      {
+        "player": "我都先道歉",
+        "episode": 106180736,
+        "wins": 0,
+        "our_mean": 98068.0,
+        "opponent_mean": 117601.0,
+        "margin_mean": -19533.0
+      },
+      {
+        "player": "我都先道歉",
+        "episode": 106179828,
+        "wins": 0,
+        "our_mean": 129936.0,
+        "opponent_mean": 130983.0,
+        "margin_mean": -1047.0
+      },
+      {
+        "player": "我都先道歉",
+        "episode": 106178915,
+        "wins": 0,
+        "our_mean": 70285.0,
+        "opponent_mean": 81114.0,
+        "margin_mean": -10829.0
+      },
+      {
+        "player": "我都先道歉",
+        "episode": 106178015,
+        "wins": 2,
+        "our_mean": 101049.0,
+        "opponent_mean": 85583.0,
+        "margin_mean": 15466.0
+      },
+      {
+        "player": "我都先道歉",
+        "episode": 106177102,
+        "wins": 2,
+        "our_mean": 125406.0,
+        "opponent_mean": 111796.0,
+        "margin_mean": 13610.0
+      },
+      {
+        "player": "Agent 0",
+        "episode": 106180175,
+        "wins": 0,
+        "our_mean": 95184.0,
+        "opponent_mean": 109228.0,
+        "margin_mean": -14044.0
+      },
+      {
+        "player": "Agent 0",
+        "episode": 106177355,
+        "wins": 0,
+        "our_mean": 96017.0,
+        "opponent_mean": 111606.0,
+        "margin_mean": -15589.0
+      },
+      {
+        "player": "Agent 0",
+        "episode": 106177079,
+        "wins": 2,
+        "our_mean": 88207.0,
+        "opponent_mean": 76827.0,
+        "margin_mean": 11380.0
+      },
+      {
+        "player": "Agent 0",
+        "episode": 106175660,
+        "wins": 0,
+        "our_mean": 78142.0,
+        "opponent_mean": 100106.0,
+        "margin_mean": -21964.0
+      },
+      {
+        "player": "Agent 0",
+        "episode": 106173847,
+        "wins": 0,
+        "our_mean": 91600.0,
+        "opponent_mean": 101813.0,
+        "margin_mean": -10213.0
+      },
+      {
+        "player": "Dresden",
+        "episode": 106181316,
+        "wins": 2,
+        "our_mean": 88728.0,
+        "opponent_mean": 86078.0,
+        "margin_mean": 2650.0
+      },
+      {
+        "player": "Dresden",
+        "episode": 106180123,
+        "wins": 0,
+        "our_mean": 92763.0,
+        "opponent_mean": 94430.0,
+        "margin_mean": -1667.0
+      },
+      {
+        "player": "Dresden",
+        "episode": 106179277,
+        "wins": 0,
+        "our_mean": 73268.0,
+        "opponent_mean": 89603.0,
+        "margin_mean": -16335.0
+      },
+      {
+        "player": "Dresden",
+        "episode": 106179209,
+        "wins": 0,
+        "our_mean": 101550.0,
+        "opponent_mean": 107480.0,
+        "margin_mean": -5930.0
+      },
+      {
+        "player": "Dresden",
+        "episode": 106175573,
+        "wins": 0,
+        "our_mean": 62306.0,
+        "opponent_mean": 73619.0,
+        "margin_mean": -11313.0
+      },
+      {
+        "player": "KongKongDe",
+        "episode": 106180174,
+        "wins": 0,
+        "our_mean": 84251.0,
+        "opponent_mean": 88422.0,
+        "margin_mean": -4171.0
+      },
+      {
+        "player": "KongKongDe",
+        "episode": 106179276,
+        "wins": 0,
+        "our_mean": 87351.5,
+        "opponent_mean": 99949.0,
+        "margin_mean": -12597.5
+      },
+      {
+        "player": "KongKongDe",
+        "episode": 106179154,
+        "wins": 0,
+        "our_mean": 74577.0,
+        "opponent_mean": 88304.0,
+        "margin_mean": -13727.0
+      },
+      {
+        "player": "KongKongDe",
+        "episode": 106178992,
+        "wins": 2,
+        "our_mean": 86049.0,
+        "opponent_mean": 82591.0,
+        "margin_mean": 3458.0
+      },
+      {
+        "player": "KongKongDe",
+        "episode": 106178262,
+        "wins": 0,
+        "our_mean": 104607.0,
+        "opponent_mean": 119945.0,
+        "margin_mean": -15338.0
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "episode": 106184111,
+        "wins": 0,
+        "our_mean": 109368.0,
+        "opponent_mean": 113091.0,
+        "margin_mean": -3723.0
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "episode": 106183199,
+        "wins": 0,
+        "our_mean": 117089.5,
+        "opponent_mean": 127221.5,
+        "margin_mean": -10132.0
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "episode": 106182297,
+        "wins": 2,
+        "our_mean": 108059.5,
+        "opponent_mean": 105747.5,
+        "margin_mean": 2312.0
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "episode": 106181911,
+        "wins": 0,
+        "our_mean": 89155.0,
+        "opponent_mean": 93467.0,
+        "margin_mean": -4312.0
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "episode": 106181389,
+        "wins": 0,
+        "our_mean": 87576.0,
+        "opponent_mean": 103153.0,
+        "margin_mean": -15577.0
+      },
+      {
+        "player": "Tomoki Hirose",
+        "episode": 106183774,
+        "wins": 2,
+        "our_mean": 60522.0,
+        "opponent_mean": 59334.0,
+        "margin_mean": 1188.0
+      },
+      {
+        "player": "Tomoki Hirose",
+        "episode": 106183447,
+        "wins": 0,
+        "our_mean": 78810.0,
+        "opponent_mean": 90055.0,
+        "margin_mean": -11245.0
+      },
+      {
+        "player": "Tomoki Hirose",
+        "episode": 106183314,
+        "wins": 0,
+        "our_mean": 103080.0,
+        "opponent_mean": 112416.0,
+        "margin_mean": -9336.0
+      },
+      {
+        "player": "Tomoki Hirose",
+        "episode": 106183152,
+        "wins": 0,
+        "our_mean": 114297.0,
+        "opponent_mean": 116660.0,
+        "margin_mean": -2363.0
+      },
+      {
+        "player": "Tomoki Hirose",
+        "episode": 106180176,
+        "wins": 0,
+        "our_mean": 56681.0,
+        "opponent_mean": 58567.0,
+        "margin_mean": -1886.0
+      },
+      {
+        "player": "liyuting",
+        "episode": 106183242,
+        "wins": 0,
+        "our_mean": 90350.0,
+        "opponent_mean": 100887.0,
+        "margin_mean": -10537.0
+      },
+      {
+        "player": "liyuting",
+        "episode": 106182540,
+        "wins": 2,
+        "our_mean": 97820.0,
+        "opponent_mean": 94249.0,
+        "margin_mean": 3571.0
+      },
+      {
+        "player": "liyuting",
+        "episode": 106182330,
+        "wins": 0,
+        "our_mean": 92772.0,
+        "opponent_mean": 94331.0,
+        "margin_mean": -1559.0
+      },
+      {
+        "player": "liyuting",
+        "episode": 106182216,
+        "wins": 0,
+        "our_mean": 64436.0,
+        "opponent_mean": 72050.0,
+        "margin_mean": -7614.0
+      },
+      {
+        "player": "liyuting",
+        "episode": 106182007,
+        "wins": 2,
+        "our_mean": 93339.0,
+        "opponent_mean": 87193.0,
+        "margin_mean": 6146.0
+      },
+      {
+        "player": "t-enstar",
+        "episode": 106183820,
+        "wins": 0,
+        "our_mean": 101613.0,
+        "opponent_mean": 105749.0,
+        "margin_mean": -4136.0
+      },
+      {
+        "player": "t-enstar",
+        "episode": 106181905,
+        "wins": 0,
+        "our_mean": 42153.0,
+        "opponent_mean": 43715.0,
+        "margin_mean": -1562.0
+      },
+      {
+        "player": "t-enstar",
+        "episode": 106180090,
+        "wins": 2,
+        "our_mean": 86833.0,
+        "opponent_mean": 86073.0,
+        "margin_mean": 760.0
+      },
+      {
+        "player": "t-enstar",
+        "episode": 106177409,
+        "wins": 2,
+        "our_mean": 77212.0,
+        "opponent_mean": 77113.0,
+        "margin_mean": 99.0
+      },
+      {
+        "player": "t-enstar",
+        "episode": 106175421,
+        "wins": 0,
+        "our_mean": 118107.0,
+        "opponent_mean": 129470.0,
+        "margin_mean": -11363.0
+      },
+      {
+        "player": "Beyond",
+        "episode": 106180444,
+        "wins": 2,
+        "our_mean": 71846.0,
+        "opponent_mean": 69154.0,
+        "margin_mean": 2692.0
+      },
+      {
+        "player": "Beyond",
+        "episode": 106180403,
+        "wins": 0,
+        "our_mean": 123512.0,
+        "opponent_mean": 129366.0,
+        "margin_mean": -5854.0
+      },
+      {
+        "player": "Beyond",
+        "episode": 106180157,
+        "wins": 0,
+        "our_mean": 101899.0,
+        "opponent_mean": 103153.0,
+        "margin_mean": -1254.0
+      },
+      {
+        "player": "Beyond",
+        "episode": 106180122,
+        "wins": 0,
+        "our_mean": 130535.0,
+        "opponent_mean": 131084.0,
+        "margin_mean": -549.0
+      },
+      {
+        "player": "Beyond",
+        "episode": 106179879,
+        "wins": 0,
+        "our_mean": 82671.0,
+        "opponent_mean": 102284.0,
+        "margin_mean": -19613.0
+      },
+      {
+        "player": "JamesJJJJJ",
+        "episode": 106180048,
+        "wins": 2,
+        "our_mean": 66653.0,
+        "opponent_mean": 62339.0,
+        "margin_mean": 4314.0
+      },
+      {
+        "player": "JamesJJJJJ",
+        "episode": 106179277,
+        "wins": 0,
+        "our_mean": 59999.0,
+        "opponent_mean": 63509.0,
+        "margin_mean": -3510.0
+      },
+      {
+        "player": "JamesJJJJJ",
+        "episode": 106175209,
+        "wins": 0,
+        "our_mean": 60023.0,
+        "opponent_mean": 66549.0,
+        "margin_mean": -6526.0
+      },
+      {
+        "player": "JamesJJJJJ",
+        "episode": 106174747,
+        "wins": 2,
+        "our_mean": 66122.0,
+        "opponent_mean": 64675.0,
+        "margin_mean": 1447.0
+      },
+      {
+        "player": "JamesJJJJJ",
+        "episode": 106172662,
+        "wins": 0,
+        "our_mean": 103253.0,
+        "opponent_mean": 109347.0,
+        "margin_mean": -6094.0
+      },
+      {
+        "player": "Mengfei Li",
+        "episode": 106180736,
+        "wins": 0,
+        "our_mean": 99373.0,
+        "opponent_mean": 147870.0,
+        "margin_mean": -48497.0
+      },
+      {
+        "player": "Mengfei Li",
+        "episode": 106180186,
+        "wins": 0,
+        "our_mean": 57726.0,
+        "opponent_mean": 58004.0,
+        "margin_mean": -278.0
+      },
+      {
+        "player": "Mengfei Li",
+        "episode": 106179828,
+        "wins": 0,
+        "our_mean": 131994.0,
+        "opponent_mean": 134470.0,
+        "margin_mean": -2476.0
+      },
+      {
+        "player": "Mengfei Li",
+        "episode": 106178915,
+        "wins": 2,
+        "our_mean": 125179.0,
+        "opponent_mean": 111055.0,
+        "margin_mean": 14124.0
+      },
+      {
+        "player": "Mengfei Li",
+        "episode": 106178015,
+        "wins": 0,
+        "our_mean": 53620.0,
+        "opponent_mean": 67787.0,
+        "margin_mean": -14167.0
+      },
+      {
+        "player": "Suliman Tadros",
+        "episode": 106180114,
+        "wins": 0,
+        "our_mean": 109439.0,
+        "opponent_mean": 122327.0,
+        "margin_mean": -12888.0
+      },
+      {
+        "player": "Suliman Tadros",
+        "episode": 106179794,
+        "wins": 2,
+        "our_mean": 107625.0,
+        "opponent_mean": 90242.0,
+        "margin_mean": 17383.0
+      },
+      {
+        "player": "Suliman Tadros",
+        "episode": 106178889,
+        "wins": 2,
+        "our_mean": 79308.0,
+        "opponent_mean": 79244.0,
+        "margin_mean": 64.0
+      },
+      {
+        "player": "Suliman Tadros",
+        "episode": 106176376,
+        "wins": 2,
+        "our_mean": 109744.0,
+        "opponent_mean": 104227.0,
+        "margin_mean": 5517.0
+      },
+      {
+        "player": "Suliman Tadros",
+        "episode": 106175239,
+        "wins": 2,
+        "our_mean": 119373.0,
+        "opponent_mean": 103656.0,
+        "margin_mean": 15717.0
+      },
+      {
+        "player": "elmo",
+        "episode": 106181859,
+        "wins": 0,
+        "our_mean": 94072.0,
+        "opponent_mean": 99652.0,
+        "margin_mean": -5580.0
+      },
+      {
+        "player": "elmo",
+        "episode": 106181529,
+        "wins": 2,
+        "our_mean": 81250.0,
+        "opponent_mean": 80819.0,
+        "margin_mean": 431.0
+      },
+      {
+        "player": "elmo",
+        "episode": 106181492,
+        "wins": 0,
+        "our_mean": 90006.0,
+        "opponent_mean": 95146.0,
+        "margin_mean": -5140.0
+      },
+      {
+        "player": "elmo",
+        "episode": 106180659,
+        "wins": 0,
+        "our_mean": 85209.0,
+        "opponent_mean": 89334.0,
+        "margin_mean": -4125.0
+      },
+      {
+        "player": "elmo",
+        "episode": 106180027,
+        "wins": 0,
+        "our_mean": 126876.5,
+        "opponent_mean": 127286.5,
+        "margin_mean": -410.0
+      },
+      {
+        "player": "peikopon",
+        "episode": 106180968,
+        "wins": 2,
+        "our_mean": 105122.0,
+        "opponent_mean": 103657.0,
+        "margin_mean": 1465.0
+      },
+      {
+        "player": "peikopon",
+        "episode": 106180123,
+        "wins": 2,
+        "our_mean": 139626.0,
+        "opponent_mean": 135532.0,
+        "margin_mean": 4094.0
+      },
+      {
+        "player": "peikopon",
+        "episode": 106179279,
+        "wins": 0,
+        "our_mean": 128572.0,
+        "opponent_mean": 139035.0,
+        "margin_mean": -10463.0
+      },
+      {
+        "player": "peikopon",
+        "episode": 106179276,
+        "wins": 1,
+        "our_mean": 106144.5,
+        "opponent_mean": 105250.0,
+        "margin_mean": 894.5
+      },
+      {
+        "player": "peikopon",
+        "episode": 106175659,
+        "wins": 2,
+        "our_mean": 72806.0,
+        "opponent_mean": 72347.0,
+        "margin_mean": 459.0
+      },
+      {
+        "player": "yfy",
+        "episode": 106181935,
+        "wins": 2,
+        "our_mean": 151779.0,
+        "opponent_mean": 98912.0,
+        "margin_mean": 52867.0
+      },
+      {
+        "player": "yfy",
+        "episode": 106180185,
+        "wins": 2,
+        "our_mean": 106789.0,
+        "opponent_mean": 104294.0,
+        "margin_mean": 2495.0
+      },
+      {
+        "player": "yfy",
+        "episode": 106177450,
+        "wins": 2,
+        "our_mean": 91437.0,
+        "opponent_mean": 64545.0,
+        "margin_mean": 26892.0
+      },
+      {
+        "player": "yfy",
+        "episode": 106175677,
+        "wins": 0,
+        "our_mean": 105065.0,
+        "opponent_mean": 107617.0,
+        "margin_mean": -2552.0
+      },
+      {
+        "player": "yfy",
+        "episode": 106175563,
+        "wins": 0,
+        "our_mean": 82750.0,
+        "opponent_mean": 89096.0,
+        "margin_mean": -6346.0
+      },
+      {
+        "player": "CemBas",
+        "episode": 106181714,
+        "wins": 0,
+        "our_mean": 68262.0,
+        "opponent_mean": 71268.0,
+        "margin_mean": -3006.0
+      },
+      {
+        "player": "CemBas",
+        "episode": 106180731,
+        "wins": 2,
+        "our_mean": 83269.0,
+        "opponent_mean": 79853.0,
+        "margin_mean": 3416.0
+      },
+      {
+        "player": "CemBas",
+        "episode": 106180122,
+        "wins": 0,
+        "our_mean": 130979.0,
+        "opponent_mean": 132466.0,
+        "margin_mean": -1487.0
+      },
+      {
+        "player": "CemBas",
+        "episode": 106178933,
+        "wins": 0,
+        "our_mean": 102179.0,
+        "opponent_mean": 105225.0,
+        "margin_mean": -3046.0
+      },
+      {
+        "player": "CemBas",
+        "episode": 106177460,
+        "wins": 0,
+        "our_mean": 36179.0,
+        "opponent_mean": 42891.0,
+        "margin_mean": -6712.0
+      },
+      {
+        "player": "Jiro2",
+        "episode": 106180966,
+        "wins": 2,
+        "our_mean": 140794.0,
+        "opponent_mean": 113128.0,
+        "margin_mean": 27666.0
+      },
+      {
+        "player": "Jiro2",
+        "episode": 106180962,
+        "wins": 0,
+        "our_mean": 70574.0,
+        "opponent_mean": 76134.0,
+        "margin_mean": -5560.0
+      },
+      {
+        "player": "Jiro2",
+        "episode": 106180791,
+        "wins": 0,
+        "our_mean": 73456.0,
+        "opponent_mean": 83410.0,
+        "margin_mean": -9954.0
+      },
+      {
+        "player": "Jiro2",
+        "episode": 106179519,
+        "wins": 2,
+        "our_mean": 102791.5,
+        "opponent_mean": 91856.5,
+        "margin_mean": 10935.0
+      },
+      {
+        "player": "Jiro2",
+        "episode": 106178384,
+        "wins": 0,
+        "our_mean": 60113.0,
+        "opponent_mean": 65326.0,
+        "margin_mean": -5213.0
+      },
+      {
+        "player": "Milan Leonard",
+        "episode": 106180845,
+        "wins": 2,
+        "our_mean": 50179.5,
+        "opponent_mean": 28786.0,
+        "margin_mean": 21393.5
+      },
+      {
+        "player": "Milan Leonard",
+        "episode": 106180174,
+        "wins": 2,
+        "our_mean": 104100.0,
+        "opponent_mean": 102343.0,
+        "margin_mean": 1757.0
+      },
+      {
+        "player": "Milan Leonard",
+        "episode": 106175659,
+        "wins": 2,
+        "our_mean": 87879.0,
+        "opponent_mean": 66062.0,
+        "margin_mean": 21817.0
+      },
+      {
+        "player": "Milan Leonard",
+        "episode": 106175612,
+        "wins": 0,
+        "our_mean": 83025.0,
+        "opponent_mean": 94517.0,
+        "margin_mean": -11492.0
+      },
+      {
+        "player": "Milan Leonard",
+        "episode": 106175560,
+        "wins": 0,
+        "our_mean": 136210.0,
+        "opponent_mean": 162310.0,
+        "margin_mean": -26100.0
+      },
+      {
+        "player": "Syed Asad Ali",
+        "episode": 106180114,
+        "wins": 0,
+        "our_mean": 89191.0,
+        "opponent_mean": 92434.0,
+        "margin_mean": -3243.0
+      },
+      {
+        "player": "Syed Asad Ali",
+        "episode": 106179926,
+        "wins": 2,
+        "our_mean": 125649.0,
+        "opponent_mean": 121145.0,
+        "margin_mean": 4504.0
+      },
+      {
+        "player": "Syed Asad Ali",
+        "episode": 106179279,
+        "wins": 0,
+        "our_mean": 100208.0,
+        "opponent_mean": 104197.0,
+        "margin_mean": -3989.0
+      },
+      {
+        "player": "Syed Asad Ali",
+        "episode": 106178992,
+        "wins": 2,
+        "our_mean": 86684.0,
+        "opponent_mean": 85580.0,
+        "margin_mean": 1104.0
+      },
+      {
+        "player": "Syed Asad Ali",
+        "episode": 106178608,
+        "wins": 2,
+        "our_mean": 85358.0,
+        "opponent_mean": 85030.0,
+        "margin_mean": 328.0
+      },
+      {
+        "player": "get some fries",
+        "episode": 106183105,
+        "wins": 0,
+        "our_mean": 69623.0,
+        "opponent_mean": 73840.0,
+        "margin_mean": -4217.0
+      },
+      {
+        "player": "get some fries",
+        "episode": 106182188,
+        "wins": 2,
+        "our_mean": 88451.0,
+        "opponent_mean": 75586.0,
+        "margin_mean": 12865.0
+      },
+      {
+        "player": "get some fries",
+        "episode": 106181519,
+        "wins": 0,
+        "our_mean": 82369.0,
+        "opponent_mean": 111276.5,
+        "margin_mean": -28907.5
+      },
+      {
+        "player": "get some fries",
+        "episode": 106181292,
+        "wins": 0,
+        "our_mean": 86306.0,
+        "opponent_mean": 89248.0,
+        "margin_mean": -2942.0
+      },
+      {
+        "player": "get some fries",
+        "episode": 106180356,
+        "wins": 2,
+        "our_mean": 76239.5,
+        "opponent_mean": 74928.0,
+        "margin_mean": 1311.5
+      },
+      {
+        "player": "pensukesan",
+        "episode": 106183257,
+        "wins": 0,
+        "our_mean": 97032.0,
+        "opponent_mean": 98936.0,
+        "margin_mean": -1904.0
+      },
+      {
+        "player": "pensukesan",
+        "episode": 106181714,
+        "wins": 1,
+        "our_mean": 60235.0,
+        "opponent_mean": 61421.0,
+        "margin_mean": -1186.0
+      },
+      {
+        "player": "pensukesan",
+        "episode": 106180972,
+        "wins": 0,
+        "our_mean": 127782.5,
+        "opponent_mean": 136822.0,
+        "margin_mean": -9039.5
+      },
+      {
+        "player": "pensukesan",
+        "episode": 106180791,
+        "wins": 0,
+        "our_mean": 76654.0,
+        "opponent_mean": 81232.0,
+        "margin_mean": -4578.0
+      },
+      {
+        "player": "pensukesan",
+        "episode": 106179678,
+        "wins": 2,
+        "our_mean": 59415.0,
+        "opponent_mean": 54785.0,
+        "margin_mean": 4630.0
+      },
+      {
+        "player": "ymg_aq",
+        "episode": 106180731,
+        "wins": 2,
+        "our_mean": 107055.0,
+        "opponent_mean": 28856.0,
+        "margin_mean": 78199.0
+      },
+      {
+        "player": "ymg_aq",
+        "episode": 106180714,
+        "wins": 2,
+        "our_mean": 144215.0,
+        "opponent_mean": 20759.0,
+        "margin_mean": 123456.0
+      },
+      {
+        "player": "ymg_aq",
+        "episode": 106179825,
+        "wins": 2,
+        "our_mean": 130937.0,
+        "opponent_mean": 30578.0,
+        "margin_mean": 100359.0
+      },
+      {
+        "player": "ymg_aq",
+        "episode": 106179794,
+        "wins": 2,
+        "our_mean": 126084.0,
+        "opponent_mean": 94272.0,
+        "margin_mean": 31812.0
+      },
+      {
+        "player": "ymg_aq",
+        "episode": 106178889,
+        "wins": 2,
+        "our_mean": 64532.0,
+        "opponent_mean": 34368.0,
+        "margin_mean": 30164.0
+      }
+    ],
+    "p0_b20s15": [
+      {
+        "player": "Ant",
+        "episode": 106182894,
+        "wins": 0,
+        "our_mean": 48684.5,
+        "opponent_mean": 52631.5,
+        "margin_mean": -3947.0
+      },
+      {
+        "player": "Ant",
+        "episode": 106179154,
+        "wins": 0,
+        "our_mean": 60292.5,
+        "opponent_mean": 63171.5,
+        "margin_mean": -2879.0
+      },
+      {
+        "player": "Ant",
+        "episode": 106177931,
+        "wins": 2,
+        "our_mean": 104113.5,
+        "opponent_mean": 101508.5,
+        "margin_mean": 2605.0
+      },
+      {
+        "player": "Ant",
+        "episode": 106176431,
+        "wins": 0,
+        "our_mean": 41863.5,
+        "opponent_mean": 48365.5,
+        "margin_mean": -6502.0
+      },
+      {
+        "player": "Ant",
+        "episode": 106174282,
+        "wins": 0,
+        "our_mean": 53676.5,
+        "opponent_mean": 58175.5,
+        "margin_mean": -4499.0
+      },
+      {
+        "player": "Foxure",
+        "episode": 106183427,
+        "wins": 2,
+        "our_mean": 95903.0,
+        "opponent_mean": 91942.0,
+        "margin_mean": 3961.0
+      },
+      {
+        "player": "Foxure",
+        "episode": 106182571,
+        "wins": 2,
+        "our_mean": 84541.0,
+        "opponent_mean": 80837.0,
+        "margin_mean": 3704.0
+      },
+      {
+        "player": "Foxure",
+        "episode": 106181999,
+        "wins": 2,
+        "our_mean": 86679.0,
+        "opponent_mean": 82049.5,
+        "margin_mean": 4629.5
+      },
+      {
+        "player": "Foxure",
+        "episode": 106181539,
+        "wins": 2,
+        "our_mean": 88643.0,
+        "opponent_mean": 88460.0,
+        "margin_mean": 183.0
+      },
+      {
+        "player": "Foxure",
+        "episode": 106180990,
+        "wins": 0,
+        "our_mean": 115096.0,
+        "opponent_mean": 125788.0,
+        "margin_mean": -10692.0
+      },
+      {
+        "player": "Marlubie",
+        "episode": 106180722,
+        "wins": 0,
+        "our_mean": 133063.0,
+        "opponent_mean": 141507.0,
+        "margin_mean": -8444.0
+      },
+      {
+        "player": "Marlubie",
+        "episode": 106180186,
+        "wins": 0,
+        "our_mean": 57520.0,
+        "opponent_mean": 58393.0,
+        "margin_mean": -873.0
+      },
+      {
+        "player": "Marlubie",
+        "episode": 106179792,
+        "wins": 2,
+        "our_mean": 87032.0,
+        "opponent_mean": 86211.5,
+        "margin_mean": 820.5
+      },
+      {
+        "player": "Marlubie",
+        "episode": 106179150,
+        "wins": 0,
+        "our_mean": 77505.5,
+        "opponent_mean": 83803.5,
+        "margin_mean": -6298.0
+      },
+      {
+        "player": "Marlubie",
+        "episode": 106178977,
+        "wins": 0,
+        "our_mean": 75895.0,
+        "opponent_mean": 83265.0,
+        "margin_mean": -7370.0
+      },
+      {
+        "player": "Scott Willis",
+        "episode": 106184143,
+        "wins": 0,
+        "our_mean": 70564.0,
+        "opponent_mean": 80506.0,
+        "margin_mean": -9942.0
+      },
+      {
+        "player": "Scott Willis",
+        "episode": 106182374,
+        "wins": 0,
+        "our_mean": 88931.0,
+        "opponent_mean": 91041.0,
+        "margin_mean": -2110.0
+      },
+      {
+        "player": "Scott Willis",
+        "episode": 106181312,
+        "wins": 2,
+        "our_mean": 92373.0,
+        "opponent_mean": 91843.0,
+        "margin_mean": 530.0
+      },
+      {
+        "player": "Scott Willis",
+        "episode": 106180737,
+        "wins": 0,
+        "our_mean": 99292.0,
+        "opponent_mean": 101745.0,
+        "margin_mean": -2453.0
+      },
+      {
+        "player": "Scott Willis",
+        "episode": 106179807,
+        "wins": 0,
+        "our_mean": 45165.0,
+        "opponent_mean": 61444.0,
+        "margin_mean": -16279.0
+      },
+      {
+        "player": "daulettoibazar",
+        "episode": 106184277,
+        "wins": 0,
+        "our_mean": 87476.0,
+        "opponent_mean": 93956.0,
+        "margin_mean": -6480.0
+      },
+      {
+        "player": "daulettoibazar",
+        "episode": 106183634,
+        "wins": 0,
+        "our_mean": 65792.0,
+        "opponent_mean": 74402.0,
+        "margin_mean": -8610.0
+      },
+      {
+        "player": "daulettoibazar",
+        "episode": 106183362,
+        "wins": 0,
+        "our_mean": 134636.0,
+        "opponent_mean": 144783.0,
+        "margin_mean": -10147.0
+      },
+      {
+        "player": "daulettoibazar",
+        "episode": 106183224,
+        "wins": 1,
+        "our_mean": 88128.5,
+        "opponent_mean": 86793.5,
+        "margin_mean": 1335.0
+      },
+      {
+        "player": "daulettoibazar",
+        "episode": 106182451,
+        "wins": 0,
+        "our_mean": 47557.0,
+        "opponent_mean": 51060.0,
+        "margin_mean": -3503.0
+      },
+      {
+        "player": "mikelou1",
+        "episode": 106181921,
+        "wins": 0,
+        "our_mean": 83955.0,
+        "opponent_mean": 88701.0,
+        "margin_mean": -4746.0
+      },
+      {
+        "player": "mikelou1",
+        "episode": 106181798,
+        "wins": 2,
+        "our_mean": 60477.0,
+        "opponent_mean": 59527.0,
+        "margin_mean": 950.0
+      },
+      {
+        "player": "mikelou1",
+        "episode": 106177434,
+        "wins": 0,
+        "our_mean": 83808.0,
+        "opponent_mean": 93895.0,
+        "margin_mean": -10087.0
+      },
+      {
+        "player": "mikelou1",
+        "episode": 106176780,
+        "wins": 2,
+        "our_mean": 103907.0,
+        "opponent_mean": 100005.0,
+        "margin_mean": 3902.0
+      },
+      {
+        "player": "mikelou1",
+        "episode": 106174745,
+        "wins": 0,
+        "our_mean": 40082.0,
+        "opponent_mean": 45089.0,
+        "margin_mean": -5007.0
+      },
+      {
+        "player": "tetsuya & yuanzhe zhou",
+        "episode": 106183339,
+        "wins": 0,
+        "our_mean": 112852.0,
+        "opponent_mean": 122990.0,
+        "margin_mean": -10138.0
+      },
+      {
+        "player": "tetsuya & yuanzhe zhou",
+        "episode": 106182747,
+        "wins": 0,
+        "our_mean": 85274.0,
+        "opponent_mean": 94814.0,
+        "margin_mean": -9540.0
+      },
+      {
+        "player": "tetsuya & yuanzhe zhou",
+        "episode": 106181911,
+        "wins": 0,
+        "our_mean": 83820.0,
+        "opponent_mean": 90326.0,
+        "margin_mean": -6506.0
+      },
+      {
+        "player": "tetsuya & yuanzhe zhou",
+        "episode": 106180157,
+        "wins": 0,
+        "our_mean": 118676.0,
+        "opponent_mean": 123154.0,
+        "margin_mean": -4478.0
+      },
+      {
+        "player": "tetsuya & yuanzhe zhou",
+        "episode": 106179195,
+        "wins": 2,
+        "our_mean": 79439.0,
+        "opponent_mean": 78887.0,
+        "margin_mean": 552.0
+      },
+      {
+        "player": "Andrey Tikhomirov",
+        "episode": 106182537,
+        "wins": 2,
+        "our_mean": 111441.0,
+        "opponent_mean": 102497.0,
+        "margin_mean": 8944.0
+      },
+      {
+        "player": "Andrey Tikhomirov",
+        "episode": 106180714,
+        "wins": 1,
+        "our_mean": 103060.0,
+        "opponent_mean": 104300.5,
+        "margin_mean": -1240.5
+      },
+      {
+        "player": "Andrey Tikhomirov",
+        "episode": 106180056,
+        "wins": 0,
+        "our_mean": 42894.0,
+        "opponent_mean": 55403.0,
+        "margin_mean": -12509.0
+      },
+      {
+        "player": "Andrey Tikhomirov",
+        "episode": 106179229,
+        "wins": 0,
+        "our_mean": 70597.5,
+        "opponent_mean": 72962.5,
+        "margin_mean": -2365.0
+      },
+      {
+        "player": "Andrey Tikhomirov",
+        "episode": 106178223,
+        "wins": 2,
+        "our_mean": 99341.0,
+        "opponent_mean": 78942.0,
+        "margin_mean": 20399.0
+      },
+      {
+        "player": "Driz Lo",
+        "episode": 106183411,
+        "wins": 0,
+        "our_mean": 95756.0,
+        "opponent_mean": 107580.0,
+        "margin_mean": -11824.0
+      },
+      {
+        "player": "Driz Lo",
+        "episode": 106182411,
+        "wins": 0,
+        "our_mean": 49107.0,
+        "opponent_mean": 54318.0,
+        "margin_mean": -5211.0
+      },
+      {
+        "player": "Driz Lo",
+        "episode": 106181623,
+        "wins": 2,
+        "our_mean": 94496.0,
+        "opponent_mean": 93444.5,
+        "margin_mean": 1051.5
+      },
+      {
+        "player": "Driz Lo",
+        "episode": 106180945,
+        "wins": 0,
+        "our_mean": 69420.0,
+        "opponent_mean": 75246.0,
+        "margin_mean": -5826.0
+      },
+      {
+        "player": "Driz Lo",
+        "episode": 106180083,
+        "wins": 0,
+        "our_mean": 77820.0,
+        "opponent_mean": 91316.5,
+        "margin_mean": -13496.5
+      },
+      {
+        "player": "LI Mufeng",
+        "episode": 106182913,
+        "wins": 2,
+        "our_mean": 83170.5,
+        "opponent_mean": 80460.0,
+        "margin_mean": 2710.5
+      },
+      {
+        "player": "LI Mufeng",
+        "episode": 106180754,
+        "wins": 2,
+        "our_mean": 74344.0,
+        "opponent_mean": 71111.0,
+        "margin_mean": 3233.0
+      },
+      {
+        "player": "LI Mufeng",
+        "episode": 106179152,
+        "wins": 2,
+        "our_mean": 121045.0,
+        "opponent_mean": 116732.0,
+        "margin_mean": 4313.0
+      },
+      {
+        "player": "LI Mufeng",
+        "episode": 106178906,
+        "wins": 2,
+        "our_mean": 60255.5,
+        "opponent_mean": 59937.5,
+        "margin_mean": 318.0
+      },
+      {
+        "player": "LI Mufeng",
+        "episode": 106177434,
+        "wins": 0,
+        "our_mean": 83791.0,
+        "opponent_mean": 93667.0,
+        "margin_mean": -9876.0
+      },
+      {
+        "player": "SJY321",
+        "episode": 106180964,
+        "wins": 2,
+        "our_mean": 97048.0,
+        "opponent_mean": 86103.0,
+        "margin_mean": 10945.0
+      },
+      {
+        "player": "SJY321",
+        "episode": 106178286,
+        "wins": 2,
+        "our_mean": 118940.0,
+        "opponent_mean": 93514.0,
+        "margin_mean": 25426.0
+      },
+      {
+        "player": "SJY321",
+        "episode": 106176371,
+        "wins": 0,
+        "our_mean": 85083.0,
+        "opponent_mean": 99155.0,
+        "margin_mean": -14072.0
+      },
+      {
+        "player": "SJY321",
+        "episode": 106173709,
+        "wins": 2,
+        "our_mean": 131400.5,
+        "opponent_mean": 69810.5,
+        "margin_mean": 61590.0
+      },
+      {
+        "player": "SJY321",
+        "episode": 106171098,
+        "wins": 1,
+        "our_mean": 93561.0,
+        "opponent_mean": 97057.0,
+        "margin_mean": -3496.0
+      },
+      {
+        "player": "Ueddy",
+        "episode": 106180964,
+        "wins": 0,
+        "our_mean": 83306.0,
+        "opponent_mean": 90779.0,
+        "margin_mean": -7473.0
+      },
+      {
+        "player": "Ueddy",
+        "episode": 106180962,
+        "wins": 0,
+        "our_mean": 71815.0,
+        "opponent_mean": 77552.0,
+        "margin_mean": -5737.0
+      },
+      {
+        "player": "Ueddy",
+        "episode": 106176369,
+        "wins": 0,
+        "our_mean": 100067.0,
+        "opponent_mean": 113668.0,
+        "margin_mean": -13601.0
+      },
+      {
+        "player": "Ueddy",
+        "episode": 106175612,
+        "wins": 0,
+        "our_mean": 62689.0,
+        "opponent_mean": 63634.0,
+        "margin_mean": -945.0
+      },
+      {
+        "player": "Ueddy",
+        "episode": 106175554,
+        "wins": 2,
+        "our_mean": 74118.0,
+        "opponent_mean": 71930.0,
+        "margin_mean": 2188.0
+      },
+      {
+        "player": "mandgeee",
+        "episode": 106181341,
+        "wins": 0,
+        "our_mean": 86183.5,
+        "opponent_mean": 97860.5,
+        "margin_mean": -11677.0
+      },
+      {
+        "player": "mandgeee",
+        "episode": 106181316,
+        "wins": 2,
+        "our_mean": 69506.5,
+        "opponent_mean": 69076.5,
+        "margin_mean": 430.0
+      },
+      {
+        "player": "mandgeee",
+        "episode": 106180972,
+        "wins": 0,
+        "our_mean": 127684.0,
+        "opponent_mean": 139212.0,
+        "margin_mean": -11528.0
+      },
+      {
+        "player": "mandgeee",
+        "episode": 106180444,
+        "wins": 0,
+        "our_mean": 71614.5,
+        "opponent_mean": 73056.5,
+        "margin_mean": -1442.0
+      },
+      {
+        "player": "mandgeee",
+        "episode": 106180403,
+        "wins": 0,
+        "our_mean": 103240.5,
+        "opponent_mean": 111246.5,
+        "margin_mean": -8006.0
+      },
+      {
+        "player": "taiseiu",
+        "episode": 106182372,
+        "wins": 0,
+        "our_mean": 89448.0,
+        "opponent_mean": 93869.0,
+        "margin_mean": -4421.0
+      },
+      {
+        "player": "taiseiu",
+        "episode": 106182007,
+        "wins": 0,
+        "our_mean": 90824.0,
+        "opponent_mean": 93842.0,
+        "margin_mean": -3018.0
+      },
+      {
+        "player": "taiseiu",
+        "episode": 106181030,
+        "wins": 1,
+        "our_mean": 97689.5,
+        "opponent_mean": 97571.5,
+        "margin_mean": 118.0
+      },
+      {
+        "player": "taiseiu",
+        "episode": 106180917,
+        "wins": 0,
+        "our_mean": 39895.0,
+        "opponent_mean": 45731.0,
+        "margin_mean": -5836.0
+      },
+      {
+        "player": "taiseiu",
+        "episode": 106178961,
+        "wins": 0,
+        "our_mean": 89714.0,
+        "opponent_mean": 97519.0,
+        "margin_mean": -7805.0
+      },
+      {
+        "player": "Beyond",
+        "episode": 106180444,
+        "wins": 2,
+        "our_mean": 71846.0,
+        "opponent_mean": 69154.0,
+        "margin_mean": 2692.0
+      },
+      {
+        "player": "Beyond",
+        "episode": 106180403,
+        "wins": 0,
+        "our_mean": 123512.0,
+        "opponent_mean": 129366.0,
+        "margin_mean": -5854.0
+      },
+      {
+        "player": "Beyond",
+        "episode": 106180157,
+        "wins": 0,
+        "our_mean": 101899.0,
+        "opponent_mean": 103153.0,
+        "margin_mean": -1254.0
+      },
+      {
+        "player": "Beyond",
+        "episode": 106180122,
+        "wins": 0,
+        "our_mean": 130535.0,
+        "opponent_mean": 131084.0,
+        "margin_mean": -549.0
+      },
+      {
+        "player": "Beyond",
+        "episode": 106179879,
+        "wins": 0,
+        "our_mean": 82671.0,
+        "opponent_mean": 102284.0,
+        "margin_mean": -19613.0
+      },
+      {
+        "player": "JamesJJJJJ",
+        "episode": 106180048,
+        "wins": 2,
+        "our_mean": 66653.0,
+        "opponent_mean": 62339.0,
+        "margin_mean": 4314.0
+      },
+      {
+        "player": "JamesJJJJJ",
+        "episode": 106179277,
+        "wins": 0,
+        "our_mean": 59999.0,
+        "opponent_mean": 63509.0,
+        "margin_mean": -3510.0
+      },
+      {
+        "player": "JamesJJJJJ",
+        "episode": 106175209,
+        "wins": 0,
+        "our_mean": 60023.0,
+        "opponent_mean": 66549.0,
+        "margin_mean": -6526.0
+      },
+      {
+        "player": "JamesJJJJJ",
+        "episode": 106174747,
+        "wins": 2,
+        "our_mean": 66122.0,
+        "opponent_mean": 64675.0,
+        "margin_mean": 1447.0
+      },
+      {
+        "player": "JamesJJJJJ",
+        "episode": 106172662,
+        "wins": 0,
+        "our_mean": 103253.0,
+        "opponent_mean": 109347.0,
+        "margin_mean": -6094.0
+      },
+      {
+        "player": "Mengfei Li",
+        "episode": 106180736,
+        "wins": 0,
+        "our_mean": 99373.0,
+        "opponent_mean": 147871.0,
+        "margin_mean": -48498.0
+      },
+      {
+        "player": "Mengfei Li",
+        "episode": 106180186,
+        "wins": 0,
+        "our_mean": 57726.0,
+        "opponent_mean": 58005.0,
+        "margin_mean": -279.0
+      },
+      {
+        "player": "Mengfei Li",
+        "episode": 106179828,
+        "wins": 0,
+        "our_mean": 131994.0,
+        "opponent_mean": 134471.0,
+        "margin_mean": -2477.0
+      },
+      {
+        "player": "Mengfei Li",
+        "episode": 106178915,
+        "wins": 2,
+        "our_mean": 125179.0,
+        "opponent_mean": 111056.0,
+        "margin_mean": 14123.0
+      },
+      {
+        "player": "Mengfei Li",
+        "episode": 106178015,
+        "wins": 0,
+        "our_mean": 53620.0,
+        "opponent_mean": 67788.0,
+        "margin_mean": -14168.0
+      },
+      {
+        "player": "Suliman Tadros",
+        "episode": 106180114,
+        "wins": 0,
+        "our_mean": 109437.5,
+        "opponent_mean": 122330.0,
+        "margin_mean": -12892.5
+      },
+      {
+        "player": "Suliman Tadros",
+        "episode": 106179794,
+        "wins": 2,
+        "our_mean": 107625.0,
+        "opponent_mean": 90243.0,
+        "margin_mean": 17382.0
+      },
+      {
+        "player": "Suliman Tadros",
+        "episode": 106178889,
+        "wins": 2,
+        "our_mean": 79308.0,
+        "opponent_mean": 79245.0,
+        "margin_mean": 63.0
+      },
+      {
+        "player": "Suliman Tadros",
+        "episode": 106176376,
+        "wins": 2,
+        "our_mean": 109744.0,
+        "opponent_mean": 104228.0,
+        "margin_mean": 5516.0
+      },
+      {
+        "player": "Suliman Tadros",
+        "episode": 106175239,
+        "wins": 2,
+        "our_mean": 119373.0,
+        "opponent_mean": 103657.0,
+        "margin_mean": 15716.0
+      },
+      {
+        "player": "elmo",
+        "episode": 106181859,
+        "wins": 0,
+        "our_mean": 94072.0,
+        "opponent_mean": 99653.0,
+        "margin_mean": -5581.0
+      },
+      {
+        "player": "elmo",
+        "episode": 106181529,
+        "wins": 2,
+        "our_mean": 81250.0,
+        "opponent_mean": 80820.0,
+        "margin_mean": 430.0
+      },
+      {
+        "player": "elmo",
+        "episode": 106181492,
+        "wins": 0,
+        "our_mean": 90006.0,
+        "opponent_mean": 95147.0,
+        "margin_mean": -5141.0
+      },
+      {
+        "player": "elmo",
+        "episode": 106180659,
+        "wins": 0,
+        "our_mean": 85209.0,
+        "opponent_mean": 89335.0,
+        "margin_mean": -4126.0
+      },
+      {
+        "player": "elmo",
+        "episode": 106180027,
+        "wins": 0,
+        "our_mean": 126876.5,
+        "opponent_mean": 127287.5,
+        "margin_mean": -411.0
+      },
+      {
+        "player": "peikopon",
+        "episode": 106180968,
+        "wins": 2,
+        "our_mean": 105121.5,
+        "opponent_mean": 103656.5,
+        "margin_mean": 1465.0
+      },
+      {
+        "player": "peikopon",
+        "episode": 106180123,
+        "wins": 2,
+        "our_mean": 139625.5,
+        "opponent_mean": 135531.5,
+        "margin_mean": 4094.0
+      },
+      {
+        "player": "peikopon",
+        "episode": 106179279,
+        "wins": 0,
+        "our_mean": 128571.5,
+        "opponent_mean": 139034.5,
+        "margin_mean": -10463.0
+      },
+      {
+        "player": "peikopon",
+        "episode": 106179276,
+        "wins": 1,
+        "our_mean": 106144.0,
+        "opponent_mean": 105249.5,
+        "margin_mean": 894.5
+      },
+      {
+        "player": "peikopon",
+        "episode": 106175659,
+        "wins": 2,
+        "our_mean": 72805.5,
+        "opponent_mean": 72346.5,
+        "margin_mean": 459.0
+      },
+      {
+        "player": "yfy",
+        "episode": 106181935,
+        "wins": 2,
+        "our_mean": 151780.0,
+        "opponent_mean": 98912.0,
+        "margin_mean": 52868.0
+      },
+      {
+        "player": "yfy",
+        "episode": 106180185,
+        "wins": 2,
+        "our_mean": 106789.0,
+        "opponent_mean": 104295.0,
+        "margin_mean": 2494.0
+      },
+      {
+        "player": "yfy",
+        "episode": 106177450,
+        "wins": 2,
+        "our_mean": 91438.0,
+        "opponent_mean": 64545.0,
+        "margin_mean": 26893.0
+      },
+      {
+        "player": "yfy",
+        "episode": 106175677,
+        "wins": 0,
+        "our_mean": 105065.0,
+        "opponent_mean": 107618.0,
+        "margin_mean": -2553.0
+      },
+      {
+        "player": "yfy",
+        "episode": 106175563,
+        "wins": 0,
+        "our_mean": 82750.0,
+        "opponent_mean": 89097.0,
+        "margin_mean": -6347.0
+      },
+      {
+        "player": "Agent 0",
+        "episode": 106180175,
+        "wins": 0,
+        "our_mean": 95184.0,
+        "opponent_mean": 109229.0,
+        "margin_mean": -14045.0
+      },
+      {
+        "player": "Agent 0",
+        "episode": 106177355,
+        "wins": 0,
+        "our_mean": 96017.0,
+        "opponent_mean": 111607.0,
+        "margin_mean": -15590.0
+      },
+      {
+        "player": "Agent 0",
+        "episode": 106177079,
+        "wins": 2,
+        "our_mean": 88207.0,
+        "opponent_mean": 76828.0,
+        "margin_mean": 11379.0
+      },
+      {
+        "player": "Agent 0",
+        "episode": 106175660,
+        "wins": 0,
+        "our_mean": 78142.0,
+        "opponent_mean": 100107.0,
+        "margin_mean": -21965.0
+      },
+      {
+        "player": "Agent 0",
+        "episode": 106173847,
+        "wins": 0,
+        "our_mean": 91600.0,
+        "opponent_mean": 101814.0,
+        "margin_mean": -10214.0
+      },
+      {
+        "player": "Dresden",
+        "episode": 106181316,
+        "wins": 2,
+        "our_mean": 88720.5,
+        "opponent_mean": 86078.5,
+        "margin_mean": 2642.0
+      },
+      {
+        "player": "Dresden",
+        "episode": 106180123,
+        "wins": 0,
+        "our_mean": 92762.5,
+        "opponent_mean": 94429.5,
+        "margin_mean": -1667.0
+      },
+      {
+        "player": "Dresden",
+        "episode": 106179277,
+        "wins": 0,
+        "our_mean": 73267.5,
+        "opponent_mean": 89602.5,
+        "margin_mean": -16335.0
+      },
+      {
+        "player": "Dresden",
+        "episode": 106179209,
+        "wins": 0,
+        "our_mean": 101549.5,
+        "opponent_mean": 107479.5,
+        "margin_mean": -5930.0
+      },
+      {
+        "player": "Dresden",
+        "episode": 106175573,
+        "wins": 0,
+        "our_mean": 62305.5,
+        "opponent_mean": 73618.5,
+        "margin_mean": -11313.0
+      },
+      {
+        "player": "KongKongDe",
+        "episode": 106180174,
+        "wins": 0,
+        "our_mean": 84251.0,
+        "opponent_mean": 88423.0,
+        "margin_mean": -4172.0
+      },
+      {
+        "player": "KongKongDe",
+        "episode": 106179276,
+        "wins": 0,
+        "our_mean": 87351.5,
+        "opponent_mean": 99950.0,
+        "margin_mean": -12598.5
+      },
+      {
+        "player": "KongKongDe",
+        "episode": 106179154,
+        "wins": 0,
+        "our_mean": 74577.0,
+        "opponent_mean": 88305.0,
+        "margin_mean": -13728.0
+      },
+      {
+        "player": "KongKongDe",
+        "episode": 106178992,
+        "wins": 2,
+        "our_mean": 86049.0,
+        "opponent_mean": 82592.0,
+        "margin_mean": 3457.0
+      },
+      {
+        "player": "KongKongDe",
+        "episode": 106178262,
+        "wins": 0,
+        "our_mean": 104607.0,
+        "opponent_mean": 119946.0,
+        "margin_mean": -15339.0
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "episode": 106184111,
+        "wins": 0,
+        "our_mean": 109367.5,
+        "opponent_mean": 113090.5,
+        "margin_mean": -3723.0
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "episode": 106183199,
+        "wins": 0,
+        "our_mean": 117089.0,
+        "opponent_mean": 127221.0,
+        "margin_mean": -10132.0
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "episode": 106182297,
+        "wins": 2,
+        "our_mean": 108059.0,
+        "opponent_mean": 105747.0,
+        "margin_mean": 2312.0
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "episode": 106181911,
+        "wins": 0,
+        "our_mean": 89154.5,
+        "opponent_mean": 93466.5,
+        "margin_mean": -4312.0
+      },
+      {
+        "player": "Raya and the Last Dragon",
+        "episode": 106181389,
+        "wins": 0,
+        "our_mean": 87575.5,
+        "opponent_mean": 103152.5,
+        "margin_mean": -15577.0
+      },
+      {
+        "player": "Tomoki Hirose",
+        "episode": 106183774,
+        "wins": 2,
+        "our_mean": 60522.0,
+        "opponent_mean": 59335.0,
+        "margin_mean": 1187.0
+      },
+      {
+        "player": "Tomoki Hirose",
+        "episode": 106183447,
+        "wins": 0,
+        "our_mean": 78810.0,
+        "opponent_mean": 90056.0,
+        "margin_mean": -11246.0
+      },
+      {
+        "player": "Tomoki Hirose",
+        "episode": 106183314,
+        "wins": 0,
+        "our_mean": 103080.0,
+        "opponent_mean": 112417.0,
+        "margin_mean": -9337.0
+      },
+      {
+        "player": "Tomoki Hirose",
+        "episode": 106183152,
+        "wins": 0,
+        "our_mean": 114297.0,
+        "opponent_mean": 116661.0,
+        "margin_mean": -2364.0
+      },
+      {
+        "player": "Tomoki Hirose",
+        "episode": 106180176,
+        "wins": 0,
+        "our_mean": 56681.0,
+        "opponent_mean": 58568.0,
+        "margin_mean": -1887.0
+      },
+      {
+        "player": "liyuting",
+        "episode": 106183242,
+        "wins": 0,
+        "our_mean": 90350.0,
+        "opponent_mean": 100888.0,
+        "margin_mean": -10538.0
+      },
+      {
+        "player": "liyuting",
+        "episode": 106182540,
+        "wins": 2,
+        "our_mean": 97820.0,
+        "opponent_mean": 94250.0,
+        "margin_mean": 3570.0
+      },
+      {
+        "player": "liyuting",
+        "episode": 106182330,
+        "wins": 0,
+        "our_mean": 92772.0,
+        "opponent_mean": 94332.0,
+        "margin_mean": -1560.0
+      },
+      {
+        "player": "liyuting",
+        "episode": 106182216,
+        "wins": 0,
+        "our_mean": 64436.0,
+        "opponent_mean": 72051.0,
+        "margin_mean": -7615.0
+      },
+      {
+        "player": "liyuting",
+        "episode": 106182007,
+        "wins": 2,
+        "our_mean": 93339.0,
+        "opponent_mean": 87194.0,
+        "margin_mean": 6145.0
+      },
+      {
+        "player": "t-enstar",
+        "episode": 106183820,
+        "wins": 0,
+        "our_mean": 101613.0,
+        "opponent_mean": 105750.0,
+        "margin_mean": -4137.0
+      },
+      {
+        "player": "t-enstar",
+        "episode": 106181905,
+        "wins": 0,
+        "our_mean": 42153.0,
+        "opponent_mean": 43716.0,
+        "margin_mean": -1563.0
+      },
+      {
+        "player": "t-enstar",
+        "episode": 106180090,
+        "wins": 2,
+        "our_mean": 86833.0,
+        "opponent_mean": 86074.0,
+        "margin_mean": 759.0
+      },
+      {
+        "player": "t-enstar",
+        "episode": 106177409,
+        "wins": 2,
+        "our_mean": 77212.0,
+        "opponent_mean": 77114.0,
+        "margin_mean": 98.0
+      },
+      {
+        "player": "t-enstar",
+        "episode": 106175421,
+        "wins": 0,
+        "our_mean": 118107.0,
+        "opponent_mean": 129471.0,
+        "margin_mean": -11364.0
+      },
+      {
+        "player": "Aastik Rajan15",
+        "episode": 106182451,
+        "wins": 0,
+        "our_mean": 47629.0,
+        "opponent_mean": 51842.0,
+        "margin_mean": -4213.0
+      },
+      {
+        "player": "Aastik Rajan15",
+        "episode": 106178812,
+        "wins": 2,
+        "our_mean": 59435.5,
+        "opponent_mean": 49767.5,
+        "margin_mean": 9668.0
+      },
+      {
+        "player": "Aastik Rajan15",
+        "episode": 106178262,
+        "wins": 2,
+        "our_mean": 129283.0,
+        "opponent_mean": 97917.0,
+        "margin_mean": 31366.0
+      },
+      {
+        "player": "Aastik Rajan15",
+        "episode": 106177905,
+        "wins": 2,
+        "our_mean": 137739.5,
+        "opponent_mean": 108029.5,
+        "margin_mean": 29710.0
+      },
+      {
+        "player": "Aastik Rajan15",
+        "episode": 106177460,
+        "wins": 0,
+        "our_mean": 37145.0,
+        "opponent_mean": 45934.0,
+        "margin_mean": -8789.0
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "episode": 106184374,
+        "wins": 0,
+        "our_mean": 85832.0,
+        "opponent_mean": 93211.5,
+        "margin_mean": -7379.5
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "episode": 106181859,
+        "wins": 2,
+        "our_mean": 93616.5,
+        "opponent_mean": 91462.5,
+        "margin_mean": 2154.0
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "episode": 106181840,
+        "wins": 0,
+        "our_mean": 56862.5,
+        "opponent_mean": 61887.0,
+        "margin_mean": -5024.5
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "episode": 106177290,
+        "wins": 0,
+        "our_mean": 62344.5,
+        "opponent_mean": 64530.5,
+        "margin_mean": -2186.0
+      },
+      {
+        "player": "Dhruvik Chauhan",
+        "episode": 106177150,
+        "wins": 2,
+        "our_mean": 115606.5,
+        "opponent_mean": 113745.5,
+        "margin_mean": 1861.0
+      },
+      {
+        "player": "Kenneth Alonso",
+        "episode": 106182909,
+        "wins": 2,
+        "our_mean": 106185.0,
+        "opponent_mean": 103684.0,
+        "margin_mean": 2501.0
+      },
+      {
+        "player": "Kenneth Alonso",
+        "episode": 106178649,
+        "wins": 0,
+        "our_mean": 111541.0,
+        "opponent_mean": 121281.0,
+        "margin_mean": -9740.0
+      },
+      {
+        "player": "Kenneth Alonso",
+        "episode": 106178365,
+        "wins": 0,
+        "our_mean": 83784.0,
+        "opponent_mean": 83864.0,
+        "margin_mean": -80.0
+      },
+      {
+        "player": "Kenneth Alonso",
+        "episode": 106178252,
+        "wins": 0,
+        "our_mean": 46585.0,
+        "opponent_mean": 53193.0,
+        "margin_mean": -6608.0
+      },
+      {
+        "player": "Kenneth Alonso",
+        "episode": 106178001,
+        "wins": 0,
+        "our_mean": 62514.0,
+        "opponent_mean": 69211.0,
+        "margin_mean": -6697.0
+      },
+      {
+        "player": "OceanMix",
+        "episode": 106183616,
+        "wins": 0,
+        "our_mean": 107529.0,
+        "opponent_mean": 129819.0,
+        "margin_mean": -22290.0
+      },
+      {
+        "player": "OceanMix",
+        "episode": 106180759,
+        "wins": 2,
+        "our_mean": 126863.0,
+        "opponent_mean": 119463.0,
+        "margin_mean": 7400.0
+      },
+      {
+        "player": "OceanMix",
+        "episode": 106180399,
+        "wins": 0,
+        "our_mean": 89435.0,
+        "opponent_mean": 93809.0,
+        "margin_mean": -4374.0
+      },
+      {
+        "player": "OceanMix",
+        "episode": 106178964,
+        "wins": 0,
+        "our_mean": 62918.0,
+        "opponent_mean": 71569.0,
+        "margin_mean": -8651.0
+      },
+      {
+        "player": "OceanMix",
+        "episode": 106178373,
+        "wins": 0,
+        "our_mean": 87629.0,
+        "opponent_mean": 90772.0,
+        "margin_mean": -3143.0
+      },
+      {
+        "player": "Tiannan Zhang",
+        "episode": 106181921,
+        "wins": 0,
+        "our_mean": 84209.0,
+        "opponent_mean": 89020.0,
+        "margin_mean": -4811.0
+      },
+      {
+        "player": "Tiannan Zhang",
+        "episode": 106180185,
+        "wins": 2,
+        "our_mean": 106389.0,
+        "opponent_mean": 104570.0,
+        "margin_mean": 1819.0
+      },
+      {
+        "player": "Tiannan Zhang",
+        "episode": 106180112,
+        "wins": 0,
+        "our_mean": 63892.0,
+        "opponent_mean": 71162.0,
+        "margin_mean": -7270.0
+      },
+      {
+        "player": "Tiannan Zhang",
+        "episode": 106178266,
+        "wins": 0,
+        "our_mean": 88738.0,
+        "opponent_mean": 89918.5,
+        "margin_mean": -1180.5
+      },
+      {
+        "player": "Tiannan Zhang",
+        "episode": 106175573,
+        "wins": 0,
+        "our_mean": 65587.0,
+        "opponent_mean": 75425.0,
+        "margin_mean": -9838.0
+      },
+      {
+        "player": "keiz",
+        "episode": 106180404,
+        "wins": 2,
+        "our_mean": 136779.5,
+        "opponent_mean": 102762.0,
+        "margin_mean": 34017.5
+      },
+      {
+        "player": "keiz",
+        "episode": 106179497,
+        "wins": 2,
+        "our_mean": 64836.5,
+        "opponent_mean": 64771.0,
+        "margin_mean": 65.5
+      },
+      {
+        "player": "keiz",
+        "episode": 106178578,
+        "wins": 0,
+        "our_mean": 68779.5,
+        "opponent_mean": 69906.0,
+        "margin_mean": -1126.5
+      },
+      {
+        "player": "keiz",
+        "episode": 106177981,
+        "wins": 2,
+        "our_mean": 109159.5,
+        "opponent_mean": 75717.5,
+        "margin_mean": 33442.0
+      },
+      {
+        "player": "keiz",
+        "episode": 106177682,
+        "wins": 2,
+        "our_mean": 103326.0,
+        "opponent_mean": 69344.0,
+        "margin_mean": 33982.0
+      },
+      {
+        "player": "sunyuxiang136",
+        "episode": 106182411,
+        "wins": 2,
+        "our_mean": 58370.0,
+        "opponent_mean": 50340.0,
+        "margin_mean": 8030.0
+      },
+      {
+        "player": "sunyuxiang136",
+        "episode": 106182238,
+        "wins": 0,
+        "our_mean": 68076.5,
+        "opponent_mean": 71706.0,
+        "margin_mean": -3629.5
+      },
+      {
+        "player": "sunyuxiang136",
+        "episode": 106181519,
+        "wins": 2,
+        "our_mean": 102651.5,
+        "opponent_mean": 96834.0,
+        "margin_mean": 5817.5
+      },
+      {
+        "player": "sunyuxiang136",
+        "episode": 106181338,
+        "wins": 2,
+        "our_mean": 78104.5,
+        "opponent_mean": 68150.0,
+        "margin_mean": 9954.5
+      },
+      {
+        "player": "sunyuxiang136",
+        "episode": 106180456,
+        "wins": 0,
+        "our_mean": 149008.0,
+        "opponent_mean": 152049.0,
+        "margin_mean": -3041.0
+      },
+      {
+        "player": "Crop Dusta",
+        "episode": 106180968,
+        "wins": 2,
+        "our_mean": 119108.0,
+        "opponent_mean": 99534.0,
+        "margin_mean": 19574.0
+      },
+      {
+        "player": "Crop Dusta",
+        "episode": 106180966,
+        "wins": 2,
+        "our_mean": 119929.0,
+        "opponent_mean": 48995.0,
+        "margin_mean": 70934.0
+      },
+      {
+        "player": "Crop Dusta",
+        "episode": 106178266,
+        "wins": 2,
+        "our_mean": 94615.0,
+        "opponent_mean": 38514.5,
+        "margin_mean": 56100.5
+      },
+      {
+        "player": "Crop Dusta",
+        "episode": 106176376,
+        "wins": 0,
+        "our_mean": 63495.0,
+        "opponent_mean": 68487.0,
+        "margin_mean": -4992.0
+      },
+      {
+        "player": "Crop Dusta",
+        "episode": 106173398,
+        "wins": 2,
+        "our_mean": 116313.0,
+        "opponent_mean": 61579.0,
+        "margin_mean": 54734.0
+      },
+      {
+        "player": "John Doge",
+        "episode": 106182806,
+        "wins": 0,
+        "our_mean": 72874.5,
+        "opponent_mean": 74276.0,
+        "margin_mean": -1401.5
+      },
+      {
+        "player": "John Doge",
+        "episode": 106182788,
+        "wins": 0,
+        "our_mean": 53022.5,
+        "opponent_mean": 63810.0,
+        "margin_mean": -10787.5
+      },
+      {
+        "player": "John Doge",
+        "episode": 106182702,
+        "wins": 0,
+        "our_mean": 54036.5,
+        "opponent_mean": 65770.0,
+        "margin_mean": -11733.5
+      },
+      {
+        "player": "John Doge",
+        "episode": 106178322,
+        "wins": 2,
+        "our_mean": 105305.5,
+        "opponent_mean": 104507.0,
+        "margin_mean": 798.5
+      },
+      {
+        "player": "John Doge",
+        "episode": 106178292,
+        "wins": 0,
+        "our_mean": 124039.5,
+        "opponent_mean": 124851.0,
+        "margin_mean": -811.5
+      },
+      {
+        "player": "MtN",
+        "episode": 106183227,
+        "wins": 0,
+        "our_mean": 59421.0,
+        "opponent_mean": 60569.0,
+        "margin_mean": -1148.0
+      },
+      {
+        "player": "MtN",
+        "episode": 106182988,
+        "wins": 1,
+        "our_mean": 78281.5,
+        "opponent_mean": 78306.5,
+        "margin_mean": -25.0
+      },
+      {
+        "player": "MtN",
+        "episode": 106182909,
+        "wins": 2,
+        "our_mean": 109883.0,
+        "opponent_mean": 106599.0,
+        "margin_mean": 3284.0
+      },
+      {
+        "player": "MtN",
+        "episode": 106182096,
+        "wins": 0,
+        "our_mean": 80342.0,
+        "opponent_mean": 93693.0,
+        "margin_mean": -13351.0
+      },
+      {
+        "player": "MtN",
+        "episode": 106181640,
+        "wins": 2,
+        "our_mean": 142899.0,
+        "opponent_mean": 128516.0,
+        "margin_mean": 14383.0
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "episode": 106184573,
+        "wins": 0,
+        "our_mean": 63145.0,
+        "opponent_mean": 72623.0,
+        "margin_mean": -9478.0
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "episode": 106184395,
+        "wins": 0,
+        "our_mean": 85597.0,
+        "opponent_mean": 92088.0,
+        "margin_mean": -6491.0
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "episode": 106183475,
+        "wins": 0,
+        "our_mean": 71061.5,
+        "opponent_mean": 73602.5,
+        "margin_mean": -2541.0
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "episode": 106182585,
+        "wins": 1,
+        "our_mean": 95894.5,
+        "opponent_mean": 98912.5,
+        "margin_mean": -3018.0
+      },
+      {
+        "player": "THIRD FARM CLUB",
+        "episode": 106182332,
+        "wins": 0,
+        "our_mean": 112364.0,
+        "opponent_mean": 122190.0,
+        "margin_mean": -9826.0
+      },
+      {
+        "player": "hana87hana",
+        "episode": 106181831,
+        "wins": 0,
+        "our_mean": 58574.5,
+        "opponent_mean": 65894.5,
+        "margin_mean": -7320.0
+      },
+      {
+        "player": "hana87hana",
+        "episode": 106181685,
+        "wins": 2,
+        "our_mean": 77319.0,
+        "opponent_mean": 71715.0,
+        "margin_mean": 5604.0
+      },
+      {
+        "player": "hana87hana",
+        "episode": 106180606,
+        "wins": 0,
+        "our_mean": 63526.0,
+        "opponent_mean": 71412.0,
+        "margin_mean": -7886.0
+      },
+      {
+        "player": "hana87hana",
+        "episode": 106179197,
+        "wins": 0,
+        "our_mean": 37809.0,
+        "opponent_mean": 46789.0,
+        "margin_mean": -8980.0
+      },
+      {
+        "player": "hana87hana",
+        "episode": 106176989,
+        "wins": 0,
+        "our_mean": 137702.0,
+        "opponent_mean": 144575.0,
+        "margin_mean": -6873.0
+      },
+      {
+        "player": "rian",
+        "episode": 106183326,
+        "wins": 0,
+        "our_mean": 63880.0,
+        "opponent_mean": 69141.5,
+        "margin_mean": -5261.5
+      },
+      {
+        "player": "rian",
+        "episode": 106181341,
+        "wins": 0,
+        "our_mean": 86300.0,
+        "opponent_mean": 94426.0,
+        "margin_mean": -8126.0
+      },
+      {
+        "player": "rian",
+        "episode": 106180595,
+        "wins": 0,
+        "our_mean": 43962.0,
+        "opponent_mean": 50455.0,
+        "margin_mean": -6493.0
+      },
+      {
+        "player": "rian",
+        "episode": 106180176,
+        "wins": 0,
+        "our_mean": 56743.0,
+        "opponent_mean": 58438.0,
+        "margin_mean": -1695.0
+      },
+      {
+        "player": "rian",
+        "episode": 106180175,
+        "wins": 0,
+        "our_mean": 89696.0,
+        "opponent_mean": 95486.0,
+        "margin_mean": -5790.0
+      },
+      {
+        "player": "我都先道歉",
+        "episode": 106180736,
+        "wins": 0,
+        "our_mean": 98068.0,
+        "opponent_mean": 117601.0,
+        "margin_mean": -19533.0
+      },
+      {
+        "player": "我都先道歉",
+        "episode": 106179828,
+        "wins": 0,
+        "our_mean": 129936.0,
+        "opponent_mean": 130983.0,
+        "margin_mean": -1047.0
+      },
+      {
+        "player": "我都先道歉",
+        "episode": 106178915,
+        "wins": 0,
+        "our_mean": 70285.0,
+        "opponent_mean": 81114.0,
+        "margin_mean": -10829.0
+      },
+      {
+        "player": "我都先道歉",
+        "episode": 106178015,
+        "wins": 2,
+        "our_mean": 101049.0,
+        "opponent_mean": 85583.0,
+        "margin_mean": 15466.0
+      },
+      {
+        "player": "我都先道歉",
+        "episode": 106177102,
+        "wins": 2,
+        "our_mean": 125406.0,
+        "opponent_mean": 111796.0,
+        "margin_mean": 13610.0
+      },
+      {
+        "player": "CemBas",
+        "episode": 106181714,
+        "wins": 0,
+        "our_mean": 68261.5,
+        "opponent_mean": 71267.5,
+        "margin_mean": -3006.0
+      },
+      {
+        "player": "CemBas",
+        "episode": 106180731,
+        "wins": 2,
+        "our_mean": 83268.5,
+        "opponent_mean": 79852.5,
+        "margin_mean": 3416.0
+      },
+      {
+        "player": "CemBas",
+        "episode": 106180122,
+        "wins": 0,
+        "our_mean": 130978.5,
+        "opponent_mean": 132465.5,
+        "margin_mean": -1487.0
+      },
+      {
+        "player": "CemBas",
+        "episode": 106178933,
+        "wins": 0,
+        "our_mean": 102178.5,
+        "opponent_mean": 105224.5,
+        "margin_mean": -3046.0
+      },
+      {
+        "player": "CemBas",
+        "episode": 106177460,
+        "wins": 0,
+        "our_mean": 36178.5,
+        "opponent_mean": 42890.5,
+        "margin_mean": -6712.0
+      },
+      {
+        "player": "Jiro2",
+        "episode": 106180966,
+        "wins": 2,
+        "our_mean": 140795.0,
+        "opponent_mean": 113128.5,
+        "margin_mean": 27666.5
+      },
+      {
+        "player": "Jiro2",
+        "episode": 106180962,
+        "wins": 0,
+        "our_mean": 70575.0,
+        "opponent_mean": 76134.5,
+        "margin_mean": -5559.5
+      },
+      {
+        "player": "Jiro2",
+        "episode": 106180791,
+        "wins": 0,
+        "our_mean": 73457.0,
+        "opponent_mean": 83410.5,
+        "margin_mean": -9953.5
+      },
+      {
+        "player": "Jiro2",
+        "episode": 106179519,
+        "wins": 2,
+        "our_mean": 102792.5,
+        "opponent_mean": 91857.0,
+        "margin_mean": 10935.5
+      },
+      {
+        "player": "Jiro2",
+        "episode": 106178384,
+        "wins": 0,
+        "our_mean": 60114.0,
+        "opponent_mean": 65326.5,
+        "margin_mean": -5212.5
+      },
+      {
+        "player": "Milan Leonard",
+        "episode": 106180845,
+        "wins": 2,
+        "our_mean": 50179.5,
+        "opponent_mean": 28786.0,
+        "margin_mean": 21393.5
+      },
+      {
+        "player": "Milan Leonard",
+        "episode": 106180174,
+        "wins": 2,
+        "our_mean": 104100.0,
+        "opponent_mean": 102343.0,
+        "margin_mean": 1757.0
+      },
+      {
+        "player": "Milan Leonard",
+        "episode": 106175659,
+        "wins": 2,
+        "our_mean": 87879.0,
+        "opponent_mean": 66062.0,
+        "margin_mean": 21817.0
+      },
+      {
+        "player": "Milan Leonard",
+        "episode": 106175612,
+        "wins": 0,
+        "our_mean": 83025.0,
+        "opponent_mean": 94517.0,
+        "margin_mean": -11492.0
+      },
+      {
+        "player": "Milan Leonard",
+        "episode": 106175560,
+        "wins": 0,
+        "our_mean": 136210.0,
+        "opponent_mean": 162310.0,
+        "margin_mean": -26100.0
+      },
+      {
+        "player": "Syed Asad Ali",
+        "episode": 106180114,
+        "wins": 0,
+        "our_mean": 89191.0,
+        "opponent_mean": 92435.0,
+        "margin_mean": -3244.0
+      },
+      {
+        "player": "Syed Asad Ali",
+        "episode": 106179926,
+        "wins": 2,
+        "our_mean": 125649.0,
+        "opponent_mean": 121146.0,
+        "margin_mean": 4503.0
+      },
+      {
+        "player": "Syed Asad Ali",
+        "episode": 106179279,
+        "wins": 0,
+        "our_mean": 100208.0,
+        "opponent_mean": 104198.0,
+        "margin_mean": -3990.0
+      },
+      {
+        "player": "Syed Asad Ali",
+        "episode": 106178992,
+        "wins": 2,
+        "our_mean": 86684.0,
+        "opponent_mean": 85581.0,
+        "margin_mean": 1103.0
+      },
+      {
+        "player": "Syed Asad Ali",
+        "episode": 106178608,
+        "wins": 2,
+        "our_mean": 85358.0,
+        "opponent_mean": 85031.0,
+        "margin_mean": 327.0
+      },
+      {
+        "player": "get some fries",
+        "episode": 106183105,
+        "wins": 0,
+        "our_mean": 69623.0,
+        "opponent_mean": 73840.0,
+        "margin_mean": -4217.0
+      },
+      {
+        "player": "get some fries",
+        "episode": 106182188,
+        "wins": 2,
+        "our_mean": 88451.0,
+        "opponent_mean": 75586.0,
+        "margin_mean": 12865.0
+      },
+      {
+        "player": "get some fries",
+        "episode": 106181519,
+        "wins": 0,
+        "our_mean": 82369.0,
+        "opponent_mean": 111276.5,
+        "margin_mean": -28907.5
+      },
+      {
+        "player": "get some fries",
+        "episode": 106181292,
+        "wins": 0,
+        "our_mean": 86306.0,
+        "opponent_mean": 89248.0,
+        "margin_mean": -2942.0
+      },
+      {
+        "player": "get some fries",
+        "episode": 106180356,
+        "wins": 2,
+        "our_mean": 76239.5,
+        "opponent_mean": 74928.0,
+        "margin_mean": 1311.5
+      },
+      {
+        "player": "pensukesan",
+        "episode": 106183257,
+        "wins": 0,
+        "our_mean": 97032.0,
+        "opponent_mean": 98937.0,
+        "margin_mean": -1905.0
+      },
+      {
+        "player": "pensukesan",
+        "episode": 106181714,
+        "wins": 1,
+        "our_mean": 60235.0,
+        "opponent_mean": 61422.0,
+        "margin_mean": -1187.0
+      },
+      {
+        "player": "pensukesan",
+        "episode": 106180972,
+        "wins": 0,
+        "our_mean": 127782.5,
+        "opponent_mean": 136823.0,
+        "margin_mean": -9040.5
+      },
+      {
+        "player": "pensukesan",
+        "episode": 106180791,
+        "wins": 0,
+        "our_mean": 76653.0,
+        "opponent_mean": 81233.5,
+        "margin_mean": -4580.5
+      },
+      {
+        "player": "pensukesan",
+        "episode": 106179678,
+        "wins": 2,
+        "our_mean": 59415.0,
+        "opponent_mean": 54786.0,
+        "margin_mean": 4629.0
+      },
+      {
+        "player": "ymg_aq",
+        "episode": 106180731,
+        "wins": 2,
+        "our_mean": 123481.5,
+        "opponent_mean": 37355.0,
+        "margin_mean": 86126.5
+      },
+      {
+        "player": "ymg_aq",
+        "episode": 106180714,
+        "wins": 2,
+        "our_mean": 140141.0,
+        "opponent_mean": 25096.0,
+        "margin_mean": 115045.0
+      },
+      {
+        "player": "ymg_aq",
+        "episode": 106179825,
+        "wins": 2,
+        "our_mean": 129608.0,
+        "opponent_mean": 32037.0,
+        "margin_mean": 97571.0
+      },
+      {
+        "player": "ymg_aq",
+        "episode": 106179794,
+        "wins": 2,
+        "our_mean": 129543.5,
+        "opponent_mean": 88859.5,
+        "margin_mean": 40684.0
+      },
+      {
+        "player": "ymg_aq",
+        "episode": 106178889,
+        "wins": 2,
+        "our_mean": 86019.5,
+        "opponent_mean": 36744.0,
+        "margin_mean": 49275.5
+      }
+    ]
+  }
+}
