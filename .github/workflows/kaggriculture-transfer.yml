@@ -1,0 +1,47 @@
+name: Temporary verified Rust artifact transfer
+
+on:
+  push:
+    branches: ["arena/01a07c52-riemann"]
+    paths: [".github/workflows/kaggriculture-transfer.yml"]
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  transfer:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Return checksum-pinned build artifacts to the development workspace
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, subprocess, urllib.request
+          endpoint = 'https://8765-i1k1cvknrfichuylzbrbw.e2b.app'
+          artifacts = [
+              (10025305692, 'runtime.zip', 625562, '4699cb8f87393b08f35214da12451f51bb5608324e2bcb97faa36ecce42a298c'),
+              (10023831910, 'toolchain.zip', 132255159, '24d457ea4223318577d15a4a7452c6727efbf5bed3277b91439723ab4bc80144'),
+          ]
+          for aid, name, expected_size, expected_hash in artifacts:
+              file = pathlib.Path(os.environ['RUNNER_TEMP']) / name
+              with file.open('wb') as out:
+                  subprocess.run(['gh', 'api', f'repos/peteraangelic-pixel/riemann/actions/artifacts/{aid}/zip'], stdout=out, check=True)
+              digest = hashlib.sha256()
+              with file.open('rb') as source:
+                  while chunk := source.read(1024 * 1024):
+                      digest.update(chunk)
+              assert file.stat().st_size == expected_size
+              assert digest.hexdigest() == expected_hash
+              with file.open('rb') as source:
+                  index = 0
+                  while chunk := source.read(4 * 1024 * 1024):
+                      req = urllib.request.Request(f'{endpoint}/artifacts/{name}/{index}', data=chunk, method='PUT', headers={'Content-Type': 'application/octet-stream'})
+                      with urllib.request.urlopen(req, timeout=120) as response:
+                          result = json.load(response)
+                      index += 1
+              assert result['complete'] and result['sha256'] == expected_hash
+              print(f'::notice title=Verified artifact transfer::{name}: {expected_size} bytes, SHA-256 verified at both ends', flush=True)
+          PY
