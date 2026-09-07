@@ -24,8 +24,11 @@ jobs:
           import collections,glob,json,os
           groups=collections.defaultdict(list); output=[]
           for path in glob.glob('results/**/*.json',recursive=True):
+              try: row=json.load(open(path))
+              except Exception: continue
+              if not isinstance(row,dict) or not row.get('episodes'): continue
               agent=os.path.basename(path).rsplit('_',1)[0]
-              groups[agent].append(json.load(open(path)))
+              groups[agent].append(row)
           for agent, rows in sorted(groups.items()):
               episodes=sum(x['episodes'] for x in rows); games=sum(x['games'] for x in rows)
               avg=lambda key: sum(x[key]*x['episodes'] for x in rows)/episodes
