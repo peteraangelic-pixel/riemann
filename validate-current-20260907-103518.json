@@ -1,0 +1,72 @@
+{
+  "candidate": "agents/current/agent_v9_b21_s16.py",
+  "seeds": 50,
+  "both_seats": true,
+  "controls": [
+    {
+      "control": "agents/current/agent_v7_scripted.py",
+      "games": 100,
+      "wins": 36,
+      "losses": 8,
+      "ties": 56,
+      "errors": 0,
+      "win_rate": 0.36,
+      "score_rate": 0.64,
+      "ci_low": 0.5423540245160874,
+      "ci_high": 0.7272877959859567,
+      "mean_margin": 60.0,
+      "median_margin": 0.0,
+      "p10_margin": 0.0,
+      "mean_self": 87716.12,
+      "mean_opp": 87656.12,
+      "gate_pass": true,
+      "gate_reasons": [
+        "PASS: 36W/8L/56T, score 64.0% (CI 54.2-72.7), margin +60"
+      ]
+    },
+    {
+      "control": "agents/current/agent_v8_aastik.py",
+      "games": 100,
+      "wins": 62,
+      "losses": 38,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 0.62,
+      "score_rate": 0.62,
+      "ci_low": 0.5220975529551107,
+      "ci_high": 0.7090240074752127,
+      "mean_margin": 960.5,
+      "median_margin": 1050.0,
+      "p10_margin": -2358.0,
+      "mean_self": 84715.27,
+      "mean_opp": 83754.77,
+      "gate_pass": true,
+      "gate_reasons": [
+        "PASS: 62W/38L/0T, score 62.0% (CI 52.2-70.9), margin +960"
+      ]
+    },
+    {
+      "control": "agents/current/agent_v8_hybrid.py",
+      "games": 100,
+      "wins": 62,
+      "losses": 36,
+      "ties": 2,
+      "errors": 0,
+      "win_rate": 0.62,
+      "score_rate": 0.63,
+      "ci_low": 0.5322052958094291,
+      "ci_high": 0.7181763946567546,
+      "mean_margin": 979.07,
+      "median_margin": 796.0,
+      "p10_margin": -2332.0,
+      "mean_self": 84764.47,
+      "mean_opp": 83785.4,
+      "gate_pass": true,
+      "gate_reasons": [
+        "PASS: 62W/36L/2T, score 63.0% (CI 53.2-71.8), margin +979"
+      ]
+    }
+  ],
+  "all_controls_pass": true,
+  "elapsed_s": 109.81305100000463
+}
