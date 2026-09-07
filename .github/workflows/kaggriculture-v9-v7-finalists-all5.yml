@@ -1,0 +1,57 @@
+name: Kaggriculture V9 V7-opening all-five finalists
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v9-v7-finalists-all5.yml"]
+permissions:
+  contents: write
+jobs:
+  validate:
+    if: contains(github.event.head_commit.message, '[kaggr-v9-v7final]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 21
+      matrix:
+        agent: [agent_v9_v7w_b13_s08, agent_v9_v7w_b21_s16, agent_v9_v7w_b25_s20]
+        shard: [0, 1, 2, 3, 4, 5, 6]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install kaggle-environments
+      - name: All-five finalist validation
+        env: {AGENT: "${{ matrix.agent }}", SHARD: "${{ matrix.shard }}"}
+        run: |
+          set -o pipefail
+          python kaggriculture/research/screen_top49_all.py --agent "kaggriculture/v9_candidates/v7_opening_grid/$AGENT.py" --shard "$SHARD" | tee /tmp/out
+          mkdir result
+          grep '^SHARD_JSON=' /tmp/out | sed 's/^SHARD_JSON=//' > result/result.json
+      - uses: actions/upload-artifact@v4
+        with: {name: "result-${{ matrix.agent }}-${{ matrix.shard }}", path: result/result.json}
+  aggregate:
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/download-artifact@v4
+        with: {pattern: "result-*", path: results}
+      - run: |
+          python - <<'PY'
+          import collections,glob,json,os
+          d=collections.defaultdict(list)
+          for p in glob.glob('results/**/*.json',recursive=True):
+              a=os.path.basename(os.path.dirname(p)).removeprefix('result-').rsplit('-',1)[0]; d[a].append(json.load(open(p)))
+          out=[]
+          for a,rs in d.items():
+              n=sum(x['episodes'] for x in rs); avg=lambda k:sum(x[k]*x['episodes'] for x in rs)/n
+              out.append({'agent':a,'shards':len(rs),'episodes':n,'games':sum(x['games'] for x in rs),'wins':sum(x['wins'] for x in rs),'our_mean':avg('our_mean'),'opponent_mean':avg('opponent_mean'),'margin_mean':avg('margin_mean')})
+          out.sort(key=lambda x:(x['wins'],x['margin_mean']),reverse=True); assert len(out)==3 and all(x['episodes']==245 for x in out)
+          json.dump(out,open('kaggriculture/research/V9_V7_FINALISTS_ALL5_RESULTS.json','w'),indent=2)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add kaggriculture/research/V9_V7_FINALISTS_ALL5_RESULTS.json
+          git commit -m "research(kaggriculture): record V7-opening all-five finalists [skip ci]"
+          git push origin "HEAD:$GITHUB_REF_NAME"
