@@ -6,7 +6,10 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 PASS={"farmer":["PASS"],"hands":[],"market":[]}
 def load(path):
- s=importlib.util.spec_from_file_location('top49_agent',path);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);return getattr(m,'agent',m.act)
+ s=importlib.util.spec_from_file_location('top49_agent',path);m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
+ fn=getattr(m,'agent',None) or getattr(m,'act',None)
+ if fn is None: raise AttributeError(f'{path} exposes neither agent nor act')
+ return fn
 def main():
  p=argparse.ArgumentParser();p.add_argument('--agent',required=True);p.add_argument('--shard',type=int,default=0);p.add_argument('--shards',type=int,default=1);a=p.parse_args()
  from kaggle_environments import make

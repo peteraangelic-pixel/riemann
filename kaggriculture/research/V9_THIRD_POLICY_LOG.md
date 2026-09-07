@@ -90,3 +90,50 @@ not fuse the opening into Aastik.
 - Continue contrastive feature analysis of the four rescued versus four
   unrescued common losses, but any selector must acknowledge that the policies
   diverge at step 0 before opponent style is observable.
+
+## Stage P — episode-level TOP49 failure contrast
+
+Run `34086722994` retained paired outcomes for 245 player-tapes (490 games per
+agent). Aastik and the Renoir-opening hybrid both won 64 tapes, only Aastik won
+10, only hybrid won 10, and both lost 161. Thus the hybrid opening changes only
+a small boundary of outcomes and does not solve the dominant loss family.
+
+Among strict zero-win tapes, Aastik had 171 losses: 16 near losses with mean
+margin in (-1000, 0), 42 severe losses below -10k, 39 low-output failures below
+60k, and 34 high-output failures above 100k. These are distinct mechanisms:
+market-regime collapse, close-game conversion, and insufficient production
+ceiling. Treating them as one opening problem is invalid.
+
+The V7-versus-B11/S07 contrast was also complementary: V7 won 35 tapes that
+B11/S07 did not, while B11/S07 won 24 that V7 did not. Opponents on B11-only
+wins emitted much heavier early wheat churn (through step 5: mean buys 33.9 and
+sells 29.1) than opponents on V7-only wins (buys 13.0, sells 8.4). This explains
+why one fixed opening cannot dominate every market regime, but it is an
+association from replay-emitted actions rather than a causal selector available
+at step 0. Full details are in `V9_CONTRAST_REPORT.md` and `V9_CONTRAST.json`.
+
+## Stage Q — V7-based V9 opening isolation
+
+Run `34088298486` screened 21 isolated V7 wheat openings on one latest tape per
+TOP49 player, both seats. Frozen V7 B30/S25 scored 33/98 with mean margin -1612.
+B21/S16 and B13/S08 each improved to 35/98; B21/S16 also improved mean score to
+90,192 and margin to +1,517.
+
+Run `34089748376` then tested the three finalists on all five tapes per player:
+
+| candidate | wins/490 | mean cash | mean margin |
+|---|---:|---:|---:|
+| B21/S16 | **184** | **89,115** | **+835** |
+| B13/S08 | **184** | 88,404 | -1,112 |
+| B25/S20 | 182 | 88,717 | -74 |
+| frozen V7 control | **188** | 88,409 | -901 |
+| frozen V8 Aastik | 140 | 86,591 | -1,996 |
+
+B21/S16 is economically stronger than V7 and far stronger than V8 on this set,
+but remains four wins behind V7. It therefore fails the agreed promotion and
+submission gate. No Kaggle upload is authorized by this result.
+
+The first grid run `34088033922` was red because generated candidates exposed
+`agent` but not `act`, while the screen loader eagerly evaluated `m.act` as a
+default argument. No simulations from that run were accepted. The entrypoint
+and loader were fixed; `34088298486` is the clean successful rerun.
