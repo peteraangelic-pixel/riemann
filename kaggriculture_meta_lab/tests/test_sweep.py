@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from scripts.sweep import expand_config, make_variant  # noqa: E402
+from scripts.sweep import expand_config, make_variant, project_game_budget  # noqa: E402
 
 BASE = ROOT / "agents" / "variants" / "agent_v8_fert.py"
 
@@ -56,3 +56,25 @@ def test_expand_config_dedupes_identical_params():
         {"name": "y", "params": {"FERT_DETOUR_RADIUS": 2}},
     ]}
     assert len(expand_config(cfg)) == 1
+
+
+def test_direct_b21_budget_includes_control_only_in_finals():
+    budget = project_game_budget(
+        spec_count=23,
+        include_base=False,
+        top_k=4,
+        screen_games=18,
+        promote_games=100,
+        final_games=68,
+        finals_include_baseline=True,
+    )
+    assert budget == {"screen": 828, "promote": 800, "finals": 1360, "total": 2988}
+
+
+def test_direct_b21_config_anchors_untouched_control():
+    cfg = json.loads((ROOT / "sweeps" / "v10_b21_opening_direct.json").read_text(encoding="utf-8"))
+    assert cfg["base"] == cfg["baseline"]
+    assert cfg["include_untouched_base"] is False
+    assert cfg["finals_include_baseline"] is True
+    assert cfg["baseline_name"] == "CONTROL_B21_S16"
+    assert len(expand_config(cfg)) == 23
