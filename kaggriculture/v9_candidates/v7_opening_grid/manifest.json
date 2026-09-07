@@ -1,0 +1,149 @@
+[
+  {
+    "name": "agent_v9_v7w_b09_s06",
+    "buy": 9,
+    "sell": 6,
+    "reserve": 3,
+    "control": false
+  },
+  {
+    "name": "agent_v9_v7w_b09_s04",
+    "buy": 9,
+    "sell": 4,
+    "reserve": 5,
+    "control": false
+  },
+  {
+    "name": "agent_v9_v7w_b09_s02",
+    "buy": 9,
+    "sell": 2,
+    "reserve": 7,
+    "control": false
+  },
+  {
+    "name": "agent_v9_v7w_b13_s10",
+    "buy": 13,
+    "sell": 10,
+    "reserve": 3,
+    "control": false
+  },
+  {
+    "name": "agent_v9_v7w_b13_s08",
+    "buy": 13,
+    "sell": 8,
+    "reserve": 5,
+    "control": false
+  },
+  {
+    "name": "agent_v9_v7w_b13_s06",
+    "buy": 13,
+    "sell": 6,
+    "reserve": 7,
+    "control": false
+  },
+  {
+    "name": "agent_v9_v7w_b17_s14",
+    "buy": 17,
+    "sell": 14,
+    "reserve": 3,
+    "control": false
+  },
+  {
+    "name": "agent_v9_v7w_b17_s12",
+    "buy": 17,
+    "sell": 12,
+    "reserve": 5,
+    "control": false
+  },
+  {
+    "name": "agent_v9_v7w_b17_s10",
+    "buy": 17,
+    "sell": 10,
+    "reserve": 7,
+    "control": false
+  },
+  {
+    "name": "agent_v9_v7w_b21_s18",
+    "buy": 21,
+    "sell": 18,
+    "reserve": 3,
+    "control": false
+  },
+  {
+    "name": "agent_v9_v7w_b21_s16",
+    "buy": 21,
+    "sell": 16,
+    "reserve": 5,
+    "control": false
+  },
+  {
+    "name": "agent_v9_v7w_b21_s14",
+    "buy": 21,
+    "sell": 14,
+    "reserve": 7,
+    "control": false
+  },
+  {
+    "name": "agent_v9_v7w_b25_s22",
+    "buy": 25,
+    "sell": 22,
+    "reserve": 3,
+    "control": false
+  },
+  {
+    "name": "agent_v9_v7w_b25_s20",
+    "buy": 25,
+    "sell": 20,
+    "reserve": 5,
+    "control": false
+  },
+  {
+    "name": "agent_v9_v7w_b25_s18",
+    "buy": 25,
+    "sell": 18,
+    "reserve": 7,
+    "control": false
+  },
+  {
+    "name": "agent_v9_v7w_b30_s27",
+    "buy": 30,
+    "sell": 27,
+    "reserve": 3,
+    "control": false
+  },
+  {
+    "name": "agent_v9_v7w_b30_s25",
+    "buy": 30,
+    "sell": 25,
+    "reserve": 5,
+    "control": true
+  },
+  {
+    "name": "agent_v9_v7w_b30_s23",
+    "buy": 30,
+    "sell": 23,
+    "reserve": 7,
+    "control": false
+  },
+  {
+    "name": "agent_v9_v7w_b35_s32",
+    "buy": 35,
+    "sell": 32,
+    "reserve": 3,
+    "control": false
+  },
+  {
+    "name": "agent_v9_v7w_b35_s30",
+    "buy": 35,
+    "sell": 30,
+    "reserve": 5,
+    "control": false
+  },
+  {
+    "name": "agent_v9_v7w_b35_s28",
+    "buy": 35,
+    "sell": 28,
+    "reserve": 7,
+    "control": false
+  }
+]
