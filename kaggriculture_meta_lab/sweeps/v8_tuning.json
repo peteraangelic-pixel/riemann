@@ -1,0 +1,29 @@
+{
+  "name": "v8_tuning",
+  "base": "agents/variants/agent_v8_fert.py",
+  "baseline": "agents/ref/agent_v7.py",
+  "start_seed": 20262000,
+  "screen_games": 8,
+  "promote_games": 250,
+  "final_games": 250,
+  "top_k": 8,
+
+  "note": "First real tuning sweep over the promoted V8 fertilizer agent. Screen is cheap (8 seeds); promotion is the real 500-game Wilson gate; finals are a 250-seed Bradley-Terry round-robin. Dead-end constants are deliberately excluded: FERTILIZER_RESERVE>0 (barn collapse) and STRAWBERRY_TARGET>0 vs pure V7 (market-negative on its own - crop-mix expansion is the separate adaptive V9 study).",
+
+  "variants": [
+    {"name": "detour1",        "params": {"FERT_DETOUR_RADIUS": 1}},
+    {"name": "detour3",        "params": {"FERT_DETOUR_RADIUS": 3}},
+    {"name": "hands11",        "params": {"HANDS_MAX": 11}},
+    {"name": "hands13",        "params": {"HANDS_MAX": 13}},
+    {"name": "reserve200",     "params": {"OPERATING_RESERVE": 200}},
+    {"name": "reserve400",     "params": {"OPERATING_RESERVE": 400}},
+    {"name": "carrotfrac025",  "params": {"CARROT_MAX_FRAC": 0.25}},
+    {"name": "carrotfrac055",  "params": {"CARROT_MAX_FRAC": 0.55}},
+    {"name": "endgame24",      "params": {"ENDGAME_SELL_DAY": 24}},
+    {"name": "endgame30",      "params": {"ENDGAME_SELL_DAY": 30}},
+    {"name": "landday8_8",     "params": {"LAND_NE_BUY_DAY": 8, "LAND_SW_BUY_DAY": 8}},
+    {"name": "landday10_12",   "params": {"LAND_NE_BUY_DAY": 10, "LAND_SW_BUY_DAY": 12}},
+    {"name": "swplanted20",   "params": {"LAND_SW_MIN_PLANTED": 20}},
+    {"name": "swplanted40",   "params": {"LAND_SW_MIN_PLANTED": 40}}
+  ]
+}

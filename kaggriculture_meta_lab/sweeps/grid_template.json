@@ -1,0 +1,16 @@
+{
+  "name": "grid_template",
+  "base": "agents/variants/agent_v8_fert.py",
+  "baseline": "agents/ref/agent_v7.py",
+  "screen_games": 6,
+  "promote_games": 250,
+  "final_games": 250,
+  "top_k": 10,
+
+  "note": "TEMPLATE showing the 'grid' cartesian-product syntax: every combination of the listed values is generated and named grid000, grid001, ... (here 3x2 = 6 configs). Mix 'grid' with an explicit 'variants' list in the same file. Keep screen_games low (6-10) - stage 1 cost grows with the product.",
+
+  "grid": {
+    "FERT_DETOUR_RADIUS": [1, 2, 3],
+    "HANDS_MAX": [11, 13]
+  }
+}

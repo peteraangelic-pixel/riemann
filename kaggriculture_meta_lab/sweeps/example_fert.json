@@ -1,0 +1,21 @@
+{
+  "name": "example_fert",
+  "base": "agents/variants/agent_v8_fert.py",
+  "baseline": "agents/ref/agent_v7.py",
+  "start_seed": 20262000,
+  "screen_games": 10,
+  "promote_games": 100,
+  "final_games": 100,
+  "top_k": 6,
+
+  "note": "Tiny DEMO sweep (6 configs) to exercise the funnel. Real searches put 100-300 configs here; screen_games=6-10 keeps stage 1 cheap, promote_games=250 (500 games) is the production gate. Constants that are known dead ends are deliberately NOT swept: FERTILIZER_RESERVE>0 (barn collapse) and STRAWBERRY_TARGET>0 vs pure V7 (market-negative on its own).",
+
+  "variants": [
+    {"name": "detour1",       "params": {"FERT_DETOUR_RADIUS": 1}},
+    {"name": "detour2",       "params": {"FERT_DETOUR_RADIUS": 2}},
+    {"name": "detour3",       "params": {"FERT_DETOUR_RADIUS": 3}},
+    {"name": "hands11",       "params": {"HANDS_MAX": 11}},
+    {"name": "hands13",       "params": {"HANDS_MAX": 13}},
+    {"name": "carrotfrac025", "params": {"CARROT_MAX_FRAC": 0.25}}
+  ]
+}
