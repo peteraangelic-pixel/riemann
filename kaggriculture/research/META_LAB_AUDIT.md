@@ -49,3 +49,49 @@ Rust + Rayon around the existing Python simulator would not produce a major spee
 ## Suggested Windows starting command
 
 Use 16 workers, 250 seeds and both seats (500 games) before increasing parallelism. Monitor RAM and games/second, then compare 12, 16, 20, and 24 workers. Do not assume 32 SMT workers wins.
+
+## User-uploaded PC reports — 2026-09-07
+
+Reviewed root files `sweep-v8_tuning-20260906-221046.{md,json}` and
+`validate-windows-5950x-200games.md` from commit `5a328eb`.
+
+### What the long sweep actually ran
+
+The report is internally consistent: 15 screen variants × 8 seeds × 2 seats =
+240 games; eight finalists × 250 seeds × 2 seats = 4,000 promotion games; and
+28 finalist pairs × 250 seeds × 2 seats = 14,000 final games. Total:
+**18,240 full 720-step games**, elapsed **5,441 seconds (90.7 minutes)**. The
+large terminal stream was therefore expected, but this was unnecessarily large
+before checking current comparators and TOP49 transfer.
+
+Within that old-engine experiment:
+
+- `detour1` was strongest directly against old `agent_v7.py`: 427-73
+  (85.4%), mean margin +1,007 over 500 games.
+- `endgame24` was 398-101-1 (79.7%), margin +914, and won the multi-variant
+  Bradley-Terry table despite losing the direct pairing to `detour1` 46%-55%.
+  It ranked first because it beat the weaker finalist field more consistently.
+- `carrotfrac025` was a smaller positive result.
+- `hands11`, `hands13`, `swplanted20`, and the untouched base produced identical
+  rows and 50% against one another; under these seeds those parameter edits were
+  behaviorally inactive, not independently validated improvements.
+- `landday10_12`, larger reserves, `detour3`, and `endgame30` were negative.
+
+These are credible findings **within the stale heuristic planner**, but not V9
+promotion evidence: the base was `agent_v8_fert.py`, comparator was old
+`agents/ref/agent_v7.py`, and scores were around 54k. Neither current scripted
+V7 (188/490 TOP49), Aastik, hybrid, nor B21/S16 participated. The separate
+200-game validate file confirms the same stale fertilizer-vs-old-V7 result
+(146-54, +733); repetition narrows uncertainty but does not update relevance.
+
+### Lab corrections now on the active branch
+
+Commit `64fface` imported and modernized the lab: current V7/V8/B21 snapshots,
+`validate_current.py` against all three frozen controls, a bounded B21 opening
+config, an up-front projected-game budget (default refusal above 3,000), and a
+corrected replay-tape +1 alignment. The default B21 sweep projects about 1,250
+games instead of 18,240. Old reports remain historical evidence only.
+
+The useful old-engine hypotheses (`detour1`, `endgame24`, `carrotfrac025`) must
+be translated into state/action-compatible mutations and isolated on B21; their
+old source code cannot be copied wholesale into the fixed B21 trajectory.
