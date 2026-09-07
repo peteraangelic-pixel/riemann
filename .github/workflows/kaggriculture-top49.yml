@@ -6,6 +6,7 @@ on:
     paths:
       - "kaggriculture/research/top49_selected_episodes.json"
       - "kaggriculture/research/top49_latest_episodes.json"
+      - "kaggriculture/research/top49_all_episodes.json"
       - ".github/workflows/kaggriculture-top49.yml"
 
 permissions:
@@ -42,8 +43,10 @@ jobs:
           import json
           selected = json.load(open("kaggriculture/research/top49_selected_episodes.json", encoding="utf8"))
           latest = json.load(open("kaggriculture/research/top49_latest_episodes.json", encoding="utf8"))
+          all_five = json.load(open("kaggriculture/research/top49_all_episodes.json", encoding="utf8"))
           episodes = {episode for row in selected["players"] for episode in row["episodes"]}
           episodes.update(row["episode"] for row in latest["players"])
+          episodes.update(episode for row in all_five["players"] for episode in row["episodes"])
           print("\n".join(map(str, sorted(episodes))))
           PY
           while read -r episode; do
