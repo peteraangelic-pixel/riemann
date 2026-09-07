@@ -1,0 +1,110 @@
+[
+  {
+    "name": "agent_v9_wheat_b09_s05",
+    "buy": 9,
+    "sell": 5,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b09_s07",
+    "buy": 9,
+    "sell": 7,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b09_s09",
+    "buy": 9,
+    "sell": 9,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b13_s09",
+    "buy": 13,
+    "sell": 9,
+    "control": true
+  },
+  {
+    "name": "agent_v9_wheat_b13_s11",
+    "buy": 13,
+    "sell": 11,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b13_s13",
+    "buy": 13,
+    "sell": 13,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b17_s13",
+    "buy": 17,
+    "sell": 13,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b17_s15",
+    "buy": 17,
+    "sell": 15,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b17_s17",
+    "buy": 17,
+    "sell": 17,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b21_s17",
+    "buy": 21,
+    "sell": 17,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b21_s19",
+    "buy": 21,
+    "sell": 19,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b21_s21",
+    "buy": 21,
+    "sell": 21,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b25_s21",
+    "buy": 25,
+    "sell": 21,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b25_s23",
+    "buy": 25,
+    "sell": 23,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b25_s25",
+    "buy": 25,
+    "sell": 25,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b30_s26",
+    "buy": 30,
+    "sell": 26,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b30_s28",
+    "buy": 30,
+    "sell": 28,
+    "control": false
+  },
+  {
+    "name": "agent_v9_wheat_b30_s30",
+    "buy": 30,
+    "sell": 30,
+    "control": false
+  }
+]

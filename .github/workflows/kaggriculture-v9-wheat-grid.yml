@@ -1,0 +1,65 @@
+name: Kaggriculture V9 TOP49 wheat grid
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths:
+      - "kaggriculture/v9_candidates/wheat_grid/**"
+      - "kaggriculture/research/build_wheat_opening_grid.py"
+      - ".github/workflows/kaggriculture-v9-wheat-grid.yml"
+jobs:
+  screen:
+    if: contains(github.event.head_commit.message, '[kaggr-v9-wheat]')
+    name: ${{ matrix.agent }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 18
+      matrix:
+        agent:
+          - agent_v9_wheat_b09_s05
+          - agent_v9_wheat_b09_s07
+          - agent_v9_wheat_b09_s09
+          - agent_v9_wheat_b13_s09
+          - agent_v9_wheat_b13_s11
+          - agent_v9_wheat_b13_s13
+          - agent_v9_wheat_b17_s13
+          - agent_v9_wheat_b17_s15
+          - agent_v9_wheat_b17_s17
+          - agent_v9_wheat_b21_s17
+          - agent_v9_wheat_b21_s19
+          - agent_v9_wheat_b21_s21
+          - agent_v9_wheat_b25_s21
+          - agent_v9_wheat_b25_s23
+          - agent_v9_wheat_b25_s25
+          - agent_v9_wheat_b30_s26
+          - agent_v9_wheat_b30_s28
+          - agent_v9_wheat_b30_s30
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install kaggle-environments
+      - name: Screen opening against all TOP49 representatives
+        env: {AGENT: "${{ matrix.agent }}"}
+        run: |
+          : > /tmp/all.txt
+          for shard in 0 1 2 3 4 5 6; do
+            python kaggriculture/research/screen_top49.py --agent "kaggriculture/v9_candidates/wheat_grid/$AGENT.py" --shard "$shard" --shards 7 >> /tmp/all.txt
+          done
+          python - <<'PY'
+          import json
+          rows=[]
+          for line in open('/tmp/all.txt',encoding='utf8'):
+              if line.startswith('PLAYER_JSON='): rows.append(json.loads(line[12:]))
+          out={'players':len(rows),'games':sum(x['games'] for x in rows),'wins':sum(x['wins'] for x in rows),'our_mean':sum(x['our_mean'] for x in rows)/len(rows),'opponent_mean':sum(x['opponent_mean'] for x in rows)/len(rows),'margin_mean':sum(x['margin_mean'] for x in rows)/len(rows),'loss_players':[x['player'] for x in rows if x['wins']==0]}
+          print('GRID_JSON='+json.dumps(out,ensure_ascii=False,separators=(',',':')))
+          PY
+          summary=$(tail -1 /tmp/all.txt; python - <<'PY'
+          import json
+          rows=[json.loads(x[12:]) for x in open('/tmp/all.txt',encoding='utf8') if x.startswith('PLAYER_JSON=')]
+          print('GRID_JSON='+json.dumps({'players':len(rows),'games':sum(x['games'] for x in rows),'wins':sum(x['wins'] for x in rows),'our_mean':sum(x['our_mean'] for x in rows)/len(rows),'opponent_mean':sum(x['opponent_mean'] for x in rows)/len(rows),'margin_mean':sum(x['margin_mean'] for x in rows)/len(rows),'loss_players':[x['player'] for x in rows if x['wins']==0]},ensure_ascii=False,separators=(',',':')))
+          PY
+          )
+          summary=$(printf '%s' "$summary" | tail -1);summary=${summary//'%'/'%25'};summary=${summary//$'\n'/'%0A'};summary=${summary//$'\r'/'%0D'}
+          echo "::notice title=$AGENT::$summary"
