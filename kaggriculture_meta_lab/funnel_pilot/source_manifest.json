@@ -1,0 +1,72 @@
+{
+  "repository": "peteraangelic-pixel/riemann",
+  "branch": "arena/01a0712c-riemann",
+  "commit": "290d360e3ba380eec9846597b57d6d57c4f57681",
+  "files": [
+    {
+      "path": "kaggriculture_meta_lab/README.md",
+      "blob_sha1": "5b63ee1d0cb3080e555921326fbd132f22370ff7",
+      "size": 11593
+    },
+    {
+      "path": "kaggriculture_meta_lab/agents/current/agent_v7_scripted.py",
+      "blob_sha1": "4667cdba039b8b4e5f2d61591267fa9fdc32026a",
+      "size": 24788
+    },
+    {
+      "path": "kaggriculture_meta_lab/agents/current/agent_v8_aastik.py",
+      "blob_sha1": "2497296732ea16aab869b48c401dca4513124170",
+      "size": 12583
+    },
+    {
+      "path": "kaggriculture_meta_lab/agents/current/agent_v8_hybrid.py",
+      "blob_sha1": "c4bc185afb5eeeff3c285d68d7e2a145e5731e3c",
+      "size": 12608
+    },
+    {
+      "path": "kaggriculture_meta_lab/agents/current/agent_v9_b21_s16.py",
+      "blob_sha1": "02ba060113398152a19de74defec191f38036bb1",
+      "size": 23309
+    },
+    {
+      "path": "kaggriculture_meta_lab/kaggriculture_lab/__init__.py",
+      "blob_sha1": "2147a9a974b8485099120503927851bec59f7c9d",
+      "size": 926
+    },
+    {
+      "path": "kaggriculture_meta_lab/kaggriculture_lab/agents.py",
+      "blob_sha1": "a42a473af312a80f55940f898e6a8345683b1600",
+      "size": 5414
+    },
+    {
+      "path": "kaggriculture_meta_lab/kaggriculture_lab/corpus.py",
+      "blob_sha1": "149efdefcc05acf4e8b508d4426a9f697a7e93d1",
+      "size": 4836
+    },
+    {
+      "path": "kaggriculture_meta_lab/kaggriculture_lab/engine.py",
+      "blob_sha1": "b5fa32aad0f74942a46cb973ed86d1e215889cf7",
+      "size": 3677
+    },
+    {
+      "path": "kaggriculture_meta_lab/kaggriculture_lab/rust_backend.py",
+      "blob_sha1": "07529389d6ebdab79346e2b19876d363166b950f",
+      "size": 8525
+    },
+    {
+      "path": "kaggriculture_meta_lab/kaggriculture_lab/stats.py",
+      "blob_sha1": "a74128081c325c72e2a5d78352f151556a99378d",
+      "size": 5361
+    },
+    {
+      "path": "kaggriculture_meta_lab/kaggriculture_lab/tournament.py",
+      "blob_sha1": "156fcd8d59767c338d036e90675a3b484a36fff7",
+      "size": 6954
+    },
+    {
+      "path": "kaggriculture_meta_lab/scripts/sweep.py",
+      "blob_sha1": "8d842ebcd117f7506cbdfd5f7132fadfdb8c2c72",
+      "size": 19080
+    }
+  ]
+}

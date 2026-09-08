@@ -16,8 +16,9 @@ HERE = Path(__file__).resolve().parent
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--destination", type=Path, default=HERE.parents[1] / ".cache/peer-port")
+    parser.add_argument("--manifest", type=Path, default=HERE / "source_manifest.json")
     args = parser.parse_args()
-    manifest = json.loads((HERE / "source_manifest.json").read_text())
+    manifest = json.loads(args.manifest.read_text())
 
     def fetch(entry):
         relative = PurePosixPath(entry["path"])

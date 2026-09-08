@@ -1,0 +1,61 @@
+name: Kaggriculture bounded funnel integration pilot
+
+on:
+  push:
+    branches: ["arena/01a07c52-riemann"]
+    paths:
+      - ".github/workflows/kaggriculture-funnel-pilot.yml"
+      - "kaggriculture_meta_lab/funnel_pilot/**"
+      - "!kaggriculture_meta_lab/funnel_pilot/REPORT.md"
+      - "!kaggriculture_meta_lab/funnel_pilot/report.json"
+      - "!kaggriculture_meta_lab/funnel_pilot/funnel-identity-and-completeness.patch"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pilot:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[kg-funnel-pilot]')
+    runs-on: ubuntu-22.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@1.85.1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: kaggriculture_meta_lab/rust_port
+      - name: Fetch pinned primary LAB sources only (no corpus or agents uploaded)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python kaggriculture_meta_lab/branch_review/fetch_source.py --manifest kaggriculture_meta_lab/funnel_pilot/source_manifest.json --destination .cache/pilot-source
+      - name: Build unchanged production kernel
+        run: cargo build --release --locked --manifest-path kaggriculture_meta_lab/rust_port/Cargo.toml
+      - name: Minimal dependencies for genuine Kaggle core
+        run: python -m pip install --quiet --disable-pip-version-check -r kaggriculture_meta_lab/rust_port/requirements-framework.txt
+      - name: Compare bounded Python and Rust funnel runs
+        run: python kaggriculture_meta_lab/rust_port/tools/ci_run.py python kaggriculture_meta_lab/funnel_pilot/pilot.py --source .cache/pilot-source --workers 4
+      - name: Publish complete integration evidence
+        if: always()
+        run: |
+          if [ -f .cache/funnel-pilot/report.json ]; then
+            python kaggriculture_meta_lab/rust_port/tools/ci_run.py --report .cache/funnel-pilot/report.json
+          fi
+          if [ -f .cache/funnel-pilot/patched/funnel-identity-and-completeness.patch ]; then
+            python kaggriculture_meta_lab/rust_port/tools/ci_run.py --report .cache/funnel-pilot/patched/funnel-identity-and-completeness.patch
+          fi
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: funnel-pilot-${{ github.sha }}
+          path: |
+            .cache/funnel-pilot/report.json
+            .cache/funnel-pilot/patched/funnel-identity-and-completeness.patch
+            .cache/funnel-pilot/*-cli.txt
+          include-hidden-files: true
+          retention-days: 7
