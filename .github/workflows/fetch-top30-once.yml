@@ -1,6 +1,9 @@
 name: Fetch TOP30 corpus once
 
 on:
+  push:
+    branches: [arena/01a0712c-riemann]
+    paths: [.github/workflows/fetch-top30-once.yml]
   workflow_dispatch:
 
 permissions:
