@@ -42,7 +42,8 @@ def prepare(archive, directory):
     shutil.copytree(original, fixed, dirs_exist_ok=True)
     replacements = {
         "src/main.rs": [
-            ("&tape::Tape", "&model::Tape", 2),
+            ('get_i("shedCapacity",d.shed_capacity)', 'get_i("shedCapacity",i64::from(d.shed_capacity))', 1),
+            ("tape::Tape", "model::Tape", 3),
             ("let seed64=match checked_i128_to_i64(seed){Ok(v)=>v,Err(e)=>error_json(e)};",
              "let seed64=checked_i128_to_i64(seed).map_err(error_json);", 1),
         ],

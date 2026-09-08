@@ -37,6 +37,8 @@ from rust_client import _invoke
 
 def cargo_build(crate, target, label, extra_env=None):
     command = ["cargo", "build", "--release", "--message-format=json", "--manifest-path", str(crate / "Cargo.toml")]
+    if crate == PORT:
+        command.append("--locked")
     env = {**os.environ, "CARGO_TARGET_DIR": str(target), "CARGO_TERM_COLOR": "never", **(extra_env or {})}
     start = time.perf_counter()
     run = subprocess.run(command, capture_output=True, text=True, env=env, timeout=300)
@@ -51,7 +53,7 @@ def cargo_build(crate, target, label, extra_env=None):
             message = value["message"]
             if message.get("level") == "error":
                 diagnostics.append({"code": (message.get("code") or {}).get("code"),
-                                    "message": message["message"],
+                                    "message": message["message"], "rendered": message.get("rendered"),
                                     "locations": [{k: span[k] for k in ("file_name", "line_start", "column_start")} for span in message.get("spans", []) if span.get("is_primary")]})
         if value.get("reason") == "compiler-artifact" and value.get("executable") and value["target"]["name"] == "kg_sim":
             executable = value["executable"]
