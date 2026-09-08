@@ -66,8 +66,11 @@ them.
   measured small-batch speedup on a four-logical-CPU runner. Treat the number as
   a simulator benchmark—not a full-sweep guarantee. Repository-native run
   `34232195149` then matched all 14 static/raw-replay LAB games exactly across
-  both seats (including seed 0), so large static-tape use is unblocked;
-  reactive policies stay on the audited Python engine.
+  both seats (including seed 0). The newer `01a07c52` backend then added
+  non-executing AST classification, normalized behavior fingerprints, safe
+  duplicate-game reuse and fallback-row identity checks; 23,104 action checks
+  and 16 full games passed. Use it for static sweeps; reactive policies stay on
+  the audited Python engine.
 
 ## Source D — historical fertilizer sweep uploaded by the user
 

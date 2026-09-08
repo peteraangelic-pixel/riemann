@@ -15,11 +15,9 @@ FIRST = {"farmer": ["EAST"], "hands": [], "market": [["BUY_SEED", "WHEAT", 2]]}
 LAST = {"farmer": ["WEST"], "hands": [], "market": []}
 
 
-def _module(path: Path, *, safe: bool = True) -> Path:
-    path.write_text(
-        f"RUST_TAPE_SAFE={safe!r}\nACTIONS=[[{PASS!r}], [{PASS!r}]]\n",
-        encoding="utf-8",
-    )
+def _module(path: Path) -> Path:
+    from rust_port.tools.agent_tape import emit_source
+    path.write_text(emit_source([[PASS], [PASS]], trim_hands=True), encoding="utf-8")
     return path
 
 
@@ -38,7 +36,6 @@ def _replay(path: Path) -> Path:
 
 
 def test_raw_replay_source_skips_initial_row_and_stays_untrimmed(tmp_path):
-    rust_backend._source.cache_clear()
     source = rust_backend._source(f"tape:{_replay(tmp_path / 'replay.json.gz')}#0")
     assert source is not None
     assert source.trim_hands is False
@@ -46,18 +43,21 @@ def test_raw_replay_source_skips_initial_row_and_stays_untrimmed(tmp_path):
 
 
 def test_invalid_replay_seat_is_rejected(tmp_path):
-    rust_backend._source.cache_clear()
     with pytest.raises(ValueError, match="seat"):
         rust_backend._source(f"tape:{_replay(tmp_path / 'replay.json.gz')}#2")
 
 
-def test_reactive_module_can_explicitly_disable_rust_materialization(tmp_path):
-    rust_backend._source.cache_clear()
-    assert rust_backend._source(str(_module(tmp_path / "reactive.py", safe=False))) is None
+def test_actions_do_not_freeze_a_reactive_policy(tmp_path):
+    path = tmp_path / "reactive.py"
+    path.write_text(
+        'ACTIONS=[[{}],[{}]]\ndef agent(observation, configuration):\n'
+        ' return {"market": [["BUY_SEED", "WHEAT", int(observation["farms"][0]["money"])]]}\n',
+        encoding="utf-8",
+    )
+    assert rust_backend._source(str(path)) is None
 
 
 def test_backend_partitions_mixed_hand_semantics_and_preserves_order(tmp_path, monkeypatch):
-    rust_backend._source.cache_clear()
     candidate = _module(tmp_path / "candidate.py")
     opponent = _module(tmp_path / "opponent.py")
     replay = _replay(tmp_path / "replay.json.gz")
@@ -91,7 +91,6 @@ def test_backend_partitions_mixed_hand_semantics_and_preserves_order(tmp_path, m
 
 
 def test_rust_game_error_is_not_scored(tmp_path, monkeypatch):
-    rust_backend._source.cache_clear()
     candidate = _module(tmp_path / "candidate.py")
     executable = tmp_path / "kg_sim"
     executable.write_text("fake", encoding="utf-8")

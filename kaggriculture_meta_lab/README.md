@@ -24,10 +24,13 @@ The replay path is now fail-closed:
 accepts `--backend auto|rust|python`; auto uses a release `kg_sim` when present
 and otherwise uses Python. Rust runtime/protocol failures are deliberately
 fatal rather than silently rerunning a potentially huge batch in Python.
-Static ACTIONS agents use hand trimming on both inputs. Raw `tape:...#seat`
-replays are supported with asymmetric semantics: trim the candidate but preserve
-the historical opponent actions exactly. Reactive policies remain on Python and
-should set `RUST_TAPE_SAFE=False` if they also expose an ACTIONS constant.
+Sweep eligibility is proven by a conservative AST/data compiler that never
+imports or executes candidate code merely to classify it. The presence of an
+`ACTIONS` variable alone is not enough: reactive policies and unknown templates
+fall back to Python. Identical static policies/games are fingerprinted and
+reused safely. The separate raw-replay adapter supports `tape:...#seat` with
+asymmetric semantics: trim the candidate but preserve historical opponent
+actions exactly.
 
 Build once on Windows, then reuse the binary:
 

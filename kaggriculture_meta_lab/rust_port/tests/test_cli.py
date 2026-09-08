@@ -13,9 +13,9 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from tools.export_tape import DEFAULT_AGENT, extract, extract_single_stream, write_tape
 from tools.py_reference import PythonReplay
-from tools.rust_client import Job, replay_many
+from tools.rust_client import DEFAULT_BINARY, Job, replay_many
 
-BINARY = Path(os.environ.get("KG_SIM_BIN", ROOT / "target/release/kg_sim")).resolve()
+BINARY = Path(os.environ.get("KG_SIM_BIN", DEFAULT_BINARY)).resolve()
 
 
 class ExportTests(unittest.TestCase):

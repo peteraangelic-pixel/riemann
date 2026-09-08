@@ -83,5 +83,14 @@ The repository-native gate passed in GitHub Actions run `34232195149`:
 - the complete workflow used one runner for 6m48s, including package setup and
   slow Python parity references—not a strategic sweep.
 
-Large static-tape experiments may now use the Rust backend. Reactive policy
-experiments remain on Python until separately implemented and parity-gated.
+A subsequent review of `arena/01a07c52-riemann` through `7ec265a` added the
+safer production sweep boundary: a non-executing compiler for narrowly audited
+static templates, normalized operation fingerprints, reuse of identical games,
+strict correlation of out-of-order Python fallback rows, and Windows executable
+discovery. Its CI demonstrated 23,104 action comparisons, 16 full control games,
+and a 256-job adapter reduction from 5.669 s to 0.099 s (57.49x); the native
+Rust core and binary were unchanged. This verified backend now drives
+`sweep.py`; our separately parity-tested raw-replay path is retained.
+
+Large static-tape experiments may use Rust after the refreshed CI gate. Reactive
+policy experiments remain on Python until separately implemented and parity-gated.

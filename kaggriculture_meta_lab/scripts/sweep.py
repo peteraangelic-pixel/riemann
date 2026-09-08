@@ -37,7 +37,7 @@ from kaggriculture_lab.stats import aggregate, bradley_terry, promotion_gate  # 
 from kaggriculture_lab.tournament import (  # noqa: E402
     _available_mem_gb, build_jobs, default_workers, run,
 )
-from kaggriculture_lab import rust_backend  # noqa: E402
+from rust_port.tools import lab_backend as rust_backend  # noqa: E402
 
 SWEEP_DIR = ROOT / "agents" / "sweeps"
 

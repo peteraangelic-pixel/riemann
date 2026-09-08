@@ -9,7 +9,6 @@ rerun in Python.
 from __future__ import annotations
 
 import gzip
-import importlib.util
 import json
 import os
 import sys
@@ -17,7 +16,6 @@ import tempfile
 import time
 from collections import defaultdict
 from dataclasses import dataclass
-from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
@@ -46,29 +44,13 @@ def rust_binary() -> Path | None:
     return _DEFAULT_BINARY if _DEFAULT_BINARY.exists() and os.access(_DEFAULT_BINARY, os.X_OK) else None
 
 
-def _load_module_actions(path: Path) -> list | None:
-    """Materialize a two-seat ACTIONS module, including import-time overrides."""
+def _load_module_source(path: Path) -> TapeSource | None:
+    """Compile only audited static templates without importing agent code."""
     try:
-        path = path.resolve()
-        module_dir = str(path.parent)
-        if module_dir not in sys.path:
-            sys.path.insert(0, module_dir)
-        spec = importlib.util.spec_from_file_location(
-            f"kgtape_{path.stem}_{abs(hash(str(path)))}", path)
-        if spec is None or spec.loader is None:
-            return None
-        module = importlib.util.module_from_spec(spec)
-        sys.modules[spec.name] = module
-        spec.loader.exec_module(module)
-        if getattr(module, "RUST_TAPE_SAFE", True) is False:
-            return None
-        actions = getattr(module, "ACTIONS", None)
-        if (not isinstance(actions, list) or len(actions) != 2
-                or any(not isinstance(seat, list) or not seat for seat in actions)
-                or any(not isinstance(action, dict) for seat in actions for action in seat)):
-            return None
-        return actions
-    except Exception:
+        from rust_port.tools.agent_tape import UnsupportedAgent, compile_file
+        compiled = compile_file(path.resolve())
+        return TapeSource(json.loads(compiled.payload), compiled.trim_hands)
+    except (OSError, UnsupportedAgent, ValueError, json.JSONDecodeError):
         return None
 
 
@@ -78,7 +60,6 @@ def _read_replay(path: Path) -> dict:
         return json.load(stream)
 
 
-@lru_cache(maxsize=None)
 def _source(spec: str) -> TapeSource | None:
     """Resolve a static agent module or a raw ``tape:replay[#seat]`` source.
 
@@ -118,8 +99,7 @@ def _source(spec: str) -> TapeSource | None:
     path = _resolve_path(spec)
     if path.suffix != ".py":
         return None
-    actions = _load_module_actions(path)
-    return TapeSource(actions, trim_hands=True) if actions is not None else None
+    return _load_module_source(path)
 
 
 def _is_tape_spec(spec: Any) -> bool:
