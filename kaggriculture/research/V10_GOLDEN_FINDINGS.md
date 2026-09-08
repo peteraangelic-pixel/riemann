@@ -64,9 +64,10 @@ them.
   and integrated into the LAB: 585 bit-exact Python comparisons, 22,597 exact
   states, mixed hand semantics, deterministic 14k batches, and roughly 112-222x
   measured small-batch speedup on a four-logical-CPU runner. Treat the number as
-  a simulator benchmark—not a full-sweep guarantee. A repository-native
-  Python/Rust parity gate remains mandatory before large use; reactive policies
-  stay on the audited Python engine.
+  a simulator benchmark—not a full-sweep guarantee. Repository-native run
+  `34232195149` then matched all 14 static/raw-replay LAB games exactly across
+  both seats (including seed 0), so large static-tape use is unblocked;
+  reactive policies stay on the audited Python engine.
 
 ## Source D — historical fertilizer sweep uploaded by the user
 

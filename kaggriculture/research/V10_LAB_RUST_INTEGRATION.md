@@ -74,5 +74,14 @@ compare exact binary64 rewards between the audited Python LAB and Rust for:
 - raw TOP49 replay opponents;
 - mixed hand semantics.
 
-The integration commit requests this gate in GitHub Actions. Large strategic
-sweeps remain blocked until it passes.
+The repository-native gate passed in GitHub Actions run `34232195149`:
+
+- all 14 integrated games matched exact binary64 rewards (8 static B21/B20 and
+  6 B21/raw-TOP49 games, both seats, including seed 0);
+- upstream framework, differential, Rust debug/release, protocol, small
+  benchmark, and 14k deterministic batch steps all passed;
+- the complete workflow used one runner for 6m48s, including package setup and
+  slow Python parity references—not a strategic sweep.
+
+Large static-tape experiments may now use the Rust backend. Reactive policy
+experiments remain on Python until separately implemented and parity-gated.
