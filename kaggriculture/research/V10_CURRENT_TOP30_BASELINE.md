@@ -47,3 +47,9 @@ open-loop lead and must later beat controls in closed-loop tests.
 
 The exact 300 rows and cumulative summaries are stored in
 `kaggriculture_meta_lab/results/top30-b21-baseline-20260908.json`.
+
+A subsequent bounded TOP10 exemplar micro-screen found a consistent Subin
+policy family at 46.7% and mean margin -282 to -481 after source-episode
+exclusion, versus B21's 25.0% and -7,116. See
+`V10_TOP10_EXEMPLAR_MICROSCREEN.md`. This is a strong behavioral lead, not a
+submission candidate or proof that a static tape can replace a reactive agent.
