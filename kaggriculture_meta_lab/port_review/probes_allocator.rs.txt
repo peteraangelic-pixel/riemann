@@ -1,0 +1,40 @@
+
+// Review-only instrumentation, compiled solely by cargo test.
+#[cfg(test)]
+mod review_allocations {
+    use std::alloc::{GlobalAlloc, Layout, System};
+    use std::cell::Cell;
+    struct Counted;
+    thread_local! {
+        static TRACK: Cell<bool> = const { Cell::new(false) };
+        static COUNT: Cell<usize> = const { Cell::new(0) };
+    }
+    fn note() {
+        if TRACK.try_with(Cell::get).unwrap_or(false) {
+            let _ = COUNT.try_with(|v| v.set(v.get() + 1));
+        }
+    }
+    unsafe impl GlobalAlloc for Counted {
+        unsafe fn alloc(&self, layout: Layout) -> *mut u8 {
+            note(); unsafe { System.alloc(layout) }
+        }
+        unsafe fn alloc_zeroed(&self, layout: Layout) -> *mut u8 {
+            note(); unsafe { System.alloc_zeroed(layout) }
+        }
+        unsafe fn realloc(&self, ptr: *mut u8, layout: Layout, size: usize) -> *mut u8 {
+            note(); unsafe { System.realloc(ptr, layout, size) }
+        }
+        unsafe fn dealloc(&self, ptr: *mut u8, layout: Layout) {
+            unsafe { System.dealloc(ptr, layout) }
+        }
+    }
+    #[global_allocator]
+    static ALLOCATOR: Counted = Counted;
+    pub fn measure(f: impl FnOnce()) -> usize {
+        COUNT.with(|v| v.set(0));
+        TRACK.with(|v| v.set(true));
+        f();
+        TRACK.with(|v| v.set(false));
+        COUNT.with(Cell::get)
+    }
+}

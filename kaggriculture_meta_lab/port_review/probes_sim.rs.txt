@@ -1,0 +1,63 @@
+
+#[cfg(test)]
+mod review_probes {
+    use super::*;
+    use serde_json::Value;
+
+    #[test]
+    fn review_cpython_rng_120000_words_and_mixed_calls() {
+        let vectors: Value = serde_json::from_str(include_str!("../review_conformance.json")).unwrap();
+        for row in vectors["rng"].as_array().unwrap() {
+            let seed = row["seed"].as_i64().unwrap();
+            let day = row["day"].as_i64().unwrap();
+            let mixed = (i128::from(seed) * 1_000_003) ^ i128::from(day);
+            let mut rng = PythonRandom::seeded_int(mixed);
+            let mut digest = 14_695_981_039_346_656_037_u64;
+            for _ in 0..5000 {
+                digest = digest.wrapping_mul(1_099_511_628_211) ^ u64::from(rng.u32());
+            }
+            assert_eq!(digest, row["words_fnv64"].as_u64().unwrap(), "seed={seed} day={day}");
+            let mut rng = PythonRandom::seeded_int(mixed);
+            for pair in row["mixed_call_bits"].as_array().unwrap() {
+                assert_eq!(rng.random().to_bits(), pair[0].as_u64().unwrap());
+                assert_eq!(rng.choice8() as u64, pair[1].as_u64().unwrap());
+            }
+        }
+    }
+
+    #[test]
+    fn review_default_price_fingerprints_270009_quotes() {
+        let vectors: Value = serde_json::from_str(include_str!("../review_conformance.json")).unwrap();
+        for row in vectors["prices"].as_array().unwrap() {
+            let item = Product::from_str(row["item"].as_str().unwrap()).unwrap();
+            let mut digest = 14_695_981_039_346_656_037_u64;
+            for stock in -10000..20001 {
+                digest = digest.wrapping_mul(1_099_511_628_211) ^ market_price(item, stock, &[None; PRODUCT_COUNT]) as u64;
+            }
+            assert_eq!(digest, row["fnv64"].as_u64().unwrap(), "item={item:?}");
+        }
+    }
+
+    #[test]
+    fn review_measures_allocations_after_game_setup() {
+        let mut game = new_game(SimConfig::default());
+        inv_add(&mut game.privs[0], 0, Product::Milk, 2);
+        let drop_calls = crate::review_allocations::measure(|| {
+            do_unit_action(&mut game.farms[0], &mut game.privs[0], 0,
+                           std::hint::black_box(&UnitAction::Drop), 0, 24, 100);
+        });
+        let mut game = new_game(SimConfig::default());
+        let day_calls = crate::review_allocations::measure(|| {
+            end_of_day(&mut game, 0, std::hint::black_box(7));
+        });
+        let mut game = new_game(SimConfig::default());
+        let hire_calls = crate::review_allocations::measure(|| {
+            do_hire(&mut game.farms[0], &mut game.privs[0], 1);
+        });
+        // This is a diagnostic, not a zero-allocation compliance assertion.
+        println!("REVIEW_ALLOC_JSON={}", serde_json::json!({
+            "drop": drop_calls, "end_of_day": day_calls, "hire": hire_calls,
+            "setup_excluded": true
+        }));
+    }
+}

@@ -1,0 +1,51 @@
+name: Kaggriculture alternate Rust review
+
+on:
+  push:
+    branches: ["arena/01a07c52-riemann"]
+    paths:
+      - ".github/workflows/kaggriculture-rust-review.yml"
+      - "kaggriculture_meta_lab/port_review/**"
+      - "!kaggriculture_meta_lab/port_review/REVIEW.md"
+      - "!kaggriculture_meta_lab/port_review/review-results.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compare:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[kg-port-review]')
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@1.85.1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: kaggriculture_meta_lab/rust_port
+      - name: Compile, verify against Python and benchmark on the same runner
+        run: python kaggriculture_meta_lab/rust_port/tools/ci_run.py python kaggriculture_meta_lab/port_review/compare_ports.py --seeds 64 --repeats 3 --large-games 2048
+      - name: Publish complete review diagnostics
+        if: always()
+        run: |
+          if [ -f .cache/port-review/review.json ]; then
+            python kaggriculture_meta_lab/rust_port/tools/ci_run.py --report .cache/port-review/review.json
+          fi
+          if [ -f .cache/port-review/compile-only.patch ]; then
+            python kaggriculture_meta_lab/rust_port/tools/ci_run.py --report .cache/port-review/compile-only.patch
+          fi
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: alternate-rust-review-${{ github.sha }}
+          path: |
+            .cache/port-review/review.json
+            .cache/port-review/compile-only.patch
+          include-hidden-files: true
+          retention-days: 7
