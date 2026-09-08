@@ -60,6 +60,11 @@ from rust_port.tools.agent_tape import emit_source
 path.write_text(emit_source(two_seat_actions, trim_hands=True), encoding="utf8")
 ```
 
+Auto-compilation is deliberately narrower than the raw JSON simulator API:
+the audited templates require list-shaped actions and integer quantity
+arguments. Data that could make a Python wrapper throw instead of emitting an
+action is not silently normalized into a successful native game.
+
 This does not execute agents inside Rust, and does not turn a frozen opponent
 replay into a reactive policy. `tape:` and `wrap:` LAB specs currently remain on
 the Python path rather than guessing their semantics.
@@ -68,12 +73,14 @@ the Python path rather than guessing their semantics.
 
 - Each distinct path is resolved/read once per call; identical source content
   is decoded once. A new call sees edited files, even at the same path/mtime.
-- Canonical immutable JSON snapshots have content-addressed export filenames.
+- Immutable JSON snapshots use precomputed normalized-operation fingerprints
+  as export filenames.
   Two different `main.py` files cannot overwrite each other's tape.
 - Native jobs are grouped by **horizon and both hand rules**, not run with the
   first job's settings.
 - Hand rules follow A/B through reversed physical seats.
-- Identical verified native games may reuse results; original tags and opponent
+- Identical verified native games (including missing fields versus explicit
+  default actions) may reuse results; original tags and opponent
   specs are restored for every request. Python/reactive games are not deduplicated.
 - Fallback gets unique opaque correlation tags, then original tags are restored.
   Out-of-order `as_completed` responses and duplicate user tags do not reorder

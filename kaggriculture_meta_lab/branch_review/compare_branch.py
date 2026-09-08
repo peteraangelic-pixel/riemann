@@ -212,7 +212,9 @@ def main():
     fert = generator.apply_mutations(fert, {"fert_scale": 0.0})
     expanded = generator.apply_mutations(generator.load_champion_actions(), {"hire_scale": 1.3})
     report["structural_generator"] = {
-        "cutoff_600_vs_700_identical": first == second,
+        "cutoff_600_vs_700_raw_json_identical": first == second,
+        "cutoff_600_vs_700_effective_markets_identical": [[a.get("market") or [] for a in stream] for stream in first] == [[a.get("market") or [] for a in stream] for stream in second],
+        "new_compiler_reuses_effective_cutoff_identity": compile_file(write_agent("cutoff600.py", first, True)).fingerprint == compile_file(write_agent("cutoff700.py", second, True)).fingerprint,
         "first_liquidation_step_for_600": next(i for i,a in enumerate(first[0]) if a.get("market")),
         "fertilizer_qty_at_scale_zero": fert[0][0]["market"][0][2],
         "missing_tomato_in_product_kinds": "TOMATO" not in generator.PRODUCT_KINDS,

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -69,6 +70,16 @@ class LabBackendTests(unittest.TestCase):
         self.assertEqual(report.metrics["source_compilations"], 2)
         self.assertEqual(report.metrics["rust_calls"], 1)
         self.assertEqual(report.metrics["rust_jobs"], 20)
+
+
+    def test_tape_hashing_work_does_not_grow_with_seed_count(self):
+        counts = []
+        real_hash = hashlib.sha256
+        for size in (1, 20):
+            with patch("tools.lab_backend.hashlib.sha256", wraps=real_hash) as measured:
+                self.run_jobs([(seed, self.a, self.b, 0, 2, "hash") for seed in range(size)])
+                counts.append(measured.call_count)
+        self.assertEqual(counts[0], counts[1])
 
     def test_mixed_horizons_are_separate_buckets(self):
         report = self.run_jobs([(0, self.a, self.b, 0, 2, "one"), (0, self.a, self.b, 0, 3, "two")])

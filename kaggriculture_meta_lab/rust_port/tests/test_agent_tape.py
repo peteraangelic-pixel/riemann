@@ -36,6 +36,14 @@ class StaticTapeCompilerTests(unittest.TestCase):
         self.assertFalse(raw.trim_hands)
         self.assertTrue(clipped.trim_hands)
 
+
+    def test_missing_fields_and_explicit_defaults_share_behavior_identity(self):
+        missing = compile_source(emit_source([[{}], [{}]]))
+        default = {"farmer": ["PASS"], "hands": [], "market": []}
+        explicit = compile_source(emit_source([[default], [default]]))
+        self.assertNotEqual(missing.payload, explicit.payload)
+        self.assertEqual(missing.fingerprint, explicit.fingerprint)
+
     def test_emitted_policy_matches_compiled_actions(self):
         actions = [[{"farmer": ["PLANT", "WHEAT"], "hands": [["PLANT", "WHEAT"]]}], [{}]]
         with tempfile.TemporaryDirectory() as directory:
@@ -79,6 +87,19 @@ class StaticTapeCompilerTests(unittest.TestCase):
             with self.subTest(text=text[:50]):
                 with self.assertRaises(UnsupportedAgent):
                     compile_source(text)
+
+
+    def test_container_shapes_cannot_hide_python_wrapper_errors(self):
+        source = emit_source([[{}], [{}]])
+        for bad in ([{"hands": {"bad": 1}}], [{"market": {"bad": 1}}],
+                    [{"farmer": ["PICKUP", "WHEAT", None]}],
+                    [{"farmer": ["PLANT", []]}]):
+            tree = ast.parse(source)
+            for node in tree.body:
+                if isinstance(node, ast.Assign) and node.targets[0].id == "ACTIONS":
+                    node.value = ast.parse(repr([bad, [{}]]), mode="eval").body
+            with self.assertRaises(UnsupportedAgent):
+                compile_source(ast.unparse(tree))
 
     def test_formatting_does_not_change_template_classification(self):
         source = emit_source([[{}], [{}]], trim_hands=False)

@@ -202,12 +202,14 @@ def run_report(jobs, workers, *, mode="auto", binary=None, python_runner=None,
             exported = {}
 
             def export(compiled):
-                digest = hashlib.sha256(compiled.payload).hexdigest()
-                if digest not in exported:
-                    path = Path(directory) / f"{digest}.json"
+                # Fingerprints are precomputed once. Rehashing a 200 KB tape
+                # twice for every seed would reintroduce O(jobs*tape_size) I/O work.
+                key = compiled.fingerprint
+                if key not in exported:
+                    path = Path(directory) / f"{key}.json"
                     path.write_bytes(compiled.payload)
-                    exported[digest] = path
-                return exported[digest]
+                    exported[key] = path
+                return exported[key]
 
             for (steps, trim_a, trim_b), unique in groups.items():
                 entries = list(unique.values())

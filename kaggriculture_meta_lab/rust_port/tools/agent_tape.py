@@ -131,6 +131,33 @@ def _evaluate(node, values, decoder_allowed, depth=0):
     raise UnsupportedAgent("source contains an unapproved data expression")
 
 
+
+def _validate_actions(actions, *, require_hands=False):
+    if not isinstance(actions, list) or len(actions) != 2 or any(not isinstance(s, list) or not s for s in actions):
+        raise UnsupportedAgent("not a two-seat action tape")
+    item_ops = {"PICKUP", "PLACE", "PLANT", "BUY_SEED", "BUY_PRODUCT", "BUY_ANIMAL", "SELL"}
+    def operation(value):
+        if not isinstance(value, list) or (value and not isinstance(value[0], str)):
+            raise UnsupportedAgent("unproven action shape")
+        if value and value[0] in item_ops:
+            if len(value) > 1 and not isinstance(value[1], str):
+                raise UnsupportedAgent("unproven item argument")
+            if len(value) > 2 and (type(value[2]) not in (int, bool) or not -(2**63) <= value[2] < 2**63):
+                raise UnsupportedAgent("auto-compilation requires integer quantity arguments")
+    for stream in actions:
+        for action in stream:
+            if not isinstance(action, dict) or (require_hands and "hands" not in action):
+                raise UnsupportedAgent("invalid action object for this template")
+            if "farmer" in action:
+                operation(action["farmer"])
+            for field in ("hands", "market"):
+                entries = action.get(field, [])
+                if not isinstance(entries, list):
+                    raise UnsupportedAgent("unproven hands/market container")
+                for value in entries:
+                    operation(value)
+
+
 def compile_source(source):
     raw = source.encode("utf8") if isinstance(source, str) else source
     if len(raw) > MAX_SOURCE_BYTES:
@@ -219,8 +246,7 @@ def compile_source(source):
                     raise UnsupportedAgent("unsupported schedule-side selection")
                 selected = actions[int(mode[-1])]
                 actions = [copy.deepcopy(selected), copy.deepcopy(selected)]
-        if not isinstance(actions, list) or len(actions) != 2 or any(not isinstance(s, list) or not s or not all(isinstance(a, dict) for a in s) for s in actions):
-            raise UnsupportedAgent("not a two-seat action tape")
+        _validate_actions(actions, require_hands=family == "v8")
         if family in ("b21", "structural"):
             if any(len(s) < 720 for s in actions):
                 raise UnsupportedAgent("fixed 719 clamp requires at least 720 entries")
@@ -231,7 +257,12 @@ def compile_source(source):
     except (KeyError, IndexError, TypeError, ValueError, zlib.error, UnicodeError) as error:
         raise UnsupportedAgent("invalid static tape data") from error
     trim = family != "raw"
-    fingerprint = hashlib.sha256(payload + (b"\x01" if trim else b"\x00")).hexdigest()
+    # Missing action fields and their explicit defaults mean the same thing
+    # to the interpreter. Do not waste games on different metadata/key presence.
+    effective = [[{"farmer": a.get("farmer", ["PASS"]), "hands": a.get("hands", []),
+                   "market": a.get("market", [])} for a in stream] for stream in actions]
+    effective_json = json.dumps(effective, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
+    fingerprint = hashlib.sha256(effective_json + (b"\x01" if trim else b"\x00")).hexdigest()
     return CompiledTape(payload, trim, fingerprint, hashlib.sha256(raw).hexdigest(), family)
 
 
@@ -244,8 +275,7 @@ def compile_file(path):
 
 def emit_source(actions, *, trim_hands=True):
     """Self-contained static agent emitted in a recognized, auditable template."""
-    if not isinstance(actions, list) or len(actions) != 2 or any(not isinstance(s, list) or not s or not all(isinstance(a, dict) for a in s) for s in actions):
-        raise ValueError("expected two nonempty lists of action objects")
+    _validate_actions(actions)
     blob = base64.b85encode(zlib.compress(json.dumps(actions, separators=(",", ":"), allow_nan=False).encode(), 9)).decode()
     return ("import base64, copy, json, zlib\n" + f"_BLOB = {blob!r}\n" +
             "ACTIONS = json.loads(zlib.decompress(base64.b85decode(_BLOB)))\n\n" +
