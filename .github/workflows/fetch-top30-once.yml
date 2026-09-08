@@ -19,7 +19,7 @@ jobs:
           set -euo pipefail
           curl --fail --location --retry 5 --retry-all-errors \
             --output TOP30.ZIP \
-            'https://1drv.ms/u/c/d121e4090537c839/IQDZQgb_nHdjRr6rvWpcbapuAebsVwIFk1ey_tCFqXBOGtM?download=1'
+            'https://1drv.ms/u/c/d121e4090537c839/IQDZQgb_nHdjRr6rvWpcbapuAebsVwIFk1ey_tCFqXBOGtM?e=HVb6d3&download=1'
           test "$(stat -c %s TOP30.ZIP)" -gt 1000000
           file TOP30.ZIP
           sha256sum TOP30.ZIP | tee TOP30.ZIP.sha256
