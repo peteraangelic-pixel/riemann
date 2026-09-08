@@ -3495,5 +3495,160 @@
     }
   },
   "production_changed": false,
-  "no_kaggle_submission": true
+  "no_kaggle_submission": true,
+  "production_after_adoption": {
+    "ci_url": "https://github.com/peteraangelic-pixel/riemann/actions/runs/34211248146",
+    "commit": "b34ed45a9dff030155bead96c84eed434b51a347",
+    "status": "success",
+    "rust_debug_tests": 17,
+    "rust_release_tests": 17,
+    "python_tests": 37,
+    "framework_cases": 16,
+    "engine_binary_unchanged_from_previous_release": true,
+    "differential": {
+      "status": "passed",
+      "engine": "kaggle-environments==1.32.7",
+      "simulator_sha256": "bc8a54879ef02c7ea64b8b333d6a976f0ea65c4949149d01f463f23bccee653e",
+      "batch_seed_count": 68,
+      "distinct_episode_seeds": 87,
+      "reward_comparisons": 585,
+      "full_state_comparisons": 22597,
+      "reward_comparison": "IEEE-754 binary64 byte equality (no tolerance)",
+      "batches": [
+        {
+          "trim_hands": false,
+          "games": 272,
+          "thread_counts": [
+            1,
+            4
+          ],
+          "byte_identical_batch_output": true
+        },
+        {
+          "trim_hands": true,
+          "games": 272,
+          "thread_counts": [
+            1,
+            4
+          ],
+          "byte_identical_batch_output": true
+        }
+      ],
+      "mixed_hand_mode_full_episodes": 8,
+      "elapsed_seconds": 60.522
+    },
+    "benchmark": {
+      "baseline": "direct unmodified Python interpreter; no framework/policy/statistics overhead",
+      "rust_timing_includes": "process launch + tape/CSV parsing + simulation + result parsing",
+      "games_per_sample": 64,
+      "repeats": 3,
+      "steps": 720,
+      "action_turns_per_game": 719,
+      "trim_hands": false,
+      "rayon_threads": 4,
+      "logical_cpus": 4,
+      "cpu": "AMD EPYC 9V74 80-Core Processor",
+      "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+      "python": "3.12.14",
+      "rustc": "rustc 1.85.1 (4eb161250 2025-03-15)",
+      "binary_sha256": "be94f33974132f3825f74c8475d2112c40dd29588259ed49299d5974fd20aa84",
+      "median_seconds": {
+        "python": 5.258616317000019,
+        "rust_one_process_per_game": 0.6680279629999859,
+        "rust_batch_1_thread": 0.053312135999988186,
+        "rust_batch_parallel": 0.028515361000017947
+      },
+      "speedup_vs_python": {
+        "one_process_per_game": 7.871850593476025,
+        "batch_1_thread": 98.63825972009796,
+        "batch_parallel": 184.41345760962693
+      },
+      "parallel_speedup_vs_rust_1_thread": 1.8695935850138679,
+      "samples_seconds": {
+        "python": [
+          5.258616317000019,
+          5.23203307,
+          5.259706971000014
+        ],
+        "rust_one_process_per_game": [
+          0.6680279629999859,
+          0.6727954469999986,
+          0.6524355530000037
+        ],
+        "rust_batch_1_thread": [
+          0.053312135999988186,
+          0.054360371999990775,
+          0.05323576999998636
+        ],
+        "rust_batch_parallel": [
+          0.028214646000009225,
+          0.028515361000017947,
+          0.028702784999978803
+        ]
+      },
+      "warning": "This is not a measurement of the user's complete 14k-game sweep, nor a 16-physical-core benchmark."
+    },
+    "large_batch": {
+      "status": "passed",
+      "workload": "one fixed tape pair, seeds 0..games-1, alternating reversed seats",
+      "games_per_sample": 14000,
+      "repeats": 3,
+      "steps": 720,
+      "action_turns_per_game": 719,
+      "trim_hands": false,
+      "ordered_reward_sha256": "15d95560c01fb498aff3ae6cb07a9604604aa8733daa6df9440df4128965f304",
+      "all_thread_counts_and_repeats_identical": true,
+      "python_checked_jobs": 64,
+      "python_sample_first_last_indices": [
+        0,
+        13999
+      ],
+      "logical_cpus": 4,
+      "cpu": "AMD EPYC 9V74 80-Core Processor",
+      "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+      "python": "3.12.14",
+      "rustc": "rustc 1.85.1 (4eb161250 2025-03-15)",
+      "revision": "b34ed45a9dff030155bead96c84eed434b51a347",
+      "binary_sha256": "be94f33974132f3825f74c8475d2112c40dd29588259ed49299d5974fd20aa84",
+      "tape_a_sha256": "dfb82b6052af6bc0b8f0a1251f532161468670332d31efe51bd47b7a7dc8708d",
+      "tape_b_sha256": "dfb82b6052af6bc0b8f0a1251f532161468670332d31efe51bd47b7a7dc8708d",
+      "timings": [
+        {
+          "threads": 1,
+          "median_seconds": 9.053779085000002,
+          "samples_seconds": [
+            9.059495916000003,
+            9.047507445999997,
+            9.053779085000002
+          ],
+          "games_per_second": 1546.3156178832253,
+          "speedup_vs_rust_1_thread": 1.0
+        },
+        {
+          "threads": 4,
+          "median_seconds": 3.7123951700000077,
+          "samples_seconds": [
+            3.7121129319999966,
+            3.7191533749999905,
+            3.7123951700000077
+          ],
+          "games_per_second": 3771.1502571532465,
+          "speedup_vs_rust_1_thread": 2.438797237471889
+        },
+        {
+          "threads": 16,
+          "median_seconds": 3.5803421029999924,
+          "samples_seconds": [
+            3.579601248000017,
+            3.6278093029999923,
+            3.5803421029999924
+          ],
+          "games_per_second": 3910.2408644887055,
+          "speedup_vs_rust_1_thread": 2.5287469254442976
+        }
+      ],
+      "measurement": "complete client call including CSV writing, subprocess launch, tape parsing, simulation, result parsing and validation",
+      "scope": "Not the full user's sweep, no agent search/statistics; 16 workers do not imply 16 physical CPU cores. No estimated Python speedup is reported."
+    }
+  }
 }

@@ -1,6 +1,34 @@
 # Weryfikacja portu Rust
 
-## 2026-09-08 — zakończone poprawki (aktualny stan)
+## 2026-09-08 — po przeglądzie alternatywnego ZIP-a (najnowszy stan)
+
+Zielone [CI #34211248146](https://github.com/peteraangelic-pixel/riemann/actions/runs/34211248146),
+commit kodu `b34ed45a9dff030155bead96c84eed434b51a347`.
+Dodano jawne `export_tape.py --single-stream`, ochronę źródła przed nadpisaniem,
+mapę funkcji oryginału oraz kolejne testy graniczne. **Natywny kod silnika i
+ustawienia kompilacji nie zostały zmienione**; SHA-256 binarza nadal wynosi
+`be94f33974132f3825f74c8475d2112c40dd29588259ed49299d5974fd20aa84`.
+
+- Rust debug/release: **17/17 w każdym trybie**; Python/CLI: **37/37**.
+- Python parity: **585 meczów / 87 seedów / 22 597 pełnych stanów**, bez różnic.
+- Rzeczywisty framework: **16/16**, bez różnic.
+- Batch 14 000: **9,054 s / 3,712 s / 3,580 s** dla 1 / 4 / 16 wątków,
+  mediana 3 prób na runnerze z 4 logicznymi CPU (AMD EPYC 9V74).
+- Skrót uporządkowanych wyników batcha pozostał taki sam:
+  `15d95560c01fb498aff3ae6cb07a9604604aa8733daa6df9440df4128965f304`.
+- Mały pomiar 64 gier: Python **5,258616 s**, Rust proces/mecz **0,668028 s**,
+  Rust batch 1 wątek **0,053312 s**, batch 4 wątki **0,028515 s**.
+  Przyspieszenia względem szeregowego Pythona: **7,87× / 98,64× / 184,41×**.
+
+Zmiana 221,69× → 184,41× między przebiegami nie jest dowodem regresji silnika:
+zmienił się runner i warunki pomiaru, a binarz pozostał identyczny.
+To nadal pomiar taśm, nie całego LAB-u ani Pythona w 16 procesach.
+
+[Porównanie obu portów, błędy ZIP-a i pełna metodologia](../port_review/REVIEW.md).
+Archiwum użytkownika pozostawiono bez zmian; kopia kompilacyjna drugiego portu
+nie jest używana jako produkcyjny symulator.
+
+## 2026-09-08 — zakończenie poprawki portu (wcześniejszy pomiar)
 
 **Wszystkie bramki zielone:** [GitHub Actions #34206326321](https://github.com/peteraangelic-pixel/riemann/actions/runs/34206326321).
 Sprawdzony commit kodu: `20f7a9d5e99c846ec7d59f37253995d947895b25`. Późniejszy commit
