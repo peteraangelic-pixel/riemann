@@ -1,6 +1,40 @@
 # Weryfikacja portu Rust
 
-## 2026-09-08 — po przeglądzie alternatywnego ZIP-a (najnowszy stan)
+## 2026-09-08 — bezpieczny adapter LAB-u po audycie 075fa (najnowszy stan)
+
+Zielone [CI portu #34238504426](https://github.com/peteraangelic-pixel/riemann/actions/runs/34238504426)
+i [audyt obu implementacji #34238504440](https://github.com/peteraangelic-pixel/riemann/actions/runs/34238504440).
+Sprawdzony commit kodu: `7ec265adc078f7ad7fa4967ed2a152b4fc41bd3c`.
+
+- Rdzeń Rust i Cargo są identyczne z badaną gałęzią `arena/01a075fa-riemann`
+  na `99c364e...`; oba binarze mają SHA-256
+  `be94f33974132f3825f74c8475d2112c40dd29588259ed49299d5974fd20aa84`.
+- Dodano **bezpieczny kompilator znanych szablonów taśm** i adapter sześciopolowych
+  zadań LAB-u: bez importowania kodu do rozpoznawania, bez kolizji nazw,
+  z grupowaniem horyzontów/rąk, korelacją wyników fallbacku i reużyciem wyników
+  identycznych statycznych gier. Pythonowe błędy protokołu nie są maskowane.
+- Dodano poprawną nazwę `kg_sim.exe` dla klienta Windows.
+- Rust debug/release: **17/17** w każdym trybie; Python/CLI/backend: **61/61**.
+- Wciąż **585 meczów / 87 seedów / 22 597 stanów** bez różnic oraz **16** prób
+  rzeczywistego frameworka. Brak alokacji na gorącej ścieżce zachowany.
+- Osobno: **23 104** porównania akcji kompilowanych szablonów, **16 pełnych
+  meczów** z bieżącymi kontrolami i pięć grup przypadków granicznych adaptera.
+- Duży batch 14k: **8,995 s / 3,567 s / 3,512 s** dla 1 / 4 / 16 wątków na
+  runnerze z 4 CPU; skrót uporządkowanych wyników nadal
+  `15d95560c01fb498aff3ae6cb07a9604604aa8733daa6df9440df4128965f304`.
+
+**Ważne rozróżnienie pomiarów:** cały adapter B21/256 zadań na wspólnym runnerze
+zajął **0,098613 s** wobec **5,669221 s** adaptera z badanej gałęzi (**57,49×**).
+To eliminacja powtarzanego przygotowania danych, nie przyspieszenie identycznego
+natywnego silnika. Nie mnożymy tego przez wcześniejsze współczynniki względem
+Pythona i nie nazywamy pomiarem całego lejka.
+
+Wyniki i ledger: [`../branch_review/REVIEW.md`](../branch_review/REVIEW.md).
+Integracja: [`LAB_BACKEND.md`](LAB_BACKEND.md). Gałęzi źródłowej, agentów ani
+submisji Kaggle nie zmieniono; minimalny patch importu sweepa jest przygotowany
+oddzielnie do świadomego zastosowania po dostarczeniu nowych modułów.
+
+## 2026-09-08 — wcześniejsza walidacja po przeglądzie ZIP-a
 
 Zielone [CI #34211248146](https://github.com/peteraangelic-pixel/riemann/actions/runs/34211248146),
 commit kodu `b34ed45a9dff030155bead96c84eed434b51a347`.

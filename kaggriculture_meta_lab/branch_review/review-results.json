@@ -1,0 +1,886 @@
+{
+  "peer_commit": "99c364e55fc88bd03954ab93e7b742fedac45101",
+  "later_checked_peer_commit": "190989e605749a435b33e2075411e2ea330b152f",
+  "ours_commit": "7ec265adc078f7ad7fa4967ed2a152b4fc41bd3c",
+  "kernel_identity": {
+    "src/engine.rs": {
+      "ours": "7f1ee8ddcfebc7f4e3ee076f4130f4cf2bec2ec08fdb5e318e4ad85d98464ad0",
+      "peer": "7f1ee8ddcfebc7f4e3ee076f4130f4cf2bec2ec08fdb5e318e4ad85d98464ad0"
+    },
+    "src/config.rs": {
+      "ours": "ea50571c604f752fe924a7596d189b235985e4b8f9e8ca883427229c183d37da",
+      "peer": "ea50571c604f752fe924a7596d189b235985e4b8f9e8ca883427229c183d37da"
+    },
+    "src/snapshot.rs": {
+      "ours": "6bb4b695460142d5e4b90e92f126391e57009c549583d05f425e8f7f76153184",
+      "peer": "6bb4b695460142d5e4b90e92f126391e57009c549583d05f425e8f7f76153184"
+    },
+    "src/lib.rs": {
+      "ours": "13fe010c8bf9de6191391c0de3f73cd695ceaa65e8274f0cedc30fa6ebf2f9cf",
+      "peer": "13fe010c8bf9de6191391c0de3f73cd695ceaa65e8274f0cedc30fa6ebf2f9cf"
+    },
+    "src/data.rs": {
+      "ours": "70c8f4409d3be4ff661c385e6ec1672063c5753815f6eb1f791aaeb004a2e8e9",
+      "peer": "70c8f4409d3be4ff661c385e6ec1672063c5753815f6eb1f791aaeb004a2e8e9"
+    },
+    "src/market.rs": {
+      "ours": "5a8b134c534e47d20f6c8d41d692e5758908443f2cd76ec9f7b71f5990da2367",
+      "peer": "5a8b134c534e47d20f6c8d41d692e5758908443f2cd76ec9f7b71f5990da2367"
+    },
+    "src/rng.rs": {
+      "ours": "93050e3d12933db618f70985f38a4dd1d9c58fc25793333aa0dac440dee8eddf",
+      "peer": "93050e3d12933db618f70985f38a4dd1d9c58fc25793333aa0dac440dee8eddf"
+    },
+    "src/main.rs": {
+      "ours": "03287d91a4cce8234079fac2c631da98ad4c9b894142b0aa0bdedd83e8098b17",
+      "peer": "03287d91a4cce8234079fac2c631da98ad4c9b894142b0aa0bdedd83e8098b17"
+    },
+    "src/tape.rs": {
+      "ours": "88d0f213242e4a31f19c10956fbc08d16b635e46466c821e5efaafaad4852c3f",
+      "peer": "88d0f213242e4a31f19c10956fbc08d16b635e46466c821e5efaafaad4852c3f"
+    },
+    "Cargo.toml": {
+      "ours": "e4f376c940ae9521ac5b737ffd08a5c61e6ac98cfeecc16742f3fb2d91959682",
+      "peer": "e4f376c940ae9521ac5b737ffd08a5c61e6ac98cfeecc16742f3fb2d91959682"
+    },
+    "Cargo.lock": {
+      "ours": "ced13b4205b6629dc0db3208c9f238e3692fd296ca95992599c8dc8471f3ce37",
+      "peer": "ced13b4205b6629dc0db3208c9f238e3692fd296ca95992599c8dc8471f3ce37"
+    }
+  },
+  "logical_cpus": 4,
+  "rustc": "rustc 1.85.1 (4eb161250 2025-03-15)",
+  "cpu": "AMD EPYC 7763 64-Core Processor",
+  "binary_sha256": {
+    "ours": "be94f33974132f3825f74c8475d2112c40dd29588259ed49299d5974fd20aa84",
+    "peer": "be94f33974132f3825f74c8475d2112c40dd29588259ed49299d5974fd20aa84"
+  },
+  "boundary_cases": {
+    "same_basename": {
+      "expected": [
+        {
+          "tag": "same-name",
+          "seed": 0,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/two/agent.py",
+          "self_reward": 2990.0,
+          "opp_reward": 2960.0,
+          "margin": 30.0,
+          "outcome": "win",
+          "error": null
+        }
+      ],
+      "peer": [
+        {
+          "tag": "same-name",
+          "seed": 0,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/two/agent.py",
+          "self_reward": 2980.0,
+          "opp_reward": 2960.0,
+          "margin": 20.0,
+          "outcome": "win",
+          "error": null
+        }
+      ],
+      "ours": [
+        {
+          "tag": "same-name",
+          "seed": 0,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/two/agent.py",
+          "self_reward": 2990.0,
+          "opp_reward": 2960.0,
+          "margin": 30.0,
+          "outcome": "win",
+          "error": null
+        }
+      ],
+      "peer_equal": false,
+      "ours_equal": true,
+      "our_metrics": {
+        "jobs": 1,
+        "source_reads": 2,
+        "source_compilations": 2,
+        "rust_jobs": 1,
+        "python_jobs": 0,
+        "unique_rust_games": 1,
+        "rust_calls": 1,
+        "exported_tapes": 2,
+        "python_reasons": {},
+        "preparation_seconds": 0.02487912399999459,
+        "native_seconds": 0.0027394850000064253,
+        "python_seconds": 1.6000001323845936e-07,
+        "reused_rust_results": 0,
+        "total_seconds": 0.027621344000010595
+      }
+    },
+    "mixed_horizons": {
+      "expected": [
+        {
+          "tag": "short",
+          "seed": 0,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/beta.py",
+          "self_reward": 2990.0,
+          "opp_reward": 2960.0,
+          "margin": 30.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "long",
+          "seed": 0,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/beta.py",
+          "self_reward": 2980.0,
+          "opp_reward": 2920.0,
+          "margin": 60.0,
+          "outcome": "win",
+          "error": null
+        }
+      ],
+      "peer": [
+        {
+          "tag": "short",
+          "seed": 0,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/beta.py",
+          "self_reward": 2990.0,
+          "opp_reward": 2960.0,
+          "margin": 30.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "long",
+          "seed": 0,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/beta.py",
+          "self_reward": 2990.0,
+          "opp_reward": 2960.0,
+          "margin": 30.0,
+          "outcome": "win",
+          "error": null
+        }
+      ],
+      "ours": [
+        {
+          "tag": "short",
+          "seed": 0,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/beta.py",
+          "self_reward": 2990.0,
+          "opp_reward": 2960.0,
+          "margin": 30.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "long",
+          "seed": 0,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/beta.py",
+          "self_reward": 2980.0,
+          "opp_reward": 2920.0,
+          "margin": 60.0,
+          "outcome": "win",
+          "error": null
+        }
+      ],
+      "peer_equal": false,
+      "ours_equal": true,
+      "our_metrics": {
+        "jobs": 2,
+        "source_reads": 2,
+        "source_compilations": 2,
+        "rust_jobs": 2,
+        "python_jobs": 0,
+        "unique_rust_games": 2,
+        "rust_calls": 2,
+        "exported_tapes": 2,
+        "python_reasons": {},
+        "preparation_seconds": 0.0012143120000018826,
+        "native_seconds": 0.004797060999976566,
+        "python_seconds": 2.409999524388695e-07,
+        "reused_rust_results": 0,
+        "total_seconds": 0.00601406800001314
+      }
+    },
+    "reactive_with_actions": {
+      "expected": [
+        {
+          "tag": "reactive",
+          "seed": 0,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/beta.py",
+          "self_reward": 3000.0,
+          "opp_reward": 2960.0,
+          "margin": 40.0,
+          "outcome": "win",
+          "error": null
+        }
+      ],
+      "peer": [
+        {
+          "tag": "reactive",
+          "seed": 0,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/beta.py",
+          "self_reward": 2010.0,
+          "opp_reward": 2960.0,
+          "margin": -950.0,
+          "outcome": "loss",
+          "error": null
+        }
+      ],
+      "ours": [
+        {
+          "tag": "reactive",
+          "seed": 0,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/beta.py",
+          "self_reward": 3000.0,
+          "opp_reward": 2960.0,
+          "margin": 40.0,
+          "outcome": "win",
+          "error": null
+        }
+      ],
+      "peer_equal": false,
+      "ours_equal": true,
+      "our_metrics": {
+        "jobs": 1,
+        "source_reads": 2,
+        "source_compilations": 2,
+        "rust_jobs": 0,
+        "python_jobs": 1,
+        "unique_rust_games": 0,
+        "rust_calls": 0,
+        "exported_tapes": 0,
+        "python_reasons": {
+          "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/reactive.py": "unrecognized or reactive policy body; ACTIONS alone is insufficient"
+        },
+        "preparation_seconds": 0.0010567770000307064,
+        "native_seconds": 2.7999999474559445e-07,
+        "python_seconds": 0.057227691999969466,
+        "reused_rust_results": 0,
+        "total_seconds": 0.05828664400002026
+      }
+    },
+    "mixed_hand_rules": {
+      "expected": [
+        {
+          "tag": "seat-0",
+          "seed": 17,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/raw.py",
+          "self_reward": 3017.0,
+          "opp_reward": 2990.0,
+          "margin": 27.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "seat-1",
+          "seed": 17,
+          "seat": 1,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/raw.py",
+          "self_reward": 3017.0,
+          "opp_reward": 2990.0,
+          "margin": 27.0,
+          "outcome": "win",
+          "error": null
+        }
+      ],
+      "peer": [
+        {
+          "tag": "seat-0",
+          "seed": 17,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/raw.py",
+          "self_reward": 3017.0,
+          "opp_reward": 3017.0,
+          "margin": 0.0,
+          "outcome": "tie",
+          "error": null
+        },
+        {
+          "tag": "seat-1",
+          "seed": 17,
+          "seat": 1,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/raw.py",
+          "self_reward": 3017.0,
+          "opp_reward": 3017.0,
+          "margin": 0.0,
+          "outcome": "tie",
+          "error": null
+        }
+      ],
+      "ours": [
+        {
+          "tag": "seat-0",
+          "seed": 17,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/raw.py",
+          "self_reward": 3017.0,
+          "opp_reward": 2990.0,
+          "margin": 27.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "seat-1",
+          "seed": 17,
+          "seat": 1,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/raw.py",
+          "self_reward": 3017.0,
+          "opp_reward": 2990.0,
+          "margin": 27.0,
+          "outcome": "win",
+          "error": null
+        }
+      ],
+      "peer_equal": false,
+      "ours_equal": true,
+      "our_metrics": {
+        "jobs": 2,
+        "source_reads": 2,
+        "source_compilations": 2,
+        "rust_jobs": 2,
+        "python_jobs": 0,
+        "unique_rust_games": 2,
+        "rust_calls": 1,
+        "exported_tapes": 2,
+        "python_reasons": {},
+        "preparation_seconds": 0.0017600930000298831,
+        "native_seconds": 0.0026375719999691682,
+        "python_seconds": 1.9000003703695256e-07,
+        "reused_rust_results": 0,
+        "total_seconds": 0.004399898000031044
+      }
+    },
+    "python_completion_order": {
+      "expected": [
+        {
+          "tag": "duplicate-tag",
+          "seed": 11,
+          "seat": 0,
+          "opponent": "pass",
+          "self_reward": 3000.0,
+          "opp_reward": 3000.0,
+          "margin": 0.0,
+          "outcome": "tie",
+          "error": null
+        },
+        {
+          "tag": "native",
+          "seed": 12,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/beta.py",
+          "self_reward": 2990.0,
+          "opp_reward": 2960.0,
+          "margin": 30.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "duplicate-tag",
+          "seed": 13,
+          "seat": 1,
+          "opponent": "pass",
+          "self_reward": 3000.0,
+          "opp_reward": 3000.0,
+          "margin": 0.0,
+          "outcome": "tie",
+          "error": null
+        }
+      ],
+      "peer": [
+        {
+          "tag": "duplicate-tag",
+          "seed": 13,
+          "seat": 1,
+          "opponent": "pass",
+          "self_reward": 3000.0,
+          "opp_reward": 3000.0,
+          "margin": 0.0,
+          "outcome": "tie",
+          "error": null
+        },
+        {
+          "tag": "native",
+          "seed": 12,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/beta.py",
+          "self_reward": 2990.0,
+          "opp_reward": 2960.0,
+          "margin": 30.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "duplicate-tag",
+          "seed": 11,
+          "seat": 0,
+          "opponent": "pass",
+          "self_reward": 3000.0,
+          "opp_reward": 3000.0,
+          "margin": 0.0,
+          "outcome": "tie",
+          "error": null
+        }
+      ],
+      "ours": [
+        {
+          "tag": "duplicate-tag",
+          "seed": 11,
+          "seat": 0,
+          "opponent": "pass",
+          "self_reward": 3000.0,
+          "opp_reward": 3000.0,
+          "margin": 0.0,
+          "outcome": "tie",
+          "error": null
+        },
+        {
+          "tag": "native",
+          "seed": 12,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/branch-review-results/agents/beta.py",
+          "self_reward": 2990.0,
+          "opp_reward": 2960.0,
+          "margin": 30.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "duplicate-tag",
+          "seed": 13,
+          "seat": 1,
+          "opponent": "pass",
+          "self_reward": 3000.0,
+          "opp_reward": 3000.0,
+          "margin": 0.0,
+          "outcome": "tie",
+          "error": null
+        }
+      ],
+      "peer_equal": false,
+      "ours_equal": true,
+      "our_metrics": {
+        "jobs": 3,
+        "source_reads": 2,
+        "source_compilations": 2,
+        "rust_jobs": 1,
+        "python_jobs": 2,
+        "unique_rust_games": 1,
+        "rust_calls": 1,
+        "exported_tapes": 2,
+        "python_reasons": {
+          "pass": "builtin/replay/wrapper requires the Python runner"
+        },
+        "preparation_seconds": 0.0012525330000130452,
+        "native_seconds": 0.0024977649999868845,
+        "python_seconds": 0.11450811399998884,
+        "reused_rust_results": 0,
+        "total_seconds": 0.11826061700003265
+      }
+    }
+  },
+  "template_equivalence": [
+    {
+      "file": "agent_v7_scripted.py",
+      "family": "v7",
+      "fingerprint": "09d81302a25758e156965b6f8f310fbb2ec13595661fa9fdbeadf90834de028e",
+      "peer_detects_as_tape": true,
+      "full_framework_games": 4,
+      "ours_equal": true
+    },
+    {
+      "file": "agent_v8_aastik.py",
+      "family": "v8",
+      "fingerprint": "9b79ce45e62b311297b3835d9ce05ae35301bb077e1d3875a3cbfaaf9a39e5f4",
+      "peer_detects_as_tape": false,
+      "full_framework_games": 4,
+      "ours_equal": true
+    },
+    {
+      "file": "agent_v8_hybrid.py",
+      "family": "v8",
+      "fingerprint": "da0d609071ebae4cbd1aeb7b5896bdb85b7743970e819acc56cdc78410f3f461",
+      "peer_detects_as_tape": false,
+      "full_framework_games": 4,
+      "ours_equal": true
+    },
+    {
+      "file": "agent_v9_b21_s16.py",
+      "family": "b21",
+      "fingerprint": "1ea7d2c982069d90bd983cdb6499a18f7fb1124c542c4336b318aef0d3531717",
+      "peer_detects_as_tape": true,
+      "full_framework_games": 4,
+      "ours_equal": true
+    }
+  ],
+  "template_action_comparisons": 23104,
+  "generated_structural_template_compiles_losslessly": true,
+  "structural_generator": {
+    "cutoff_600_vs_700_raw_json_identical": false,
+    "cutoff_600_vs_700_effective_markets_identical": true,
+    "new_compiler_reuses_effective_cutoff_identity": true,
+    "first_liquidation_step_for_600": 718,
+    "fertilizer_qty_at_scale_zero": 1,
+    "missing_tomato_in_product_kinds": true,
+    "turns_above_10_orders_at_hire_scale_1_3": 50,
+    "no_agent_strength_claim": true
+  },
+  "peer_load_actions_calls_for_8_jobs_one_unique_file": 17,
+  "our_preparation_for_8_jobs": {
+    "jobs": 8,
+    "source_reads": 1,
+    "source_compilations": 1,
+    "rust_jobs": 8,
+    "python_jobs": 0,
+    "unique_rust_games": 8,
+    "rust_calls": 1,
+    "exported_tapes": 1,
+    "python_reasons": {},
+    "preparation_seconds": 0.019152151000014328,
+    "native_seconds": 0.011797455999953854,
+    "python_seconds": 2.2099999341662624e-07,
+    "reused_rust_results": 0,
+    "total_seconds": 0.030951941000012084
+  },
+  "peer_python_fallback_calls_after_native_failure": [
+    1,
+    2
+  ],
+  "our_python_fallback_calls_after_native_failure": [],
+  "peer_finds_exe_without_suffix_in_default_path": false,
+  "our_windows_default_name": "kg_sim.exe",
+  "adapter_benchmark": {
+    "games": 256,
+    "repeats": 3,
+    "threads": 4,
+    "workload": "B21 self-play, varied seeds, alternating seats, whole adapter call",
+    "samples_seconds": {
+      "peer": [
+        5.440351856999996,
+        5.669221046000018,
+        5.694276005000006
+      ],
+      "ours": [
+        0.09911332699999775,
+        0.09861324100000957,
+        0.09775652100000798
+      ]
+    },
+    "median_seconds": {
+      "peer": 5.669221046000018,
+      "ours": 0.09861324100000957
+    },
+    "speedup_ours_vs_peer": 57.489450590103495
+  },
+  "scope": "same native engine; improvements are in the LAB boundary, not a new faster game algorithm",
+  "status": "completed; inspect individual peer failures, not only workflow color",
+  "production_validation": {
+    "ci_url": "https://github.com/peteraangelic-pixel/riemann/actions/runs/34238504426",
+    "status": "success",
+    "rust_debug_tests": 17,
+    "rust_release_tests": 17,
+    "python_tests": 61,
+    "core_parity": {
+      "status": "passed",
+      "engine": "kaggle-environments==1.32.7",
+      "simulator_sha256": "bc8a54879ef02c7ea64b8b333d6a976f0ea65c4949149d01f463f23bccee653e",
+      "batch_seed_count": 68,
+      "distinct_episode_seeds": 87,
+      "reward_comparisons": 585,
+      "full_state_comparisons": 22597,
+      "reward_comparison": "IEEE-754 binary64 byte equality (no tolerance)",
+      "batches": [
+        {
+          "trim_hands": false,
+          "games": 272,
+          "thread_counts": [
+            1,
+            4
+          ],
+          "byte_identical_batch_output": true
+        },
+        {
+          "trim_hands": true,
+          "games": 272,
+          "thread_counts": [
+            1,
+            4
+          ],
+          "byte_identical_batch_output": true
+        }
+      ],
+      "mixed_hand_mode_full_episodes": 8,
+      "elapsed_seconds": 65.053
+    },
+    "framework": {
+      "status": "passed",
+      "actual_framework": "kaggle-environments==1.32.7",
+      "wheel_sha256": "2a1bb862ad2d6463080f80f6a766f46d94b53fd57168cfeddb9857fc3dbc4c8f",
+      "rust_checked": true,
+      "cases": [
+        {
+          "seed": 0,
+          "episodeSteps": 1,
+          "action_turns": 1,
+          "rewards": [
+            2384.0,
+            2384.0
+          ],
+          "overrides": {}
+        },
+        {
+          "seed": 0,
+          "episodeSteps": 2,
+          "action_turns": 1,
+          "rewards": [
+            2384.0,
+            2384.0
+          ],
+          "overrides": {}
+        },
+        {
+          "seed": 0,
+          "episodeSteps": 24,
+          "action_turns": 23,
+          "rewards": [
+            26.0,
+            26.0
+          ],
+          "overrides": {}
+        },
+        {
+          "seed": 0,
+          "episodeSteps": 25,
+          "action_turns": 24,
+          "rewards": [
+            26.0,
+            26.0
+          ],
+          "overrides": {}
+        },
+        {
+          "seed": 0,
+          "episodeSteps": 721,
+          "action_turns": 720,
+          "rewards": [
+            60225.0,
+            60976.0
+          ],
+          "overrides": {}
+        },
+        {
+          "seed": 0,
+          "episodeSteps": 720,
+          "action_turns": 719,
+          "rewards": [
+            60225.0,
+            60976.0
+          ],
+          "overrides": {}
+        },
+        {
+          "seed": 1,
+          "episodeSteps": 720,
+          "action_turns": 719,
+          "rewards": [
+            100800.0,
+            100800.0
+          ],
+          "overrides": {}
+        },
+        {
+          "seed": -1,
+          "episodeSteps": 720,
+          "action_turns": 719,
+          "rewards": [
+            69295.0,
+            69295.0
+          ],
+          "overrides": {}
+        },
+        {
+          "seed": 4294967296,
+          "episodeSteps": 720,
+          "action_turns": 719,
+          "rewards": [
+            97003.0,
+            97003.0
+          ],
+          "overrides": {}
+        },
+        {
+          "seed": 0,
+          "episodeSteps": 25,
+          "action_turns": 24,
+          "rewards": [
+            445.0,
+            445.0
+          ],
+          "overrides": {
+            "marketParams": {
+              "default": {
+                "WHEAT": {
+                  "base": 900
+                }
+              },
+              "WHEAT": {
+                "base": 40
+              }
+            }
+          }
+        },
+        {
+          "seed": 0,
+          "episodeSteps": 25,
+          "action_turns": 24,
+          "rewards": [
+            26.0,
+            26.0
+          ],
+          "overrides": {
+            "marketParams": {
+              "default": {}
+            }
+          }
+        },
+        {
+          "seed": 0,
+          "episodeSteps": 25,
+          "action_turns": 24,
+          "rewards": [
+            4914.0,
+            4914.0
+          ],
+          "overrides": {
+            "startingMoney": 5000.0,
+            "boardSize": 10.0,
+            "turnsPerDay": 6.0,
+            "shedCapacity": 3.0,
+            "farmHandCostMult": 0.0,
+            "maxMarketOrdersPerTurn": 2.0
+          }
+        },
+        {
+          "seed": 17,
+          "episodeSteps": 51,
+          "action_turns": 50,
+          "trim_hands_a": true,
+          "trim_hands_b": false,
+          "reverse": false,
+          "rewards": [
+            3017.0,
+            2990.0
+          ]
+        },
+        {
+          "seed": 17,
+          "episodeSteps": 51,
+          "action_turns": 50,
+          "trim_hands_a": true,
+          "trim_hands_b": false,
+          "reverse": true,
+          "rewards": [
+            3017.0,
+            2990.0
+          ]
+        },
+        {
+          "seed": 17,
+          "episodeSteps": 51,
+          "action_turns": 50,
+          "trim_hands_a": false,
+          "trim_hands_b": true,
+          "reverse": false,
+          "rewards": [
+            2990.0,
+            3017.0
+          ]
+        },
+        {
+          "seed": 17,
+          "episodeSteps": 51,
+          "action_turns": 50,
+          "trim_hands_a": false,
+          "trim_hands_b": true,
+          "reverse": true,
+          "rewards": [
+            2990.0,
+            3017.0
+          ]
+        }
+      ]
+    },
+    "large_batch": {
+      "status": "passed",
+      "workload": "one fixed tape pair, seeds 0..games-1, alternating reversed seats",
+      "games_per_sample": 14000,
+      "repeats": 3,
+      "steps": 720,
+      "action_turns_per_game": 719,
+      "trim_hands": false,
+      "ordered_reward_sha256": "15d95560c01fb498aff3ae6cb07a9604604aa8733daa6df9440df4128965f304",
+      "all_thread_counts_and_repeats_identical": true,
+      "python_checked_jobs": 64,
+      "python_sample_first_last_indices": [
+        0,
+        13999
+      ],
+      "logical_cpus": 4,
+      "cpu": "AMD EPYC 7763 64-Core Processor",
+      "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+      "python": "3.12.14",
+      "rustc": "rustc 1.85.1 (4eb161250 2025-03-15)",
+      "revision": "7ec265adc078f7ad7fa4967ed2a152b4fc41bd3c",
+      "binary_sha256": "be94f33974132f3825f74c8475d2112c40dd29588259ed49299d5974fd20aa84",
+      "tape_a_sha256": "dfb82b6052af6bc0b8f0a1251f532161468670332d31efe51bd47b7a7dc8708d",
+      "tape_b_sha256": "dfb82b6052af6bc0b8f0a1251f532161468670332d31efe51bd47b7a7dc8708d",
+      "timings": [
+        {
+          "threads": 1,
+          "median_seconds": 8.995450016000007,
+          "samples_seconds": [
+            9.000400834000004,
+            8.995450016000007,
+            8.994778692000011
+          ],
+          "games_per_second": 1556.3423703203855,
+          "speedup_vs_rust_1_thread": 1.0
+        },
+        {
+          "threads": 4,
+          "median_seconds": 3.567206177999992,
+          "samples_seconds": [
+            3.567206177999992,
+            3.5735466739999993,
+            3.5628495079999993
+          ],
+          "games_per_second": 3924.639984742713,
+          "speedup_vs_rust_1_thread": 2.5217073438248643
+        },
+        {
+          "threads": 16,
+          "median_seconds": 3.51203139200004,
+          "samples_seconds": [
+            3.51203139200004,
+            3.5168041779999726,
+            3.50868179400004
+          ],
+          "games_per_second": 3986.2969425302454,
+          "speedup_vs_rust_1_thread": 2.5613239211046053
+        }
+      ],
+      "measurement": "complete client call including CSV writing, subprocess launch, tape parsing, simulation, result parsing and validation",
+      "scope": "Not the full user's sweep, no agent search/statistics; 16 workers do not imply 16 physical CPU cores. No estimated Python speedup is reported."
+    }
+  },
+  "audit_ci_url": "https://github.com/peteraangelic-pixel/riemann/actions/runs/34238504440"
+}
