@@ -1,6 +1,118 @@
-# Weryfikacja portu — 2026-09-07
+# Weryfikacja portu Rust
 
-## Status: wszystkie bramki przeszły
+## 2026-09-08 — zakończone poprawki (aktualny stan)
+
+**Wszystkie bramki zielone:** [GitHub Actions #34206326321](https://github.com/peteraangelic-pixel/riemann/actions/runs/34206326321).
+Sprawdzony commit kodu: `20f7a9d5e99c846ec7d59f37253995d947895b25`. Późniejszy commit
+uzupełnia tylko ten raport, bez zmian kodu.
+
+### Co domknięto
+
+- Naprawiono interpretację płaskich nadpisań `marketParams`: nieznany produkt
+  `default` nie usuwa prawdziwych nadpisań. Sprawdzone również na rzeczywistym
+  frameworku, nie jedynie we wspólnym adapterze Python/Rust.
+- Całkowite liczby JSON zapisane jako np. `24.0` działają zgodnie z typem
+  `integer` JSON Schema; liczby ułamkowe i poza zakresem nie są obcinane.
+- Dodano `--trim-hands-a` / `--trim-hands-b`, niezależnie od siebie. Opcje
+  podążają za wejściowym agentem A/B również przy odwracaniu miejsc.
+  `--trim-hands` i stare konstruktory biblioteki nadal zachowują stare działanie.
+- Klient Python sprawdza schemat odpowiedzi, kompletność i skończoność wyników,
+  sygnały/błędne kody wyjścia oraz opcjonalny `timeout`. `allow_errors=True`
+  pozwala odebrać jawne błędy gier, nie ukrywa uszkodzonego protokołu.
+- Klient rozwiązuje każdą ścieżkę taśmy raz na batch; binarz pomija ponowne
+  odpytywanie systemu plików dla kanonicznej ścieżki obecnej już w cache.
+
+### Testy
+
+| Kontrola | Wynik |
+|---|---:|
+| rustfmt + Clippy `-D warnings` | OK |
+| Rust debug | **17/17** |
+| Rust release | **17/17** |
+| Python: eksport, klient, CLI i konfiguracja | **32/32**, bez pominięć w CI |
+| Mecze porównane bitowo z Pythonem | **585**, 87 różnych seedów |
+| Pełne stany porównane bez tolerancji | **22,597**, zero różnic |
+| Niezależny rzeczywisty framework Kaggle | **16/16** |
+| Batch: 14 000 wyników × 3 liczby wątków × 3 powtórzenia | **wszystkie zgodne** |
+| Dodatkowa próbka z całej paczki 14k sprawdzona w Pythonie | **64/64** |
+
+Test alokatora obejmuje wszystkie cztery kombinacje przycinania rąk i obie
+orientacje, po 720 tur: **0 alokacji/reallokacji w gorącej ścieżce**, zarówno
+w debug, jak i release. Start gry, parsing, start Rayona i trace są poza tą
+ścieżką. Nadal przechodzą odciski 120 000 słów MT19937 i 270 009 cen.
+
+Mieszane reguły zweryfikowano na przypadkach, w których wpływają na prawdziwą
+gotówkę: agent przycinany kończy z 3017, a surowy przeciwnik z 2990. Po
+odwróceniu miejsc wynik pozostaje w kolejności A/B, nie fizycznych miejsc.
+
+### Zmierzony duży batch
+
+Workload: dostarczona taśma B21 przeciw sobie, seedy 0–13 999, naprzemiennie
+odwracane miejsca, `episodeSteps=720` = 719 akcji. Mediana trzech prób.
+Czas obejmuje wywołanie klienta Python, zapis CSV, uruchomienie binarza,
+parsowanie taśm, symulację oraz odczyt i walidację wszystkich odpowiedzi.
+
+| Wątki Rayon | Czas 14 000 meczów | Mecze/s | Przyspieszenie vs Rust 1 wątek |
+|---|---:|---:|---:|
+| 1 | 9.022 s | 1552 | 1.00× |
+| 4 | 3.580 s | 3911 | 2.52× |
+| 16 | 3.518 s | 3980 | 2.56× |
+
+Runner miał **4 logiczne CPU** (AMD EPYC 7763 64-Core Processor).
+16 wątków na tej maszynie nie oznacza pomiaru 16 fizycznych rdzeni.
+Wszystkie próby miały ten sam SHA-256 uporządkowanych bajtów binary64 wyników:
+`15d95560c01fb498aff3ae6cb07a9604604aa8733daa6df9440df4128965f304`.
+
+To **126 000 wykonanych gier Rust** w powtórzeniach benchmarku, ale nie 126 000
+niezależnych sprawdzeń z Pythonem: Python sprawdził 64 rozłożone po całej paczce
+zadania, a pełne paczki porównywano między liczbami wątków i powtórzeniami.
+Nie wykonano ani nie ekstrapolowano 14 000 gier Python na potrzeby tej tabeli.
+
+### Mały benchmark porównawczy
+
+Ta sama maszyna, 64 mecze, trzy powtórzenia, mediana:
+
+| Wariant | Czas 64 meczów |
+|---|---:|
+| Python — bezpośredni interpreter | 5.73432 s |
+| Rust — proces na mecz | 0.59006 s |
+| Rust — batch / 1 wątek | 0.05093 s |
+| Rust — batch / 4 wątki | 0.02587 s |
+
+W tym pomiarze to 9.72× dla osobnych procesów i
+221.69× dla batcha / 4 wątków względem bezpośredniego interpretera.
+Nie porównujemy tych liczb przyczynowo z poprzednim runnerem o innym CPU.
+**Żaden z benchmarków nie jest pomiarem całego sweepa, generowania polityk,
+pracy agenta reaktywnego ani statystyk turniejowych.**
+
+### Użycie i artefakt
+
+```bash
+make test
+make check SEEDS=64 THREADS=4
+make benchmark-batch BATCH_GAMES=14000 BATCH_THREADS=1,4,16
+# Kandydat A przycinany, zapisane akcje przeciwnika B pozostają surowe:
+./target/release/kg_sim --jobs work/jobs.csv --steps 720 --threads 16 --trim-hands-a
+```
+
+Biblioteka: `Replay::new_with_hand_trimming(..., reverse, [trim_a, trim_b])`;
+klient Python: `replay_many(jobs, trim_hands_a=True, threads=16, timeout=300)`.
+Nie podmieniano agenta, nie wysyłano submisji do Kaggle i nie zmieniano
+`arena/01a0712c-riemann`. Port dostarcza poprawny kontrakt dla mixed replay,
+nie wykonuje sam polityk reaktywnych ani automatycznie nie podłącza się do LAB-u.
+
+Binarz Linux x86_64 i cztery raporty JSON są w artefakcie powyższego CI:
+`kg-sim-20f7a9d5e99c846ec7d59f37253995d947895b25` (retencja 7 dni).
+SHA-256 binarza: `be94f33974132f3825f74c8475d2112c40dd29588259ed49299d5974fd20aa84`.
+Rust kompilowano i uruchamiano **w GitHub Actions**; sandbox nie ma lokalnego
+toolchaina. Lokalne testy modułów Python były uzupełnieniem, nie są przedstawiane
+jako lokalny pomiar binarza.
+
+---
+
+## Archiwum: pierwsza weryfikacja — 2026-09-07
+
+### Status: wszystkie bramki przeszły
 
 Zielony przebieg: [GitHub Actions #34139300389](https://github.com/peteraangelic-pixel/riemann/actions/runs/34139300389).
 Sprawdzony commit kodu: `0e26017cf79c16b085195355b501bc19fe440122`.
@@ -17,7 +129,7 @@ Późniejszy commit dodaje wyłącznie ten raport, bez zmian kodu.
 | Porównanie pełnego stanu po każdej turze wybranych meczów | **14 674 stany, zero różnic** |
 | Rzeczywisty framework `Environment.run` + dostarczony agent | **9/9 przypadków**, Rust i adapter zgodne |
 
-### Zakres testów różnicowych
+#### Zakres testów różnicowych
 
 - Batch: **68 seedów** — 0–63, −1, 2³², −2⁶³, 2⁶³−1.
 - **84 różne seedy łącznie**, po uwzględnieniu scenariuszy dodatkowych.
@@ -41,7 +153,7 @@ To testy dokładnej równości, nie tolerancja „± dolar” ani porównanie ś
 Nie stanowią dowodu formalnego dla wszystkich możliwych wejść; zakres
 obsługiwanych konfiguracji i patologicznych akcji opisuje README.
 
-## Porównanie źródeł przed i po porcie
+### Porównanie źródeł przed i po porcie
 
 Użyto plików z gałęzi `arena/01a06bce-riemann`, commit
 `a310ca103efcbb95376b03f32bb901c9d8b05791`. Ponowne pobranie przypiętego wheel
@@ -64,7 +176,7 @@ wykonuje jedną akcję. Port ma osobny `--step-mode turns` do dosłownej liczby 
 Przykład self-play, seed 0, dostarczony wrapper agenta:
 `{"rewards":[60225.0,60976.0],"errors":[]}`.
 
-## Zmierzona wydajność
+### Zmierzona wydajność
 
 Końcowy zielony CI: Linux x86_64, glibc 2.35, Rust 1.85.1, Python 3.12.14.
 Runner otrzymał **4 logiczne CPU** na hoście AMD EPYC 9V74; nie jest to test
@@ -96,7 +208,7 @@ zmiany polityk, statystyki i Pythonowe sterowanie pozostają poza tym pomiarem.
 Nie obiecujemy więc konkretnego czasu 14k-game pipeline bez uruchomienia go
 na jego rzeczywistych danych i docelowym sprzęcie.
 
-## Artefakt i odtwarzalność
+### Artefakt i odtwarzalność
 
 Binarz Linux x86_64 i raporty JSON są w artefakcie końcowego CI:
 `kg-sim-0e26017cf79c16b085195355b501bc19fe440122` (retencja 7 dni).
