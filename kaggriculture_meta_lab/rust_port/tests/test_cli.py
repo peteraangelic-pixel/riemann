@@ -150,6 +150,67 @@ class CliTests(unittest.TestCase):
             self.assertEqual(tile is not None, trim)
             self.assertEqual(frames[-1]["privates"][0]["seeds"]["WHEAT"], 0 if trim else 1)
 
+
+    def phantom_tapes(self):
+        actions = [{} for _ in range(50)]
+        actions[0] = {"market": [["BUY_SEED", "WHEAT", 1]]}
+        actions[1] = {"farmer": ["PLANT", "WHEAT"], "hands": [["PLANT", "WHEAT"]]}
+        actions[2] = {"farmer": ["WATER"]}
+        actions[24] = {"farmer": ["WATER"]}
+        actions[48] = {"farmer": ["HARVEST"]}
+        actions[49] = {"farmer": ["DROP"], "market": [["SELL", "WHEAT", 100]]}
+        tape = [actions, actions]
+        write_tape(self.a, tape)
+        write_tape(self.b, tape)
+        return tape
+
+    def test_per_agent_hand_rules_affect_cash_and_follow_reverse_seats(self):
+        tape = self.phantom_tapes()
+        for a, b in ((False, False), (True, False), (False, True), (True, True)):
+            for reverse in (False, True):
+                with self.subTest(a=a, b=b, reverse=reverse):
+                    extra = (["--trim-hands-a"] if a else []) + (["--trim-hands-b"] if b else [])
+                    if reverse:
+                        extra.append("--reverse-seats")
+                    rows, _ = self.call("--steps", 51, *extra)
+                    expected = PythonReplay(tape, tape, -17, steps=51, reverse=reverse, trim_hands_a=a, trim_hands_b=b).run()
+                    self.assertEqual(rows[0]["rewards"], expected)
+                    self.assertEqual(expected[0] > 2990, a)
+                    self.assertEqual(expected[1] > 2990, b)
+        global_rows, _ = self.call("--steps", 51, "--trim-hands")
+        individual_rows, _ = self.call("--steps", 51, "--trim-hands-a", "--trim-hands-b")
+        self.assertEqual(global_rows, individual_rows)
+
+    def test_per_agent_rules_work_in_ordered_parallel_batches(self):
+        tape = self.phantom_tapes()
+        jobs = [Job(seed, self.a, self.b, bool(seed % 2)) for seed in range(16)]
+        first = replay_many(jobs, binary=BINARY, steps=51, threads=1, trim_hands_a=True)
+        parallel = replay_many(jobs, binary=BINARY, steps=51, threads=16, trim_hands_a=True)
+        self.assertEqual(first, parallel)
+        for job, row in zip(jobs, parallel):
+            expected = PythonReplay(tape, tape, job.seed, steps=51, reverse=job.reverse, trim_hands_a=True).run()
+            self.assertEqual(row["rewards"], expected)
+            self.assertGreater(row["rewards"][0], row["rewards"][1])
+
+    def test_reserved_default_product_and_integral_float_config(self):
+        for values in [
+            {"marketParams": {"default": {"WHEAT": {"base": 900}}, "WHEAT": {"base": 40}}},
+            {"marketParams": {"default": {}}},
+            {"startingMoney": 5000.0, "boardSize": 10.0, "turnsPerDay": 6.0, "shedCapacity": 3.0},
+        ]:
+            with self.subTest(config=values):
+                config = self.dir / "overrides.json"
+                config.write_text(json.dumps(values))
+                trace = self.dir / "config-trace.jsonl"
+                rows, _ = self.call("--config", config, "--steps", 25, "--trace", trace)
+                py = PythonReplay(self.tape_a, self.tape_b, -17, steps=25, config=values)
+                for index, line in enumerate(trace.read_text().splitlines()):
+                    if index:
+                        self.assertTrue(py.advance())
+                    self.assertEqual(json.loads(line), py.snapshot())
+                self.assertFalse(py.advance())
+                self.assertEqual(rows[0]["rewards"], py.rewards())
+
     def test_python_batch_client_preserves_order_and_refuses_errors(self):
         jobs = [Job(1, self.a, self.b), Job(-2, self.a, self.b, True)]
         self.assertEqual([v["rewards"] for v in replay_many(jobs, binary=BINARY, steps=2, threads=2)], [[2990, 2960], [2970, 2980]])

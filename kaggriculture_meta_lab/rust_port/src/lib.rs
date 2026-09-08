@@ -57,7 +57,7 @@ pub struct Replay<'a> {
     pub game: Game<'a>,
     tapes: [&'a PreparedTape; 2],
     reverse: bool,
-    trim_hands: bool,
+    trim_hands: [bool; 2],
     turns: usize,
 }
 
@@ -69,6 +69,19 @@ impl<'a> Replay<'a> {
         seed: i64,
         reverse: bool,
         trim_hands: bool,
+    ) -> Self {
+        Self::new_with_hand_trimming(config, tape_a, tape_b, seed, reverse, [trim_hands; 2])
+    }
+
+    /// Per-input-agent rules in A/B order, not physical-seat order. Reversing
+    /// seats moves each rule with its tape; rewards still return in A/B order.
+    pub fn new_with_hand_trimming(
+        config: &'a Config,
+        tape_a: &'a PreparedTape,
+        tape_b: &'a PreparedTape,
+        seed: i64,
+        reverse: bool,
+        trim_hands: [bool; 2],
     ) -> Self {
         assert_eq!(
             tape_a.turns, tape_b.turns,
@@ -88,6 +101,11 @@ impl<'a> Replay<'a> {
             [tape_b, tape_a]
         } else {
             [tape_a, tape_b]
+        };
+        let trim_hands = if reverse {
+            [trim_hands[1], trim_hands[0]]
+        } else {
+            trim_hands
         };
         let game = Game::new(
             config,
@@ -109,7 +127,7 @@ impl<'a> Replay<'a> {
         if turn >= self.turns {
             return false;
         }
-        self.game.step(
+        self.game.step_with_hand_trimming(
             [
                 self.tapes[0].tape.action(0, turn),
                 self.tapes[1].tape.action(1, turn),
