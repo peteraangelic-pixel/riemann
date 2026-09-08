@@ -52,29 +52,33 @@ def difference(expected, actual, path="$ "):
     return None
 
 
-def flags(*, steps=720, step_mode="kaggle", trim_hands=False, config_path=None):
+def flags(*, steps=720, step_mode="kaggle", trim_hands=False, config_path=None, trim_hands_a=False, trim_hands_b=False):
     result = ["--steps", str(steps), "--step-mode", step_mode]
     if trim_hands:
         result.append("--trim-hands")
+    if trim_hands_a:
+        result.append("--trim-hands-a")
+    if trim_hands_b:
+        result.append("--trim-hands-b")
     if config_path:
         result += ["--config", str(config_path)]
     return result
 
 
-def trace_check(binary, work, paths, tapes, seed, *, reverse=False, trim_hands=False, steps=720, step_mode="kaggle", config=None):
+def trace_check(binary, work, paths, tapes, seed, *, reverse=False, trim_hands=False, steps=720, step_mode="kaggle", config=None, trim_hands_a=False, trim_hands_b=False):
     trace = work / "current-trace.jsonl"
     cfg_path = None
     if config is not None:
         cfg_path = work / "current-config.json"
         cfg_path.write_text(json.dumps(config))
     cmd = [str(binary), "--tape-a", str(paths[0]), "--tape-b", str(paths[1]), "--seed", str(seed), "--trace", str(trace)]
-    cmd += flags(steps=steps, step_mode=step_mode, trim_hands=trim_hands, config_path=cfg_path)
+    cmd += flags(steps=steps, step_mode=step_mode, trim_hands=trim_hands, config_path=cfg_path, trim_hands_a=trim_hands_a, trim_hands_b=trim_hands_b)
     if reverse:
         cmd.append("--reverse-seats")
     proc = subprocess.run(cmd, capture_output=True, text=True, check=True)
     result = json.loads(proc.stdout)
     assert not result["errors"], result
-    py = PythonReplay(*tapes, seed, reverse=reverse, trim_hands=trim_hands, steps=steps, step_mode=step_mode, config=config)
+    py = PythonReplay(*tapes, seed, reverse=reverse, trim_hands=trim_hands, steps=steps, step_mode=step_mode, config=config, trim_hands_a=trim_hands_a, trim_hands_b=trim_hands_b)
     count = 0
     with trace.open() as f:
         for line in f:
@@ -84,7 +88,7 @@ def trace_check(binary, work, paths, tapes, seed, *, reverse=False, trim_hands=F
             diff = difference(py.snapshot(), actual)
             if diff:
                 # Keep just this trace; the first differing state is reported in CI.
-                raise AssertionError(f"seed={seed} reverse={reverse} trim={trim_hands} horizon={steps}/{step_mode}, turn={py.step}: {diff}")
+                raise AssertionError(f"seed={seed} reverse={reverse} trim={trim_hands}/A={trim_hands_a}/B={trim_hands_b} horizon={steps}/{step_mode}, turn={py.step}: {diff}")
             count += 1
     assert not py.advance(), "Rust trace ended early"
     assert count == py.turns + 1, (count, py.turns)
@@ -171,6 +175,16 @@ def main():
         for seed, a, b, reverse in [jobs[0], jobs[2], jobs[-1]]:
             state_checks += trace_check(args.binary, work, (paths[a], paths[b]), (tapes[a], tapes[b]), seed, reverse=reverse, trim_hands=trim)
 
+    # The real LAB trims its candidate but not recorded opponent actions.
+    # Rules must move with A/B rather than staying attached to physical seats.
+    for a_trim, b_trim in [(True, False), (False, True)]:
+        for reverse in [False, True]:
+            for seed in [0, -1]:
+                state_checks += trace_check(args.binary, work, (paths["example"], paths["asymmetric"]),
+                                            (example, asymmetric), seed, reverse=reverse,
+                                            trim_hands_a=a_trim, trim_hands_b=b_trim)
+                reward_checks += 1
+
     # Exact-turns mode covers the true final daily refresh, including shop RNG.
     checked_seeds.update((17, 41))
     for steps in [0, 1, 23, 24, 25, 72, 720, 721, 769]:
@@ -181,6 +195,9 @@ def main():
         reward_checks += 1
 
     configs = [
+        {"marketParams": {"default": {"WHEAT": {"base": 900}}, "WHEAT": {"base": 40}}},
+        {"marketParams": {"default": {}}},
+        {"startingMoney": 5000.0, "boardSize": 10.0, "turnsPerDay": 6.0, "shedCapacity": 3.0, "farmHandCostMult": 0.0},
         {"weedSpawnChance": 0, "townShopUnlockInterval": 1, "townShopSellInterval": 1, "townCenterSellInterval": 1},
         {"weedSpawnChance": 1, "turnsPerDay": 6, "maxMarketOrdersPerTurn": 2, "shedCapacity": 1, "startingMoney": 100000, "farmHandCostMult": 0},
         {"startingMoney": 0, "farmHandCostMult": 0, "shedCapacity": 2},
@@ -206,7 +223,7 @@ def main():
         "simulator_sha256": manifest["files"]["kaggriculture_sim.py"],
         "batch_seed_count": len(seeds), "distinct_episode_seeds": len(checked_seeds), "reward_comparisons": reward_checks,
         "full_state_comparisons": state_checks, "reward_comparison": "IEEE-754 binary64 byte equality (no tolerance)",
-        "batches": batch_modes, "elapsed_seconds": round(time.perf_counter() - started, 3),
+        "batches": batch_modes, "mixed_hand_mode_full_episodes": 8, "elapsed_seconds": round(time.perf_counter() - started, 3),
     }
     (ROOT / "work").mkdir(exist_ok=True)
     (ROOT / "work/check-report.json").write_text(json.dumps(report, indent=2) + "\n")

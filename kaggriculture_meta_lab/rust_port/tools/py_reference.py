@@ -56,8 +56,9 @@ def configuration(overrides=None):
     for key, value in SIM.specification["configuration"].items():
         values[key] = copy.deepcopy(value.get("default") if isinstance(value, dict) else value)
     if overrides:
+        specification = "name" in overrides and "configuration" in overrides
         overrides = overrides.get("configuration", overrides)
-        values.update({key: copy.deepcopy(value.get("default", value) if isinstance(value, dict) else value) for key, value in overrides.items()})
+        values.update({key: copy.deepcopy(value.get("default", value) if specification and isinstance(value, dict) else value) for key, value in overrides.items()})
     return values
 
 
@@ -70,7 +71,7 @@ def action_turns(steps, step_mode="kaggle"):
 
 
 class PythonReplay:
-    def __init__(self, tape_a, tape_b, seed, *, steps=720, reverse=False, trim_hands=False, step_mode="kaggle", config=None):
+    def __init__(self, tape_a, tape_b, seed, *, steps=720, reverse=False, trim_hands=False, step_mode="kaggle", config=None, trim_hands_a=False, trim_hands_b=False):
         cfg = configuration(config)
         self.turns = action_turns(steps, step_mode)
         cfg["episodeSteps"] = steps if step_mode == "kaggle" else steps + 1
@@ -80,7 +81,9 @@ class PythonReplay:
         SIM.interpreter(self.state, self.env)
         self.tapes = (tape_b, tape_a) if reverse else (tape_a, tape_b)
         self.reverse = reverse
-        self.trim_hands = trim_hands
+        self.trim_hands = [trim_hands or trim_hands_a, trim_hands or trim_hands_b]
+        if reverse:
+            self.trim_hands.reverse()
         self.step = 0
 
     def advance(self):
@@ -89,7 +92,7 @@ class PythonReplay:
         for p in range(2):
             seat = self.tapes[p][p]
             action = seat[min(self.step, len(seat) - 1)]
-            if self.trim_hands and isinstance(action, dict):
+            if self.trim_hands[p] and isinstance(action, dict):
                 action = dict(action)
                 hands = action.get("hands", [])
                 action["hands"] = hands[:len(self.state[0].observation.farms[p]["hands"])] if isinstance(hands, list) else []
@@ -129,12 +132,15 @@ def main():
     parser.add_argument("--step-mode", choices=("kaggle", "turns"), default="kaggle")
     parser.add_argument("--reverse-seats", action="store_true")
     parser.add_argument("--trim-hands", action="store_true")
+    parser.add_argument("--trim-hands-a", action="store_true")
+    parser.add_argument("--trim-hands-b", action="store_true")
     parser.add_argument("--config", type=Path)
     parser.add_argument("--trace", type=Path)
     args = parser.parse_args()
     replay = PythonReplay(json.loads(args.tape_a.read_text()), json.loads(args.tape_b.read_text()), args.seed,
                           steps=args.steps, reverse=args.reverse_seats, trim_hands=args.trim_hands,
-                          step_mode=args.step_mode, config=json.loads(args.config.read_text()) if args.config else None)
+                          step_mode=args.step_mode, config=json.loads(args.config.read_text()) if args.config else None,
+                          trim_hands_a=args.trim_hands_a, trim_hands_b=args.trim_hands_b)
     if args.trace:
         with args.trace.open("w") as f:
             f.write(json.dumps(replay.snapshot()) + "\n")

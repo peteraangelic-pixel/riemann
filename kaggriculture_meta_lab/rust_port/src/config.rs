@@ -36,15 +36,37 @@ impl Config {
             .unwrap_or(input)
             .as_object()
             .ok_or("configuration must be a JSON object")?;
+        // Only a complete specification carries schema defaults. In a flat
+        // configuration, `marketParams.default` is just an unknown product;
+        // unwrapping it would silently discard the actual resource overrides.
+        let specification = input.get("name").is_some() && input.get("configuration").is_some();
         let mut flat = Map::new();
         for (key, value) in root {
-            flat.insert(key.clone(), value.get("default").unwrap_or(value).clone());
+            let setting = if specification {
+                value.get("default").unwrap_or(value)
+            } else {
+                value
+            };
+            flat.insert(key.clone(), setting.clone());
         }
         let integer = |name: &str, default: i64, min: i64| -> Result<i64, String> {
             let v = match flat.get(name) {
                 Some(value) => value
                     .as_i64()
-                    .ok_or_else(|| format!("{name} must be an integer"))?,
+                    .or_else(|| {
+                        // JSON Schema's integer type also accepts e.g. 24.0.
+                        // Reject fractional/out-of-range floats, never saturate.
+                        value
+                            .as_f64()
+                            .filter(|n| {
+                                n.is_finite()
+                                    && n.fract() == 0.0
+                                    && *n >= i64::MIN as f64
+                                    && *n < -(i64::MIN as f64)
+                            })
+                            .map(|n| n as i64)
+                    })
+                    .ok_or_else(|| format!("{name} must be an integer in the i64 range"))?,
                 None => default,
             };
             if v < min {
@@ -109,5 +131,73 @@ impl Config {
             curves,
             resolved_params: has_overrides.then_some(params),
         })
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use serde_json::json;
+
+    #[test]
+    fn flat_market_default_key_is_not_a_schema_descriptor() {
+        let values = json!({"marketParams": {
+            "default": {"WHEAT": {"base": 900}},
+            "WHEAT": {"base": 40}
+        }});
+        for input in [values.clone(), json!({"configuration": values})] {
+            let cfg = Config::from_json(&input).unwrap();
+            assert_eq!(cfg.curves[0].base, 40.0);
+            assert!(cfg
+                .resolved_params
+                .as_ref()
+                .unwrap()
+                .get("default")
+                .is_none());
+        }
+    }
+
+    #[test]
+    fn unknown_override_preserves_the_reference_params_snapshot() {
+        let cfg = Config::from_json(&json!({"marketParams": {"default": {}}})).unwrap();
+        assert_eq!(cfg.curves[0].base, 25.0);
+        assert!(cfg.resolved_params.is_some());
+    }
+
+    #[test]
+    fn full_specification_schema_defaults_are_unwrapped() {
+        let cfg = Config::from_json(&json!({
+            "name": "kaggriculture",
+            "configuration": {
+                "startingMoney": {"type": "integer", "default": 5000},
+                "marketParams": {"type": "object", "default": {"WHEAT": {"base": 40}}}
+            }
+        }))
+        .unwrap();
+        assert_eq!(cfg.starting_money, 5000.0);
+        assert_eq!(cfg.curves[0].base, 40.0);
+    }
+
+    #[test]
+    fn integer_valued_json_floats_follow_schema_integer_semantics() {
+        let cfg = Config::from_json(&json!({
+            "boardSize": 10.0, "startingMoney": 5000.0, "episodeSteps": 720.0,
+            "turnsPerDay": 6.0, "shedCapacity": 3.0, "farmHandCostMult": 0.0
+        }))
+        .unwrap();
+        assert_eq!(cfg.starting_money, 5000.0);
+        assert_eq!(cfg.episode_steps, 720);
+        assert_eq!(cfg.turns_per_day, 6);
+        assert_eq!(cfg.shed_capacity, 3);
+        assert_eq!(cfg.hire_multiplier, 0);
+        for bad in [
+            json!(3.5),
+            json!(true),
+            json!("3"),
+            json!(9223372036854775808.0),
+        ] {
+            assert!(Config::from_json(&json!({"startingMoney": bad})).is_err());
+        }
+        assert!(Config::from_json(&json!({"startingMoney": i64::MAX})).is_ok());
     }
 }

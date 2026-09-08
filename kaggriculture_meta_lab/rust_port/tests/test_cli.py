@@ -11,7 +11,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from tools.export_tape import DEFAULT_AGENT, extract, write_tape
+from tools.export_tape import DEFAULT_AGENT, extract, extract_single_stream, write_tape
 from tools.py_reference import PythonReplay
 from tools.rust_client import Job, replay_many
 
@@ -37,6 +37,40 @@ class ExportTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 extract(source)
             self.assertFalse(sentinel.exists())
+
+
+    def test_single_stream_conversion_is_explicit_and_copies_both_seats(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory) / "actions.json"
+            actions = [{"market": [["BUY_SEED", "WHEAT", 2]]}, {}]
+            source.write_text(json.dumps(actions))
+            with self.assertRaises(ValueError):
+                extract(source)  # canonical input remains strict by default
+            tape = extract_single_stream(source)
+            self.assertEqual(tape, [actions, actions])
+            tape[0][0]["market"][0][2] = 9
+            self.assertEqual(tape[1][0]["market"][0][2], 2)
+
+    def test_bad_single_stream_never_becomes_a_pass_policy(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory) / "actions.json"
+            for bad in [[], [1, 2], [[{}], [{}]], {"farmer": ["PASS"]}, [None], [False]]:
+                with self.subTest(value=bad):
+                    source.write_text(json.dumps(bad))
+                    with self.assertRaises(ValueError):
+                        extract_single_stream(source)
+
+    def test_single_stream_cli_refuses_in_place_overwrite(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory) / "actions.json"
+            source.write_text('[{"farmer":["PASS"]}]')
+            original = source.read_bytes()
+            run = subprocess.run([sys.executable, str(ROOT / "tools/export_tape.py"), str(source), "--single-stream", "-o", str(source)], capture_output=True, text=True)
+            self.assertNotEqual(run.returncode, 0)
+            self.assertEqual(source.read_bytes(), original)
+            output = Path(directory) / "canonical.json"
+            subprocess.run([sys.executable, str(ROOT / "tools/export_tape.py"), str(source), "--single-stream", "-o", str(output)], check=True, capture_output=True)
+            self.assertEqual(json.loads(output.read_text()), [[{"farmer": ["PASS"]}], [{"farmer": ["PASS"]}]])
 
     def test_unknown_mutation_is_not_silently_ignored(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -210,6 +244,32 @@ class CliTests(unittest.TestCase):
                     self.assertEqual(json.loads(line), py.snapshot())
                 self.assertFalse(py.advance())
                 self.assertEqual(rows[0]["rewards"], py.rewards())
+
+
+    def test_animal_placement_ignores_nonpositive_quantity_on_matching_structure(self):
+        for quantity in (0, -3):
+            actions = [{} for _ in range(26)]
+            actions[0] = {"market": [["BUY_ANIMAL", "COW", 1]]}
+            actions[1] = {"farmer": ["PICKUP", "COW"]}
+            actions[2] = {"farmer": ["BUILD_PASTURE"]}
+            actions[3] = {"farmer": ["PLACE", "COW", quantity]}
+            actions[24] = {"farmer": ["COLLECT_FERTILIZER"]}
+            actions[25] = {"farmer": ["DROP"], "market": [["SELL", "FERTILIZER", 100]]}
+            a, b = [actions, [{}]], [[{}], [{}]]
+            write_tape(self.a, a)
+            write_tape(self.b, b)
+            rows, _ = self.call("--steps", 27)
+            self.assertEqual(rows[0]["rewards"], [2700, 3000])
+            self.assertEqual(rows[0]["rewards"], PythonReplay(a, b, -17, steps=27).run())
+
+    def test_market_guard_keeps_99999_units_and_reports_it(self):
+        write_tape(self.a, [[{"market": [["BUY_SEED", "WHEAT", 100000]]}], [{}]])
+        write_tape(self.b, [[{}], [{}]])
+        cfg = self.dir / "guard.json"
+        cfg.write_text('{"startingMoney":1000000}')
+        rows, _ = self.call("--steps", 2, "--config", cfg, ok=False)
+        self.assertEqual(rows[0]["rewards"], [10, 1000000])
+        self.assertTrue(any("100k" in e for e in rows[0]["errors"]))
 
     def test_python_batch_client_preserves_order_and_refuses_errors(self):
         jobs = [Job(1, self.a, self.b), Job(-2, self.a, self.b, True)]

@@ -16,7 +16,8 @@ import zlib
 
 def notice(title, message):
     escape = lambda s: s.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
-    print(f"::notice title={escape(title)}::{escape(message)}", flush=True)
+    title = escape(title).replace(":", "%3A").replace(",", "%2C")
+    print(f"::notice title={title}::{escape(message)}", flush=True)
 
 
 def text_artifact(title, text):
@@ -34,6 +35,10 @@ def main():
             text_artifact("rustfmt patch", diff)
         else:
             notice("Rust formatting", "Tracked Rust sources are rustfmt-clean.")
+        return 0
+    if len(sys.argv) == 3 and sys.argv[1] == "--report":
+        path = Path(sys.argv[2])
+        text_artifact("report " + path.name, path.read_text())
         return 0
     if sys.argv[1:] == ["--lockfile"]:
         text_artifact("Cargo.lock", Path("Cargo.lock").read_text())
