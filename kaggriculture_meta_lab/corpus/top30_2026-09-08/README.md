@@ -61,4 +61,6 @@ Use `scripts/benchmark_top30.py` for a bounded baseline. It preserves each raw
 seed, selects the named team's recorded seat, and evaluates the candidate in
 both physical seats through the parity-gated Rust raw-tape adapter. Its result
 labels the test as open-loop replay stress, never as closed-loop leaderboard
-reproduction.
+reproduction. The first 300-game B21 run passed without errors in Actions run
+`34280083082`; B21 scored only 75-225 (25.0%) on all TOP30 records, confirming
+that this current snapshot supersedes the old replay curriculum.

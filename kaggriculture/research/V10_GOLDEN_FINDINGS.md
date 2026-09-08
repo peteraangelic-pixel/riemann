@@ -74,7 +74,30 @@ them.
   all checks in Actions run `34251146717`, including 61 adapter/protocol tests
   and the 14-game exact static/raw integration gate.
 
-## Source D — historical fertilizer sweep uploaded by the user
+## Source D — current TOP30 replay snapshot (2026-09-08)
+
+- The user-uploaded 23.1 MB `TOP30.7z` expands to 150 selected raw records for
+  30 current teams. Independent validation found 129 unique episodes, valid
+  integer seeds, 720 steps in every replay, finite matching rewards, and 300
+  `DONE` statuses; archive and per-record hashes are inventoried under
+  `kaggriculture_meta_lab/corpus/top30_2026-09-08/`.
+- Selection is newest-across-active-submissions, not five records from each
+  leaderboard-best submission: only 72/150 records are from the best-scoring
+  active submission listed in the manifest. Report all-recent and best-listed
+  subsets separately.
+- The bundled analysis cannot determine scores: 0/150 raw reports have a final
+  score or winner, and 30 manifests were analyzed as pseudo-replays. It is
+  exploratory only; use raw data for gates.
+- Parity-gated Rust run `34280083082` evaluated B21 both seats on all 150 tapes
+  with zero errors. B21 scored 75-225 (25.0%, Wilson 20.4–30.2), mean margin
+  -3,862; on the 72 best-listed records it scored 37-107 (25.7%), margin -4,958.
+  The current corpus decisively rejects B21 as a submission candidate.
+- Current best-listed behavior is animal/hand heavy (about 10.4 hands, 14.8
+  pastures, 6.5 sheep, 6.4 cows) and sells much more frequently than B21. Use a
+  bounded TOP10 -> TOP20 -> TOP30 curriculum to derive leads, followed by
+  closed-loop control gates.
+
+## Source E — historical fertilizer sweep uploaded by the user
 
 - `[CONTEXT]` In the stale heuristic planner, detour radius 1 was strongest directly versus
   old V7, endgame day 24 led field-wide Bradley-Terry, and carrot fraction 0.25
