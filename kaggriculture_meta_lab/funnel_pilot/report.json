@@ -1,0 +1,2590 @@
+{
+  "purpose": "integration_only",
+  "agent_promoted": false,
+  "kaggle_submissions": 0,
+  "source": {
+    "repository": "peteraangelic-pixel/riemann",
+    "branch": "arena/01a0712c-riemann",
+    "commit": "290d360e3ba380eec9846597b57d6d57c4f57681",
+    "files": [
+      {
+        "path": "kaggriculture_meta_lab/README.md",
+        "blob_sha1": "5b63ee1d0cb3080e555921326fbd132f22370ff7",
+        "size": 11593
+      },
+      {
+        "path": "kaggriculture_meta_lab/agents/current/agent_v7_scripted.py",
+        "blob_sha1": "4667cdba039b8b4e5f2d61591267fa9fdc32026a",
+        "size": 24788
+      },
+      {
+        "path": "kaggriculture_meta_lab/agents/current/agent_v8_aastik.py",
+        "blob_sha1": "2497296732ea16aab869b48c401dca4513124170",
+        "size": 12583
+      },
+      {
+        "path": "kaggriculture_meta_lab/agents/current/agent_v8_hybrid.py",
+        "blob_sha1": "c4bc185afb5eeeff3c285d68d7e2a145e5731e3c",
+        "size": 12608
+      },
+      {
+        "path": "kaggriculture_meta_lab/agents/current/agent_v9_b21_s16.py",
+        "blob_sha1": "02ba060113398152a19de74defec191f38036bb1",
+        "size": 23309
+      },
+      {
+        "path": "kaggriculture_meta_lab/kaggriculture_lab/__init__.py",
+        "blob_sha1": "2147a9a974b8485099120503927851bec59f7c9d",
+        "size": 926
+      },
+      {
+        "path": "kaggriculture_meta_lab/kaggriculture_lab/agents.py",
+        "blob_sha1": "a42a473af312a80f55940f898e6a8345683b1600",
+        "size": 5414
+      },
+      {
+        "path": "kaggriculture_meta_lab/kaggriculture_lab/corpus.py",
+        "blob_sha1": "149efdefcc05acf4e8b508d4426a9f697a7e93d1",
+        "size": 4836
+      },
+      {
+        "path": "kaggriculture_meta_lab/kaggriculture_lab/engine.py",
+        "blob_sha1": "b5fa32aad0f74942a46cb973ed86d1e215889cf7",
+        "size": 3677
+      },
+      {
+        "path": "kaggriculture_meta_lab/kaggriculture_lab/rust_backend.py",
+        "blob_sha1": "07529389d6ebdab79346e2b19876d363166b950f",
+        "size": 8525
+      },
+      {
+        "path": "kaggriculture_meta_lab/kaggriculture_lab/stats.py",
+        "blob_sha1": "a74128081c325c72e2a5d78352f151556a99378d",
+        "size": 5361
+      },
+      {
+        "path": "kaggriculture_meta_lab/kaggriculture_lab/tournament.py",
+        "blob_sha1": "156fcd8d59767c338d036e90675a3b484a36fff7",
+        "size": 6954
+      },
+      {
+        "path": "kaggriculture_meta_lab/scripts/sweep.py",
+        "blob_sha1": "8d842ebcd117f7506cbdfd5f7132fadfdb8c2c72",
+        "size": 19080
+      }
+    ]
+  },
+  "code_commit": "dddeb6959eb05ce8757e72a015feb81fbf254ff9",
+  "projected_funnel_games_per_backend": {
+    "screen": 12,
+    "promote": 60,
+    "finals": 24,
+    "total": 96
+  },
+  "hard_game_cap_per_backend": 128,
+  "backends": {
+    "python": {
+      "funnel_games": 96,
+      "funnel_wall_seconds": 71.35094623399999,
+      "stages": [
+        {
+          "jobs": 12,
+          "rows": [
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026090800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026090800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026090801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026090801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026090800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026090800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026090801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026090801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026090800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026090800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026090801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026090801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            }
+          ]
+        },
+        {
+          "jobs": 60,
+          "rows": [
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100802,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100802,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100803,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100803,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100804,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100804,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100805,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100805,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100806,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100806,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100807,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100807,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100808,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100808,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100809,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100809,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100802,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100802,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100803,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100803,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100804,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100804,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100805,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100805,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100806,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100806,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100807,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100807,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100808,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100808,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100809,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100809,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100802,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100802,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100803,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100803,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100804,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100804,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100805,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100805,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100806,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100806,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100807,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100807,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100808,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100808,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100809,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100809,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            }
+          ]
+        },
+        {
+          "jobs": 24,
+          "rows": [
+            {
+              "tag": "__final_pair_0_1",
+              "seed": 2026110800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_LIGHT/main.py",
+              "values_binary64": "40a770000000000040a75c00000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_1",
+              "seed": 2026110800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_LIGHT/main.py",
+              "values_binary64": "40a770000000000040a75c00000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_1",
+              "seed": 2026110801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_LIGHT/main.py",
+              "values_binary64": "40a770000000000040a75c00000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_1",
+              "seed": 2026110801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_LIGHT/main.py",
+              "values_binary64": "40a770000000000040a75c00000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_2",
+              "seed": 2026110800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_MID/main.py",
+              "values_binary64": "40a770000000000040a74800000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_2",
+              "seed": 2026110800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_MID/main.py",
+              "values_binary64": "40a770000000000040a74800000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_2",
+              "seed": 2026110801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_MID/main.py",
+              "values_binary64": "40a770000000000040a74800000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_2",
+              "seed": 2026110801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_MID/main.py",
+              "values_binary64": "40a770000000000040a74800000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_3",
+              "seed": 2026110800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_3",
+              "seed": 2026110800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_3",
+              "seed": 2026110801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_3",
+              "seed": 2026110801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_1_2",
+              "seed": 2026110800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_MID/main.py",
+              "values_binary64": "40a75c000000000040a74800000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_1_2",
+              "seed": 2026110800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_MID/main.py",
+              "values_binary64": "40a75c000000000040a74800000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_1_2",
+              "seed": 2026110801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_MID/main.py",
+              "values_binary64": "40a75c000000000040a74800000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_1_2",
+              "seed": 2026110801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_MID/main.py",
+              "values_binary64": "40a75c000000000040a74800000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_1_3",
+              "seed": 2026110800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_1_3",
+              "seed": 2026110800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_1_3",
+              "seed": 2026110801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_1_3",
+              "seed": 2026110801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_2_3",
+              "seed": 2026110800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_2_3",
+              "seed": 2026110800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_2_3",
+              "seed": 2026110801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_2_3",
+              "seed": 2026110801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            }
+          ]
+        }
+      ],
+      "result": {
+        "config": "pilot-smoke.json",
+        "variants": [
+          "SMOKE_KEEPER",
+          "SMOKE_LIGHT",
+          "SMOKE_MID"
+        ],
+        "baseline": "fixtures/CONTROL_SMOKE/main.py",
+        "baseline_name": "CONTROL_SMOKE",
+        "include_untouched_base": false,
+        "finals_include_baseline": true,
+        "promotion_objective": "balanced",
+        "screen": {
+          "SMOKE_KEEPER": {
+            "games": 4,
+            "wins": 4,
+            "losses": 0,
+            "ties": 0,
+            "errors": 0,
+            "win_rate": 1.0,
+            "score_rate": 1.0,
+            "ci_low": 0.5101091635454027,
+            "ci_high": 1.0,
+            "mean_margin": 30.0,
+            "median_margin": 30.0,
+            "p10_margin": 30.0,
+            "mean_self": 3000.0,
+            "mean_opp": 2970.0
+          },
+          "SMOKE_LIGHT": {
+            "games": 4,
+            "wins": 4,
+            "losses": 0,
+            "ties": 0,
+            "errors": 0,
+            "win_rate": 1.0,
+            "score_rate": 1.0,
+            "ci_low": 0.5101091635454027,
+            "ci_high": 1.0,
+            "mean_margin": 20.0,
+            "median_margin": 20.0,
+            "p10_margin": 20.0,
+            "mean_self": 2990.0,
+            "mean_opp": 2970.0
+          },
+          "SMOKE_MID": {
+            "games": 4,
+            "wins": 4,
+            "losses": 0,
+            "ties": 0,
+            "errors": 0,
+            "win_rate": 1.0,
+            "score_rate": 1.0,
+            "ci_low": 0.5101091635454027,
+            "ci_high": 1.0,
+            "mean_margin": 10.0,
+            "median_margin": 10.0,
+            "p10_margin": 10.0,
+            "mean_self": 2980.0,
+            "mean_opp": 2970.0
+          }
+        },
+        "promoted": [
+          "SMOKE_KEEPER",
+          "SMOKE_LIGHT",
+          "SMOKE_MID"
+        ],
+        "finals": {
+          "bt": {
+            "SMOKE_KEEPER": 24.477440029890932,
+            "SMOKE_LIGHT": 2.680701463025457,
+            "SMOKE_MID": 0.37303668975932697,
+            "CONTROL_SMOKE": 0.0408539454607523
+          },
+          "ranked": [
+            "SMOKE_KEEPER",
+            "SMOKE_LIGHT",
+            "SMOKE_MID",
+            "CONTROL_SMOKE"
+          ],
+          "pairwise": {
+            "SMOKE_KEEPER": {
+              "SMOKE_LIGHT": {
+                "games": 4,
+                "score": 1.0
+              },
+              "SMOKE_MID": {
+                "games": 4,
+                "score": 1.0
+              },
+              "CONTROL_SMOKE": {
+                "games": 4,
+                "score": 1.0
+              }
+            },
+            "SMOKE_LIGHT": {
+              "SMOKE_KEEPER": {
+                "games": 4,
+                "score": 0.0
+              },
+              "SMOKE_MID": {
+                "games": 4,
+                "score": 1.0
+              },
+              "CONTROL_SMOKE": {
+                "games": 4,
+                "score": 1.0
+              }
+            },
+            "SMOKE_MID": {
+              "SMOKE_KEEPER": {
+                "games": 4,
+                "score": 0.0
+              },
+              "SMOKE_LIGHT": {
+                "games": 4,
+                "score": 0.0
+              },
+              "CONTROL_SMOKE": {
+                "games": 4,
+                "score": 1.0
+              }
+            },
+            "CONTROL_SMOKE": {
+              "SMOKE_KEEPER": {
+                "games": 4,
+                "score": 0.0
+              },
+              "SMOKE_LIGHT": {
+                "games": 4,
+                "score": 0.0
+              },
+              "SMOKE_MID": {
+                "games": 4,
+                "score": 0.0
+              }
+            }
+          }
+        }
+      },
+      "control_games": 12,
+      "control_rows": [
+        {
+          "tag": "agent_v7_scripted",
+          "seed": 2026090900,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v7_scripted.py",
+          "values_binary64": "40f54b900000000040f53d2000000000406ce00000000000",
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "agent_v7_scripted",
+          "seed": 2026090900,
+          "seat": 1,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v7_scripted.py",
+          "values_binary64": "40f54b900000000040f53d2000000000406ce00000000000",
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "agent_v7_scripted",
+          "seed": 2026090901,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v7_scripted.py",
+          "values_binary64": "40f617700000000040f6085000000000406e400000000000",
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "agent_v7_scripted",
+          "seed": 2026090901,
+          "seat": 1,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v7_scripted.py",
+          "values_binary64": "40f617700000000040f6085000000000406e400000000000",
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "agent_v8_aastik",
+          "seed": 2026090900,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v8_aastik.py",
+          "values_binary64": "40f460500000000040f3c4300000000040a3840000000000",
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "agent_v8_aastik",
+          "seed": 2026090900,
+          "seat": 1,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v8_aastik.py",
+          "values_binary64": "40f460500000000040f3c4300000000040a3840000000000",
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "agent_v8_aastik",
+          "seed": 2026090901,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v8_aastik.py",
+          "values_binary64": "40f4d3600000000040f4e8a000000000c075400000000000",
+          "outcome": "loss",
+          "error": null
+        },
+        {
+          "tag": "agent_v8_aastik",
+          "seed": 2026090901,
+          "seat": 1,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v8_aastik.py",
+          "values_binary64": "40f4d3600000000040f4e8a000000000c075400000000000",
+          "outcome": "loss",
+          "error": null
+        },
+        {
+          "tag": "agent_v8_hybrid",
+          "seed": 2026090900,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v8_hybrid.py",
+          "values_binary64": "40f460d00000000040f3b7500000000040a5300000000000",
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "agent_v8_hybrid",
+          "seed": 2026090900,
+          "seat": 1,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v8_hybrid.py",
+          "values_binary64": "40f460d00000000040f3b7500000000040a5300000000000",
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "agent_v8_hybrid",
+          "seed": 2026090901,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v8_hybrid.py",
+          "values_binary64": "40f4e4000000000040f4e68000000000c044000000000000",
+          "outcome": "loss",
+          "error": null
+        },
+        {
+          "tag": "agent_v8_hybrid",
+          "seed": 2026090901,
+          "seat": 1,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v8_hybrid.py",
+          "values_binary64": "40f4e4000000000040f4e68000000000c044000000000000",
+          "outcome": "loss",
+          "error": null
+        }
+      ],
+      "total_games": 108
+    },
+    "rust": {
+      "funnel_games": 96,
+      "funnel_wall_seconds": 0.10526812300000188,
+      "stages": [
+        {
+          "jobs": 12,
+          "rows": [
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026090800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026090800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026090801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026090801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026090800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026090800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026090801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026090801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026090800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026090800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026090801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026090801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            }
+          ]
+        },
+        {
+          "jobs": 60,
+          "rows": [
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100802,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100802,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100803,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100803,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100804,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100804,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100805,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100805,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100806,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100806,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100807,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100807,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100808,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100808,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100809,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_KEEPER",
+              "seed": 2026100809,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100802,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100802,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100803,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100803,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100804,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100804,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100805,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100805,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100806,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100806,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100807,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100807,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100808,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100808,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100809,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_LIGHT",
+              "seed": 2026100809,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100802,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100802,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100803,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100803,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100804,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100804,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100805,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100805,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100806,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100806,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100807,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100807,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100808,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100808,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100809,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "SMOKE_MID",
+              "seed": 2026100809,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            }
+          ]
+        },
+        {
+          "jobs": 24,
+          "rows": [
+            {
+              "tag": "__final_pair_0_1",
+              "seed": 2026110800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_LIGHT/main.py",
+              "values_binary64": "40a770000000000040a75c00000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_1",
+              "seed": 2026110800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_LIGHT/main.py",
+              "values_binary64": "40a770000000000040a75c00000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_1",
+              "seed": 2026110801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_LIGHT/main.py",
+              "values_binary64": "40a770000000000040a75c00000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_1",
+              "seed": 2026110801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_LIGHT/main.py",
+              "values_binary64": "40a770000000000040a75c00000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_2",
+              "seed": 2026110800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_MID/main.py",
+              "values_binary64": "40a770000000000040a74800000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_2",
+              "seed": 2026110800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_MID/main.py",
+              "values_binary64": "40a770000000000040a74800000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_2",
+              "seed": 2026110801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_MID/main.py",
+              "values_binary64": "40a770000000000040a74800000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_2",
+              "seed": 2026110801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_MID/main.py",
+              "values_binary64": "40a770000000000040a74800000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_3",
+              "seed": 2026110800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_3",
+              "seed": 2026110800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_3",
+              "seed": 2026110801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_0_3",
+              "seed": 2026110801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a770000000000040a7340000000000403e000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_1_2",
+              "seed": 2026110800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_MID/main.py",
+              "values_binary64": "40a75c000000000040a74800000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_1_2",
+              "seed": 2026110800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_MID/main.py",
+              "values_binary64": "40a75c000000000040a74800000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_1_2",
+              "seed": 2026110801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_MID/main.py",
+              "values_binary64": "40a75c000000000040a74800000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_1_2",
+              "seed": 2026110801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/SMOKE_MID/main.py",
+              "values_binary64": "40a75c000000000040a74800000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_1_3",
+              "seed": 2026110800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_1_3",
+              "seed": 2026110800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_1_3",
+              "seed": 2026110801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_1_3",
+              "seed": 2026110801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a75c000000000040a73400000000004034000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_2_3",
+              "seed": 2026110800,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_2_3",
+              "seed": 2026110800,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_2_3",
+              "seed": 2026110801,
+              "seat": 0,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            },
+            {
+              "tag": "__final_pair_2_3",
+              "seed": 2026110801,
+              "seat": 1,
+              "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/fixtures/CONTROL_SMOKE/main.py",
+              "values_binary64": "40a748000000000040a73400000000004024000000000000",
+              "outcome": "win",
+              "error": null
+            }
+          ]
+        }
+      ],
+      "result": {
+        "config": "pilot-smoke.json",
+        "variants": [
+          "SMOKE_KEEPER",
+          "SMOKE_LIGHT",
+          "SMOKE_MID"
+        ],
+        "baseline": "fixtures/CONTROL_SMOKE/main.py",
+        "baseline_name": "CONTROL_SMOKE",
+        "include_untouched_base": false,
+        "finals_include_baseline": true,
+        "promotion_objective": "balanced",
+        "screen": {
+          "SMOKE_KEEPER": {
+            "games": 4,
+            "wins": 4,
+            "losses": 0,
+            "ties": 0,
+            "errors": 0,
+            "win_rate": 1.0,
+            "score_rate": 1.0,
+            "ci_low": 0.5101091635454027,
+            "ci_high": 1.0,
+            "mean_margin": 30.0,
+            "median_margin": 30.0,
+            "p10_margin": 30.0,
+            "mean_self": 3000.0,
+            "mean_opp": 2970.0
+          },
+          "SMOKE_LIGHT": {
+            "games": 4,
+            "wins": 4,
+            "losses": 0,
+            "ties": 0,
+            "errors": 0,
+            "win_rate": 1.0,
+            "score_rate": 1.0,
+            "ci_low": 0.5101091635454027,
+            "ci_high": 1.0,
+            "mean_margin": 20.0,
+            "median_margin": 20.0,
+            "p10_margin": 20.0,
+            "mean_self": 2990.0,
+            "mean_opp": 2970.0
+          },
+          "SMOKE_MID": {
+            "games": 4,
+            "wins": 4,
+            "losses": 0,
+            "ties": 0,
+            "errors": 0,
+            "win_rate": 1.0,
+            "score_rate": 1.0,
+            "ci_low": 0.5101091635454027,
+            "ci_high": 1.0,
+            "mean_margin": 10.0,
+            "median_margin": 10.0,
+            "p10_margin": 10.0,
+            "mean_self": 2980.0,
+            "mean_opp": 2970.0
+          }
+        },
+        "promoted": [
+          "SMOKE_KEEPER",
+          "SMOKE_LIGHT",
+          "SMOKE_MID"
+        ],
+        "finals": {
+          "bt": {
+            "SMOKE_KEEPER": 24.477440029890932,
+            "SMOKE_LIGHT": 2.680701463025457,
+            "SMOKE_MID": 0.37303668975932697,
+            "CONTROL_SMOKE": 0.0408539454607523
+          },
+          "ranked": [
+            "SMOKE_KEEPER",
+            "SMOKE_LIGHT",
+            "SMOKE_MID",
+            "CONTROL_SMOKE"
+          ],
+          "pairwise": {
+            "SMOKE_KEEPER": {
+              "SMOKE_LIGHT": {
+                "games": 4,
+                "score": 1.0
+              },
+              "SMOKE_MID": {
+                "games": 4,
+                "score": 1.0
+              },
+              "CONTROL_SMOKE": {
+                "games": 4,
+                "score": 1.0
+              }
+            },
+            "SMOKE_LIGHT": {
+              "SMOKE_KEEPER": {
+                "games": 4,
+                "score": 0.0
+              },
+              "SMOKE_MID": {
+                "games": 4,
+                "score": 1.0
+              },
+              "CONTROL_SMOKE": {
+                "games": 4,
+                "score": 1.0
+              }
+            },
+            "SMOKE_MID": {
+              "SMOKE_KEEPER": {
+                "games": 4,
+                "score": 0.0
+              },
+              "SMOKE_LIGHT": {
+                "games": 4,
+                "score": 0.0
+              },
+              "CONTROL_SMOKE": {
+                "games": 4,
+                "score": 1.0
+              }
+            },
+            "CONTROL_SMOKE": {
+              "SMOKE_KEEPER": {
+                "games": 4,
+                "score": 0.0
+              },
+              "SMOKE_LIGHT": {
+                "games": 4,
+                "score": 0.0
+              },
+              "SMOKE_MID": {
+                "games": 4,
+                "score": 0.0
+              }
+            }
+          }
+        }
+      },
+      "control_games": 12,
+      "control_rows": [
+        {
+          "tag": "agent_v7_scripted",
+          "seed": 2026090900,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v7_scripted.py",
+          "values_binary64": "40f54b900000000040f53d2000000000406ce00000000000",
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "agent_v7_scripted",
+          "seed": 2026090900,
+          "seat": 1,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v7_scripted.py",
+          "values_binary64": "40f54b900000000040f53d2000000000406ce00000000000",
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "agent_v7_scripted",
+          "seed": 2026090901,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v7_scripted.py",
+          "values_binary64": "40f617700000000040f6085000000000406e400000000000",
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "agent_v7_scripted",
+          "seed": 2026090901,
+          "seat": 1,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v7_scripted.py",
+          "values_binary64": "40f617700000000040f6085000000000406e400000000000",
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "agent_v8_aastik",
+          "seed": 2026090900,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v8_aastik.py",
+          "values_binary64": "40f460500000000040f3c4300000000040a3840000000000",
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "agent_v8_aastik",
+          "seed": 2026090900,
+          "seat": 1,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v8_aastik.py",
+          "values_binary64": "40f460500000000040f3c4300000000040a3840000000000",
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "agent_v8_aastik",
+          "seed": 2026090901,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v8_aastik.py",
+          "values_binary64": "40f4d3600000000040f4e8a000000000c075400000000000",
+          "outcome": "loss",
+          "error": null
+        },
+        {
+          "tag": "agent_v8_aastik",
+          "seed": 2026090901,
+          "seat": 1,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v8_aastik.py",
+          "values_binary64": "40f4d3600000000040f4e8a000000000c075400000000000",
+          "outcome": "loss",
+          "error": null
+        },
+        {
+          "tag": "agent_v8_hybrid",
+          "seed": 2026090900,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v8_hybrid.py",
+          "values_binary64": "40f460d00000000040f3b7500000000040a5300000000000",
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "agent_v8_hybrid",
+          "seed": 2026090900,
+          "seat": 1,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v8_hybrid.py",
+          "values_binary64": "40f460d00000000040f3b7500000000040a5300000000000",
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "agent_v8_hybrid",
+          "seed": 2026090901,
+          "seat": 0,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v8_hybrid.py",
+          "values_binary64": "40f4e4000000000040f4e68000000000c044000000000000",
+          "outcome": "loss",
+          "error": null
+        },
+        {
+          "tag": "agent_v8_hybrid",
+          "seed": 2026090901,
+          "seat": 1,
+          "opponent": "/home/runner/work/riemann/riemann/.cache/funnel-pilot/patched/kaggriculture_meta_lab/agents/current/agent_v8_hybrid.py",
+          "values_binary64": "40f4e4000000000040f4e68000000000c044000000000000",
+          "outcome": "loss",
+          "error": null
+        }
+      ],
+      "total_games": 108
+    }
+  },
+  "all_stage_rows_and_decisions_identical": true,
+  "current_control_rows_identical": true,
+  "total_games_both_backends": 216,
+  "budget_rejected_before_execution": true,
+  "status": "passed",
+  "patch_sha256": "640ef4038f115824f781e4b27ea33c8e62fe6b5ac4a2a3d204849582cf61906a",
+  "scope": "synthetic stage-coverage test + 12 frozen-control games per backend, not evidence of a stronger real agent",
+  "ci_url": "https://github.com/peteraangelic-pixel/riemann/actions/runs/34281049065",
+  "regression_tests_passed": 8,
+  "existing_top30_baseline": {
+    "source_path": "kaggriculture_meta_lab/results/top30-b21-baseline-20260908.json",
+    "source_workflow": "https://github.com/peteraangelic-pixel/riemann/actions/runs/34280083082",
+    "file_sha256": "803306f5dfda8406a4fc661893788a82b54b1d265831d108a1706f755bc996ad",
+    "source_manifest_sha256": "ee3007950c7823148bf709c7a6b78df522934d99b93770ab42a144416fcab9c7",
+    "mode": "open-loop recorded team policy; original seed; candidate both seats",
+    "summary": {
+      "top10": {
+        "all_recent_selected": {
+          "games": 100,
+          "wins": 23,
+          "losses": 77,
+          "ties": 0,
+          "errors": 0,
+          "score_rate": 0.23,
+          "wilson_95": [
+            0.15843265880303448,
+            0.3215438302287378
+          ],
+          "mean_margin": -2301.41,
+          "mean_candidate_reward": 91171.8,
+          "mean_tape_reward": 93473.21,
+          "by_candidate_seat": {
+            "0": {
+              "games": 50,
+              "wins": 11,
+              "losses": 39,
+              "ties": 0,
+              "score_rate": 0.22,
+              "mean_margin": -2477.66
+            },
+            "1": {
+              "games": 50,
+              "wins": 12,
+              "losses": 38,
+              "ties": 0,
+              "score_rate": 0.24,
+              "mean_margin": -2125.16
+            }
+          }
+        },
+        "best_listed_submission_only": {
+          "games": 32,
+          "wins": 8,
+          "losses": 24,
+          "ties": 0,
+          "errors": 0,
+          "score_rate": 0.25,
+          "wilson_95": [
+            0.1325240091850904,
+            0.4210655899424448
+          ],
+          "mean_margin": -7116.46875,
+          "mean_candidate_reward": 94575.84375,
+          "mean_tape_reward": 101692.3125,
+          "by_candidate_seat": {
+            "0": {
+              "games": 16,
+              "wins": 4,
+              "losses": 12,
+              "ties": 0,
+              "score_rate": 0.25,
+              "mean_margin": -7114.4375
+            },
+            "1": {
+              "games": 16,
+              "wins": 4,
+              "losses": 12,
+              "ties": 0,
+              "score_rate": 0.25,
+              "mean_margin": -7118.5
+            }
+          }
+        },
+        "best_subset_teams_covered": 9,
+        "all_teams_covered": 10
+      },
+      "top20": {
+        "all_recent_selected": {
+          "games": 200,
+          "wins": 39,
+          "losses": 161,
+          "ties": 0,
+          "errors": 0,
+          "score_rate": 0.195,
+          "wilson_95": [
+            0.1460552053440051,
+            0.25544044374612745
+          ],
+          "mean_margin": -5743.65,
+          "mean_candidate_reward": 90873.39,
+          "mean_tape_reward": 96617.04,
+          "by_candidate_seat": {
+            "0": {
+              "games": 100,
+              "wins": 18,
+              "losses": 82,
+              "ties": 0,
+              "score_rate": 0.18,
+              "mean_margin": -5888.64
+            },
+            "1": {
+              "games": 100,
+              "wins": 21,
+              "losses": 79,
+              "ties": 0,
+              "score_rate": 0.21,
+              "mean_margin": -5598.66
+            }
+          }
+        },
+        "best_listed_submission_only": {
+          "games": 84,
+          "wins": 15,
+          "losses": 69,
+          "ties": 0,
+          "errors": 0,
+          "score_rate": 0.17857142857142858,
+          "wilson_95": [
+            0.11131188660772935,
+            0.27394422451598055
+          ],
+          "mean_margin": -8028.261904761905,
+          "mean_candidate_reward": 94447.35714285714,
+          "mean_tape_reward": 102475.61904761905,
+          "by_candidate_seat": {
+            "0": {
+              "games": 42,
+              "wins": 7,
+              "losses": 35,
+              "ties": 0,
+              "score_rate": 0.16666666666666666,
+              "mean_margin": -8069.285714285715
+            },
+            "1": {
+              "games": 42,
+              "wins": 8,
+              "losses": 34,
+              "ties": 0,
+              "score_rate": 0.19047619047619047,
+              "mean_margin": -7987.238095238095
+            }
+          }
+        },
+        "best_subset_teams_covered": 19,
+        "all_teams_covered": 20
+      },
+      "top30": {
+        "all_recent_selected": {
+          "games": 300,
+          "wins": 75,
+          "losses": 225,
+          "ties": 0,
+          "errors": 0,
+          "score_rate": 0.25,
+          "wilson_95": [
+            0.20436988915825566,
+            0.3019515964540173
+          ],
+          "mean_margin": -3861.86,
+          "mean_candidate_reward": 90802.48,
+          "mean_tape_reward": 94664.34,
+          "by_candidate_seat": {
+            "0": {
+              "games": 150,
+              "wins": 36,
+              "losses": 114,
+              "ties": 0,
+              "score_rate": 0.24,
+              "mean_margin": -3951.0333333333333
+            },
+            "1": {
+              "games": 150,
+              "wins": 39,
+              "losses": 111,
+              "ties": 0,
+              "score_rate": 0.26,
+              "mean_margin": -3772.6866666666665
+            }
+          }
+        },
+        "best_listed_submission_only": {
+          "games": 144,
+          "wins": 37,
+          "losses": 107,
+          "ties": 0,
+          "errors": 0,
+          "score_rate": 0.2569444444444444,
+          "wilson_95": [
+            0.19254368321773865,
+            0.3339761403934598
+          ],
+          "mean_margin": -4957.680555555556,
+          "mean_candidate_reward": 94150.34722222222,
+          "mean_tape_reward": 99108.02777777778,
+          "by_candidate_seat": {
+            "0": {
+              "games": 72,
+              "wins": 18,
+              "losses": 54,
+              "ties": 0,
+              "score_rate": 0.25,
+              "mean_margin": -4981.611111111111
+            },
+            "1": {
+              "games": 72,
+              "wins": 19,
+              "losses": 53,
+              "ties": 0,
+              "score_rate": 0.2638888888888889,
+              "mean_margin": -4933.75
+            }
+          }
+        },
+        "best_subset_teams_covered": 29,
+        "all_teams_covered": 30
+      }
+    },
+    "rerun_by_this_pilot": false
+  }
+}

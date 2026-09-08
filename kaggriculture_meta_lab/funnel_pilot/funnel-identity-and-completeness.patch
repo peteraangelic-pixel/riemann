@@ -1,0 +1,152 @@
+diff --git a/kaggriculture_meta_lab/scripts/sweep.py b/kaggriculture_meta_lab/scripts/sweep.py
+--- a/kaggriculture_meta_lab/scripts/sweep.py
++++ b/kaggriculture_meta_lab/scripts/sweep.py
+@@ -23,6 +23,8 @@
+ from __future__ import annotations
+ 
+ import argparse
++from collections import Counter
++import math
+ import itertools
+ import json
+ import re
+@@ -71,11 +73,15 @@
+     # de-duplicate by params, keep explicit names
+     seen, uniq = set(), []
+     for v in out:
+-        sig = (v.get("base", ""), json.dumps(v["params"], sort_keys=True))
++        # Prebuilt paths are part of variant identity, not merely metadata.
++        sig = (v.get("base", ""), v.get("path", ""), json.dumps(v.get("params", {}), sort_keys=True))
+         if sig in seen:
+             continue
+         seen.add(sig)
+         uniq.append(v)
++    names = [v.get("name") for v in uniq]
++    if any(not isinstance(name, str) or not name for name in names) or len(set(names)) != len(names):
++        raise ValueError("variant names must be nonempty and unique")
+     return uniq
+ 
+ 
+@@ -100,6 +106,30 @@
+         raise RuntimeError(f"{stage}: refusing to score {len(failures)} failed games: {sample}")
+ 
+ 
++def _require_stage_rows(rows: list[dict], jobs: list[tuple], stage: str) -> None:
++    if not isinstance(rows, list) or len(rows) != len(jobs) or any(not isinstance(row, dict) for row in rows):
++        raise RuntimeError(f"{stage}: incomplete or malformed result batch")
++    expected = Counter((j[5], j[0], j[3], j[2]) for j in jobs)
++    try:
++        actual = Counter((r.get("tag"), r.get("seed"), r.get("seat"), r.get("opponent")) for r in rows)
++    except TypeError as error:
++        raise RuntimeError(f"{stage}: invalid result identity") from error
++    if actual != expected:
++        raise RuntimeError(f"{stage}: duplicate, missing or foreign result identity")
++    _require_no_errors(rows, stage)
++    for row in rows:
++        own, opponent, margin = (row.get(k) for k in ("self_reward", "opp_reward", "margin"))
++        try:
++            valid = all(type(v) in (int, float) and math.isfinite(v) for v in (own, opponent, margin))
++        except OverflowError:
++            valid = False
++        if not valid:
++            raise RuntimeError(f"{stage}: non-finite or missing result values")
++        outcome = "win" if own > opponent else "loss" if own < opponent else "tie"
++        if margin != own - opponent or row.get("outcome") != outcome:
++            raise RuntimeError(f"{stage}: inconsistent outcome or margin")
++
++
+ def _agg_by_tag(rows: list[dict]) -> dict[str, object]:
+     tags = sorted({r["tag"] for r in rows})
+     return {t: aggregate([r for r in rows if r["tag"] == t]) for t in tags}
+@@ -116,7 +146,7 @@
+                  f"= {len(jobs)} games ...")
+     print(lines[-1])
+     rows = runner(jobs, workers, progress_every=max(50, len(jobs) // 5))
+-    _require_no_errors(rows, "screen")
++    _require_stage_rows(rows, jobs, "screen")
+     aggs = _agg_by_tag(rows)
+     ranked = sorted(aggs.items(),
+                     key=lambda kv: (kv[1].score_rate, kv[1].mean_margin), reverse=True)
+@@ -144,7 +174,7 @@
+                  f"= {len(jobs)} games (Wilson gate vs baseline; objective={promotion_objective}) ...")
+     print(lines[-1])
+     rows = runner(jobs, workers, progress_every=max(50, len(jobs) // 4))
+-    _require_no_errors(rows, "promotion")
++    _require_stage_rows(rows, jobs, "promotion")
+     aggs = _agg_by_tag(rows)
+     lines.append("")
+     passed = []
+@@ -169,22 +199,26 @@
+ def stage_finals(finalists: list[tuple[str, Path]], games: int, seed: int,
+                  workers: int, lines: list, runner=run) -> dict:
+     names = [n for n, _ in finalists]
+-    stem2name = {p.stem: n for n, p in finalists}  # opponent path stem -> tag
++    if len(set(names)) != len(names):
++        raise ValueError("finalist names must be unique")
++    # Filenames (even canonical paths) are not finalist identity: labels may
++    # share a basename or intentionally refer to the same frozen policy.
++    pairs = {}
+     jobs, wins, games_map = [], {}, {}
+     for i, (na, pa) in enumerate(finalists):
+-        for nb, pb in finalists[i + 1:]:
++        for j, (nb, pb) in enumerate(finalists[i + 1:], start=i + 1):
++            tag = f"__final_pair_{i}_{j}"
++            pairs[tag] = (na, nb)
+             jobs += build_jobs(str(pa), [str(pb)], games, seed,
+-                               swap_seats=True, steps=720, tag=na)
++                               swap_seats=True, steps=720, tag=tag)
+     lines.append(f"[3/3] FINALS: round-robin of {len(names)} variants, "
+                  f"{games} seeds x 2 seats per pair = {len(jobs)} games ...")
+     print(lines[-1])
+     rows = runner(jobs, workers, progress_every=max(20, len(jobs) // 4))
+-    _require_no_errors(rows, "finals")
+-    # rows are tagged with the FIRST-listed agent of each pair; opponent path
+-    # stem maps back to its tag. Accumulate from a's perspective, then mirror.
++    _require_stage_rows(rows, jobs, "finals")
++    # Opaque pair tags travel only as metadata, never into an agent.
+     for r in rows:
+-        a = r["tag"]
+-        b = stem2name.get(Path(str(r["opponent"])).stem, Path(str(r["opponent"])).stem)
++        a, b = pairs[r["tag"]]
+         wins[(a, b)] = wins.get((a, b), 0.0) + (1.0 if r["outcome"] == "win"
+                                                  else 0.5 if r["outcome"] == "tie" else 0.0)
+         games_map[(a, b)] = games_map.get((a, b), 0) + 1
+@@ -213,7 +247,11 @@
+                 cells.append(f"{wins[(n1, n2)] / g * 100:9.0f}%" if g else f"{'--':>10}")
+         lines.append(f"  {n1:<{wname}}" + "".join(cells))
+     lines.append("")
+-    return {"bt": dict(bt), "ranked": [n for n, _ in ranked]}
++    pairwise = {a: {b: {"games": games_map.get((a, b), 0),
++                           "score": wins.get((a, b), 0.0) / games_map[(a, b)]
++                           if games_map.get((a, b), 0) else None}
++                    for b in names if b != a} for a in names}
++    return {"bt": dict(bt), "ranked": [n for n, _ in ranked], "pairwise": pairwise}
+ 
+ 
+ # -------------------------------------------------------------------- main ---
+@@ -267,6 +305,7 @@
+     baseline_path = Path(baseline)
+     if not baseline_path.is_absolute():
+         baseline_path = ROOT / baseline_path
++    baseline_spec = str(baseline_path.resolve())
+     include_base = cfg.get("include_untouched_base", True)
+     finals_include_baseline = cfg.get("finals_include_baseline", False)
+     baseline_name = cfg.get("baseline_name", "CONTROL_" + baseline_path.stem)
+@@ -332,7 +371,7 @@
+               "finals_include_baseline": finals_include_baseline,
+               "promotion_objective": promotion_objective}
+ 
+-    screened = stage_screen(variants, baseline, screen_games, seed0,
++    screened = stage_screen(variants, baseline_spec, screen_games, seed0,
+                             args.workers, lines, runner=runner)
+     result["screen"] = {n: a.to_dict() for n, a in screened.items()}
+     if args.stage == "screen":
+@@ -346,7 +385,7 @@
+                       reverse=True)[:top_k]]
+         lines.append(f"  top {len(top)} advance: {', '.join(n for n, _ in top)}")
+         lines.append("")
+-        promoted = stage_promote(top, baseline, promote_games, seed0 + 10000,
++        promoted = stage_promote(top, baseline_spec, promote_games, seed0 + 10000,
+                                  args.workers, min_games=max(20, promote_games),
+                                  lines=lines, promotion_objective=promotion_objective,
+                                  runner=runner)
