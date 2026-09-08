@@ -313,3 +313,11 @@ Licencja silnika i portu: Apache-2.0; zob. `LICENSE` i `NOTICE.md`.
 Szczegółowa mapa funkcji oryginału do Rusta: [`SOURCE_MAPPING.md`](SOURCE_MAPPING.md).
 Przegląd dostarczonego alternatywnego portu i wspólny benchmark:
 [`../port_review/REVIEW.md`](../port_review/REVIEW.md).
+
+## Adapter do lejka LAB-u
+
+Przeniesione i utwardzone rozwiązanie z audytu `arena/01a075fa-riemann`:
+[`LAB_BACKEND.md`](LAB_BACKEND.md). `tools/lab_backend.py` przyjmuje sześciopolowe
+zadania LAB-u, rozpoznaje statyczne szablony bez wykonywania kodu, grupuje
+horyzonty i reguły rąk, zachowuje kolejność oraz obsługuje jawny Python fallback.
+Nie zamienia polityki reaktywnej w taśmę tylko dlatego, że ma zmienną `ACTIONS`.

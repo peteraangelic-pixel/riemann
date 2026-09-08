@@ -20,9 +20,10 @@ import time
 
 from export_tape import extract, write_tape
 from py_reference import PythonReplay, SIM
+from rust_client import DEFAULT_BINARY
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_BIN = ROOT / "target/release/kg_sim"
+DEFAULT_BIN = DEFAULT_BINARY
 
 
 def bits(values):

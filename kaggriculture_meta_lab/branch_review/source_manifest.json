@@ -1,0 +1,274 @@
+{
+  "repository": "peteraangelic-pixel/riemann",
+  "branch": "arena/01a075fa-riemann",
+  "commit": "99c364e55fc88bd03954ab93e7b742fedac45101",
+  "later_checked_commit": "190989e605749a435b33e2075411e2ea330b152f",
+  "later_changes": "audit document and sweep configuration only; engine/backend unchanged",
+  "files": [
+    {
+      "path": "kaggriculture_meta_lab/agents/current/agent_v7_scripted.py",
+      "blob_sha1": "4667cdba039b8b4e5f2d61591267fa9fdc32026a",
+      "size": 24788
+    },
+    {
+      "path": "kaggriculture_meta_lab/agents/current/agent_v8_aastik.py",
+      "blob_sha1": "2497296732ea16aab869b48c401dca4513124170",
+      "size": 12583
+    },
+    {
+      "path": "kaggriculture_meta_lab/agents/current/agent_v8_hybrid.py",
+      "blob_sha1": "c4bc185afb5eeeff3c285d68d7e2a145e5731e3c",
+      "size": 12608
+    },
+    {
+      "path": "kaggriculture_meta_lab/agents/current/agent_v9_b21_s16.py",
+      "blob_sha1": "02ba060113398152a19de74defec191f38036bb1",
+      "size": 23309
+    },
+    {
+      "path": "kaggriculture_meta_lab/kaggriculture_lab/__init__.py",
+      "blob_sha1": "2147a9a974b8485099120503927851bec59f7c9d",
+      "size": 926
+    },
+    {
+      "path": "kaggriculture_meta_lab/kaggriculture_lab/agents.py",
+      "blob_sha1": "6a14b4614cdb22a29df08df0f36f346ed4338c3e",
+      "size": 5253
+    },
+    {
+      "path": "kaggriculture_meta_lab/kaggriculture_lab/corpus.py",
+      "blob_sha1": "950533caae717db1383bb0a2b3c0d36e6a96df29",
+      "size": 4279
+    },
+    {
+      "path": "kaggriculture_meta_lab/kaggriculture_lab/engine.py",
+      "blob_sha1": "56dac07c6a345fa538f70c50603d2b1342ee42f1",
+      "size": 1579
+    },
+    {
+      "path": "kaggriculture_meta_lab/kaggriculture_lab/rust_backend.py",
+      "blob_sha1": "e81e54617191c02c0dab9a0c76c43e9ded06b71f",
+      "size": 8132
+    },
+    {
+      "path": "kaggriculture_meta_lab/kaggriculture_lab/stats.py",
+      "blob_sha1": "a74128081c325c72e2a5d78352f151556a99378d",
+      "size": 5361
+    },
+    {
+      "path": "kaggriculture_meta_lab/kaggriculture_lab/tournament.py",
+      "blob_sha1": "ce875ed19784794846d73b9ef774be186e8c35ff",
+      "size": 6488
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/Cargo.lock",
+      "blob_sha1": "fc58dbd9f26604726956d3e29bac79b641c61998",
+      "size": 8541
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/Cargo.toml",
+      "blob_sha1": "38e0adf4e90a5bbcb97bbce3ce972d46ee4b99ae",
+      "size": 611
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/LICENSE",
+      "blob_sha1": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "size": 11357
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/Makefile",
+      "blob_sha1": "2db0ea5e6f4a85c5d40a25647f236627bb407340",
+      "size": 760
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/NOTICE.md",
+      "blob_sha1": "9d4d76b5a784ea5c198999595a5ea28390a5ea19",
+      "size": 1539
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/README.md",
+      "blob_sha1": "7961ba095a6eb095ffc10090abffcf78bd03eb84",
+      "size": 11442
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/VALIDATION.md",
+      "blob_sha1": "b913330e8a4f2b87ad7868f8d1a11d8622f4e281",
+      "size": 6306
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/reference/HANDOFF_FOR_FABLE.md",
+      "blob_sha1": "a64a9a9df4dec08dfe4d8bc777a32f87b5b80149",
+      "size": 3121
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/reference/agent_v9_b21_s16.example.py",
+      "blob_sha1": "02ba060113398152a19de74defec191f38036bb1",
+      "size": 23309
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/reference/kaggriculture_config.json",
+      "blob_sha1": "b354d06b742fe48402513792253f1a5c29366b20",
+      "size": 6002
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/reference/kaggriculture_sim.py",
+      "blob_sha1": "3c202c7ee921da239356789e266b694635103fc4",
+      "size": 40356
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/reference/provenance.json",
+      "blob_sha1": "0f5a814b22cb39dd989d887ed084ec8472ce324b",
+      "size": 991
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/reference/seed_utils.py",
+      "blob_sha1": "c5998111ddb829599673db3050e3b6901acd6da3",
+      "size": 2036
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/requirements-framework.txt",
+      "blob_sha1": "7dc4425a5e04e525bb7c948029d744850bcc3e8c",
+      "size": 186
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/src/config.rs",
+      "blob_sha1": "91336ca3963effc7c2e9e15bf07d2d5145e9719d",
+      "size": 7787
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/src/data.rs",
+      "blob_sha1": "7cb6383eb944cbbccfecd334879e9f13c7789c28",
+      "size": 5210
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/src/engine.rs",
+      "blob_sha1": "dab3ccd779c707cb6bbf8d3b5e3d8c05702e0e22",
+      "size": 27130
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/src/lib.rs",
+      "blob_sha1": "e1bc6026def980de9e4d6a3340b262b5663053a3",
+      "size": 4574
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/src/main.rs",
+      "blob_sha1": "9cfed1d7b411e449fe81c941f22230502e290b07",
+      "size": 9313
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/src/market.rs",
+      "blob_sha1": "98740d57f67974b03243ec1a300e6c34978c4cc1",
+      "size": 4706
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/src/rng.rs",
+      "blob_sha1": "2ee5485950fc2127b3a601b02fcd8c983bdc99f0",
+      "size": 4089
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/src/snapshot.rs",
+      "blob_sha1": "6c3f8e658a0235cd3d9449157559240d7672d8b6",
+      "size": 4176
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/src/tape.rs",
+      "blob_sha1": "f5d0595c80abc18090e145c31faba11dc2313e22",
+      "size": 7800
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/tests/conformance.rs",
+      "blob_sha1": "69382ad8eabbc72bdfed627a168d5ec88224f64d",
+      "size": 1917
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/tests/fixtures/conformance.json",
+      "blob_sha1": "3904a53a824a159101ed24db10c4c305c8430f9c",
+      "size": 34156
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/tests/hand_trimming.rs",
+      "blob_sha1": "5e99071a2635c599bff47eeae072390151f28026",
+      "size": 2000
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/tests/no_alloc.rs",
+      "blob_sha1": "fca1f7702cdb411e9f7d3365d2fd99f1eb01b396",
+      "size": 2717
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/tests/test_cli.py",
+      "blob_sha1": "02b82bea1873e897e12cfd9a75e26e501b8ac507",
+      "size": 14732
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/tests/test_client.py",
+      "blob_sha1": "43c4a97f3fb19454d934dfa21ea019415ad985e7",
+      "size": 6540
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/tests/test_reference_config.py",
+      "blob_sha1": "86d2ee1fc5d7d979e332af9280079e2f2581ce06",
+      "size": 2179
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/tools/__init__.py",
+      "blob_sha1": "edd457b02505afce753d43216cec6fa0ab1376f4",
+      "size": 91
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/tools/benchmark.py",
+      "blob_sha1": "767e12f13720e3104297e465be67dc11a920bcbe",
+      "size": 4674
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/tools/benchmark_batch.py",
+      "blob_sha1": "664d42e5000552a761ec6078c09e8279a80c597d",
+      "size": 6541
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/tools/check.py",
+      "blob_sha1": "89182a4f11c6ca08ed647664d5e1f14840df6a26",
+      "size": 12897
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/tools/check_framework.py",
+      "blob_sha1": "935f070da5ac997f85803cd8a77f44e1d96e8917",
+      "size": 8870
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/tools/ci_run.py",
+      "blob_sha1": "87622ce606ec3d4ba94bd6fc4f951ae5f2e5a565",
+      "size": 2161
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/tools/export_tape.py",
+      "blob_sha1": "0a699bdb57323a679c4adafd5150f2312bcaeddc",
+      "size": 6074
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/tools/generate_vectors.py",
+      "blob_sha1": "d881cac41fc50e04819c90facc11e88d85a3e69f",
+      "size": 1424
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/tools/py_reference.py",
+      "blob_sha1": "438034a8e51b87cff3f489e2a5b8412b63a60a0e",
+      "size": 6392
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/tools/rust_client.py",
+      "blob_sha1": "15a6e33f31a26f9ab1bac346162861dfea941585",
+      "size": 5997
+    },
+    {
+      "path": "kaggriculture_meta_lab/rust_port/wa\u017cne.md",
+      "blob_sha1": "61dc5ebf3377c525c3a58ba02ff6e0a243fd6336",
+      "size": 4073
+    },
+    {
+      "path": "kaggriculture_meta_lab/scripts/structural_gen.py",
+      "blob_sha1": "d001dfc2d1e266d6a3744a78c9b6e7ace6f1ddab",
+      "size": 11459
+    }
+  ]
+}

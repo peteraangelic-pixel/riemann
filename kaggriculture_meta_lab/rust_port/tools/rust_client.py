@@ -11,12 +11,18 @@ import csv
 from dataclasses import dataclass
 import json
 import math
+import os
 from pathlib import Path
 import subprocess
 import tempfile
 from typing import Iterable
 
-DEFAULT_BINARY = Path(__file__).resolve().parents[1] / "target/release/kg_sim"
+def binary_name(platform_name=None):
+    """Platform-aware executable name; Path.exists does not apply PATHEXT."""
+    return "kg_sim.exe" if (platform_name or os.name) == "nt" else "kg_sim"
+
+
+DEFAULT_BINARY = Path(__file__).resolve().parents[1] / "target" / "release" / binary_name()
 
 
 @dataclass(frozen=True)

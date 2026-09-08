@@ -24,6 +24,7 @@ import zipfile
 from check import bits, difference, verify_sources
 from export_tape import DEFAULT_AGENT, extract, write_tape
 from py_reference import PythonReplay
+from rust_client import DEFAULT_BINARY
 
 ROOT = Path(__file__).resolve().parents[1]
 WHEEL_URL = "https://files.pythonhosted.org/packages/f1/a3/16f3211bec7d5b594619e4f53400111783cc0c1575343bef006485d02f64/kaggle_environments-1.32.7-py3-none-any.whl"
@@ -59,7 +60,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--wheel", type=Path)
     parser.add_argument("--download", action="store_true", help="download the 60 MB pinned wheel (no Kaggle package dependencies)")
-    parser.add_argument("--binary", type=Path, default=ROOT / "target/release/kg_sim")
+    parser.add_argument("--binary", type=Path, default=DEFAULT_BINARY)
     parser.add_argument("--python-only", action="store_true", help="validate the adapter only, without a Rust binary")
     args = parser.parse_args()
     if args.wheel is None and not args.download:
