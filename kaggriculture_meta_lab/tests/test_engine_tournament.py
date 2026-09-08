@@ -20,13 +20,14 @@ def test_play_game_deterministic():
 
 
 def test_bad_agent_does_not_crash_batch():
-    # With debug=False the engine swallows agent exceptions and DONEs the turn;
-    # the contract is: play_game never raises and returns a finished game.
+    # The batch survives the exception, but the game MUST count as an error.
+    # Kaggriculture can overwrite historical ERROR with terminal DONE.
     def boom(obs, config):
         raise RuntimeError("kaboom")
     res = play_game(boom, "pass", seed=1, steps=24)
-    assert res["error"] is None
-    assert res["statuses"] == ["DONE", "DONE"]  # batch survives the bad agent
+    assert res["error"] is not None
+    assert "ERROR" in res["error"]
+    assert res["statuses"] == ["DONE", "DONE"]  # terminal overwrite is not success
 
 
 def test_build_jobs_pairing():

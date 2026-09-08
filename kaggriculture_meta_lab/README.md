@@ -10,6 +10,37 @@ promotion evidence. Current snapshots live in `agents/current/`:
 - `agent_v8_hybrid.py`: immutable 203,785-peak control, 140/490;
 - `agent_v9_b21_s16.py`: current candidate, 184/490, mean margin +835.
 
+## Audited replay semantics and Rust acceleration
+
+The replay path is now fail-closed:
+
+- use `replay["info"]["seed"]` first (legacy `configuration.seed` only as a
+  fallback); never invent seed 0 when the replay has no valid seed;
+- replay row 0 is initialization, so environment step N uses replay row N+1;
+- ERROR/INVALID/TIMEOUT, malformed rewards, NaN and infinity are error rows and
+  can never enter win/margin statistics.
+
+`rust_port/` is the bit-parity-validated static tape simulator. `sweep.py`
+accepts `--backend auto|rust|python`; auto uses a release `kg_sim` when present
+and otherwise uses Python. Rust runtime/protocol failures are deliberately
+fatal rather than silently rerunning a potentially huge batch in Python.
+Static ACTIONS agents use hand trimming on both inputs. Raw `tape:...#seat`
+replays are supported with asymmetric semantics: trim the candidate but preserve
+the historical opponent actions exactly. Reactive policies remain on Python and
+should set `RUST_TAPE_SAFE=False` if they also expose an ACTIONS constant.
+
+Build once on Windows, then reuse the binary:
+
+```powershell
+cd rust_port
+cargo build --release --locked
+cd ..
+python scripts\sweep.py --config sweeps\v10_b21_rating_finalists.json --backend rust --workers 16
+```
+
+Before any large Rust run, `scripts/check_rust_lab_parity.py` must match binary64
+rewards against the audited Python LAB for static and raw-replay jobs.
+
 Use this bounded comparison first:
 
 ```powershell

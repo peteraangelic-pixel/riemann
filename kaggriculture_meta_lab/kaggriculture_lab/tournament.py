@@ -15,6 +15,7 @@ Design:
 """
 from __future__ import annotations
 
+import math
 import os
 import sys
 import time
@@ -40,10 +41,17 @@ def _play(job: tuple) -> dict[str, Any]:
         opp = resolve(opp_spec)
         a0, a1 = (cand, opp) if seat == 0 else (opp, cand)
         res = play_game(a0, a1, seed=seed, steps=steps)
-        if res.get("error"):
+        failure = res.get("error")
+        rewards = res.get("rewards")
+        if not failure and res.get("statuses") != ["DONE", "DONE"]:
+            failure = "engine returned unfinished/failed terminal statuses"
+        if not failure and (not isinstance(rewards, (list, tuple)) or len(rewards) != 2
+                or any(type(v) not in (int, float) or not math.isfinite(v) for v in rewards)):
+            failure = "engine returned malformed/non-finite rewards"
+        if failure:
             return {"tag": tag, "seed": seed, "seat": seat, "opponent": opp_spec,
                     "self_reward": 0.0, "opp_reward": 0.0, "margin": 0.0,
-                    "outcome": "error", "error": res["error"]}
+                    "outcome": "error", "error": failure}
         rewards = res["rewards"]
         self_r = rewards[seat]
         opp_r = rewards[1 - seat]

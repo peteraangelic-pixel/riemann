@@ -60,10 +60,13 @@ them.
   old policy as a competitive base.
 - `[ACTIVE]` Useful engineering: Windows-safe pytest paths (`pytest.ini`, `conftest.py`,
   `tmp_path`) and a lossless tape-opening patch test.
-- `[PENDING]` Potential acceleration: a Rust/Rayon simulator handoff spec with shared
-  market and bit-exact reward parity as non-negotiable requirements. Claimed
-  8-20x speedup is unmeasured; do not trust Rust outcomes before 50-100+ exact
-  Python parity seeds across multiple tape pairs.
+- `[USED]` Rust/Rayon static-tape acceleration is now independently validated
+  and integrated into the LAB: 585 bit-exact Python comparisons, 22,597 exact
+  states, mixed hand semantics, deterministic 14k batches, and roughly 112-222x
+  measured small-batch speedup on a four-logical-CPU runner. Treat the number as
+  a simulator benchmark—not a full-sweep guarantee. A repository-native
+  Python/Rust parity gate remains mandatory before large use; reactive policies
+  stay on the audited Python engine.
 
 ## Source D — historical fertilizer sweep uploaded by the user
 

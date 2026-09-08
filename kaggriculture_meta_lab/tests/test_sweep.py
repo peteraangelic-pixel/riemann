@@ -3,10 +3,14 @@ import json
 import sys
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from scripts.sweep import expand_config, make_variant, project_game_budget  # noqa: E402
+from scripts.sweep import (  # noqa: E402
+    _require_no_errors, expand_config, make_variant, project_game_budget,
+)
 
 BASE = ROOT / "agents" / "variants" / "agent_v8_fert.py"
 
@@ -56,6 +60,13 @@ def test_expand_config_dedupes_identical_params():
         {"name": "y", "params": {"FERT_DETOUR_RADIUS": 2}},
     ]}
     assert len(expand_config(cfg)) == 1
+
+
+def test_sweep_refuses_to_score_error_rows():
+    rows = [{"outcome": "win", "error": None},
+            {"outcome": "error", "error": "agent 1: TIMEOUT"}]
+    with pytest.raises(RuntimeError, match="refusing to score 1 failed games"):
+        _require_no_errors(rows, "finals")
 
 
 def test_direct_b21_budget_includes_control_only_in_finals():

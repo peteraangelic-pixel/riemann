@@ -81,8 +81,8 @@ def score_episode(candidate_fn, replay: dict, our_seat: int) -> dict[str, Any]:
     """Run candidate vs the recorded opponent in the episode's seed/seat.
 
     Returns a dict with the candidate's score, opponent replay score and outcome.
-    The environment seed is read from the replay configuration so the map/market
-    matches the original game.
+    The resolved seed comes from info.seed (configuration.seed is normally
+    scrubbed to null by Kaggle), with legacy configuration fallback only.
     """
     from .engine import play_game
 
@@ -97,7 +97,12 @@ def score_episode(candidate_fn, replay: dict, our_seat: int) -> dict[str, Any]:
         rec_rewards = [float(s.get("reward") or 0.0) for s in last]
     except Exception:
         rec_rewards = [0.0, 0.0]
-    seed = replay.get("configuration", {}).get("seed") or 0
+    seed = replay.get("info", {}).get("seed")
+    if seed is None:
+        seed = replay.get("configuration", {}).get("seed")
+    if not isinstance(seed, int) or isinstance(seed, bool):
+        return {"error": "replay has no valid resolved integer seed; refusing to guess 0",
+                "rec_self": rec_rewards[our_seat], "rec_opp": rec_rewards[opp_seat]}
     n_steps = len(steps)
     a0, a1 = (candidate_fn, opp) if our_seat == 0 else (opp, candidate_fn)
     res = play_game(a0, a1, seed=int(seed), steps=n_steps)

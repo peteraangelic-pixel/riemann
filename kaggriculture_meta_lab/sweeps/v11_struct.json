@@ -1,0 +1,135 @@
+{
+  "base": "agents/current/agent_v9_b21_s16.py",
+  "baseline": "agents/current/agent_v9_b21_s16.py",
+  "baseline_name": "b21s16",
+  "start_seed": 20264100,
+  "screen_games": 20,
+  "promote_games": 120,
+  "final_games": 175,
+  "top_k": 6,
+  "promotion_objective": "rating",
+  "finals_include_baseline": true,
+  "include_untouched_base": true,
+  "variants": [
+    {
+      "name": "struct_hire0p7",
+      "path": "agents/sweeps/struct_hire0p7.py",
+      "params": {
+        "hire_scale": 0.7,
+        "fert_scale": 1.0
+      }
+    },
+    {
+      "name": "struct_hire0p7_fert1p5",
+      "path": "agents/sweeps/struct_hire0p7_fert1p5.py",
+      "params": {
+        "hire_scale": 0.7,
+        "fert_scale": 1.5
+      }
+    },
+    {
+      "name": "struct_hire0p7_fert2p0",
+      "path": "agents/sweeps/struct_hire0p7_fert2p0.py",
+      "params": {
+        "hire_scale": 0.7,
+        "fert_scale": 2.0
+      }
+    },
+    {
+      "name": "struct_hire0p85",
+      "path": "agents/sweeps/struct_hire0p85.py",
+      "params": {
+        "hire_scale": 0.85,
+        "fert_scale": 1.0
+      }
+    },
+    {
+      "name": "struct_hire0p85_fert1p5",
+      "path": "agents/sweeps/struct_hire0p85_fert1p5.py",
+      "params": {
+        "hire_scale": 0.85,
+        "fert_scale": 1.5
+      }
+    },
+    {
+      "name": "struct_hire0p85_fert2p0",
+      "path": "agents/sweeps/struct_hire0p85_fert2p0.py",
+      "params": {
+        "hire_scale": 0.85,
+        "fert_scale": 2.0
+      }
+    },
+    {
+      "name": "struct_",
+      "path": "agents/sweeps/struct_.py",
+      "params": {
+        "hire_scale": 1.0,
+        "fert_scale": 1.0
+      }
+    },
+    {
+      "name": "struct_fert1p5",
+      "path": "agents/sweeps/struct_fert1p5.py",
+      "params": {
+        "hire_scale": 1.0,
+        "fert_scale": 1.5
+      }
+    },
+    {
+      "name": "struct_fert2p0",
+      "path": "agents/sweeps/struct_fert2p0.py",
+      "params": {
+        "hire_scale": 1.0,
+        "fert_scale": 2.0
+      }
+    },
+    {
+      "name": "struct_hire1p15",
+      "path": "agents/sweeps/struct_hire1p15.py",
+      "params": {
+        "hire_scale": 1.15,
+        "fert_scale": 1.0
+      }
+    },
+    {
+      "name": "struct_hire1p15_fert1p5",
+      "path": "agents/sweeps/struct_hire1p15_fert1p5.py",
+      "params": {
+        "hire_scale": 1.15,
+        "fert_scale": 1.5
+      }
+    },
+    {
+      "name": "struct_hire1p15_fert2p0",
+      "path": "agents/sweeps/struct_hire1p15_fert2p0.py",
+      "params": {
+        "hire_scale": 1.15,
+        "fert_scale": 2.0
+      }
+    },
+    {
+      "name": "struct_hire1p3",
+      "path": "agents/sweeps/struct_hire1p3.py",
+      "params": {
+        "hire_scale": 1.3,
+        "fert_scale": 1.0
+      }
+    },
+    {
+      "name": "struct_hire1p3_fert1p5",
+      "path": "agents/sweeps/struct_hire1p3_fert1p5.py",
+      "params": {
+        "hire_scale": 1.3,
+        "fert_scale": 1.5
+      }
+    },
+    {
+      "name": "struct_hire1p3_fert2p0",
+      "path": "agents/sweeps/struct_hire1p3_fert2p0.py",
+      "params": {
+        "hire_scale": 1.3,
+        "fert_scale": 2.0
+      }
+    }
+  ]
+}

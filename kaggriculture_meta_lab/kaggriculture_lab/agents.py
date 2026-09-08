@@ -82,6 +82,8 @@ def _make_tape(path: Path, seat: int | None) -> AgentFn:
     steps = _find_steps(replay)
     if seat is None:
         seat = _winner_seat(steps) or 0
+    if seat not in (0, 1):
+        raise ValueError("replay seat must be 0 or 1")
     tape: list[dict] = []
     for row in steps:
         action = {"farmer": ["PASS"], "hands": [], "market": []}
@@ -93,7 +95,8 @@ def _make_tape(path: Path, seat: int | None) -> AgentFn:
 
     def _agent(obs: dict, *a: Any, **k: Any) -> dict:
         step = int(obs.get("step", 0) or 0)
-        act = tape[min(step, len(tape) - 1)] if tape else {"farmer": ["PASS"], "hands": [], "market": []}
+        # Replay row 0 is initialization; action N is recorded in row N+1.
+        act = tape[min(step + 1, len(tape) - 1)] if tape else {"farmer": ["PASS"], "hands": [], "market": []}
         return {"farmer": list(act.get("farmer", ["PASS"])),
                 "hands": [list(h) for h in act.get("hands", [])],
                 "market": [list(o) for o in act.get("market", [])]}

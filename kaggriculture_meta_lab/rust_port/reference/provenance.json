@@ -1,0 +1,17 @@
+{
+  "github_commit": "a310ca103efcbb95376b03f32bb901c9d8b05791",
+  "github_branch": "arena/01a06bce-riemann",
+  "upstream_version": "kaggle-environments==1.32.7",
+  "wheel_sha256": "2a1bb862ad2d6463080f80f6a766f46d94b53fd57168cfeddb9857fc3dbc4c8f",
+  "files": {
+    "HANDOFF_FOR_FABLE.md": "3f915c627f4502b56487d634a9e0569d5e6dcd8a0b6d3c42a85e3d604622d6a1",
+    "agent_v9_b21_s16.example.py": "1e110832a522d5c24362bc73e3c085d99314beef4f5c37685b5c86d54fc450d0",
+    "kaggriculture_config.json": "a82c89c1a2315b93f39775d8e025471a01b738647c9772658368ee6b1b6f4867",
+    "kaggriculture_sim.py": "bc8a54879ef02c7ea64b8b333d6a976f0ea65c4949149d01f463f23bccee653e",
+    "seed_utils.py": "b63675fa0975fd85a88eaf101efc5b9ad03e757adb179bfff5520629936a74cb"
+  },
+  "comparison": {
+    "kaggriculture_sim.py": "byte-identical to kaggle_environments/envs/kaggriculture/kaggriculture.py",
+    "kaggriculture_config.json": "byte-identical to kaggle_environments/envs/kaggriculture/kaggriculture.json"
+  }
+}
