@@ -89,11 +89,12 @@ def _safe_summary(rows: list[dict]) -> dict[str, Any] | None:
     return _summary(rows) if rows else None
 
 
-def candidate_summary(rows: list[dict], source_episode_id: int | None) -> dict[str, Any]:
+def candidate_summary(rows: list[dict], source_episode_id: int | None,
+                      limits: tuple[int, ...]) -> dict[str, Any]:
     if any(row.get("error") or row.get("outcome") == "error" for row in rows):
         raise RuntimeError("candidate has failed games")
     curricula = {}
-    for limit in (10, 20, 30):
+    for limit in limits:
         current = [row for row in rows if row["rank"] <= limit]
         nonleak = ([row for row in current if row["episode_id"] != source_episode_id]
                    if source_episode_id is not None else current)
@@ -121,13 +122,21 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--corpus", type=Path, required=True)
     parser.add_argument("--workers", type=int, default=8)
+    parser.add_argument("--max-rank", type=int, choices=(10, 20, 30), default=30)
+    parser.add_argument("--targets", choices=("all", "best-listed"), default="all")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     corpus = args.corpus.resolve()
 
     # Build target records once. Candidate fields are replaced below; this also
     # validates every target team seat and info.seed before native execution.
-    target_jobs, target_metadata = build_top30_jobs(corpus, CONTROLS[-1][1], 30)
+    target_jobs, target_metadata = build_top30_jobs(
+        corpus, CONTROLS[-1][1], args.max_rank)
+    if args.targets == "best-listed":
+        selected = [(job, meta) for job, meta in zip(target_jobs, target_metadata)
+                    if meta["best_listed_submission"]]
+        target_jobs = [item[0] for item in selected]
+        target_metadata = [item[1] for item in selected]
     with tempfile.TemporaryDirectory(prefix="kg-top30-exemplars-") as temp:
         candidates = make_candidates(corpus, Path(temp))
         jobs: list[tuple] = []
@@ -151,21 +160,27 @@ def main() -> int:
             public_candidate = {k: v for k, v in candidate.items() if k != "path"}
             results.append({
                 "candidate": public_candidate,
-                "summary": candidate_summary(rows, candidate["source_episode_id"]),
+                "summary": candidate_summary(
+                    rows, candidate["source_episode_id"],
+                    tuple(limit for limit in (10, 20, 30) if limit <= args.max_rank)),
             })
 
+    curricula = tuple(f"top{limit}" for limit in (10, 20, 30)
+                       if limit <= args.max_rank)
     output = {
         "format": "kaggriculture-top30-exemplar-screen-v1",
         "mode": "open-loop policy tapes; original target seeds; candidate both seats",
         "candidate_count": len(results),
         "game_count": len(jobs),
+        "max_rank": args.max_rank,
+        "target_subset": args.targets,
         "rankings": {
             curriculum: {
                 subset: _ranking(results, curriculum, subset)
                 for subset in ("all_recent_source_episode_excluded",
                                "best_listed_source_episode_excluded")
             }
-            for curriculum in ("top10", "top20", "top30")
+            for curriculum in curricula
         },
         "results": results,
     }
