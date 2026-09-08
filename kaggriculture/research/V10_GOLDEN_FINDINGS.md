@@ -70,7 +70,9 @@ them.
   non-executing AST classification, normalized behavior fingerprints, safe
   duplicate-game reuse and fallback-row identity checks; 23,104 action checks
   and 16 full games passed. Use it for static sweeps; reactive policies stay on
-  the audited Python engine.
+  the audited Python engine. The refreshed repository-native workflow passed
+  all checks in Actions run `34251146717`, including 61 adapter/protocol tests
+  and the 14-game exact static/raw integration gate.
 
 ## Source D — historical fertilizer sweep uploaded by the user
 

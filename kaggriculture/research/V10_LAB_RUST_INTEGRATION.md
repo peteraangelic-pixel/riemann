@@ -92,5 +92,10 @@ and a 256-job adapter reduction from 5.669 s to 0.099 s (57.49x); the native
 Rust core and binary were unchanged. This verified backend now drives
 `sweep.py`; our separately parity-tested raw-replay path is retained.
 
-Large static-tape experiments may use Rust after the refreshed CI gate. Reactive
-policy experiments remain on Python until separately implemented and parity-gated.
+The refreshed repository-native gate passed in GitHub Actions run
+`34251146717` (2026-09-08): 61 Python adapter/protocol tests, Rust debug/release,
+Clippy, real-framework smoke checks, differential checks, the 14 exact
+static/raw LAB games, benchmark, and deterministic 14k batch all passed.
+
+Large static-tape experiments may use Rust. Reactive policy experiments remain
+on Python until separately implemented and parity-gated.
