@@ -31,16 +31,20 @@ def main():
             replay=json.loads(path.read_text(encoding="utf-8")); steps=_find_steps(replay)
             names=replay.get("info",{}).get("TeamNames",[])
             if team not in names: continue
-            seat=names.index(team); opp=tape_agent(steps,1-seat)
+            recorded_team_seat=names.index(team); opp=tape_agent(steps,recorded_team_seat)
             seed=replay.get("info",{}).get("seed") or replay.get("configuration",{}).get("seed") or 0
-            a0,a1=(candidate,opp) if seat==0 else (opp,candidate)
-            result=play_game(a0,a1,int(seed),steps=len(steps))
-            self_reward=result["rewards"][seat]; opp_reward=result["rewards"][1-seat]
-            rows.append({"team":team,"replay":path.name,"seat":seat,"seed":seed,
-                         "self_reward":self_reward,"opp_reward":opp_reward,
-                         "margin":self_reward-opp_reward,
-                         "outcome":"W" if self_reward>opp_reward else "L" if self_reward<opp_reward else "T",
-                         "error":result.get("error")})
+            # Replace the recorded TOP30 team with the candidate in BOTH
+            # physical seats. The tape is the named team's recorded policy.
+            for candidate_seat in (0, 1):
+                a0,a1=(candidate,opp) if candidate_seat==0 else (opp,candidate)
+                result=play_game(a0,a1,int(seed),steps=len(steps))
+                self_reward=result["rewards"][candidate_seat]; opp_reward=result["rewards"][1-candidate_seat]
+                rows.append({"team":team,"replay":path.name,"recorded_team_seat":recorded_team_seat,
+                             "candidate_seat":candidate_seat,"seed":seed,
+                             "self_reward":self_reward,"opp_reward":opp_reward,
+                             "margin":self_reward-opp_reward,
+                             "outcome":"W" if self_reward>opp_reward else "L" if self_reward<opp_reward else "T",
+                             "error":result.get("error")})
     args.out.parent.mkdir(parents=True,exist_ok=True); args.out.write_text(json.dumps(rows,indent=2)+"\n")
     for team in teams:
         q=[r for r in rows if r["team"]==team]
