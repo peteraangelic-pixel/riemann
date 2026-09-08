@@ -100,6 +100,20 @@ Format pliku (rozszerzenie dowolne, zawartość JSON):
 - Nieznane/nielegalne operacje są no-opami; wadliwe sloty zleceń nie są usuwane,
   żeby nie zmieniać ich parowania na wspólnym rynku.
 
+### Jeden strumień akcji dla obu miejsc
+
+Jeżeli masz JSON `[step]` pojedynczej polityki, możesz jawnie znormalizować go
+po stronie Pythona (pomysł użytkowy z przeglądu alternatywnego portu):
+
+```bash
+python tools/export_tape.py one_policy.json --single-stream -o work/opponent.json
+```
+
+Powstaje standardowe `[seat][step]` z niezależną kopią na każdym miejscu.
+Nie zmieniamy walidacji binarza i nie interpretujemy błędnych tablic, np.
+`[1,2]`, jako agentów PASS. To dotyczy już wyciętych akcji, nie całego replaya
+Kaggle: w replayu nadal trzeba pominąć stan początkowy i zachować `info.seed`.
+
 ## Wiele meczów — tu używamy Rayona
 
 `work/jobs.csv`, bez nagłówka (nagłówek `seed,tape_a,tape_b,reverse` też działa):
@@ -295,3 +309,7 @@ CPU: uruchomienie 16 wątków na runnerze z 4 CPU nie jest benchmarkiem 16 rdzen
   żeby „naprawić” niezgodność z Rustem.
 
 Licencja silnika i portu: Apache-2.0; zob. `LICENSE` i `NOTICE.md`.
+
+Szczegółowa mapa funkcji oryginału do Rusta: [`SOURCE_MAPPING.md`](SOURCE_MAPPING.md).
+Przegląd dostarczonego alternatywnego portu i wspólny benchmark:
+[`../port_review/REVIEW.md`](../port_review/REVIEW.md).

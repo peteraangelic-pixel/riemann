@@ -1,0 +1,59 @@
+diff --git a/src/main.rs b/src/main.rs
+--- a/src/main.rs
++++ b/src/main.rs
+@@ -49,8 +49,8 @@
+ 
+ fn run_loaded(
+     seed: i64,
+-    tape_a: &tape::Tape,
+-    tape_b: &tape::Tape,
++    tape_a: &model::Tape,
++    tape_b: &model::Tape,
+     saved_states: usize,
+     reverse: bool,
+     trim_hands: bool,
+@@ -120,7 +120,7 @@
+     if p.is_absolute() { p } else { csv_path.parent().unwrap_or(Path::new(".")).join(p) }
+ }
+ 
+-fn load_tape_cache(jobs: &[Job]) -> HashMap<PathBuf, Result<Arc<tape::Tape>, String>> {
++fn load_tape_cache(jobs: &[Job]) -> HashMap<PathBuf, Result<Arc<model::Tape>, String>> {
+     let mut unique = HashMap::<PathBuf, ()>::new();
+     for job in jobs {
+         if !job.tape_a.as_os_str().is_empty() { unique.entry(job.tape_a.clone()).or_insert(()); }
+@@ -184,7 +184,7 @@
+ 
+     Ok(model::SimConfig {
+         starting_money:get_i("startingMoney",d.starting_money), turns_per_day:get_u("turnsPerDay",d.turns_per_day),
+-        shed_capacity:get_i("shedCapacity",d.shed_capacity) as i32, max_market_orders:get_u("maxMarketOrdersPerTurn",d.max_market_orders),
++        shed_capacity:get_i("shedCapacity",i64::from(d.shed_capacity)) as i32, max_market_orders:get_u("maxMarketOrdersPerTurn",d.max_market_orders),
+         weed_spawn_chance:get_f("weedSpawnChance",d.weed_spawn_chance), shop_unlock_interval:get_u("townShopUnlockInterval",d.shop_unlock_interval),
+         shop_sell_interval:get_u("townShopSellInterval",d.shop_sell_interval), center_sell_interval:get_u("townCenterSellInterval",d.center_sell_interval),
+         farm_hand_cost_mult:get_i("farmHandCostMult",d.farm_hand_cost_mult), market_overrides:overrides,
+@@ -229,7 +229,7 @@
+                 let seed=job.seed.expect("parse_error guarantees seed");
+                 match (cache.get(&job.tape_a),cache.get(&job.tape_b)) {
+                     (Some(Ok(a)),Some(Ok(b))) => {
+-                        let seed64=match checked_i128_to_i64(seed){Ok(v)=>v,Err(e)=>error_json(e)};
++                        let seed64=checked_i128_to_i64(seed).map_err(error_json);
+                         match seed64 { Ok(s)=>run_loaded(s,a,b,saved_states,job.reverse,args.trim_hands,cfg.clone()), Err(v)=>v }
+                     }
+                     (Some(Err(e)),_)=>error_json(e),
+diff --git a/src/sim.rs b/src/sim.rs
+--- a/src/sim.rs
++++ b/src/sim.rs
+@@ -1,4 +1,4 @@
+-use crate::{model::*, py_rng::PythonRandom, tape::Tape};
++use crate::{model::*, py_rng::PythonRandom};
+ 
+ const MAX_SHOPS: usize = 8;
+ const HINGE_GAIN: f64 = 8.0;
+@@ -557,7 +557,7 @@
+ fn decay_plants(farm:&mut Farm,step:usize) {
+     for ti in 0..TILES {
+         let Tile::Plant(mut plant)=farm.tiles[ti] else { continue; };
+-        if plant.max_lifespan_step < 0 || step as i32 < plant.max_lifespan_step { continue; }
++        if plant.max_lifespan_step < 0 || (step as i32) < plant.max_lifespan_step { continue; }
+         if (step as i32 - plant.max_lifespan_step) % 2 != 0 { continue; }
+         plant.yield_units -= 1;
+         farm.tiles[ti] = if plant.yield_units <= 0 { Tile::Weed } else { Tile::Plant(plant) };

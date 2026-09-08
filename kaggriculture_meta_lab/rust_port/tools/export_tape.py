@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import ast
 import base64
+import copy
 import json
 from pathlib import Path
 import zlib
@@ -27,6 +28,19 @@ def validate_tape(tape):
     if any(not isinstance(seat, list) or not seat for seat in tape):
         raise ValueError("both seats must have a nonempty action list")
     return tape
+
+
+
+def extract_single_stream(path):
+    """Explicit JSON-only [step] -> [seat][step] convenience conversion.
+
+    Keep the native simulator's two-seat contract strict. In particular,
+    malformed arrays must not silently become two PASS agents.
+    """
+    actions = json.loads(Path(path).read_text(encoding="utf-8-sig"))
+    if not isinstance(actions, list) or not actions or not all(isinstance(a, dict) for a in actions):
+        raise ValueError("single stream must be a nonempty JSON array of action objects")
+    return [copy.deepcopy(actions), copy.deepcopy(actions)]
 
 
 def _unwrap(node, function):
@@ -109,8 +123,15 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("source", type=Path, nargs="?", default=DEFAULT_AGENT)
     parser.add_argument("-o", "--output", type=Path, required=True)
+    parser.add_argument("--single-stream", action="store_true", help="explicitly mirror a JSON [step] action list into both seats")
     args = parser.parse_args()
-    write_tape(args.output, extract(args.source))
+    if args.source.resolve() == args.output.resolve():
+        parser.error("output must not overwrite the input source")
+    try:
+        tape = extract_single_stream(args.source) if args.single_stream else extract(args.source)
+        write_tape(args.output, tape)
+    except (OSError, ValueError, SyntaxError) as error:
+        parser.error(str(error))
     print(args.output)
 
 

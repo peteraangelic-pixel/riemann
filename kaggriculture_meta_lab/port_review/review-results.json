@@ -1,0 +1,3499 @@
+{
+  "archive_sha256": "d194d7197f0adcad4a6e6a1eedde6b6eb319e3748d55437f63da9a96c9b7b740",
+  "source_commit": "2352235d9bb6ae29d08a89e377380242b24d7ed7",
+  "compiler": "rustc 1.85.1 (4eb161250 2025-03-15)",
+  "python": "3.12.14",
+  "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+  "logical_cpus": 4,
+  "scope": "original ZIP vs compile-only repair vs production engine; no gameplay repair in the alternate",
+  "cpu": "Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz",
+  "compile_patch_sha256": "7b316dc3b0dfc97d0bf7eed266478f9c75ca998e7244eb5427c45c8f7d13cbc8",
+  "original_build": {
+    "label": "unmodified ZIP",
+    "exit_code": 101,
+    "elapsed_seconds": 10.81996092,
+    "errors": [
+      {
+        "code": null,
+        "message": "expected identifier, found keyword `continue`",
+        "rendered": "error: expected identifier, found keyword `continue`\n   --> src/sim.rs:560:83\n    |\n560 |         if plant.max_lifespan_step < 0 || step as i32 < plant.max_lifespan_step { continue; }\n    |                                                               -----------------   ^^^^^^^^ expected identifier, found keyword\n    |                                                               |\n    |                                                               while parsing this struct\n    |\nhelp: escape `continue` to use it as an identifier\n    |\n560 |         if plant.max_lifespan_step < 0 || step as i32 < plant.max_lifespan_step { r#continue; }\n    |                                                                                   ++\n\n",
+        "locations": [
+          {
+            "file_name": "src/sim.rs",
+            "line_start": 560,
+            "column_start": 83
+          }
+        ]
+      },
+      {
+        "code": null,
+        "message": "`<` is interpreted as a start of generic arguments for `i32`, not a comparison",
+        "rendered": "error: `<` is interpreted as a start of generic arguments for `i32`, not a comparison\n   --> src/sim.rs:560:55\n    |\n560 |         if plant.max_lifespan_step < 0 || step as i32 < plant.max_lifespan_step { continue; }\n    |                                                       ^ ------ interpreted as generic arguments\n    |                                                       |\n    |                                                       not interpreted as comparison\n    |\nhelp: try comparing the cast value\n    |\n560 |         if plant.max_lifespan_step < 0 || (step as i32) < plant.max_lifespan_step { continue; }\n    |                                           +           +\n\n",
+        "locations": [
+          {
+            "file_name": "src/sim.rs",
+            "line_start": 560,
+            "column_start": 55
+          }
+        ]
+      },
+      {
+        "code": "E0603",
+        "message": "struct import `Tape` is private",
+        "rendered": "error[E0603]: struct import `Tape` is private\n  --> src/sim.rs:1:51\n   |\n1  | use crate::{model::*, py_rng::PythonRandom, tape::Tape};\n   |                                                   ^^^^ private struct import\n   |\nnote: the struct import `Tape` is defined here...\n  --> src/tape.rs:1:5\n   |\n1  | use crate::model::*;\n   |     ^^^^^^^^^^^^^^^\nnote: ...and refers to the struct `Tape` which is defined here\n  --> src/model.rs:49:1\n   |\n49 | pub struct Tape { pub seats: [Vec<StepAction>; 2] }\n   | ^^^^^^^^^^^^^^^ you could import this directly\nhelp: import `Tape` through the re-export\n   |\n1  | use crate::{model::*, py_rng::PythonRandom, model::Tape};\n   |                                             ~~~~~~~~~~~\n\n",
+        "locations": [
+          {
+            "file_name": "src/sim.rs",
+            "line_start": 1,
+            "column_start": 51
+          }
+        ]
+      },
+      {
+        "code": "E0603",
+        "message": "struct import `Tape` is private",
+        "rendered": "error[E0603]: struct import `Tape` is private\n  --> src/main.rs:52:20\n   |\n52 |     tape_a: &tape::Tape,\n   |                    ^^^^ private struct import\n   |\nnote: the struct import `Tape` is defined here...\n  --> src/tape.rs:1:5\n   |\n1  | use crate::model::*;\n   |     ^^^^^^^^^^^^^^^\nnote: ...and refers to the struct `Tape` which is defined here\n  --> src/model.rs:49:1\n   |\n49 | pub struct Tape { pub seats: [Vec<StepAction>; 2] }\n   | ^^^^^^^^^^^^^^^ you could import this directly\nhelp: consider importing this struct instead\n   |\n52 |     tape_a: &crate::model::Tape,\n   |              ~~~~~~~~~~~~~~~~~~\nhelp: import `Tape` through the re-export\n   |\n52 |     tape_a: &model::Tape,\n   |              ~~~~~~~~~~~\n\n",
+        "locations": [
+          {
+            "file_name": "src/main.rs",
+            "line_start": 52,
+            "column_start": 20
+          }
+        ]
+      },
+      {
+        "code": "E0603",
+        "message": "struct import `Tape` is private",
+        "rendered": "error[E0603]: struct import `Tape` is private\n  --> src/main.rs:53:20\n   |\n53 |     tape_b: &tape::Tape,\n   |                    ^^^^ private struct import\n   |\nnote: the struct import `Tape` is defined here...\n  --> src/tape.rs:1:5\n   |\n1  | use crate::model::*;\n   |     ^^^^^^^^^^^^^^^\nnote: ...and refers to the struct `Tape` which is defined here\n  --> src/model.rs:49:1\n   |\n49 | pub struct Tape { pub seats: [Vec<StepAction>; 2] }\n   | ^^^^^^^^^^^^^^^ you could import this directly\nhelp: consider importing this struct instead\n   |\n53 |     tape_b: &crate::model::Tape,\n   |              ~~~~~~~~~~~~~~~~~~\nhelp: import `Tape` through the re-export\n   |\n53 |     tape_b: &model::Tape,\n   |              ~~~~~~~~~~~\n\n",
+        "locations": [
+          {
+            "file_name": "src/main.rs",
+            "line_start": 53,
+            "column_start": 20
+          }
+        ]
+      },
+      {
+        "code": "E0603",
+        "message": "struct import `Tape` is private",
+        "rendered": "error[E0603]: struct import `Tape` is private\n   --> src/main.rs:123:71\n    |\n123 | fn load_tape_cache(jobs: &[Job]) -> HashMap<PathBuf, Result<Arc<tape::Tape>, String>> {\n    |                                                                       ^^^^ private struct import\n    |\nnote: the struct import `Tape` is defined here...\n   --> src/tape.rs:1:5\n    |\n1   | use crate::model::*;\n    |     ^^^^^^^^^^^^^^^\nnote: ...and refers to the struct `Tape` which is defined here\n   --> src/model.rs:49:1\n    |\n49  | pub struct Tape { pub seats: [Vec<StepAction>; 2] }\n    | ^^^^^^^^^^^^^^^ you could import this directly\nhelp: consider importing this struct instead\n    |\n123 | fn load_tape_cache(jobs: &[Job]) -> HashMap<PathBuf, Result<Arc<crate::model::Tape>, String>> {\n    |                                                                 ~~~~~~~~~~~~~~~~~~\nhelp: import `Tape` through the re-export\n    |\n123 | fn load_tape_cache(jobs: &[Job]) -> HashMap<PathBuf, Result<Arc<model::Tape>, String>> {\n    |                                                                 ~~~~~~~~~~~\n\n",
+        "locations": [
+          {
+            "file_name": "src/main.rs",
+            "line_start": 123,
+            "column_start": 71
+          }
+        ]
+      },
+      {
+        "code": "E0308",
+        "message": "mismatched types",
+        "rendered": "error[E0308]: mismatched types\n   --> src/main.rs:187:44\n    |\n187 |         shed_capacity:get_i(\"shedCapacity\",d.shed_capacity) as i32, max_market_orders:get_u(\"maxMarketOrdersPerTurn\",d.max_market_orders),\n    |                       -----                ^^^^^^^^^^^^^^^ expected `i64`, found `i32`\n    |                       |\n    |                       arguments to this function are incorrect\n    |\nnote: expected because the closure was earlier called with an argument of type `i64`\n   --> src/main.rs:186:46\n    |\n186 |         starting_money:get_i(\"startingMoney\",d.starting_money), turns_per_day:get_u(\"turnsPerDay\",d.turns_per_day),\n    |                        -----                 ^^^^^^^^^^^^^^^^ expected because this argument is of type `i64`\n    |                        |\n    |                        in this closure call\nnote: closure parameter defined here\n   --> src/main.rs:161:26\n    |\n161 |     let get_i = |k:&str, def:i64| c.get(k).and_then(serde_json::Value::as_i64).unwrap_or(def);\n    |                          ^^^^^^^\nhelp: you can convert an `i32` to an `i64`\n    |\n187 |         shed_capacity:get_i(\"shedCapacity\",d.shed_capacity.into()) as i32, max_market_orders:get_u(\"maxMarketOrdersPerTurn\",d.max_market_orders),\n    |                                                           +++++++\n\n",
+        "locations": [
+          {
+            "file_name": "src/main.rs",
+            "line_start": 187,
+            "column_start": 44
+          }
+        ]
+      },
+      {
+        "code": "E0308",
+        "message": "`match` arms have incompatible types",
+        "rendered": "error[E0308]: `match` arms have incompatible types\n   --> src/main.rs:232:85\n    |\n232 |                         let seed64=match checked_i128_to_i64(seed){Ok(v)=>v,Err(e)=>error_json(e)};\n    |                                    -------------------------------        -         ^^^^^^^^^^^^^ expected `i64`, found `Value`\n    |                                    |                                      |\n    |                                    |                                      this is found to be of type `i64`\n    |                                    `match` arms have incompatible types\n\n",
+        "locations": [
+          {
+            "file_name": "src/main.rs",
+            "line_start": 232,
+            "column_start": 85
+          }
+        ]
+      }
+    ],
+    "stderr": "    Updating crates.io index\n     Locking 34 packages to latest compatible versions\n   Compiling proc-macro2 v1.0.107\n   Compiling unicode-ident v1.0.24\n   Compiling quote v1.0.47\n   Compiling crossbeam-utils v0.8.23\n   Compiling crossbeam-epoch v0.9.21\n   Compiling utf8parse v0.2.2\n   Compiling crossbeam-deque v0.8.8\n   Compiling serde_core v1.0.229\n   Compiling anstyle-parse v1.0.0\n   Compiling zmij v1.0.23\n   Compiling anstyle-query v1.1.5\n   Compiling rayon-core v1.13.0\n   Compiling anstyle v1.0.14\n   Compiling syn v3.0.5\n   Compiling is_terminal_polyfill v1.70.2\n   Compiling colorchoice v1.0.5\n   Compiling anstream v1.0.0\n   Compiling heck v0.5.0\n   Compiling serde v1.0.229\n   Compiling clap_lex v1.1.0\n   Compiling strsim v0.11.1\n   Compiling serde_json v1.0.151\n   Compiling clap_builder v4.6.6\n   Compiling itoa v1.0.18\n   Compiling memchr v2.8.3\n   Compiling either v1.18.0\n   Compiling rayon v1.12.0\n   Compiling clap_derive v4.6.4\n   Compiling serde_derive v1.0.229\n   Compiling clap v4.6.6\n   Compiling kg_sim v0.1.0 (/home/runner/work/riemann/riemann/.cache/port-review/original/kaggriculture_rust)\nerror: could not compile `kg_sim` (bin \"kg_sim\") due to 8 previous errors; 1 warning emitted\n",
+    "executable": null
+  },
+  "repaired_build": {
+    "label": "mechanical compile-only repair",
+    "exit_code": 0,
+    "elapsed_seconds": 20.913930465999996,
+    "errors": [],
+    "stderr": "    Updating crates.io index\n     Locking 34 packages to latest compatible versions\n   Compiling proc-macro2 v1.0.107\n   Compiling unicode-ident v1.0.24\n   Compiling quote v1.0.47\n   Compiling crossbeam-utils v0.8.23\n   Compiling crossbeam-epoch v0.9.21\n   Compiling utf8parse v0.2.2\n   Compiling crossbeam-deque v0.8.8\n   Compiling serde_core v1.0.229\n   Compiling anstyle-parse v1.0.0\n   Compiling anstyle-query v1.1.5\n   Compiling anstyle v1.0.14\n   Compiling zmij v1.0.23\n   Compiling colorchoice v1.0.5\n   Compiling syn v3.0.5\n   Compiling rayon-core v1.13.0\n   Compiling is_terminal_polyfill v1.70.2\n   Compiling anstream v1.0.0\n   Compiling serde v1.0.229\n   Compiling serde_json v1.0.151\n   Compiling strsim v0.11.1\n   Compiling clap_lex v1.1.0\n   Compiling heck v0.5.0\n   Compiling clap_builder v4.6.6\n   Compiling memchr v2.8.3\n   Compiling itoa v1.0.18\n   Compiling either v1.18.0\n   Compiling rayon v1.12.0\n   Compiling clap_derive v4.6.4\n   Compiling serde_derive v1.0.229\n   Compiling clap v4.6.6\n   Compiling kg_sim v0.1.0 (/home/runner/work/riemann/riemann/.cache/port-review/compile-only/kaggriculture_rust)\n    Finished `release` profile [optimized] target(s) in 20.88s\n",
+    "executable": "/home/runner/work/riemann/riemann/.cache/port-review/target-fixed/release/kg_sim"
+  },
+  "production_build": {
+    "label": "production thin LTO",
+    "exit_code": 0,
+    "elapsed_seconds": 18.522671188999993,
+    "errors": [],
+    "stderr": "   Compiling proc-macro2 v1.0.107\n   Compiling quote v1.0.47\n   Compiling unicode-ident v1.0.24\n   Compiling crossbeam-utils v0.8.23\n   Compiling serde_core v1.0.229\n   Compiling crossbeam-epoch v0.9.21\n   Compiling utf8parse v0.2.2\n   Compiling crossbeam-deque v0.8.8\n   Compiling anstyle-parse v1.0.0\n   Compiling zmij v1.0.23\n   Compiling syn v3.0.5\n   Compiling rayon-core v1.13.0\n   Compiling is_terminal_polyfill v1.70.2\n   Compiling anstyle-query v1.1.5\n   Compiling anstyle v1.0.14\n   Compiling memchr v2.8.3\n   Compiling colorchoice v1.0.5\n   Compiling anstream v1.0.0\n   Compiling itoa v1.0.18\n   Compiling serde_json v1.0.151\n   Compiling clap_lex v1.1.0\n   Compiling heck v0.5.0\n   Compiling strsim v0.11.1\n   Compiling serde v1.0.229\n   Compiling clap_builder v4.6.6\n   Compiling csv-core v0.1.13\n   Compiling ryu v1.0.23\n   Compiling either v1.18.0\n   Compiling rayon v1.12.0\n   Compiling csv v1.4.0\n   Compiling serde_derive v1.0.229\n   Compiling clap_derive v4.6.4\n   Compiling clap v4.6.6\n   Compiling kg-sim v0.1.0 (/home/runner/work/riemann/riemann/kaggriculture_meta_lab/rust_port)\n    Finished `release` profile [optimized] target(s) in 18.50s\n",
+    "executable": "/home/runner/work/riemann/riemann/.cache/port-review/target-ours/release/kg_sim"
+  },
+  "binary_sha256": {
+    "production": "be94f33974132f3825f74c8475d2112c40dd29588259ed49299d5974fd20aa84",
+    "compile_only": "43f4bcd87c3367868b84b5dc304c6171944e057dfd410131f873ce0b510b2edc"
+  },
+  "parity": {
+    "cases": 102,
+    "production_matches": 102,
+    "alternate_matches": 81,
+    "rows": [
+      {
+        "case": "b21_normal",
+        "seed": 0,
+        "expected": [
+          60225.0,
+          60976.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              60225.0,
+              60976.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              60225,
+              60976
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 1,
+        "expected": [
+          100800.0,
+          100800.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              100800.0,
+              100800.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              100800,
+              100800
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 2,
+        "expected": [
+          84247.0,
+          84247.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              84247.0,
+              84247.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              84247,
+              84247
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 3,
+        "expected": [
+          73284.0,
+          73284.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              73284.0,
+              73284.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              73284,
+              73284
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 4,
+        "expected": [
+          59631.0,
+          59631.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              59631.0,
+              59631.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              59631,
+              59631
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 5,
+        "expected": [
+          71867.0,
+          71867.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              71867.0,
+              71867.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              71867,
+              71867
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 6,
+        "expected": [
+          78975.0,
+          78975.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              78975.0,
+              78975.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              78975,
+              78975
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 7,
+        "expected": [
+          87110.0,
+          87110.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              87110.0,
+              87110.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              87110,
+              87110
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 8,
+        "expected": [
+          70108.0,
+          70108.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              70108.0,
+              70108.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              70108,
+              70108
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 9,
+        "expected": [
+          66485.0,
+          66485.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              66485.0,
+              66485.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              66485,
+              66485
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 10,
+        "expected": [
+          66911.0,
+          66911.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              66911.0,
+              66911.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              66911,
+              66911
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 11,
+        "expected": [
+          66719.0,
+          67055.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              66719.0,
+              67055.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              66719,
+              67055
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 12,
+        "expected": [
+          58042.0,
+          58768.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              58042.0,
+              58768.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              58042,
+              58768
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 13,
+        "expected": [
+          143549.0,
+          143549.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              143549.0,
+              143549.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              143549,
+              143549
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 14,
+        "expected": [
+          100243.0,
+          100243.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              100243.0,
+              100243.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              100243,
+              100243
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 15,
+        "expected": [
+          66681.0,
+          66681.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              66681.0,
+              66681.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              66681,
+              66681
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 16,
+        "expected": [
+          111880.0,
+          111880.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              111880.0,
+              111880.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              111880,
+              111880
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 17,
+        "expected": [
+          122750.0,
+          122750.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              122750.0,
+              122750.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              122750,
+              122750
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 18,
+        "expected": [
+          56104.0,
+          56104.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              56104.0,
+              56104.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              56104,
+              56104
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 19,
+        "expected": [
+          62959.0,
+          62959.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              62959.0,
+              62959.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              62959,
+              62959
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 20,
+        "expected": [
+          56746.0,
+          56746.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              56746.0,
+              56746.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              56746,
+              56746
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 21,
+        "expected": [
+          69170.0,
+          68695.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              69170.0,
+              68695.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              69170,
+              68695
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 22,
+        "expected": [
+          65230.0,
+          65797.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              65230.0,
+              65797.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              65230,
+              65797
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 23,
+        "expected": [
+          80129.0,
+          80129.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              80129.0,
+              80129.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              80129,
+              80129
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 24,
+        "expected": [
+          56417.0,
+          56417.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              56417.0,
+              56417.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              56417,
+              56417
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 25,
+        "expected": [
+          98648.0,
+          99276.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              98648.0,
+              99276.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              98648,
+              99276
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 26,
+        "expected": [
+          145613.0,
+          145613.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              145613.0,
+              145613.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              145613,
+              145613
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 27,
+        "expected": [
+          66876.0,
+          66876.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              66876.0,
+              66876.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              66876,
+              66876
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 28,
+        "expected": [
+          103755.0,
+          103755.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              103755.0,
+              103755.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              103755,
+              103755
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 29,
+        "expected": [
+          78295.0,
+          78295.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              78295.0,
+              78295.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              78295,
+              78295
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 30,
+        "expected": [
+          63739.0,
+          63739.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              63739.0,
+              63739.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              63739,
+              63739
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 31,
+        "expected": [
+          121552.0,
+          121552.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              121552.0,
+              121552.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              121552,
+              121552
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 32,
+        "expected": [
+          48032.0,
+          48032.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              48032.0,
+              48032.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              48032,
+              48032
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 33,
+        "expected": [
+          53353.0,
+          53353.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              53353.0,
+              53353.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              53353,
+              53353
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 34,
+        "expected": [
+          84132.0,
+          84132.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              84132.0,
+              84132.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              84132,
+              84132
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 35,
+        "expected": [
+          64131.0,
+          64131.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              64131.0,
+              64131.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              64131,
+              64131
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 36,
+        "expected": [
+          77854.0,
+          77854.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              77854.0,
+              77854.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              77854,
+              77854
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 37,
+        "expected": [
+          116431.0,
+          116431.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              116431.0,
+              116431.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              116431,
+              116431
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 38,
+        "expected": [
+          82413.0,
+          82413.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              82413.0,
+              82413.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              82413,
+              82413
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 39,
+        "expected": [
+          90984.0,
+          90984.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              90984.0,
+              90984.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              90984,
+              90984
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 40,
+        "expected": [
+          60402.0,
+          60402.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              60402.0,
+              60402.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              60402,
+              60402
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 41,
+        "expected": [
+          81397.0,
+          81397.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              81397.0,
+              81397.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              81397,
+              81397
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 42,
+        "expected": [
+          91223.0,
+          91223.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              91223.0,
+              91223.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              91223,
+              91223
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 43,
+        "expected": [
+          48336.0,
+          49524.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              48336.0,
+              49524.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              48336,
+              49524
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 44,
+        "expected": [
+          92239.0,
+          92239.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              92239.0,
+              92239.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              92239,
+              92239
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 45,
+        "expected": [
+          118555.0,
+          118555.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              118555.0,
+              118555.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              118555,
+              118555
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 46,
+        "expected": [
+          97208.0,
+          97208.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              97208.0,
+              97208.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              97208,
+              97208
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 47,
+        "expected": [
+          92377.0,
+          92377.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              92377.0,
+              92377.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              92377,
+              92377
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 48,
+        "expected": [
+          123584.0,
+          123584.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              123584.0,
+              123584.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              123584,
+              123584
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 49,
+        "expected": [
+          132363.0,
+          134089.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              132363.0,
+              134089.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              132363,
+              134089
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 50,
+        "expected": [
+          78001.0,
+          78001.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              78001.0,
+              78001.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              78001,
+              78001
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 51,
+        "expected": [
+          72110.0,
+          72397.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              72110.0,
+              72397.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              72110,
+              72397
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 52,
+        "expected": [
+          69107.0,
+          69107.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              69107.0,
+              69107.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              69107,
+              69107
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 53,
+        "expected": [
+          98135.0,
+          98135.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              98135.0,
+              98135.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              98135,
+              98135
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 54,
+        "expected": [
+          51008.0,
+          51008.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              51008.0,
+              51008.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              51008,
+              51008
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 55,
+        "expected": [
+          99094.0,
+          99094.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              99094.0,
+              99094.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              99094,
+              99094
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 56,
+        "expected": [
+          88909.0,
+          88909.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              88909.0,
+              88909.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              88909,
+              88909
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 57,
+        "expected": [
+          86497.0,
+          86497.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              86497.0,
+              86497.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              86497,
+              86497
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 58,
+        "expected": [
+          69637.0,
+          69637.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              69637.0,
+              69637.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              69637,
+              69637
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 59,
+        "expected": [
+          112300.0,
+          112300.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              112300.0,
+              112300.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              112300,
+              112300
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 60,
+        "expected": [
+          76424.0,
+          76424.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              76424.0,
+              76424.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              76424,
+              76424
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 61,
+        "expected": [
+          97339.0,
+          97339.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              97339.0,
+              97339.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              97339,
+              97339
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 62,
+        "expected": [
+          96413.0,
+          96413.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              96413.0,
+              96413.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              96413,
+              96413
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_normal",
+        "seed": 63,
+        "expected": [
+          90307.0,
+          90307.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              90307.0,
+              90307.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              90307,
+              90307
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "b21_trimmed",
+        "seed": 0,
+        "expected": [
+          60225.0,
+          60976.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              60225.0,
+              60976.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              60225,
+              60976
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "asymmetric_normal",
+        "seed": 0,
+        "expected": [
+          48417.0,
+          38242.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              48417.0,
+              38242.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              48417,
+              38242
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "asymmetric_reverse",
+        "seed": 0,
+        "expected": [
+          64231.0,
+          43868.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              64231.0,
+              43868.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              36869,
+              54818
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": false
+      },
+      {
+        "case": "b21_trimmed",
+        "seed": 1,
+        "expected": [
+          100800.0,
+          100800.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              100800.0,
+              100800.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              100800,
+              100800
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "asymmetric_normal",
+        "seed": 1,
+        "expected": [
+          146936.0,
+          84614.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              146936.0,
+              84614.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              146936,
+              84614
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "asymmetric_reverse",
+        "seed": 1,
+        "expected": [
+          89066.0,
+          62254.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              89066.0,
+              62254.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              62254,
+              89066
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": false
+      },
+      {
+        "case": "b21_trimmed",
+        "seed": 7,
+        "expected": [
+          87110.0,
+          87110.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              87110.0,
+              87110.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              87110,
+              87110
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "asymmetric_normal",
+        "seed": 7,
+        "expected": [
+          103209.0,
+          62959.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              103209.0,
+              62959.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              103209,
+              62959
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "asymmetric_reverse",
+        "seed": 7,
+        "expected": [
+          109856.0,
+          69746.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              109856.0,
+              69746.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              69746,
+              109856
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": false
+      },
+      {
+        "case": "b21_trimmed",
+        "seed": 42,
+        "expected": [
+          91223.0,
+          91223.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              91223.0,
+              91223.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              91223,
+              91223
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "asymmetric_normal",
+        "seed": 42,
+        "expected": [
+          95385.0,
+          43264.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              95385.0,
+              43264.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              95385,
+              43264
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "asymmetric_reverse",
+        "seed": 42,
+        "expected": [
+          95472.0,
+          65289.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              95472.0,
+              65289.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              65289,
+              95472
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": false
+      },
+      {
+        "case": "b21_trimmed",
+        "seed": -1,
+        "expected": [
+          69295.0,
+          69295.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              69295.0,
+              69295.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              69295,
+              69295
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "asymmetric_normal",
+        "seed": -1,
+        "expected": [
+          78705.0,
+          57964.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              78705.0,
+              57964.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              78705,
+              57964
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "asymmetric_reverse",
+        "seed": -1,
+        "expected": [
+          106748.0,
+          55575.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              106748.0,
+              55575.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              55575,
+              106748
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": false
+      },
+      {
+        "case": "b21_trimmed",
+        "seed": 4294967296,
+        "expected": [
+          97003.0,
+          97003.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              97003.0,
+              97003.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              97003,
+              97003
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "asymmetric_normal",
+        "seed": 4294967296,
+        "expected": [
+          119581.0,
+          71888.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              119581.0,
+              71888.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              119581,
+              71888
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "asymmetric_reverse",
+        "seed": 4294967296,
+        "expected": [
+          134445.0,
+          71368.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              134445.0,
+              71368.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              71368,
+              134445
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": false
+      },
+      {
+        "case": "b21_trimmed",
+        "seed": -9223372036854775808,
+        "expected": [
+          49141.0,
+          49141.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              49141.0,
+              49141.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              49141,
+              49141
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "asymmetric_normal",
+        "seed": -9223372036854775808,
+        "expected": [
+          65013.0,
+          43141.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              65013.0,
+              43141.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              65013,
+              43141
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "asymmetric_reverse",
+        "seed": -9223372036854775808,
+        "expected": [
+          60099.0,
+          37128.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              60099.0,
+              37128.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              37128,
+              60099
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": false
+      },
+      {
+        "case": "b21_trimmed",
+        "seed": 9223372036854775807,
+        "expected": [
+          69285.0,
+          69285.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              69285.0,
+              69285.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              69285,
+              69285
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "asymmetric_normal",
+        "seed": 9223372036854775807,
+        "expected": [
+          138333.0,
+          90286.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              138333.0,
+              90286.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              138333,
+              90286
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "asymmetric_reverse",
+        "seed": 9223372036854775807,
+        "expected": [
+          149449.0,
+          94094.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              149449.0,
+              94094.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              94094,
+              149449
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": false
+      },
+      {
+        "case": "reverse_minimal",
+        "seed": 0,
+        "expected": [
+          2970.0,
+          2980.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              2970.0,
+              2980.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              2980,
+              2970
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": false
+      },
+      {
+        "case": "kaggle_steps_one",
+        "seed": 0,
+        "expected": [
+          2990.0,
+          3000.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              2990.0,
+              3000.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              3000,
+              3000
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": false
+      },
+      {
+        "case": "literal_zero_turns",
+        "seed": 0,
+        "expected": [
+          3000.0,
+          3000.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              3000.0,
+              3000.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              3000,
+              3000
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": true
+      },
+      {
+        "case": "string_qty",
+        "seed": 0,
+        "expected": [
+          2980.0,
+          3000.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              2980.0,
+              3000.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              3000,
+              3000
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": false
+      },
+      {
+        "case": "float_qty",
+        "seed": 0,
+        "expected": [
+          2980.0,
+          3000.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              2980.0,
+              3000.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              3000,
+              3000
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": false
+      },
+      {
+        "case": "bool_qty",
+        "seed": 0,
+        "expected": [
+          2990.0,
+          3000.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              2990.0,
+              3000.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              3000,
+              3000
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": false
+      },
+      {
+        "case": "wide_qty",
+        "seed": 0,
+        "expected": [
+          0.0,
+          3000.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              0.0,
+              3000.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              3000,
+              3000
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": false
+      },
+      {
+        "case": "animal_place_ignores_zero_qty",
+        "seed": 0,
+        "expected": [
+          2700.0,
+          3000.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              2700.0,
+              3000.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              2600,
+              3000
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": false
+      },
+      {
+        "case": "market_i0_initialization",
+        "seed": 0,
+        "expected": [
+          2974.0,
+          3000.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              2974.0,
+              3000.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              2983,
+              3000
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": false
+      },
+      {
+        "case": "fractional_market_base",
+        "seed": 0,
+        "expected": [
+          2973.0,
+          3000.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              2973.0,
+              3000.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              2974,
+              3000
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": false
+      },
+      {
+        "case": "unknown_shape_fallback",
+        "seed": 0,
+        "expected": [
+          2975.0,
+          3000.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              2975.0,
+              3000.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              2974,
+              3000
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": false
+      },
+      {
+        "case": "full_spec_override",
+        "seed": 0,
+        "expected": [
+          5000.0,
+          5000.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              5000.0,
+              5000.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              3000,
+              3000
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": false
+      },
+      {
+        "case": "money_above_exact_binary64",
+        "seed": 0,
+        "expected": [
+          9007199254740992.0,
+          9007199254740992.0
+        ],
+        "production": {
+          "exit_code": 0,
+          "result": {
+            "rewards": [
+              9007199254740992.0,
+              9007199254740992.0
+            ],
+            "errors": []
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              9007199254740993,
+              9007199254740993
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": false
+      },
+      {
+        "case": "market_guard_boundary",
+        "seed": 0,
+        "expected": [
+          10.0,
+          1000000.0
+        ],
+        "production": {
+          "exit_code": 1,
+          "result": {
+            "rewards": [
+              10.0,
+              1000000.0
+            ],
+            "errors": [
+              "market loop reached the Python 100k-iteration guard 1 time(s)"
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate": {
+          "exit_code": 0,
+          "result": {
+            "errors": [],
+            "rewards": [
+              0,
+              1000000
+            ]
+          },
+          "stderr": ""
+        },
+        "alternate_equal": false
+      }
+    ]
+  },
+  "quoted_csv_path": {
+    "production": {
+      "ok": true,
+      "results": [
+        {
+          "rewards": [
+            3000.0,
+            3000.0
+          ],
+          "errors": []
+        }
+      ]
+    },
+    "alternate": {
+      "ok": false,
+      "error": "simulator failure (do not count as a win/loss): [{'errors': ['/tmp/kg-port-compare-v4uwft1a/\"/home/runner/work/riemann/riemann/.cache/port-review/quoted: /tmp/kg-port-compare-v4uwft1a/\"/home/runner/work/riemann/riemann/.cache/port-review/quoted: No such file or directory (os error 2)'], 'rewards': None}]"
+    }
+  },
+  "injected_probes": {
+    "debug": {
+      "exit_code": 0,
+      "log": "\nrunning 3 tests\nREVIEW_ALLOC_JSON={\"drop\":1,\"end_of_day\":1,\"hire\":2,\"setup_excluded\":true}\ntest sim::review_probes::review_measures_allocations_after_game_setup ... ok\ntest sim::review_probes::review_cpython_rng_120000_words_and_mixed_calls ... ok\ntest sim::review_probes::review_default_price_fingerprints_270009_quotes ... ok\n\ntest result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s\n\n   Compiling proc-macro2 v1.0.107\n   Compiling unicode-ident v1.0.24\n   Compiling quote v1.0.47\n   Compiling crossbeam-utils v0.8.23\n   Compiling crossbeam-epoch v0.9.21\n   Compiling crossbeam-deque v0.8.8\n   Compiling serde_core v1.0.229\n   Compiling utf8parse v0.2.2\n   Compiling anstyle-parse v1.0.0\n   Compiling anstyle v1.0.14\n   Compiling zmij v1.0.23\n   Compiling rayon-core v1.13.0\n   Compiling syn v3.0.5\n   Compiling anstyle-query v1.1.5\n   Compiling colorchoice v1.0.5\n   Compiling is_terminal_polyfill v1.70.2\n   Compiling anstream v1.0.0\n   Compiling strsim v0.11.1\n   Compiling clap_lex v1.1.0\n   Compiling heck v0.5.0\n   Compiling serde_json v1.0.151\n   Compiling serde v1.0.229\n   Compiling clap_builder v4.6.6\n   Compiling memchr v2.8.3\n   Compiling either v1.18.0\n   Compiling itoa v1.0.18\n   Compiling rayon v1.12.0\n   Compiling clap_derive v4.6.4\n   Compiling serde_derive v1.0.229\n   Compiling clap v4.6.6\n   Compiling kg_sim v0.1.0 (/home/runner/work/riemann/riemann/.cache/port-review/compile-only/kaggriculture_rust)\nwarning: variable does not need to be mutable\n --> src/py_rng.rs:6:13\n  |\n6 |         let mut n = if seed < 0 { -seed } else { seed };\n  |             ----^\n  |             |\n  |             help: remove this `mut`\n  |\n  = note: `#[warn(unused_mut)]` on by default\n\nwarning: field `animal` is never read\n  --> src/model.rs:62:9\n   |\n61 | pub struct AnimalState {\n   |            ----------- field in this struct\n62 |     pub animal: Animal, pub placed_day: i32, pub yield_units: i32,\n   |         ^^^^^^\n   |\n   = note: `AnimalState` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis\n   = note: `#[warn(dead_code)]` on by default\n\nwarning: field `step` is never read\n   --> src/model.rs:150:9\n    |\n148 | pub struct Game {\n    |            ---- field in this struct\n149 |     pub farms:[Farm;2], pub privs:[Private;2], pub market:Market, pub town:Town,\n150 |     pub step:usize, pub cfg:SimConfig,\n    |         ^^^^\n    |\n    = note: `Game` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis\n\nwarning: associated function `seeded` is never used\n --> src/py_rng.rs:4:12\n  |\n3 | impl PythonRandom {\n  | ----------------- associated function in this implementation\n4 |     pub fn seeded(seed:i64)->Self { Self::seeded_int(seed as i128) }\n  |            ^^^^^^\n\nwarning: `kg_sim` (bin \"kg_sim\" test) generated 4 warnings (run `cargo fix --bin \"kg_sim\" --tests` to apply 1 suggestion)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 9.66s\n     Running unittests src/main.rs (.cache/port-review/target-fixed/debug/deps/kg_sim-a536e387f2a5b616)\n",
+      "allocations_after_setup": {
+        "drop": 1,
+        "end_of_day": 1,
+        "hire": 2,
+        "setup_excluded": true
+      }
+    },
+    "release": {
+      "exit_code": 0,
+      "log": "\nrunning 3 tests\nREVIEW_ALLOC_JSON={\"drop\":1,\"end_of_day\":1,\"hire\":2,\"setup_excluded\":true}\ntest sim::review_probes::review_measures_allocations_after_game_setup ... ok\ntest sim::review_probes::review_cpython_rng_120000_words_and_mixed_calls ... ok\ntest sim::review_probes::review_default_price_fingerprints_270009_quotes ... ok\n\ntest result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n   Compiling crossbeam-utils v0.8.23\n   Compiling utf8parse v0.2.2\n   Compiling colorchoice v1.0.5\n   Compiling anstyle v1.0.14\n   Compiling anstyle-parse v1.0.0\n   Compiling anstyle-query v1.1.5\n   Compiling is_terminal_polyfill v1.70.2\n   Compiling serde_core v1.0.229\n   Compiling anstream v1.0.0\n   Compiling clap_lex v1.1.0\n   Compiling strsim v0.11.1\n   Compiling crossbeam-epoch v0.9.21\n   Compiling clap_builder v4.6.6\n   Compiling crossbeam-deque v0.8.8\n   Compiling zmij v1.0.23\n   Compiling rayon-core v1.13.0\n   Compiling memchr v2.8.3\n   Compiling either v1.18.0\n   Compiling itoa v1.0.18\n   Compiling rayon v1.12.0\n   Compiling serde v1.0.229\n   Compiling serde_json v1.0.151\n   Compiling clap v4.6.6\n   Compiling kg_sim v0.1.0 (/home/runner/work/riemann/riemann/.cache/port-review/compile-only/kaggriculture_rust)\nwarning: variable does not need to be mutable\n --> src/py_rng.rs:6:13\n  |\n6 |         let mut n = if seed < 0 { -seed } else { seed };\n  |             ----^\n  |             |\n  |             help: remove this `mut`\n  |\n  = note: `#[warn(unused_mut)]` on by default\n\nwarning: field `animal` is never read\n  --> src/model.rs:62:9\n   |\n61 | pub struct AnimalState {\n   |            ----------- field in this struct\n62 |     pub animal: Animal, pub placed_day: i32, pub yield_units: i32,\n   |         ^^^^^^\n   |\n   = note: `AnimalState` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis\n   = note: `#[warn(dead_code)]` on by default\n\nwarning: field `step` is never read\n   --> src/model.rs:150:9\n    |\n148 | pub struct Game {\n    |            ---- field in this struct\n149 |     pub farms:[Farm;2], pub privs:[Private;2], pub market:Market, pub town:Town,\n150 |     pub step:usize, pub cfg:SimConfig,\n    |         ^^^^\n    |\n    = note: `Game` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis\n\nwarning: associated function `seeded` is never used\n --> src/py_rng.rs:4:12\n  |\n3 | impl PythonRandom {\n  | ----------------- associated function in this implementation\n4 |     pub fn seeded(seed:i64)->Self { Self::seeded_int(seed as i128) }\n  |            ^^^^^^\n\nwarning: `kg_sim` (bin \"kg_sim\" test) generated 4 warnings (run `cargo fix --bin \"kg_sim\" --tests` to apply 1 suggestion)\n    Finished `release` profile [optimized] target(s) in 16.61s\n     Running unittests src/main.rs (.cache/port-review/target-fixed/release/deps/kg_sim-ec7a22c6160a8e2e)\n",
+      "allocations_after_setup": {
+        "drop": 1,
+        "end_of_day": 1,
+        "hire": 2,
+        "setup_excluded": true
+      }
+    }
+  },
+  "performance_common_subset_validated": true,
+  "performance": {
+    "games": 64,
+    "repeats": 3,
+    "steps": 720,
+    "action_turns": 719,
+    "reverse": false,
+    "python": {
+      "median_seconds": 5.1056197089999955,
+      "samples_seconds": [
+        5.103285419999992,
+        5.108155823000004,
+        5.1056197089999955
+      ]
+    },
+    "binaries": {
+      "production_thin": {
+        "batch_1_threads": {
+          "median_seconds": 0.05396098800000004,
+          "samples_seconds": [
+            0.05273386399997548,
+            0.054327357999994774,
+            0.05396098800000004
+          ],
+          "speedup_vs_python": 94.61686856067186
+        },
+        "batch_4_threads": {
+          "median_seconds": 0.028071295000017926,
+          "samples_seconds": [
+            0.028071295000017926,
+            0.028257074999999077,
+            0.02725978699999132
+          ],
+          "speedup_vs_python": 181.8804479450177
+        },
+        "one_process_per_game": {
+          "median_seconds": 0.4763447519999886,
+          "samples_seconds": [
+            0.4661504199999911,
+            0.4763447519999886,
+            0.5503349900000103
+          ],
+          "speedup_vs_python": 10.718328873286543
+        }
+      },
+      "alternate_compile_only_fat": {
+        "batch_1_threads": {
+          "median_seconds": 0.07550844299998971,
+          "samples_seconds": [
+            0.07509958299999653,
+            0.0762260779999906,
+            0.07550844299998971
+          ],
+          "speedup_vs_python": 67.61654069599463
+        },
+        "batch_4_threads": {
+          "median_seconds": 0.035503984000001765,
+          "samples_seconds": [
+            0.03678640799998334,
+            0.035503984000001765,
+            0.035427067000000534
+          ],
+          "speedup_vs_python": 143.80413502326223
+        },
+        "one_process_per_game": {
+          "median_seconds": 0.7163150720000147,
+          "samples_seconds": [
+            0.7241396359999897,
+            0.7031677059999879,
+            0.7163150720000147
+          ],
+          "speedup_vs_python": 7.127617313348798
+        }
+      },
+      "production_fat_experiment": {
+        "batch_1_threads": {
+          "median_seconds": 0.05657526800001733,
+          "samples_seconds": [
+            0.05657526800001733,
+            0.05769582499999615,
+            0.05643553400000201
+          ],
+          "speedup_vs_python": 90.24472865066113
+        },
+        "batch_4_threads": {
+          "median_seconds": 0.029872088000018948,
+          "samples_seconds": [
+            0.030451019999986784,
+            0.029872088000018948,
+            0.028366995000027373
+          ],
+          "speedup_vs_python": 170.91606415315718
+        },
+        "one_process_per_game": {
+          "median_seconds": 0.5040019809999876,
+          "samples_seconds": [
+            0.5040977650000116,
+            0.5040019809999876,
+            0.5038516619999882
+          ],
+          "speedup_vs_python": 10.130158018168823
+        }
+      }
+    }
+  },
+  "fat_lto_build": {
+    "label": "production with fat LTO experiment",
+    "exit_code": 0,
+    "elapsed_seconds": 23.71161172699999,
+    "errors": [],
+    "stderr": "   Compiling proc-macro2 v1.0.107\n   Compiling unicode-ident v1.0.24\n   Compiling quote v1.0.47\n   Compiling crossbeam-utils v0.8.23\n   Compiling crossbeam-epoch v0.9.21\n   Compiling serde_core v1.0.229\n   Compiling utf8parse v0.2.2\n   Compiling crossbeam-deque v0.8.8\n   Compiling anstyle-parse v1.0.0\n   Compiling rayon-core v1.13.0\n   Compiling syn v3.0.5\n   Compiling is_terminal_polyfill v1.70.2\n   Compiling anstyle-query v1.1.5\n   Compiling anstyle v1.0.14\n   Compiling zmij v1.0.23\n   Compiling memchr v2.8.3\n   Compiling colorchoice v1.0.5\n   Compiling anstream v1.0.0\n   Compiling clap_lex v1.1.0\n   Compiling serde v1.0.229\n   Compiling serde_json v1.0.151\n   Compiling heck v0.5.0\n   Compiling itoa v1.0.18\n   Compiling strsim v0.11.1\n   Compiling clap_builder v4.6.6\n   Compiling csv-core v0.1.13\n   Compiling either v1.18.0\n   Compiling ryu v1.0.23\n   Compiling rayon v1.12.0\n   Compiling csv v1.4.0\n   Compiling clap_derive v4.6.4\n   Compiling serde_derive v1.0.229\n   Compiling clap v4.6.6\n   Compiling kg-sim v0.1.0 (/home/runner/work/riemann/riemann/kaggriculture_meta_lab/rust_port)\n    Finished `release` profile [optimized] target(s) in 23.69s\n",
+    "executable": "/home/runner/work/riemann/riemann/.cache/port-review/target-ours-fat/release/kg_sim"
+  },
+  "large_batch": {
+    "games": 2048,
+    "threads": 4,
+    "repeats": 3,
+    "binaries": {
+      "production_thin": {
+        "median_seconds": 0.5811163929999736,
+        "samples_seconds": [
+          0.5806945920000146,
+          0.5829222499999958,
+          0.5811163929999736
+        ],
+        "equal_to_production": true,
+        "games_per_second": 3524.2509498438685
+      },
+      "alternate_compile_only_fat": {
+        "median_seconds": 0.8331757539999955,
+        "samples_seconds": [
+          0.8546942170000023,
+          0.8329012420000197,
+          0.8331757539999955
+        ],
+        "equal_to_production": true,
+        "games_per_second": 2458.0648082565435
+      },
+      "production_fat_experiment": {
+        "median_seconds": 0.6252818539999794,
+        "samples_seconds": [
+          0.6252818539999794,
+          0.6404205040000193,
+          0.6006884619999937
+        ],
+        "equal_to_production": true,
+        "games_per_second": 3275.322939405287
+      }
+    }
+  },
+  "production_changed": false,
+  "no_kaggle_submission": true
+}
