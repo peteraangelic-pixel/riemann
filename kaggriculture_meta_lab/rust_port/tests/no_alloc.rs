@@ -62,7 +62,8 @@ fn no_heap_allocations_including_free_hires_and_daily_refresh() {
     let tape = PreparedTape::new(Tape::from_json(&json!([actions, [{}]])).unwrap(), &cfg, 720);
     for flags in [[false, false], [true, false], [false, true], [true, true]] {
         for reverse in [false, true] {
-            let mut replay = Replay::new_with_hand_trimming(&cfg, &tape, &tape, -71, reverse, flags);
+            let mut replay =
+                Replay::new_with_hand_trimming(&cfg, &tape, &tape, -71, reverse, flags);
             COUNT.with(|c| c.set(0));
             TRACK.with(|c| c.set(true));
             while replay.advance() {}

@@ -109,6 +109,22 @@ class ClientProtocolTests(unittest.TestCase):
             self.assertIn("--trim-hands-b", argv)
             self.assertNotIn("--trim-hands-a", argv)
 
+
+    def test_batch_canonicalizes_each_distinct_tape_only_once(self):
+        seen = []
+
+        def resolve_path(path, *args, **kwargs):
+            seen.append(path)
+            return path.absolute()
+
+        payload = ('{"rewards":[1,2],"errors":[]}\n') * 20
+        process = subprocess.CompletedProcess(["kg_sim"], 0, payload, "")
+        with patch("tools.rust_client.subprocess.run", return_value=process):
+            with patch.object(Path, "resolve", resolve_path):
+                replay_many([Job(seed, "a.json", "b.json", bool(seed % 2)) for seed in range(20)])
+        self.assertEqual(seen.count(Path("a.json")), 1)
+        self.assertEqual(seen.count(Path("b.json")), 1)
+
     def test_batch_timeout_forwarded(self):
         process = subprocess.CompletedProcess(["kg_sim"], 0, '{"rewards":[1,2],"errors":[]}\n', "")
         with patch("tools.rust_client.subprocess.run", return_value=process) as call:

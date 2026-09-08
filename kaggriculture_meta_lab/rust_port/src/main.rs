@@ -81,6 +81,11 @@ struct TapeCache<'a> {
 
 impl TapeCache<'_> {
     fn load(&mut self, path: &Path) -> Result<Arc<PreparedTape>> {
+        // The Python batch client supplies canonical paths. Avoid a filesystem
+        // round trip for every repeated seed while keeping relative paths valid.
+        if let Some(cached) = self.entries.get(path) {
+            return cached.clone();
+        }
         let path = path
             .canonicalize()
             .map_err(|e| format!("{}: {e}", path.display()))?;

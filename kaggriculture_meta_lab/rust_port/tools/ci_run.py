@@ -16,7 +16,8 @@ import zlib
 
 def notice(title, message):
     escape = lambda s: s.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
-    print(f"::notice title={escape(title)}::{escape(message)}", flush=True)
+    title = escape(title).replace(":", "%3A").replace(",", "%2C")
+    print(f"::notice title={title}::{escape(message)}", flush=True)
 
 
 def text_artifact(title, text):

@@ -6,7 +6,11 @@ fn phantom_tape(config: &Config) -> PreparedTape {
         {"market": [["BUY_SEED", "WHEAT", 1]]},
         {"farmer": ["PLANT", "WHEAT"], "hands": [["PLANT", "WHEAT"]]}
     ]);
-    PreparedTape::new(Tape::from_json(&json!([actions, actions])).unwrap(), config, 2)
+    PreparedTape::new(
+        Tape::from_json(&json!([actions, actions])).unwrap(),
+        config,
+        2,
+    )
 }
 
 #[test]
@@ -21,8 +25,15 @@ fn hand_rules_follow_input_agents_when_physical_seats_reverse() {
             for physical in 0..2 {
                 let input = if reverse { 1 - physical } else { physical };
                 let tile = &snapshot["farms"][physical]["tiles"][4][4];
-                assert_eq!(!tile.is_null(), flags[input], "reverse={reverse} input={input}");
-                assert_eq!(snapshot["privates"][physical]["seeds"]["WHEAT"], json!(i32::from(!flags[input])));
+                assert_eq!(
+                    !tile.is_null(),
+                    flags[input],
+                    "reverse={reverse} input={input}"
+                );
+                assert_eq!(
+                    snapshot["privates"][physical]["seeds"]["WHEAT"],
+                    json!(i32::from(!flags[input]))
+                );
             }
             assert_eq!(replay.outcome().rewards, Some([2990.0, 2990.0]));
         }

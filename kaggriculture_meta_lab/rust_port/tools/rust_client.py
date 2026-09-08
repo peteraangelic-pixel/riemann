@@ -120,12 +120,22 @@ def replay_many(jobs: Iterable[Job], *, binary=DEFAULT_BINARY, steps=720, step_m
     jobs = list(jobs)
     if not jobs:
         return []
+    # Resolve each distinct input path once, not twice per game. In large
+    # seed sweeps, repeated filesystem canonicalization can dominate Python I/O.
+    paths = {}
+
+    def resolved(ref):
+        path = Path(ref)
+        if path not in paths:
+            paths[path] = path.resolve()
+        return paths[path]
+
     with tempfile.TemporaryDirectory(prefix="kg-jobs-") as directory:
         csv_path = Path(directory) / "jobs.csv"
         with csv_path.open("w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
             for job in jobs:
-                writer.writerow([job.seed, Path(job.tape_a).resolve(), Path(job.tape_b).resolve(), int(job.reverse)])
+                writer.writerow([job.seed, resolved(job.tape_a), resolved(job.tape_b), int(job.reverse)])
         args = [str(Path(binary).resolve()), "--jobs", str(csv_path)]
         args += _options(steps, step_mode, trim_hands, config, trim_hands_a, trim_hands_b)
         if threads is not None:

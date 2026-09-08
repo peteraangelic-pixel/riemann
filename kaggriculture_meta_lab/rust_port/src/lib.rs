@@ -102,7 +102,11 @@ impl<'a> Replay<'a> {
         } else {
             [tape_a, tape_b]
         };
-        let trim_hands = if reverse { [trim_hands[1], trim_hands[0]] } else { trim_hands };
+        let trim_hands = if reverse {
+            [trim_hands[1], trim_hands[0]]
+        } else {
+            trim_hands
+        };
         let game = Game::new(
             config,
             seed,

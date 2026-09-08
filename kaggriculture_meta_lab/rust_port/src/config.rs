@@ -42,7 +42,11 @@ impl Config {
         let specification = input.get("name").is_some() && input.get("configuration").is_some();
         let mut flat = Map::new();
         for (key, value) in root {
-            let setting = if specification { value.get("default").unwrap_or(value) } else { value };
+            let setting = if specification {
+                value.get("default").unwrap_or(value)
+            } else {
+                value
+            };
             flat.insert(key.clone(), setting.clone());
         }
         let integer = |name: &str, default: i64, min: i64| -> Result<i64, String> {
@@ -52,11 +56,15 @@ impl Config {
                     .or_else(|| {
                         // JSON Schema's integer type also accepts e.g. 24.0.
                         // Reject fractional/out-of-range floats, never saturate.
-                        value.as_f64().filter(|n| {
-                            n.is_finite() && n.fract() == 0.0
-                                && *n >= i64::MIN as f64
-                                && *n < -(i64::MIN as f64)
-                        }).map(|n| n as i64)
+                        value
+                            .as_f64()
+                            .filter(|n| {
+                                n.is_finite()
+                                    && n.fract() == 0.0
+                                    && *n >= i64::MIN as f64
+                                    && *n < -(i64::MIN as f64)
+                            })
+                            .map(|n| n as i64)
                     })
                     .ok_or_else(|| format!("{name} must be an integer in the i64 range"))?,
                 None => default,
@@ -140,7 +148,12 @@ mod tests {
         for input in [values.clone(), json!({"configuration": values})] {
             let cfg = Config::from_json(&input).unwrap();
             assert_eq!(cfg.curves[0].base, 40.0);
-            assert!(cfg.resolved_params.as_ref().unwrap().get("default").is_none());
+            assert!(cfg
+                .resolved_params
+                .as_ref()
+                .unwrap()
+                .get("default")
+                .is_none());
         }
     }
 
@@ -159,7 +172,8 @@ mod tests {
                 "startingMoney": {"type": "integer", "default": 5000},
                 "marketParams": {"type": "object", "default": {"WHEAT": {"base": 40}}}
             }
-        })).unwrap();
+        }))
+        .unwrap();
         assert_eq!(cfg.starting_money, 5000.0);
         assert_eq!(cfg.curves[0].base, 40.0);
     }
@@ -169,13 +183,19 @@ mod tests {
         let cfg = Config::from_json(&json!({
             "boardSize": 10.0, "startingMoney": 5000.0, "episodeSteps": 720.0,
             "turnsPerDay": 6.0, "shedCapacity": 3.0, "farmHandCostMult": 0.0
-        })).unwrap();
+        }))
+        .unwrap();
         assert_eq!(cfg.starting_money, 5000.0);
         assert_eq!(cfg.episode_steps, 720);
         assert_eq!(cfg.turns_per_day, 6);
         assert_eq!(cfg.shed_capacity, 3);
         assert_eq!(cfg.hire_multiplier, 0);
-        for bad in [json!(3.5), json!(true), json!("3"), json!(9223372036854775808.0)] {
+        for bad in [
+            json!(3.5),
+            json!(true),
+            json!("3"),
+            json!(9223372036854775808.0),
+        ] {
             assert!(Config::from_json(&json!({"startingMoney": bad})).is_err());
         }
         assert!(Config::from_json(&json!({"startingMoney": i64::MAX})).is_ok());
