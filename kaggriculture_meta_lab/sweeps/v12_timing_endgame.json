@@ -1,0 +1,258 @@
+{
+  "base": "agents/current/agent_v9_b21_s16.py",
+  "baseline": "agents/current/agent_v9_b21_s16.py",
+  "baseline_name": "b21s16",
+  "start_seed": 20264200,
+  "screen_games": 20,
+  "promote_games": 120,
+  "final_games": 175,
+  "top_k": 6,
+  "promotion_objective": "rating",
+  "finals_include_baseline": true,
+  "include_untouched_base": true,
+  "variants": [
+    {
+      "name": "struct_hire500_fert500_liqu0",
+      "path": "agents/sweeps/struct_hire500_fert500_liqu0.py",
+      "params": {
+        "hire_deadline": 500,
+        "fert_deadline": 500,
+        "liquidate_from": 0
+      }
+    },
+    {
+      "name": "struct_hire500_fert500_liqu700",
+      "path": "agents/sweeps/struct_hire500_fert500_liqu700.py",
+      "params": {
+        "hire_deadline": 500,
+        "fert_deadline": 500,
+        "liquidate_from": 700
+      }
+    },
+    {
+      "name": "struct_hire500_fert500_liqu710",
+      "path": "agents/sweeps/struct_hire500_fert500_liqu710.py",
+      "params": {
+        "hire_deadline": 500,
+        "fert_deadline": 500,
+        "liquidate_from": 710
+      }
+    },
+    {
+      "name": "struct_hire500_fert600_liqu0",
+      "path": "agents/sweeps/struct_hire500_fert600_liqu0.py",
+      "params": {
+        "hire_deadline": 500,
+        "fert_deadline": 600,
+        "liquidate_from": 0
+      }
+    },
+    {
+      "name": "struct_hire500_fert600_liqu700",
+      "path": "agents/sweeps/struct_hire500_fert600_liqu700.py",
+      "params": {
+        "hire_deadline": 500,
+        "fert_deadline": 600,
+        "liquidate_from": 700
+      }
+    },
+    {
+      "name": "struct_hire500_fert600_liqu710",
+      "path": "agents/sweeps/struct_hire500_fert600_liqu710.py",
+      "params": {
+        "hire_deadline": 500,
+        "fert_deadline": 600,
+        "liquidate_from": 710
+      }
+    },
+    {
+      "name": "struct_hire500_liqu0",
+      "path": "agents/sweeps/struct_hire500_liqu0.py",
+      "params": {
+        "hire_deadline": 500,
+        "fert_deadline": 720,
+        "liquidate_from": 0
+      }
+    },
+    {
+      "name": "struct_hire500_liqu700",
+      "path": "agents/sweeps/struct_hire500_liqu700.py",
+      "params": {
+        "hire_deadline": 500,
+        "fert_deadline": 720,
+        "liquidate_from": 700
+      }
+    },
+    {
+      "name": "struct_hire500_liqu710",
+      "path": "agents/sweeps/struct_hire500_liqu710.py",
+      "params": {
+        "hire_deadline": 500,
+        "fert_deadline": 720,
+        "liquidate_from": 710
+      }
+    },
+    {
+      "name": "struct_hire600_fert500_liqu0",
+      "path": "agents/sweeps/struct_hire600_fert500_liqu0.py",
+      "params": {
+        "hire_deadline": 600,
+        "fert_deadline": 500,
+        "liquidate_from": 0
+      }
+    },
+    {
+      "name": "struct_hire600_fert500_liqu700",
+      "path": "agents/sweeps/struct_hire600_fert500_liqu700.py",
+      "params": {
+        "hire_deadline": 600,
+        "fert_deadline": 500,
+        "liquidate_from": 700
+      }
+    },
+    {
+      "name": "struct_hire600_fert500_liqu710",
+      "path": "agents/sweeps/struct_hire600_fert500_liqu710.py",
+      "params": {
+        "hire_deadline": 600,
+        "fert_deadline": 500,
+        "liquidate_from": 710
+      }
+    },
+    {
+      "name": "struct_hire600_fert600_liqu0",
+      "path": "agents/sweeps/struct_hire600_fert600_liqu0.py",
+      "params": {
+        "hire_deadline": 600,
+        "fert_deadline": 600,
+        "liquidate_from": 0
+      }
+    },
+    {
+      "name": "struct_hire600_fert600_liqu700",
+      "path": "agents/sweeps/struct_hire600_fert600_liqu700.py",
+      "params": {
+        "hire_deadline": 600,
+        "fert_deadline": 600,
+        "liquidate_from": 700
+      }
+    },
+    {
+      "name": "struct_hire600_fert600_liqu710",
+      "path": "agents/sweeps/struct_hire600_fert600_liqu710.py",
+      "params": {
+        "hire_deadline": 600,
+        "fert_deadline": 600,
+        "liquidate_from": 710
+      }
+    },
+    {
+      "name": "struct_hire600_liqu0",
+      "path": "agents/sweeps/struct_hire600_liqu0.py",
+      "params": {
+        "hire_deadline": 600,
+        "fert_deadline": 720,
+        "liquidate_from": 0
+      }
+    },
+    {
+      "name": "struct_hire600_liqu700",
+      "path": "agents/sweeps/struct_hire600_liqu700.py",
+      "params": {
+        "hire_deadline": 600,
+        "fert_deadline": 720,
+        "liquidate_from": 700
+      }
+    },
+    {
+      "name": "struct_hire600_liqu710",
+      "path": "agents/sweeps/struct_hire600_liqu710.py",
+      "params": {
+        "hire_deadline": 600,
+        "fert_deadline": 720,
+        "liquidate_from": 710
+      }
+    },
+    {
+      "name": "struct_fert500_liqu0",
+      "path": "agents/sweeps/struct_fert500_liqu0.py",
+      "params": {
+        "hire_deadline": 720,
+        "fert_deadline": 500,
+        "liquidate_from": 0
+      }
+    },
+    {
+      "name": "struct_fert500_liqu700",
+      "path": "agents/sweeps/struct_fert500_liqu700.py",
+      "params": {
+        "hire_deadline": 720,
+        "fert_deadline": 500,
+        "liquidate_from": 700
+      }
+    },
+    {
+      "name": "struct_fert500_liqu710",
+      "path": "agents/sweeps/struct_fert500_liqu710.py",
+      "params": {
+        "hire_deadline": 720,
+        "fert_deadline": 500,
+        "liquidate_from": 710
+      }
+    },
+    {
+      "name": "struct_fert600_liqu0",
+      "path": "agents/sweeps/struct_fert600_liqu0.py",
+      "params": {
+        "hire_deadline": 720,
+        "fert_deadline": 600,
+        "liquidate_from": 0
+      }
+    },
+    {
+      "name": "struct_fert600_liqu700",
+      "path": "agents/sweeps/struct_fert600_liqu700.py",
+      "params": {
+        "hire_deadline": 720,
+        "fert_deadline": 600,
+        "liquidate_from": 700
+      }
+    },
+    {
+      "name": "struct_fert600_liqu710",
+      "path": "agents/sweeps/struct_fert600_liqu710.py",
+      "params": {
+        "hire_deadline": 720,
+        "fert_deadline": 600,
+        "liquidate_from": 710
+      }
+    },
+    {
+      "name": "struct_liqu0",
+      "path": "agents/sweeps/struct_liqu0.py",
+      "params": {
+        "hire_deadline": 720,
+        "fert_deadline": 720,
+        "liquidate_from": 0
+      }
+    },
+    {
+      "name": "struct_liqu700",
+      "path": "agents/sweeps/struct_liqu700.py",
+      "params": {
+        "hire_deadline": 720,
+        "fert_deadline": 720,
+        "liquidate_from": 700
+      }
+    },
+    {
+      "name": "struct_liqu710",
+      "path": "agents/sweeps/struct_liqu710.py",
+      "params": {
+        "hire_deadline": 720,
+        "fert_deadline": 720,
+        "liquidate_from": 710
+      }
+    }
+  ]
+}
