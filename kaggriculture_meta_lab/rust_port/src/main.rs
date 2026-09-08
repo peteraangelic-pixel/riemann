@@ -51,6 +51,12 @@ struct Args {
     /// Reproduce the example agent's hand-list slicing BEFORE atomic PLANT validation.
     #[arg(long)]
     trim_hands: bool,
+    /// Trim only input tape A's hands (useful for a candidate vs a raw recorded opponent).
+    #[arg(long)]
+    trim_hands_a: bool,
+    /// Trim only input tape B's hands. These flags follow tapes when seats are reversed.
+    #[arg(long)]
+    trim_hands_b: bool,
     /// Flat configuration overrides or a full Kaggle specification JSON.
     #[arg(long)]
     config: Option<PathBuf>,
@@ -148,6 +154,10 @@ fn execute(args: Args) -> Result<bool> {
     if args.threads == Some(0) {
         return Err("--threads must be >= 1".into());
     }
+    let trim_hands = [
+        args.trim_hands || args.trim_hands_a,
+        args.trim_hands || args.trim_hands_b,
+    ];
     let mut cache = TapeCache {
         config: &config,
         turns,
@@ -186,13 +196,13 @@ fn execute(args: Args) -> Result<bool> {
         let outcomes: Vec<Outcome> = pool.install(|| {
             jobs.par_iter()
                 .map(|job| match job {
-                    Ok(job) => Replay::new(
+                    Ok(job) => Replay::new_with_hand_trimming(
                         &config,
                         &job.a,
                         &job.b,
                         job.seed,
                         job.reverse,
-                        args.trim_hands,
+                        trim_hands,
                     )
                     .run(),
                     Err(e) => Outcome::error(e),
@@ -206,13 +216,13 @@ fn execute(args: Args) -> Result<bool> {
     } else {
         let a = cache.load(args.tape_a.as_deref().expect("clap requires tape-a"))?;
         let b = cache.load(args.tape_b.as_deref().expect("clap requires tape-b"))?;
-        let mut replay = Replay::new(
+        let mut replay = Replay::new_with_hand_trimming(
             &config,
             &a,
             &b,
             args.seed.expect("clap requires seed"),
             args.reverse_seats,
-            args.trim_hands,
+            trim_hands,
         );
         if let Some(path) = &args.trace {
             let file = File::create(path).map_err(|e| format!("{}: {e}", path.display()))?;

@@ -3,8 +3,10 @@ CARGO ?= cargo
 SEEDS ?= 64
 THREADS ?= 4
 GAMES ?= 64
+BATCH_GAMES ?= 14000
+BATCH_THREADS ?= 1,4,16
 
-.PHONY: build export test check benchmark framework-check
+.PHONY: build export test check benchmark benchmark-batch framework-check
 
 build:
 	$(CARGO) build --release --locked
@@ -16,6 +18,7 @@ test:
 	$(CARGO) fmt --all -- --check
 	$(CARGO) clippy --all-targets --locked -- -D warnings
 	$(CARGO) test --locked
+	$(CARGO) test --release --locked
 	$(CARGO) build --release --locked
 	$(PYTHON) -m unittest discover -s tests -v
 
@@ -28,3 +31,6 @@ benchmark: build
 # Opt-in network test. Install requirements-framework.txt in a venv first.
 framework-check: build
 	$(PYTHON) tools/check_framework.py --download
+
+benchmark-batch: build
+	$(PYTHON) tools/benchmark_batch.py --games $(BATCH_GAMES) --threads $(BATCH_THREADS) --repeats 3

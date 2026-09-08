@@ -60,12 +60,16 @@ fn no_heap_allocations_including_free_hires_and_daily_refresh() {
     }
     // Last entry repeats: 48 free hires each full day, capacity reused on reset.
     let tape = PreparedTape::new(Tape::from_json(&json!([actions, [{}]])).unwrap(), &cfg, 720);
-    let mut replay = Replay::new(&cfg, &tape, &tape, -71, false, false);
-    COUNT.with(|c| c.set(0));
-    TRACK.with(|c| c.set(true));
-    while replay.advance() {}
-    TRACK.with(|c| c.set(false));
-    assert_eq!(COUNT.with(Cell::get), 0);
-    assert_eq!(replay.game.turn(), 720);
-    assert!(replay.outcome().errors.is_empty());
+    for flags in [[false, false], [true, false], [false, true], [true, true]] {
+        for reverse in [false, true] {
+            let mut replay = Replay::new_with_hand_trimming(&cfg, &tape, &tape, -71, reverse, flags);
+            COUNT.with(|c| c.set(0));
+            TRACK.with(|c| c.set(true));
+            while replay.advance() {}
+            TRACK.with(|c| c.set(false));
+            assert_eq!(COUNT.with(Cell::get), 0);
+            assert_eq!(replay.game.turn(), 720);
+            assert!(replay.outcome().errors.is_empty());
+        }
+    }
 }

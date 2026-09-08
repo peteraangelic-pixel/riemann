@@ -35,6 +35,10 @@ def main():
         else:
             notice("Rust formatting", "Tracked Rust sources are rustfmt-clean.")
         return 0
+    if len(sys.argv) == 3 and sys.argv[1] == "--report":
+        path = Path(sys.argv[2])
+        text_artifact("report " + path.name, path.read_text())
+        return 0
     if sys.argv[1:] == ["--lockfile"]:
         text_artifact("Cargo.lock", Path("Cargo.lock").read_text())
         return 0

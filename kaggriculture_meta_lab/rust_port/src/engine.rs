@@ -582,10 +582,17 @@ impl<'a> Game<'a> {
         self.market_loop_aborts
     }
 
+    /// Backward-compatible shorthand applying the same rule to both seats.
     pub fn step(&mut self, actions: [&Action; 2], trim_hands: bool) {
+        self.step_with_hand_trimming(actions, [trim_hands; 2]);
+    }
+
+    /// Trimming is per physical seat. Raw replay opponents must not inherit
+    /// the candidate's wrapper: phantom PLANT requests affect seed validation.
+    pub fn step_with_hand_trimming(&mut self, actions: [&Action; 2], trim_hands: [bool; 2]) {
         let day = (self.turn / self.config.turns_per_day) as i64;
-        for (farm, action) in self.farms.iter_mut().zip(actions) {
-            farm.apply_actions(action, self.config, day, trim_hands);
+        for (seat, farm) in self.farms.iter_mut().enumerate() {
+            farm.apply_actions(actions[seat], self.config, day, trim_hands[seat]);
         }
         self.process_market(actions);
         self.town_consume();

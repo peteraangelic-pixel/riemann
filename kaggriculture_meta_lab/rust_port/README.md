@@ -59,6 +59,24 @@ Wynik: jedna linia na stdout, wyłącznie JSON:
    początkowych zleceń `BUY_WHEAT=21` / `SELL_WHEAT=16`; samych danych z bloba
    nie należy traktować jako całego wrappera agenta.
 
+### Kandydat przycinany, przeciwnik z surowego replaya
+
+`--trim-hands-a` i `--trim-hands-b` pozwalają ustawić regułę **osobno dla
+wejściowej taśmy A/B**. Flaga podąża za agentem przy `--reverse-seats`.
+`--trim-hands` pozostaje skrótem oznaczającym obie flagi jednocześnie.
+
+Dla B21 jako A oraz surowych, zarejestrowanych akcji przeciwnika jako B:
+
+```bash
+./target/release/kg_sim --jobs work/jobs.csv --steps 720 --threads 16 --trim-hands-a
+```
+
+Przy eksporcie przeciwnika z replaya pomiń początkowy stan: akcja N znajduje się
+w `replay["steps"][N+1]`. Seed bierz z **`replay["info"]["seed"]`**, a nie z
+wyczyszczonego `configuration.seed`. Jeśli odtwarzasz jedną zarejestrowaną
+politykę na obu miejscach, zapisz tę samą listę jako obie części `[seat0, seat1]`.
+Nie zmienia to zamrożonego replaya w politykę reaktywną.
+
 Nie poprawiamy ukradkiem tych zachowań. Do porównania z własną pętlą Pythonową
 należy wybrać ten sam horyzont i tę samą regułę przycinania.
 
@@ -126,7 +144,18 @@ for job, result in zip(jobs, results):
 
 Klient nie używa shella, zapisuje prawidłowy CSV, sprawdza liczbę odpowiedzi i
 **domyślnie odrzuca błędy**, żeby nie zatruć statystyk. `allow_errors=True` pozwala
-obsłużyć je samodzielnie. Do sweepów używaj jednego `--jobs`, nie subprocessu na
+obsłużyć je samodzielnie. Ten tryb **nie** dopuszcza niepełnego JSON, brakujących
+wyników, `NaN`/nieskończoności ani nieoczekiwanego zakończenia procesu.
+W takich przypadkach klient zawsze zgłasza `SimulatorError` (podklasa
+`RuntimeError`). Opcjonalne `timeout=300` ogranicza czas całego procesu;
+po przekroczeniu limitu żadne częściowe wyniki nie są akceptowane.
+Dostępne są również `trim_hands_a=True` i `trim_hands_b=True`.
+
+```python
+results = replay_many(jobs, threads=16, trim_hands_a=True, timeout=300)
+```
+
+Do sweepów używaj jednego `--jobs`, nie subprocessu na
 każdy seed: start procesu i ponowne parsowanie JSON mogą dominować czas symulacji.
 
 ## Konfiguracja
@@ -147,6 +176,11 @@ Obsługiwane: kasa, koszty pomocników, pojemność szopy, długość dnia, limi
 wszystkie interwały miasta, chwasty i rzadkie nadpisania krzywych cen
 (`linear`, `sq`, `sqrt`, `log`, `log10`, `hinge`). Nieznana nazwa funkcji ceny ma
 liniowy fallback jak w Pythonie. Nasiona nie zajmują szopy.
+
+Pola całkowite akceptują także JSON `24.0`, zgodnie z regułą `integer`
+JSON Schema. Wartości ułamkowe i poza zakresem są odrzucane. W płaskim
+`marketParams` nazwa `default` nie jest interpretowana jako schemat: pozostaje
+nieznaną nazwą produktu i nie może skasować pozostałych nadpisań cen.
 
 Świadome ograniczenia v1:
 
@@ -189,10 +223,12 @@ liniowy fallback jak w Pythonie. Nasiona nie zajmują szopy.
 cargo fmt --all -- --check
 cargo clippy --all-targets --locked -- -D warnings
 cargo test --locked
+cargo test --release --locked
 cargo build --release --locked
 python -m unittest discover -s tests -v
 python tools/check.py --check --seeds 64 --threads 4
 python tools/benchmark.py --games 64 --threads 4 --repeats 3
+python tools/benchmark_batch.py --games 14000 --threads 1,4,16 --repeats 3
 ```
 
 `check.py` sprawdza SHA źródeł, gotówkę **bitowo jako binary64**, pełne stany tur,
@@ -234,6 +270,17 @@ Raporty powstają w ignorowanym `work/`; binaria w `target/`. Workflow
 Testowane wartości przyspieszenia należy brać z raportu benchmarku, nie z
 założenia 8–20×. Benchmark obejmuje start binarza i I/O, ale **nie jest pomiarem
 całego Twojego 14k-game sweepa ani maszyny z 16 fizycznymi rdzeniami**.
+
+### Duży batch bez mylącej ekstrapolacji
+
+`benchmark_batch.py` rzeczywiście wykonuje 14 000 meczów dla każdego podanego
+limitu wątków, w kilku powtórzeniach. Dla wszystkich wyników porównuje skrót
+bajtów binary64 **w kolejności zadań**, a rozłożoną po całej paczce próbkę
+sprawdza niezależnie w Pythonie. Zapisuje zmierzony czas i mecze/s, **nie**
+udaje pomiaru 14 000 gier w Pythonie ani całego procesu wyszukiwania agentów.
+Domyślny workload to jedna dostarczona para taśm na seedach 0–13 999; własną
+parę można wskazać przez `--tape-a` / `--tape-b`. Raport podaje faktyczną liczbę
+CPU: uruchomienie 16 wątków na runnerze z 4 CPU nie jest benchmarkiem 16 rdzeni.
 
 ## Układ plików
 
