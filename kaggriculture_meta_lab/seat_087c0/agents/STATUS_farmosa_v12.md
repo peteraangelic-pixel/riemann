@@ -50,6 +50,34 @@ v12 = v10 + start wieczornego „water sweepu” o h≥17 (zamiast h≥20).
 - Finalna konwersja d29: zboże/owoce zostają w ziemi — warto dołożyć
   „liquidate sweep” w d28 wieczorem.
 
+## Eksperyment v13 (nawożenie pól zamiast sprzedaży nawozu) — MIESZANY, nie promowany
+
+Prototyp: `agents/variants/farmosa_v13_fert.py`. Robotnik z FERTILIZEREM
+w inwentarzu (ze zbiórki przy zwierzętach) aplikuje go na najbliższą
+nienawożoną pszenicę/marchew w oknie zbioru (zamiast zanosić do szopy).
+
+Mechanika potwierdzona w silniku: WATER w oknie bonusowym daje +1 (+2 gdy
+`fertilized_until_day >= day`); FERTILIZE działa 3 dni i zużywa nawóz
+z inwentarza robotnika (nie z szopy). Ceny seed 100: FERT ~85, WHEAT ~44,
+CARROT ~58.
+
+| seed | v12 | v13 (fert) | Δ |
+|------|-----|-----|-----|
+| 100 | 49277 | 53322 | +4045 |
+| 101 | 46296 | 52180 | +5884 |
+| 102 | 35909 | 32381 | −3528 |
+| 103 | 43839 | 41261 | −2578 |
+| 104 | 39411 | 33156 | −6255 |
+| 105 | 60550 | 55032 | −5518 |
+| **Σ** | **275282** | **267332** | **−7950** |
+
+Wniosek: nawożenie samo w sobie jest wartościowe (duże zyski na seedach
+100/101), ale detour do FERTILIZE kradnie ręce wieczornemu water-sweepowi
+na innych seedach. Kolejna iteracja powinna bramkować nawożenie dopiero,
+gdy wszystkie rośliny w strefie są podlane (np. za water-sweeepem h≥17)
+lub ograniczyć zasięg/okno aplikacji (marchew d26-28; pszenica tylko gdy
+roślina ma zapewnione podlewanie).
+
 ## Uruchamianie benchmarku
 
 ```bash
