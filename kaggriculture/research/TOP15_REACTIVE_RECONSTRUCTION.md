@@ -196,3 +196,21 @@ the platform's uncompressed source limit and returned ERROR. The semantically
 identical compact package was framework-validated, uploaded as ref **56131785**,
 and reached **COMPLETE / public score 600.0**. This does not reverse its
 closed-loop rejection (8–24 versus B21).
+
+## V13 recovery promotion over G4 (2026-09-10)
+
+A fail-closed recovery layer was evaluated over the stronger B21 structural
+schedule. The first version replaced productive scheduled work and collapsed
+to roughly 300 reward; this is retained as a warning that a locally legal
+action is not necessarily safe in a multi-turn plan. Restricting overrides to
+idle (`PASS`) units recovered performance. Feature ablation against B21 showed
+that urgent water, endgame harvest, and animal servicing each cost material
+margin; only identity/drop was neutral, so the layer is not promoted over B21.
+
+The exact compact 13,618-byte V13 package nevertheless clears the requested G4
+promotion gate on a fresh paired holdout: **20–4**, score rate **83.3%**, Wilson
+95% lower bound **64.1%**, mean margin **+21,338**, 24 games and zero errors.
+Against B21 it remains rejected at 1–23 and −4,479. V13 is therefore a genuine,
+framework-validated improvement over G4, not the new overall champion. The next
+target is positive transfer over B21 through exact state estimation and
+candidate-level legality/economic scoring rather than further tape overrides.
