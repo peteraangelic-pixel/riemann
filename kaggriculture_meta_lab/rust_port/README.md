@@ -114,6 +114,33 @@ Nie zmieniamy walidacji binarza i nie interpretujemy błędnych tablic, np.
 `[1,2]`, jako agentów PASS. To dotyczy już wyciętych akcji, nie całego replaya
 Kaggle: w replayu nadal trzeba pominąć stan początkowy i zachować `info.seed`.
 
+## Reaktywny overlay rynku (warstwa badawcza)
+
+Opcjonalny profil JSON modyfikuje wyłącznie zlecenia rynku z taśmy na podstawie
+bieżącego dnia, gotówki, zawartości szopy i aktualnej ceny sprzedaży. Ruchy
+farmera i pomocników pozostają z bazowej taśmy. Profil potrafi ograniczyć
+sprzedaż do dostępnego zapasu po rezerwie, wstrzymać sprzedaż poniżej ceny,
+zatrzymać zakupy oraz zmienić udział likwidowany w endgame. Nie dodaje zleceń,
+więc zachowuje limit i pozycje lockstep wspólnego rynku.
+
+```bash
+./target/release/kg_sim --tape-a subin.json --tape-b opponent.json \
+  --overlay-a profile.json --seed 7 --steps 720 --trim-hands-a
+```
+
+Wyłączony profil (`{"enabled":false}`) jest dokładną operacją identity. Parser
+odrzuca nieznane pola, wartości niefinitywne, ujemne rezerwy i udziały spoza
+0..10000 punktów bazowych. Pythonowym wzorcem parytetu jest
+`kaggriculture_lab/market_overlay.py`. Populacje tworzy skrypt
+`scripts/generate_market_overlays.py`.
+
+W CSV batch można dodać dwie kolumny; pusta ścieżka oznacza brak profilu:
+
+```csv
+seed,tape_a,tape_b,reverse,overlay_a,overlay_b
+0,subin.json,opponent.json,0,market-g0-00001.json,
+```
+
 ## Wiele meczów — tu używamy Rayona
 
 `work/jobs.csv`, bez nagłówka (nagłówek `seed,tape_a,tape_b,reverse` też działa):

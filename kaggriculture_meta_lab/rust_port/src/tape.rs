@@ -40,7 +40,7 @@ pub struct Order {
     pub remaining: u64,
 }
 
-#[derive(Debug, Default)]
+#[derive(Clone, Debug, Default)]
 pub struct Action {
     pub farmer: UnitAction,
     pub hands: Vec<UnitAction>,

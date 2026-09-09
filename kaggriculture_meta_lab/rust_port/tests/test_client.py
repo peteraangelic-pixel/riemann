@@ -125,6 +125,19 @@ class ClientProtocolTests(unittest.TestCase):
         self.assertEqual(seen.count(Path("a.json")), 1)
         self.assertEqual(seen.count(Path("b.json")), 1)
 
+    def test_overlay_paths_are_forwarded_in_single_and_batch_modes(self):
+        process = subprocess.CompletedProcess(["kg_sim"], 0, '{"rewards":[1,2],"errors":[]}\n', "")
+        job = Job(0, "a.json", "b.json", overlay_a="profile.json")
+        with patch("tools.rust_client.subprocess.run", return_value=process) as call:
+            replay(job)
+            argv = call.call_args.args[0]
+            self.assertIn("--overlay-a", argv)
+            replay_many([job])
+            csv_path = Path(argv[argv.index("--overlay-a") + 1])
+            self.assertEqual(csv_path.name, "profile.json")
+            batch_argv = call.call_args.args[0]
+            self.assertIn("--jobs", batch_argv)
+
     def test_batch_timeout_forwarded(self):
         process = subprocess.CompletedProcess(["kg_sim"], 0, '{"rewards":[1,2],"errors":[]}\n', "")
         with patch("tools.rust_client.subprocess.run", return_value=process) as call:

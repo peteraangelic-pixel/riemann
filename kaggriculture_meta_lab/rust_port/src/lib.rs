@@ -6,12 +6,14 @@ pub mod config;
 pub mod data;
 mod engine;
 pub mod market;
+pub mod overlay;
 pub mod rng;
 mod snapshot;
 pub mod tape;
 
 pub use config::Config;
 pub use engine::Game;
+pub use overlay::MarketOverlay;
 use serde::Serialize;
 pub use tape::Tape;
 
@@ -58,6 +60,7 @@ pub struct Replay<'a> {
     tapes: [&'a PreparedTape; 2],
     reverse: bool,
     trim_hands: [bool; 2],
+    overlays: [Option<&'a MarketOverlay>; 2],
     turns: usize,
 }
 
@@ -83,6 +86,22 @@ impl<'a> Replay<'a> {
         reverse: bool,
         trim_hands: [bool; 2],
     ) -> Self {
+        Self::new_with_overlays(
+            config, tape_a, tape_b, seed, reverse, trim_hands, [None, None],
+        )
+    }
+
+    /// Overlay profiles are supplied in input A/B order and follow their tapes
+    /// when physical seats are reversed.
+    pub fn new_with_overlays(
+        config: &'a Config,
+        tape_a: &'a PreparedTape,
+        tape_b: &'a PreparedTape,
+        seed: i64,
+        reverse: bool,
+        trim_hands: [bool; 2],
+        overlays: [Option<&'a MarketOverlay>; 2],
+    ) -> Self {
         assert_eq!(
             tape_a.turns, tape_b.turns,
             "tapes must be prepared for the same number of turns"
@@ -107,6 +126,11 @@ impl<'a> Replay<'a> {
         } else {
             trim_hands
         };
+        let overlays = if reverse {
+            [overlays[1], overlays[0]]
+        } else {
+            overlays
+        };
         let game = Game::new(
             config,
             seed,
@@ -117,6 +141,7 @@ impl<'a> Replay<'a> {
             tapes,
             reverse,
             trim_hands,
+            overlays,
             turns: tape_a.turns,
         }
     }
@@ -127,11 +152,17 @@ impl<'a> Replay<'a> {
         if turn >= self.turns {
             return false;
         }
+        let sources = [
+            self.tapes[0].tape.action(0, turn),
+            self.tapes[1].tape.action(1, turn),
+        ];
+        let actions: [std::borrow::Cow<'_, tape::Action>; 2] =
+            std::array::from_fn(|seat| match self.overlays[seat] {
+                Some(profile) => std::borrow::Cow::Owned(profile.apply(&self.game, seat, sources[seat])),
+                None => std::borrow::Cow::Borrowed(sources[seat]),
+            });
         self.game.step_with_hand_trimming(
-            [
-                self.tapes[0].tape.action(0, turn),
-                self.tapes[1].tape.action(1, turn),
-            ],
+            [&actions[0], &actions[1]],
             self.trim_hands,
         );
         true
