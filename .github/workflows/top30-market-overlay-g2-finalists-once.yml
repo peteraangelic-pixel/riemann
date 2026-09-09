@@ -29,7 +29,7 @@ jobs:
       - name: Build parity-gated Rust simulator
         working-directory: kaggriculture_meta_lab/rust_port
         run: cargo build --release --locked
-      - name: Validate retained Generation 2 profiles through TOP30
+      - name: Validate retained Generation 2 profiles through TOP10 TOP20 TOP30
         run: |
           python kaggriculture_meta_lab/scripts/screen_market_overlays.py \
             --corpus "$RUNNER_TEMP/top30/TOP30" --max-rank 30 \
