@@ -1,0 +1,45 @@
+name: Kaggriculture v11 trajectory and final G4 status
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v11-trajectory-audit.yml"]
+permissions:
+  contents: write
+jobs:
+  audit:
+    if: contains(github.event.head_commit.message, '[kg-v11-trajectory]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env: {PYTHONPATH: kaggriculture_meta_lab}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install --disable-pip-version-check kaggle-environments==1.32.7 kaggle
+      - name: Capture both-seat daily trajectories
+        run: |
+          python kaggriculture_meta_lab/scripts/audit_match_trajectory.py \
+            --candidate agents/variants/agent_v11_reactive_score.py \
+            --control agents/current/agent_v9_b21_s16.py --seed 20260984 \
+            --output kaggriculture_meta_lab/results/v11-vs-b21-trajectory-20260910.json
+      - name: Persist final corrected G4 status
+        env: {KAGGLE_API_TOKEN: "${{ secrets.KAGGLE_API_TOKEN }}"}
+        run: |
+          mkdir -p ~/.kaggle
+          printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]' > ~/.kaggle/access_token
+          chmod 600 ~/.kaggle/access_token
+          python - <<'PY'
+          import json
+          from kaggle.api.kaggle_api_extended import KaggleApi
+          api=KaggleApi();api.authenticate()
+          match=next(x for x in api.competition_submissions('kaggriculture') if int(x.ref)==56131785)
+          print(json.dumps(match.to_dict() if hasattr(match,'to_dict') else vars(match),default=str,indent=2,sort_keys=True),
+                file=open('kaggriculture_meta_lab/results/kaggle-g4-29-corrected-final-20260910.json','w'))
+          PY
+      - name: Persist audit
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v11-vs-b21-trajectory-20260910.json kaggriculture_meta_lab/results/kaggle-g4-29-corrected-final-20260910.json
+          git commit -m "Record v11 trajectory and final G4 status"
+          git push origin HEAD:arena/01a0712c-riemann
