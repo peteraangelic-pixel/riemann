@@ -1,0 +1,53 @@
+{
+  "candidate": "wrap:agents/current/agent_v9_b21_s16.py:agents/variants/reactive_recovery_wrapper.py",
+  "seeds": 8,
+  "both_seats": true,
+  "controls": [
+    {
+      "control": "agents/current/agent_v9_b21_s16.py",
+      "games": 16,
+      "wins": 0,
+      "losses": 16,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 0.0,
+      "score_rate": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.1936076805344365,
+      "mean_margin": -4617.25,
+      "median_margin": -4019.0,
+      "p10_margin": -6935.0,
+      "mean_self": 87052.75,
+      "mean_opp": 91670.0,
+      "gate_pass": false,
+      "gate_reasons": [
+        "only 16 games (< 20)",
+        "95% CI low 0.0% <= 50% (score rate 0.0%)",
+        "mean margin -4617 <= 0"
+      ]
+    },
+    {
+      "control": "agents/variants/agent_v11_subin_g4_29.py",
+      "games": 16,
+      "wins": 16,
+      "losses": 0,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 1.0,
+      "score_rate": 1.0,
+      "ci_low": 0.8063923194655637,
+      "ci_high": 1.0,
+      "mean_margin": 30030.25,
+      "median_margin": 31725.5,
+      "p10_margin": 6425.0,
+      "mean_self": 109447.1875,
+      "mean_opp": 79416.9375,
+      "gate_pass": false,
+      "gate_reasons": [
+        "only 16 games (< 20)"
+      ]
+    }
+  ],
+  "all_controls_pass": false,
+  "elapsed_s": 74.41274291100001
+}
