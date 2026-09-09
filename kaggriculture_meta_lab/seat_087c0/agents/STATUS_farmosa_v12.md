@@ -78,6 +78,35 @@ gdy wszystkie rośliny w strefie są podlane (np. za water-sweeepem h≥17)
 lub ograniczyć zasięg/okno aplikacji (marchew d26-28; pszenica tylko gdy
 roślina ma zapewnione podlewanie).
 
+## Head-to-head vs agenci gałęzi arena/01a0712c-riemann — V12 NIE jest konkurencyjne
+
+Ich równoległa sesja zaaudytowała V12 (`agents/variants/agent_farmosa_v12_087c0.py`
+na 01a0712c) i zapisała wynik w `kaggriculture_meta_lab/results/
+farmosa-v12-cross-branch-holdout-20260910.json` (commit 7f0918d):
+
+| kontrolny agent (01a0712c) | mecze | W/L | win rate | średnia marża | v12 | opp |
+|---|---:|---:|---:|---:|---:|---:|
+| agent_v9_b21_s16 | 32 | 0/32 | 0% | −139 397 | 15 234 | 154 630 |
+| agent_v10_subin_106845775 | 32 | 0/32 | 0% | −138 923 | 15 480 | 154 404 |
+| agent_v11_subin_g4_29 | 32 | 0/32 | 0% | −122 614 | 14 540 | 137 154 |
+
+Potwierdzenie własnym rerunem (seedy 100–103 × obie strony, 8 meczów):
+v9_b21_s16 −143 759 (12 234 vs 158 096), v10_subin −135 814 (8 429 vs 144 243),
+v11_g4_29 −125 020 (10 969 vs 135 989).
+
+Wniosek: wyniki ~27–60k/mecz V12 to wyłącznie gra przeciw PASYWNYM
+przeciwnikom (6 seedów; Σ 275 282 = suma, nie jeden mecz). W realnym
+head-to-head z agentami elity V12 zarabia ~8–15k, a oni 135–158k — skala
+ekonomii jest ~10× mniejsza (census TOP15: zwycięzcy realnych epizodów do
+177 788, średnia ~97 700). Kaggle LB (~2900 pkt) to inna metryka rankingowa,
+nie złoto. V12 NIE wysyłać na Kaggle.
+
+Skala różnicy (census TOP15, DeeperNet): ~20k jednostek pszenicy sprzedanej,
+16k mleka, 260 hire'ów w sezonie, 46 zakupów nawozu — vs moje ~kilkaset
+jednostek i sprzedaż nawozu zamiast użycia. Luka ma charakter strukturalny
+(architektura ekonomii), nie strojenia — poprawki typu v13 (nawożenie) dają
+pojedyncze %, nie ~120k.
+
 ## Uruchamianie benchmarku
 
 ```bash
