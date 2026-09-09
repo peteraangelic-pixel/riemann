@@ -75,6 +75,26 @@ def generate_local_profiles(population: int, seed: int) -> list[dict[str, object
     return profiles
 
 
+def generate_refined_profiles() -> list[dict[str, object]]:
+    """Cartesian refinement around the two robust Generation-1 leaders."""
+    profiles: list[dict[str, object]] = [{"enabled": False}, {"enabled": True}]
+    seen = {json.dumps(p, sort_keys=True) for p in profiles}
+    for start_day in (6, 8, 10):
+        for cash in (0, 100, 150, 200, 250, 300):
+            for wheat_price in (0, 10, 20, 30, 40):
+                for milk_reserve in (0, 1, 2, 3):
+                    profile = {
+                        "enabled": True, "start_day": start_day,
+                        "cash_reserve": cash, "min_wheat_price": wheat_price,
+                        "milk_reserve": milk_reserve,
+                    }
+                    key = json.dumps(profile, sort_keys=True)
+                    if key not in seen:
+                        seen.add(key)
+                        profiles.append(profile)
+    return profiles
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--output", type=Path, required=True)

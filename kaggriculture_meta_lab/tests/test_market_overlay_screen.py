@@ -1,6 +1,8 @@
 from __future__ import annotations
 
-from scripts.generate_market_overlays import generate_local_profiles, generate_profiles
+from scripts.generate_market_overlays import (
+    generate_local_profiles, generate_profiles, generate_refined_profiles,
+)
 from scripts.screen_market_overlays import summarize
 
 
@@ -19,6 +21,13 @@ def test_local_generation_starts_with_disabled_and_enabled_identity():
     assert len({repr(sorted(profile.items())) for profile in profiles}) == 200
     assert all(2 <= len(profile) <= 5 for profile in profiles[2:])
     assert all(profile["start_day"] >= 8 for profile in profiles[2:])
+
+
+def test_refined_generation_is_complete_unique_grid_with_controls():
+    profiles = generate_refined_profiles()
+    assert len(profiles) == 362
+    assert profiles[:2] == [{"enabled": False}, {"enabled": True}]
+    assert len({repr(sorted(profile.items())) for profile in profiles}) == len(profiles)
 
 
 def test_team_balanced_summary_does_not_overweight_more_records():

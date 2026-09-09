@@ -20,6 +20,7 @@ from rust_client import Job, replay_many  # noqa: E402
 from scripts.benchmark_top30 import build_top30_jobs  # noqa: E402
 from scripts.generate_market_overlays import (  # noqa: E402
     BOUNDS, LOCAL_OPTIONS, generate_local_profiles, generate_profiles,
+    generate_refined_profiles,
 )
 
 SOURCE_EPISODE = 106845775
@@ -70,7 +71,7 @@ def main() -> int:
     ap.add_argument("--binary", type=Path,
                     default=ROOT / "rust_port/target/release/kg_sim")
     ap.add_argument("--population", type=int, default=1000)
-    ap.add_argument("--generation", choices=("g0", "g1"), default="g0")
+    ap.add_argument("--generation", choices=("g0", "g1", "g2"), default="g0")
     ap.add_argument("--profiles-from", type=Path,
                     help="validate retained_top10 from an earlier result instead of sampling")
     ap.add_argument("--max-rank", type=int, choices=(10, 20, 30), default=10)
@@ -87,8 +88,12 @@ def main() -> int:
                 profiles.append(entry["profile"])
         generation = "validation"
     else:
-        profiles = (generate_local_profiles(args.population, args.seed)
-                    if args.generation == "g1" else generate_profiles(args.population, args.seed))
+        if args.generation == "g2":
+            profiles = generate_refined_profiles()
+        elif args.generation == "g1":
+            profiles = generate_local_profiles(args.population, args.seed)
+        else:
+            profiles = generate_profiles(args.population, args.seed)
         generation = args.generation
     target_jobs, target_meta = build_top30_jobs(
         args.corpus.resolve(), args.candidate, args.max_rank)
@@ -151,7 +156,7 @@ def main() -> int:
         }
         entries.append({"index": index, "name": f"market-{generation}-{index:05d}",
                         "profile": profile, "summary": stats, "curricula": curricula})
-    if not args.profiles_from and args.generation == "g1":
+    if not args.profiles_from and args.generation in {"g1", "g2"}:
         control = entries[0]["summary"]
         identity = entries[1]["summary"]
         contract = ("wins", "losses", "ties", "mean_margin", "team_balanced_score")
@@ -167,8 +172,12 @@ def main() -> int:
                  "both seats"),
         "generation": generation, "max_rank": args.max_rank,
         "population": len(profiles), "games": len(jobs), "generation_seed": args.seed,
-        "search_space": ("retained_top10" if args.profiles_from else
-                         LOCAL_OPTIONS if args.generation == "g1" else BOUNDS),
+        "search_space": (
+            "retained_top10" if args.profiles_from else
+            "refined start/cash/wheat-price/milk-reserve grid"
+            if args.generation == "g2" else
+            LOCAL_OPTIONS if args.generation == "g1" else BOUNDS
+        ),
         "baseline": baseline, "retained_top10": entries[:10],
         "top50": entries[:50],
     }
