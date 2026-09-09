@@ -149,6 +149,40 @@ woda/zbiór/nawóz/budowa/zwierzęta) wg planu z gałęzi głównej; (2) ekonomi
 skali jak wyżej; (3) dopiero potem ew. mały model wybierający bezpieczne
 akcje planera. To robota na kolejne sesje, nie na pojedyncze patche.
 
+## Eksperyment v20 (reaktywny wg planu b21) — przełom diagnostyczny, wciąż za słaby
+
+Motywacja: rozszyfrowany plan taśmy b21 na seedzie 100 (jej wynik 182 082 vs
+pasywny): d0-1: 12 melonów + 2 krowy + 2 owce (kasa ~97!); d6: NE + 12
+truskawek; d8: 8 krów 4 owce; d10: kasa 17 298 (melon), 8 owiec; d12: SW,
+33 truskawki, 24 pszenicy; d14-20: 33 truskawki + 25 pszenicy, 17 zwierząt
+karmionych, zero chwastów, kasa 34k→85k; d24: 41 pszenicy; d28: 170k; final
+182 082. Kluczowe odkrycia z silnika: (a) uprawy ongoing (truskawka) dostają
++1 plonu nawet bez wody — wystarczy podlewać co 2. dzień (stąd „unwatered≈25"
+przy zerze chwastów w taśmie); (b) nagroda = gotówka d29, więc liczy się
+likwidacja.
+
+v20 = v12 + luźniejsze progi gotówki (40-200), owce od d1 (do 9), truskawki
+do 34 (NE + rzędy po melonach), konwejer pszenicy do 45 (od d8), marchew 36,
+podlewanie co-2-dni dla ongoing, sweeep od h15. Wynik: 217 523 (vs 275 282
+v12); s103 nawet 47 735 > v12 43 839. Rozkład na seedzie 100:
+- CRASH ukryty: `KeyError: max_yield_day` (klucz silnika vs `max_day` w
+  tabeli CROPS agenta) → cichy fallback PASS/market[] na zawsze (paraliż).
+  Po fixie gra działa. Wniosek: fallback w act() maskuje błędy — dodać
+  jednorazowy log wyjątku.
+- Zwierzęta kupione zalegają w shed (COW/SHEEP/GOOSE przez wiele dni):
+  transport ma za niski priorytet w flow robotnika (przegrywa z wodą/
+  karmieniem). Taśma ma wszystkie 8K+9S+3G rozstawione do d12.
+- Truskawki nie dochodzą do 34 (kasa/seed na d10-14); chwasty rosną gdy
+  podlewanie co-2-dni nie nadąża (d28: weed 14).
+- final 40 849.
+
+Wniosek: v12 pozostaje championem. v20 potwierdza, że do poziomu b21
+(150k+) potrzeba: (1) priorytetu rozstawiania zwierząt (rano, zanim cokolwiek
+innego), (2) gwarancji podlewania bez 2-dniowych luk (dedykowani „watererzy"
+zamiast ogólnego sweeepu), (3) większej i wcześniejszej kasy na truskawki.
+To robota na przeprojektowanie harmonogramu, nie na patche.
+
+## Uruchamianie benchmarku
 ## Uruchamianie benchmarku
 
 ```bash
