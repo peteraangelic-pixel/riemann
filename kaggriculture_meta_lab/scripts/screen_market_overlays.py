@@ -17,7 +17,7 @@ sys.path.insert(0, str(ROOT / "rust_port/tools"))
 
 from kaggriculture_lab.rust_backend import _source  # noqa: E402
 from rust_client import Job, replay_many  # noqa: E402
-from scripts.benchmark_top30 import build_top30_jobs  # noqa: E402
+from scripts.benchmark_corpus import build_top30_jobs  # noqa: E402
 from scripts.generate_market_overlays import (  # noqa: E402
     BOUNDS, LOCAL_OPTIONS, generate_local_profiles, generate_profiles,
     generate_refined_profiles,
