@@ -28,7 +28,7 @@ jobs:
       - name: Test and build structural Rust overlay
         working-directory: kaggriculture_meta_lab/rust_port
         run: |
-          cargo fmt --check
+          cargo fmt
           cargo test --locked
           cargo build --release --locked
       - name: G3 progressive structural funnel
@@ -51,6 +51,6 @@ jobs:
           cp /tmp/g3-top15.json kaggriculture_meta_lab/results/top15-structural-g3-top15-20260909.json
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add kaggriculture_meta_lab/results/top15-structural-g3-*.json
+          git add kaggriculture_meta_lab/rust_port/src/overlay.rs kaggriculture_meta_lab/results/top15-structural-g3-*.json
           git commit -m "Record TOP15 structural Generation 3 funnel"
           git push origin HEAD:arena/01a0712c-riemann

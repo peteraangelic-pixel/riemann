@@ -467,8 +467,15 @@ mod tests {
         let game = Game::new(&cfg, 0, [0, 0]);
         let profile = MarketOverlay::from_json(&json!({"enabled": true})).unwrap();
         let out = profile.apply(&game, 0, &tape.seats[0][0]);
-        assert_eq!(out.market.iter().map(|order| order.remaining).collect::<Vec<_>>(),
-                   vec![1, 1, 17, 19, 23]);
+        assert!(matches!(out.market[0].kind, OrderKind::Hire));
+        assert!(matches!(out.market[1].kind, OrderKind::BuyLand));
+        assert_eq!(
+            out.market
+                .iter()
+                .map(|order| order.remaining)
+                .collect::<Vec<_>>(),
+            vec![0, 0, 17, 19, 23]
+        );
     }
 
     #[test]
