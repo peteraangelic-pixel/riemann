@@ -161,3 +161,38 @@ The result isolates the remaining problem: adaptive market purchase caps help
 against current tapes, but the inherited static unit movement/planting/care tape
 collapses when the opponent trajectory changes. The next generation must emit
 reactive unit actions, not add more market genes to Subin.
+
+## Reactive planner baseline audit (2026-09-10)
+
+Cross-branch FarmOS v12 was imported and tested before reuse. Its passive-opponent
+sum 275,282 did not transfer: 0–32 against each of B21, static Subin and G4-29,
+with only about 15k own reward and no execution errors. We retained its useful
+ideas (same-turn target deduplication and an h≥17 water sweep), not the policy.
+
+`agent_v11_reactive_score.py` now provides the first explicit fast action scorer.
+For every worker it compares safe live-state targets for urgent watering,
+harvesting, ordinary watering, planting, fertilizing and digging using task
+value, realizable harvest value and Manhattan travel cost. Destinations are
+claimed within the turn; fertilizing cannot preempt watering. It also retains
+the complete V7 construction/placement/feed/care logistics and exposes 29
+bounded genes to the deterministic generator. A 16-profile generation smoke
+passed, but large population search remains postponed until strategy improves.
+
+The first closed-loop screen was scientifically neutral/negative: 2–6 against
+both V10 and V7 with mean margin −20.5 over eight games, and 0–8/−65,928 against
+B21. Daily trajectory telemetry exposed the strategic gap: V11 had 6 melons and
+no strawberries versus B21's 12 melons and 32 strawberries; 14 versus 17 animals;
+and left 43 crops standing at season end while B21 liquidated every crop.
+
+A bounded V12 experiment raised premium targets (12 melons, 32 strawberries,
+8 cows + 9 sheep), delayed SW, and added a d28 harvest liquidation priority.
+It was rejected: 0–8 and −10,605 versus V11, 0–8 and −10,378 versus V7, and
+0–8/−82,635 versus B21. Simultaneously changing production scale overcommitted
+capital and labor; these families must now be introduced as small ablations,
+not a 100,000-profile search.
+
+The explicitly requested G4-29 was submitted after its first package exceeded
+the platform's uncompressed source limit and returned ERROR. The semantically
+identical compact package was framework-validated, uploaded as ref **56131785**,
+and reached **COMPLETE / public score 600.0**. This does not reverse its
+closed-loop rejection (8–24 versus B21).
