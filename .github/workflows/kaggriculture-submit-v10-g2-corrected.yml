@@ -4,8 +4,32 @@ on:
     branches: ["arena/01a0712c-riemann"]
     paths: [".github/workflows/kaggriculture-submit-v10-g2-corrected.yml"]
 permissions:
-  contents: read
+  contents: write
 jobs:
+  status:
+    if: contains(github.event.head_commit.message, '[kg-g2-status]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - name: Configure Kaggle token
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+        run: |
+          mkdir -p ~/.kaggle
+          printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]' > ~/.kaggle/access_token
+          chmod 600 ~/.kaggle/access_token
+      - run: pip install --disable-pip-version-check kaggle
+      - name: Persist corrected submission status
+        run: |
+          kaggle competitions submissions kaggriculture -v | head -5 > kaggriculture_meta_lab/results/kaggle-g2-corrected-status-20260909.txt
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/kaggle-g2-corrected-status-20260909.txt
+          git commit -m "Record corrected G2 Kaggle status"
+          git push origin HEAD:arena/01a0712c-riemann
   validate-and-submit:
     if: contains(github.event.head_commit.message, '[kaggr-submit-g2-corrected]')
     runs-on: ubuntu-latest
