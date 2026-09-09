@@ -17,12 +17,14 @@ def _obs(tile, *, day=10, hour=12, inventory=None):
     }
 
 
-def test_urgent_crop_overrides_unsafe_base_move():
+def test_urgent_crop_uses_idle_unit_but_preserves_scheduled_move():
     tile = {"kind": "PLANT", "crop": "WHEAT", "planted_day": 9,
             "yield_units": 1, "watered_today": False, "consecutive_unwatered": 1}
-    out = recover(_obs(tile), {"farmer": ["EAST"], "hands": [], "market": [["HIRE"]]})
-    assert out["farmer"] == ["WATER"]
-    assert out["market"] == [["HIRE"]]
+    moving = recover(_obs(tile), {"farmer": ["EAST"], "hands": [], "market": [["HIRE"]]})
+    idle = recover(_obs(tile), {"farmer": ["PASS"], "hands": [], "market": [["HIRE"]]})
+    assert moving["farmer"] == ["EAST"]
+    assert idle["farmer"] == ["WATER"]
+    assert idle["market"] == [["HIRE"]]
 
 
 def test_endgame_mature_crop_is_harvested_without_extra_water():

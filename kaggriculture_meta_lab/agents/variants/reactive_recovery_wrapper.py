@@ -111,14 +111,17 @@ def recover(observation: dict[str, Any], base_action: dict[str, Any]) -> dict[st
         if y < 0 or y >= len(tiles) or x < 0 or x >= len(tiles[y]):
             continue
         inventory = inventories[index] if index < len(inventories) and isinstance(inventories[index], dict) else {}
+        # A locally attractive operation is not automatically safe: replacing
+        # one scheduled movement broke the whole structural tape in the first
+        # holdout. Recovery therefore owns only genuinely idle units. Invalid
+        # base operations are left untouched for now until the exact legality
+        # adapter can prove a replacement preserves downstream scheduling.
+        if not operations[index] or operations[index][0] != "PASS":
+            continue
         local = _local_safe_action(tiles[y][x], inventory, day, hour)
         if local is not None:
             operations[index] = local
             claimed.add(pos)
-            continue
-        # Never replace productive base work with speculative routing. Only an
-        # idle unit may be recruited into a recovery sweep.
-        if not operations[index] or operations[index][0] != "PASS":
             continue
         targets = mature_endgame if day >= ENDGAME_DAY else urgent
         target = _near(targets, pos, claimed)
