@@ -1,4 +1,4 @@
-name: Kaggriculture reactive recovery paired holdout
+name: Kaggriculture reactive recovery ablation
 on:
   push:
     branches: ["arena/01a0712c-riemann"]
@@ -6,8 +6,8 @@ on:
 permissions:
   contents: write
 jobs:
-  holdout:
-    if: contains(github.event.head_commit.message, '[kg-reactive-recovery]')
+  screen:
+    if: contains(github.event.head_commit.message, '[kg-recovery-ablation]')
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env: {PYTHONPATH: kaggriculture_meta_lab}
@@ -16,24 +16,18 @@ jobs:
       - uses: actions/setup-python@v6
         with: {python-version: "3.12"}
       - run: pip install --disable-pip-version-check kaggle-environments==1.32.7 pytest
-      - name: Unit tests and actual-framework paired holdout
+      - name: Isolate recovery feature families
         run: |
           python -m pytest -q kaggriculture_meta_lab/tests/test_reactive_recovery_wrapper.py
-          rc=0
-          python kaggriculture_meta_lab/scripts/validate_current.py \
-            --candidate wrap:agents/current/agent_v9_b21_s16.py:agents/variants/reactive_recovery_wrapper.py \
+          python kaggriculture_meta_lab/scripts/screen_recovery_ablation.py \
+            --base kaggriculture_meta_lab/agents/variants/reactive_recovery_wrapper.py \
             --control agents/current/agent_v9_b21_s16.py \
-            --control agents/variants/agent_v11_subin_g4_29.py \
-            --games 8 --workers 4 --start-seed 20261060 || rc=$?
-          result=$(ls -t kaggriculture_meta_lab/results/validate-current-*.json | head -1)
-          cp "$result" kaggriculture_meta_lab/results/reactive-recovery-v2-vs-b21-g4-8seed-20260910.json
-          exit "$rc"
-      - name: Persist fail-closed evidence
-        if: always()
+            --games 4 --workers 4 --start-seed 20261100 \
+            --output kaggriculture_meta_lab/results/reactive-recovery-ablation-20260910.json
+      - name: Persist evidence
         run: |
-          test -f kaggriculture_meta_lab/results/reactive-recovery-v2-vs-b21-g4-8seed-20260910.json
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add kaggriculture_meta_lab/results/reactive-recovery-v2-vs-b21-g4-8seed-20260910.json
-          git commit -m "Record idle-only recovery paired holdout"
+          git add kaggriculture_meta_lab/results/reactive-recovery-ablation-20260910.json
+          git commit -m "Record reactive recovery feature ablation"
           git push origin HEAD:arena/01a0712c-riemann

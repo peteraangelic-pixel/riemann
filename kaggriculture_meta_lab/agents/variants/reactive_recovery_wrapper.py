@@ -14,6 +14,10 @@ HARVEST_AGE = {"WHEAT": 3, "CARROT": 3, "MELON": 10, "STRAWBERRY": 10, "TOMATO":
 ACCESS = {(4, 4), (5, 4), (4, 5), (5, 5)}
 EVENING_WATER_HOUR = 17
 ENDGAME_DAY = 28
+RECOVER_URGENT = True
+RECOVER_ENDGAME = True
+RECOVER_ANIMALS = True
+RECOVER_DROP = True
 
 
 def _walk(pos: tuple[int, int], target: tuple[int, int]) -> list[str]:
@@ -40,24 +44,24 @@ def _near(cells: list[tuple[int, int]], pos: tuple[int, int], claimed: set[tuple
 
 
 def _local_safe_action(tile: Any, inventory: dict[str, int], day: int, hour: int) -> list[Any] | None:
-    """Return only actions whose preconditions are fully visible on this tile."""
+    """Return only enabled actions with fully visible local preconditions."""
     if not isinstance(tile, dict):
         return None
     if tile.get("kind") == "WEED":
-        return ["DIG"]
+        return ["DIG"] if RECOVER_URGENT else None
     if tile.get("kind") == "PLANT":
         crop = tile.get("crop")
         age = day - int(tile.get("planted_day", day))
         mature = age >= HARVEST_AGE.get(crop, 999) and int(tile.get("yield_units", 0) or 0) > 0
         unwatered = not tile.get("watered_today")
         urgent = int(tile.get("consecutive_unwatered", 0) or 0) >= 1
-        if mature and day >= ENDGAME_DAY:
+        if RECOVER_ENDGAME and mature and day >= ENDGAME_DAY:
             return ["HARVEST"]
-        if unwatered and (urgent or hour >= EVENING_WATER_HOUR):
+        if RECOVER_URGENT and unwatered and (urgent or hour >= EVENING_WATER_HOUR):
             return ["WATER"]
         return None
     animal = tile.get("animal")
-    if animal:
+    if animal and RECOVER_ANIMALS:
         if int(tile.get("yield_units", 0) or 0) > 0:
             return ["HARVEST"]
         if not tile.get("fed_today") and int(inventory.get("WHEAT", 0) or 0) > 0:
@@ -123,11 +127,11 @@ def recover(observation: dict[str, Any], base_action: dict[str, Any]) -> dict[st
             operations[index] = local
             claimed.add(pos)
             continue
-        targets = mature_endgame if day >= ENDGAME_DAY else urgent
+        targets = (mature_endgame if RECOVER_ENDGAME else []) if day >= ENDGAME_DAY else (urgent if RECOVER_URGENT else [])
         target = _near(targets, pos, claimed)
         if target is not None:
             operations[index] = _walk(pos, target)
-        elif pos in ACCESS and sum(int(v or 0) for v in inventory.values()) >= 90:
+        elif RECOVER_DROP and pos in ACCESS and sum(int(v or 0) for v in inventory.values()) >= 90:
             operations[index] = ["DROP"]
 
     return {
