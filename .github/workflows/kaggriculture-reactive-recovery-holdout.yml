@@ -1,15 +1,13 @@
-name: Kaggriculture reactive recovery ablation
+name: Kaggriculture compact V13 recovery promotion gate
 on:
   push:
     branches: ["arena/01a0712c-riemann"]
-    paths:
-      - ".github/workflows/kaggriculture-reactive-recovery-holdout.yml"
-      - "kaggriculture_meta_lab/scripts/screen_recovery_ablation.py"
+    paths: [".github/workflows/kaggriculture-reactive-recovery-holdout.yml"]
 permissions:
   contents: write
 jobs:
-  screen:
-    if: contains(github.event.head_commit.message, '[kg-recovery-ablation]')
+  gate:
+    if: contains(github.event.head_commit.message, '[kg-v13-recovery-gate]')
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env: {PYTHONPATH: kaggriculture_meta_lab}
@@ -17,19 +15,26 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
         with: {python-version: "3.12"}
-      - run: pip install --disable-pip-version-check kaggle-environments==1.32.7 pytest
-      - name: Isolate recovery feature families
+      - run: pip install --disable-pip-version-check kaggle-environments==1.32.7
+      - name: Exact packaged-agent gate
         run: |
-          python -m pytest -q kaggriculture_meta_lab/tests/test_reactive_recovery_wrapper.py
-          python kaggriculture_meta_lab/scripts/screen_recovery_ablation.py \
-            --base kaggriculture_meta_lab/agents/variants/reactive_recovery_wrapper.py \
+          test $(wc -c < kaggriculture_meta_lab/agents/variants/agent_v13_b21_recovery.py) -lt 15000
+          python -m py_compile kaggriculture_meta_lab/agents/variants/agent_v13_b21_recovery.py
+          rc=0
+          python kaggriculture_meta_lab/scripts/validate_current.py \
+            --candidate agents/variants/agent_v13_b21_recovery.py \
+            --control agents/variants/agent_v11_subin_g4_29.py \
             --control agents/current/agent_v9_b21_s16.py \
-            --games 4 --workers 4 --start-seed 20261100 \
-            --output kaggriculture_meta_lab/results/reactive-recovery-ablation-20260910.json
-      - name: Persist evidence
+            --games 12 --workers 4 --start-seed 20261140 || rc=$?
+          result=$(ls -t kaggriculture_meta_lab/results/validate-current-*.json | head -1)
+          cp "$result" kaggriculture_meta_lab/results/v13-b21-recovery-vs-g4-b21-12seed-20260910.json
+          exit "$rc"
+      - name: Persist fail-closed evidence
+        if: always()
         run: |
+          test -f kaggriculture_meta_lab/results/v13-b21-recovery-vs-g4-b21-12seed-20260910.json
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add kaggriculture_meta_lab/results/reactive-recovery-ablation-20260910.json
-          git commit -m "Record reactive recovery feature ablation"
+          git add kaggriculture_meta_lab/results/v13-b21-recovery-vs-g4-b21-12seed-20260910.json
+          git commit -m "Record compact V13 recovery promotion gate"
           git push origin HEAD:arena/01a0712c-riemann
