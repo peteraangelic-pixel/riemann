@@ -95,3 +95,20 @@ for s in (100,101,102,103,104,105):
     print("seed", s, "final:", env.state[0].reward)
 EOF
 ```
+
+## Niezależny audyt międzygałęziowy (2026-09-10)
+
+Wynik 275 282 jest powtarzalnym benchmarkiem ekonomii przeciw przeciwnikowi
+pasywnemu, ale nie jest dowodem siły turniejowej. Kontrolowany test w oficjalnym
+frameworku (16 seedów, oba miejsca, zero błędów agenta) dał FarmOS v12:
+
+- **0–32** vs B21, średni margines **−139 397**;
+- **0–32** vs statyczny Subin, średni margines **−138 923**;
+- **0–32** vs G4-29, średni margines **−122 614**.
+
+Średni wynik własny wynosił tylko 14,5–15,5 tys. przy aktywnym konkurencie.
+Wniosek: evening water sweep, strefy i deduplikacja celów są wartościowymi
+komponentami architektury, lecz cała polityka v12 nie jest kandydatem do
+promocji. Benchmark pasywny ukrył wrażliwość na wspólny rynek. V13 pozostaje
+odrzucony również na własnym sześci seedowym benchmarku (−7 950 względem v12).
+Pełny rekord: `kaggriculture_meta_lab/results/farmosa-v12-cross-branch-holdout-20260910.json`.
