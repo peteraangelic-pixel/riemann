@@ -1,4 +1,4 @@
-name: Kaggriculture corrected G2-83 submission
+name: Kaggriculture corrected G2-83 submission # final status check
 on:
   workflow_dispatch:
   push:
