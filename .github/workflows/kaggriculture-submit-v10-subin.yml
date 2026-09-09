@@ -1,0 +1,41 @@
+name: Kaggriculture submit V10 static Subin exemplar
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-submit-v10-subin.yml"]
+permissions:
+  contents: read
+jobs:
+  submit:
+    if: contains(github.event.head_commit.message, '[kaggr-submit-v10-subin]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - name: Compile explicitly approved standalone exemplar
+        run: python -m py_compile kaggriculture_meta_lab/agents/variants/agent_v10_subin_106845775.py
+      - name: Configure Kaggle token
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+        run: |
+          mkdir -p ~/.kaggle
+          clean_token=$(printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]')
+          test -n "$clean_token" || { echo '::error::KAGGLE_API_TOKEN is missing'; exit 1; }
+          printf '%s' "$clean_token" > ~/.kaggle/access_token
+          chmod 600 ~/.kaggle/access_token
+      - run: pip install --disable-pip-version-check kaggle
+      - name: Package and upload static Subin exemplar 106845775
+        run: |
+          work=$(mktemp -d)
+          cp kaggriculture_meta_lab/agents/variants/agent_v10_subin_106845775.py "$work/main.py"
+          tar -C "$work" -czf "$work/submission-v10-subin-106845775.tar.gz" main.py
+          output=$(kaggle competitions submit -c kaggriculture \
+            -f "$work/submission-v10-subin-106845775.tar.gz" \
+            -m "V10 static Subin 106845775 open-loop46.7 closed-loop26of32 $GITHUB_SHA" 2>&1)
+          printf '%s\n' "$output"
+          safe=$(printf '%s' "$output" | sed -E 's/KGAT_[A-Za-z0-9_-]+/[REDACTED]/g')
+          safe=${safe//'%'/'%25'}; safe=${safe//$'\n'/'%0A'}; safe=${safe//$'\r'/'%0D'}
+          echo "::notice title=V10 static Subin Kaggle upload::$safe"
+          kaggle competitions submissions kaggriculture | head -10
