@@ -1,0 +1,52 @@
+{
+  "candidate": "agents/variants/agent_v13_b21_recovery.py",
+  "seeds": 12,
+  "both_seats": true,
+  "controls": [
+    {
+      "control": "agents/variants/agent_v11_subin_g4_29.py",
+      "games": 24,
+      "wins": 20,
+      "losses": 4,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 0.8333333333333334,
+      "score_rate": 0.8333333333333334,
+      "ci_low": 0.6414692935030095,
+      "ci_high": 0.9332132367136705,
+      "mean_margin": 21338.25,
+      "median_margin": 14023.5,
+      "p10_margin": -6140.0,
+      "mean_self": 98835.91666666667,
+      "mean_opp": 77497.66666666667,
+      "gate_pass": true,
+      "gate_reasons": [
+        "PASS: 20W/4L/0T, score 83.3% (CI 64.1-93.3), margin +21338"
+      ]
+    },
+    {
+      "control": "agents/current/agent_v9_b21_s16.py",
+      "games": 24,
+      "wins": 1,
+      "losses": 23,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 0.041666666666666664,
+      "score_rate": 0.041666666666666664,
+      "ci_low": 0.0073934561655057685,
+      "ci_high": 0.20241806478655938,
+      "mean_margin": -4479.083333333333,
+      "median_margin": -4014.0,
+      "p10_margin": -9252.0,
+      "mean_self": 85765.875,
+      "mean_opp": 90244.95833333333,
+      "gate_pass": false,
+      "gate_reasons": [
+        "95% CI low 0.7% <= 50% (score rate 4.2%)",
+        "mean margin -4479 <= 0"
+      ]
+    }
+  ],
+  "all_controls_pass": false,
+  "elapsed_s": 145.046272786
+}
