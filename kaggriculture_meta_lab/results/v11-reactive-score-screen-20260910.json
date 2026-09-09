@@ -1,0 +1,78 @@
+{
+  "candidate": "agents/variants/agent_v11_reactive_score.py",
+  "seeds": 4,
+  "both_seats": true,
+  "controls": [
+    {
+      "control": "agents/variants/agent_v10_reactive_subin.py",
+      "games": 8,
+      "wins": 2,
+      "losses": 6,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 0.25,
+      "score_rate": 0.25,
+      "ci_low": 0.071479212752109,
+      "ci_high": 0.5907245696898311,
+      "mean_margin": -20.5,
+      "median_margin": -1054.5,
+      "p10_margin": -1582.0,
+      "mean_self": 47262.75,
+      "mean_opp": 47283.25,
+      "gate_pass": false,
+      "gate_reasons": [
+        "only 8 games (< 20)",
+        "95% CI low 7.1% <= 50% (score rate 25.0%)",
+        "mean margin -20 <= 0"
+      ]
+    },
+    {
+      "control": "agents/ref/agent_v7.py",
+      "games": 8,
+      "wins": 2,
+      "losses": 6,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 0.25,
+      "score_rate": 0.25,
+      "ci_low": 0.071479212752109,
+      "ci_high": 0.5907245696898311,
+      "mean_margin": -20.5,
+      "median_margin": -1054.5,
+      "p10_margin": -1582.0,
+      "mean_self": 47262.75,
+      "mean_opp": 47283.25,
+      "gate_pass": false,
+      "gate_reasons": [
+        "only 8 games (< 20)",
+        "95% CI low 7.1% <= 50% (score rate 25.0%)",
+        "mean margin -20 <= 0"
+      ]
+    },
+    {
+      "control": "agents/current/agent_v9_b21_s16.py",
+      "games": 8,
+      "wins": 0,
+      "losses": 8,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 0.0,
+      "score_rate": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.32440756488388023,
+      "mean_margin": -65928.0,
+      "median_margin": -70085.0,
+      "p10_margin": -78538.0,
+      "mean_self": 43614.875,
+      "mean_opp": 109542.875,
+      "gate_pass": false,
+      "gate_reasons": [
+        "only 8 games (< 20)",
+        "95% CI low 0.0% <= 50% (score rate 0.0%)",
+        "mean margin -65928 <= 0"
+      ]
+    }
+  ],
+  "all_controls_pass": false,
+  "elapsed_s": 55.93035133499998
+}

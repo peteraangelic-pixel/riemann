@@ -1,0 +1,13 @@
+ref,fileName,date,description,status,publicScore,privateScore
+56131561,submission-v11-subin-g4-29.tar.gz,2026-09-09 22:06:39.830000,V11 G4-29 TOP5 18-18 TOP10 27-39 TOP15 29-83 closed8-24 explicitly requested d9c5793f994dadd826ceef75daa89cc98b6b9889,SubmissionStatus.ERROR,,
+56130711,submission-v10-subin-g2-83-corrected.tar.gz,2026-09-09 20:43:02.840000,V10 G2-83 corrected compact exact-policy framework-validated 3aa7732de48b27500bf32598dded6380b166795f,SubmissionStatus.COMPLETE,2416.3,
+56130004,submission-v10-subin-g2-83.tar.gz,2026-09-09 19:39:17.157000,V10 Subin G2-83 cash250 milk1 TOP30 margin672 closed23of32 54dda17e1b918adb80a358a6eef4e0ba7964b896,SubmissionStatus.ERROR,,
+56126199,submission-v10-subin-106845775.tar.gz,2026-09-09 15:21:39.150000,V10 static Subin 106845775 open-loop46.7 closed-loop26of32 3ab8d399901661a48b35e97215d77eb97fc79692,SubmissionStatus.COMPLETE,2137.3,
+56071535,submission-v9-b21-s16.tar.gz,2026-09-07 07:14:06.533000,V9 B21-S16 TOP49 184of490 margin+835 1819433f0c62bfdcc1f15f4631c27781d19a57f7,SubmissionStatus.COMPLETE,1767.2,
+56054139,submission-v8-hybrid.tar.gz,2026-09-06 11:37:46.603000,V8 hybrid 200k 72of85 e76ffc5922574b7ff133b669efddb51b177dfd75,SubmissionStatus.COMPLETE,1800.9,
+56054137,submission-v8-aastik.tar.gz,2026-09-06 11:37:44.677000,V8 Aastik rating 73of85 e76ffc5922574b7ff133b669efddb51b177dfd75,SubmissionStatus.COMPLETE,2215.3,
+56044395,submission.tar.gz,2026-09-06 01:43:49.250000,kaggr ci fa2830bf30b2ca7e8e8562aeeb88708f0eb82de1,SubmissionStatus.COMPLETE,2193.5,
+56037841,submission.tar.gz,2026-09-05 17:31:03.340000,kaggr ci bf032aea97d414e3ce50fcedbc971b9e4ab967fe,SubmissionStatus.COMPLETE,608.4,
+56033582,submission.tar.gz,2026-09-05 13:16:29.907000,kaggr ci c518cc27426b671ede9c145a3b54f526aa1a3a7f,SubmissionStatus.COMPLETE,492.0,
+56033159,submission.tar.gz,2026-09-05 12:51:53.900000,kaggr ci 5cf876f3d6af7f2d0918d3d381cb15a1738028c1,SubmissionStatus.COMPLETE,469.3,
+56032076,submission.tar.gz,2026-09-05 11:53:41.323000,kaggr ci c393cfe0ea88c9bc52b041e5da900c175c972bdd,SubmissionStatus.COMPLETE,396.5,
