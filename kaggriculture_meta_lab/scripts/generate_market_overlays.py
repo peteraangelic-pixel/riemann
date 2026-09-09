@@ -60,7 +60,7 @@ def generate_local_profiles(population: int, seed: int) -> list[dict[str, object
     if not 2 <= population <= 100_000:
         raise ValueError("local population must be in 2..100000")
     rng = random.Random(seed)
-    profiles: list[dict[str, object]] = [{"enabled": False}, {"enabled": False}]
+    profiles: list[dict[str, object]] = [{"enabled": False}, {"enabled": True}]
     seen = {json.dumps(p, sort_keys=True) for p in profiles}
     names = tuple(LOCAL_OPTIONS)
     while len(profiles) < population:
@@ -77,7 +77,7 @@ def generate_local_profiles(population: int, seed: int) -> list[dict[str, object
 
 def generate_refined_profiles() -> list[dict[str, object]]:
     """Cartesian refinement around the two robust Generation-1 leaders."""
-    profiles: list[dict[str, object]] = [{"enabled": False}, {"enabled": False}]
+    profiles: list[dict[str, object]] = [{"enabled": False}, {"enabled": True}]
     seen = {json.dumps(p, sort_keys=True) for p in profiles}
     for start_day in (6, 8, 10):
         for cash in (0, 100, 150, 200, 250, 300):
