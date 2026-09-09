@@ -2,6 +2,7 @@
   "format": "kaggriculture-replay-corpus-benchmark-v2",
   "mode": "open-loop recorded team policy; original seed; candidate both seats",
   "candidate": "agents/variants/agent_v10_subin_106845775.py",
+  "candidate_overlay": null,
   "source_manifest_sha256": "041f195ba46ac35006b372768f9f4d2126235dd14351313c3dd5b00dd44cdd1e",
   "summary": {
     "top10": {
