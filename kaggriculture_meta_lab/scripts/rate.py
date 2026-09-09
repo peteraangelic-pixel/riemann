@@ -2,7 +2,7 @@
 
     python scripts/rate.py \
         --agents v7=agents/ref/agent_v7.py \
-        --agents v4=agents/ref/agent_v4.py \
+        --agents v4=agents/ref/agent_v7.py \
         --agents starter=starter \
         --games 60 --workers 16
 """

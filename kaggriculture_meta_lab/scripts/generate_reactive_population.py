@@ -20,7 +20,7 @@ from kaggriculture_lab.reactive_genetics import (  # noqa: E402
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--base", type=Path,
-                        default=ROOT / "agents/variants/agent_v10_reactive_subin.py")
+                        default=ROOT / "agents/variants/agent_v11_reactive_score.py")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--population", type=int, default=100)
     parser.add_argument("--seed", type=int, default=20260909)

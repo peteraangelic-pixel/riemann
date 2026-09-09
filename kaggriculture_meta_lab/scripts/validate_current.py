@@ -10,7 +10,7 @@ ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 from kaggriculture_lab.stats import aggregate,promotion_gate
 from kaggriculture_lab.tournament import build_jobs,default_workers,run
 DEFAULT_CANDIDATE='agents/current/agent_v9_b21_s16.py'
-DEFAULT_CONTROLS=['agents/current/agent_v7_scripted.py','agents/current/agent_v8_aastik.py','agents/current/agent_v8_hybrid.py']
+DEFAULT_CONTROLS=['agents/ref/agent_v7.py','agents/current/agent_v9_b21_s16.py','agents/variants/agent_v10_subin_106845775.py']
 def main():
  p=argparse.ArgumentParser();p.add_argument('--candidate',default=DEFAULT_CANDIDATE);p.add_argument('--control',action='append',dest='controls');p.add_argument('--games',type=int,default=50,help='seeds per control; both seats doubles this');p.add_argument('--workers',type=int,default=default_workers());p.add_argument('--start-seed',type=int,default=20264000);p.add_argument('--allow-large',action='store_true');a=p.parse_args();controls=a.controls or DEFAULT_CONTROLS
  projected=len(controls)*a.games*2

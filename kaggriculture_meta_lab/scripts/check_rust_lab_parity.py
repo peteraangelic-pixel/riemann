@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import gzip
 import json
+import os
 import struct
 import sys
 from pathlib import Path
@@ -22,14 +23,17 @@ def bits(value: float) -> bytes:
 
 def main() -> int:
     b21 = ROOT / "agents/current/agent_v9_b21_s16.py"
-    b20 = REPO / "kaggriculture/v10_candidates/opening_rating/agent_v10_b20_s15.py"
+    static_subin = ROOT / "agents/variants/agent_v10_subin_106845775.py"
     jobs = []
     for seed in (0, 1, 20294000, 20294001):
         for seat in (0, 1):
-            jobs.append((seed, str(b21), str(b20), seat, 720, f"static-{seed}-{seat}"))
+            jobs.append((seed, str(b21), str(static_subin), seat, 720, f"static-{seed}-{seat}"))
 
-    corpus = REPO / "kaggriculture/top49_full"
-    for replay_path in sorted(corpus.glob("*/replay.json.gz"))[:3]:
+    # TOP15 is intentionally not extracted into Git. Set KG_TOP15_EXTRACTED to
+    # a temporary directory containing replay.json.gz files to include raw-tape
+    # parity; static parity remains useful when the corpus is absent.
+    corpus = Path(os.environ.get("KG_TOP15_EXTRACTED", "/tmp/top15-extracted"))
+    for replay_path in sorted(corpus.glob("**/replay.json.gz"))[:3]:
         with gzip.open(replay_path, "rt", encoding="utf-8") as stream:
             replay = json.load(stream)
         names = replay["info"]["TeamNames"]

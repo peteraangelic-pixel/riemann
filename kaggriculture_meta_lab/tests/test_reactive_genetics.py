@@ -8,7 +8,7 @@ from kaggriculture_lab.reactive_genetics import (
     baseline, crossover, load_genes, mutate, render, sample,
 )
 
-BASE = Path(__file__).resolve().parents[1] / "agents/variants/agent_v10_reactive_subin.py"
+BASE = Path(__file__).resolve().parents[1] / "agents/variants/agent_v11_reactive_score.py"
 
 
 def test_real_profile_loads_without_importing_and_baseline_renders():

@@ -35,7 +35,7 @@ from kaggriculture_lab.tournament import (  # noqa: E402
 )
 
 V8 = "agents/current/agent_v9_b21_s16.py"
-V7 = "agents/current/agent_v7_scripted.py"
+V7 = "agents/ref/agent_v7.py"
 
 
 def _corpus_job(args):

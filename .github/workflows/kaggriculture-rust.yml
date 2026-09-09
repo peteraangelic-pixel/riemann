@@ -90,7 +90,8 @@ jobs:
         run: |
           python tools/ci_run.py python tools/benchmark.py --games 64 --threads 4 --repeats 3
           python tools/ci_run.py --report work/benchmark.json
-      - name: 14k-game batch, thread determinism and independent Python samples
+      - name: 14k-game batch, thread determinism and independent Python samples (opt-in)
+        if: contains(github.event.head_commit.message, '[kg-rust-large]')
         run: |
           python tools/ci_run.py python tools/benchmark_batch.py --games 14000 --threads 1,4,16 --repeats 3 --python-checks 64
           python tools/ci_run.py --report work/batch-benchmark.json

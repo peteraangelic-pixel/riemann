@@ -67,8 +67,9 @@ def test_backend_partitions_mixed_hand_semantics_and_preserves_order(tmp_path, m
     calls = []
 
     class Job:
-        def __init__(self, seed, tape_a, tape_b, reverse=False):
+        def __init__(self, seed, tape_a, tape_b, reverse=False, overlay_a=None):
             self.seed, self.tape_a, self.tape_b, self.reverse = seed, tape_a, tape_b, reverse
+            self.overlay_a = overlay_a
 
     def replay_many(jobs, **kwargs):
         calls.append((jobs, kwargs))

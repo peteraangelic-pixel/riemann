@@ -3,7 +3,7 @@
 Examples (Windows PowerShell - use backticks; bash - use backslashes as shown):
     python scripts/run_tournament.py \
         --candidate agents/ref/agent_v7.py \
-        --opponent starter=starter --opponent v4=agents/ref/agent_v4.py \
+        --opponent starter=starter --opponent v4=agents/ref/agent_v7.py \
         --opponent renoir="tape:corpus/sample/105787151/replay.json.gz" \
         --games 200 --workers 16
 

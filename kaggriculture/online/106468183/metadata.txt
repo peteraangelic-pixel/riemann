@@ -1,3 +1,0 @@
-submission_ref=56071535
-episode_id=106468183
-agent=B21_S16
