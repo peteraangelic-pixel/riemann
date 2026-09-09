@@ -1,0 +1,2653 @@
+{
+  "format": "kaggriculture-top15-audit-v1",
+  "source_manifests_sha256": "1e55ed8dbd722f4117349e614b501fe4f8feb188869289a34f6cf25d229bccc3",
+  "archive": {
+    "file": "TOP15.7z",
+    "bytes": 19846258,
+    "sha256": "820cd7e2cbb02b8c88566707231d9cbbd26047d1d69e2374f5490488087f4b19"
+  },
+  "summary": {
+    "teams": 15,
+    "selected_slots": 105,
+    "raw_files": 105,
+    "unique_episodes": 94,
+    "duplicate_episode_slots": 11,
+    "unique_seeds": 94,
+    "zero_seed_slots": 1,
+    "self_play_slots": 1,
+    "unique_submissions": 30,
+    "status_counts": {
+      "DONE": 210
+    }
+  },
+  "teams": [
+    {
+      "rank": 1,
+      "team_id": 16760569,
+      "team_name": "Otter Vibe",
+      "leaderboard_score": 2987.0,
+      "folder": "Otter Vibe"
+    },
+    {
+      "rank": 2,
+      "team_id": 16640510,
+      "team_name": "SpaTaro",
+      "leaderboard_score": 2984.1,
+      "folder": "SpaTaro"
+    },
+    {
+      "rank": 3,
+      "team_id": 16657785,
+      "team_name": "Himanshu Kumar",
+      "leaderboard_score": 2977.8,
+      "folder": "Himanshu Kumar"
+    },
+    {
+      "rank": 4,
+      "team_id": 16748173,
+      "team_name": "pensukesan",
+      "leaderboard_score": 2968.7,
+      "folder": "pensukesan"
+    },
+    {
+      "rank": 5,
+      "team_id": 16850683,
+      "team_name": "cooked",
+      "leaderboard_score": 2943.1,
+      "folder": "cooked"
+    },
+    {
+      "rank": 6,
+      "team_id": 16732496,
+      "team_name": "kanno",
+      "leaderboard_score": 2940.2,
+      "folder": "kanno"
+    },
+    {
+      "rank": 7,
+      "team_id": 16689430,
+      "team_name": "Terry Luo",
+      "leaderboard_score": 2934.9,
+      "folder": "Terry Luo"
+    },
+    {
+      "rank": 8,
+      "team_id": 16685556,
+      "team_name": "binghua",
+      "leaderboard_score": 2930.2,
+      "folder": "binghua"
+    },
+    {
+      "rank": 9,
+      "team_id": 16622349,
+      "team_name": "Mengfei Li",
+      "leaderboard_score": 2929.4,
+      "folder": "Mengfei Li"
+    },
+    {
+      "rank": 10,
+      "team_id": 16839530,
+      "team_name": "GermanJurado1",
+      "leaderboard_score": 2920.4,
+      "folder": "GermanJurado1"
+    },
+    {
+      "rank": 11,
+      "team_id": 16758882,
+      "team_name": "mtmr_s1",
+      "leaderboard_score": 2916.1,
+      "folder": "mtmr_s1"
+    },
+    {
+      "rank": 12,
+      "team_id": 16801351,
+      "team_name": "デワンシュ",
+      "leaderboard_score": 2911.4,
+      "folder": "デワンシュ"
+    },
+    {
+      "rank": 13,
+      "team_id": 16693904,
+      "team_name": "DeeperNet",
+      "leaderboard_score": 2908.3,
+      "folder": "DeeperNet"
+    },
+    {
+      "rank": 14,
+      "team_id": 16860566,
+      "team_name": "黄旭伟aaaabbs",
+      "leaderboard_score": 2906.5,
+      "folder": "黄旭伟aaaabbs"
+    },
+    {
+      "rank": 15,
+      "team_id": 16795448,
+      "team_name": "ultimatum_game",
+      "leaderboard_score": 2896.8,
+      "folder": "ultimatum_game"
+    }
+  ],
+  "slots": [
+    {
+      "rank": 1,
+      "team": "Otter Vibe",
+      "slot": 1,
+      "episode_id": 107222620,
+      "submission_id": 56094606,
+      "seed": 1597333153,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        110208.0,
+        117644.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Otter Vibe/replay_01_107222620.json",
+      "bytes": 33059335,
+      "sha256": "52208a2f59effa385609e454e86a0a69eaca62c9c039cf3feb6f785dc7c9a17a"
+    },
+    {
+      "rank": 1,
+      "team": "Otter Vibe",
+      "slot": 2,
+      "episode_id": 107220694,
+      "submission_id": 56097405,
+      "seed": 91124103,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        98907.0,
+        103277.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Otter Vibe/replay_02_107220694.json",
+      "bytes": 32733242,
+      "sha256": "37a977fe1a4ddc4b32b7a3ffa4e86437554f4e4062bb5553142101ff001544c1"
+    },
+    {
+      "rank": 1,
+      "team": "Otter Vibe",
+      "slot": 3,
+      "episode_id": 107217016,
+      "submission_id": 56097405,
+      "seed": 740417262,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        118379.0,
+        130220.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Otter Vibe/replay_03_107217016.json",
+      "bytes": 32834100,
+      "sha256": "c358198970d623fc7a9a0dbe0ba566358f0e840dd326e0513a719d76455fd978"
+    },
+    {
+      "rank": 1,
+      "team": "Otter Vibe",
+      "slot": 4,
+      "episode_id": 107216849,
+      "submission_id": 56094606,
+      "seed": 1273393087,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        93027.0,
+        93659.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Otter Vibe/replay_04_107216849.json",
+      "bytes": 32957259,
+      "sha256": "d3a56ff5ff9437847236fefa7da97847c845e1dc0550597fc7c37e3215be2124"
+    },
+    {
+      "rank": 1,
+      "team": "Otter Vibe",
+      "slot": 5,
+      "episode_id": 107213024,
+      "submission_id": 56097405,
+      "seed": 533589018,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        122100.0,
+        90800.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Otter Vibe/replay_05_107213024.json",
+      "bytes": 33072967,
+      "sha256": "fd800d42620bbb21007fdc44aa32b3b364d79c98cd851baa1e2110acae7fab95"
+    },
+    {
+      "rank": 1,
+      "team": "Otter Vibe",
+      "slot": 6,
+      "episode_id": 107211127,
+      "submission_id": 56097405,
+      "seed": 874254419,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        79591.0,
+        64901.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Otter Vibe/replay_06_107211127.json",
+      "bytes": 32810775,
+      "sha256": "eb1c12f58ab438eb4d22da913721b32d22dfde3b16358ace533fefd2313fdbfe"
+    },
+    {
+      "rank": 1,
+      "team": "Otter Vibe",
+      "slot": 7,
+      "episode_id": 107211124,
+      "submission_id": 56094606,
+      "seed": 300403594,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        106000.0,
+        103248.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Otter Vibe/replay_07_107211124.json",
+      "bytes": 33316312,
+      "sha256": "9de2093b4a1ce9ac5fe2e8d9e82989c8880a3dae8c4d98130064ca852c8d5cf7"
+    },
+    {
+      "rank": 2,
+      "team": "SpaTaro",
+      "slot": 1,
+      "episode_id": 107221383,
+      "submission_id": 56089825,
+      "seed": 1089799114,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        111042.0,
+        86907.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "SpaTaro/replay_01_107221383.json",
+      "bytes": 31432198,
+      "sha256": "4e721df45305f502628370e97ca104cde57cf9caeacfa667dc2d18401eb7d49c"
+    },
+    {
+      "rank": 2,
+      "team": "SpaTaro",
+      "slot": 2,
+      "episode_id": 107221705,
+      "submission_id": 56089825,
+      "seed": 1986618839,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        70289.0,
+        65009.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "SpaTaro/replay_02_107221705.json",
+      "bytes": 32371313,
+      "sha256": "d0495a2429316b22e8a59ca25457a33a2e8e9d4797d9ca30a64e5bcadea4b2a2"
+    },
+    {
+      "rank": 2,
+      "team": "SpaTaro",
+      "slot": 3,
+      "episode_id": 107220694,
+      "submission_id": 56114097,
+      "seed": 91124103,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        98907.0,
+        103277.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "SpaTaro/replay_03_107220694.json",
+      "bytes": 32733242,
+      "sha256": "37a977fe1a4ddc4b32b7a3ffa4e86437554f4e4062bb5553142101ff001544c1"
+    },
+    {
+      "rank": 2,
+      "team": "SpaTaro",
+      "slot": 4,
+      "episode_id": 107216064,
+      "submission_id": 56089825,
+      "seed": 1690923867,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        137449.0,
+        136738.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "SpaTaro/replay_04_107216064.json",
+      "bytes": 31019388,
+      "sha256": "5b6e61139e18030beae3638280af3ab2317a5dff07f5d84261f79995bd1892d2"
+    },
+    {
+      "rank": 2,
+      "team": "SpaTaro",
+      "slot": 5,
+      "episode_id": 107214702,
+      "submission_id": 56114097,
+      "seed": 399809321,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        132403.0,
+        124345.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "SpaTaro/replay_05_107214702.json",
+      "bytes": 31855190,
+      "sha256": "259fb846a50d5d11a74ee93cd5575110ea585c0b1b71c969e6dd2bb82a382b6b"
+    },
+    {
+      "rank": 2,
+      "team": "SpaTaro",
+      "slot": 6,
+      "episode_id": 107210826,
+      "submission_id": 56114097,
+      "seed": 2072455646,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        68100.0,
+        72243.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "SpaTaro/replay_06_107210826.json",
+      "bytes": 32507153,
+      "sha256": "f9c275fbba6dc4bfcebca4ce3fbf50d7e7825f66f3ccb5eeb02379f01a7a4ec5"
+    },
+    {
+      "rank": 2,
+      "team": "SpaTaro",
+      "slot": 7,
+      "episode_id": 107210201,
+      "submission_id": 56089825,
+      "seed": 2059401071,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        144820.0,
+        131575.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "SpaTaro/replay_07_107210201.json",
+      "bytes": 31550173,
+      "sha256": "05c1e7ed875d22bd80e29d8586dd7e7fb4471a2d950b503a0a481bcbd6a93f25"
+    },
+    {
+      "rank": 3,
+      "team": "Himanshu Kumar",
+      "slot": 1,
+      "episode_id": 107221966,
+      "submission_id": 56129157,
+      "seed": 695041181,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        85063.0,
+        134643.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Himanshu Kumar/replay_01_107221966.json",
+      "bytes": 30878133,
+      "sha256": "e72f6046b9d34460209b7e08a617db4b856f71ed3bc064e67dffe9d0ea1a0f66"
+    },
+    {
+      "rank": 3,
+      "team": "Himanshu Kumar",
+      "slot": 2,
+      "episode_id": 107221009,
+      "submission_id": 56129157,
+      "seed": 1596134729,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        120012.0,
+        115990.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Himanshu Kumar/replay_02_107221009.json",
+      "bytes": 32504823,
+      "sha256": "6e29fdedcffd0f8df7f9484e467269abfe6ff39d9e1360d59ec8bfc04359762c"
+    },
+    {
+      "rank": 3,
+      "team": "Himanshu Kumar",
+      "slot": 3,
+      "episode_id": 107220060,
+      "submission_id": 56129157,
+      "seed": 1601494754,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        38434.0,
+        66826.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Himanshu Kumar/replay_03_107220060.json",
+      "bytes": 31932573,
+      "sha256": "ba04760e094124385d47e8b9366a49c10412b6550792c113c8fe8084e05912b6"
+    },
+    {
+      "rank": 3,
+      "team": "Himanshu Kumar",
+      "slot": 4,
+      "episode_id": 107219476,
+      "submission_id": 56122709,
+      "seed": 1456942791,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        65831.0,
+        65630.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Himanshu Kumar/replay_04_107219476.json",
+      "bytes": 32435894,
+      "sha256": "5fb69a6a39342a2ab625da92421a1f7c179fbb98f21fd4faf776d3c981bf2748"
+    },
+    {
+      "rank": 3,
+      "team": "Himanshu Kumar",
+      "slot": 5,
+      "episode_id": 107219097,
+      "submission_id": 56129157,
+      "seed": 458247926,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        71857.0,
+        85848.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Himanshu Kumar/replay_05_107219097.json",
+      "bytes": 32585348,
+      "sha256": "b41deffdff9d85f0e49f26b260b45521810872eff72caf422d90d4c342dbd05e"
+    },
+    {
+      "rank": 3,
+      "team": "Himanshu Kumar",
+      "slot": 6,
+      "episode_id": 107218827,
+      "submission_id": 56122709,
+      "seed": 1051670694,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        106160.0,
+        107229.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Himanshu Kumar/replay_06_107218827.json",
+      "bytes": 32437584,
+      "sha256": "5b29711434778023140c9c2c19f3a233273e91ac665f44301f21811757817bd5"
+    },
+    {
+      "rank": 3,
+      "team": "Himanshu Kumar",
+      "slot": 7,
+      "episode_id": 107218159,
+      "submission_id": 56129157,
+      "seed": 509288782,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        86531.0,
+        107759.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Himanshu Kumar/replay_07_107218159.json",
+      "bytes": 31578475,
+      "sha256": "cf314f70469ee80c98a0744ca4bd51a9984d6d74c2087e9d41c13d6a3f9c1ddb"
+    },
+    {
+      "rank": 4,
+      "team": "pensukesan",
+      "slot": 1,
+      "episode_id": 107222865,
+      "submission_id": 56123685,
+      "seed": 847537151,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        79076.0,
+        94127.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "pensukesan/replay_01_107222865.json",
+      "bytes": 32292163,
+      "sha256": "cbcabd99f1128d79911f490c954af6d7744cd4000b459dafcb44a6a32230870e"
+    },
+    {
+      "rank": 4,
+      "team": "pensukesan",
+      "slot": 2,
+      "episode_id": 107222447,
+      "submission_id": 56123692,
+      "seed": 379322641,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        106977.0,
+        106969.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "pensukesan/replay_02_107222447.json",
+      "bytes": 32393921,
+      "sha256": "9dae5ef108cdfc122a4320af3c4d8f8d56761a4bdadd6ed98dbd1e742a69cb2b"
+    },
+    {
+      "rank": 4,
+      "team": "pensukesan",
+      "slot": 3,
+      "episode_id": 107222804,
+      "submission_id": 56123692,
+      "seed": 1249668637,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        76256.0,
+        78080.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "pensukesan/replay_03_107222804.json",
+      "bytes": 32551010,
+      "sha256": "6905bdaac499344e49fc4647c4cfe2267962314687f4dd3e6e5bf70ec48c2552"
+    },
+    {
+      "rank": 4,
+      "team": "pensukesan",
+      "slot": 4,
+      "episode_id": 107220180,
+      "submission_id": 56123685,
+      "seed": 901744305,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        107759.0,
+        108793.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "pensukesan/replay_04_107220180.json",
+      "bytes": 32367043,
+      "sha256": "eec07558c566a51398c0148b84e88b0bd81b7e4408a4bf6a394e88c4730f75cf"
+    },
+    {
+      "rank": 4,
+      "team": "pensukesan",
+      "slot": 5,
+      "episode_id": 107219818,
+      "submission_id": 56123685,
+      "seed": 61119249,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        56806.0,
+        51007.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "pensukesan/replay_05_107219818.json",
+      "bytes": 32141211,
+      "sha256": "cfbd966a8da81d0f7ef24eafa14ba683ae5b8aac82a3dac2c0f2381408296218"
+    },
+    {
+      "rank": 4,
+      "team": "pensukesan",
+      "slot": 6,
+      "episode_id": 107217682,
+      "submission_id": 56123692,
+      "seed": 950251906,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        86362.0,
+        84268.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "pensukesan/replay_06_107217682.json",
+      "bytes": 32552056,
+      "sha256": "77b325ce0c189f302ed3cb8f5005d5bd87dc7de8c6f01579c3e461400a728a83"
+    },
+    {
+      "rank": 4,
+      "team": "pensukesan",
+      "slot": 7,
+      "episode_id": 107216086,
+      "submission_id": 56123692,
+      "seed": 1181109696,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        103075.0,
+        105862.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "pensukesan/replay_07_107216086.json",
+      "bytes": 32413677,
+      "sha256": "c3e8e1d825ff4bdb81cdb33457238a4a6021b697f54514a361f04262cd30ab75"
+    },
+    {
+      "rank": 5,
+      "team": "cooked",
+      "slot": 1,
+      "episode_id": 107222275,
+      "submission_id": 56126955,
+      "seed": 1839684925,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        49599.0,
+        55987.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "cooked/replay_01_107222275.json",
+      "bytes": 32443369,
+      "sha256": "b2d02a3294fe011d509908f70e3f830bfff0343c3083226303bd39e6a8bb30ff"
+    },
+    {
+      "rank": 5,
+      "team": "cooked",
+      "slot": 2,
+      "episode_id": 107222571,
+      "submission_id": 56114118,
+      "seed": 1419501030,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        54595.0,
+        54397.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "cooked/replay_02_107222571.json",
+      "bytes": 32534981,
+      "sha256": "62ffebf0f6a6493765d67e4b79353d8a87fabfb0aae542a1cc5e3865f6ab04d7"
+    },
+    {
+      "rank": 5,
+      "team": "cooked",
+      "slot": 3,
+      "episode_id": 107221383,
+      "submission_id": 56126955,
+      "seed": 1089799114,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        111042.0,
+        86907.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "cooked/replay_03_107221383.json",
+      "bytes": 31432198,
+      "sha256": "4e721df45305f502628370e97ca104cde57cf9caeacfa667dc2d18401eb7d49c"
+    },
+    {
+      "rank": 5,
+      "team": "cooked",
+      "slot": 4,
+      "episode_id": 107220358,
+      "submission_id": 56126955,
+      "seed": 1892650005,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        83416.0,
+        79590.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "cooked/replay_04_107220358.json",
+      "bytes": 32185892,
+      "sha256": "e516abbfe0cee157ffa2239afb9bd79ac282f526fb4b5dc059a340ab02d9c6ad"
+    },
+    {
+      "rank": 5,
+      "team": "cooked",
+      "slot": 5,
+      "episode_id": 107220428,
+      "submission_id": 56114118,
+      "seed": 49851698,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        134936.0,
+        138037.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "cooked/replay_05_107220428.json",
+      "bytes": 32547141,
+      "sha256": "dea58d9331aaaa587627009006285af33cbbabcad5d800e2293d4adfda178bf3"
+    },
+    {
+      "rank": 5,
+      "team": "cooked",
+      "slot": 6,
+      "episode_id": 107219390,
+      "submission_id": 56126955,
+      "seed": 692687741,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        133415.0,
+        143303.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "cooked/replay_06_107219390.json",
+      "bytes": 32543711,
+      "sha256": "ba0b40065e7919096320bc242ce942433d2a3d3540a88f973ce9c6d68fc2d0ce"
+    },
+    {
+      "rank": 5,
+      "team": "cooked",
+      "slot": 7,
+      "episode_id": 107218426,
+      "submission_id": 56126955,
+      "seed": 273671802,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        54564.0,
+        59851.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "cooked/replay_07_107218426.json",
+      "bytes": 32222973,
+      "sha256": "65eee10c3ce3083521e76993da86bfbb633bc6832c6ee496cb5f866f90e4418e"
+    },
+    {
+      "rank": 6,
+      "team": "kanno",
+      "slot": 1,
+      "episode_id": 107222447,
+      "submission_id": 56126209,
+      "seed": 379322641,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        106977.0,
+        106969.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "kanno/replay_01_107222447.json",
+      "bytes": 32393921,
+      "sha256": "9dae5ef108cdfc122a4320af3c4d8f8d56761a4bdadd6ed98dbd1e742a69cb2b"
+    },
+    {
+      "rank": 6,
+      "team": "kanno",
+      "slot": 2,
+      "episode_id": 107222367,
+      "submission_id": 56124643,
+      "seed": 125152580,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        122030.0,
+        122519.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "kanno/replay_02_107222367.json",
+      "bytes": 32532970,
+      "sha256": "beb5f123b250c12e53e865ad0edc0e24303181e7a600387c4201010d7b615425"
+    },
+    {
+      "rank": 6,
+      "team": "kanno",
+      "slot": 3,
+      "episode_id": 107221614,
+      "submission_id": 56126209,
+      "seed": 2130235577,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        118870.0,
+        118836.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "kanno/replay_03_107221614.json",
+      "bytes": 32569131,
+      "sha256": "01f67c6cf1c2b903675d9344a2b609dd5585b70a9ed55d19524679a49ea095ff"
+    },
+    {
+      "rank": 6,
+      "team": "kanno",
+      "slot": 4,
+      "episode_id": 107219711,
+      "submission_id": 56124643,
+      "seed": 1192058544,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        77888.0,
+        81381.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "kanno/replay_04_107219711.json",
+      "bytes": 32551319,
+      "sha256": "8ce15c8b4f8237bd75d699e61ac498e3a83cd6ff369dec78198fb65d0fa722cd"
+    },
+    {
+      "rank": 6,
+      "team": "kanno",
+      "slot": 5,
+      "episode_id": 107220522,
+      "submission_id": 56126209,
+      "seed": 31297665,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        97740.0,
+        97155.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "kanno/replay_05_107220522.json",
+      "bytes": 32561499,
+      "sha256": "f5638f460953538f2a0744b5c0ed2c2c2f68adf2102bf6b503b6d6af8d9b81d8"
+    },
+    {
+      "rank": 6,
+      "team": "kanno",
+      "slot": 6,
+      "episode_id": 107219575,
+      "submission_id": 56126209,
+      "seed": 1017090175,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        87210.0,
+        81373.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "kanno/replay_06_107219575.json",
+      "bytes": 32672289,
+      "sha256": "968b5348368cc7fd5b36770f3265e691a80a1c1fdb8e623418984c9d53765c33"
+    },
+    {
+      "rank": 6,
+      "team": "kanno",
+      "slot": 7,
+      "episode_id": 107219998,
+      "submission_id": 56126209,
+      "seed": 790856886,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        56855.0,
+        58491.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "kanno/replay_07_107219998.json",
+      "bytes": 32509604,
+      "sha256": "bdb03757a8937978c2425b921efb406b85ac405fc0031686bd9bff1b469087a2"
+    },
+    {
+      "rank": 7,
+      "team": "Terry Luo",
+      "slot": 1,
+      "episode_id": 107223357,
+      "submission_id": 56121935,
+      "seed": 632775480,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        71656.0,
+        71730.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Terry Luo/replay_01_107223357.json",
+      "bytes": 32546515,
+      "sha256": "22de6a36fee41239f5d0a2c77a9d922d44c4d5e7b5045b962c6f19e76ec03d18"
+    },
+    {
+      "rank": 7,
+      "team": "Terry Luo",
+      "slot": 2,
+      "episode_id": 107218827,
+      "submission_id": 56123001,
+      "seed": 1051670694,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        106160.0,
+        107229.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Terry Luo/replay_02_107218827.json",
+      "bytes": 32437584,
+      "sha256": "5b29711434778023140c9c2c19f3a233273e91ac665f44301f21811757817bd5"
+    },
+    {
+      "rank": 7,
+      "team": "Terry Luo",
+      "slot": 3,
+      "episode_id": 107218348,
+      "submission_id": 56121935,
+      "seed": 176888260,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        56521.0,
+        56521.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Terry Luo/replay_03_107218348.json",
+      "bytes": 32528072,
+      "sha256": "7b96cf7168454934327b50fd1b5caffcd0be0c76a898178b49519a5cde8fb419"
+    },
+    {
+      "rank": 7,
+      "team": "Terry Luo",
+      "slot": 4,
+      "episode_id": 107216882,
+      "submission_id": 56121935,
+      "seed": 1332860153,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        118336.0,
+        116573.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Terry Luo/replay_04_107216882.json",
+      "bytes": 32556053,
+      "sha256": "bb0b6146c0550dc3a3b90f6b3fabf41c134b3339b4d8050abd025f670fd21f3d"
+    },
+    {
+      "rank": 7,
+      "team": "Terry Luo",
+      "slot": 5,
+      "episode_id": 107216535,
+      "submission_id": 56121935,
+      "seed": 208517529,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        98203.0,
+        98196.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Terry Luo/replay_05_107216535.json",
+      "bytes": 32547899,
+      "sha256": "83a9deb5177ab66216985d676e88b5c00bd454b71738415d1f654d041115eddc"
+    },
+    {
+      "rank": 7,
+      "team": "Terry Luo",
+      "slot": 6,
+      "episode_id": 107212753,
+      "submission_id": 56123001,
+      "seed": 1995832522,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        128945.0,
+        117438.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Terry Luo/replay_06_107212753.json",
+      "bytes": 32560220,
+      "sha256": "a44d403b1cf0a171eaef804b7993b9578c9bc5219f5737bc8658ba0e15b998aa"
+    },
+    {
+      "rank": 7,
+      "team": "Terry Luo",
+      "slot": 7,
+      "episode_id": 107213024,
+      "submission_id": 56123001,
+      "seed": 533589018,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        122100.0,
+        90800.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Terry Luo/replay_07_107213024.json",
+      "bytes": 33072967,
+      "sha256": "fd800d42620bbb21007fdc44aa32b3b364d79c98cd851baa1e2110acae7fab95"
+    },
+    {
+      "rank": 8,
+      "team": "binghua",
+      "slot": 1,
+      "episode_id": 107222793,
+      "submission_id": 56092906,
+      "seed": 960495909,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        81943.0,
+        89222.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "binghua/replay_01_107222793.json",
+      "bytes": 32971897,
+      "sha256": "b24c200143e6df0481c49325b9faaf461228626d9ad5c21bb20c0c0356e2b139"
+    },
+    {
+      "rank": 8,
+      "team": "binghua",
+      "slot": 2,
+      "episode_id": 107219189,
+      "submission_id": 56099704,
+      "seed": 2030139275,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        86716.0,
+        82107.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "binghua/replay_02_107219189.json",
+      "bytes": 32533103,
+      "sha256": "7e1570ea2db3ad7aa1f3914edc54eb5231fd21718609be2959206f1622118571"
+    },
+    {
+      "rank": 8,
+      "team": "binghua",
+      "slot": 3,
+      "episode_id": 107218888,
+      "submission_id": 56099704,
+      "seed": 1264039723,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        117387.0,
+        120831.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "binghua/replay_03_107218888.json",
+      "bytes": 33308786,
+      "sha256": "4faf169c30ede3318b73a0a772ae11bf792b004623104f3b907a40dce2c82e71"
+    },
+    {
+      "rank": 8,
+      "team": "binghua",
+      "slot": 4,
+      "episode_id": 107218848,
+      "submission_id": 56099704,
+      "seed": 1870033791,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        72329.0,
+        75098.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "binghua/replay_04_107218848.json",
+      "bytes": 32608189,
+      "sha256": "e8e7dd586a7c7d4e25682790787073d79655c978106d00ac5aed7680fc0cf802"
+    },
+    {
+      "rank": 8,
+      "team": "binghua",
+      "slot": 5,
+      "episode_id": 107218805,
+      "submission_id": 56092906,
+      "seed": 1907860813,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        130726.0,
+        114928.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "binghua/replay_05_107218805.json",
+      "bytes": 32994755,
+      "sha256": "8510f54011844b09c6158339e334e8dbbae5248ae7351a08531db60a9e23b529"
+    },
+    {
+      "rank": 8,
+      "team": "binghua",
+      "slot": 6,
+      "episode_id": 107213063,
+      "submission_id": 56099704,
+      "seed": 265301924,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        109783.0,
+        137604.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "binghua/replay_06_107213063.json",
+      "bytes": 32240696,
+      "sha256": "682cd1961c7eb5b956821895ec8978b9dc8a2cd5a0a698572439c07746abf899"
+    },
+    {
+      "rank": 8,
+      "team": "binghua",
+      "slot": 7,
+      "episode_id": 107212960,
+      "submission_id": 56092906,
+      "seed": 947942773,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        105927.0,
+        104919.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "binghua/replay_07_107212960.json",
+      "bytes": 32778029,
+      "sha256": "8c2091f3adff3ee7f2f5d4e993c1c86cda248803234ec8492d08935ef18a9d0a"
+    },
+    {
+      "rank": 9,
+      "team": "Mengfei Li",
+      "slot": 1,
+      "episode_id": 107222220,
+      "submission_id": 56035663,
+      "seed": 664913587,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        78786.0,
+        87625.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Mengfei Li/replay_01_107222220.json",
+      "bytes": 32382035,
+      "sha256": "9c89751bdea2a6676b8e8cfca554705b4f8270ac14c051477b1544626fd51059"
+    },
+    {
+      "rank": 9,
+      "team": "Mengfei Li",
+      "slot": 2,
+      "episode_id": 107222875,
+      "submission_id": 56047440,
+      "seed": 1140335161,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        110575.0,
+        108454.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Mengfei Li/replay_02_107222875.json",
+      "bytes": 32535680,
+      "sha256": "b3bf5045b8a45c2f1ce756a3534e0cf4c4bfa3b83dd2de599e451a161a7aa608"
+    },
+    {
+      "rank": 9,
+      "team": "Mengfei Li",
+      "slot": 3,
+      "episode_id": 107221766,
+      "submission_id": 56035663,
+      "seed": 1150157482,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        97647.0,
+        97172.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Mengfei Li/replay_03_107221766.json",
+      "bytes": 32516709,
+      "sha256": "5c56eee4aa9ef1ce4031da96fc9f2f59390706c59c869568abf1bc8a3737c1b8"
+    },
+    {
+      "rank": 9,
+      "team": "Mengfei Li",
+      "slot": 4,
+      "episode_id": 107217911,
+      "submission_id": 56047440,
+      "seed": 1126288452,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        77958.0,
+        81514.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Mengfei Li/replay_04_107217911.json",
+      "bytes": 32469424,
+      "sha256": "b01a9f7056ab8db562083b3a346edb37e30e8bfca96e6d18b68ba920c689930b"
+    },
+    {
+      "rank": 9,
+      "team": "Mengfei Li",
+      "slot": 5,
+      "episode_id": 107217428,
+      "submission_id": 56035663,
+      "seed": 535891922,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        116492.0,
+        142863.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Mengfei Li/replay_05_107217428.json",
+      "bytes": 31161760,
+      "sha256": "57b8dbfbdfd7ad381617ddcd2a9d25086a445bef13e0037c383c912769552de2"
+    },
+    {
+      "rank": 9,
+      "team": "Mengfei Li",
+      "slot": 6,
+      "episode_id": 107216592,
+      "submission_id": 56035663,
+      "seed": 1651393613,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        92812.0,
+        88606.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Mengfei Li/replay_06_107216592.json",
+      "bytes": 32462656,
+      "sha256": "0c08fa74901511ccbb650945e92aaf9fb8b6f253dcc1a43a5eeac01ed31e3c4b"
+    },
+    {
+      "rank": 9,
+      "team": "Mengfei Li",
+      "slot": 7,
+      "episode_id": 107216800,
+      "submission_id": 56035663,
+      "seed": 1067485073,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        77399.0,
+        75433.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "Mengfei Li/replay_07_107216800.json",
+      "bytes": 32058715,
+      "sha256": "282f29eb8a76469bd7beeb5746f44004c8f475ce97138cec82c411cdf86292e6"
+    },
+    {
+      "rank": 10,
+      "team": "GermanJurado1",
+      "slot": 1,
+      "episode_id": 107222875,
+      "submission_id": 56113029,
+      "seed": 1140335161,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        110575.0,
+        108454.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "GermanJurado1/replay_01_107222875.json",
+      "bytes": 32535680,
+      "sha256": "b3bf5045b8a45c2f1ce756a3534e0cf4c4bfa3b83dd2de599e451a161a7aa608"
+    },
+    {
+      "rank": 10,
+      "team": "GermanJurado1",
+      "slot": 2,
+      "episode_id": 107218522,
+      "submission_id": 56113029,
+      "seed": 1887455687,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        55406.0,
+        62485.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "GermanJurado1/replay_02_107218522.json",
+      "bytes": 32304146,
+      "sha256": "fe69da426f865170da07a5f3cc8cc22e3d761fb17977cd5668e60d74c116621a"
+    },
+    {
+      "rank": 10,
+      "team": "GermanJurado1",
+      "slot": 3,
+      "episode_id": 107218640,
+      "submission_id": 56113029,
+      "seed": 726872323,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        131745.0,
+        126919.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "GermanJurado1/replay_03_107218640.json",
+      "bytes": 32338183,
+      "sha256": "0b64beccaef9de1dad9a0e4a63e7f1f5b551b8fb98e016216077b3aeb5bc6cbe"
+    },
+    {
+      "rank": 10,
+      "team": "GermanJurado1",
+      "slot": 4,
+      "episode_id": 107217614,
+      "submission_id": 56113029,
+      "seed": 1815932088,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        81708.0,
+        85624.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "GermanJurado1/replay_04_107217614.json",
+      "bytes": 32509307,
+      "sha256": "641a36cd874a5658d0c849db72f3206c1ac9bf64e9a722166b9ffe71b7d7c25b"
+    },
+    {
+      "rank": 10,
+      "team": "GermanJurado1",
+      "slot": 5,
+      "episode_id": 107217458,
+      "submission_id": 56113029,
+      "seed": 1684271818,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        90783.0,
+        95929.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "GermanJurado1/replay_05_107217458.json",
+      "bytes": 32302715,
+      "sha256": "60a3a7e96333b49bca00f69a33a7fbde0dcf47a2eb9f6d97bc00b19670bd11f0"
+    },
+    {
+      "rank": 10,
+      "team": "GermanJurado1",
+      "slot": 6,
+      "episode_id": 107218072,
+      "submission_id": 56112696,
+      "seed": 1075146275,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        87460.0,
+        90099.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "GermanJurado1/replay_06_107218072.json",
+      "bytes": 32332297,
+      "sha256": "f9d26edecd9b47ea0d1bcd25535f84bc1614142095629e29c1338e0278d5df3f"
+    },
+    {
+      "rank": 10,
+      "team": "GermanJurado1",
+      "slot": 7,
+      "episode_id": 107212592,
+      "submission_id": 56112696,
+      "seed": 1067427524,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        71058.0,
+        69945.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "GermanJurado1/replay_07_107212592.json",
+      "bytes": 32307968,
+      "sha256": "b6d92b057880ce5eca37d68b1f09f9945262fdaf9e1047348c08dc8765b0c562"
+    },
+    {
+      "rank": 11,
+      "team": "mtmr_s1",
+      "slot": 1,
+      "episode_id": 107223466,
+      "submission_id": 56125629,
+      "seed": 825690463,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        113752.0,
+        118389.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "mtmr_s1/replay_01_107223466.json",
+      "bytes": 32917644,
+      "sha256": "b9e07886df8eda0b4dcb6328998218dfa20d9ba40500f3a040640fdf6847b022"
+    },
+    {
+      "rank": 11,
+      "team": "mtmr_s1",
+      "slot": 2,
+      "episode_id": 107222491,
+      "submission_id": 56125629,
+      "seed": 1657510822,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        129442.0,
+        127058.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "mtmr_s1/replay_02_107222491.json",
+      "bytes": 32382167,
+      "sha256": "4300e3dc279ef8ebc241c78c9b0415b5a4034025d0cd46e3a0fdac0cd8e9f74c"
+    },
+    {
+      "rank": 11,
+      "team": "mtmr_s1",
+      "slot": 3,
+      "episode_id": 107221475,
+      "submission_id": 56125629,
+      "seed": 2039924792,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        121602.0,
+        120110.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "mtmr_s1/replay_03_107221475.json",
+      "bytes": 32703575,
+      "sha256": "f544625709a696adf813cdf92bc2f62e8c49466689b1784eb13ce1e9b1cb5415"
+    },
+    {
+      "rank": 11,
+      "team": "mtmr_s1",
+      "slot": 4,
+      "episode_id": 107220565,
+      "submission_id": 56125629,
+      "seed": 44486332,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        84197.0,
+        85508.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "mtmr_s1/replay_04_107220565.json",
+      "bytes": 32542883,
+      "sha256": "0d6be539762a7ec6249ea30e3ec7098cdb6b2032040a0aea83f1236857f42718"
+    },
+    {
+      "rank": 11,
+      "team": "mtmr_s1",
+      "slot": 5,
+      "episode_id": 107219833,
+      "submission_id": 56121513,
+      "seed": 1998430542,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        103623.0,
+        105933.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "mtmr_s1/replay_05_107219833.json",
+      "bytes": 32275320,
+      "sha256": "f2c39e47b26175dff5cde1fdb35e8332713b2be0a27ac5ec096f700e039f3669"
+    },
+    {
+      "rank": 11,
+      "team": "mtmr_s1",
+      "slot": 6,
+      "episode_id": 107219651,
+      "submission_id": 56125629,
+      "seed": 1575014886,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        122506.0,
+        120964.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "mtmr_s1/replay_06_107219651.json",
+      "bytes": 32558380,
+      "sha256": "183bc3d814cd820065c6616993cdcfb0153ee822e86fd0ce4113b5bd04a60465"
+    },
+    {
+      "rank": 11,
+      "team": "mtmr_s1",
+      "slot": 7,
+      "episode_id": 107218640,
+      "submission_id": 56125629,
+      "seed": 726872323,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        131745.0,
+        126919.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "mtmr_s1/replay_07_107218640.json",
+      "bytes": 32338183,
+      "sha256": "0b64beccaef9de1dad9a0e4a63e7f1f5b551b8fb98e016216077b3aeb5bc6cbe"
+    },
+    {
+      "rank": 12,
+      "team": "デワンシュ",
+      "slot": 1,
+      "episode_id": 107221614,
+      "submission_id": 56123161,
+      "seed": 2130235577,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        118870.0,
+        118836.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "デワンシュ/replay_01_107221614.json",
+      "bytes": 32569131,
+      "sha256": "01f67c6cf1c2b903675d9344a2b609dd5585b70a9ed55d19524679a49ea095ff"
+    },
+    {
+      "rank": 12,
+      "team": "デワンシュ",
+      "slot": 2,
+      "episode_id": 107219997,
+      "submission_id": 56123161,
+      "seed": 829302337,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        139001.0,
+        135372.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "デワンシュ/replay_02_107219997.json",
+      "bytes": 32404977,
+      "sha256": "8ea50e6d606aefc5964af652dc6392526686792a2c5beb107578c7eb2af9d457"
+    },
+    {
+      "rank": 12,
+      "team": "デワンシュ",
+      "slot": 3,
+      "episode_id": 107219667,
+      "submission_id": 56120701,
+      "seed": 186072799,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        83244.0,
+        97914.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "デワンシュ/replay_03_107219667.json",
+      "bytes": 31649797,
+      "sha256": "f67333f478252ebbc06bb614f80e369f681322f2abfc87513c237f335e9fa3cd"
+    },
+    {
+      "rank": 12,
+      "team": "デワンシュ",
+      "slot": 4,
+      "episode_id": 107217096,
+      "submission_id": 56120701,
+      "seed": 1202640358,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        66956.0,
+        67959.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "デワンシュ/replay_04_107217096.json",
+      "bytes": 32546544,
+      "sha256": "3741afedc988fc96529c7730f42e19111ecb755a7834add9a1d5efff73d2b87a"
+    },
+    {
+      "rank": 12,
+      "team": "デワンシュ",
+      "slot": 5,
+      "episode_id": 107216097,
+      "submission_id": 56120701,
+      "seed": 703999792,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        87693.0,
+        58310.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "デワンシュ/replay_05_107216097.json",
+      "bytes": 30971929,
+      "sha256": "c17ea9e02ff51bf934a13bb3a7ac9cd4e82abf0d860e8a7ec8b1ba99ea2d73a7"
+    },
+    {
+      "rank": 12,
+      "team": "デワンシュ",
+      "slot": 6,
+      "episode_id": 107214636,
+      "submission_id": 56123161,
+      "seed": 1554548933,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        102049.0,
+        108964.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "デワンシュ/replay_06_107214636.json",
+      "bytes": 32492294,
+      "sha256": "5f1eea2d3d94279fc7c3e3d5da4aa1622cbadf49096f3d1d514c3d1508a85b37"
+    },
+    {
+      "rank": 12,
+      "team": "デワンシュ",
+      "slot": 7,
+      "episode_id": 107209852,
+      "submission_id": 56123161,
+      "seed": 1679400994,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        81252.0,
+        87255.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "デワンシュ/replay_07_107209852.json",
+      "bytes": 32505820,
+      "sha256": "be54b0add81453e80c0cb7b46ad5209c833ff3179d524205f2ddbd82284b29d3"
+    },
+    {
+      "rank": 13,
+      "team": "DeeperNet",
+      "slot": 1,
+      "episode_id": 107223247,
+      "submission_id": 56125643,
+      "seed": 756236611,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        99118.0,
+        96754.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "DeeperNet/replay_01_107223247.json",
+      "bytes": 32552379,
+      "sha256": "27773efcac63a67a79da8c75a15e3650d9fd6b9d837ce5d069a44f6b8987a6b1"
+    },
+    {
+      "rank": 13,
+      "team": "DeeperNet",
+      "slot": 2,
+      "episode_id": 107222443,
+      "submission_id": 56125643,
+      "seed": 579701825,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        107517.0,
+        100699.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "DeeperNet/replay_02_107222443.json",
+      "bytes": 32268630,
+      "sha256": "3496458c3f6ea68197882104234e4587bcc6c6d2bbaeeb226201dbd93a7156b3"
+    },
+    {
+      "rank": 13,
+      "team": "DeeperNet",
+      "slot": 3,
+      "episode_id": 107222473,
+      "submission_id": 56125643,
+      "seed": 477663490,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        87608.0,
+        92554.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "DeeperNet/replay_03_107222473.json",
+      "bytes": 32260529,
+      "sha256": "cdfd7b869fe9192e6fc81c57b9417ae56b323459a4061ef611017421bb02fa41"
+    },
+    {
+      "rank": 13,
+      "team": "DeeperNet",
+      "slot": 4,
+      "episode_id": 107221486,
+      "submission_id": 56125643,
+      "seed": 1109277046,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        96967.0,
+        100809.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "DeeperNet/replay_04_107221486.json",
+      "bytes": 32481865,
+      "sha256": "fcb690f2472d14303bd037af5865e7d8825ed36feed750e9714383386f311142"
+    },
+    {
+      "rank": 13,
+      "team": "DeeperNet",
+      "slot": 5,
+      "episode_id": 107221625,
+      "submission_id": 56101198,
+      "seed": 131380258,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        59671.0,
+        72516.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "DeeperNet/replay_05_107221625.json",
+      "bytes": 32629260,
+      "sha256": "366072d91e8de96d050bf37a4414460e1f8aada83fab84484884ec93e8584949"
+    },
+    {
+      "rank": 13,
+      "team": "DeeperNet",
+      "slot": 6,
+      "episode_id": 107220449,
+      "submission_id": 56125643,
+      "seed": 1096837047,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        123603.0,
+        122696.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "DeeperNet/replay_06_107220449.json",
+      "bytes": 32492331,
+      "sha256": "6c28c63bb0e6f4c91db2bdfbe0507bf75fc03fe6acfd8abe2ab7ff0084272c47"
+    },
+    {
+      "rank": 13,
+      "team": "DeeperNet",
+      "slot": 7,
+      "episode_id": 107220358,
+      "submission_id": 56125643,
+      "seed": 1892650005,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        83416.0,
+        79590.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "DeeperNet/replay_07_107220358.json",
+      "bytes": 32185892,
+      "sha256": "e516abbfe0cee157ffa2239afb9bd79ac282f526fb4b5dc059a340ab02d9c6ad"
+    },
+    {
+      "rank": 14,
+      "team": "黄旭伟aaaabbs",
+      "slot": 1,
+      "episode_id": 107222571,
+      "submission_id": 56126045,
+      "seed": 1419501030,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        54595.0,
+        54397.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "黄旭伟aaaabbs/replay_01_107222571.json",
+      "bytes": 32534981,
+      "sha256": "62ffebf0f6a6493765d67e4b79353d8a87fabfb0aae542a1cc5e3865f6ab04d7"
+    },
+    {
+      "rank": 14,
+      "team": "黄旭伟aaaabbs",
+      "slot": 2,
+      "episode_id": 107221494,
+      "submission_id": 56126045,
+      "seed": 849914020,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        128191.0,
+        120001.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "黄旭伟aaaabbs/replay_02_107221494.json",
+      "bytes": 32389757,
+      "sha256": "b5ba80b9482e2f0e8127f7df3c7f6fc57293d270287bcf3ba111a09d4f2c39b7"
+    },
+    {
+      "rank": 14,
+      "team": "黄旭伟aaaabbs",
+      "slot": 3,
+      "episode_id": 107221182,
+      "submission_id": 56126045,
+      "seed": 1730289677,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        63330.0,
+        62073.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "黄旭伟aaaabbs/replay_03_107221182.json",
+      "bytes": 32432893,
+      "sha256": "fd9261b0fc48b22adff13b905662e7cb68cab68f681471f06611e791d414a004"
+    },
+    {
+      "rank": 14,
+      "team": "黄旭伟aaaabbs",
+      "slot": 4,
+      "episode_id": 107220581,
+      "submission_id": 56126045,
+      "seed": 1954490160,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        85131.0,
+        140269.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "黄旭伟aaaabbs/replay_04_107220581.json",
+      "bytes": 28787501,
+      "sha256": "93106e22c62ea4cd7d8cf30abb000131cb24c1a3825880e1094f7dbdf506f024"
+    },
+    {
+      "rank": 14,
+      "team": "黄旭伟aaaabbs",
+      "slot": 5,
+      "episode_id": 107220504,
+      "submission_id": 56126045,
+      "seed": 2009925168,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        55937.0,
+        145408.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "黄旭伟aaaabbs/replay_05_107220504.json",
+      "bytes": 28386389,
+      "sha256": "3ba41c4cfb3619b307d5de5e63cdfdd68198128093ad68be1b83c419a17d4240"
+    },
+    {
+      "rank": 14,
+      "team": "黄旭伟aaaabbs",
+      "slot": 6,
+      "episode_id": 107219513,
+      "submission_id": 56124061,
+      "seed": 235556854,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        101750.0,
+        96569.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "黄旭伟aaaabbs/replay_06_107219513.json",
+      "bytes": 32408252,
+      "sha256": "592c4f33bb0a4448535fdbc02ab743e72f9b5cc525f44e0b8e0ebbc4ba9daf14"
+    },
+    {
+      "rank": 14,
+      "team": "黄旭伟aaaabbs",
+      "slot": 7,
+      "episode_id": 107219654,
+      "submission_id": 56126045,
+      "seed": 2098549101,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        73783.0,
+        132980.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "黄旭伟aaaabbs/replay_07_107219654.json",
+      "bytes": 28736396,
+      "sha256": "2698abcab15cee7be6918fbd39afa0c6c25c9cb74c475e12c0bd9f7598cf18b4"
+    },
+    {
+      "rank": 15,
+      "team": "ultimatum_game",
+      "slot": 1,
+      "episode_id": 107221924,
+      "submission_id": 56129736,
+      "seed": 0,
+      "team_seats": [
+        0,
+        1
+      ],
+      "self_play": true,
+      "steps": 720,
+      "rewards": [
+        88112.0,
+        89299.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "ultimatum_game/replay_01_107221924.json",
+      "bytes": 32093647,
+      "sha256": "19483e48e2b0628675533c4385c9d1640359dffd5ef5885caf100307ca00335b"
+    },
+    {
+      "rank": 15,
+      "team": "ultimatum_game",
+      "slot": 2,
+      "episode_id": 107220522,
+      "submission_id": 56118890,
+      "seed": 31297665,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        97740.0,
+        97155.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "ultimatum_game/replay_02_107220522.json",
+      "bytes": 32561499,
+      "sha256": "f5638f460953538f2a0744b5c0ed2c2c2f68adf2102bf6b503b6d6af8d9b81d8"
+    },
+    {
+      "rank": 15,
+      "team": "ultimatum_game",
+      "slot": 3,
+      "episode_id": 107216522,
+      "submission_id": 56118890,
+      "seed": 655948547,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        79543.0,
+        40637.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "ultimatum_game/replay_03_107216522.json",
+      "bytes": 28857850,
+      "sha256": "8978b03f4247e3d82fc05ec29e94a067fe0aae59a671bbfc527a33fa6267eae0"
+    },
+    {
+      "rank": 15,
+      "team": "ultimatum_game",
+      "slot": 4,
+      "episode_id": 107214547,
+      "submission_id": 56118890,
+      "seed": 1758352391,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        99927.0,
+        106301.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "ultimatum_game/replay_04_107214547.json",
+      "bytes": 32289812,
+      "sha256": "09116ba675a371e8fb162cf8595a58a1e9c15f83ed65937e68c70c2f36c370d1"
+    },
+    {
+      "rank": 15,
+      "team": "ultimatum_game",
+      "slot": 5,
+      "episode_id": 107212126,
+      "submission_id": 56118890,
+      "seed": 1191327677,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        177788.0,
+        144720.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "ultimatum_game/replay_05_107212126.json",
+      "bytes": 32765569,
+      "sha256": "197733ff36e2bd1d9aeafc3a7e1e64b9e2c4ef4d79ef75e425df546e20b9f52a"
+    },
+    {
+      "rank": 15,
+      "team": "ultimatum_game",
+      "slot": 6,
+      "episode_id": 107205418,
+      "submission_id": 56118890,
+      "seed": 2025670704,
+      "team_seats": [
+        1
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        144254.0,
+        143562.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "ultimatum_game/replay_06_107205418.json",
+      "bytes": 31535571,
+      "sha256": "70c5ef988e5fcb85ae816e8622dc5a1962a4045c17a2fc12ae22cfc1e6a184a0"
+    },
+    {
+      "rank": 15,
+      "team": "ultimatum_game",
+      "slot": 7,
+      "episode_id": 107203061,
+      "submission_id": 56118890,
+      "seed": 2070882881,
+      "team_seats": [
+        0
+      ],
+      "self_play": false,
+      "steps": 720,
+      "rewards": [
+        100481.0,
+        116801.0
+      ],
+      "statuses": [
+        "DONE",
+        "DONE"
+      ],
+      "file": "ultimatum_game/replay_07_107203061.json",
+      "bytes": 32628399,
+      "sha256": "98dd487d00e3ca330a2f0bb10fe99f9da0dfc6f5152293a11d52042ed4700ef8"
+    }
+  ]
+}
