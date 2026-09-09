@@ -71,14 +71,27 @@ def main() -> int:
                     default=ROOT / "rust_port/target/release/kg_sim")
     ap.add_argument("--population", type=int, default=1000)
     ap.add_argument("--generation", choices=("g0", "g1"), default="g0")
+    ap.add_argument("--profiles-from", type=Path,
+                    help="validate retained_top10 from an earlier result instead of sampling")
+    ap.add_argument("--max-rank", type=int, choices=(10, 20, 30), default=10)
     ap.add_argument("--seed", type=int, default=20260909)
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--output", type=Path, required=True)
     args = ap.parse_args()
 
-    profiles = (generate_local_profiles(args.population, args.seed)
-                if args.generation == "g1" else generate_profiles(args.population, args.seed))
-    target_jobs, target_meta = build_top30_jobs(args.corpus.resolve(), args.candidate, 10)
+    if args.profiles_from:
+        previous = json.loads(args.profiles_from.read_text(encoding="utf-8"))
+        profiles = [{"enabled": False}]
+        for entry in previous["retained_top10"]:
+            if entry["profile"] not in profiles:
+                profiles.append(entry["profile"])
+        generation = "validation"
+    else:
+        profiles = (generate_local_profiles(args.population, args.seed)
+                    if args.generation == "g1" else generate_profiles(args.population, args.seed))
+        generation = args.generation
+    target_jobs, target_meta = build_top30_jobs(
+        args.corpus.resolve(), args.candidate, args.max_rank)
     selected = [(job, meta) for job, meta in zip(target_jobs, target_meta)
                 if meta["best_listed_submission"] and meta["episode_id"] != SOURCE_EPISODE]
     if not selected:
@@ -130,9 +143,15 @@ def main() -> int:
     entries = []
     for index, (profile, rows) in enumerate(zip(profiles, grouped)):
         stats = summarize(rows)
-        entries.append({"index": index, "name": f"market-{args.generation}-{index:05d}",
-                        "profile": profile, "summary": stats})
-    if args.generation == "g1":
+        curricula = {
+            f"top{limit}": summarize([
+                row for row in rows if row[1]["rank"] <= limit
+            ])
+            for limit in (10, 20, 30) if limit <= args.max_rank
+        }
+        entries.append({"index": index, "name": f"market-{generation}-{index:05d}",
+                        "profile": profile, "summary": stats, "curricula": curricula})
+    if not args.profiles_from and args.generation == "g1":
         control = entries[0]["summary"]
         identity = entries[1]["summary"]
         contract = ("wins", "losses", "ties", "mean_margin", "team_balanced_score")
@@ -144,10 +163,12 @@ def main() -> int:
     baseline = next(e for e in entries if e["index"] == 0)
     output = {
         "format": "kaggriculture-market-overlay-screen-v1",
-        "mode": "TOP10 best-listed raw tapes; source episode excluded; both seats",
-        "generation": args.generation,
+        "mode": (f"TOP{args.max_rank} best-listed raw tapes; source episode excluded; "
+                 "both seats"),
+        "generation": generation, "max_rank": args.max_rank,
         "population": len(profiles), "games": len(jobs), "generation_seed": args.seed,
-        "search_space": LOCAL_OPTIONS if args.generation == "g1" else BOUNDS,
+        "search_space": ("retained_top10" if args.profiles_from else
+                         LOCAL_OPTIONS if args.generation == "g1" else BOUNDS),
         "baseline": baseline, "retained_top10": entries[:10],
         "top50": entries[:50],
     }

@@ -1,12 +1,12 @@
-name: TOP10 market overlay Generation 1 once
+name: TOP30 market overlay finalist validation once
 on:
   push:
     branches: [arena/01a0712c-riemann]
-    paths: [.github/workflows/top10-market-overlay-g1-once.yml]
+    paths: [.github/workflows/top30-market-overlay-finalists-once.yml]
 permissions:
   contents: write
 jobs:
-  screen:
+  validate:
     runs-on: ubuntu-22.04
     timeout-minutes: 15
     steps:
@@ -26,19 +26,20 @@ jobs:
           with py7zr.SevenZipFile('TOP30.7z') as archive:
               archive.extractall(target)
           PY
-      - name: Build Rust simulator with premarket inventory projection
+      - name: Build parity-gated Rust simulator
         working-directory: kaggriculture_meta_lab/rust_port
         run: cargo build --release --locked
-      - name: Screen 500 sparse identity-local profiles in 15000 games (identity-safe retry)
+      - name: Validate retained G1 profiles through TOP10 TOP20 TOP30
         run: |
           python kaggriculture_meta_lab/scripts/screen_market_overlays.py \
-            --corpus "$RUNNER_TEMP/top30/TOP30" --generation g1 \
-            --population 500 --seed 20260910 --workers 16 \
-            --output kaggriculture_meta_lab/results/top10-market-overlay-g1-20260909.json
+            --corpus "$RUNNER_TEMP/top30/TOP30" --max-rank 30 \
+            --profiles-from kaggriculture_meta_lab/results/top10-market-overlay-g1-20260909.json \
+            --workers 16 \
+            --output kaggriculture_meta_lab/results/top30-market-overlay-finalists-20260909.json
       - name: Commit bounded result
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add kaggriculture_meta_lab/results/top10-market-overlay-g1-20260909.json
-          git commit -m 'data(kaggriculture): record market overlay Generation 1'
+          git add kaggriculture_meta_lab/results/top30-market-overlay-finalists-20260909.json
+          git commit -m 'data(kaggriculture): validate market overlay finalists'
           git push origin HEAD:arena/01a0712c-riemann

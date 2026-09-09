@@ -167,9 +167,8 @@ impl MarketOverlay {
                     total -= take;
                 }
                 UnitAction::Place(item, n) if n > 0 => {
-                    let tile = &farm.tiles[
-                        usize::from(unit.pos[1]) * BOARD_SIZE + usize::from(unit.pos[0])
-                    ];
+                    let tile = &farm.tiles
+                        [usize::from(unit.pos[1]) * BOARD_SIZE + usize::from(unit.pos[0])];
                     if item.is_animal()
                         && matches!(tile, Tile::Structure(s) if *s == item.animal().structure)
                     {
@@ -273,7 +272,8 @@ mod tests {
         let cfg = Config::default();
         let tape = Tape::from_json(&json!([[
             {"market":[["BUY_PRODUCT","WHEAT",13],["SELL","WHEAT",13]]}
-        ],[{}]])).unwrap();
+        ],[{}]]))
+        .unwrap();
         let game = Game::new(&cfg, 0, [0, 0]);
         let profile = MarketOverlay::from_json(&json!({"enabled": true})).unwrap();
         let out = profile.apply(&game, 0, &tape.seats[0][0]);
@@ -300,13 +300,15 @@ mod tests {
         let cfg = Config::default();
         let tape = Tape::from_json(&json!([[
             {"market":[["SELL","WHEAT",9],["SELL","WHEAT",9]]}
-        ],[{}]])).unwrap();
+        ],[{}]]))
+        .unwrap();
         let mut game = Game::new(&cfg, 0, [0, 0]);
         game.farms[0].shed[Item::Wheat.index()] = 20;
         game.farms[0].shed_total = 20;
         let profile = MarketOverlay::from_json(&json!({
             "enabled": true, "sell_fraction_bp": 5000
-        })).unwrap();
+        }))
+        .unwrap();
         let out = profile.apply(&game, 0, &tape.seats[0][0]);
         assert_eq!(out.market[0].remaining, 9);
         assert_eq!(out.market[1].remaining, 1);
@@ -317,12 +319,14 @@ mod tests {
         let cfg = Config::default();
         let tape = Tape::from_json(&json!([[
             {"farmer":["DROP"],"market":[["SELL","WHEAT",99]]}
-        ],[{}]])).unwrap();
+        ],[{}]]))
+        .unwrap();
         let mut game = Game::new(&cfg, 0, [0, 0]);
         game.farms[0].units[0].inventory.add(Item::Wheat, 6);
         let profile = MarketOverlay::from_json(&json!({
             "enabled": true, "min_wheat_price": 1
-        })).unwrap();
+        }))
+        .unwrap();
         let out = profile.apply(&game, 0, &tape.seats[0][0]);
         assert_eq!(out.market[0].remaining, 6);
         game.step([&out, &tape.seats[1][0]], false);
