@@ -74,7 +74,7 @@ def main() -> int:
     ap.add_argument("--generation", choices=("g0", "g1", "g2"), default="g0")
     ap.add_argument("--profiles-from", type=Path,
                     help="validate retained_top10 from an earlier result instead of sampling")
-    ap.add_argument("--max-rank", type=int, choices=(10, 20, 30), default=10)
+    ap.add_argument("--max-rank", type=int, choices=(5, 10, 15, 20, 30), default=10)
     ap.add_argument("--seed", type=int, default=20260909)
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--output", type=Path, required=True)
