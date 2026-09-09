@@ -20,19 +20,14 @@ BOUNDS = {
 }
 
 
-def main() -> int:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--output", type=Path, required=True)
-    ap.add_argument("--population", type=int, default=1000)
-    ap.add_argument("--seed", type=int, default=20260909)
-    args = ap.parse_args()
-    if not 1 <= args.population <= 100_000:
-        raise SystemExit("--population must be in 1..100000")
-    args.output.mkdir(parents=True, exist_ok=True)
-    rng = random.Random(args.seed)
+def generate_profiles(population: int, seed: int) -> list[dict[str, object]]:
+    """Return a unique deterministic Generation-0 population."""
+    if not 1 <= population <= 100_000:
+        raise ValueError("population must be in 1..100000")
+    rng = random.Random(seed)
     profiles: list[dict[str, object]] = [{"enabled": False}]
     seen = {json.dumps(profiles[0], sort_keys=True)}
-    while len(profiles) < args.population:
+    while len(profiles) < population:
         profile: dict[str, object] = {"enabled": True}
         for name, (low, high) in BOUNDS.items():
             profile[name] = rng.randint(low, high)
@@ -40,6 +35,20 @@ def main() -> int:
         if key not in seen:
             seen.add(key)
             profiles.append(profile)
+    return profiles
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--output", type=Path, required=True)
+    ap.add_argument("--population", type=int, default=1000)
+    ap.add_argument("--seed", type=int, default=20260909)
+    args = ap.parse_args()
+    try:
+        profiles = generate_profiles(args.population, args.seed)
+    except ValueError as exc:
+        raise SystemExit(str(exc)) from exc
+    args.output.mkdir(parents=True, exist_ok=True)
     candidates = []
     for i, profile in enumerate(profiles):
         name = f"market-g0-{i:05d}"
