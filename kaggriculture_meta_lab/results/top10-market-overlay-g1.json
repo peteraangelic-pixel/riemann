@@ -1,0 +1,2630 @@
+{
+  "format": "kaggriculture-market-overlay-screen-v1",
+  "mode": "TOP10 best-listed raw tapes; source episode excluded; both seats",
+  "generation": "g1",
+  "max_rank": 10,
+  "population": 500,
+  "games": 33000,
+  "generation_seed": 20260910,
+  "search_space": {
+    "start_day": [
+      8,
+      12,
+      16,
+      20,
+      24
+    ],
+    "buy_stop_day": [
+      27,
+      28,
+      29,
+      30
+    ],
+    "cash_reserve": [
+      100,
+      200,
+      300,
+      500
+    ],
+    "sell_fraction_bp": [
+      8500,
+      9000,
+      9500,
+      9750
+    ],
+    "endgame_sell_fraction_bp": [
+      9000,
+      9500,
+      9750,
+      10000
+    ],
+    "wheat_reserve": [
+      1,
+      2,
+      4,
+      6
+    ],
+    "melon_reserve": [
+      1,
+      2,
+      3
+    ],
+    "milk_reserve": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "wool_reserve": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "min_wheat_price": [
+      10,
+      20,
+      30,
+      40
+    ],
+    "min_melon_price": [
+      20,
+      40,
+      60,
+      80
+    ],
+    "min_milk_price": [
+      20,
+      40,
+      60,
+      80
+    ],
+    "min_wool_price": [
+      20,
+      40,
+      60,
+      80
+    ]
+  },
+  "baseline": {
+    "index": 0,
+    "name": "market-g1-00000",
+    "profile": {
+      "enabled": false
+    },
+    "summary": {
+      "games": 66,
+      "wins": 14,
+      "losses": 52,
+      "ties": 0,
+      "score_rate": 0.21212121212121213,
+      "team_balanced_score": 0.22833333333333333,
+      "wilson_95": [
+        0.13077985107923806,
+        0.3251307120497705
+      ],
+      "mean_margin": -8678.424242424242,
+      "worst_team_score": 0.0,
+      "teams": 10
+    },
+    "curricula": {
+      "top10": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      }
+    }
+  },
+  "retained_top10": [
+    {
+      "index": 367,
+      "name": "market-g1-00367",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "cash_reserve": 500,
+        "milk_reserve": 4,
+        "wheat_reserve": 1
+      },
+      "summary": {
+        "games": 66,
+        "wins": 22,
+        "losses": 44,
+        "ties": 0,
+        "score_rate": 0.3333333333333333,
+        "team_balanced_score": 0.375,
+        "wilson_95": [
+          0.23156429121502337,
+          0.45343656112282366
+        ],
+        "mean_margin": -10593.60606060606,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 22,
+          "losses": 44,
+          "ties": 0,
+          "score_rate": 0.3333333333333333,
+          "team_balanced_score": 0.375,
+          "wilson_95": [
+            0.23156429121502337,
+            0.45343656112282366
+          ],
+          "mean_margin": -10593.60606060606,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 289,
+      "name": "market-g1-00289",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "wool_reserve": 3,
+        "milk_reserve": 4,
+        "cash_reserve": 500
+      },
+      "summary": {
+        "games": 66,
+        "wins": 22,
+        "losses": 44,
+        "ties": 0,
+        "score_rate": 0.3333333333333333,
+        "team_balanced_score": 0.375,
+        "wilson_95": [
+          0.23156429121502337,
+          0.45343656112282366
+        ],
+        "mean_margin": -11883.39393939394,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 22,
+          "losses": 44,
+          "ties": 0,
+          "score_rate": 0.3333333333333333,
+          "team_balanced_score": 0.375,
+          "wilson_95": [
+            0.23156429121502337,
+            0.45343656112282366
+          ],
+          "mean_margin": -11883.39393939394,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 285,
+      "name": "market-g1-00285",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "sell_fraction_bp": 8500,
+        "milk_reserve": 4
+      },
+      "summary": {
+        "games": 66,
+        "wins": 21,
+        "losses": 45,
+        "ties": 0,
+        "score_rate": 0.3181818181818182,
+        "team_balanced_score": 0.35,
+        "wilson_95": [
+          0.2184900673062997,
+          0.4378744988804425
+        ],
+        "mean_margin": -10402.151515151516,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 21,
+          "losses": 45,
+          "ties": 0,
+          "score_rate": 0.3181818181818182,
+          "team_balanced_score": 0.35,
+          "wilson_95": [
+            0.2184900673062997,
+            0.4378744988804425
+          ],
+          "mean_margin": -10402.151515151516,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 241,
+      "name": "market-g1-00241",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "sell_fraction_bp": 8500,
+        "milk_reserve": 4,
+        "min_milk_price": 20
+      },
+      "summary": {
+        "games": 66,
+        "wins": 19,
+        "losses": 47,
+        "ties": 0,
+        "score_rate": 0.2878787878787879,
+        "team_balanced_score": 0.325,
+        "wilson_95": [
+          0.19271949979806713,
+          0.4063724940864655
+        ],
+        "mean_margin": -19229.196969696968,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 19,
+          "losses": 47,
+          "ties": 0,
+          "score_rate": 0.2878787878787879,
+          "team_balanced_score": 0.325,
+          "wilson_95": [
+            0.19271949979806713,
+            0.4063724940864655
+          ],
+          "mean_margin": -19229.196969696968,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 102,
+      "name": "market-g1-00102",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "milk_reserve": 4,
+        "cash_reserve": 300
+      },
+      "summary": {
+        "games": 66,
+        "wins": 20,
+        "losses": 46,
+        "ties": 0,
+        "score_rate": 0.30303030303030304,
+        "team_balanced_score": 0.30666666666666664,
+        "wilson_95": [
+          0.2055402105801948,
+          0.4221880694554426
+        ],
+        "mean_margin": -6362.30303030303,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 20,
+          "losses": 46,
+          "ties": 0,
+          "score_rate": 0.30303030303030304,
+          "team_balanced_score": 0.30666666666666664,
+          "wilson_95": [
+            0.2055402105801948,
+            0.4221880694554426
+          ],
+          "mean_margin": -6362.30303030303,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 388,
+      "name": "market-g1-00388",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "wool_reserve": 1,
+        "milk_reserve": 4,
+        "cash_reserve": 300
+      },
+      "summary": {
+        "games": 66,
+        "wins": 20,
+        "losses": 46,
+        "ties": 0,
+        "score_rate": 0.30303030303030304,
+        "team_balanced_score": 0.30666666666666664,
+        "wilson_95": [
+          0.2055402105801948,
+          0.4221880694554426
+        ],
+        "mean_margin": -7027.909090909091,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 20,
+          "losses": 46,
+          "ties": 0,
+          "score_rate": 0.30303030303030304,
+          "team_balanced_score": 0.30666666666666664,
+          "wilson_95": [
+            0.2055402105801948,
+            0.4221880694554426
+          ],
+          "mean_margin": -7027.909090909091,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 25,
+      "name": "market-g1-00025",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "milk_reserve": 4,
+        "sell_fraction_bp": 9000,
+        "buy_stop_day": 29
+      },
+      "summary": {
+        "games": 66,
+        "wins": 20,
+        "losses": 46,
+        "ties": 0,
+        "score_rate": 0.30303030303030304,
+        "team_balanced_score": 0.30666666666666664,
+        "wilson_95": [
+          0.2055402105801948,
+          0.4221880694554426
+        ],
+        "mean_margin": -10401.818181818182,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 20,
+          "losses": 46,
+          "ties": 0,
+          "score_rate": 0.30303030303030304,
+          "team_balanced_score": 0.30666666666666664,
+          "wilson_95": [
+            0.2055402105801948,
+            0.4221880694554426
+          ],
+          "mean_margin": -10401.818181818182,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 186,
+      "name": "market-g1-00186",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "milk_reserve": 3,
+        "cash_reserve": 300,
+        "wool_reserve": 1
+      },
+      "summary": {
+        "games": 66,
+        "wins": 16,
+        "losses": 50,
+        "ties": 0,
+        "score_rate": 0.24242424242424243,
+        "team_balanced_score": 0.24,
+        "wilson_95": [
+          0.15509184941772042,
+          0.35809128601349777
+        ],
+        "mean_margin": -8568.60606060606,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 16,
+          "losses": 50,
+          "ties": 0,
+          "score_rate": 0.24242424242424243,
+          "team_balanced_score": 0.24,
+          "wilson_95": [
+            0.15509184941772042,
+            0.35809128601349777
+          ],
+          "mean_margin": -8568.60606060606,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 18,
+      "name": "market-g1-00018",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "cash_reserve": 300
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8184.924242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8184.924242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 94,
+      "name": "market-g1-00094",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "cash_reserve": 200
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8284.121212121212,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8284.121212121212,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    }
+  ],
+  "top50": [
+    {
+      "index": 367,
+      "name": "market-g1-00367",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "cash_reserve": 500,
+        "milk_reserve": 4,
+        "wheat_reserve": 1
+      },
+      "summary": {
+        "games": 66,
+        "wins": 22,
+        "losses": 44,
+        "ties": 0,
+        "score_rate": 0.3333333333333333,
+        "team_balanced_score": 0.375,
+        "wilson_95": [
+          0.23156429121502337,
+          0.45343656112282366
+        ],
+        "mean_margin": -10593.60606060606,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 22,
+          "losses": 44,
+          "ties": 0,
+          "score_rate": 0.3333333333333333,
+          "team_balanced_score": 0.375,
+          "wilson_95": [
+            0.23156429121502337,
+            0.45343656112282366
+          ],
+          "mean_margin": -10593.60606060606,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 289,
+      "name": "market-g1-00289",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "wool_reserve": 3,
+        "milk_reserve": 4,
+        "cash_reserve": 500
+      },
+      "summary": {
+        "games": 66,
+        "wins": 22,
+        "losses": 44,
+        "ties": 0,
+        "score_rate": 0.3333333333333333,
+        "team_balanced_score": 0.375,
+        "wilson_95": [
+          0.23156429121502337,
+          0.45343656112282366
+        ],
+        "mean_margin": -11883.39393939394,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 22,
+          "losses": 44,
+          "ties": 0,
+          "score_rate": 0.3333333333333333,
+          "team_balanced_score": 0.375,
+          "wilson_95": [
+            0.23156429121502337,
+            0.45343656112282366
+          ],
+          "mean_margin": -11883.39393939394,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 285,
+      "name": "market-g1-00285",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "sell_fraction_bp": 8500,
+        "milk_reserve": 4
+      },
+      "summary": {
+        "games": 66,
+        "wins": 21,
+        "losses": 45,
+        "ties": 0,
+        "score_rate": 0.3181818181818182,
+        "team_balanced_score": 0.35,
+        "wilson_95": [
+          0.2184900673062997,
+          0.4378744988804425
+        ],
+        "mean_margin": -10402.151515151516,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 21,
+          "losses": 45,
+          "ties": 0,
+          "score_rate": 0.3181818181818182,
+          "team_balanced_score": 0.35,
+          "wilson_95": [
+            0.2184900673062997,
+            0.4378744988804425
+          ],
+          "mean_margin": -10402.151515151516,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 241,
+      "name": "market-g1-00241",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "sell_fraction_bp": 8500,
+        "milk_reserve": 4,
+        "min_milk_price": 20
+      },
+      "summary": {
+        "games": 66,
+        "wins": 19,
+        "losses": 47,
+        "ties": 0,
+        "score_rate": 0.2878787878787879,
+        "team_balanced_score": 0.325,
+        "wilson_95": [
+          0.19271949979806713,
+          0.4063724940864655
+        ],
+        "mean_margin": -19229.196969696968,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 19,
+          "losses": 47,
+          "ties": 0,
+          "score_rate": 0.2878787878787879,
+          "team_balanced_score": 0.325,
+          "wilson_95": [
+            0.19271949979806713,
+            0.4063724940864655
+          ],
+          "mean_margin": -19229.196969696968,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 102,
+      "name": "market-g1-00102",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "milk_reserve": 4,
+        "cash_reserve": 300
+      },
+      "summary": {
+        "games": 66,
+        "wins": 20,
+        "losses": 46,
+        "ties": 0,
+        "score_rate": 0.30303030303030304,
+        "team_balanced_score": 0.30666666666666664,
+        "wilson_95": [
+          0.2055402105801948,
+          0.4221880694554426
+        ],
+        "mean_margin": -6362.30303030303,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 20,
+          "losses": 46,
+          "ties": 0,
+          "score_rate": 0.30303030303030304,
+          "team_balanced_score": 0.30666666666666664,
+          "wilson_95": [
+            0.2055402105801948,
+            0.4221880694554426
+          ],
+          "mean_margin": -6362.30303030303,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 388,
+      "name": "market-g1-00388",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "wool_reserve": 1,
+        "milk_reserve": 4,
+        "cash_reserve": 300
+      },
+      "summary": {
+        "games": 66,
+        "wins": 20,
+        "losses": 46,
+        "ties": 0,
+        "score_rate": 0.30303030303030304,
+        "team_balanced_score": 0.30666666666666664,
+        "wilson_95": [
+          0.2055402105801948,
+          0.4221880694554426
+        ],
+        "mean_margin": -7027.909090909091,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 20,
+          "losses": 46,
+          "ties": 0,
+          "score_rate": 0.30303030303030304,
+          "team_balanced_score": 0.30666666666666664,
+          "wilson_95": [
+            0.2055402105801948,
+            0.4221880694554426
+          ],
+          "mean_margin": -7027.909090909091,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 25,
+      "name": "market-g1-00025",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "milk_reserve": 4,
+        "sell_fraction_bp": 9000,
+        "buy_stop_day": 29
+      },
+      "summary": {
+        "games": 66,
+        "wins": 20,
+        "losses": 46,
+        "ties": 0,
+        "score_rate": 0.30303030303030304,
+        "team_balanced_score": 0.30666666666666664,
+        "wilson_95": [
+          0.2055402105801948,
+          0.4221880694554426
+        ],
+        "mean_margin": -10401.818181818182,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 20,
+          "losses": 46,
+          "ties": 0,
+          "score_rate": 0.30303030303030304,
+          "team_balanced_score": 0.30666666666666664,
+          "wilson_95": [
+            0.2055402105801948,
+            0.4221880694554426
+          ],
+          "mean_margin": -10401.818181818182,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 186,
+      "name": "market-g1-00186",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "milk_reserve": 3,
+        "cash_reserve": 300,
+        "wool_reserve": 1
+      },
+      "summary": {
+        "games": 66,
+        "wins": 16,
+        "losses": 50,
+        "ties": 0,
+        "score_rate": 0.24242424242424243,
+        "team_balanced_score": 0.24,
+        "wilson_95": [
+          0.15509184941772042,
+          0.35809128601349777
+        ],
+        "mean_margin": -8568.60606060606,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 16,
+          "losses": 50,
+          "ties": 0,
+          "score_rate": 0.24242424242424243,
+          "team_balanced_score": 0.24,
+          "wilson_95": [
+            0.15509184941772042,
+            0.35809128601349777
+          ],
+          "mean_margin": -8568.60606060606,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 18,
+      "name": "market-g1-00018",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "cash_reserve": 300
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8184.924242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8184.924242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 94,
+      "name": "market-g1-00094",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "cash_reserve": 200
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8284.121212121212,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8284.121212121212,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 156,
+      "name": "market-g1-00156",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "cash_reserve": 200,
+        "min_melon_price": 80
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8284.121212121212,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8284.121212121212,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 330,
+      "name": "market-g1-00330",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "cash_reserve": 200,
+        "min_melon_price": 40
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8284.121212121212,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8284.121212121212,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 309,
+      "name": "market-g1-00309",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "cash_reserve": 200,
+        "wheat_reserve": 1,
+        "min_wheat_price": 20
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8371.469696969696,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8371.469696969696,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 447,
+      "name": "market-g1-00447",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "wheat_reserve": 1,
+        "cash_reserve": 200
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8371.469696969696,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8371.469696969696,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 173,
+      "name": "market-g1-00173",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "cash_reserve": 100,
+        "min_melon_price": 40
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8372.136363636364,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8372.136363636364,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 356,
+      "name": "market-g1-00356",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "cash_reserve": 100
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8372.136363636364,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8372.136363636364,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 384,
+      "name": "market-g1-00384",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "buy_stop_day": 30,
+        "cash_reserve": 100
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8372.136363636364,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8372.136363636364,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 123,
+      "name": "market-g1-00123",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "cash_reserve": 300,
+        "melon_reserve": 1
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8540.924242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8540.924242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 53,
+      "name": "market-g1-00053",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "cash_reserve": 100,
+        "buy_stop_day": 29
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.242424242424,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.242424242424,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 56,
+      "name": "market-g1-00056",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 29
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.242424242424,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.242424242424,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 57,
+      "name": "market-g1-00057",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "buy_stop_day": 29
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.242424242424,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.242424242424,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 116,
+      "name": "market-g1-00116",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "buy_stop_day": 28,
+        "min_melon_price": 20
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.242424242424,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.242424242424,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 163,
+      "name": "market-g1-00163",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "buy_stop_day": 28
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.242424242424,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.242424242424,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 240,
+      "name": "market-g1-00240",
+      "profile": {
+        "enabled": true,
+        "start_day": 24,
+        "buy_stop_day": 28,
+        "cash_reserve": 500
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.242424242424,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.242424242424,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 256,
+      "name": "market-g1-00256",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "buy_stop_day": 29,
+        "min_melon_price": 80
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.242424242424,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.242424242424,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 431,
+      "name": "market-g1-00431",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "min_wheat_price": 10,
+        "buy_stop_day": 28
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.242424242424,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.242424242424,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 442,
+      "name": "market-g1-00442",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "buy_stop_day": 29,
+        "min_melon_price": 60
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.242424242424,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.242424242424,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 0,
+      "name": "market-g1-00000",
+      "profile": {
+        "enabled": false
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 1,
+      "name": "market-g1-00001",
+      "profile": {
+        "enabled": false
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 3,
+      "name": "market-g1-00003",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "min_melon_price": 60
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 16,
+      "name": "market-g1-00016",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "min_melon_price": 80
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 19,
+      "name": "market-g1-00019",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "cash_reserve": 300
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 30,
+      "name": "market-g1-00030",
+      "profile": {
+        "enabled": true,
+        "start_day": 20,
+        "melon_reserve": 1
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 47,
+      "name": "market-g1-00047",
+      "profile": {
+        "enabled": true,
+        "start_day": 20,
+        "cash_reserve": 500
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 62,
+      "name": "market-g1-00062",
+      "profile": {
+        "enabled": true,
+        "start_day": 8
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 76,
+      "name": "market-g1-00076",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "min_melon_price": 40
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 79,
+      "name": "market-g1-00079",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "buy_stop_day": 30
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 82,
+      "name": "market-g1-00082",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "endgame_sell_fraction_bp": 10000,
+        "min_wheat_price": 10
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 83,
+      "name": "market-g1-00083",
+      "profile": {
+        "enabled": true,
+        "start_day": 24,
+        "cash_reserve": 300
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 88,
+      "name": "market-g1-00088",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "min_wheat_price": 10,
+        "min_melon_price": 40
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 92,
+      "name": "market-g1-00092",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "melon_reserve": 2
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 105,
+      "name": "market-g1-00105",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "min_wheat_price": 20
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 133,
+      "name": "market-g1-00133",
+      "profile": {
+        "enabled": true,
+        "start_day": 24,
+        "melon_reserve": 2,
+        "min_wheat_price": 10
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 143,
+      "name": "market-g1-00143",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "min_wheat_price": 10
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 164,
+      "name": "market-g1-00164",
+      "profile": {
+        "enabled": true,
+        "start_day": 20,
+        "cash_reserve": 300
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 167,
+      "name": "market-g1-00167",
+      "profile": {
+        "enabled": true,
+        "start_day": 20
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 176,
+      "name": "market-g1-00176",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "min_melon_price": 20
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 185,
+      "name": "market-g1-00185",
+      "profile": {
+        "enabled": true,
+        "start_day": 16
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 188,
+      "name": "market-g1-00188",
+      "profile": {
+        "enabled": true,
+        "start_day": 24,
+        "min_melon_price": 40
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 197,
+      "name": "market-g1-00197",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "endgame_sell_fraction_bp": 10000
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    }
+  ]
+}

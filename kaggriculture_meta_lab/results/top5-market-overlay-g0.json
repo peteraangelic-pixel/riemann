@@ -1,0 +1,2286 @@
+{
+  "format": "kaggriculture-market-overlay-screen-v1",
+  "mode": "TOP5 best-listed raw tapes; source episode excluded; both seats",
+  "generation": "g0",
+  "max_rank": 5,
+  "population": 1000,
+  "games": 36000,
+  "generation_seed": 20260909,
+  "search_space": {
+    "start_day": [
+      0,
+      12
+    ],
+    "buy_stop_day": [
+      22,
+      30
+    ],
+    "endgame_day": [
+      24,
+      29
+    ],
+    "cash_reserve": [
+      0,
+      1500
+    ],
+    "sell_fraction_bp": [
+      2500,
+      10000
+    ],
+    "endgame_sell_fraction_bp": [
+      7500,
+      10000
+    ],
+    "wheat_reserve": [
+      0,
+      30
+    ],
+    "melon_reserve": [
+      0,
+      12
+    ],
+    "milk_reserve": [
+      0,
+      18
+    ],
+    "wool_reserve": [
+      0,
+      18
+    ],
+    "min_wheat_price": [
+      0,
+      80
+    ],
+    "min_melon_price": [
+      0,
+      250
+    ],
+    "min_milk_price": [
+      0,
+      180
+    ],
+    "min_wool_price": [
+      0,
+      220
+    ]
+  },
+  "baseline": {
+    "index": 0,
+    "name": "market-g0-00000",
+    "profile": {
+      "enabled": false
+    },
+    "summary": {
+      "games": 36,
+      "wins": 8,
+      "losses": 28,
+      "ties": 0,
+      "score_rate": 0.2222222222222222,
+      "team_balanced_score": 0.22333333333333333,
+      "wilson_95": [
+        0.11716331975796462,
+        0.3808470294611818
+      ],
+      "mean_margin": -617.8888888888889,
+      "worst_team_score": 0.0,
+      "teams": 5
+    },
+    "curricula": {}
+  },
+  "retained_top10": [
+    {
+      "index": 0,
+      "name": "market-g0-00000",
+      "profile": {
+        "enabled": false
+      },
+      "summary": {
+        "games": 36,
+        "wins": 8,
+        "losses": 28,
+        "ties": 0,
+        "score_rate": 0.2222222222222222,
+        "team_balanced_score": 0.22333333333333333,
+        "wilson_95": [
+          0.11716331975796462,
+          0.3808470294611818
+        ],
+        "mean_margin": -617.8888888888889,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 535,
+      "name": "market-g0-00535",
+      "profile": {
+        "enabled": true,
+        "start_day": 9,
+        "buy_stop_day": 30,
+        "endgame_day": 28,
+        "cash_reserve": 1035,
+        "sell_fraction_bp": 9560,
+        "endgame_sell_fraction_bp": 7580,
+        "wheat_reserve": 10,
+        "melon_reserve": 5,
+        "milk_reserve": 3,
+        "wool_reserve": 10,
+        "min_wheat_price": 10,
+        "min_melon_price": 170,
+        "min_milk_price": 1,
+        "min_wool_price": 34
+      },
+      "summary": {
+        "games": 36,
+        "wins": 6,
+        "losses": 30,
+        "ties": 0,
+        "score_rate": 0.16666666666666666,
+        "team_balanced_score": 0.18333333333333332,
+        "wilson_95": [
+          0.07870447595018114,
+          0.31890794311279463
+        ],
+        "mean_margin": -30113.25,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 150,
+      "name": "market-g0-00150",
+      "profile": {
+        "enabled": true,
+        "start_day": 5,
+        "buy_stop_day": 22,
+        "endgame_day": 24,
+        "cash_reserve": 88,
+        "sell_fraction_bp": 8614,
+        "endgame_sell_fraction_bp": 7985,
+        "wheat_reserve": 17,
+        "melon_reserve": 6,
+        "milk_reserve": 0,
+        "wool_reserve": 1,
+        "min_wheat_price": 30,
+        "min_melon_price": 126,
+        "min_milk_price": 11,
+        "min_wool_price": 187
+      },
+      "summary": {
+        "games": 36,
+        "wins": 4,
+        "losses": 32,
+        "ties": 0,
+        "score_rate": 0.1111111111111111,
+        "team_balanced_score": 0.13333333333333333,
+        "wilson_95": [
+          0.04406640300315648,
+          0.25314808590364857
+        ],
+        "mean_margin": -42180.61111111111,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 578,
+      "name": "market-g0-00578",
+      "profile": {
+        "enabled": true,
+        "start_day": 0,
+        "buy_stop_day": 26,
+        "endgame_day": 24,
+        "cash_reserve": 325,
+        "sell_fraction_bp": 8704,
+        "endgame_sell_fraction_bp": 9473,
+        "wheat_reserve": 5,
+        "melon_reserve": 12,
+        "milk_reserve": 5,
+        "wool_reserve": 1,
+        "min_wheat_price": 34,
+        "min_melon_price": 205,
+        "min_milk_price": 159,
+        "min_wool_price": 89
+      },
+      "summary": {
+        "games": 36,
+        "wins": 4,
+        "losses": 32,
+        "ties": 0,
+        "score_rate": 0.1111111111111111,
+        "team_balanced_score": 0.13333333333333333,
+        "wilson_95": [
+          0.04406640300315648,
+          0.25314808590364857
+        ],
+        "mean_margin": -55306.11111111111,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 136,
+      "name": "market-g0-00136",
+      "profile": {
+        "enabled": true,
+        "start_day": 11,
+        "buy_stop_day": 25,
+        "endgame_day": 27,
+        "cash_reserve": 1391,
+        "sell_fraction_bp": 7254,
+        "endgame_sell_fraction_bp": 8139,
+        "wheat_reserve": 12,
+        "melon_reserve": 3,
+        "milk_reserve": 8,
+        "wool_reserve": 5,
+        "min_wheat_price": 0,
+        "min_melon_price": 7,
+        "min_milk_price": 32,
+        "min_wool_price": 1
+      },
+      "summary": {
+        "games": 36,
+        "wins": 4,
+        "losses": 32,
+        "ties": 0,
+        "score_rate": 0.1111111111111111,
+        "team_balanced_score": 0.11666666666666667,
+        "wilson_95": [
+          0.04406640300315648,
+          0.25314808590364857
+        ],
+        "mean_margin": -33684.416666666664,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 474,
+      "name": "market-g0-00474",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 27,
+        "endgame_day": 29,
+        "cash_reserve": 67,
+        "sell_fraction_bp": 7265,
+        "endgame_sell_fraction_bp": 8265,
+        "wheat_reserve": 0,
+        "melon_reserve": 10,
+        "milk_reserve": 9,
+        "wool_reserve": 9,
+        "min_wheat_price": 24,
+        "min_melon_price": 223,
+        "min_milk_price": 35,
+        "min_wool_price": 43
+      },
+      "summary": {
+        "games": 36,
+        "wins": 4,
+        "losses": 32,
+        "ties": 0,
+        "score_rate": 0.1111111111111111,
+        "team_balanced_score": 0.11666666666666667,
+        "wilson_95": [
+          0.04406640300315648,
+          0.25314808590364857
+        ],
+        "mean_margin": -34955.22222222222,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 182,
+      "name": "market-g0-00182",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 23,
+        "endgame_day": 26,
+        "cash_reserve": 802,
+        "sell_fraction_bp": 9890,
+        "endgame_sell_fraction_bp": 8686,
+        "wheat_reserve": 3,
+        "melon_reserve": 2,
+        "milk_reserve": 13,
+        "wool_reserve": 3,
+        "min_wheat_price": 23,
+        "min_melon_price": 36,
+        "min_milk_price": 64,
+        "min_wool_price": 70
+      },
+      "summary": {
+        "games": 36,
+        "wins": 4,
+        "losses": 32,
+        "ties": 0,
+        "score_rate": 0.1111111111111111,
+        "team_balanced_score": 0.11666666666666667,
+        "wilson_95": [
+          0.04406640300315648,
+          0.25314808590364857
+        ],
+        "mean_margin": -37864.86111111111,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 166,
+      "name": "market-g0-00166",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 23,
+        "endgame_day": 28,
+        "cash_reserve": 354,
+        "sell_fraction_bp": 8543,
+        "endgame_sell_fraction_bp": 8893,
+        "wheat_reserve": 14,
+        "melon_reserve": 4,
+        "milk_reserve": 10,
+        "wool_reserve": 4,
+        "min_wheat_price": 23,
+        "min_melon_price": 223,
+        "min_milk_price": 72,
+        "min_wool_price": 41
+      },
+      "summary": {
+        "games": 36,
+        "wins": 4,
+        "losses": 32,
+        "ties": 0,
+        "score_rate": 0.1111111111111111,
+        "team_balanced_score": 0.11666666666666667,
+        "wilson_95": [
+          0.04406640300315648,
+          0.25314808590364857
+        ],
+        "mean_margin": -39310.833333333336,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 921,
+      "name": "market-g0-00921",
+      "profile": {
+        "enabled": true,
+        "start_day": 10,
+        "buy_stop_day": 27,
+        "endgame_day": 28,
+        "cash_reserve": 1309,
+        "sell_fraction_bp": 9478,
+        "endgame_sell_fraction_bp": 8659,
+        "wheat_reserve": 9,
+        "melon_reserve": 8,
+        "milk_reserve": 2,
+        "wool_reserve": 11,
+        "min_wheat_price": 45,
+        "min_melon_price": 47,
+        "min_milk_price": 15,
+        "min_wool_price": 7
+      },
+      "summary": {
+        "games": 36,
+        "wins": 4,
+        "losses": 32,
+        "ties": 0,
+        "score_rate": 0.1111111111111111,
+        "team_balanced_score": 0.11666666666666667,
+        "wilson_95": [
+          0.04406640300315648,
+          0.25314808590364857
+        ],
+        "mean_margin": -40098.083333333336,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 822,
+      "name": "market-g0-00822",
+      "profile": {
+        "enabled": true,
+        "start_day": 7,
+        "buy_stop_day": 26,
+        "endgame_day": 28,
+        "cash_reserve": 467,
+        "sell_fraction_bp": 5354,
+        "endgame_sell_fraction_bp": 9862,
+        "wheat_reserve": 7,
+        "melon_reserve": 0,
+        "milk_reserve": 4,
+        "wool_reserve": 0,
+        "min_wheat_price": 30,
+        "min_melon_price": 21,
+        "min_milk_price": 1,
+        "min_wool_price": 150
+      },
+      "summary": {
+        "games": 36,
+        "wins": 3,
+        "losses": 33,
+        "ties": 0,
+        "score_rate": 0.08333333333333333,
+        "team_balanced_score": 0.1,
+        "wilson_95": [
+          0.02874861133599338,
+          0.2182669124927263
+        ],
+        "mean_margin": -32893.38888888889,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    }
+  ],
+  "top50": [
+    {
+      "index": 0,
+      "name": "market-g0-00000",
+      "profile": {
+        "enabled": false
+      },
+      "summary": {
+        "games": 36,
+        "wins": 8,
+        "losses": 28,
+        "ties": 0,
+        "score_rate": 0.2222222222222222,
+        "team_balanced_score": 0.22333333333333333,
+        "wilson_95": [
+          0.11716331975796462,
+          0.3808470294611818
+        ],
+        "mean_margin": -617.8888888888889,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 535,
+      "name": "market-g0-00535",
+      "profile": {
+        "enabled": true,
+        "start_day": 9,
+        "buy_stop_day": 30,
+        "endgame_day": 28,
+        "cash_reserve": 1035,
+        "sell_fraction_bp": 9560,
+        "endgame_sell_fraction_bp": 7580,
+        "wheat_reserve": 10,
+        "melon_reserve": 5,
+        "milk_reserve": 3,
+        "wool_reserve": 10,
+        "min_wheat_price": 10,
+        "min_melon_price": 170,
+        "min_milk_price": 1,
+        "min_wool_price": 34
+      },
+      "summary": {
+        "games": 36,
+        "wins": 6,
+        "losses": 30,
+        "ties": 0,
+        "score_rate": 0.16666666666666666,
+        "team_balanced_score": 0.18333333333333332,
+        "wilson_95": [
+          0.07870447595018114,
+          0.31890794311279463
+        ],
+        "mean_margin": -30113.25,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 150,
+      "name": "market-g0-00150",
+      "profile": {
+        "enabled": true,
+        "start_day": 5,
+        "buy_stop_day": 22,
+        "endgame_day": 24,
+        "cash_reserve": 88,
+        "sell_fraction_bp": 8614,
+        "endgame_sell_fraction_bp": 7985,
+        "wheat_reserve": 17,
+        "melon_reserve": 6,
+        "milk_reserve": 0,
+        "wool_reserve": 1,
+        "min_wheat_price": 30,
+        "min_melon_price": 126,
+        "min_milk_price": 11,
+        "min_wool_price": 187
+      },
+      "summary": {
+        "games": 36,
+        "wins": 4,
+        "losses": 32,
+        "ties": 0,
+        "score_rate": 0.1111111111111111,
+        "team_balanced_score": 0.13333333333333333,
+        "wilson_95": [
+          0.04406640300315648,
+          0.25314808590364857
+        ],
+        "mean_margin": -42180.61111111111,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 578,
+      "name": "market-g0-00578",
+      "profile": {
+        "enabled": true,
+        "start_day": 0,
+        "buy_stop_day": 26,
+        "endgame_day": 24,
+        "cash_reserve": 325,
+        "sell_fraction_bp": 8704,
+        "endgame_sell_fraction_bp": 9473,
+        "wheat_reserve": 5,
+        "melon_reserve": 12,
+        "milk_reserve": 5,
+        "wool_reserve": 1,
+        "min_wheat_price": 34,
+        "min_melon_price": 205,
+        "min_milk_price": 159,
+        "min_wool_price": 89
+      },
+      "summary": {
+        "games": 36,
+        "wins": 4,
+        "losses": 32,
+        "ties": 0,
+        "score_rate": 0.1111111111111111,
+        "team_balanced_score": 0.13333333333333333,
+        "wilson_95": [
+          0.04406640300315648,
+          0.25314808590364857
+        ],
+        "mean_margin": -55306.11111111111,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 136,
+      "name": "market-g0-00136",
+      "profile": {
+        "enabled": true,
+        "start_day": 11,
+        "buy_stop_day": 25,
+        "endgame_day": 27,
+        "cash_reserve": 1391,
+        "sell_fraction_bp": 7254,
+        "endgame_sell_fraction_bp": 8139,
+        "wheat_reserve": 12,
+        "melon_reserve": 3,
+        "milk_reserve": 8,
+        "wool_reserve": 5,
+        "min_wheat_price": 0,
+        "min_melon_price": 7,
+        "min_milk_price": 32,
+        "min_wool_price": 1
+      },
+      "summary": {
+        "games": 36,
+        "wins": 4,
+        "losses": 32,
+        "ties": 0,
+        "score_rate": 0.1111111111111111,
+        "team_balanced_score": 0.11666666666666667,
+        "wilson_95": [
+          0.04406640300315648,
+          0.25314808590364857
+        ],
+        "mean_margin": -33684.416666666664,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 474,
+      "name": "market-g0-00474",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 27,
+        "endgame_day": 29,
+        "cash_reserve": 67,
+        "sell_fraction_bp": 7265,
+        "endgame_sell_fraction_bp": 8265,
+        "wheat_reserve": 0,
+        "melon_reserve": 10,
+        "milk_reserve": 9,
+        "wool_reserve": 9,
+        "min_wheat_price": 24,
+        "min_melon_price": 223,
+        "min_milk_price": 35,
+        "min_wool_price": 43
+      },
+      "summary": {
+        "games": 36,
+        "wins": 4,
+        "losses": 32,
+        "ties": 0,
+        "score_rate": 0.1111111111111111,
+        "team_balanced_score": 0.11666666666666667,
+        "wilson_95": [
+          0.04406640300315648,
+          0.25314808590364857
+        ],
+        "mean_margin": -34955.22222222222,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 182,
+      "name": "market-g0-00182",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 23,
+        "endgame_day": 26,
+        "cash_reserve": 802,
+        "sell_fraction_bp": 9890,
+        "endgame_sell_fraction_bp": 8686,
+        "wheat_reserve": 3,
+        "melon_reserve": 2,
+        "milk_reserve": 13,
+        "wool_reserve": 3,
+        "min_wheat_price": 23,
+        "min_melon_price": 36,
+        "min_milk_price": 64,
+        "min_wool_price": 70
+      },
+      "summary": {
+        "games": 36,
+        "wins": 4,
+        "losses": 32,
+        "ties": 0,
+        "score_rate": 0.1111111111111111,
+        "team_balanced_score": 0.11666666666666667,
+        "wilson_95": [
+          0.04406640300315648,
+          0.25314808590364857
+        ],
+        "mean_margin": -37864.86111111111,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 166,
+      "name": "market-g0-00166",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 23,
+        "endgame_day": 28,
+        "cash_reserve": 354,
+        "sell_fraction_bp": 8543,
+        "endgame_sell_fraction_bp": 8893,
+        "wheat_reserve": 14,
+        "melon_reserve": 4,
+        "milk_reserve": 10,
+        "wool_reserve": 4,
+        "min_wheat_price": 23,
+        "min_melon_price": 223,
+        "min_milk_price": 72,
+        "min_wool_price": 41
+      },
+      "summary": {
+        "games": 36,
+        "wins": 4,
+        "losses": 32,
+        "ties": 0,
+        "score_rate": 0.1111111111111111,
+        "team_balanced_score": 0.11666666666666667,
+        "wilson_95": [
+          0.04406640300315648,
+          0.25314808590364857
+        ],
+        "mean_margin": -39310.833333333336,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 921,
+      "name": "market-g0-00921",
+      "profile": {
+        "enabled": true,
+        "start_day": 10,
+        "buy_stop_day": 27,
+        "endgame_day": 28,
+        "cash_reserve": 1309,
+        "sell_fraction_bp": 9478,
+        "endgame_sell_fraction_bp": 8659,
+        "wheat_reserve": 9,
+        "melon_reserve": 8,
+        "milk_reserve": 2,
+        "wool_reserve": 11,
+        "min_wheat_price": 45,
+        "min_melon_price": 47,
+        "min_milk_price": 15,
+        "min_wool_price": 7
+      },
+      "summary": {
+        "games": 36,
+        "wins": 4,
+        "losses": 32,
+        "ties": 0,
+        "score_rate": 0.1111111111111111,
+        "team_balanced_score": 0.11666666666666667,
+        "wilson_95": [
+          0.04406640300315648,
+          0.25314808590364857
+        ],
+        "mean_margin": -40098.083333333336,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 822,
+      "name": "market-g0-00822",
+      "profile": {
+        "enabled": true,
+        "start_day": 7,
+        "buy_stop_day": 26,
+        "endgame_day": 28,
+        "cash_reserve": 467,
+        "sell_fraction_bp": 5354,
+        "endgame_sell_fraction_bp": 9862,
+        "wheat_reserve": 7,
+        "melon_reserve": 0,
+        "milk_reserve": 4,
+        "wool_reserve": 0,
+        "min_wheat_price": 30,
+        "min_melon_price": 21,
+        "min_milk_price": 1,
+        "min_wool_price": 150
+      },
+      "summary": {
+        "games": 36,
+        "wins": 3,
+        "losses": 33,
+        "ties": 0,
+        "score_rate": 0.08333333333333333,
+        "team_balanced_score": 0.1,
+        "wilson_95": [
+          0.02874861133599338,
+          0.2182669124927263
+        ],
+        "mean_margin": -32893.38888888889,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 839,
+      "name": "market-g0-00839",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 27,
+        "endgame_day": 26,
+        "cash_reserve": 1444,
+        "sell_fraction_bp": 4647,
+        "endgame_sell_fraction_bp": 9023,
+        "wheat_reserve": 0,
+        "melon_reserve": 2,
+        "milk_reserve": 1,
+        "wool_reserve": 2,
+        "min_wheat_price": 0,
+        "min_melon_price": 184,
+        "min_milk_price": 3,
+        "min_wool_price": 158
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -33416.63888888889,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 107,
+      "name": "market-g0-00107",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "cash_reserve": 1184,
+        "sell_fraction_bp": 6813,
+        "endgame_sell_fraction_bp": 9501,
+        "wheat_reserve": 4,
+        "melon_reserve": 2,
+        "milk_reserve": 11,
+        "wool_reserve": 11,
+        "min_wheat_price": 32,
+        "min_melon_price": 1,
+        "min_milk_price": 11,
+        "min_wool_price": 102
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -37757.944444444445,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 186,
+      "name": "market-g0-00186",
+      "profile": {
+        "enabled": true,
+        "start_day": 7,
+        "buy_stop_day": 28,
+        "endgame_day": 27,
+        "cash_reserve": 973,
+        "sell_fraction_bp": 8203,
+        "endgame_sell_fraction_bp": 9616,
+        "wheat_reserve": 30,
+        "melon_reserve": 2,
+        "milk_reserve": 5,
+        "wool_reserve": 0,
+        "min_wheat_price": 52,
+        "min_melon_price": 43,
+        "min_milk_price": 30,
+        "min_wool_price": 99
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -37962.305555555555,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 463,
+      "name": "market-g0-00463",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 30,
+        "endgame_day": 26,
+        "cash_reserve": 1031,
+        "sell_fraction_bp": 4400,
+        "endgame_sell_fraction_bp": 7896,
+        "wheat_reserve": 2,
+        "melon_reserve": 3,
+        "milk_reserve": 2,
+        "wool_reserve": 7,
+        "min_wheat_price": 42,
+        "min_melon_price": 224,
+        "min_milk_price": 23,
+        "min_wool_price": 103
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -40856.555555555555,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 634,
+      "name": "market-g0-00634",
+      "profile": {
+        "enabled": true,
+        "start_day": 7,
+        "buy_stop_day": 22,
+        "endgame_day": 27,
+        "cash_reserve": 347,
+        "sell_fraction_bp": 8708,
+        "endgame_sell_fraction_bp": 8343,
+        "wheat_reserve": 20,
+        "melon_reserve": 6,
+        "milk_reserve": 1,
+        "wool_reserve": 15,
+        "min_wheat_price": 14,
+        "min_melon_price": 146,
+        "min_milk_price": 106,
+        "min_wool_price": 0
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -42833.47222222222,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 616,
+      "name": "market-g0-00616",
+      "profile": {
+        "enabled": true,
+        "start_day": 11,
+        "buy_stop_day": 24,
+        "endgame_day": 26,
+        "cash_reserve": 1355,
+        "sell_fraction_bp": 9065,
+        "endgame_sell_fraction_bp": 8378,
+        "wheat_reserve": 21,
+        "melon_reserve": 5,
+        "milk_reserve": 1,
+        "wool_reserve": 7,
+        "min_wheat_price": 71,
+        "min_melon_price": 85,
+        "min_milk_price": 7,
+        "min_wool_price": 121
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -43459.77777777778,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 509,
+      "name": "market-g0-00509",
+      "profile": {
+        "enabled": true,
+        "start_day": 11,
+        "buy_stop_day": 22,
+        "endgame_day": 29,
+        "cash_reserve": 70,
+        "sell_fraction_bp": 6057,
+        "endgame_sell_fraction_bp": 8467,
+        "wheat_reserve": 13,
+        "melon_reserve": 1,
+        "milk_reserve": 3,
+        "wool_reserve": 9,
+        "min_wheat_price": 74,
+        "min_melon_price": 38,
+        "min_milk_price": 6,
+        "min_wool_price": 76
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -43507.77777777778,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 762,
+      "name": "market-g0-00762",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 27,
+        "endgame_day": 25,
+        "cash_reserve": 1083,
+        "sell_fraction_bp": 6267,
+        "endgame_sell_fraction_bp": 8502,
+        "wheat_reserve": 12,
+        "melon_reserve": 7,
+        "milk_reserve": 17,
+        "wool_reserve": 16,
+        "min_wheat_price": 2,
+        "min_melon_price": 33,
+        "min_milk_price": 6,
+        "min_wool_price": 73
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -43619.694444444445,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 592,
+      "name": "market-g0-00592",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 23,
+        "endgame_day": 29,
+        "cash_reserve": 898,
+        "sell_fraction_bp": 9620,
+        "endgame_sell_fraction_bp": 8362,
+        "wheat_reserve": 14,
+        "melon_reserve": 10,
+        "milk_reserve": 5,
+        "wool_reserve": 2,
+        "min_wheat_price": 44,
+        "min_melon_price": 188,
+        "min_milk_price": 34,
+        "min_wool_price": 167
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -43736.47222222222,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 342,
+      "name": "market-g0-00342",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 27,
+        "endgame_day": 28,
+        "cash_reserve": 988,
+        "sell_fraction_bp": 8340,
+        "endgame_sell_fraction_bp": 7934,
+        "wheat_reserve": 11,
+        "melon_reserve": 4,
+        "milk_reserve": 3,
+        "wool_reserve": 12,
+        "min_wheat_price": 5,
+        "min_melon_price": 190,
+        "min_milk_price": 26,
+        "min_wool_price": 212
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -44235.083333333336,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 337,
+      "name": "market-g0-00337",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 23,
+        "endgame_day": 24,
+        "cash_reserve": 1386,
+        "sell_fraction_bp": 6281,
+        "endgame_sell_fraction_bp": 8584,
+        "wheat_reserve": 18,
+        "melon_reserve": 1,
+        "milk_reserve": 8,
+        "wool_reserve": 15,
+        "min_wheat_price": 45,
+        "min_melon_price": 227,
+        "min_milk_price": 18,
+        "min_wool_price": 89
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -44352.36111111111,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 87,
+      "name": "market-g0-00087",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 30,
+        "endgame_day": 25,
+        "cash_reserve": 1092,
+        "sell_fraction_bp": 3917,
+        "endgame_sell_fraction_bp": 8607,
+        "wheat_reserve": 23,
+        "melon_reserve": 8,
+        "milk_reserve": 1,
+        "wool_reserve": 0,
+        "min_wheat_price": 32,
+        "min_melon_price": 68,
+        "min_milk_price": 12,
+        "min_wool_price": 170
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -44729.97222222222,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 329,
+      "name": "market-g0-00329",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 29,
+        "endgame_day": 24,
+        "cash_reserve": 573,
+        "sell_fraction_bp": 3431,
+        "endgame_sell_fraction_bp": 7943,
+        "wheat_reserve": 3,
+        "melon_reserve": 9,
+        "milk_reserve": 2,
+        "wool_reserve": 7,
+        "min_wheat_price": 46,
+        "min_melon_price": 142,
+        "min_milk_price": 46,
+        "min_wool_price": 27
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -45455.36111111111,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 168,
+      "name": "market-g0-00168",
+      "profile": {
+        "enabled": true,
+        "start_day": 11,
+        "buy_stop_day": 27,
+        "endgame_day": 27,
+        "cash_reserve": 292,
+        "sell_fraction_bp": 8942,
+        "endgame_sell_fraction_bp": 7781,
+        "wheat_reserve": 25,
+        "melon_reserve": 5,
+        "milk_reserve": 9,
+        "wool_reserve": 11,
+        "min_wheat_price": 75,
+        "min_melon_price": 65,
+        "min_milk_price": 10,
+        "min_wool_price": 38
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -45671.944444444445,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 733,
+      "name": "market-g0-00733",
+      "profile": {
+        "enabled": true,
+        "start_day": 11,
+        "buy_stop_day": 26,
+        "endgame_day": 29,
+        "cash_reserve": 543,
+        "sell_fraction_bp": 6844,
+        "endgame_sell_fraction_bp": 9905,
+        "wheat_reserve": 0,
+        "melon_reserve": 0,
+        "milk_reserve": 17,
+        "wool_reserve": 2,
+        "min_wheat_price": 4,
+        "min_melon_price": 47,
+        "min_milk_price": 38,
+        "min_wool_price": 139
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -45698.47222222222,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 783,
+      "name": "market-g0-00783",
+      "profile": {
+        "enabled": true,
+        "start_day": 1,
+        "buy_stop_day": 23,
+        "endgame_day": 25,
+        "cash_reserve": 123,
+        "sell_fraction_bp": 9959,
+        "endgame_sell_fraction_bp": 9705,
+        "wheat_reserve": 23,
+        "melon_reserve": 8,
+        "milk_reserve": 1,
+        "wool_reserve": 1,
+        "min_wheat_price": 34,
+        "min_melon_price": 151,
+        "min_milk_price": 62,
+        "min_wool_price": 43
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -46457.194444444445,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 840,
+      "name": "market-g0-00840",
+      "profile": {
+        "enabled": true,
+        "start_day": 9,
+        "buy_stop_day": 28,
+        "endgame_day": 29,
+        "cash_reserve": 164,
+        "sell_fraction_bp": 5569,
+        "endgame_sell_fraction_bp": 8579,
+        "wheat_reserve": 0,
+        "melon_reserve": 2,
+        "milk_reserve": 1,
+        "wool_reserve": 8,
+        "min_wheat_price": 20,
+        "min_melon_price": 159,
+        "min_milk_price": 7,
+        "min_wool_price": 157
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -46475.444444444445,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 788,
+      "name": "market-g0-00788",
+      "profile": {
+        "enabled": true,
+        "start_day": 9,
+        "buy_stop_day": 29,
+        "endgame_day": 26,
+        "cash_reserve": 686,
+        "sell_fraction_bp": 7841,
+        "endgame_sell_fraction_bp": 7959,
+        "wheat_reserve": 2,
+        "melon_reserve": 11,
+        "milk_reserve": 15,
+        "wool_reserve": 3,
+        "min_wheat_price": 13,
+        "min_melon_price": 179,
+        "min_milk_price": 13,
+        "min_wool_price": 41
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -46685.52777777778,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 739,
+      "name": "market-g0-00739",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 25,
+        "endgame_day": 28,
+        "cash_reserve": 836,
+        "sell_fraction_bp": 9023,
+        "endgame_sell_fraction_bp": 7539,
+        "wheat_reserve": 20,
+        "melon_reserve": 3,
+        "milk_reserve": 10,
+        "wool_reserve": 1,
+        "min_wheat_price": 2,
+        "min_melon_price": 158,
+        "min_milk_price": 35,
+        "min_wool_price": 194
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -46896.11111111111,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 910,
+      "name": "market-g0-00910",
+      "profile": {
+        "enabled": true,
+        "start_day": 11,
+        "buy_stop_day": 23,
+        "endgame_day": 27,
+        "cash_reserve": 934,
+        "sell_fraction_bp": 7547,
+        "endgame_sell_fraction_bp": 7556,
+        "wheat_reserve": 10,
+        "melon_reserve": 4,
+        "milk_reserve": 13,
+        "wool_reserve": 4,
+        "min_wheat_price": 50,
+        "min_melon_price": 195,
+        "min_milk_price": 1,
+        "min_wool_price": 134
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -47131.583333333336,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 409,
+      "name": "market-g0-00409",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 27,
+        "endgame_day": 25,
+        "cash_reserve": 958,
+        "sell_fraction_bp": 9885,
+        "endgame_sell_fraction_bp": 8592,
+        "wheat_reserve": 23,
+        "melon_reserve": 12,
+        "milk_reserve": 16,
+        "wool_reserve": 10,
+        "min_wheat_price": 9,
+        "min_melon_price": 226,
+        "min_milk_price": 38,
+        "min_wool_price": 113
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -47185.805555555555,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 711,
+      "name": "market-g0-00711",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 29,
+        "endgame_day": 25,
+        "cash_reserve": 288,
+        "sell_fraction_bp": 8192,
+        "endgame_sell_fraction_bp": 9849,
+        "wheat_reserve": 4,
+        "melon_reserve": 10,
+        "milk_reserve": 4,
+        "wool_reserve": 8,
+        "min_wheat_price": 76,
+        "min_melon_price": 179,
+        "min_milk_price": 7,
+        "min_wool_price": 218
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -47355.61111111111,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 971,
+      "name": "market-g0-00971",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 26,
+        "endgame_day": 28,
+        "cash_reserve": 473,
+        "sell_fraction_bp": 3056,
+        "endgame_sell_fraction_bp": 9719,
+        "wheat_reserve": 5,
+        "melon_reserve": 1,
+        "milk_reserve": 0,
+        "wool_reserve": 4,
+        "min_wheat_price": 35,
+        "min_melon_price": 225,
+        "min_milk_price": 16,
+        "min_wool_price": 124
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -47413.5,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 397,
+      "name": "market-g0-00397",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 22,
+        "endgame_day": 27,
+        "cash_reserve": 151,
+        "sell_fraction_bp": 9513,
+        "endgame_sell_fraction_bp": 8168,
+        "wheat_reserve": 25,
+        "melon_reserve": 6,
+        "milk_reserve": 1,
+        "wool_reserve": 7,
+        "min_wheat_price": 73,
+        "min_melon_price": 217,
+        "min_milk_price": 39,
+        "min_wool_price": 169
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -47431.77777777778,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 428,
+      "name": "market-g0-00428",
+      "profile": {
+        "enabled": true,
+        "start_day": 10,
+        "buy_stop_day": 27,
+        "endgame_day": 29,
+        "cash_reserve": 589,
+        "sell_fraction_bp": 6019,
+        "endgame_sell_fraction_bp": 9558,
+        "wheat_reserve": 8,
+        "melon_reserve": 3,
+        "milk_reserve": 13,
+        "wool_reserve": 10,
+        "min_wheat_price": 54,
+        "min_melon_price": 24,
+        "min_milk_price": 0,
+        "min_wool_price": 14
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -47942.36111111111,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 194,
+      "name": "market-g0-00194",
+      "profile": {
+        "enabled": true,
+        "start_day": 10,
+        "buy_stop_day": 28,
+        "endgame_day": 27,
+        "cash_reserve": 679,
+        "sell_fraction_bp": 8354,
+        "endgame_sell_fraction_bp": 7661,
+        "wheat_reserve": 29,
+        "melon_reserve": 2,
+        "milk_reserve": 12,
+        "wool_reserve": 1,
+        "min_wheat_price": 9,
+        "min_melon_price": 16,
+        "min_milk_price": 31,
+        "min_wool_price": 128
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -48128.61111111111,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 15,
+      "name": "market-g0-00015",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 22,
+        "endgame_day": 27,
+        "cash_reserve": 1009,
+        "sell_fraction_bp": 5194,
+        "endgame_sell_fraction_bp": 7552,
+        "wheat_reserve": 8,
+        "melon_reserve": 9,
+        "milk_reserve": 15,
+        "wool_reserve": 0,
+        "min_wheat_price": 11,
+        "min_melon_price": 170,
+        "min_milk_price": 3,
+        "min_wool_price": 215
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -48237.694444444445,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 486,
+      "name": "market-g0-00486",
+      "profile": {
+        "enabled": true,
+        "start_day": 11,
+        "buy_stop_day": 25,
+        "endgame_day": 26,
+        "cash_reserve": 541,
+        "sell_fraction_bp": 7066,
+        "endgame_sell_fraction_bp": 8720,
+        "wheat_reserve": 19,
+        "melon_reserve": 4,
+        "milk_reserve": 15,
+        "wool_reserve": 6,
+        "min_wheat_price": 43,
+        "min_melon_price": 161,
+        "min_milk_price": 5,
+        "min_wool_price": 85
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -48328.13888888889,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 791,
+      "name": "market-g0-00791",
+      "profile": {
+        "enabled": true,
+        "start_day": 6,
+        "buy_stop_day": 26,
+        "endgame_day": 28,
+        "cash_reserve": 119,
+        "sell_fraction_bp": 8238,
+        "endgame_sell_fraction_bp": 9743,
+        "wheat_reserve": 3,
+        "melon_reserve": 9,
+        "milk_reserve": 1,
+        "wool_reserve": 7,
+        "min_wheat_price": 36,
+        "min_melon_price": 99,
+        "min_milk_price": 42,
+        "min_wool_price": 11
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -48404.5,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 881,
+      "name": "market-g0-00881",
+      "profile": {
+        "enabled": true,
+        "start_day": 9,
+        "buy_stop_day": 25,
+        "endgame_day": 28,
+        "cash_reserve": 1185,
+        "sell_fraction_bp": 8713,
+        "endgame_sell_fraction_bp": 9448,
+        "wheat_reserve": 18,
+        "melon_reserve": 2,
+        "milk_reserve": 12,
+        "wool_reserve": 12,
+        "min_wheat_price": 44,
+        "min_melon_price": 140,
+        "min_milk_price": 3,
+        "min_wool_price": 197
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -48467.77777777778,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 853,
+      "name": "market-g0-00853",
+      "profile": {
+        "enabled": true,
+        "start_day": 11,
+        "buy_stop_day": 30,
+        "endgame_day": 24,
+        "cash_reserve": 584,
+        "sell_fraction_bp": 4761,
+        "endgame_sell_fraction_bp": 9668,
+        "wheat_reserve": 1,
+        "melon_reserve": 2,
+        "milk_reserve": 12,
+        "wool_reserve": 5,
+        "min_wheat_price": 77,
+        "min_melon_price": 23,
+        "min_milk_price": 14,
+        "min_wool_price": 39
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -49550.305555555555,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 157,
+      "name": "market-g0-00157",
+      "profile": {
+        "enabled": true,
+        "start_day": 10,
+        "buy_stop_day": 30,
+        "endgame_day": 26,
+        "cash_reserve": 1020,
+        "sell_fraction_bp": 6666,
+        "endgame_sell_fraction_bp": 9958,
+        "wheat_reserve": 10,
+        "melon_reserve": 7,
+        "milk_reserve": 4,
+        "wool_reserve": 0,
+        "min_wheat_price": 80,
+        "min_melon_price": 32,
+        "min_milk_price": 12,
+        "min_wool_price": 158
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -51191.27777777778,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 456,
+      "name": "market-g0-00456",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "buy_stop_day": 24,
+        "endgame_day": 28,
+        "cash_reserve": 25,
+        "sell_fraction_bp": 9631,
+        "endgame_sell_fraction_bp": 7574,
+        "wheat_reserve": 2,
+        "melon_reserve": 1,
+        "milk_reserve": 5,
+        "wool_reserve": 6,
+        "min_wheat_price": 59,
+        "min_melon_price": 124,
+        "min_milk_price": 96,
+        "min_wool_price": 69
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -51552.47222222222,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 615,
+      "name": "market-g0-00615",
+      "profile": {
+        "enabled": true,
+        "start_day": 9,
+        "buy_stop_day": 30,
+        "endgame_day": 26,
+        "cash_reserve": 1231,
+        "sell_fraction_bp": 6851,
+        "endgame_sell_fraction_bp": 9241,
+        "wheat_reserve": 4,
+        "melon_reserve": 1,
+        "milk_reserve": 13,
+        "wool_reserve": 10,
+        "min_wheat_price": 64,
+        "min_melon_price": 112,
+        "min_milk_price": 4,
+        "min_wool_price": 204
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -53228.444444444445,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 718,
+      "name": "market-g0-00718",
+      "profile": {
+        "enabled": true,
+        "start_day": 11,
+        "buy_stop_day": 24,
+        "endgame_day": 27,
+        "cash_reserve": 1363,
+        "sell_fraction_bp": 5020,
+        "endgame_sell_fraction_bp": 9026,
+        "wheat_reserve": 0,
+        "melon_reserve": 2,
+        "milk_reserve": 10,
+        "wool_reserve": 6,
+        "min_wheat_price": 45,
+        "min_melon_price": 12,
+        "min_milk_price": 16,
+        "min_wool_price": 183
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -54146.27777777778,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 358,
+      "name": "market-g0-00358",
+      "profile": {
+        "enabled": true,
+        "start_day": 11,
+        "buy_stop_day": 22,
+        "endgame_day": 24,
+        "cash_reserve": 44,
+        "sell_fraction_bp": 4890,
+        "endgame_sell_fraction_bp": 8909,
+        "wheat_reserve": 17,
+        "melon_reserve": 9,
+        "milk_reserve": 10,
+        "wool_reserve": 12,
+        "min_wheat_price": 2,
+        "min_melon_price": 25,
+        "min_milk_price": 0,
+        "min_wool_price": 189
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -54170.833333333336,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 411,
+      "name": "market-g0-00411",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 22,
+        "endgame_day": 24,
+        "cash_reserve": 640,
+        "sell_fraction_bp": 9475,
+        "endgame_sell_fraction_bp": 9945,
+        "wheat_reserve": 12,
+        "melon_reserve": 1,
+        "milk_reserve": 7,
+        "wool_reserve": 1,
+        "min_wheat_price": 2,
+        "min_melon_price": 150,
+        "min_milk_price": 146,
+        "min_wool_price": 160
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -55802.166666666664,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 940,
+      "name": "market-g0-00940",
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 26,
+        "endgame_day": 25,
+        "cash_reserve": 1331,
+        "sell_fraction_bp": 3520,
+        "endgame_sell_fraction_bp": 9899,
+        "wheat_reserve": 6,
+        "melon_reserve": 3,
+        "milk_reserve": 12,
+        "wool_reserve": 13,
+        "min_wheat_price": 73,
+        "min_melon_price": 33,
+        "min_milk_price": 6,
+        "min_wool_price": 198
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -58090.444444444445,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 635,
+      "name": "market-g0-00635",
+      "profile": {
+        "enabled": true,
+        "start_day": 9,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "cash_reserve": 1137,
+        "sell_fraction_bp": 5603,
+        "endgame_sell_fraction_bp": 7716,
+        "wheat_reserve": 20,
+        "melon_reserve": 5,
+        "milk_reserve": 14,
+        "wool_reserve": 2,
+        "min_wheat_price": 33,
+        "min_melon_price": 145,
+        "min_milk_price": 0,
+        "min_wool_price": 214
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -58315.22222222222,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    },
+    {
+      "index": 23,
+      "name": "market-g0-00023",
+      "profile": {
+        "enabled": true,
+        "start_day": 5,
+        "buy_stop_day": 22,
+        "endgame_day": 26,
+        "cash_reserve": 1345,
+        "sell_fraction_bp": 9873,
+        "endgame_sell_fraction_bp": 7766,
+        "wheat_reserve": 4,
+        "melon_reserve": 5,
+        "milk_reserve": 7,
+        "wool_reserve": 5,
+        "min_wheat_price": 12,
+        "min_melon_price": 149,
+        "min_milk_price": 56,
+        "min_wool_price": 46
+      },
+      "summary": {
+        "games": 36,
+        "wins": 2,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.05555555555555555,
+        "team_balanced_score": 0.06666666666666667,
+        "wilson_95": [
+          0.015369986664161853,
+          0.18144657208647252
+        ],
+        "mean_margin": -60276.055555555555,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "curricula": {}
+    }
+  ]
+}
