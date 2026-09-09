@@ -144,8 +144,12 @@ def run_rust(jobs: list[tuple], workers: int, *, binary: Path | None = None,
     python_indexes: list[int] = []
     for index, job in enumerate(jobs):
         _seed, candidate, opponent, _seat, steps, _tag = job
-        candidate_source = sources.setdefault(candidate, _source(candidate))
-        opponent_source = sources.setdefault(opponent, _source(opponent))
+        if candidate not in sources:
+            sources[candidate] = _source(candidate)
+        if opponent not in sources:
+            sources[opponent] = _source(opponent)
+        candidate_source = sources[candidate]
+        opponent_source = sources[opponent]
         if candidate_source is None or opponent_source is None:
             python_indexes.append(index)
         else:

@@ -35,15 +35,18 @@ jobs:
         env:
           PYTHONPATH: kaggriculture_meta_lab
         run: |
+          rc=0
           python kaggriculture_meta_lab/scripts/benchmark_top30.py \
             --corpus /tmp/top15/TOP15 --max-rank 15 --workers 2 \
             --candidate kaggriculture_meta_lab/agents/variants/agent_v10_subin_106845775.py \
-            --output /tmp/top15-static-subin.json
+            --output /tmp/top15-static-subin.json || rc=$?
           python kaggriculture_meta_lab/scripts/benchmark_top30.py \
             --corpus /tmp/top15/TOP15 --max-rank 15 --workers 2 \
             --candidate kaggriculture_meta_lab/agents/variants/agent_v10_subin_g2_83.py \
-            --output /tmp/top15-g2-83.json
+            --output /tmp/top15-g2-83.json || rc=$?
+          exit "$rc"
       - name: Upload fail-closed benchmark records
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: top15-bounded-benchmark-${{ github.sha }}

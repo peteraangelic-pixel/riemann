@@ -189,12 +189,20 @@ def main() -> int:
         candidate_label = args.candidate.resolve().relative_to(ROOT).as_posix()
     except ValueError:
         candidate_label = str(args.candidate.resolve())
+    summary_error = None
+    try:
+        summary = summarize(enriched)
+    except RuntimeError as error:
+        # Preserve every raw row for diagnosis while still returning failure.
+        # A failed game is never converted into a normal score or ranking.
+        summary, summary_error = {}, str(error)
     result = {
         "format": "kaggriculture-replay-corpus-benchmark-v2",
         "mode": "open-loop recorded team policy; original seed; candidate both seats",
         "candidate": candidate_label,
         "source_manifest_sha256": _manifest_sha(args.corpus),
-        "summary": summarize(enriched),
+        "summary": summary,
+        "summary_error": summary_error,
         "rows": enriched,
     }
     rendered = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
@@ -204,6 +212,9 @@ def main() -> int:
         print(f"wrote {args.output}")
     else:
         print(rendered)
+    if summary_error:
+        print(f"ERROR: {summary_error}", file=sys.stderr)
+        return 1
     return 0
 
 
