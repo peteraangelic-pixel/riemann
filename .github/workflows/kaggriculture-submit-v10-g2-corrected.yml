@@ -1,5 +1,6 @@
 name: Kaggriculture corrected G2-83 submission
 on:
+  workflow_dispatch:
   push:
     branches: ["arena/01a0712c-riemann"]
     paths: [".github/workflows/kaggriculture-submit-v10-g2-corrected.yml"]
@@ -7,7 +8,7 @@ permissions:
   contents: write
 jobs:
   status:
-    if: contains(github.event.head_commit.message, '[kg-g2-status]')
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[kg-g2-status]')
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
