@@ -1,4 +1,4 @@
-name: TOP10 market overlay Generation 2 once
+name: TOP30 market overlay Generation 2 finalists once
 on:
   push:
     branches: [arena/01a0712c-riemann]
@@ -29,16 +29,17 @@ jobs:
       - name: Build parity-gated Rust simulator
         working-directory: kaggriculture_meta_lab/rust_port
         run: cargo build --release --locked
-      - name: Screen refined 362-profile Generation 2 in 10860 games
+      - name: Validate retained Generation 2 profiles through TOP30
         run: |
           python kaggriculture_meta_lab/scripts/screen_market_overlays.py \
-            --corpus "$RUNNER_TEMP/top30/TOP30" --generation g2 \
+            --corpus "$RUNNER_TEMP/top30/TOP30" --max-rank 30 \
+            --profiles-from kaggriculture_meta_lab/results/top10-market-overlay-g2-20260909.json \
             --workers 16 \
-            --output kaggriculture_meta_lab/results/top10-market-overlay-g2-20260909.json
+            --output kaggriculture_meta_lab/results/top30-market-overlay-g2-finalists-20260909.json
       - name: Commit bounded result
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add kaggriculture_meta_lab/results/top10-market-overlay-g2-20260909.json
-          git commit -m 'data(kaggriculture): record market overlay Generation 2'
+          git add kaggriculture_meta_lab/results/top30-market-overlay-g2-finalists-20260909.json
+          git commit -m 'data(kaggriculture): validate market overlay Generation 2'
           git push origin HEAD:arena/01a0712c-riemann
