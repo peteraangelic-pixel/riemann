@@ -1,0 +1,75 @@
+{
+  "candidate": "agents/variants/agent_farmosa_v12_087c0.py",
+  "seeds": 16,
+  "both_seats": true,
+  "controls": [
+    {
+      "control": "agents/current/agent_v9_b21_s16.py",
+      "games": 32,
+      "wins": 0,
+      "losses": 32,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 0.0,
+      "score_rate": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.1071791982550706,
+      "mean_margin": -139396.78125,
+      "median_margin": -141934.0,
+      "p10_margin": -165506.0,
+      "mean_self": 15233.6875,
+      "mean_opp": 154630.46875,
+      "gate_pass": false,
+      "gate_reasons": [
+        "95% CI low 0.0% <= 50% (score rate 0.0%)",
+        "mean margin -139397 <= 0"
+      ]
+    },
+    {
+      "control": "agents/variants/agent_v10_subin_106845775.py",
+      "games": 32,
+      "wins": 0,
+      "losses": 32,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 0.0,
+      "score_rate": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.1071791982550706,
+      "mean_margin": -138923.25,
+      "median_margin": -140828.5,
+      "p10_margin": -154342.0,
+      "mean_self": 15480.375,
+      "mean_opp": 154403.625,
+      "gate_pass": false,
+      "gate_reasons": [
+        "95% CI low 0.0% <= 50% (score rate 0.0%)",
+        "mean margin -138923 <= 0"
+      ]
+    },
+    {
+      "control": "agents/variants/agent_v11_subin_g4_29.py",
+      "games": 32,
+      "wins": 0,
+      "losses": 32,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 0.0,
+      "score_rate": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.1071791982550706,
+      "mean_margin": -122613.78125,
+      "median_margin": -125263.5,
+      "p10_margin": -141708.0,
+      "mean_self": 14540.21875,
+      "mean_opp": 137154.0,
+      "gate_pass": false,
+      "gate_reasons": [
+        "95% CI low 0.0% <= 50% (score rate 0.0%)",
+        "mean margin -122614 <= 0"
+      ]
+    }
+  ],
+  "all_controls_pass": false,
+  "elapsed_s": 265.4141677929997
+}
