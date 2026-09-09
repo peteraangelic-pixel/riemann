@@ -162,8 +162,16 @@ fn parse_job(
     let b = cache.load(&dir.join(&record[2]))?;
     let profiles = if record.len() == 6 {
         [
-            overlays.load_optional(&dir.join(&record[4]))?,
-            overlays.load_optional(&dir.join(&record[5]))?,
+            if record[4].is_empty() {
+                None
+            } else {
+                overlays.load_optional(&dir.join(&record[4]))?
+            },
+            if record[5].is_empty() {
+                None
+            } else {
+                overlays.load_optional(&dir.join(&record[5]))?
+            },
         ]
     } else {
         [None, None]

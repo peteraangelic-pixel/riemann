@@ -29,7 +29,7 @@ jobs:
       - name: Build parity-gated Rust simulator
         working-directory: kaggriculture_meta_lab/rust_port
         run: cargo build --release --locked
-      - name: Screen 1000 overlays in 30000 games
+      - name: Screen 1000 overlays in 30000 games (retry after blank-profile fix)
         run: |
           python kaggriculture_meta_lab/scripts/screen_market_overlays.py \
             --corpus "$RUNNER_TEMP/top30/TOP30" --population 1000 \
