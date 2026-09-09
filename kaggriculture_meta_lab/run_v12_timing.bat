@@ -41,8 +41,20 @@ if "%BUILD%"=="1" (
   echo.
   echo [build] compiling Rust simulator ...
   pushd rust_port
-  cargo build --release --locked
-  if errorlevel 1 ( popd & echo [build] cargo failed - install Rust 1.85+ & goto :err )
+  set CARGO_CMD=cargo
+  rustup toolchain list 2>nul | findstr /C:"stable-x86_64-pc-windows-msvc" >nul
+  if not errorlevel 1 set CARGO_CMD=cargo +stable-x86_64-pc-windows-msvc
+  echo [build] using %CARGO_CMD%
+  %CARGO_CMD% build --release --locked
+  if errorlevel 1 (
+    popd
+    echo [build] Rust build failed.
+    echo [build] On Windows prefer MSVC plus Visual Studio C++ Build Tools:
+    echo [build]   rustup toolchain install stable-x86_64-pc-windows-msvc
+    echo [build]   rustup default stable-x86_64-pc-windows-msvc
+    echo [build] Then reopen PowerShell and rerun this file.
+    goto :err
+  )
   popd
 )
 
