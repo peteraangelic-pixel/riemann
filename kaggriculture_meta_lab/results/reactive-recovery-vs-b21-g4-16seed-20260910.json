@@ -1,0 +1,53 @@
+{
+  "candidate": "wrap:agents/current/agent_v9_b21_s16.py:agents/variants/reactive_recovery_wrapper.py",
+  "seeds": 16,
+  "both_seats": true,
+  "controls": [
+    {
+      "control": "agents/current/agent_v9_b21_s16.py",
+      "games": 32,
+      "wins": 0,
+      "losses": 32,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 0.0,
+      "score_rate": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.1071791982550706,
+      "mean_margin": -167428.59375,
+      "median_margin": -167311.5,
+      "p10_margin": -191017.0,
+      "mean_self": 259.125,
+      "mean_opp": 167687.71875,
+      "gate_pass": false,
+      "gate_reasons": [
+        "95% CI low 0.0% <= 50% (score rate 0.0%)",
+        "mean margin -167429 <= 0"
+      ]
+    },
+    {
+      "control": "agents/variants/agent_v11_subin_g4_29.py",
+      "games": 32,
+      "wins": 0,
+      "losses": 32,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 0.0,
+      "score_rate": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.1071791982550706,
+      "mean_margin": -156897.34375,
+      "median_margin": -160932.0,
+      "p10_margin": -173891.0,
+      "mean_self": 314.78125,
+      "mean_opp": 157212.125,
+      "gate_pass": false,
+      "gate_reasons": [
+        "95% CI low 0.0% <= 50% (score rate 0.0%)",
+        "mean margin -156897 <= 0"
+      ]
+    }
+  ],
+  "all_controls_pass": false,
+  "elapsed_s": 144.42564792000002
+}
