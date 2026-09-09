@@ -133,3 +133,31 @@ not explain why Otter/SpaTaro lead or why their trajectories vary.
    experiment after the compact planner passes parity and controlled holdouts.
 6. Gate promotion through both-seat, hard-failure-free Rust screens, then closed-loop
    holdouts. Raw-tape margin alone is diagnostic and is not a submission criterion.
+
+## Structural Generations 3–4: completed funnel
+
+The first structural overlay funnel was completed after this plan was written.
+It added observation-state caps for labor, land, animal inventory, opponent placed
+animals, seed pipeline, product stock, and compact sales. All default-zero fields
+were parity-gated to preserve the original tape exactly.
+
+Generation 3 screened 64 profiles over 2,304 TOP5 games and progressively retained
+finalists through TOP10 and TOP15. Its best TOP10 profile improved from the static
+control's 14–52 to 23–43; on TOP15 it improved from 22–90 to 25–87.
+
+Generation 4 locally mutated the G3 finalists. It screened 96 profiles over 3,456
+TOP5 games, followed by 726 TOP10 and 1,232 TOP15 games. The best finalist reached:
+
+- TOP5: 18–18, team-balanced 53.0% (control 8–28, 22.3%);
+- TOP10: 27–39, team-balanced 42.3% (control 14–52, 22.8%);
+- TOP15: 29–83, team-balanced 29.3% (control 22–90, 19.7%).
+
+This is a real open-loop win improvement, but not a promotion. The finalist's
+margin remained negative and a pinned-framework, both-seat closed-loop holdout
+against B21 was only 8–24 with mean margin -9,098 (zero errors). The candidate is
+therefore rejected and must not be submitted.
+
+The result isolates the remaining problem: adaptive market purchase caps help
+against current tapes, but the inherited static unit movement/planting/care tape
+collapses when the opponent trajectory changes. The next generation must emit
+reactive unit actions, not add more market genes to Subin.
