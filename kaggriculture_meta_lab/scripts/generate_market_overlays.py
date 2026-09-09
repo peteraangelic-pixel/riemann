@@ -114,6 +114,7 @@ STRUCTURAL_OPTIONS = {
     "carrot_seed_target": (12, 24, 36, 60),
     "strawberry_seed_target": (12, 24, 36, 60),
     "melon_seed_target": (6, 12, 18, 24),
+    "tomato_seed_target": (0, 0, 8, 16, 24),
     "wheat_stock_target": (5, 10, 20, 30),
     "fertilizer_stock_target": (3, 6, 10, 16),
 }
@@ -136,13 +137,36 @@ def generate_structural_profiles(population: int, seed: int) -> list[dict[str, o
                                      "endgame_sell_fraction_bp": 10000}
         for name, values in STRUCTURAL_OPTIONS.items():
             profile[name] = rng.choice(values)
-        # Tomato was absent from several compact leaders; make it a sparse gene.
-        profile["tomato_seed_target"] = rng.choice((0, 0, 8, 16, 24))
         key = json.dumps(profile, sort_keys=True)
         if key not in seen:
             seen.add(key)
             profiles.append(profile)
     return profiles
+
+
+def generate_structural_refined_profiles(
+        population: int, seed: int, parents: list[dict[str, object]]) -> list[dict[str, object]]:
+    """Generation-4 local mutations around fail-closed G3 finalists."""
+    if not 4 <= population <= 10_000:
+        raise ValueError("refined structural population must be in 4..10000")
+    usable = [dict(parent) for parent in parents if parent.get("enabled") and
+              any(name in parent for name in STRUCTURAL_OPTIONS)]
+    if not usable:
+        raise ValueError("no enabled structural parent profiles")
+    rng = random.Random(seed)
+    profiles: list[dict[str, object]] = [{"enabled": False}, {"enabled": True}]
+    profiles.extend(usable[:4])
+    seen = {json.dumps(profile, sort_keys=True) for profile in profiles}
+    names = tuple(STRUCTURAL_OPTIONS)
+    while len(profiles) < population:
+        profile = dict(rng.choice(usable[:4]))
+        for name in rng.sample(names, rng.randint(2, 6)):
+            profile[name] = rng.choice(STRUCTURAL_OPTIONS[name])
+        key = json.dumps(profile, sort_keys=True)
+        if key not in seen:
+            seen.add(key)
+            profiles.append(profile)
+    return profiles[:population]
 
 
 def main() -> int:
