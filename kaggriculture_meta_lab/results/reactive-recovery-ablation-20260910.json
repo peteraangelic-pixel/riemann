@@ -1,0 +1,72 @@
+{
+  "control": "agents/current/agent_v9_b21_s16.py",
+  "seeds": 4,
+  "profiles": {
+    "identity": {
+      "games": 8,
+      "wins": 1,
+      "losses": 1,
+      "ties": 6,
+      "errors": 0,
+      "score_rate": 0.5,
+      "mean_margin": 0.0,
+      "mean_self": 102784.375,
+      "mean_opp": 102784.375
+    },
+    "urgent": {
+      "games": 8,
+      "wins": 1,
+      "losses": 7,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 0.125,
+      "mean_margin": -102.0,
+      "mean_self": 100408.25,
+      "mean_opp": 100510.25
+    },
+    "endgame": {
+      "games": 8,
+      "wins": 1,
+      "losses": 7,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 0.125,
+      "mean_margin": -466.5,
+      "mean_self": 102326.75,
+      "mean_opp": 102793.25
+    },
+    "animals": {
+      "games": 8,
+      "wins": 1,
+      "losses": 7,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 0.125,
+      "mean_margin": -462.5,
+      "mean_self": 102620.5,
+      "mean_opp": 103083.0
+    },
+    "drop": {
+      "games": 8,
+      "wins": 1,
+      "losses": 1,
+      "ties": 6,
+      "errors": 0,
+      "score_rate": 0.5,
+      "mean_margin": 0.0,
+      "mean_self": 102784.375,
+      "mean_opp": 102784.375
+    },
+    "urgent_endgame": {
+      "games": 8,
+      "wins": 1,
+      "losses": 7,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 0.125,
+      "mean_margin": -447.0,
+      "mean_self": 100062.125,
+      "mean_opp": 100509.125
+    }
+  }
+}
