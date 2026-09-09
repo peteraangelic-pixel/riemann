@@ -1,0 +1,38 @@
+{
+  "name": "v10-reactive-components",
+  "base": "agents/ref/agent_v7.py",
+  "baseline": "agents/ref/agent_v7.py",
+  "include_untouched_base": false,
+  "finals_include_baseline": true,
+  "screen_games": 4,
+  "top_k": 2,
+  "variants": [
+    {
+      "name": "reno_labor",
+      "params": {"LABOR_MODE": "RENOIR"}
+    },
+    {
+      "name": "subin_herd",
+      "params": {
+        "ANIMAL_TARGET": 12,
+        "ANIMAL_TARGETS": {"COW": 6, "SHEEP": 4, "GOOSE": 2}
+      }
+    },
+    {
+      "name": "opponent_adapt",
+      "params": {
+        "OPPONENT_MELON_THRESHOLD": 4,
+        "ADAPT_SHEEP_THRESHOLD": 4,
+        "ADAPT_COW_THRESHOLD": 4
+      }
+    },
+    {
+      "name": "reno_subin_herd",
+      "params": {
+        "LABOR_MODE": "RENOIR",
+        "ANIMAL_TARGET": 12,
+        "ANIMAL_TARGETS": {"COW": 6, "SHEEP": 4, "GOOSE": 2}
+      }
+    }
+  ]
+}

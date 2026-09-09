@@ -1,0 +1,86 @@
+{
+  "config": "v10_reactive_components.json",
+  "variants": [
+    "reno_labor",
+    "subin_herd",
+    "opponent_adapt",
+    "reno_subin_herd"
+  ],
+  "baseline": "agents/ref/agent_v7.py",
+  "baseline_name": "CONTROL_agent_v7",
+  "include_untouched_base": false,
+  "finals_include_baseline": true,
+  "promotion_objective": "balanced",
+  "screen": {
+    "reno_labor": {
+      "games": 8,
+      "wins": 2,
+      "losses": 6,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 0.25,
+      "score_rate": 0.25,
+      "ci_low": 0.071479212752109,
+      "ci_high": 0.5907245696898311,
+      "mean_margin": -809.875,
+      "median_margin": -760.5,
+      "p10_margin": -3291.0,
+      "mean_self": 66689.375,
+      "mean_opp": 67499.25
+    },
+    "subin_herd": {
+      "games": 8,
+      "wins": 2,
+      "losses": 6,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 0.25,
+      "score_rate": 0.25,
+      "ci_low": 0.071479212752109,
+      "ci_high": 0.5907245696898311,
+      "mean_margin": -3388.375,
+      "median_margin": -5160.5,
+      "p10_margin": -10753.0,
+      "mean_self": 69031.875,
+      "mean_opp": 72420.25
+    },
+    "reno_subin_herd": {
+      "games": 8,
+      "wins": 0,
+      "losses": 8,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 0.0,
+      "score_rate": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.32440756488388023,
+      "mean_margin": -3101.5,
+      "median_margin": -3126.0,
+      "p10_margin": -6607.0,
+      "mean_self": 64460.875,
+      "mean_opp": 67562.375
+    },
+    "opponent_adapt": {
+      "games": 8,
+      "wins": 0,
+      "losses": 8,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 0.0,
+      "score_rate": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.32440756488388023,
+      "mean_margin": -10624.25,
+      "median_margin": -11198.0,
+      "p10_margin": -15443.0,
+      "mean_self": 53547.0,
+      "mean_opp": 64171.25
+    }
+  },
+  "screen_ranked": [
+    "reno_labor",
+    "subin_herd",
+    "reno_subin_herd",
+    "opponent_adapt"
+  ]
+}
