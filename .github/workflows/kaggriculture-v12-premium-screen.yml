@@ -1,0 +1,36 @@
+name: Kaggriculture v12 reactive premium screen
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v12-premium-screen.yml"]
+permissions:
+  contents: write
+jobs:
+  screen:
+    if: contains(github.event.head_commit.message, '[kg-v12-premium-screen]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env: {PYTHONPATH: kaggriculture_meta_lab}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install --disable-pip-version-check kaggle-environments==1.32.7
+      - name: Compile, genetics smoke and screen
+        run: |
+          python -m py_compile kaggriculture_meta_lab/agents/variants/agent_v12_reactive_premium.py
+          python kaggriculture_meta_lab/scripts/generate_reactive_population.py --base kaggriculture_meta_lab/agents/variants/agent_v12_reactive_premium.py --output /tmp/v12-pop --population 16 --seed 20260911
+          rc=0
+          python kaggriculture_meta_lab/scripts/validate_current.py --candidate agents/variants/agent_v12_reactive_premium.py --control agents/variants/agent_v11_reactive_score.py --control agents/ref/agent_v7.py --control agents/current/agent_v9_b21_s16.py --games 4 --workers 4 --start-seed 20260990 || rc=$?
+          result=$(ls -t kaggriculture_meta_lab/results/validate-current-*.json | head -1)
+          cp "$result" kaggriculture_meta_lab/results/v12-reactive-premium-screen-20260910.json
+          exit "$rc"
+      - name: Persist fail-closed result
+        if: always()
+        run: |
+          test -f kaggriculture_meta_lab/results/v12-reactive-premium-screen-20260910.json
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v12-reactive-premium-screen-20260910.json
+          git commit -m "Record v12 reactive premium screen"
+          git push origin HEAD:arena/01a0712c-riemann
