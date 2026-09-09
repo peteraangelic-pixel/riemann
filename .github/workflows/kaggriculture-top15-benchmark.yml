@@ -40,9 +40,11 @@ jobs:
             --corpus /tmp/top15/TOP15 --max-rank 15 --workers 2 \
             --candidate kaggriculture_meta_lab/agents/variants/agent_v10_subin_106845775.py \
             --output /tmp/top15-static-subin.json || rc=$?
+          printf '%s\n' '{"enabled":true,"start_day":6,"cash_reserve":250,"min_wheat_price":0,"milk_reserve":1}' > /tmp/g2-83-overlay.json
           python kaggriculture_meta_lab/scripts/benchmark_top30.py \
             --corpus /tmp/top15/TOP15 --max-rank 15 --workers 2 \
-            --candidate kaggriculture_meta_lab/agents/variants/agent_v10_subin_g2_83.py \
+            --candidate kaggriculture_meta_lab/agents/variants/agent_v10_subin_106845775.py \
+            --candidate-overlay /tmp/g2-83-overlay.json \
             --output /tmp/top15-g2-83.json || rc=$?
           exit "$rc"
       - name: Persist diagnostic records on the session branch

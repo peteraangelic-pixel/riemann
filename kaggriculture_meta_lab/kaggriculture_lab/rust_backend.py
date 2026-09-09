@@ -122,7 +122,8 @@ def _python_rows(jobs: list[tuple], indexes: list[int], workers: int,
 
 
 def run_rust(jobs: list[tuple], workers: int, *, binary: Path | None = None,
-             progress_every: int = 200) -> list[dict[str, Any]]:
+             progress_every: int = 200,
+             candidate_overlay: Path | str | None = None) -> list[dict[str, Any]]:
     """Run every compatible job in Rust and incompatible job in audited Python.
 
     Rust jobs are partitioned by horizon and per-input hand semantics. This is
@@ -156,6 +157,8 @@ def run_rust(jobs: list[tuple], workers: int, *, binary: Path | None = None,
             rust_groups[(int(steps), candidate_source.trim_hands,
                          opponent_source.trim_hands)].append(index)
 
+    if candidate_overlay is not None and python_indexes:
+        raise RuntimeError("candidate_overlay requires every selected policy to use the Rust backend")
     rows = _python_rows(jobs, python_indexes, workers, progress_every)
     with tempfile.TemporaryDirectory(prefix="kg-rust-") as directory:
         export_dir = Path(directory)
@@ -173,7 +176,8 @@ def run_rust(jobs: list[tuple], workers: int, *, binary: Path | None = None,
             for index in indexes:
                 seed, candidate, opponent, seat, _steps, _tag = jobs[index]
                 rust_jobs.append(RustJob(int(seed), tape_path(candidate),
-                                         tape_path(opponent), reverse=(seat == 1)))
+                                         tape_path(opponent), reverse=(seat == 1),
+                                         overlay_a=candidate_overlay))
             started = time.perf_counter()
             results = replay_many(
                 rust_jobs, binary=executable, steps=steps, step_mode="kaggle",

@@ -171,6 +171,8 @@ def main() -> int:
                         help="extracted aggregate TOP30 or per-team TOP15 directory")
     parser.add_argument("--candidate", type=Path,
                         default=ROOT / "agents/current/agent_v9_b21_s16.py")
+    parser.add_argument("--candidate-overlay", type=Path,
+                        help="Rust overlay JSON applied to the candidate tape")
     parser.add_argument("--workers", type=int, default=8)
     parser.add_argument("--max-rank", type=int, choices=range(1, 31), default=30)
     parser.add_argument("--output", type=Path)
@@ -182,7 +184,8 @@ def main() -> int:
     if args.dry_run:
         print(f"best-listed-submission games: {sum(2 for m in metadata[::2] if m['best_listed_submission'])}")
         return 0
-    rows = rust_backend.run_rust(jobs, args.workers)
+    rows = rust_backend.run_rust(jobs, args.workers,
+                                 candidate_overlay=args.candidate_overlay)
     enriched = [{**row, "opponent": meta["replay_file"], **meta}
                 for row, meta in zip(rows, metadata)]
     try:
@@ -200,6 +203,8 @@ def main() -> int:
         "format": "kaggriculture-replay-corpus-benchmark-v2",
         "mode": "open-loop recorded team policy; original seed; candidate both seats",
         "candidate": candidate_label,
+        "candidate_overlay": (json.loads(args.candidate_overlay.read_text(encoding="utf-8"))
+                              if args.candidate_overlay else None),
         "source_manifest_sha256": _manifest_sha(args.corpus),
         "summary": summary,
         "summary_error": summary_error,
