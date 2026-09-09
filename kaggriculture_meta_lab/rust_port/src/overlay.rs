@@ -306,7 +306,13 @@ impl MarketOverlay {
             }
         }
         let mut seed_budget = [u64::MAX; ITEM_COUNT];
-        for item in [Item::Wheat, Item::Carrot, Item::Tomato, Item::Strawberry, Item::Melon] {
+        for item in [
+            Item::Wheat,
+            Item::Carrot,
+            Item::Tomato,
+            Item::Strawberry,
+            Item::Melon,
+        ] {
             let target = self.seed_target(item);
             if target > 0 {
                 let owned = farm.seeds[item.index()] + Self::planted_crops(farm, item);
