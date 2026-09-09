@@ -2,7 +2,9 @@ name: Kaggriculture reactive recovery ablation
 on:
   push:
     branches: ["arena/01a0712c-riemann"]
-    paths: [".github/workflows/kaggriculture-reactive-recovery-holdout.yml"]
+    paths:
+      - ".github/workflows/kaggriculture-reactive-recovery-holdout.yml"
+      - "kaggriculture_meta_lab/scripts/screen_recovery_ablation.py"
 permissions:
   contents: write
 jobs:

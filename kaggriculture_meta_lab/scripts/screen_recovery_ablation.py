@@ -57,13 +57,18 @@ def main() -> None:
     payload = {"control": args.control, "seeds": args.games, "profiles": {}}
     with tempfile.TemporaryDirectory(prefix="kg-recovery-") as temp:
         temp_path = Path(temp)
+        jobs = []
         for name, flags in PROFILES.items():
             wrapper = temp_path / f"{name}.py"
             wrapper.write_text(render(source, flags), encoding="utf-8")
             candidate = f"wrap:agents/current/agent_v9_b21_s16.py:{wrapper}"
-            rows = run(build_jobs(candidate, [args.control], args.games, args.start_seed,
-                                  swap_seats=True, tag=name), args.workers, progress_every=100)
-            payload["profiles"][name] = summary(rows)
+            jobs.extend(build_jobs(candidate, [args.control], args.games, args.start_seed,
+                                   swap_seats=True, tag=name))
+        # One shared worker pool avoids six expensive framework startups and
+        # keeps the bounded screen comfortably below the Actions timeout.
+        all_rows = run(jobs, args.workers, progress_every=100)
+        for name in PROFILES:
+            payload["profiles"][name] = summary([row for row in all_rows if row["tag"] == name])
     if any(row["errors"] for row in payload["profiles"].values()):
         raise RuntimeError("ablation contains failed games")
     args.output.parent.mkdir(parents=True, exist_ok=True)
