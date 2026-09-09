@@ -1,0 +1,1682 @@
+{
+  "format": "kaggriculture-market-overlay-screen-v1",
+  "mode": "TOP10 best-listed raw tapes; source episode excluded; both seats",
+  "generation": "validation",
+  "max_rank": 10,
+  "population": 11,
+  "games": 726,
+  "generation_seed": 20260909,
+  "search_space": "retained_top10",
+  "baseline": {
+    "index": 0,
+    "name": "market-validation-00000",
+    "profile": {
+      "enabled": false
+    },
+    "summary": {
+      "games": 66,
+      "wins": 14,
+      "losses": 52,
+      "ties": 0,
+      "score_rate": 0.21212121212121213,
+      "team_balanced_score": 0.22833333333333333,
+      "wilson_95": [
+        0.13077985107923806,
+        0.3251307120497705
+      ],
+      "mean_margin": -8678.424242424242,
+      "worst_team_score": 0.0,
+      "teams": 10
+    },
+    "curricula": {
+      "top5": {
+        "games": 36,
+        "wins": 8,
+        "losses": 28,
+        "ties": 0,
+        "score_rate": 0.2222222222222222,
+        "team_balanced_score": 0.22333333333333333,
+        "wilson_95": [
+          0.11716331975796462,
+          0.3808470294611818
+        ],
+        "mean_margin": -617.8888888888889,
+        "worst_team_score": 0.0,
+        "teams": 5
+      },
+      "top10": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      }
+    }
+  },
+  "retained_top10": [
+    {
+      "index": 2,
+      "name": "market-validation-00002",
+      "profile": {
+        "enabled": true,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "endgame_sell_fraction_bp": 10000,
+        "start_day": 6,
+        "cash_reserve": 200,
+        "sell_fraction_bp": 10000,
+        "wheat_reserve": 10,
+        "fertilizer_reserve": 5,
+        "milk_reserve": 1,
+        "hands_per_quadrant": 3,
+        "hand_buffer": 4,
+        "max_quadrants": 4,
+        "land_min_hands": 5,
+        "cow_target": 11,
+        "sheep_target": 12,
+        "goose_target": 3,
+        "animal_response_bp": 5000,
+        "wheat_seed_target": 160,
+        "carrot_seed_target": 60,
+        "strawberry_seed_target": 60,
+        "melon_seed_target": 12,
+        "wheat_stock_target": 20,
+        "fertilizer_stock_target": 6,
+        "tomato_seed_target": 24
+      },
+      "summary": {
+        "games": 66,
+        "wins": 27,
+        "losses": 39,
+        "ties": 0,
+        "score_rate": 0.4090909090909091,
+        "team_balanced_score": 0.42333333333333334,
+        "wilson_95": [
+          0.2986741800934037,
+          0.5295081029999674
+        ],
+        "mean_margin": -8817.863636363636,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top5": {
+          "games": 36,
+          "wins": 18,
+          "losses": 18,
+          "ties": 0,
+          "score_rate": 0.5,
+          "team_balanced_score": 0.48,
+          "wilson_95": [
+            0.34474325409626827,
+            0.6552567459037317
+          ],
+          "mean_margin": -2856.4444444444443,
+          "worst_team_score": 0.0,
+          "teams": 5
+        },
+        "top10": {
+          "games": 66,
+          "wins": 27,
+          "losses": 39,
+          "ties": 0,
+          "score_rate": 0.4090909090909091,
+          "team_balanced_score": 0.42333333333333334,
+          "wilson_95": [
+            0.2986741800934037,
+            0.5295081029999674
+          ],
+          "mean_margin": -8817.863636363636,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 3,
+      "name": "market-validation-00003",
+      "profile": {
+        "enabled": true,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "endgame_sell_fraction_bp": 10000,
+        "start_day": 6,
+        "cash_reserve": 200,
+        "sell_fraction_bp": 10000,
+        "wheat_reserve": 10,
+        "fertilizer_reserve": 5,
+        "milk_reserve": 1,
+        "hands_per_quadrant": 3,
+        "hand_buffer": 2,
+        "max_quadrants": 4,
+        "land_min_hands": 5,
+        "cow_target": 11,
+        "sheep_target": 12,
+        "goose_target": 3,
+        "animal_response_bp": 5000,
+        "wheat_seed_target": 160,
+        "carrot_seed_target": 60,
+        "strawberry_seed_target": 60,
+        "melon_seed_target": 12,
+        "wheat_stock_target": 20,
+        "fertilizer_stock_target": 6,
+        "tomato_seed_target": 24
+      },
+      "summary": {
+        "games": 66,
+        "wins": 27,
+        "losses": 39,
+        "ties": 0,
+        "score_rate": 0.4090909090909091,
+        "team_balanced_score": 0.42333333333333334,
+        "wilson_95": [
+          0.2986741800934037,
+          0.5295081029999674
+        ],
+        "mean_margin": -8817.863636363636,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top5": {
+          "games": 36,
+          "wins": 18,
+          "losses": 18,
+          "ties": 0,
+          "score_rate": 0.5,
+          "team_balanced_score": 0.48,
+          "wilson_95": [
+            0.34474325409626827,
+            0.6552567459037317
+          ],
+          "mean_margin": -2856.4444444444443,
+          "worst_team_score": 0.0,
+          "teams": 5
+        },
+        "top10": {
+          "games": 66,
+          "wins": 27,
+          "losses": 39,
+          "ties": 0,
+          "score_rate": 0.4090909090909091,
+          "team_balanced_score": 0.42333333333333334,
+          "wilson_95": [
+            0.2986741800934037,
+            0.5295081029999674
+          ],
+          "mean_margin": -8817.863636363636,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 8,
+      "name": "market-validation-00008",
+      "profile": {
+        "enabled": true,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "endgame_sell_fraction_bp": 10000,
+        "start_day": 2,
+        "cash_reserve": 250,
+        "sell_fraction_bp": 9000,
+        "wheat_reserve": 2,
+        "fertilizer_reserve": 2,
+        "milk_reserve": 0,
+        "hands_per_quadrant": 3,
+        "hand_buffer": 4,
+        "max_quadrants": 3,
+        "land_min_hands": 3,
+        "cow_target": 8,
+        "sheep_target": 6,
+        "goose_target": 5,
+        "animal_response_bp": 2500,
+        "wheat_seed_target": 120,
+        "carrot_seed_target": 36,
+        "strawberry_seed_target": 60,
+        "melon_seed_target": 12,
+        "wheat_stock_target": 20,
+        "fertilizer_stock_target": 6,
+        "tomato_seed_target": 8
+      },
+      "summary": {
+        "games": 66,
+        "wins": 26,
+        "losses": 40,
+        "ties": 0,
+        "score_rate": 0.3939393939393939,
+        "team_balanced_score": 0.41000000000000003,
+        "wilson_95": [
+          0.28503000494619546,
+          0.5145159919960708
+        ],
+        "mean_margin": -13085.681818181818,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top5": {
+          "games": 36,
+          "wins": 16,
+          "losses": 20,
+          "ties": 0,
+          "score_rate": 0.4444444444444444,
+          "team_balanced_score": 0.48,
+          "wilson_95": [
+            0.2954126874008022,
+            0.6041893824430271
+          ],
+          "mean_margin": -4120.277777777777,
+          "worst_team_score": 0.0,
+          "teams": 5
+        },
+        "top10": {
+          "games": 66,
+          "wins": 26,
+          "losses": 40,
+          "ties": 0,
+          "score_rate": 0.3939393939393939,
+          "team_balanced_score": 0.41000000000000003,
+          "wilson_95": [
+            0.28503000494619546,
+            0.5145159919960708
+          ],
+          "mean_margin": -13085.681818181818,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 4,
+      "name": "market-validation-00004",
+      "profile": {
+        "enabled": true,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "endgame_sell_fraction_bp": 10000,
+        "start_day": 2,
+        "cash_reserve": 250,
+        "sell_fraction_bp": 9000,
+        "wheat_reserve": 0,
+        "fertilizer_reserve": 2,
+        "milk_reserve": 0,
+        "hands_per_quadrant": 3,
+        "hand_buffer": 6,
+        "max_quadrants": 3,
+        "land_min_hands": 3,
+        "cow_target": 8,
+        "sheep_target": 12,
+        "goose_target": 3,
+        "animal_response_bp": 2500,
+        "wheat_seed_target": 120,
+        "carrot_seed_target": 36,
+        "strawberry_seed_target": 60,
+        "melon_seed_target": 12,
+        "wheat_stock_target": 20,
+        "fertilizer_stock_target": 6,
+        "tomato_seed_target": 8
+      },
+      "summary": {
+        "games": 66,
+        "wins": 24,
+        "losses": 42,
+        "ties": 0,
+        "score_rate": 0.36363636363636365,
+        "team_balanced_score": 0.36,
+        "wilson_95": [
+          0.25806983094770897,
+          0.48420359369234767
+        ],
+        "mean_margin": -17121.530303030304,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top5": {
+          "games": 36,
+          "wins": 16,
+          "losses": 20,
+          "ties": 0,
+          "score_rate": 0.4444444444444444,
+          "team_balanced_score": 0.48,
+          "wilson_95": [
+            0.2954126874008022,
+            0.6041893824430271
+          ],
+          "mean_margin": -3736.25,
+          "worst_team_score": 0.0,
+          "teams": 5
+        },
+        "top10": {
+          "games": 66,
+          "wins": 24,
+          "losses": 42,
+          "ties": 0,
+          "score_rate": 0.36363636363636365,
+          "team_balanced_score": 0.36,
+          "wilson_95": [
+            0.25806983094770897,
+            0.48420359369234767
+          ],
+          "mean_margin": -17121.530303030304,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 5,
+      "name": "market-validation-00005",
+      "profile": {
+        "enabled": true,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "endgame_sell_fraction_bp": 10000,
+        "start_day": 2,
+        "cash_reserve": 250,
+        "sell_fraction_bp": 9000,
+        "wheat_reserve": 0,
+        "fertilizer_reserve": 2,
+        "milk_reserve": 0,
+        "hands_per_quadrant": 3,
+        "hand_buffer": 6,
+        "max_quadrants": 3,
+        "land_min_hands": 3,
+        "cow_target": 8,
+        "sheep_target": 12,
+        "goose_target": 3,
+        "animal_response_bp": 5000,
+        "wheat_seed_target": 160,
+        "carrot_seed_target": 36,
+        "strawberry_seed_target": 60,
+        "melon_seed_target": 12,
+        "wheat_stock_target": 20,
+        "fertilizer_stock_target": 6,
+        "tomato_seed_target": 8
+      },
+      "summary": {
+        "games": 66,
+        "wins": 24,
+        "losses": 42,
+        "ties": 0,
+        "score_rate": 0.36363636363636365,
+        "team_balanced_score": 0.36,
+        "wilson_95": [
+          0.25806983094770897,
+          0.48420359369234767
+        ],
+        "mean_margin": -17121.530303030304,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top5": {
+          "games": 36,
+          "wins": 16,
+          "losses": 20,
+          "ties": 0,
+          "score_rate": 0.4444444444444444,
+          "team_balanced_score": 0.48,
+          "wilson_95": [
+            0.2954126874008022,
+            0.6041893824430271
+          ],
+          "mean_margin": -3736.25,
+          "worst_team_score": 0.0,
+          "teams": 5
+        },
+        "top10": {
+          "games": 66,
+          "wins": 24,
+          "losses": 42,
+          "ties": 0,
+          "score_rate": 0.36363636363636365,
+          "team_balanced_score": 0.36,
+          "wilson_95": [
+            0.25806983094770897,
+            0.48420359369234767
+          ],
+          "mean_margin": -17121.530303030304,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 6,
+      "name": "market-validation-00006",
+      "profile": {
+        "enabled": true,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "endgame_sell_fraction_bp": 10000,
+        "start_day": 2,
+        "cash_reserve": 250,
+        "sell_fraction_bp": 9000,
+        "wheat_reserve": 0,
+        "fertilizer_reserve": 2,
+        "milk_reserve": 0,
+        "hands_per_quadrant": 3,
+        "hand_buffer": 4,
+        "max_quadrants": 3,
+        "land_min_hands": 3,
+        "cow_target": 8,
+        "sheep_target": 6,
+        "goose_target": 3,
+        "animal_response_bp": 2500,
+        "wheat_seed_target": 60,
+        "carrot_seed_target": 36,
+        "strawberry_seed_target": 60,
+        "melon_seed_target": 12,
+        "wheat_stock_target": 20,
+        "fertilizer_stock_target": 6,
+        "tomato_seed_target": 8
+      },
+      "summary": {
+        "games": 66,
+        "wins": 24,
+        "losses": 42,
+        "ties": 0,
+        "score_rate": 0.36363636363636365,
+        "team_balanced_score": 0.36,
+        "wilson_95": [
+          0.25806983094770897,
+          0.48420359369234767
+        ],
+        "mean_margin": -17121.530303030304,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top5": {
+          "games": 36,
+          "wins": 16,
+          "losses": 20,
+          "ties": 0,
+          "score_rate": 0.4444444444444444,
+          "team_balanced_score": 0.48,
+          "wilson_95": [
+            0.2954126874008022,
+            0.6041893824430271
+          ],
+          "mean_margin": -3736.25,
+          "worst_team_score": 0.0,
+          "teams": 5
+        },
+        "top10": {
+          "games": 66,
+          "wins": 24,
+          "losses": 42,
+          "ties": 0,
+          "score_rate": 0.36363636363636365,
+          "team_balanced_score": 0.36,
+          "wilson_95": [
+            0.25806983094770897,
+            0.48420359369234767
+          ],
+          "mean_margin": -17121.530303030304,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 7,
+      "name": "market-validation-00007",
+      "profile": {
+        "enabled": true,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "endgame_sell_fraction_bp": 10000,
+        "start_day": 2,
+        "cash_reserve": 250,
+        "sell_fraction_bp": 9000,
+        "wheat_reserve": 0,
+        "fertilizer_reserve": 2,
+        "milk_reserve": 0,
+        "hands_per_quadrant": 3,
+        "hand_buffer": 2,
+        "max_quadrants": 3,
+        "land_min_hands": 3,
+        "cow_target": 8,
+        "sheep_target": 12,
+        "goose_target": 5,
+        "animal_response_bp": 5000,
+        "wheat_seed_target": 120,
+        "carrot_seed_target": 36,
+        "strawberry_seed_target": 60,
+        "melon_seed_target": 18,
+        "wheat_stock_target": 20,
+        "fertilizer_stock_target": 16,
+        "tomato_seed_target": 8
+      },
+      "summary": {
+        "games": 66,
+        "wins": 24,
+        "losses": 42,
+        "ties": 0,
+        "score_rate": 0.36363636363636365,
+        "team_balanced_score": 0.36,
+        "wilson_95": [
+          0.25806983094770897,
+          0.48420359369234767
+        ],
+        "mean_margin": -17130.257575757576,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top5": {
+          "games": 36,
+          "wins": 16,
+          "losses": 20,
+          "ties": 0,
+          "score_rate": 0.4444444444444444,
+          "team_balanced_score": 0.48,
+          "wilson_95": [
+            0.2954126874008022,
+            0.6041893824430271
+          ],
+          "mean_margin": -3746.527777777778,
+          "worst_team_score": 0.0,
+          "teams": 5
+        },
+        "top10": {
+          "games": 66,
+          "wins": 24,
+          "losses": 42,
+          "ties": 0,
+          "score_rate": 0.36363636363636365,
+          "team_balanced_score": 0.36,
+          "wilson_95": [
+            0.25806983094770897,
+            0.48420359369234767
+          ],
+          "mean_margin": -17130.257575757576,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 1,
+      "name": "market-validation-00001",
+      "profile": {
+        "enabled": true,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "endgame_sell_fraction_bp": 10000,
+        "start_day": 2,
+        "cash_reserve": 150,
+        "sell_fraction_bp": 9000,
+        "wheat_reserve": 0,
+        "fertilizer_reserve": 2,
+        "milk_reserve": 0,
+        "hands_per_quadrant": 3,
+        "hand_buffer": 4,
+        "max_quadrants": 3,
+        "land_min_hands": 3,
+        "cow_target": 8,
+        "sheep_target": 12,
+        "goose_target": 3,
+        "animal_response_bp": 5000,
+        "wheat_seed_target": 120,
+        "carrot_seed_target": 36,
+        "strawberry_seed_target": 60,
+        "melon_seed_target": 12,
+        "wheat_stock_target": 20,
+        "fertilizer_stock_target": 6,
+        "tomato_seed_target": 8
+      },
+      "summary": {
+        "games": 66,
+        "wins": 23,
+        "losses": 43,
+        "ties": 0,
+        "score_rate": 0.3484848484848485,
+        "team_balanced_score": 0.34833333333333333,
+        "wilson_95": [
+          0.2447587406192953,
+          0.4688783978696565
+        ],
+        "mean_margin": -11400.484848484848,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top5": {
+          "games": 36,
+          "wins": 18,
+          "losses": 18,
+          "ties": 0,
+          "score_rate": 0.5,
+          "team_balanced_score": 0.53,
+          "wilson_95": [
+            0.34474325409626827,
+            0.6552567459037317
+          ],
+          "mean_margin": -1188.7777777777778,
+          "worst_team_score": 0.0,
+          "teams": 5
+        },
+        "top10": {
+          "games": 66,
+          "wins": 23,
+          "losses": 43,
+          "ties": 0,
+          "score_rate": 0.3484848484848485,
+          "team_balanced_score": 0.34833333333333333,
+          "wilson_95": [
+            0.2447587406192953,
+            0.4688783978696565
+          ],
+          "mean_margin": -11400.484848484848,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 9,
+      "name": "market-validation-00009",
+      "profile": {
+        "enabled": true,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "endgame_sell_fraction_bp": 10000,
+        "start_day": 2,
+        "cash_reserve": 250,
+        "sell_fraction_bp": 9000,
+        "wheat_reserve": 0,
+        "fertilizer_reserve": 2,
+        "milk_reserve": 2,
+        "hands_per_quadrant": 3,
+        "hand_buffer": 6,
+        "max_quadrants": 3,
+        "land_min_hands": 3,
+        "cow_target": 8,
+        "sheep_target": 9,
+        "goose_target": 3,
+        "animal_response_bp": 2500,
+        "wheat_seed_target": 120,
+        "carrot_seed_target": 36,
+        "strawberry_seed_target": 60,
+        "melon_seed_target": 12,
+        "wheat_stock_target": 20,
+        "fertilizer_stock_target": 6,
+        "tomato_seed_target": 8
+      },
+      "summary": {
+        "games": 66,
+        "wins": 22,
+        "losses": 44,
+        "ties": 0,
+        "score_rate": 0.3333333333333333,
+        "team_balanced_score": 0.34,
+        "wilson_95": [
+          0.23156429121502337,
+          0.45343656112282366
+        ],
+        "mean_margin": -17424.060606060608,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top5": {
+          "games": 36,
+          "wins": 16,
+          "losses": 20,
+          "ties": 0,
+          "score_rate": 0.4444444444444444,
+          "team_balanced_score": 0.48,
+          "wilson_95": [
+            0.2954126874008022,
+            0.6041893824430271
+          ],
+          "mean_margin": -4179.75,
+          "worst_team_score": 0.0,
+          "teams": 5
+        },
+        "top10": {
+          "games": 66,
+          "wins": 22,
+          "losses": 44,
+          "ties": 0,
+          "score_rate": 0.3333333333333333,
+          "team_balanced_score": 0.34,
+          "wilson_95": [
+            0.23156429121502337,
+            0.45343656112282366
+          ],
+          "mean_margin": -17424.060606060608,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 10,
+      "name": "market-validation-00010",
+      "profile": {
+        "enabled": true,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "endgame_sell_fraction_bp": 10000,
+        "start_day": 2,
+        "cash_reserve": 150,
+        "sell_fraction_bp": 9000,
+        "wheat_reserve": 0,
+        "fertilizer_reserve": 2,
+        "milk_reserve": 1,
+        "hands_per_quadrant": 2,
+        "hand_buffer": 2,
+        "max_quadrants": 4,
+        "land_min_hands": 3,
+        "cow_target": 8,
+        "sheep_target": 6,
+        "goose_target": 5,
+        "animal_response_bp": 10000,
+        "wheat_seed_target": 160,
+        "carrot_seed_target": 12,
+        "strawberry_seed_target": 60,
+        "melon_seed_target": 6,
+        "wheat_stock_target": 20,
+        "fertilizer_stock_target": 16,
+        "tomato_seed_target": 0
+      },
+      "summary": {
+        "games": 66,
+        "wins": 21,
+        "losses": 45,
+        "ties": 0,
+        "score_rate": 0.3181818181818182,
+        "team_balanced_score": 0.32333333333333336,
+        "wilson_95": [
+          0.2184900673062997,
+          0.4378744988804425
+        ],
+        "mean_margin": -14290.878787878788,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top5": {
+          "games": 36,
+          "wins": 16,
+          "losses": 20,
+          "ties": 0,
+          "score_rate": 0.4444444444444444,
+          "team_balanced_score": 0.48,
+          "wilson_95": [
+            0.2954126874008022,
+            0.6041893824430271
+          ],
+          "mean_margin": -5137.5,
+          "worst_team_score": 0.0,
+          "teams": 5
+        },
+        "top10": {
+          "games": 66,
+          "wins": 21,
+          "losses": 45,
+          "ties": 0,
+          "score_rate": 0.3181818181818182,
+          "team_balanced_score": 0.32333333333333336,
+          "wilson_95": [
+            0.2184900673062997,
+            0.4378744988804425
+          ],
+          "mean_margin": -14290.878787878788,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    }
+  ],
+  "top50": [
+    {
+      "index": 2,
+      "name": "market-validation-00002",
+      "profile": {
+        "enabled": true,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "endgame_sell_fraction_bp": 10000,
+        "start_day": 6,
+        "cash_reserve": 200,
+        "sell_fraction_bp": 10000,
+        "wheat_reserve": 10,
+        "fertilizer_reserve": 5,
+        "milk_reserve": 1,
+        "hands_per_quadrant": 3,
+        "hand_buffer": 4,
+        "max_quadrants": 4,
+        "land_min_hands": 5,
+        "cow_target": 11,
+        "sheep_target": 12,
+        "goose_target": 3,
+        "animal_response_bp": 5000,
+        "wheat_seed_target": 160,
+        "carrot_seed_target": 60,
+        "strawberry_seed_target": 60,
+        "melon_seed_target": 12,
+        "wheat_stock_target": 20,
+        "fertilizer_stock_target": 6,
+        "tomato_seed_target": 24
+      },
+      "summary": {
+        "games": 66,
+        "wins": 27,
+        "losses": 39,
+        "ties": 0,
+        "score_rate": 0.4090909090909091,
+        "team_balanced_score": 0.42333333333333334,
+        "wilson_95": [
+          0.2986741800934037,
+          0.5295081029999674
+        ],
+        "mean_margin": -8817.863636363636,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top5": {
+          "games": 36,
+          "wins": 18,
+          "losses": 18,
+          "ties": 0,
+          "score_rate": 0.5,
+          "team_balanced_score": 0.48,
+          "wilson_95": [
+            0.34474325409626827,
+            0.6552567459037317
+          ],
+          "mean_margin": -2856.4444444444443,
+          "worst_team_score": 0.0,
+          "teams": 5
+        },
+        "top10": {
+          "games": 66,
+          "wins": 27,
+          "losses": 39,
+          "ties": 0,
+          "score_rate": 0.4090909090909091,
+          "team_balanced_score": 0.42333333333333334,
+          "wilson_95": [
+            0.2986741800934037,
+            0.5295081029999674
+          ],
+          "mean_margin": -8817.863636363636,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 3,
+      "name": "market-validation-00003",
+      "profile": {
+        "enabled": true,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "endgame_sell_fraction_bp": 10000,
+        "start_day": 6,
+        "cash_reserve": 200,
+        "sell_fraction_bp": 10000,
+        "wheat_reserve": 10,
+        "fertilizer_reserve": 5,
+        "milk_reserve": 1,
+        "hands_per_quadrant": 3,
+        "hand_buffer": 2,
+        "max_quadrants": 4,
+        "land_min_hands": 5,
+        "cow_target": 11,
+        "sheep_target": 12,
+        "goose_target": 3,
+        "animal_response_bp": 5000,
+        "wheat_seed_target": 160,
+        "carrot_seed_target": 60,
+        "strawberry_seed_target": 60,
+        "melon_seed_target": 12,
+        "wheat_stock_target": 20,
+        "fertilizer_stock_target": 6,
+        "tomato_seed_target": 24
+      },
+      "summary": {
+        "games": 66,
+        "wins": 27,
+        "losses": 39,
+        "ties": 0,
+        "score_rate": 0.4090909090909091,
+        "team_balanced_score": 0.42333333333333334,
+        "wilson_95": [
+          0.2986741800934037,
+          0.5295081029999674
+        ],
+        "mean_margin": -8817.863636363636,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top5": {
+          "games": 36,
+          "wins": 18,
+          "losses": 18,
+          "ties": 0,
+          "score_rate": 0.5,
+          "team_balanced_score": 0.48,
+          "wilson_95": [
+            0.34474325409626827,
+            0.6552567459037317
+          ],
+          "mean_margin": -2856.4444444444443,
+          "worst_team_score": 0.0,
+          "teams": 5
+        },
+        "top10": {
+          "games": 66,
+          "wins": 27,
+          "losses": 39,
+          "ties": 0,
+          "score_rate": 0.4090909090909091,
+          "team_balanced_score": 0.42333333333333334,
+          "wilson_95": [
+            0.2986741800934037,
+            0.5295081029999674
+          ],
+          "mean_margin": -8817.863636363636,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 8,
+      "name": "market-validation-00008",
+      "profile": {
+        "enabled": true,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "endgame_sell_fraction_bp": 10000,
+        "start_day": 2,
+        "cash_reserve": 250,
+        "sell_fraction_bp": 9000,
+        "wheat_reserve": 2,
+        "fertilizer_reserve": 2,
+        "milk_reserve": 0,
+        "hands_per_quadrant": 3,
+        "hand_buffer": 4,
+        "max_quadrants": 3,
+        "land_min_hands": 3,
+        "cow_target": 8,
+        "sheep_target": 6,
+        "goose_target": 5,
+        "animal_response_bp": 2500,
+        "wheat_seed_target": 120,
+        "carrot_seed_target": 36,
+        "strawberry_seed_target": 60,
+        "melon_seed_target": 12,
+        "wheat_stock_target": 20,
+        "fertilizer_stock_target": 6,
+        "tomato_seed_target": 8
+      },
+      "summary": {
+        "games": 66,
+        "wins": 26,
+        "losses": 40,
+        "ties": 0,
+        "score_rate": 0.3939393939393939,
+        "team_balanced_score": 0.41000000000000003,
+        "wilson_95": [
+          0.28503000494619546,
+          0.5145159919960708
+        ],
+        "mean_margin": -13085.681818181818,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top5": {
+          "games": 36,
+          "wins": 16,
+          "losses": 20,
+          "ties": 0,
+          "score_rate": 0.4444444444444444,
+          "team_balanced_score": 0.48,
+          "wilson_95": [
+            0.2954126874008022,
+            0.6041893824430271
+          ],
+          "mean_margin": -4120.277777777777,
+          "worst_team_score": 0.0,
+          "teams": 5
+        },
+        "top10": {
+          "games": 66,
+          "wins": 26,
+          "losses": 40,
+          "ties": 0,
+          "score_rate": 0.3939393939393939,
+          "team_balanced_score": 0.41000000000000003,
+          "wilson_95": [
+            0.28503000494619546,
+            0.5145159919960708
+          ],
+          "mean_margin": -13085.681818181818,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 4,
+      "name": "market-validation-00004",
+      "profile": {
+        "enabled": true,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "endgame_sell_fraction_bp": 10000,
+        "start_day": 2,
+        "cash_reserve": 250,
+        "sell_fraction_bp": 9000,
+        "wheat_reserve": 0,
+        "fertilizer_reserve": 2,
+        "milk_reserve": 0,
+        "hands_per_quadrant": 3,
+        "hand_buffer": 6,
+        "max_quadrants": 3,
+        "land_min_hands": 3,
+        "cow_target": 8,
+        "sheep_target": 12,
+        "goose_target": 3,
+        "animal_response_bp": 2500,
+        "wheat_seed_target": 120,
+        "carrot_seed_target": 36,
+        "strawberry_seed_target": 60,
+        "melon_seed_target": 12,
+        "wheat_stock_target": 20,
+        "fertilizer_stock_target": 6,
+        "tomato_seed_target": 8
+      },
+      "summary": {
+        "games": 66,
+        "wins": 24,
+        "losses": 42,
+        "ties": 0,
+        "score_rate": 0.36363636363636365,
+        "team_balanced_score": 0.36,
+        "wilson_95": [
+          0.25806983094770897,
+          0.48420359369234767
+        ],
+        "mean_margin": -17121.530303030304,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top5": {
+          "games": 36,
+          "wins": 16,
+          "losses": 20,
+          "ties": 0,
+          "score_rate": 0.4444444444444444,
+          "team_balanced_score": 0.48,
+          "wilson_95": [
+            0.2954126874008022,
+            0.6041893824430271
+          ],
+          "mean_margin": -3736.25,
+          "worst_team_score": 0.0,
+          "teams": 5
+        },
+        "top10": {
+          "games": 66,
+          "wins": 24,
+          "losses": 42,
+          "ties": 0,
+          "score_rate": 0.36363636363636365,
+          "team_balanced_score": 0.36,
+          "wilson_95": [
+            0.25806983094770897,
+            0.48420359369234767
+          ],
+          "mean_margin": -17121.530303030304,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 5,
+      "name": "market-validation-00005",
+      "profile": {
+        "enabled": true,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "endgame_sell_fraction_bp": 10000,
+        "start_day": 2,
+        "cash_reserve": 250,
+        "sell_fraction_bp": 9000,
+        "wheat_reserve": 0,
+        "fertilizer_reserve": 2,
+        "milk_reserve": 0,
+        "hands_per_quadrant": 3,
+        "hand_buffer": 6,
+        "max_quadrants": 3,
+        "land_min_hands": 3,
+        "cow_target": 8,
+        "sheep_target": 12,
+        "goose_target": 3,
+        "animal_response_bp": 5000,
+        "wheat_seed_target": 160,
+        "carrot_seed_target": 36,
+        "strawberry_seed_target": 60,
+        "melon_seed_target": 12,
+        "wheat_stock_target": 20,
+        "fertilizer_stock_target": 6,
+        "tomato_seed_target": 8
+      },
+      "summary": {
+        "games": 66,
+        "wins": 24,
+        "losses": 42,
+        "ties": 0,
+        "score_rate": 0.36363636363636365,
+        "team_balanced_score": 0.36,
+        "wilson_95": [
+          0.25806983094770897,
+          0.48420359369234767
+        ],
+        "mean_margin": -17121.530303030304,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top5": {
+          "games": 36,
+          "wins": 16,
+          "losses": 20,
+          "ties": 0,
+          "score_rate": 0.4444444444444444,
+          "team_balanced_score": 0.48,
+          "wilson_95": [
+            0.2954126874008022,
+            0.6041893824430271
+          ],
+          "mean_margin": -3736.25,
+          "worst_team_score": 0.0,
+          "teams": 5
+        },
+        "top10": {
+          "games": 66,
+          "wins": 24,
+          "losses": 42,
+          "ties": 0,
+          "score_rate": 0.36363636363636365,
+          "team_balanced_score": 0.36,
+          "wilson_95": [
+            0.25806983094770897,
+            0.48420359369234767
+          ],
+          "mean_margin": -17121.530303030304,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 6,
+      "name": "market-validation-00006",
+      "profile": {
+        "enabled": true,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "endgame_sell_fraction_bp": 10000,
+        "start_day": 2,
+        "cash_reserve": 250,
+        "sell_fraction_bp": 9000,
+        "wheat_reserve": 0,
+        "fertilizer_reserve": 2,
+        "milk_reserve": 0,
+        "hands_per_quadrant": 3,
+        "hand_buffer": 4,
+        "max_quadrants": 3,
+        "land_min_hands": 3,
+        "cow_target": 8,
+        "sheep_target": 6,
+        "goose_target": 3,
+        "animal_response_bp": 2500,
+        "wheat_seed_target": 60,
+        "carrot_seed_target": 36,
+        "strawberry_seed_target": 60,
+        "melon_seed_target": 12,
+        "wheat_stock_target": 20,
+        "fertilizer_stock_target": 6,
+        "tomato_seed_target": 8
+      },
+      "summary": {
+        "games": 66,
+        "wins": 24,
+        "losses": 42,
+        "ties": 0,
+        "score_rate": 0.36363636363636365,
+        "team_balanced_score": 0.36,
+        "wilson_95": [
+          0.25806983094770897,
+          0.48420359369234767
+        ],
+        "mean_margin": -17121.530303030304,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top5": {
+          "games": 36,
+          "wins": 16,
+          "losses": 20,
+          "ties": 0,
+          "score_rate": 0.4444444444444444,
+          "team_balanced_score": 0.48,
+          "wilson_95": [
+            0.2954126874008022,
+            0.6041893824430271
+          ],
+          "mean_margin": -3736.25,
+          "worst_team_score": 0.0,
+          "teams": 5
+        },
+        "top10": {
+          "games": 66,
+          "wins": 24,
+          "losses": 42,
+          "ties": 0,
+          "score_rate": 0.36363636363636365,
+          "team_balanced_score": 0.36,
+          "wilson_95": [
+            0.25806983094770897,
+            0.48420359369234767
+          ],
+          "mean_margin": -17121.530303030304,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 7,
+      "name": "market-validation-00007",
+      "profile": {
+        "enabled": true,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "endgame_sell_fraction_bp": 10000,
+        "start_day": 2,
+        "cash_reserve": 250,
+        "sell_fraction_bp": 9000,
+        "wheat_reserve": 0,
+        "fertilizer_reserve": 2,
+        "milk_reserve": 0,
+        "hands_per_quadrant": 3,
+        "hand_buffer": 2,
+        "max_quadrants": 3,
+        "land_min_hands": 3,
+        "cow_target": 8,
+        "sheep_target": 12,
+        "goose_target": 5,
+        "animal_response_bp": 5000,
+        "wheat_seed_target": 120,
+        "carrot_seed_target": 36,
+        "strawberry_seed_target": 60,
+        "melon_seed_target": 18,
+        "wheat_stock_target": 20,
+        "fertilizer_stock_target": 16,
+        "tomato_seed_target": 8
+      },
+      "summary": {
+        "games": 66,
+        "wins": 24,
+        "losses": 42,
+        "ties": 0,
+        "score_rate": 0.36363636363636365,
+        "team_balanced_score": 0.36,
+        "wilson_95": [
+          0.25806983094770897,
+          0.48420359369234767
+        ],
+        "mean_margin": -17130.257575757576,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top5": {
+          "games": 36,
+          "wins": 16,
+          "losses": 20,
+          "ties": 0,
+          "score_rate": 0.4444444444444444,
+          "team_balanced_score": 0.48,
+          "wilson_95": [
+            0.2954126874008022,
+            0.6041893824430271
+          ],
+          "mean_margin": -3746.527777777778,
+          "worst_team_score": 0.0,
+          "teams": 5
+        },
+        "top10": {
+          "games": 66,
+          "wins": 24,
+          "losses": 42,
+          "ties": 0,
+          "score_rate": 0.36363636363636365,
+          "team_balanced_score": 0.36,
+          "wilson_95": [
+            0.25806983094770897,
+            0.48420359369234767
+          ],
+          "mean_margin": -17130.257575757576,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 1,
+      "name": "market-validation-00001",
+      "profile": {
+        "enabled": true,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "endgame_sell_fraction_bp": 10000,
+        "start_day": 2,
+        "cash_reserve": 150,
+        "sell_fraction_bp": 9000,
+        "wheat_reserve": 0,
+        "fertilizer_reserve": 2,
+        "milk_reserve": 0,
+        "hands_per_quadrant": 3,
+        "hand_buffer": 4,
+        "max_quadrants": 3,
+        "land_min_hands": 3,
+        "cow_target": 8,
+        "sheep_target": 12,
+        "goose_target": 3,
+        "animal_response_bp": 5000,
+        "wheat_seed_target": 120,
+        "carrot_seed_target": 36,
+        "strawberry_seed_target": 60,
+        "melon_seed_target": 12,
+        "wheat_stock_target": 20,
+        "fertilizer_stock_target": 6,
+        "tomato_seed_target": 8
+      },
+      "summary": {
+        "games": 66,
+        "wins": 23,
+        "losses": 43,
+        "ties": 0,
+        "score_rate": 0.3484848484848485,
+        "team_balanced_score": 0.34833333333333333,
+        "wilson_95": [
+          0.2447587406192953,
+          0.4688783978696565
+        ],
+        "mean_margin": -11400.484848484848,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top5": {
+          "games": 36,
+          "wins": 18,
+          "losses": 18,
+          "ties": 0,
+          "score_rate": 0.5,
+          "team_balanced_score": 0.53,
+          "wilson_95": [
+            0.34474325409626827,
+            0.6552567459037317
+          ],
+          "mean_margin": -1188.7777777777778,
+          "worst_team_score": 0.0,
+          "teams": 5
+        },
+        "top10": {
+          "games": 66,
+          "wins": 23,
+          "losses": 43,
+          "ties": 0,
+          "score_rate": 0.3484848484848485,
+          "team_balanced_score": 0.34833333333333333,
+          "wilson_95": [
+            0.2447587406192953,
+            0.4688783978696565
+          ],
+          "mean_margin": -11400.484848484848,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 9,
+      "name": "market-validation-00009",
+      "profile": {
+        "enabled": true,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "endgame_sell_fraction_bp": 10000,
+        "start_day": 2,
+        "cash_reserve": 250,
+        "sell_fraction_bp": 9000,
+        "wheat_reserve": 0,
+        "fertilizer_reserve": 2,
+        "milk_reserve": 2,
+        "hands_per_quadrant": 3,
+        "hand_buffer": 6,
+        "max_quadrants": 3,
+        "land_min_hands": 3,
+        "cow_target": 8,
+        "sheep_target": 9,
+        "goose_target": 3,
+        "animal_response_bp": 2500,
+        "wheat_seed_target": 120,
+        "carrot_seed_target": 36,
+        "strawberry_seed_target": 60,
+        "melon_seed_target": 12,
+        "wheat_stock_target": 20,
+        "fertilizer_stock_target": 6,
+        "tomato_seed_target": 8
+      },
+      "summary": {
+        "games": 66,
+        "wins": 22,
+        "losses": 44,
+        "ties": 0,
+        "score_rate": 0.3333333333333333,
+        "team_balanced_score": 0.34,
+        "wilson_95": [
+          0.23156429121502337,
+          0.45343656112282366
+        ],
+        "mean_margin": -17424.060606060608,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top5": {
+          "games": 36,
+          "wins": 16,
+          "losses": 20,
+          "ties": 0,
+          "score_rate": 0.4444444444444444,
+          "team_balanced_score": 0.48,
+          "wilson_95": [
+            0.2954126874008022,
+            0.6041893824430271
+          ],
+          "mean_margin": -4179.75,
+          "worst_team_score": 0.0,
+          "teams": 5
+        },
+        "top10": {
+          "games": 66,
+          "wins": 22,
+          "losses": 44,
+          "ties": 0,
+          "score_rate": 0.3333333333333333,
+          "team_balanced_score": 0.34,
+          "wilson_95": [
+            0.23156429121502337,
+            0.45343656112282366
+          ],
+          "mean_margin": -17424.060606060608,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 10,
+      "name": "market-validation-00010",
+      "profile": {
+        "enabled": true,
+        "buy_stop_day": 29,
+        "endgame_day": 27,
+        "endgame_sell_fraction_bp": 10000,
+        "start_day": 2,
+        "cash_reserve": 150,
+        "sell_fraction_bp": 9000,
+        "wheat_reserve": 0,
+        "fertilizer_reserve": 2,
+        "milk_reserve": 1,
+        "hands_per_quadrant": 2,
+        "hand_buffer": 2,
+        "max_quadrants": 4,
+        "land_min_hands": 3,
+        "cow_target": 8,
+        "sheep_target": 6,
+        "goose_target": 5,
+        "animal_response_bp": 10000,
+        "wheat_seed_target": 160,
+        "carrot_seed_target": 12,
+        "strawberry_seed_target": 60,
+        "melon_seed_target": 6,
+        "wheat_stock_target": 20,
+        "fertilizer_stock_target": 16,
+        "tomato_seed_target": 0
+      },
+      "summary": {
+        "games": 66,
+        "wins": 21,
+        "losses": 45,
+        "ties": 0,
+        "score_rate": 0.3181818181818182,
+        "team_balanced_score": 0.32333333333333336,
+        "wilson_95": [
+          0.2184900673062997,
+          0.4378744988804425
+        ],
+        "mean_margin": -14290.878787878788,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top5": {
+          "games": 36,
+          "wins": 16,
+          "losses": 20,
+          "ties": 0,
+          "score_rate": 0.4444444444444444,
+          "team_balanced_score": 0.48,
+          "wilson_95": [
+            0.2954126874008022,
+            0.6041893824430271
+          ],
+          "mean_margin": -5137.5,
+          "worst_team_score": 0.0,
+          "teams": 5
+        },
+        "top10": {
+          "games": 66,
+          "wins": 21,
+          "losses": 45,
+          "ties": 0,
+          "score_rate": 0.3181818181818182,
+          "team_balanced_score": 0.32333333333333336,
+          "wilson_95": [
+            0.2184900673062997,
+            0.4378744988804425
+          ],
+          "mean_margin": -14290.878787878788,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    },
+    {
+      "index": 0,
+      "name": "market-validation-00000",
+      "profile": {
+        "enabled": false
+      },
+      "summary": {
+        "games": 66,
+        "wins": 14,
+        "losses": 52,
+        "ties": 0,
+        "score_rate": 0.21212121212121213,
+        "team_balanced_score": 0.22833333333333333,
+        "wilson_95": [
+          0.13077985107923806,
+          0.3251307120497705
+        ],
+        "mean_margin": -8678.424242424242,
+        "worst_team_score": 0.0,
+        "teams": 10
+      },
+      "curricula": {
+        "top5": {
+          "games": 36,
+          "wins": 8,
+          "losses": 28,
+          "ties": 0,
+          "score_rate": 0.2222222222222222,
+          "team_balanced_score": 0.22333333333333333,
+          "wilson_95": [
+            0.11716331975796462,
+            0.3808470294611818
+          ],
+          "mean_margin": -617.8888888888889,
+          "worst_team_score": 0.0,
+          "teams": 5
+        },
+        "top10": {
+          "games": 66,
+          "wins": 14,
+          "losses": 52,
+          "ties": 0,
+          "score_rate": 0.21212121212121213,
+          "team_balanced_score": 0.22833333333333333,
+          "wilson_95": [
+            0.13077985107923806,
+            0.3251307120497705
+          ],
+          "mean_margin": -8678.424242424242,
+          "worst_team_score": 0.0,
+          "teams": 10
+        }
+      }
+    }
+  ]
+}
