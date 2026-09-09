@@ -1,0 +1,5 @@
+ref,fileName,date,description,status,publicScore,privateScore
+56130711,submission-v10-subin-g2-83-corrected.tar.gz,2026-09-09 20:43:02.840000,V10 G2-83 corrected compact exact-policy framework-validated 3aa7732de48b27500bf32598dded6380b166795f,SubmissionStatus.PENDING,,
+56130004,submission-v10-subin-g2-83.tar.gz,2026-09-09 19:39:17.157000,V10 Subin G2-83 cash250 milk1 TOP30 margin672 closed23of32 54dda17e1b918adb80a358a6eef4e0ba7964b896,SubmissionStatus.ERROR,,
+56126199,submission-v10-subin-106845775.tar.gz,2026-09-09 15:21:39.150000,V10 static Subin 106845775 open-loop46.7 closed-loop26of32 3ab8d399901661a48b35e97215d77eb97fc79692,SubmissionStatus.COMPLETE,2142.8,
+56071535,submission-v9-b21-s16.tar.gz,2026-09-07 07:14:06.533000,V9 B21-S16 TOP49 184of490 margin+835 1819433f0c62bfdcc1f15f4631c27781d19a57f7,SubmissionStatus.COMPLETE,1767.2,
