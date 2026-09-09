@@ -64,7 +64,8 @@ def generate_local_profiles(population: int, seed: int) -> list[dict[str, object
     seen = {json.dumps(p, sort_keys=True) for p in profiles}
     names = tuple(LOCAL_OPTIONS)
     while len(profiles) < population:
-        profile: dict[str, object] = {"enabled": True}
+        # Preserve the observed two-turn bootstrap and early market financing.
+        profile: dict[str, object] = {"enabled": True, "start_day": 8}
         for name in rng.sample(names, rng.randint(1, 3)):
             profile[name] = rng.choice(LOCAL_OPTIONS[name])
         key = json.dumps(profile, sort_keys=True)

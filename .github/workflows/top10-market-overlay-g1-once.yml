@@ -29,7 +29,7 @@ jobs:
       - name: Build Rust simulator with premarket inventory projection
         working-directory: kaggriculture_meta_lab/rust_port
         run: cargo build --release --locked
-      - name: Screen 500 sparse identity-local profiles in 15000 games
+      - name: Screen 500 sparse identity-local profiles in 15000 games (identity-safe retry)
         run: |
           python kaggriculture_meta_lab/scripts/screen_market_overlays.py \
             --corpus "$RUNNER_TEMP/top30/TOP30" --generation g1 \

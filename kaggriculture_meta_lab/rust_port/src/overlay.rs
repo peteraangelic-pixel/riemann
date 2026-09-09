@@ -216,9 +216,14 @@ impl MarketOverlay {
         for order in &mut action.market {
             match order.kind {
                 OrderKind::Sell(item) => {
+                    let reserve = self.reserve(item);
+                    let min_price = self.min_price(item);
+                    if fraction == 10_000 && reserve == 0 && min_price == 0.0 {
+                        continue;
+                    }
                     let quote =
                         game.config.curves[item.index()].price(game.market_inventory[item.index()]);
-                    if quote < self.min_price(item) {
+                    if quote < min_price {
                         order.remaining = 0;
                     } else {
                         order.remaining = order.remaining.min(sale_budget[item.index()]);
@@ -264,6 +269,19 @@ mod tests {
     }
 
     #[test]
+    fn enabled_defaults_are_identity_for_buy_then_sell() {
+        let cfg = Config::default();
+        let tape = Tape::from_json(&json!([[
+            {"market":[["BUY_PRODUCT","WHEAT",13],["SELL","WHEAT",13]]}
+        ],[{}]])).unwrap();
+        let game = Game::new(&cfg, 0, [0, 0]);
+        let profile = MarketOverlay::from_json(&json!({"enabled": true})).unwrap();
+        let out = profile.apply(&game, 0, &tape.seats[0][0]);
+        assert_eq!(out.market[0].remaining, 13);
+        assert_eq!(out.market[1].remaining, 13);
+    }
+
+    #[test]
     fn sale_uses_live_shed_reserve_fraction_and_quote() {
         let cfg = Config::default();
         let tape = Tape::from_json(&json!([[{"market":[["SELL","WHEAT",99]]}],[{}]])).unwrap();
@@ -298,11 +316,13 @@ mod tests {
     fn same_turn_drop_is_saleable_before_market() {
         let cfg = Config::default();
         let tape = Tape::from_json(&json!([[
-            {"farmer":["DROP"],"market":[["SELL","WHEAT",6]]}
+            {"farmer":["DROP"],"market":[["SELL","WHEAT",99]]}
         ],[{}]])).unwrap();
         let mut game = Game::new(&cfg, 0, [0, 0]);
         game.farms[0].units[0].inventory.add(Item::Wheat, 6);
-        let profile = MarketOverlay::from_json(&json!({"enabled": true})).unwrap();
+        let profile = MarketOverlay::from_json(&json!({
+            "enabled": true, "min_wheat_price": 1
+        })).unwrap();
         let out = profile.apply(&game, 0, &tape.seats[0][0]);
         assert_eq!(out.market[0].remaining, 6);
         game.step([&out, &tape.seats[1][0]], false);

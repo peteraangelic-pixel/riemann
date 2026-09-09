@@ -21,6 +21,12 @@ def test_disabled_is_identity_copy():
     assert apply_market_overlay(action, state(), {}) is not action
 
 
+def test_enabled_default_is_exact_identity_even_with_buy_then_sell():
+    action = {"market": [["BUY_PRODUCT", "WHEAT", 13],
+                         ["SELL", "WHEAT", 13]]}
+    assert apply_market_overlay(action, state(day=0), {"enabled": True}) == action
+
+
 def test_live_inventory_reserve_fraction_and_price_gate():
     action = {"market": [["SELL", "WHEAT", 99], ["SELL", "MILK", 9]]}
     profile = {"enabled": True, "wheat_reserve": 4,
@@ -43,7 +49,8 @@ def test_same_turn_drop_is_included_in_saleable_inventory():
     live["shed"] = {"WHEAT": 2}
     live["shed_capacity"] = 100
     live["units"] = [{"pos": [4, 4], "inventory": {"WHEAT": 6}}]
-    out = apply_market_overlay(action, live, {"enabled": True})
+    out = apply_market_overlay(action, live,
+                               {"enabled": True, "min_wheat_price": 1})
     assert out["market"][0][2] == 8
 
 
@@ -52,7 +59,8 @@ def test_pickup_reduces_inventory_available_to_market():
               "market": [["SELL", "WHEAT", 20]]}
     live = state()
     live["units"] = [{"pos": [4, 4], "inventory": {}}]
-    out = apply_market_overlay(action, live, {"enabled": True})
+    out = apply_market_overlay(action, live,
+                               {"enabled": True, "min_wheat_price": 1})
     assert out["market"][0][2] == 15
 
 

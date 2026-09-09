@@ -104,7 +104,11 @@ def apply_market_overlay(action: dict[str, Any], state: dict[str, Any],
         op = order[0]
         if op == "SELL" and len(order) >= 3 and order[1] in PRODUCTS:
             product = order[1]
-            if float(prices[product]) < p[f"min_{product.lower()}_price"]:
+            reserve = p[f"{product.lower()}_reserve"]
+            min_price = p[f"min_{product.lower()}_price"]
+            if fraction == 10_000 and reserve == 0 and min_price == 0.0:
+                continue
+            if float(prices[product]) < min_price:
                 order[2] = 0
             else:
                 order[2] = min(max(0, int(order[2])), sale_budget[product])

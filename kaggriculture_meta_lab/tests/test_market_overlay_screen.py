@@ -17,7 +17,8 @@ def test_local_generation_starts_with_disabled_and_enabled_identity():
     assert profiles[:2] == [{"enabled": False}, {"enabled": True}]
     assert profiles == generate_local_profiles(200, 11)
     assert len({repr(sorted(profile.items())) for profile in profiles}) == 200
-    assert all(2 <= len(profile) <= 4 for profile in profiles[2:])
+    assert all(2 <= len(profile) <= 5 for profile in profiles[2:])
+    assert all(profile["start_day"] >= 8 for profile in profiles[2:])
 
 
 def test_team_balanced_summary_does_not_overweight_more_records():
