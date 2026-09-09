@@ -2,7 +2,7 @@ name: TOP30 market overlay Generation 2 finalists once
 on:
   push:
     branches: [arena/01a0712c-riemann]
-    paths: [.github/workflows/top30-market-overlay-finalists-once.yml]
+    paths: [.github/workflows/top30-market-overlay-g2-finalists-once.yml]
 permissions:
   contents: write
 jobs:
