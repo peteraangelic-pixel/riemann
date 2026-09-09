@@ -20,7 +20,8 @@ chcp 65001 >nul
 set PYTHONUTF8=1
 if "%WORKERS%"=="" set WORKERS=16
 if "%POP%"=="" set POP=1000
-if "%MAXRANK%"=="" set MAXRANK=15
+REM Curriculum is fixed to the current TOP15: TOP5 -> TOP10 -> TOP15.
+
 
 set PYEXE=
 where py >nul 2>&1 && set PYEXE=py
@@ -73,28 +74,28 @@ if not exist results mkdir results
 if not exist work mkdir work
 set BIN=rust_port\target\release\kg_sim.exe
 
- echo [G0] sampling %POP% bounded market profiles on TOP%MAXRANK% ...
-python scripts\screen_market_overlays.py --corpus "%CORPUS%" --candidate agents\variants\agent_v10_subin_106845775.py --binary "%BIN%" --population %POP% --generation g0 --max-rank %MAXRANK% --seed 20260909 --workers %WORKERS% --output results\top%MAXRANK%-market-overlay-g0.json
+ echo [G0] sampling %POP% bounded market profiles on TOP5 ...
+python scripts\screen_market_overlays.py --corpus "%CORPUS%" --candidate agents\variants\agent_v10_subin_106845775.py --binary "%BIN%" --population %POP% --generation g0 --max-rank 5 --seed 20260909 --workers %WORKERS% --output results\top5-market-overlay-g0.json
 if errorlevel 1 goto :err
 
- echo [G1] refining retained profiles ...
-python scripts\screen_market_overlays.py --corpus "%CORPUS%" --candidate agents\variants\agent_v10_subin_106845775.py --binary "%BIN%" --population 500 --generation g1 --max-rank %MAXRANK% --seed 20260910 --workers %WORKERS% --output results\top%MAXRANK%-market-overlay-g1.json
+ echo [G1] refining profiles on TOP10 ...
+python scripts\screen_market_overlays.py --corpus "%CORPUS%" --candidate agents\variants\agent_v10_subin_106845775.py --binary "%BIN%" --population 500 --generation g1 --max-rank 10 --seed 20260910 --workers %WORKERS% --output results\top10-market-overlay-g1.json
 if errorlevel 1 goto :err
 
- echo [G2] refined search ...
-python scripts\screen_market_overlays.py --corpus "%CORPUS%" --candidate agents\variants\agent_v10_subin_106845775.py --binary "%BIN%" --population 500 --generation g2 --max-rank %MAXRANK% --seed 20260911 --workers %WORKERS% --output results\top%MAXRANK%-market-overlay-g2.json
+ echo [G2] refined search on TOP15 ...
+python scripts\screen_market_overlays.py --corpus "%CORPUS%" --candidate agents\variants\agent_v10_subin_106845775.py --binary "%BIN%" --population 500 --generation g2 --max-rank 15 --seed 20260911 --workers %WORKERS% --output results\top15-market-overlay-g2.json
 if errorlevel 1 goto :err
 
  echo [VALIDATION] retained G2 profiles on full TOP15 ...
-python scripts\screen_market_overlays.py --corpus "%CORPUS%" --candidate agents\variants\agent_v10_subin_106845775.py --binary "%BIN%" --profiles-from results\top%MAXRANK%-market-overlay-g2.json --max-rank 15 --seed 20260909 --workers %WORKERS% --output results\top15-market-overlay-validation.json
+python scripts\screen_market_overlays.py --corpus "%CORPUS%" --candidate agents\variants\agent_v10_subin_106845775.py --binary "%BIN%" --profiles-from results\top15-market-overlay-g2.json --max-rank 15 --seed 20260909 --workers %WORKERS% --output results\top15-market-overlay-validation.json
 if errorlevel 1 goto :err
 
  echo.
 echo ============================================================
 echo EVOLUTION DONE. Send these files from results\:
-echo   top%MAXRANK%-market-overlay-g0.json
-echo   top%MAXRANK%-market-overlay-g1.json
-echo   top%MAXRANK%-market-overlay-g2.json
+echo   top5-market-overlay-g0.json
+echo   top10-market-overlay-g1.json
+echo   top15-market-overlay-g2.json
 echo   top15-market-overlay-validation.json
 echo Do not send work\, .venv\, or extracted TOP15 raw data.
 echo ============================================================
