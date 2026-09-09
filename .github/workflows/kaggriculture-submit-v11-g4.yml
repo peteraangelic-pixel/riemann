@@ -1,38 +1,63 @@
-name: Kaggriculture submit explicitly requested G4-29
+name: Kaggriculture corrected compact G4-29
 on:
   push:
     branches: ["arena/01a0712c-riemann"]
     paths: [".github/workflows/kaggriculture-submit-v11-g4.yml"]
 permissions:
-  contents: read
+  contents: write
 jobs:
   submit:
-    if: contains(github.event.head_commit.message, '[kaggr-submit-v11-g4]')
+    if: contains(github.event.head_commit.message, '[kaggr-submit-v11-g4-corrected]')
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
         with: {python-version: "3.12"}
-      - name: Validate standalone agent
+      - name: Validate exact compact source in pinned framework
         run: |
           python -m py_compile kaggriculture_meta_lab/agents/variants/agent_v11_subin_g4_29.py
-          test $(wc -c < kaggriculture_meta_lab/agents/variants/agent_v11_subin_g4_29.py) -lt 25000
+          test $(wc -c < kaggriculture_meta_lab/agents/variants/agent_v11_subin_g4_29.py) -lt 15000
+          pip install --disable-pip-version-check kaggle-environments==1.32.7 kaggle
+          python - <<'PY'
+          import runpy
+          from kaggle_environments import make
+          agent=runpy.run_path('kaggriculture_meta_lab/agents/variants/agent_v11_subin_g4_29.py')['agent']
+          for opponent in ('pass','random','starter'):
+            for seat in (0,1):
+              env=make('kaggriculture',configuration={'episodeSteps':720,'seed':20260910},debug=True)
+              env.run([agent,opponent] if seat==0 else [opponent,agent])
+              assert str(env.state[seat].status)=='DONE',(opponent,seat,env.state[seat])
+          PY
       - name: Configure Kaggle token
-        env:
-          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+        env: {KAGGLE_API_TOKEN: "${{ secrets.KAGGLE_API_TOKEN }}"}
         run: |
           mkdir -p ~/.kaggle
-          clean_token=$(printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]')
-          test -n "$clean_token"
-          printf '%s' "$clean_token" > ~/.kaggle/access_token
+          printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]' > ~/.kaggle/access_token
           chmod 600 ~/.kaggle/access_token
-      - run: pip install --disable-pip-version-check kaggle
-      - name: Package and upload explicitly requested G4-29
+      - name: Package and upload corrected compact G4-29
         run: |
           work=$(mktemp -d)
           cp kaggriculture_meta_lab/agents/variants/agent_v11_subin_g4_29.py "$work/main.py"
-          tar -C "$work" -czf "$work/submission-v11-subin-g4-29.tar.gz" main.py
+          tar -C "$work" -czf "$work/submission-v11-subin-g4-29-corrected.tar.gz" main.py
+          test $(wc -c < "$work/submission-v11-subin-g4-29-corrected.tar.gz") -lt 15000
           kaggle competitions submit -c kaggriculture \
-            -f "$work/submission-v11-subin-g4-29.tar.gz" \
-            -m "V11 G4-29 TOP5 18-18 TOP10 27-39 TOP15 29-83 closed8-24 explicitly requested $GITHUB_SHA"
+            -f "$work/submission-v11-subin-g4-29-corrected.tar.gz" \
+            -m "V11 G4-29 corrected compact framework-validated explicitly requested $GITHUB_SHA"
+          sleep 15
+          python - <<'PY'
+          import json
+          from kaggle.api.kaggle_api_extended import KaggleApi
+          api=KaggleApi();api.authenticate()
+          match=next(x for x in api.competition_submissions('kaggriculture')
+                     if 'G4-29 corrected compact' in str(getattr(x,'description','')))
+          print(json.dumps(match.to_dict() if hasattr(match,'to_dict') else vars(match),default=str,indent=2,sort_keys=True),
+                file=open('kaggriculture_meta_lab/results/kaggle-g4-29-corrected-status-20260910.json','w'))
+          PY
+      - name: Persist corrected status
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/kaggle-g4-29-corrected-status-20260910.json
+          git commit -m "Record corrected compact G4 submission status"
+          git push origin HEAD:arena/01a0712c-riemann
