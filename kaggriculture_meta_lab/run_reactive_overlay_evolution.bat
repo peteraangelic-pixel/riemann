@@ -7,9 +7,9 @@ REM    set BUILD=1
 REM    run_reactive_overlay_evolution.bat
 REM
 REM  Required input (one of):
-REM    ..\TOP30.7z
-REM    TOP30.7z
-REM    corpus\top30_2026-09-08\TOP30\
+REM    ..\TOP15.7z
+REM    TOP15.7z
+REM    corpus\top15_2026-09-09\TOP15\
 REM
 REM  Optional:
 REM    WORKERS=16   Rust workers
@@ -20,7 +20,7 @@ chcp 65001 >nul
 set PYTHONUTF8=1
 if "%WORKERS%"=="" set WORKERS=16
 if "%POP%"=="" set POP=1000
-if "%MAXRANK%"=="" set MAXRANK=10
+if "%MAXRANK%"=="" set MAXRANK=15
 
 set PYEXE=
 where py >nul 2>&1 && set PYEXE=py
@@ -49,23 +49,23 @@ if "%BUILD%"=="1" (
 )
 
 set CORPUS=
-if exist corpus\top30_2026-09-08\TOP30\manifest.json set CORPUS=corpus\top30_2026-09-08\TOP30
-if exist TOP30\manifest.json set CORPUS=TOP30
-if "%CORPUS%"=="" if exist TOP30.7z (
-  echo [data] extracting TOP30.7z ...
-  python -c "import py7zr; py7zr.SevenZipFile('TOP30.7z').extractall('work\\top30')"
+if exist corpus\top15_2026-09-09\TOP15\manifest.json set CORPUS=corpus\top15_2026-09-09\TOP15
+if exist TOP15\manifest.json set CORPUS=TOP15
+if "%CORPUS%"=="" if exist TOP15.7z (
+  echo [data] extracting TOP15.7z ...
+  python -c "import py7zr; py7zr.SevenZipFile('TOP15.7z').extractall('work\\top15')"
   if errorlevel 1 goto :err
-  set CORPUS=work\top30\TOP30
+  set CORPUS=work\top15\TOP15
 )
-if "%CORPUS%"=="" if exist ..\TOP30.7z (
-  echo [data] extracting ..\TOP30.7z ...
-  python -c "import py7zr; py7zr.SevenZipFile('..\TOP30.7z').extractall('work\\top30')"
+if "%CORPUS%"=="" if exist ..\TOP15.7z (
+  echo [data] extracting ..\TOP15.7z ...
+  python -c "import py7zr; py7zr.SevenZipFile('..\TOP15.7z').extractall('work\\top15')"
   if errorlevel 1 goto :err
-  set CORPUS=work\top30\TOP30
+  set CORPUS=work\top15\TOP15
 )
 if "%CORPUS%"=="" (
-  echo [data] ERROR: TOP30.7z or extracted TOP30 corpus not found.
-  echo         Put TOP30.7z in this folder or in the repository root.
+  echo [data] ERROR: TOP15.7z or extracted TOP15 corpus not found.
+  echo         Put TOP15.7z in this folder or in the repository root.
   pause & exit /b 1
 )
 
@@ -85,8 +85,8 @@ if errorlevel 1 goto :err
 python scripts\screen_market_overlays.py --corpus "%CORPUS%" --candidate agents\variants\agent_v10_subin_106845775.py --binary "%BIN%" --population 500 --generation g2 --max-rank %MAXRANK% --seed 20260911 --workers %WORKERS% --output results\top%MAXRANK%-market-overlay-g2.json
 if errorlevel 1 goto :err
 
- echo [VALIDATION] retained G2 profiles on full TOP30 ...
-python scripts\screen_market_overlays.py --corpus "%CORPUS%" --candidate agents\variants\agent_v10_subin_106845775.py --binary "%BIN%" --profiles-from results\top%MAXRANK%-market-overlay-g2.json --max-rank 30 --seed 20260909 --workers %WORKERS% --output results\top30-market-overlay-validation.json
+ echo [VALIDATION] retained G2 profiles on full TOP15 ...
+python scripts\screen_market_overlays.py --corpus "%CORPUS%" --candidate agents\variants\agent_v10_subin_106845775.py --binary "%BIN%" --profiles-from results\top%MAXRANK%-market-overlay-g2.json --max-rank 15 --seed 20260909 --workers %WORKERS% --output results\top15-market-overlay-validation.json
 if errorlevel 1 goto :err
 
  echo.
@@ -95,8 +95,8 @@ echo EVOLUTION DONE. Send these files from results\:
 echo   top%MAXRANK%-market-overlay-g0.json
 echo   top%MAXRANK%-market-overlay-g1.json
 echo   top%MAXRANK%-market-overlay-g2.json
-echo   top30-market-overlay-validation.json
-echo Do not send work\, .venv\, or extracted TOP30 raw data.
+echo   top15-market-overlay-validation.json
+echo Do not send work\, .venv\, or extracted TOP15 raw data.
 echo ============================================================
 pause
 goto :eof
