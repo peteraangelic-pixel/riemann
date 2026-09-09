@@ -41,8 +41,12 @@ python -m pip install -U pip -q
 pip install -q -r requirements.txt py7zr
 if errorlevel 1 goto :err
 
-if "%BUILD%"=="1" (
+if "%BUILD%"=="1" if not exist rust_port\target\release\kg_sim.exe set NEED_BUILD=1
+if not exist rust_port\target\release\kg_sim.exe set NEED_BUILD=1
+if "%NEED_BUILD%"=="1" (
   echo [build] compiling Rust simulator ...
+  where cargo >nul 2>&1
+  if errorlevel 1 ( echo [build] ERROR: cargo not found. Install Rust 1.85+ or use an existing kg_sim.exe. & goto :err )
   pushd rust_port
   cargo build --release --locked
   if errorlevel 1 ( popd & echo [build] cargo failed - install Rust 1.85+ & goto :err )
