@@ -1,0 +1,1612 @@
+{
+  "format": "kaggriculture-market-overlay-screen-v1",
+  "mode": "TOP30 best-listed raw tapes; source episode excluded; both seats",
+  "generation": "validation",
+  "max_rank": 30,
+  "population": 11,
+  "games": 1562,
+  "generation_seed": 20260909,
+  "search_space": "retained_top10",
+  "baseline": {
+    "index": 0,
+    "name": "market-validation-00000",
+    "profile": {
+      "enabled": false
+    },
+    "summary": {
+      "games": 142,
+      "wins": 80,
+      "losses": 62,
+      "ties": 0,
+      "score_rate": 0.5633802816901409,
+      "team_balanced_score": 0.5678160919540229,
+      "wilson_95": [
+        0.481200171832298,
+        0.6422215228322503
+      ],
+      "mean_margin": 358.3098591549296,
+      "worst_team_score": 0.0,
+      "teams": 29
+    },
+    "curricula": {
+      "top10": {
+        "games": 30,
+        "wins": 14,
+        "losses": 16,
+        "ties": 0,
+        "score_rate": 0.4666666666666667,
+        "team_balanced_score": 0.48148148148148145,
+        "wilson_95": [
+          0.30232388907699753,
+          0.638577003801267
+        ],
+        "mean_margin": -282.1333333333333,
+        "worst_team_score": 0.0,
+        "teams": 9
+      },
+      "top20": {
+        "games": 82,
+        "wins": 46,
+        "losses": 36,
+        "ties": 0,
+        "score_rate": 0.5609756097560976,
+        "team_balanced_score": 0.5596491228070175,
+        "wilson_95": [
+          0.4532292110128184,
+          0.6632646153664377
+        ],
+        "mean_margin": 592.829268292683,
+        "worst_team_score": 0.0,
+        "teams": 19
+      },
+      "top30": {
+        "games": 142,
+        "wins": 80,
+        "losses": 62,
+        "ties": 0,
+        "score_rate": 0.5633802816901409,
+        "team_balanced_score": 0.5678160919540229,
+        "wilson_95": [
+          0.481200171832298,
+          0.6422215228322503
+        ],
+        "mean_margin": 358.3098591549296,
+        "worst_team_score": 0.0,
+        "teams": 29
+      }
+    }
+  },
+  "retained_top10": [
+    {
+      "index": 7,
+      "name": "market-validation-00007",
+      "profile": {
+        "enabled": true,
+        "start_day": 6,
+        "cash_reserve": 250,
+        "min_wheat_price": 0,
+        "milk_reserve": 1
+      },
+      "summary": {
+        "games": 142,
+        "wins": 78,
+        "losses": 64,
+        "ties": 0,
+        "score_rate": 0.5492957746478874,
+        "team_balanced_score": 0.5735632183908046,
+        "wilson_95": [
+          0.46723428340425216,
+          0.6287603680015078
+        ],
+        "mean_margin": 672.4507042253521,
+        "worst_team_score": 0.0,
+        "teams": 29
+      },
+      "curricula": {
+        "top10": {
+          "games": 30,
+          "wins": 16,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.5333333333333333,
+          "team_balanced_score": 0.5925925925925926,
+          "wilson_95": [
+            0.36142299619873297,
+            0.6976761109230025
+          ],
+          "mean_margin": 1130.4666666666667,
+          "worst_team_score": 0.0,
+          "teams": 9
+        },
+        "top20": {
+          "games": 82,
+          "wins": 46,
+          "losses": 36,
+          "ties": 0,
+          "score_rate": 0.5609756097560976,
+          "team_balanced_score": 0.5859649122807018,
+          "wilson_95": [
+            0.4532292110128184,
+            0.6632646153664377
+          ],
+          "mean_margin": 999.2439024390244,
+          "worst_team_score": 0.0,
+          "teams": 19
+        },
+        "top30": {
+          "games": 142,
+          "wins": 78,
+          "losses": 64,
+          "ties": 0,
+          "score_rate": 0.5492957746478874,
+          "team_balanced_score": 0.5735632183908046,
+          "wilson_95": [
+            0.46723428340425216,
+            0.6287603680015078
+          ],
+          "mean_margin": 672.4507042253521,
+          "worst_team_score": 0.0,
+          "teams": 29
+        }
+      }
+    },
+    {
+      "index": 8,
+      "name": "market-validation-00008",
+      "profile": {
+        "enabled": true,
+        "start_day": 6,
+        "cash_reserve": 250,
+        "min_wheat_price": 10,
+        "milk_reserve": 1
+      },
+      "summary": {
+        "games": 142,
+        "wins": 78,
+        "losses": 64,
+        "ties": 0,
+        "score_rate": 0.5492957746478874,
+        "team_balanced_score": 0.5735632183908046,
+        "wilson_95": [
+          0.46723428340425216,
+          0.6287603680015078
+        ],
+        "mean_margin": 672.4507042253521,
+        "worst_team_score": 0.0,
+        "teams": 29
+      },
+      "curricula": {
+        "top10": {
+          "games": 30,
+          "wins": 16,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.5333333333333333,
+          "team_balanced_score": 0.5925925925925926,
+          "wilson_95": [
+            0.36142299619873297,
+            0.6976761109230025
+          ],
+          "mean_margin": 1130.4666666666667,
+          "worst_team_score": 0.0,
+          "teams": 9
+        },
+        "top20": {
+          "games": 82,
+          "wins": 46,
+          "losses": 36,
+          "ties": 0,
+          "score_rate": 0.5609756097560976,
+          "team_balanced_score": 0.5859649122807018,
+          "wilson_95": [
+            0.4532292110128184,
+            0.6632646153664377
+          ],
+          "mean_margin": 999.2439024390244,
+          "worst_team_score": 0.0,
+          "teams": 19
+        },
+        "top30": {
+          "games": 142,
+          "wins": 78,
+          "losses": 64,
+          "ties": 0,
+          "score_rate": 0.5492957746478874,
+          "team_balanced_score": 0.5735632183908046,
+          "wilson_95": [
+            0.46723428340425216,
+            0.6287603680015078
+          ],
+          "mean_margin": 672.4507042253521,
+          "worst_team_score": 0.0,
+          "teams": 29
+        }
+      }
+    },
+    {
+      "index": 9,
+      "name": "market-validation-00009",
+      "profile": {
+        "enabled": true,
+        "start_day": 6,
+        "cash_reserve": 250,
+        "min_wheat_price": 20,
+        "milk_reserve": 1
+      },
+      "summary": {
+        "games": 142,
+        "wins": 78,
+        "losses": 64,
+        "ties": 0,
+        "score_rate": 0.5492957746478874,
+        "team_balanced_score": 0.5735632183908046,
+        "wilson_95": [
+          0.46723428340425216,
+          0.6287603680015078
+        ],
+        "mean_margin": 672.4507042253521,
+        "worst_team_score": 0.0,
+        "teams": 29
+      },
+      "curricula": {
+        "top10": {
+          "games": 30,
+          "wins": 16,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.5333333333333333,
+          "team_balanced_score": 0.5925925925925926,
+          "wilson_95": [
+            0.36142299619873297,
+            0.6976761109230025
+          ],
+          "mean_margin": 1130.4666666666667,
+          "worst_team_score": 0.0,
+          "teams": 9
+        },
+        "top20": {
+          "games": 82,
+          "wins": 46,
+          "losses": 36,
+          "ties": 0,
+          "score_rate": 0.5609756097560976,
+          "team_balanced_score": 0.5859649122807018,
+          "wilson_95": [
+            0.4532292110128184,
+            0.6632646153664377
+          ],
+          "mean_margin": 999.2439024390244,
+          "worst_team_score": 0.0,
+          "teams": 19
+        },
+        "top30": {
+          "games": 142,
+          "wins": 78,
+          "losses": 64,
+          "ties": 0,
+          "score_rate": 0.5492957746478874,
+          "team_balanced_score": 0.5735632183908046,
+          "wilson_95": [
+            0.46723428340425216,
+            0.6287603680015078
+          ],
+          "mean_margin": 672.4507042253521,
+          "worst_team_score": 0.0,
+          "teams": 29
+        }
+      }
+    },
+    {
+      "index": 10,
+      "name": "market-validation-00010",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "cash_reserve": 250,
+        "min_wheat_price": 0,
+        "milk_reserve": 1
+      },
+      "summary": {
+        "games": 142,
+        "wins": 78,
+        "losses": 64,
+        "ties": 0,
+        "score_rate": 0.5492957746478874,
+        "team_balanced_score": 0.5735632183908046,
+        "wilson_95": [
+          0.46723428340425216,
+          0.6287603680015078
+        ],
+        "mean_margin": 672.4507042253521,
+        "worst_team_score": 0.0,
+        "teams": 29
+      },
+      "curricula": {
+        "top10": {
+          "games": 30,
+          "wins": 16,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.5333333333333333,
+          "team_balanced_score": 0.5925925925925926,
+          "wilson_95": [
+            0.36142299619873297,
+            0.6976761109230025
+          ],
+          "mean_margin": 1130.4666666666667,
+          "worst_team_score": 0.0,
+          "teams": 9
+        },
+        "top20": {
+          "games": 82,
+          "wins": 46,
+          "losses": 36,
+          "ties": 0,
+          "score_rate": 0.5609756097560976,
+          "team_balanced_score": 0.5859649122807018,
+          "wilson_95": [
+            0.4532292110128184,
+            0.6632646153664377
+          ],
+          "mean_margin": 999.2439024390244,
+          "worst_team_score": 0.0,
+          "teams": 19
+        },
+        "top30": {
+          "games": 142,
+          "wins": 78,
+          "losses": 64,
+          "ties": 0,
+          "score_rate": 0.5492957746478874,
+          "team_balanced_score": 0.5735632183908046,
+          "wilson_95": [
+            0.46723428340425216,
+            0.6287603680015078
+          ],
+          "mean_margin": 672.4507042253521,
+          "worst_team_score": 0.0,
+          "teams": 29
+        }
+      }
+    },
+    {
+      "index": 1,
+      "name": "market-validation-00001",
+      "profile": {
+        "enabled": true,
+        "start_day": 6,
+        "cash_reserve": 200,
+        "min_wheat_price": 0,
+        "milk_reserve": 1
+      },
+      "summary": {
+        "games": 142,
+        "wins": 78,
+        "losses": 64,
+        "ties": 0,
+        "score_rate": 0.5492957746478874,
+        "team_balanced_score": 0.5735632183908046,
+        "wilson_95": [
+          0.46723428340425216,
+          0.6287603680015078
+        ],
+        "mean_margin": 540.4647887323944,
+        "worst_team_score": 0.0,
+        "teams": 29
+      },
+      "curricula": {
+        "top10": {
+          "games": 30,
+          "wins": 16,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.5333333333333333,
+          "team_balanced_score": 0.5925925925925926,
+          "wilson_95": [
+            0.36142299619873297,
+            0.6976761109230025
+          ],
+          "mean_margin": 1158.2,
+          "worst_team_score": 0.0,
+          "teams": 9
+        },
+        "top20": {
+          "games": 82,
+          "wins": 46,
+          "losses": 36,
+          "ties": 0,
+          "score_rate": 0.5609756097560976,
+          "team_balanced_score": 0.5859649122807018,
+          "wilson_95": [
+            0.4532292110128184,
+            0.6632646153664377
+          ],
+          "mean_margin": 1009.390243902439,
+          "worst_team_score": 0.0,
+          "teams": 19
+        },
+        "top30": {
+          "games": 142,
+          "wins": 78,
+          "losses": 64,
+          "ties": 0,
+          "score_rate": 0.5492957746478874,
+          "team_balanced_score": 0.5735632183908046,
+          "wilson_95": [
+            0.46723428340425216,
+            0.6287603680015078
+          ],
+          "mean_margin": 540.4647887323944,
+          "worst_team_score": 0.0,
+          "teams": 29
+        }
+      }
+    },
+    {
+      "index": 2,
+      "name": "market-validation-00002",
+      "profile": {
+        "enabled": true,
+        "start_day": 6,
+        "cash_reserve": 200,
+        "min_wheat_price": 10,
+        "milk_reserve": 1
+      },
+      "summary": {
+        "games": 142,
+        "wins": 78,
+        "losses": 64,
+        "ties": 0,
+        "score_rate": 0.5492957746478874,
+        "team_balanced_score": 0.5735632183908046,
+        "wilson_95": [
+          0.46723428340425216,
+          0.6287603680015078
+        ],
+        "mean_margin": 540.4647887323944,
+        "worst_team_score": 0.0,
+        "teams": 29
+      },
+      "curricula": {
+        "top10": {
+          "games": 30,
+          "wins": 16,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.5333333333333333,
+          "team_balanced_score": 0.5925925925925926,
+          "wilson_95": [
+            0.36142299619873297,
+            0.6976761109230025
+          ],
+          "mean_margin": 1158.2,
+          "worst_team_score": 0.0,
+          "teams": 9
+        },
+        "top20": {
+          "games": 82,
+          "wins": 46,
+          "losses": 36,
+          "ties": 0,
+          "score_rate": 0.5609756097560976,
+          "team_balanced_score": 0.5859649122807018,
+          "wilson_95": [
+            0.4532292110128184,
+            0.6632646153664377
+          ],
+          "mean_margin": 1009.390243902439,
+          "worst_team_score": 0.0,
+          "teams": 19
+        },
+        "top30": {
+          "games": 142,
+          "wins": 78,
+          "losses": 64,
+          "ties": 0,
+          "score_rate": 0.5492957746478874,
+          "team_balanced_score": 0.5735632183908046,
+          "wilson_95": [
+            0.46723428340425216,
+            0.6287603680015078
+          ],
+          "mean_margin": 540.4647887323944,
+          "worst_team_score": 0.0,
+          "teams": 29
+        }
+      }
+    },
+    {
+      "index": 3,
+      "name": "market-validation-00003",
+      "profile": {
+        "enabled": true,
+        "start_day": 6,
+        "cash_reserve": 200,
+        "min_wheat_price": 20,
+        "milk_reserve": 1
+      },
+      "summary": {
+        "games": 142,
+        "wins": 78,
+        "losses": 64,
+        "ties": 0,
+        "score_rate": 0.5492957746478874,
+        "team_balanced_score": 0.5735632183908046,
+        "wilson_95": [
+          0.46723428340425216,
+          0.6287603680015078
+        ],
+        "mean_margin": 540.4647887323944,
+        "worst_team_score": 0.0,
+        "teams": 29
+      },
+      "curricula": {
+        "top10": {
+          "games": 30,
+          "wins": 16,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.5333333333333333,
+          "team_balanced_score": 0.5925925925925926,
+          "wilson_95": [
+            0.36142299619873297,
+            0.6976761109230025
+          ],
+          "mean_margin": 1158.2,
+          "worst_team_score": 0.0,
+          "teams": 9
+        },
+        "top20": {
+          "games": 82,
+          "wins": 46,
+          "losses": 36,
+          "ties": 0,
+          "score_rate": 0.5609756097560976,
+          "team_balanced_score": 0.5859649122807018,
+          "wilson_95": [
+            0.4532292110128184,
+            0.6632646153664377
+          ],
+          "mean_margin": 1009.390243902439,
+          "worst_team_score": 0.0,
+          "teams": 19
+        },
+        "top30": {
+          "games": 142,
+          "wins": 78,
+          "losses": 64,
+          "ties": 0,
+          "score_rate": 0.5492957746478874,
+          "team_balanced_score": 0.5735632183908046,
+          "wilson_95": [
+            0.46723428340425216,
+            0.6287603680015078
+          ],
+          "mean_margin": 540.4647887323944,
+          "worst_team_score": 0.0,
+          "teams": 29
+        }
+      }
+    },
+    {
+      "index": 4,
+      "name": "market-validation-00004",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "cash_reserve": 200,
+        "min_wheat_price": 0,
+        "milk_reserve": 1
+      },
+      "summary": {
+        "games": 142,
+        "wins": 78,
+        "losses": 64,
+        "ties": 0,
+        "score_rate": 0.5492957746478874,
+        "team_balanced_score": 0.5735632183908046,
+        "wilson_95": [
+          0.46723428340425216,
+          0.6287603680015078
+        ],
+        "mean_margin": 540.4647887323944,
+        "worst_team_score": 0.0,
+        "teams": 29
+      },
+      "curricula": {
+        "top10": {
+          "games": 30,
+          "wins": 16,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.5333333333333333,
+          "team_balanced_score": 0.5925925925925926,
+          "wilson_95": [
+            0.36142299619873297,
+            0.6976761109230025
+          ],
+          "mean_margin": 1158.2,
+          "worst_team_score": 0.0,
+          "teams": 9
+        },
+        "top20": {
+          "games": 82,
+          "wins": 46,
+          "losses": 36,
+          "ties": 0,
+          "score_rate": 0.5609756097560976,
+          "team_balanced_score": 0.5859649122807018,
+          "wilson_95": [
+            0.4532292110128184,
+            0.6632646153664377
+          ],
+          "mean_margin": 1009.390243902439,
+          "worst_team_score": 0.0,
+          "teams": 19
+        },
+        "top30": {
+          "games": 142,
+          "wins": 78,
+          "losses": 64,
+          "ties": 0,
+          "score_rate": 0.5492957746478874,
+          "team_balanced_score": 0.5735632183908046,
+          "wilson_95": [
+            0.46723428340425216,
+            0.6287603680015078
+          ],
+          "mean_margin": 540.4647887323944,
+          "worst_team_score": 0.0,
+          "teams": 29
+        }
+      }
+    },
+    {
+      "index": 5,
+      "name": "market-validation-00005",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "cash_reserve": 200,
+        "min_wheat_price": 10,
+        "milk_reserve": 1
+      },
+      "summary": {
+        "games": 142,
+        "wins": 78,
+        "losses": 64,
+        "ties": 0,
+        "score_rate": 0.5492957746478874,
+        "team_balanced_score": 0.5735632183908046,
+        "wilson_95": [
+          0.46723428340425216,
+          0.6287603680015078
+        ],
+        "mean_margin": 540.4647887323944,
+        "worst_team_score": 0.0,
+        "teams": 29
+      },
+      "curricula": {
+        "top10": {
+          "games": 30,
+          "wins": 16,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.5333333333333333,
+          "team_balanced_score": 0.5925925925925926,
+          "wilson_95": [
+            0.36142299619873297,
+            0.6976761109230025
+          ],
+          "mean_margin": 1158.2,
+          "worst_team_score": 0.0,
+          "teams": 9
+        },
+        "top20": {
+          "games": 82,
+          "wins": 46,
+          "losses": 36,
+          "ties": 0,
+          "score_rate": 0.5609756097560976,
+          "team_balanced_score": 0.5859649122807018,
+          "wilson_95": [
+            0.4532292110128184,
+            0.6632646153664377
+          ],
+          "mean_margin": 1009.390243902439,
+          "worst_team_score": 0.0,
+          "teams": 19
+        },
+        "top30": {
+          "games": 142,
+          "wins": 78,
+          "losses": 64,
+          "ties": 0,
+          "score_rate": 0.5492957746478874,
+          "team_balanced_score": 0.5735632183908046,
+          "wilson_95": [
+            0.46723428340425216,
+            0.6287603680015078
+          ],
+          "mean_margin": 540.4647887323944,
+          "worst_team_score": 0.0,
+          "teams": 29
+        }
+      }
+    },
+    {
+      "index": 6,
+      "name": "market-validation-00006",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "cash_reserve": 200,
+        "min_wheat_price": 20,
+        "milk_reserve": 1
+      },
+      "summary": {
+        "games": 142,
+        "wins": 78,
+        "losses": 64,
+        "ties": 0,
+        "score_rate": 0.5492957746478874,
+        "team_balanced_score": 0.5735632183908046,
+        "wilson_95": [
+          0.46723428340425216,
+          0.6287603680015078
+        ],
+        "mean_margin": 540.4647887323944,
+        "worst_team_score": 0.0,
+        "teams": 29
+      },
+      "curricula": {
+        "top10": {
+          "games": 30,
+          "wins": 16,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.5333333333333333,
+          "team_balanced_score": 0.5925925925925926,
+          "wilson_95": [
+            0.36142299619873297,
+            0.6976761109230025
+          ],
+          "mean_margin": 1158.2,
+          "worst_team_score": 0.0,
+          "teams": 9
+        },
+        "top20": {
+          "games": 82,
+          "wins": 46,
+          "losses": 36,
+          "ties": 0,
+          "score_rate": 0.5609756097560976,
+          "team_balanced_score": 0.5859649122807018,
+          "wilson_95": [
+            0.4532292110128184,
+            0.6632646153664377
+          ],
+          "mean_margin": 1009.390243902439,
+          "worst_team_score": 0.0,
+          "teams": 19
+        },
+        "top30": {
+          "games": 142,
+          "wins": 78,
+          "losses": 64,
+          "ties": 0,
+          "score_rate": 0.5492957746478874,
+          "team_balanced_score": 0.5735632183908046,
+          "wilson_95": [
+            0.46723428340425216,
+            0.6287603680015078
+          ],
+          "mean_margin": 540.4647887323944,
+          "worst_team_score": 0.0,
+          "teams": 29
+        }
+      }
+    }
+  ],
+  "top50": [
+    {
+      "index": 7,
+      "name": "market-validation-00007",
+      "profile": {
+        "enabled": true,
+        "start_day": 6,
+        "cash_reserve": 250,
+        "min_wheat_price": 0,
+        "milk_reserve": 1
+      },
+      "summary": {
+        "games": 142,
+        "wins": 78,
+        "losses": 64,
+        "ties": 0,
+        "score_rate": 0.5492957746478874,
+        "team_balanced_score": 0.5735632183908046,
+        "wilson_95": [
+          0.46723428340425216,
+          0.6287603680015078
+        ],
+        "mean_margin": 672.4507042253521,
+        "worst_team_score": 0.0,
+        "teams": 29
+      },
+      "curricula": {
+        "top10": {
+          "games": 30,
+          "wins": 16,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.5333333333333333,
+          "team_balanced_score": 0.5925925925925926,
+          "wilson_95": [
+            0.36142299619873297,
+            0.6976761109230025
+          ],
+          "mean_margin": 1130.4666666666667,
+          "worst_team_score": 0.0,
+          "teams": 9
+        },
+        "top20": {
+          "games": 82,
+          "wins": 46,
+          "losses": 36,
+          "ties": 0,
+          "score_rate": 0.5609756097560976,
+          "team_balanced_score": 0.5859649122807018,
+          "wilson_95": [
+            0.4532292110128184,
+            0.6632646153664377
+          ],
+          "mean_margin": 999.2439024390244,
+          "worst_team_score": 0.0,
+          "teams": 19
+        },
+        "top30": {
+          "games": 142,
+          "wins": 78,
+          "losses": 64,
+          "ties": 0,
+          "score_rate": 0.5492957746478874,
+          "team_balanced_score": 0.5735632183908046,
+          "wilson_95": [
+            0.46723428340425216,
+            0.6287603680015078
+          ],
+          "mean_margin": 672.4507042253521,
+          "worst_team_score": 0.0,
+          "teams": 29
+        }
+      }
+    },
+    {
+      "index": 8,
+      "name": "market-validation-00008",
+      "profile": {
+        "enabled": true,
+        "start_day": 6,
+        "cash_reserve": 250,
+        "min_wheat_price": 10,
+        "milk_reserve": 1
+      },
+      "summary": {
+        "games": 142,
+        "wins": 78,
+        "losses": 64,
+        "ties": 0,
+        "score_rate": 0.5492957746478874,
+        "team_balanced_score": 0.5735632183908046,
+        "wilson_95": [
+          0.46723428340425216,
+          0.6287603680015078
+        ],
+        "mean_margin": 672.4507042253521,
+        "worst_team_score": 0.0,
+        "teams": 29
+      },
+      "curricula": {
+        "top10": {
+          "games": 30,
+          "wins": 16,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.5333333333333333,
+          "team_balanced_score": 0.5925925925925926,
+          "wilson_95": [
+            0.36142299619873297,
+            0.6976761109230025
+          ],
+          "mean_margin": 1130.4666666666667,
+          "worst_team_score": 0.0,
+          "teams": 9
+        },
+        "top20": {
+          "games": 82,
+          "wins": 46,
+          "losses": 36,
+          "ties": 0,
+          "score_rate": 0.5609756097560976,
+          "team_balanced_score": 0.5859649122807018,
+          "wilson_95": [
+            0.4532292110128184,
+            0.6632646153664377
+          ],
+          "mean_margin": 999.2439024390244,
+          "worst_team_score": 0.0,
+          "teams": 19
+        },
+        "top30": {
+          "games": 142,
+          "wins": 78,
+          "losses": 64,
+          "ties": 0,
+          "score_rate": 0.5492957746478874,
+          "team_balanced_score": 0.5735632183908046,
+          "wilson_95": [
+            0.46723428340425216,
+            0.6287603680015078
+          ],
+          "mean_margin": 672.4507042253521,
+          "worst_team_score": 0.0,
+          "teams": 29
+        }
+      }
+    },
+    {
+      "index": 9,
+      "name": "market-validation-00009",
+      "profile": {
+        "enabled": true,
+        "start_day": 6,
+        "cash_reserve": 250,
+        "min_wheat_price": 20,
+        "milk_reserve": 1
+      },
+      "summary": {
+        "games": 142,
+        "wins": 78,
+        "losses": 64,
+        "ties": 0,
+        "score_rate": 0.5492957746478874,
+        "team_balanced_score": 0.5735632183908046,
+        "wilson_95": [
+          0.46723428340425216,
+          0.6287603680015078
+        ],
+        "mean_margin": 672.4507042253521,
+        "worst_team_score": 0.0,
+        "teams": 29
+      },
+      "curricula": {
+        "top10": {
+          "games": 30,
+          "wins": 16,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.5333333333333333,
+          "team_balanced_score": 0.5925925925925926,
+          "wilson_95": [
+            0.36142299619873297,
+            0.6976761109230025
+          ],
+          "mean_margin": 1130.4666666666667,
+          "worst_team_score": 0.0,
+          "teams": 9
+        },
+        "top20": {
+          "games": 82,
+          "wins": 46,
+          "losses": 36,
+          "ties": 0,
+          "score_rate": 0.5609756097560976,
+          "team_balanced_score": 0.5859649122807018,
+          "wilson_95": [
+            0.4532292110128184,
+            0.6632646153664377
+          ],
+          "mean_margin": 999.2439024390244,
+          "worst_team_score": 0.0,
+          "teams": 19
+        },
+        "top30": {
+          "games": 142,
+          "wins": 78,
+          "losses": 64,
+          "ties": 0,
+          "score_rate": 0.5492957746478874,
+          "team_balanced_score": 0.5735632183908046,
+          "wilson_95": [
+            0.46723428340425216,
+            0.6287603680015078
+          ],
+          "mean_margin": 672.4507042253521,
+          "worst_team_score": 0.0,
+          "teams": 29
+        }
+      }
+    },
+    {
+      "index": 10,
+      "name": "market-validation-00010",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "cash_reserve": 250,
+        "min_wheat_price": 0,
+        "milk_reserve": 1
+      },
+      "summary": {
+        "games": 142,
+        "wins": 78,
+        "losses": 64,
+        "ties": 0,
+        "score_rate": 0.5492957746478874,
+        "team_balanced_score": 0.5735632183908046,
+        "wilson_95": [
+          0.46723428340425216,
+          0.6287603680015078
+        ],
+        "mean_margin": 672.4507042253521,
+        "worst_team_score": 0.0,
+        "teams": 29
+      },
+      "curricula": {
+        "top10": {
+          "games": 30,
+          "wins": 16,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.5333333333333333,
+          "team_balanced_score": 0.5925925925925926,
+          "wilson_95": [
+            0.36142299619873297,
+            0.6976761109230025
+          ],
+          "mean_margin": 1130.4666666666667,
+          "worst_team_score": 0.0,
+          "teams": 9
+        },
+        "top20": {
+          "games": 82,
+          "wins": 46,
+          "losses": 36,
+          "ties": 0,
+          "score_rate": 0.5609756097560976,
+          "team_balanced_score": 0.5859649122807018,
+          "wilson_95": [
+            0.4532292110128184,
+            0.6632646153664377
+          ],
+          "mean_margin": 999.2439024390244,
+          "worst_team_score": 0.0,
+          "teams": 19
+        },
+        "top30": {
+          "games": 142,
+          "wins": 78,
+          "losses": 64,
+          "ties": 0,
+          "score_rate": 0.5492957746478874,
+          "team_balanced_score": 0.5735632183908046,
+          "wilson_95": [
+            0.46723428340425216,
+            0.6287603680015078
+          ],
+          "mean_margin": 672.4507042253521,
+          "worst_team_score": 0.0,
+          "teams": 29
+        }
+      }
+    },
+    {
+      "index": 1,
+      "name": "market-validation-00001",
+      "profile": {
+        "enabled": true,
+        "start_day": 6,
+        "cash_reserve": 200,
+        "min_wheat_price": 0,
+        "milk_reserve": 1
+      },
+      "summary": {
+        "games": 142,
+        "wins": 78,
+        "losses": 64,
+        "ties": 0,
+        "score_rate": 0.5492957746478874,
+        "team_balanced_score": 0.5735632183908046,
+        "wilson_95": [
+          0.46723428340425216,
+          0.6287603680015078
+        ],
+        "mean_margin": 540.4647887323944,
+        "worst_team_score": 0.0,
+        "teams": 29
+      },
+      "curricula": {
+        "top10": {
+          "games": 30,
+          "wins": 16,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.5333333333333333,
+          "team_balanced_score": 0.5925925925925926,
+          "wilson_95": [
+            0.36142299619873297,
+            0.6976761109230025
+          ],
+          "mean_margin": 1158.2,
+          "worst_team_score": 0.0,
+          "teams": 9
+        },
+        "top20": {
+          "games": 82,
+          "wins": 46,
+          "losses": 36,
+          "ties": 0,
+          "score_rate": 0.5609756097560976,
+          "team_balanced_score": 0.5859649122807018,
+          "wilson_95": [
+            0.4532292110128184,
+            0.6632646153664377
+          ],
+          "mean_margin": 1009.390243902439,
+          "worst_team_score": 0.0,
+          "teams": 19
+        },
+        "top30": {
+          "games": 142,
+          "wins": 78,
+          "losses": 64,
+          "ties": 0,
+          "score_rate": 0.5492957746478874,
+          "team_balanced_score": 0.5735632183908046,
+          "wilson_95": [
+            0.46723428340425216,
+            0.6287603680015078
+          ],
+          "mean_margin": 540.4647887323944,
+          "worst_team_score": 0.0,
+          "teams": 29
+        }
+      }
+    },
+    {
+      "index": 2,
+      "name": "market-validation-00002",
+      "profile": {
+        "enabled": true,
+        "start_day": 6,
+        "cash_reserve": 200,
+        "min_wheat_price": 10,
+        "milk_reserve": 1
+      },
+      "summary": {
+        "games": 142,
+        "wins": 78,
+        "losses": 64,
+        "ties": 0,
+        "score_rate": 0.5492957746478874,
+        "team_balanced_score": 0.5735632183908046,
+        "wilson_95": [
+          0.46723428340425216,
+          0.6287603680015078
+        ],
+        "mean_margin": 540.4647887323944,
+        "worst_team_score": 0.0,
+        "teams": 29
+      },
+      "curricula": {
+        "top10": {
+          "games": 30,
+          "wins": 16,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.5333333333333333,
+          "team_balanced_score": 0.5925925925925926,
+          "wilson_95": [
+            0.36142299619873297,
+            0.6976761109230025
+          ],
+          "mean_margin": 1158.2,
+          "worst_team_score": 0.0,
+          "teams": 9
+        },
+        "top20": {
+          "games": 82,
+          "wins": 46,
+          "losses": 36,
+          "ties": 0,
+          "score_rate": 0.5609756097560976,
+          "team_balanced_score": 0.5859649122807018,
+          "wilson_95": [
+            0.4532292110128184,
+            0.6632646153664377
+          ],
+          "mean_margin": 1009.390243902439,
+          "worst_team_score": 0.0,
+          "teams": 19
+        },
+        "top30": {
+          "games": 142,
+          "wins": 78,
+          "losses": 64,
+          "ties": 0,
+          "score_rate": 0.5492957746478874,
+          "team_balanced_score": 0.5735632183908046,
+          "wilson_95": [
+            0.46723428340425216,
+            0.6287603680015078
+          ],
+          "mean_margin": 540.4647887323944,
+          "worst_team_score": 0.0,
+          "teams": 29
+        }
+      }
+    },
+    {
+      "index": 3,
+      "name": "market-validation-00003",
+      "profile": {
+        "enabled": true,
+        "start_day": 6,
+        "cash_reserve": 200,
+        "min_wheat_price": 20,
+        "milk_reserve": 1
+      },
+      "summary": {
+        "games": 142,
+        "wins": 78,
+        "losses": 64,
+        "ties": 0,
+        "score_rate": 0.5492957746478874,
+        "team_balanced_score": 0.5735632183908046,
+        "wilson_95": [
+          0.46723428340425216,
+          0.6287603680015078
+        ],
+        "mean_margin": 540.4647887323944,
+        "worst_team_score": 0.0,
+        "teams": 29
+      },
+      "curricula": {
+        "top10": {
+          "games": 30,
+          "wins": 16,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.5333333333333333,
+          "team_balanced_score": 0.5925925925925926,
+          "wilson_95": [
+            0.36142299619873297,
+            0.6976761109230025
+          ],
+          "mean_margin": 1158.2,
+          "worst_team_score": 0.0,
+          "teams": 9
+        },
+        "top20": {
+          "games": 82,
+          "wins": 46,
+          "losses": 36,
+          "ties": 0,
+          "score_rate": 0.5609756097560976,
+          "team_balanced_score": 0.5859649122807018,
+          "wilson_95": [
+            0.4532292110128184,
+            0.6632646153664377
+          ],
+          "mean_margin": 1009.390243902439,
+          "worst_team_score": 0.0,
+          "teams": 19
+        },
+        "top30": {
+          "games": 142,
+          "wins": 78,
+          "losses": 64,
+          "ties": 0,
+          "score_rate": 0.5492957746478874,
+          "team_balanced_score": 0.5735632183908046,
+          "wilson_95": [
+            0.46723428340425216,
+            0.6287603680015078
+          ],
+          "mean_margin": 540.4647887323944,
+          "worst_team_score": 0.0,
+          "teams": 29
+        }
+      }
+    },
+    {
+      "index": 4,
+      "name": "market-validation-00004",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "cash_reserve": 200,
+        "min_wheat_price": 0,
+        "milk_reserve": 1
+      },
+      "summary": {
+        "games": 142,
+        "wins": 78,
+        "losses": 64,
+        "ties": 0,
+        "score_rate": 0.5492957746478874,
+        "team_balanced_score": 0.5735632183908046,
+        "wilson_95": [
+          0.46723428340425216,
+          0.6287603680015078
+        ],
+        "mean_margin": 540.4647887323944,
+        "worst_team_score": 0.0,
+        "teams": 29
+      },
+      "curricula": {
+        "top10": {
+          "games": 30,
+          "wins": 16,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.5333333333333333,
+          "team_balanced_score": 0.5925925925925926,
+          "wilson_95": [
+            0.36142299619873297,
+            0.6976761109230025
+          ],
+          "mean_margin": 1158.2,
+          "worst_team_score": 0.0,
+          "teams": 9
+        },
+        "top20": {
+          "games": 82,
+          "wins": 46,
+          "losses": 36,
+          "ties": 0,
+          "score_rate": 0.5609756097560976,
+          "team_balanced_score": 0.5859649122807018,
+          "wilson_95": [
+            0.4532292110128184,
+            0.6632646153664377
+          ],
+          "mean_margin": 1009.390243902439,
+          "worst_team_score": 0.0,
+          "teams": 19
+        },
+        "top30": {
+          "games": 142,
+          "wins": 78,
+          "losses": 64,
+          "ties": 0,
+          "score_rate": 0.5492957746478874,
+          "team_balanced_score": 0.5735632183908046,
+          "wilson_95": [
+            0.46723428340425216,
+            0.6287603680015078
+          ],
+          "mean_margin": 540.4647887323944,
+          "worst_team_score": 0.0,
+          "teams": 29
+        }
+      }
+    },
+    {
+      "index": 5,
+      "name": "market-validation-00005",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "cash_reserve": 200,
+        "min_wheat_price": 10,
+        "milk_reserve": 1
+      },
+      "summary": {
+        "games": 142,
+        "wins": 78,
+        "losses": 64,
+        "ties": 0,
+        "score_rate": 0.5492957746478874,
+        "team_balanced_score": 0.5735632183908046,
+        "wilson_95": [
+          0.46723428340425216,
+          0.6287603680015078
+        ],
+        "mean_margin": 540.4647887323944,
+        "worst_team_score": 0.0,
+        "teams": 29
+      },
+      "curricula": {
+        "top10": {
+          "games": 30,
+          "wins": 16,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.5333333333333333,
+          "team_balanced_score": 0.5925925925925926,
+          "wilson_95": [
+            0.36142299619873297,
+            0.6976761109230025
+          ],
+          "mean_margin": 1158.2,
+          "worst_team_score": 0.0,
+          "teams": 9
+        },
+        "top20": {
+          "games": 82,
+          "wins": 46,
+          "losses": 36,
+          "ties": 0,
+          "score_rate": 0.5609756097560976,
+          "team_balanced_score": 0.5859649122807018,
+          "wilson_95": [
+            0.4532292110128184,
+            0.6632646153664377
+          ],
+          "mean_margin": 1009.390243902439,
+          "worst_team_score": 0.0,
+          "teams": 19
+        },
+        "top30": {
+          "games": 142,
+          "wins": 78,
+          "losses": 64,
+          "ties": 0,
+          "score_rate": 0.5492957746478874,
+          "team_balanced_score": 0.5735632183908046,
+          "wilson_95": [
+            0.46723428340425216,
+            0.6287603680015078
+          ],
+          "mean_margin": 540.4647887323944,
+          "worst_team_score": 0.0,
+          "teams": 29
+        }
+      }
+    },
+    {
+      "index": 6,
+      "name": "market-validation-00006",
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "cash_reserve": 200,
+        "min_wheat_price": 20,
+        "milk_reserve": 1
+      },
+      "summary": {
+        "games": 142,
+        "wins": 78,
+        "losses": 64,
+        "ties": 0,
+        "score_rate": 0.5492957746478874,
+        "team_balanced_score": 0.5735632183908046,
+        "wilson_95": [
+          0.46723428340425216,
+          0.6287603680015078
+        ],
+        "mean_margin": 540.4647887323944,
+        "worst_team_score": 0.0,
+        "teams": 29
+      },
+      "curricula": {
+        "top10": {
+          "games": 30,
+          "wins": 16,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.5333333333333333,
+          "team_balanced_score": 0.5925925925925926,
+          "wilson_95": [
+            0.36142299619873297,
+            0.6976761109230025
+          ],
+          "mean_margin": 1158.2,
+          "worst_team_score": 0.0,
+          "teams": 9
+        },
+        "top20": {
+          "games": 82,
+          "wins": 46,
+          "losses": 36,
+          "ties": 0,
+          "score_rate": 0.5609756097560976,
+          "team_balanced_score": 0.5859649122807018,
+          "wilson_95": [
+            0.4532292110128184,
+            0.6632646153664377
+          ],
+          "mean_margin": 1009.390243902439,
+          "worst_team_score": 0.0,
+          "teams": 19
+        },
+        "top30": {
+          "games": 142,
+          "wins": 78,
+          "losses": 64,
+          "ties": 0,
+          "score_rate": 0.5492957746478874,
+          "team_balanced_score": 0.5735632183908046,
+          "wilson_95": [
+            0.46723428340425216,
+            0.6287603680015078
+          ],
+          "mean_margin": 540.4647887323944,
+          "worst_team_score": 0.0,
+          "teams": 29
+        }
+      }
+    },
+    {
+      "index": 0,
+      "name": "market-validation-00000",
+      "profile": {
+        "enabled": false
+      },
+      "summary": {
+        "games": 142,
+        "wins": 80,
+        "losses": 62,
+        "ties": 0,
+        "score_rate": 0.5633802816901409,
+        "team_balanced_score": 0.5678160919540229,
+        "wilson_95": [
+          0.481200171832298,
+          0.6422215228322503
+        ],
+        "mean_margin": 358.3098591549296,
+        "worst_team_score": 0.0,
+        "teams": 29
+      },
+      "curricula": {
+        "top10": {
+          "games": 30,
+          "wins": 14,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.4666666666666667,
+          "team_balanced_score": 0.48148148148148145,
+          "wilson_95": [
+            0.30232388907699753,
+            0.638577003801267
+          ],
+          "mean_margin": -282.1333333333333,
+          "worst_team_score": 0.0,
+          "teams": 9
+        },
+        "top20": {
+          "games": 82,
+          "wins": 46,
+          "losses": 36,
+          "ties": 0,
+          "score_rate": 0.5609756097560976,
+          "team_balanced_score": 0.5596491228070175,
+          "wilson_95": [
+            0.4532292110128184,
+            0.6632646153664377
+          ],
+          "mean_margin": 592.829268292683,
+          "worst_team_score": 0.0,
+          "teams": 19
+        },
+        "top30": {
+          "games": 142,
+          "wins": 80,
+          "losses": 62,
+          "ties": 0,
+          "score_rate": 0.5633802816901409,
+          "team_balanced_score": 0.5678160919540229,
+          "wilson_95": [
+            0.481200171832298,
+            0.6422215228322503
+          ],
+          "mean_margin": 358.3098591549296,
+          "worst_team_score": 0.0,
+          "teams": 29
+        }
+      }
+    }
+  ]
+}
