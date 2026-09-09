@@ -38,6 +38,42 @@ def generate_profiles(population: int, seed: int) -> list[dict[str, object]]:
     return profiles
 
 
+LOCAL_OPTIONS = {
+    "start_day": tuple(range(8, 25, 4)),
+    "buy_stop_day": (27, 28, 29, 30),
+    "cash_reserve": (100, 200, 300, 500),
+    "sell_fraction_bp": (8500, 9000, 9500, 9750),
+    "endgame_sell_fraction_bp": (9000, 9500, 9750, 10000),
+    "wheat_reserve": (1, 2, 4, 6),
+    "melon_reserve": (1, 2, 3),
+    "milk_reserve": (1, 2, 3, 4),
+    "wool_reserve": (1, 2, 3, 4),
+    "min_wheat_price": (10, 20, 30, 40),
+    "min_melon_price": (20, 40, 60, 80),
+    "min_milk_price": (20, 40, 60, 80),
+    "min_wool_price": (20, 40, 60, 80),
+}
+
+
+def generate_local_profiles(population: int, seed: int) -> list[dict[str, object]]:
+    """Identity control plus sparse 1–3 gene mutations for Generation 1."""
+    if not 2 <= population <= 100_000:
+        raise ValueError("local population must be in 2..100000")
+    rng = random.Random(seed)
+    profiles: list[dict[str, object]] = [{"enabled": False}, {"enabled": True}]
+    seen = {json.dumps(p, sort_keys=True) for p in profiles}
+    names = tuple(LOCAL_OPTIONS)
+    while len(profiles) < population:
+        profile: dict[str, object] = {"enabled": True}
+        for name in rng.sample(names, rng.randint(1, 3)):
+            profile[name] = rng.choice(LOCAL_OPTIONS[name])
+        key = json.dumps(profile, sort_keys=True)
+        if key not in seen:
+            seen.add(key)
+            profiles.append(profile)
+    return profiles
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--output", type=Path, required=True)

@@ -1,8 +1,8 @@
 //! Small state-dependent market policy layered over an immutable unit tape.
 use crate::{
-    data::Item,
-    engine::Game,
-    tape::{Action, OrderKind},
+    data::{Item, ACCESS, BOARD_SIZE, ITEM_COUNT},
+    engine::{Game, Tile},
+    tape::{Action, OrderKind, UnitAction},
 };
 use serde::Deserialize;
 
@@ -148,6 +148,53 @@ impl MarketOverlay {
         }
     }
 
+    /// Project only unit operations that change the shed before market orders.
+    /// Unit actions execute farmer-first, then live hands, before the market.
+    fn projected_shed(&self, game: &Game<'_>, seat: usize, source: &Action) -> [i64; ITEM_COUNT] {
+        let farm = &game.farms[seat];
+        let mut shed = farm.shed;
+        let mut total = farm.shed_total;
+        let actions = std::iter::once(source.farmer).chain(source.hands.iter().copied());
+        for (unit, action) in farm.units.iter().zip(actions) {
+            let adjacent = ACCESS.contains(&unit.pos);
+            if !adjacent {
+                continue;
+            }
+            match action {
+                UnitAction::Pickup(item, n) if n > 0 => {
+                    let take = n.min(shed[item.index()]);
+                    shed[item.index()] -= take;
+                    total -= take;
+                }
+                UnitAction::Place(item, n) if n > 0 => {
+                    let tile = &farm.tiles[
+                        usize::from(unit.pos[1]) * BOARD_SIZE + usize::from(unit.pos[0])
+                    ];
+                    if item.is_animal()
+                        && matches!(tile, Tile::Structure(s) if *s == item.animal().structure)
+                    {
+                        continue;
+                    }
+                    let take = n
+                        .min(unit.inventory.amounts[item.index()])
+                        .min((game.config.shed_capacity - total).max(0));
+                    shed[item.index()] += take;
+                    total += take;
+                }
+                UnitAction::Drop => {
+                    for &item in &unit.inventory.order[..unit.inventory.len] {
+                        let take = unit.inventory.amounts[item.index()]
+                            .min((game.config.shed_capacity - total).max(0));
+                        shed[item.index()] += take;
+                        total += take;
+                    }
+                }
+                _ => {}
+            }
+        }
+        shed
+    }
+
     pub(crate) fn apply(&self, game: &Game<'_>, seat: usize, source: &Action) -> Action {
         let mut action = source.clone();
         let day = (game.turn / game.config.turns_per_day) as i64;
@@ -160,16 +207,22 @@ impl MarketOverlay {
             self.sell_fraction_bp
         } as u64;
         let farm = &game.farms[seat];
+        let projected_shed = self.projected_shed(game, seat, source);
+        let mut sale_budget: [u64; ITEM_COUNT] = std::array::from_fn(|i| {
+            let item = crate::data::ITEMS[i];
+            let available = (projected_shed[i] - self.reserve(item)).max(0) as u64;
+            available.saturating_mul(fraction) / 10_000
+        });
         for order in &mut action.market {
             match order.kind {
                 OrderKind::Sell(item) => {
                     let quote =
                         game.config.curves[item.index()].price(game.market_inventory[item.index()]);
-                    let available = (farm.shed[item.index()] - self.reserve(item)).max(0) as u64;
-                    let allowed = available.saturating_mul(fraction) / 10_000;
-                    order.remaining = order.remaining.min(allowed);
                     if quote < self.min_price(item) {
                         order.remaining = 0;
+                    } else {
+                        order.remaining = order.remaining.min(sale_budget[item.index()]);
+                        sale_budget[item.index()] -= order.remaining;
                     }
                 }
                 OrderKind::Hire
@@ -222,6 +275,39 @@ mod tests {
         .unwrap();
         let out = profile.apply(&game, 0, &tape.seats[0][0]);
         assert_eq!(out.market[0].remaining, 8);
+    }
+
+    #[test]
+    fn sale_fraction_is_one_budget_across_repeated_orders() {
+        let cfg = Config::default();
+        let tape = Tape::from_json(&json!([[
+            {"market":[["SELL","WHEAT",9],["SELL","WHEAT",9]]}
+        ],[{}]])).unwrap();
+        let mut game = Game::new(&cfg, 0, [0, 0]);
+        game.farms[0].shed[Item::Wheat.index()] = 20;
+        game.farms[0].shed_total = 20;
+        let profile = MarketOverlay::from_json(&json!({
+            "enabled": true, "sell_fraction_bp": 5000
+        })).unwrap();
+        let out = profile.apply(&game, 0, &tape.seats[0][0]);
+        assert_eq!(out.market[0].remaining, 9);
+        assert_eq!(out.market[1].remaining, 1);
+    }
+
+    #[test]
+    fn same_turn_drop_is_saleable_before_market() {
+        let cfg = Config::default();
+        let tape = Tape::from_json(&json!([[
+            {"farmer":["DROP"],"market":[["SELL","WHEAT",6]]}
+        ],[{}]])).unwrap();
+        let mut game = Game::new(&cfg, 0, [0, 0]);
+        game.farms[0].units[0].inventory.add(Item::Wheat, 6);
+        let profile = MarketOverlay::from_json(&json!({"enabled": true})).unwrap();
+        let out = profile.apply(&game, 0, &tape.seats[0][0]);
+        assert_eq!(out.market[0].remaining, 6);
+        game.step([&out, &tape.seats[1][0]], false);
+        assert_eq!(game.farms[0].shed[Item::Wheat.index()], 0);
+        assert!(game.farms[0].money > cfg.starting_money);
     }
 
     #[test]

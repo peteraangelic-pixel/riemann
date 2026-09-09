@@ -29,6 +29,33 @@ def test_live_inventory_reserve_fraction_and_price_gate():
     assert out["market"] == [["SELL", "WHEAT", 8], ["SELL", "MILK", 0]]
 
 
+def test_fraction_is_a_per_product_turn_budget_not_repeated_per_order():
+    action = {"market": [["SELL", "WHEAT", 9], ["SELL", "WHEAT", 9]]}
+    out = apply_market_overlay(action, state(),
+                               {"enabled": True, "sell_fraction_bp": 5000})
+    assert out["market"] == [["SELL", "WHEAT", 9], ["SELL", "WHEAT", 1]]
+
+
+def test_same_turn_drop_is_included_in_saleable_inventory():
+    action = {"farmer": ["DROP"], "hands": [],
+              "market": [["SELL", "WHEAT", 20]]}
+    live = state()
+    live["shed"] = {"WHEAT": 2}
+    live["shed_capacity"] = 100
+    live["units"] = [{"pos": [4, 4], "inventory": {"WHEAT": 6}}]
+    out = apply_market_overlay(action, live, {"enabled": True})
+    assert out["market"][0][2] == 8
+
+
+def test_pickup_reduces_inventory_available_to_market():
+    action = {"farmer": ["PICKUP", "WHEAT", 5],
+              "market": [["SELL", "WHEAT", 20]]}
+    live = state()
+    live["units"] = [{"pos": [4, 4], "inventory": {}}]
+    out = apply_market_overlay(action, live, {"enabled": True})
+    assert out["market"][0][2] == 15
+
+
 def test_endgame_fraction_and_buy_stop_are_state_dependent():
     action = {"market": [["HIRE"], ["BUY_SEED", "WHEAT", 10],
                          ["SELL", "WHEAT", 20]]}

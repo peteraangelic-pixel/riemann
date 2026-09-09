@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from scripts.generate_market_overlays import generate_profiles
+from scripts.generate_market_overlays import generate_local_profiles, generate_profiles
 from scripts.screen_market_overlays import summarize
 
 
@@ -10,6 +10,14 @@ def test_generation_zero_is_deterministic_unique_and_control_first():
     assert a[0] == {"enabled": False}
     assert len({repr(sorted(profile.items())) for profile in a}) == 100
     assert all(profile.get("enabled") is True for profile in a[1:])
+
+
+def test_local_generation_starts_with_disabled_and_enabled_identity():
+    profiles = generate_local_profiles(200, 11)
+    assert profiles[:2] == [{"enabled": False}, {"enabled": True}]
+    assert profiles == generate_local_profiles(200, 11)
+    assert len({repr(sorted(profile.items())) for profile in profiles}) == 200
+    assert all(2 <= len(profile) <= 4 for profile in profiles[2:])
 
 
 def test_team_balanced_summary_does_not_overweight_more_records():

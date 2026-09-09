@@ -18,7 +18,9 @@ sys.path.insert(0, str(ROOT / "rust_port/tools"))
 from kaggriculture_lab.rust_backend import _source  # noqa: E402
 from rust_client import Job, replay_many  # noqa: E402
 from scripts.benchmark_top30 import build_top30_jobs  # noqa: E402
-from scripts.generate_market_overlays import BOUNDS, generate_profiles  # noqa: E402
+from scripts.generate_market_overlays import (  # noqa: E402
+    BOUNDS, LOCAL_OPTIONS, generate_local_profiles, generate_profiles,
+)
 
 SOURCE_EPISODE = 106845775
 
@@ -68,12 +70,14 @@ def main() -> int:
     ap.add_argument("--binary", type=Path,
                     default=ROOT / "rust_port/target/release/kg_sim")
     ap.add_argument("--population", type=int, default=1000)
+    ap.add_argument("--generation", choices=("g0", "g1"), default="g0")
     ap.add_argument("--seed", type=int, default=20260909)
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--output", type=Path, required=True)
     args = ap.parse_args()
 
-    profiles = generate_profiles(args.population, args.seed)
+    profiles = (generate_local_profiles(args.population, args.seed)
+                if args.generation == "g1" else generate_profiles(args.population, args.seed))
     target_jobs, target_meta = build_top30_jobs(args.corpus.resolve(), args.candidate, 10)
     selected = [(job, meta) for job, meta in zip(target_jobs, target_meta)
                 if meta["best_listed_submission"] and meta["episode_id"] != SOURCE_EPISODE]
@@ -126,8 +130,14 @@ def main() -> int:
     entries = []
     for index, (profile, rows) in enumerate(zip(profiles, grouped)):
         stats = summarize(rows)
-        entries.append({"index": index, "name": f"market-g0-{index:05d}",
+        entries.append({"index": index, "name": f"market-{args.generation}-{index:05d}",
                         "profile": profile, "summary": stats})
+    if args.generation == "g1":
+        control = entries[0]["summary"]
+        identity = entries[1]["summary"]
+        contract = ("wins", "losses", "ties", "mean_margin", "team_balanced_score")
+        if any(identity[key] != control[key] for key in contract):
+            raise RuntimeError("enabled identity profile diverged from disabled control")
     entries.sort(key=lambda e: (
         e["summary"]["team_balanced_score"], e["summary"]["wilson_95"][0],
         e["summary"]["mean_margin"]), reverse=True)
@@ -135,8 +145,10 @@ def main() -> int:
     output = {
         "format": "kaggriculture-market-overlay-screen-v1",
         "mode": "TOP10 best-listed raw tapes; source episode excluded; both seats",
+        "generation": args.generation,
         "population": len(profiles), "games": len(jobs), "generation_seed": args.seed,
-        "bounds": BOUNDS, "baseline": baseline, "retained_top10": entries[:10],
+        "search_space": LOCAL_OPTIONS if args.generation == "g1" else BOUNDS,
+        "baseline": baseline, "retained_top10": entries[:10],
         "top50": entries[:50],
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)

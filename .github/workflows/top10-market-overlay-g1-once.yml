@@ -1,0 +1,44 @@
+name: TOP10 market overlay Generation 1 once
+on:
+  push:
+    branches: [arena/01a0712c-riemann]
+    paths: [.github/workflows/top10-market-overlay-g1-once.yml]
+permissions:
+  contents: write
+jobs:
+  screen:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with: {fetch-depth: 0}
+      - uses: dtolnay/rust-toolchain@1.85.1
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: Swatinem/rust-cache@v2
+        with: {workspaces: kaggriculture_meta_lab/rust_port}
+      - name: Extract current audited TOP30 snapshot
+        run: |
+          python -m pip install --disable-pip-version-check py7zr
+          python - <<'PY'
+          import os, py7zr
+          target = os.path.join(os.environ['RUNNER_TEMP'], 'top30')
+          with py7zr.SevenZipFile('TOP30.7z') as archive:
+              archive.extractall(target)
+          PY
+      - name: Build Rust simulator with premarket inventory projection
+        working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - name: Screen 500 sparse identity-local profiles in 15000 games
+        run: |
+          python kaggriculture_meta_lab/scripts/screen_market_overlays.py \
+            --corpus "$RUNNER_TEMP/top30/TOP30" --generation g1 \
+            --population 500 --seed 20260910 --workers 16 \
+            --output kaggriculture_meta_lab/results/top10-market-overlay-g1-20260909.json
+      - name: Commit bounded result
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/top10-market-overlay-g1-20260909.json
+          git commit -m 'data(kaggriculture): record market overlay Generation 1'
+          git push origin HEAD:arena/01a0712c-riemann
