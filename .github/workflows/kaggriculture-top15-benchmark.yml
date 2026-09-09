@@ -4,7 +4,7 @@ on:
     branches: ["arena/01a0712c-riemann"]
     paths: [".github/workflows/kaggriculture-top15-benchmark.yml"]
 permissions:
-  contents: read
+  contents: write
 jobs:
   benchmark:
     if: contains(github.event.head_commit.message, '[kg-top15-benchmark]')
@@ -45,6 +45,17 @@ jobs:
             --candidate kaggriculture_meta_lab/agents/variants/agent_v10_subin_g2_83.py \
             --output /tmp/top15-g2-83.json || rc=$?
           exit "$rc"
+      - name: Persist diagnostic records on the session branch
+        if: always()
+        run: |
+          cp /tmp/top15-audit.json kaggriculture_meta_lab/results/top15-actions-audit-20260909.json
+          test ! -f /tmp/top15-static-subin.json || cp /tmp/top15-static-subin.json kaggriculture_meta_lab/results/top15-static-subin-20260909.json
+          test ! -f /tmp/top15-g2-83.json || cp /tmp/top15-g2-83.json kaggriculture_meta_lab/results/top15-g2-83-20260909.json
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/top15-*-20260909.json
+          git diff --cached --quiet || git commit -m "Record fail-closed TOP15 bounded benchmark"
+          git push origin HEAD:arena/01a0712c-riemann
       - name: Upload fail-closed benchmark records
         if: always()
         uses: actions/upload-artifact@v4
