@@ -1,7 +1,7 @@
 //! Small state-dependent market policy layered over an immutable unit tape.
 use crate::{
     data::{Item, ACCESS, BOARD_SIZE, ITEM_COUNT},
-    engine::{Game, Tile},
+    engine::{Farm, Game, Tile},
     tape::{Action, OrderKind, UnitAction},
 };
 use serde::Deserialize;
@@ -34,6 +34,22 @@ pub struct MarketOverlay {
     pub min_milk_price: f64,
     pub min_wool_price: f64,
     pub min_fertilizer_price: f64,
+    // Generation-3 structural caps. Zero keeps the legacy identity behavior.
+    pub hands_per_quadrant: u32,
+    pub hand_buffer: u32,
+    pub max_quadrants: u32,
+    pub land_min_hands: u32,
+    pub cow_target: i64,
+    pub sheep_target: i64,
+    pub goose_target: i64,
+    pub animal_response_bp: u32,
+    pub wheat_seed_target: i64,
+    pub carrot_seed_target: i64,
+    pub tomato_seed_target: i64,
+    pub strawberry_seed_target: i64,
+    pub melon_seed_target: i64,
+    pub wheat_stock_target: i64,
+    pub fertilizer_stock_target: i64,
 }
 
 impl Default for MarketOverlay {
@@ -64,6 +80,21 @@ impl Default for MarketOverlay {
             min_milk_price: 0.0,
             min_wool_price: 0.0,
             min_fertilizer_price: 0.0,
+            hands_per_quadrant: 0,
+            hand_buffer: 0,
+            max_quadrants: 0,
+            land_min_hands: 0,
+            cow_target: 0,
+            sheep_target: 0,
+            goose_target: 0,
+            animal_response_bp: 0,
+            wheat_seed_target: 0,
+            carrot_seed_target: 0,
+            tomato_seed_target: 0,
+            strawberry_seed_target: 0,
+            melon_seed_target: 0,
+            wheat_stock_target: 0,
+            fertilizer_stock_target: 0,
         }
     }
 }
@@ -99,6 +130,12 @@ impl MarketOverlay {
                 "overlay money and price thresholds must be finite and non-negative".into(),
             );
         }
+        if self.max_quadrants > 4 {
+            return Err("max_quadrants must be zero or at most four".into());
+        }
+        if self.animal_response_bp > 20_000 {
+            return Err("animal_response_bp must be in 0..=20000".into());
+        }
         if [
             self.wheat_reserve,
             self.carrot_reserve,
@@ -109,6 +146,16 @@ impl MarketOverlay {
             self.milk_reserve,
             self.wool_reserve,
             self.fertilizer_reserve,
+            self.cow_target,
+            self.sheep_target,
+            self.goose_target,
+            self.wheat_seed_target,
+            self.carrot_seed_target,
+            self.tomato_seed_target,
+            self.strawberry_seed_target,
+            self.melon_seed_target,
+            self.wheat_stock_target,
+            self.fertilizer_stock_target,
         ]
         .iter()
         .any(|v| *v < 0)
@@ -194,6 +241,40 @@ impl MarketOverlay {
         shed
     }
 
+    fn animal_target(&self, item: Item) -> i64 {
+        match item {
+            Item::Cow => self.cow_target,
+            Item::Sheep => self.sheep_target,
+            Item::Goose => self.goose_target,
+            _ => 0,
+        }
+    }
+
+    fn seed_target(&self, item: Item) -> i64 {
+        match item {
+            Item::Wheat => self.wheat_seed_target,
+            Item::Carrot => self.carrot_seed_target,
+            Item::Tomato => self.tomato_seed_target,
+            Item::Strawberry => self.strawberry_seed_target,
+            Item::Melon => self.melon_seed_target,
+            _ => 0,
+        }
+    }
+
+    fn placed_animals(farm: &Farm, item: Item) -> i64 {
+        farm.tiles
+            .iter()
+            .filter(|tile| matches!(tile, Tile::Animal(animal) if animal.animal == item))
+            .count() as i64
+    }
+
+    fn planted_crops(farm: &Farm, item: Item) -> i64 {
+        farm.tiles
+            .iter()
+            .filter(|tile| matches!(tile, Tile::Plant(plant) if plant.crop == item))
+            .count() as i64
+    }
+
     pub(crate) fn apply(&self, game: &Game<'_>, seat: usize, source: &Action) -> Action {
         let mut action = source.clone();
         let day = (game.turn / game.config.turns_per_day) as i64;
@@ -212,6 +293,36 @@ impl MarketOverlay {
             let available = (projected_shed[i] - self.reserve(item)).max(0) as u64;
             available.saturating_mul(fraction) / 10_000
         });
+        let opponent = &game.farms[1 - seat];
+        let mut animal_budget = [u64::MAX; ITEM_COUNT];
+        for item in [Item::Cow, Item::Sheep, Item::Goose] {
+            let base = self.animal_target(item);
+            if base > 0 {
+                let response = Self::placed_animals(opponent, item)
+                    .saturating_mul(i64::from(self.animal_response_bp))
+                    / 10_000;
+                let owned = projected_shed[item.index()] + Self::placed_animals(farm, item);
+                animal_budget[item.index()] = (base + response - owned).max(0) as u64;
+            }
+        }
+        let mut seed_budget = [u64::MAX; ITEM_COUNT];
+        for item in [Item::Wheat, Item::Carrot, Item::Tomato, Item::Strawberry, Item::Melon] {
+            let target = self.seed_target(item);
+            if target > 0 {
+                let owned = farm.seeds[item.index()] + Self::planted_crops(farm, item);
+                seed_budget[item.index()] = (target - owned).max(0) as u64;
+            }
+        }
+        let mut product_budget = [u64::MAX; ITEM_COUNT];
+        for (item, target) in [
+            (Item::Wheat, self.wheat_stock_target),
+            (Item::Fertilizer, self.fertilizer_stock_target),
+        ] {
+            if target > 0 {
+                product_budget[item.index()] =
+                    (target - projected_shed[item.index()]).max(0) as u64;
+            }
+        }
         for order in &mut action.market {
             match order.kind {
                 OrderKind::Sell(item) => {
@@ -229,13 +340,51 @@ impl MarketOverlay {
                         sale_budget[item.index()] -= order.remaining;
                     }
                 }
-                OrderKind::Hire
-                | OrderKind::BuyLand
-                | OrderKind::BuyProduct(_)
-                | OrderKind::BuySeed(_)
-                | OrderKind::BuyAnimal(_) => {
+                OrderKind::Hire => {
+                    let hands = farm.units.len().saturating_sub(1) as u32;
+                    let labor_cap = self
+                        .hands_per_quadrant
+                        .saturating_mul(farm.unlocked as u32)
+                        .saturating_add(self.hand_buffer);
+                    if day >= self.buy_stop_day
+                        || farm.money <= self.cash_reserve
+                        || (self.hands_per_quadrant > 0 && hands >= labor_cap)
+                    {
+                        order.remaining = 0;
+                    }
+                }
+                OrderKind::BuyLand => {
+                    let hands = farm.units.len().saturating_sub(1) as u32;
+                    if day >= self.buy_stop_day
+                        || farm.money <= self.cash_reserve
+                        || (self.max_quadrants > 0 && farm.unlocked as u32 >= self.max_quadrants)
+                        || (self.land_min_hands > 0 && hands < self.land_min_hands)
+                    {
+                        order.remaining = 0;
+                    }
+                }
+                OrderKind::BuyProduct(item) => {
                     if day >= self.buy_stop_day || farm.money <= self.cash_reserve {
                         order.remaining = 0;
+                    } else if product_budget[item.index()] != u64::MAX {
+                        order.remaining = order.remaining.min(product_budget[item.index()]);
+                        product_budget[item.index()] -= order.remaining;
+                    }
+                }
+                OrderKind::BuySeed(item) => {
+                    if day >= self.buy_stop_day || farm.money <= self.cash_reserve {
+                        order.remaining = 0;
+                    } else if seed_budget[item.index()] != u64::MAX {
+                        order.remaining = order.remaining.min(seed_budget[item.index()]);
+                        seed_budget[item.index()] -= order.remaining;
+                    }
+                }
+                OrderKind::BuyAnimal(item) => {
+                    if day >= self.buy_stop_day || farm.money <= self.cash_reserve {
+                        order.remaining = 0;
+                    } else if animal_budget[item.index()] != u64::MAX {
+                        order.remaining = order.remaining.min(animal_budget[item.index()]);
+                        animal_budget[item.index()] -= order.remaining;
                     }
                 }
                 OrderKind::Noop => {}
@@ -279,6 +428,47 @@ mod tests {
         let out = profile.apply(&game, 0, &tape.seats[0][0]);
         assert_eq!(out.market[0].remaining, 13);
         assert_eq!(out.market[1].remaining, 13);
+    }
+
+    #[test]
+    fn structural_caps_share_cumulative_budgets() {
+        let cfg = Config::default();
+        let tape = Tape::from_json(&json!([[
+            {"market":[
+                ["BUY_ANIMAL","COW",9],["BUY_ANIMAL","COW",9],
+                ["BUY_SEED","WHEAT",20],["BUY_SEED","WHEAT",20],
+                ["BUY_PRODUCT","FERTILIZER",8],["BUY_PRODUCT","FERTILIZER",8]
+            ]}
+        ],[{}]]))
+        .unwrap();
+        let mut game = Game::new(&cfg, 0, [0, 0]);
+        game.farms[0].shed[Item::Cow.index()] = 2;
+        game.farms[0].seeds[Item::Wheat.index()] = 3;
+        game.farms[0].shed[Item::Fertilizer.index()] = 1;
+        let profile = MarketOverlay::from_json(&json!({
+            "enabled": true, "cow_target": 5, "wheat_seed_target": 8,
+            "fertilizer_stock_target": 4
+        }))
+        .unwrap();
+        let out = profile.apply(&game, 0, &tape.seats[0][0]);
+        assert_eq!([out.market[0].remaining, out.market[1].remaining], [3, 0]);
+        assert_eq!([out.market[2].remaining, out.market[3].remaining], [5, 0]);
+        assert_eq!([out.market[4].remaining, out.market[5].remaining], [3, 0]);
+    }
+
+    #[test]
+    fn structural_zero_defaults_remain_identity() {
+        let cfg = Config::default();
+        let tape = Tape::from_json(&json!([[
+            {"market":[["HIRE"],["BUY_LAND"],["BUY_ANIMAL","COW",17],
+                       ["BUY_SEED","WHEAT",19],["BUY_PRODUCT","WHEAT",23]]}
+        ],[{}]]))
+        .unwrap();
+        let game = Game::new(&cfg, 0, [0, 0]);
+        let profile = MarketOverlay::from_json(&json!({"enabled": true})).unwrap();
+        let out = profile.apply(&game, 0, &tape.seats[0][0]);
+        assert_eq!(out.market.iter().map(|order| order.remaining).collect::<Vec<_>>(),
+                   vec![1, 1, 17, 19, 23]);
     }
 
     #[test]

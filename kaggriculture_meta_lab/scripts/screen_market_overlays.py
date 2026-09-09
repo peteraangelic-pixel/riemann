@@ -19,8 +19,8 @@ from kaggriculture_lab.rust_backend import _source  # noqa: E402
 from rust_client import Job, replay_many  # noqa: E402
 from scripts.benchmark_top30 import build_top30_jobs  # noqa: E402
 from scripts.generate_market_overlays import (  # noqa: E402
-    BOUNDS, LOCAL_OPTIONS, generate_local_profiles, generate_profiles,
-    generate_refined_profiles,
+    BOUNDS, LOCAL_OPTIONS, STRUCTURAL_OPTIONS, generate_local_profiles,
+    generate_profiles, generate_refined_profiles, generate_structural_profiles,
 )
 
 SOURCE_EPISODE = 106845775
@@ -71,10 +71,10 @@ def main() -> int:
     ap.add_argument("--binary", type=Path,
                     default=ROOT / "rust_port/target/release/kg_sim")
     ap.add_argument("--population", type=int, default=1000)
-    ap.add_argument("--generation", choices=("g0", "g1", "g2"), default="g0")
+    ap.add_argument("--generation", choices=("g0", "g1", "g2", "g3"), default="g0")
     ap.add_argument("--profiles-from", type=Path,
                     help="validate retained_top10 from an earlier result instead of sampling")
-    ap.add_argument("--max-rank", type=int, choices=(10, 20, 30), default=10)
+    ap.add_argument("--max-rank", type=int, choices=(5, 10, 15, 20, 30), default=10)
     ap.add_argument("--seed", type=int, default=20260909)
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--output", type=Path, required=True)
@@ -88,7 +88,9 @@ def main() -> int:
                 profiles.append(entry["profile"])
         generation = "validation"
     else:
-        if args.generation == "g2":
+        if args.generation == "g3":
+            profiles = generate_structural_profiles(args.population, args.seed)
+        elif args.generation == "g2":
             profiles = generate_refined_profiles()
         elif args.generation == "g1":
             profiles = generate_local_profiles(args.population, args.seed)
@@ -152,11 +154,11 @@ def main() -> int:
             f"top{limit}": summarize([
                 row for row in rows if row[1]["rank"] <= limit
             ])
-            for limit in (10, 20, 30) if limit <= args.max_rank
+            for limit in (5, 10, 15, 20, 30) if limit <= args.max_rank
         }
         entries.append({"index": index, "name": f"market-{generation}-{index:05d}",
                         "profile": profile, "summary": stats, "curricula": curricula})
-    if not args.profiles_from and args.generation in {"g1", "g2"}:
+    if not args.profiles_from and args.generation in {"g1", "g2", "g3"}:
         control = entries[0]["summary"]
         identity = entries[1]["summary"]
         contract = ("wins", "losses", "ties", "mean_margin", "team_balanced_score")
@@ -174,6 +176,7 @@ def main() -> int:
         "population": len(profiles), "games": len(jobs), "generation_seed": args.seed,
         "search_space": (
             "retained_top10" if args.profiles_from else
+            STRUCTURAL_OPTIONS if args.generation == "g3" else
             "refined start/cash/wheat-price/milk-reserve grid"
             if args.generation == "g2" else
             LOCAL_OPTIONS if args.generation == "g1" else BOUNDS

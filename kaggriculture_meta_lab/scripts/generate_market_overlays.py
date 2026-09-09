@@ -95,6 +95,56 @@ def generate_refined_profiles() -> list[dict[str, object]]:
     return profiles
 
 
+STRUCTURAL_OPTIONS = {
+    "start_day": (0, 2, 4, 6),
+    "cash_reserve": (150, 200, 250, 300, 400),
+    "sell_fraction_bp": (7500, 9000, 10000),
+    "wheat_reserve": (0, 2, 5, 10),
+    "fertilizer_reserve": (0, 2, 5, 8),
+    "milk_reserve": (0, 1, 2),
+    "hands_per_quadrant": (1, 2, 3),
+    "hand_buffer": (2, 4, 6),
+    "max_quadrants": (3, 4),
+    "land_min_hands": (3, 5, 7),
+    "cow_target": (5, 8, 11, 14),
+    "sheep_target": (3, 6, 9, 12),
+    "goose_target": (1, 3, 5),
+    "animal_response_bp": (0, 2500, 5000, 10000),
+    "wheat_seed_target": (60, 90, 120, 160),
+    "carrot_seed_target": (12, 24, 36, 60),
+    "strawberry_seed_target": (12, 24, 36, 60),
+    "melon_seed_target": (6, 12, 18, 24),
+    "wheat_stock_target": (5, 10, 20, 30),
+    "fertilizer_stock_target": (3, 6, 10, 16),
+}
+
+
+def generate_structural_profiles(population: int, seed: int) -> list[dict[str, object]]:
+    """Generation-3 compact structural profiles informed by current TOP15."""
+    if not 4 <= population <= 10_000:
+        raise ValueError("structural population must be in 4..10000")
+    rng = random.Random(seed)
+    profiles: list[dict[str, object]] = [
+        {"enabled": False},
+        {"enabled": True},
+        {"enabled": True, "start_day": 6, "cash_reserve": 250, "milk_reserve": 1},
+    ]
+    seen = {json.dumps(profile, sort_keys=True) for profile in profiles}
+    while len(profiles) < population:
+        profile: dict[str, object] = {"enabled": True, "buy_stop_day": 29,
+                                     "endgame_day": 27,
+                                     "endgame_sell_fraction_bp": 10000}
+        for name, values in STRUCTURAL_OPTIONS.items():
+            profile[name] = rng.choice(values)
+        # Tomato was absent from several compact leaders; make it a sparse gene.
+        profile["tomato_seed_target"] = rng.choice((0, 0, 8, 16, 24))
+        key = json.dumps(profile, sort_keys=True)
+        if key not in seen:
+            seen.add(key)
+            profiles.append(profile)
+    return profiles
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--output", type=Path, required=True)
