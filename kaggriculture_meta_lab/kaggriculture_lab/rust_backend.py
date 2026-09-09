@@ -48,6 +48,12 @@ def _load_module_source(path: Path) -> TapeSource | None:
     """Compile only audited static templates without importing agent code."""
     try:
         from rust_port.tools.agent_tape import UnsupportedAgent, compile_file
+    except (ImportError, ModuleNotFoundError):
+        # The tape compiler is optional. Reactive Python agents are handled by
+        # the audited Python fallback; absence of this helper must not abort a
+        # complete overlay screening run.
+        return None
+    try:
         compiled = compile_file(path.resolve())
         return TapeSource(json.loads(compiled.payload), compiled.trim_hands)
     except (OSError, UnsupportedAgent, ValueError, json.JSONDecodeError):
