@@ -43,7 +43,24 @@ B21 market schedule.
 
 `agents/variants/agent_v10_subin_106845775.py` preserves the best exemplar as an
 immutable static research lead. It is explicitly not the original reactive
-policy and not submission-approved.
+policy.
+
+## Subsequent closed-loop smoke and experimental upload
+
+Before the user-authorized experimental upload on 2026-09-09, the static agent
+was run for 32 fresh closed-loop games (8 seeds, both seats) against V7 and
+B21/S16. It completed without errors and scored:
+
+| opponent | W-L-T | score | mean margin |
+|---|---:|---:|---:|
+| V7 | 16-0-0 | 100.0% | +67,400 |
+| B21/S16 | 10-6-0 | 62.5% | +6,326 |
+| pooled | 26-6-0 | 81.2% | +36,863 |
+
+This tiny smoke materially reduces the immediate failure risk but is not a
+robust promotion gate or leaderboard estimate. The explicitly authorized
+submission upload succeeded in Actions run `34369673808`; Kaggle reported four
+daily submissions remaining afterward.
 
 ## Decision
 
