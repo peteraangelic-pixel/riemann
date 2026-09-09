@@ -1,0 +1,78 @@
+{
+  "candidate": "agents/variants/agent_v12_reactive_premium.py",
+  "seeds": 4,
+  "both_seats": true,
+  "controls": [
+    {
+      "control": "agents/variants/agent_v11_reactive_score.py",
+      "games": 8,
+      "wins": 0,
+      "losses": 8,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 0.0,
+      "score_rate": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.32440756488388023,
+      "mean_margin": -10604.625,
+      "median_margin": -9195.0,
+      "p10_margin": -18550.0,
+      "mean_self": 57265.25,
+      "mean_opp": 67869.875,
+      "gate_pass": false,
+      "gate_reasons": [
+        "only 8 games (< 20)",
+        "95% CI low 0.0% <= 50% (score rate 0.0%)",
+        "mean margin -10605 <= 0"
+      ]
+    },
+    {
+      "control": "agents/ref/agent_v7.py",
+      "games": 8,
+      "wins": 0,
+      "losses": 8,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 0.0,
+      "score_rate": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.32440756488388023,
+      "mean_margin": -10378.0,
+      "median_margin": -7324.5,
+      "p10_margin": -22081.0,
+      "mean_self": 52458.75,
+      "mean_opp": 62836.75,
+      "gate_pass": false,
+      "gate_reasons": [
+        "only 8 games (< 20)",
+        "95% CI low 0.0% <= 50% (score rate 0.0%)",
+        "mean margin -10378 <= 0"
+      ]
+    },
+    {
+      "control": "agents/current/agent_v9_b21_s16.py",
+      "games": 8,
+      "wins": 0,
+      "losses": 8,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 0.0,
+      "score_rate": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.32440756488388023,
+      "mean_margin": -82635.375,
+      "median_margin": -86834.5,
+      "p10_margin": -94235.0,
+      "mean_self": 42671.375,
+      "mean_opp": 125306.75,
+      "gate_pass": false,
+      "gate_reasons": [
+        "only 8 games (< 20)",
+        "95% CI low 0.0% <= 50% (score rate 0.0%)",
+        "mean margin -82635 <= 0"
+      ]
+    }
+  ],
+  "all_controls_pass": false,
+  "elapsed_s": 62.282842955999996
+}
