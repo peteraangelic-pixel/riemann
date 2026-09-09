@@ -87,7 +87,13 @@ impl<'a> Replay<'a> {
         trim_hands: [bool; 2],
     ) -> Self {
         Self::new_with_overlays(
-            config, tape_a, tape_b, seed, reverse, trim_hands, [None, None],
+            config,
+            tape_a,
+            tape_b,
+            seed,
+            reverse,
+            trim_hands,
+            [None, None],
         )
     }
 
@@ -158,13 +164,13 @@ impl<'a> Replay<'a> {
         ];
         let actions: [std::borrow::Cow<'_, tape::Action>; 2] =
             std::array::from_fn(|seat| match self.overlays[seat] {
-                Some(profile) => std::borrow::Cow::Owned(profile.apply(&self.game, seat, sources[seat])),
+                Some(profile) => {
+                    std::borrow::Cow::Owned(profile.apply(&self.game, seat, sources[seat]))
+                }
                 None => std::borrow::Cow::Borrowed(sources[seat]),
             });
-        self.game.step_with_hand_trimming(
-            [&actions[0], &actions[1]],
-            self.trim_hands,
-        );
+        self.game
+            .step_with_hand_trimming([&actions[0], &actions[1]], self.trim_hands);
         true
     }
 

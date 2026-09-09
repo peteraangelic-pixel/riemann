@@ -83,19 +83,36 @@ impl MarketOverlay {
             return Err("overlay sell fractions must be in 0..=10000 basis points".into());
         }
         let prices = [
-            self.cash_reserve, self.min_wheat_price, self.min_carrot_price,
-            self.min_tomato_price, self.min_strawberry_price, self.min_melon_price,
-            self.min_egg_price, self.min_milk_price, self.min_wool_price,
+            self.cash_reserve,
+            self.min_wheat_price,
+            self.min_carrot_price,
+            self.min_tomato_price,
+            self.min_strawberry_price,
+            self.min_melon_price,
+            self.min_egg_price,
+            self.min_milk_price,
+            self.min_wool_price,
             self.min_fertilizer_price,
         ];
         if prices.iter().any(|v| !v.is_finite() || *v < 0.0) {
-            return Err("overlay money and price thresholds must be finite and non-negative".into());
+            return Err(
+                "overlay money and price thresholds must be finite and non-negative".into(),
+            );
         }
         if [
-            self.wheat_reserve, self.carrot_reserve, self.tomato_reserve,
-            self.strawberry_reserve, self.melon_reserve, self.egg_reserve,
-            self.milk_reserve, self.wool_reserve, self.fertilizer_reserve,
-        ].iter().any(|v| *v < 0) {
+            self.wheat_reserve,
+            self.carrot_reserve,
+            self.tomato_reserve,
+            self.strawberry_reserve,
+            self.melon_reserve,
+            self.egg_reserve,
+            self.milk_reserve,
+            self.wool_reserve,
+            self.fertilizer_reserve,
+        ]
+        .iter()
+        .any(|v| *v < 0)
+        {
             return Err("overlay inventory reserves must be non-negative".into());
         }
         Ok(())
@@ -146,8 +163,8 @@ impl MarketOverlay {
         for order in &mut action.market {
             match order.kind {
                 OrderKind::Sell(item) => {
-                    let quote = game.config.curves[item.index()]
-                        .price(game.market_inventory[item.index()]);
+                    let quote =
+                        game.config.curves[item.index()].price(game.market_inventory[item.index()]);
                     let available = (farm.shed[item.index()] - self.reserve(item)).max(0) as u64;
                     let allowed = available.saturating_mul(fraction) / 10_000;
                     order.remaining = order.remaining.min(allowed);
@@ -155,8 +172,11 @@ impl MarketOverlay {
                         order.remaining = 0;
                     }
                 }
-                OrderKind::Hire | OrderKind::BuyLand | OrderKind::BuyProduct(_)
-                | OrderKind::BuySeed(_) | OrderKind::BuyAnimal(_) => {
+                OrderKind::Hire
+                | OrderKind::BuyLand
+                | OrderKind::BuyProduct(_)
+                | OrderKind::BuySeed(_)
+                | OrderKind::BuyAnimal(_) => {
                     if day >= self.buy_stop_day || farm.money <= self.cash_reserve {
                         order.remaining = 0;
                     }
@@ -171,7 +191,7 @@ impl MarketOverlay {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::{Config, tape::Tape};
+    use crate::{tape::Tape, Config};
     use serde_json::json;
 
     #[test]
@@ -198,7 +218,8 @@ mod tests {
         game.farms[0].shed[Item::Wheat.index()] = 20;
         let profile = MarketOverlay::from_json(&json!({
             "enabled": true, "wheat_reserve": 4, "sell_fraction_bp": 5000
-        })).unwrap();
+        }))
+        .unwrap();
         let out = profile.apply(&game, 0, &tape.seats[0][0]);
         assert_eq!(out.market[0].remaining, 8);
     }
@@ -206,12 +227,14 @@ mod tests {
     #[test]
     fn buy_stop_preserves_slots_as_zero_remaining_orders() {
         let cfg = Config::default();
-        let tape = Tape::from_json(&json!([[{"market":[["HIRE"],["BUY_SEED","WHEAT",9]]}],[{}]])).unwrap();
+        let tape =
+            Tape::from_json(&json!([[{"market":[["HIRE"],["BUY_SEED","WHEAT",9]]}],[{}]])).unwrap();
         let mut game = Game::new(&cfg, 0, [0, 0]);
         game.turn = cfg.turns_per_day * 27;
         let profile = MarketOverlay::from_json(&json!({
             "enabled": true, "buy_stop_day": 27
-        })).unwrap();
+        }))
+        .unwrap();
         let out = profile.apply(&game, 0, &tape.seats[0][0]);
         assert_eq!(out.market[0].remaining, 0);
         assert_eq!(out.market[1].remaining, 0);

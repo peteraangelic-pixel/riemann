@@ -115,12 +115,18 @@ impl OverlayCache {
         if path.as_os_str().is_empty() {
             return Ok(None);
         }
-        let path = path.canonicalize().map_err(|e| format!("{}: {e}", path.display()))?;
-        self.entries.entry(path.clone()).or_insert_with(|| {
-            let profile = MarketOverlay::from_json(&read_json(&path)?)
-                .map_err(|e| format!("{}: {e}", path.display()))?;
-            Ok(Arc::new(profile))
-        }).clone().map(Some)
+        let path = path
+            .canonicalize()
+            .map_err(|e| format!("{}: {e}", path.display()))?;
+        self.entries
+            .entry(path.clone())
+            .or_insert_with(|| {
+                let profile = MarketOverlay::from_json(&read_json(&path)?)
+                    .map_err(|e| format!("{}: {e}", path.display()))?;
+                Ok(Arc::new(profile))
+            })
+            .clone()
+            .map(Some)
     }
 }
 
