@@ -11,12 +11,18 @@ import csv
 from dataclasses import dataclass
 import json
 import math
+import os
 from pathlib import Path
 import subprocess
 import tempfile
 from typing import Iterable
 
-DEFAULT_BINARY = Path(__file__).resolve().parents[1] / "target/release/kg_sim"
+def binary_name(platform_name=None):
+    """Platform-aware executable name; Path.exists does not apply PATHEXT."""
+    return "kg_sim.exe" if (platform_name or os.name) == "nt" else "kg_sim"
+
+
+DEFAULT_BINARY = Path(__file__).resolve().parents[1] / "target" / "release" / binary_name()
 
 
 @dataclass(frozen=True)
@@ -25,6 +31,8 @@ class Job:
     tape_a: Path | str
     tape_b: Path | str
     reverse: bool = False
+    overlay_a: Path | str | None = None
+    overlay_b: Path | str | None = None
 
 
 class SimulatorError(RuntimeError):
@@ -111,6 +119,10 @@ def _invoke(args, expected, allow_errors, timeout=None):
 def replay(job: Job, *, binary=DEFAULT_BINARY, steps=720, step_mode="kaggle", trim_hands=False, config=None, timeout=None, trim_hands_a=False, trim_hands_b=False):
     args = [str(Path(binary).resolve()), "--seed", str(job.seed), "--tape-a", str(Path(job.tape_a).resolve()), "--tape-b", str(Path(job.tape_b).resolve())]
     args += _options(steps, step_mode, trim_hands, config, trim_hands_a, trim_hands_b)
+    if job.overlay_a is not None:
+        args += ["--overlay-a", str(Path(job.overlay_a).resolve())]
+    if job.overlay_b is not None:
+        args += ["--overlay-b", str(Path(job.overlay_b).resolve())]
     if job.reverse:
         args.append("--reverse-seats")
     return _invoke(args, 1, False, timeout=timeout)[0]
@@ -134,8 +146,13 @@ def replay_many(jobs: Iterable[Job], *, binary=DEFAULT_BINARY, steps=720, step_m
         csv_path = Path(directory) / "jobs.csv"
         with csv_path.open("w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
+            use_overlays = any(j.overlay_a is not None or j.overlay_b is not None for j in jobs)
             for job in jobs:
-                writer.writerow([job.seed, resolved(job.tape_a), resolved(job.tape_b), int(job.reverse)])
+                row = [job.seed, resolved(job.tape_a), resolved(job.tape_b), int(job.reverse)]
+                if use_overlays:
+                    row += [resolved(job.overlay_a) if job.overlay_a is not None else "",
+                            resolved(job.overlay_b) if job.overlay_b is not None else ""]
+                writer.writerow(row)
         args = [str(Path(binary).resolve()), "--jobs", str(csv_path)]
         args += _options(steps, step_mode, trim_hands, config, trim_hands_a, trim_hands_b)
         if threads is not None:
