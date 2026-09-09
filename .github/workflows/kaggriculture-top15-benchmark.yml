@@ -1,0 +1,55 @@
+name: Kaggriculture TOP15 bounded benchmark
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-top15-benchmark.yml"]
+permissions:
+  contents: read
+jobs:
+  benchmark:
+    if: contains(github.event.head_commit.message, '[kg-top15-benchmark]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Extract and audit TOP15 corpus
+        run: |
+          pip install --disable-pip-version-check py7zr
+          mkdir -p /tmp/top15
+          python - <<'PY'
+          import py7zr
+          with py7zr.SevenZipFile('TOP15.7z') as archive:
+              archive.extractall('/tmp/top15')
+          PY
+          python kaggriculture_meta_lab/scripts/audit_top15.py /tmp/top15/TOP15 \
+            --archive TOP15.7z --output /tmp/top15-audit.json
+      - name: Build and test Rust backend
+        working-directory: kaggriculture_meta_lab/rust_port
+        run: |
+          cargo test --locked
+          cargo build --release --locked
+      - name: Benchmark static Subin and G2-83 against all TOP15 tapes
+        env:
+          PYTHONPATH: kaggriculture_meta_lab
+        run: |
+          python kaggriculture_meta_lab/scripts/benchmark_top30.py \
+            --corpus /tmp/top15/TOP15 --max-rank 15 --workers 2 \
+            --candidate kaggriculture_meta_lab/agents/variants/agent_v10_subin_106845775.py \
+            --output /tmp/top15-static-subin.json
+          python kaggriculture_meta_lab/scripts/benchmark_top30.py \
+            --corpus /tmp/top15/TOP15 --max-rank 15 --workers 2 \
+            --candidate kaggriculture_meta_lab/agents/variants/agent_v10_subin_g2_83.py \
+            --output /tmp/top15-g2-83.json
+      - name: Upload fail-closed benchmark records
+        uses: actions/upload-artifact@v4
+        with:
+          name: top15-bounded-benchmark-${{ github.sha }}
+          if-no-files-found: error
+          retention-days: 7
+          path: |
+            /tmp/top15-audit.json
+            /tmp/top15-static-subin.json
+            /tmp/top15-g2-83.json

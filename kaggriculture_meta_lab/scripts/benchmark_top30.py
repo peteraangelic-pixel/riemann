@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bounded B21 evaluation against an audited extracted TOP30 replay corpus.
+"""Bounded evaluation against an audited TOP30 or per-team TOP15 corpus.
 
 Each selected team's recorded policy tape is replayed under its original seed,
 with the candidate tested in both physical seats. This is an open-loop replay
@@ -28,14 +28,41 @@ def _load(path: Path) -> Any:
 
 
 def _manifest_sha(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    if path.is_file():
+        return hashlib.sha256(path.read_bytes()).hexdigest()
+    if (path / "manifest.json").is_file():
+        return hashlib.sha256((path / "manifest.json").read_bytes()).hexdigest()
+    manifests = sorted(path.glob("*/manifest.json"))
+    digest = hashlib.sha256()
+    for manifest in manifests:
+        digest.update(manifest.relative_to(path).as_posix().encode())
+        digest.update(manifest.read_bytes())
+    return digest.hexdigest()
+
+
+def load_corpus_manifest(corpus: Path) -> dict[str, Any]:
+    """Load legacy aggregate TOP30 or the current per-team TOP15 layout."""
+    aggregate = corpus / "manifest.json"
+    if aggregate.is_file():
+        manifest = _load(aggregate)
+    else:
+        teams = [_load(path) for path in sorted(corpus.glob("*/manifest.json"))]
+        if not teams:
+            raise ValueError("corpus has neither aggregate nor per-team manifests")
+        teams.sort(key=lambda team: int(team["rank"]))
+        manifest = {"competition": "kaggriculture", "teams": teams}
+    teams = manifest.get("teams")
+    if manifest.get("competition") != "kaggriculture" or not isinstance(teams, list):
+        raise ValueError("not a Kaggriculture replay corpus manifest")
+    ranks = [int(team["rank"]) for team in teams]
+    if len(ranks) != len(set(ranks)):
+        raise ValueError("duplicate team rank in corpus manifests")
+    return manifest
 
 
 def build_top30_jobs(corpus: Path, candidate: Path, max_rank: int = 30) -> tuple[list[tuple], list[dict]]:
-    manifest = _load(corpus / "manifest.json")
-    teams = manifest.get("teams")
-    if manifest.get("competition") != "kaggriculture" or not isinstance(teams, list):
-        raise ValueError("not a Kaggriculture TOP30 manifest")
+    manifest = load_corpus_manifest(corpus)
+    teams = manifest["teams"]
     jobs: list[tuple] = []
     metadata: list[dict] = []
     for team in teams:
@@ -52,7 +79,13 @@ def build_top30_jobs(corpus: Path, candidate: Path, max_rank: int = 30) -> tuple
                 raise ValueError(f"episode mismatch: {replay_path}")
             names = replay.get("info", {}).get("TeamNames")
             seats = [i for i, name in enumerate(names or []) if name == team["team_name"]]
-            if len(seats) != 1:
+            if len(seats) == 1:
+                recorded_seat = seats[0]
+            elif seats == [0, 1]:
+                # In a genuine leaderboard self-play both recorded tapes belong
+                # to this team. Select seat zero deterministically.
+                recorded_seat = 0
+            else:
                 raise ValueError(f"cannot identify team seat in {replay_path}: {names}")
             seed = replay.get("info", {}).get("seed")
             if not isinstance(seed, int) or isinstance(seed, bool):
@@ -61,7 +94,7 @@ def build_top30_jobs(corpus: Path, candidate: Path, max_rank: int = 30) -> tuple
             source_score = submissions.get(submission_id)
             if source_score is None:
                 raise ValueError(f"selected submission absent from active list: {replay_path}")
-            opponent = f"tape:{replay_path.resolve()}#{seats[0]}"
+            opponent = f"tape:{replay_path.resolve()}#{recorded_seat}"
             common = {
                 "rank": rank,
                 "team": team["team_name"],
@@ -71,7 +104,8 @@ def build_top30_jobs(corpus: Path, candidate: Path, max_rank: int = 30) -> tuple
                 "submission_public_score": source_score,
                 "best_listed_public_score": best_score,
                 "best_listed_submission": source_score == best_score,
-                "recorded_team_seat": seats[0],
+                "recorded_team_seat": recorded_seat,
+                "recorded_self_play": seats == [0, 1],
                 "replay_file": replay_path.relative_to(corpus).as_posix(),
             }
             for candidate_seat in (0, 1):
@@ -115,7 +149,11 @@ def summarize(rows: list[dict]) -> dict[str, Any]:
         failures = [row for row in rows if row.get("error") or row.get("outcome") == "error"]
         raise RuntimeError(f"refusing to summarize {len(failures)} failed games")
     out: dict[str, Any] = {}
-    for limit in (10, 20, 30):
+    maximum = max(row["rank"] for row in rows)
+    limits = [limit for limit in (10, 20, 30) if limit <= maximum]
+    if maximum not in limits:
+        limits.append(maximum)
+    for limit in sorted(set(limits)):
         recent = [row for row in rows if row["rank"] <= limit]
         best = [row for row in recent if row["best_listed_submission"]]
         out[f"top{limit}"] = {
@@ -129,7 +167,8 @@ def summarize(rows: list[dict]) -> dict[str, Any]:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--corpus", type=Path, required=True, help="extracted TOP30 directory")
+    parser.add_argument("--corpus", type=Path, required=True,
+                        help="extracted aggregate TOP30 or per-team TOP15 directory")
     parser.add_argument("--candidate", type=Path,
                         default=ROOT / "agents/current/agent_v9_b21_s16.py")
     parser.add_argument("--workers", type=int, default=8)
@@ -151,10 +190,10 @@ def main() -> int:
     except ValueError:
         candidate_label = str(args.candidate.resolve())
     result = {
-        "format": "kaggriculture-top30-benchmark-v1",
+        "format": "kaggriculture-replay-corpus-benchmark-v2",
         "mode": "open-loop recorded team policy; original seed; candidate both seats",
         "candidate": candidate_label,
-        "source_manifest_sha256": _manifest_sha(args.corpus / "manifest.json"),
+        "source_manifest_sha256": _manifest_sha(args.corpus),
         "summary": summarize(enriched),
         "rows": enriched,
     }
