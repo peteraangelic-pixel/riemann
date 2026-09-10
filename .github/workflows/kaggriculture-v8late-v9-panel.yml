@@ -33,9 +33,10 @@ jobs:
         continue-on-error: true
         run: |
           set -o pipefail
-          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
-            --corpus "$(cat /tmp/top12-root)" --workers 4 --seeds 32 --seed-start 158000 \
-            --candidate late401=kaggriculture_meta_lab/seat_087c0/candidates/audit-v8late401.py \
+          python kaggriculture_meta_lab/seat_087c0/scripts/evaluate_late_v9_panel.py \
+            --top12 "$(cat /tmp/top12-root)" \
+            --binary kaggriculture_meta_lab/rust_port/target/release/kg_sim \
+            --candidate kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v8.py \
             --output kaggriculture_meta_lab/seat_087c0/results/v8late-v9-source-panel.json \
             2>&1 | tee /tmp/late-v9.log
       - name: Expose failure diagnostics

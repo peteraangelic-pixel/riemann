@@ -149,3 +149,7 @@
 
 ## 2026-09-11 (32): Rust audit wrapper fix
 - Exact-panel diagnostic: 6912/6912 jobs ran in 74s but all returned Rust parse/runtime errors for standalone champion source. Strategy already passes Python exact gate; prior Rust gates decoded to JSON first. Added `audit-v8late401.py` without auxiliary `ACTION_SHA256` assignment and asserted its 719×2 actions exactly equal formal champion. Exact same TOP12/seeds panel retry uses wrapper only; champion remains unchanged.
+
+## 2026-09-11 (33): pure-JSON exact V9-panel evaluator
+- Rust source parser still marked 6912/6912 compressed-wrapper games failed; not SHA-related. Replaced generic source benchmark with proven path: Python decodes exact champion ACTIONS, writes pure JSON tapes, direct kg_sim evaluate. Same TOP12/seeds and action table.
+- Peer branch V10 adaptive late-market keeps late401 except one t1 public fingerprint (opponent money=3000, zero hands) routes V7. Exact matched composition: 2948-508 on prior TOP12 panel, only +2 wins over late401 2946-510; both TOP7 identical. Python closed loop: 32-0 vs G2, 2-2-28 vs V9. Useful candidate but +2 is post-hoc and needs independent holdout; static late401 remains current champion.
