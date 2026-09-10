@@ -44,3 +44,9 @@
 - Crossover screen (6 fresh seeds, 10080 games): `v7-v2market2` 941-67, score .9335, +29819 vs V7 925-83, .9177, +29137. Team deltas W/144: Him 144=, Mengfei 135>128, Otter 138=, Spa 142=, Unknown 114>112, binghua 144>140, feel 124>121. Worst-team .792 > .778.
 - Mechanism isolated: V2 hands from t2 ≡ V7 exactly (1008/1008 equal); V2 market from t2 accounts for complete gain. Tail cuts t2/day1/day2/day3/day5 are identical in realized games, day10 slightly worse: useful market divergence is early and stabilizes before day5.
 - Candidate V8m = V7 t0+t1 + V2 market from t2 + V7 hands. Gates launched: newest TOP7 12 fresh seeds 133000+ and old TOP15+V2/V3/V6 panel 128 games fresh 66000+.
+
+## 2026-09-10 (13): V8 day6 holdout + action ablation
+- Fresh newest-TOP7 holdout 12 seeds/84 policies: V7 1846-170 (+28685); d6/d56/d510 each 1843-173, but margins +29088/+29081/+29121. D6 improves paired margin +403 in 1283 vs 673 cases, yet loses 3 binary wins (Otter -2, feel -1): no promotion.
+- Old TOP15 window screen: d6 (t144-168) 926-34 vs V7 923-37; DN 58-6 vs 54-10, Kanno 64-0 held. Day7 block negative. Thus tradeoff localized to 10 differing market actions on day6, mostly timing of FERTILIZER sells plus step166 FERTILIZER2→WOOL2.
+- Launched single-action/group ablation (10 singles + fertilizer groups) vs old TOP15, fresh 68000+; survivors then go to newest TOP7.
+- Peer 0712c reactive V8: learned selector `opponent money >=2800` picks V6 at t1; evolutionary holdout 1630-50 but static V7 also 1630-50 and higher margin. Independent Python gate initially failed 840 games; retry run pending. Treat as unconfirmed until zero-error independent gate.

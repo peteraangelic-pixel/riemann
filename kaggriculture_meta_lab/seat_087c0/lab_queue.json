@@ -2,18 +2,22 @@
  "jobs": [
   {
    "type": "h2h",
-   "tag": "v8-market-window-old",
+   "tag": "v8-day6-action-ablation",
    "candidates": [
-    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2m120-144.py",
-    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2m144-168.py",
-    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2m168-192.py",
-    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2m192-216.py",
-    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2m216-240.py",
-    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2m120-168.py",
-    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2m144-192.py",
-    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2m168-216.py",
-    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2m192-240.py",
-    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2m120-240.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v8s144.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v8s145.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v8s150.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v8s152.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v8s153.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v8s154.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v8s155.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v8s157.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v8s166.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v8s167.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v8fert-early.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v8fert-add.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v8fert-remove.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v8wool166.py",
     "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v7.py"
    ],
    "opponents": [
@@ -33,7 +37,7 @@
     "kaggriculture_meta_lab/seat_087c0/corpus/top15/terry_luo_top15.py",
     "kaggriculture_meta_lab/seat_087c0/corpus/top15/ultimatum_game_top15.py"
    ],
-   "start_seed": 67000,
+   "start_seed": 68000,
    "games": 32,
    "threads": 4,
    "parity_k": 4
