@@ -55,7 +55,7 @@ The generated source was also imported directly against genuine replay observati
 
 ## CI note
 
-Generic Rust run `34499100864` passed build, clippy, debug/release tests, selector tests, Python adapters, differential checks, and integrated parity, then failed the final tracked-format enforcement. The likely remaining change is rustfmt output in `overlay.rs`; CI should not be declared clean until its exact patch is applied and the workflow passes.
+Generic Rust run `34499100864` passed build, clippy, debug/release tests, selector tests, Python adapters, differential checks, and integrated parity, then failed only the final tracked-format enforcement. Its encoded annotation identified two exact `rustfmt` edits in `overlay.rs`; they were applied in commit `de9765a`. Follow-up run `34507344705` passed every check, including tracked formatting, so Rust CI is clean.
 
 ## Artifacts
 
