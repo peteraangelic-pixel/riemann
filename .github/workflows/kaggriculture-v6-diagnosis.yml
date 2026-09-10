@@ -33,17 +33,17 @@ jobs:
           python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
             --corpus "$(cat /tmp/top15-root)" --workers 4 --seeds 8 \
             --candidate v16=kaggriculture_meta_lab/agents/variants/agent_v16_kanno_top7_champion.py \
-            --candidate v3=kaggriculture_meta_lab/agents/candidates/top7_kanno_ep107381285_v3_sibling.py \
+            --candidate v3=kaggriculture_meta_lab/agents/candidates/agent_v3_coherent_replay.py \
             --candidate v4=kaggriculture_meta_lab/agents/candidates/peer_v4_german9_kanno_v3.py \
             --candidate v5=kaggriculture_meta_lab/agents/candidates/peer_v5_evolved.py \
-            --candidate v6=kaggriculture_meta_lab/agents/candidates/v6_v3_opening_v5_late.py \
+            --candidate v6=kaggriculture_meta_lab/agents/candidates/agent_v6_safe_opening.py \
             --candidate g2=kaggriculture_meta_lab/agents/variants/agent_v10_subin_106845775.py \
             --output kaggriculture_meta_lab/results/v6-diagnosis-top15-fresh-20260910.json
       - name: V6 original-seed TOP30
         run: |
           python kaggriculture_meta_lab/scripts/benchmark_top30.py \
             --corpus "$(cat /tmp/top30-root)" \
-            --candidate kaggriculture_meta_lab/agents/candidates/v6_v3_opening_v5_late.py \
+            --candidate kaggriculture_meta_lab/agents/candidates/agent_v6_safe_opening.py \
             --max-rank 30 --workers 4 \
             --output kaggriculture_meta_lab/results/v6-top30-original-seeds-20260910.json
       - name: Persist complete results

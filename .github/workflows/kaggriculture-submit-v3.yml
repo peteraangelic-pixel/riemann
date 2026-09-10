@@ -1,0 +1,78 @@
+name: Kaggriculture submit V3 coherent replay
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-submit-v3.yml"]
+permissions:
+  contents: write
+jobs:
+  submit:
+    if: contains(github.event.head_commit.message, '[kg-submit-v3]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install --disable-pip-version-check kaggle
+      - name: Validate and package V3
+        run: |
+          p=kaggriculture_meta_lab/agents/candidates/agent_v3_coherent_replay.py
+          python -m py_compile "$p"
+          PYTHONPATH=kaggriculture_meta_lab python - <<'PY'
+          from kaggriculture_lab.rust_backend import _source
+          tape=_source('kaggriculture_meta_lab/agents/candidates/agent_v3_coherent_replay.py')
+          assert tape is not None and tape.trim_hands
+          assert len(tape.actions)==2 and all(len(s)==719 for s in tape.actions)
+          PY
+          work=$(mktemp -d)
+          cp "$p" "$work/main.py"
+          tar -C "$work" -czf "$work/submission-v3.tar.gz" main.py
+          test $(wc -c < "$work/submission-v3.tar.gz") -lt 100000000
+          echo "$work" > /tmp/workdir
+      - name: Attempt V3 submission even if the active-slot limit rejects it
+        env: {KAGGLE_API_TOKEN: "${{ secrets.KAGGLE_API_TOKEN }}"}
+        run: |
+          mkdir -p ~/.kaggle kaggriculture_meta_lab/results
+          printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]' > ~/.kaggle/access_token
+          chmod 600 ~/.kaggle/access_token
+          work=$(cat /tmp/workdir)
+          set +e
+          output=$(kaggle competitions submit -c kaggriculture \
+            -f "$work/submission-v3.tar.gz" \
+            -m "V3 coherent replay broad-corpus candidate $GITHUB_SHA" 2>&1)
+          code=$?
+          printf '%s\n' "$output"
+          printf '%s\n' "$output" > /tmp/submit-output.txt
+          echo "$code" > /tmp/submit-code.txt
+          kaggle competitions submissions -c kaggriculture --csv \
+            > kaggriculture_meta_lab/results/kaggle-v3-attempt-status-20260910.csv 2>/tmp/list-error.txt
+          list_code=$?
+          echo "$list_code" > /tmp/list-code.txt
+          set -e
+          python - <<'PY'
+          import csv,json,pathlib
+          code=int(pathlib.Path('/tmp/submit-code.txt').read_text())
+          list_code=int(pathlib.Path('/tmp/list-code.txt').read_text())
+          result={
+            'submit_exit_code':code,
+            'submit_output':pathlib.Path('/tmp/submit-output.txt').read_text(),
+            'list_exit_code':list_code,
+            'list_error':pathlib.Path('/tmp/list-error.txt').read_text(),
+            'accepted_submission':None,
+          }
+          p=pathlib.Path('kaggriculture_meta_lab/results/kaggle-v3-attempt-status-20260910.csv')
+          if list_code==0 and p.stat().st_size:
+            rows=list(csv.DictReader(p.open()))
+            result['accepted_submission']=next((r for r in rows if 'V3 coherent replay broad-corpus candidate' in r.get('description','')),None)
+          pathlib.Path('kaggriculture_meta_lab/results/kaggle-v3-attempt-20260910.json').write_text(json.dumps(result,indent=2)+'\n')
+          print(json.dumps(result,indent=2))
+          PY
+      - name: Persist accepted reference or exact rejection
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/kaggle-v3-attempt-20260910.json \
+            kaggriculture_meta_lab/results/kaggle-v3-attempt-status-20260910.csv
+          git commit -m "Record V3 Kaggle submission attempt"
+          git push origin HEAD:arena/01a0712c-riemann

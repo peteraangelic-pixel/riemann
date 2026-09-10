@@ -100,7 +100,7 @@ The current public `kaggle`/`kagglesdk` package was inspected. `CompetitionApiCl
 
 ## Artifacts
 
-- V6 agent: `kaggriculture_meta_lab/agents/candidates/v6_v3_opening_v5_late.py`
+- V6 agent: `kaggriculture_meta_lab/agents/candidates/agent_v6_safe_opening.py`
 - TOP15: `kaggriculture_meta_lab/results/v6-diagnosis-top15-fresh-20260910.json`
 - TOP30: `kaggriculture_meta_lab/results/{v16,v3,v4,v5,v6}-top30-original-seeds-20260910.json`
 - TOP7: `kaggriculture_meta_lab/results/v16-v3-v4-v5-top7-fresh-20260910.json`
