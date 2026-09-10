@@ -2,11 +2,19 @@
  "jobs": [
   {
    "type": "h2h",
-   "tag": "v8-v2market-old-panel",
+   "tag": "v8-market-window-old",
    "candidates": [
-    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2market2.py",
-    "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v7.py",
-    "kaggriculture_meta_lab/seat_087c0/candidates/v7-t1b55.py"
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2m120-144.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2m144-168.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2m168-192.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2m192-216.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2m216-240.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2m120-168.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2m144-192.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2m168-216.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2m192-240.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2m120-240.py",
+    "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v7.py"
    ],
    "opponents": [
     "kaggriculture_meta_lab/seat_087c0/corpus/top15/aaaabbs_top15.py",
@@ -23,13 +31,10 @@
     "kaggriculture_meta_lab/seat_087c0/corpus/top15/spataro_top15.py",
     "kaggriculture_meta_lab/seat_087c0/corpus/top15/team_top15.py",
     "kaggriculture_meta_lab/seat_087c0/corpus/top15/terry_luo_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/ultimatum_game_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v6.py",
-    "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_ep107381285_v1.py",
-    "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_t7_v1.py"
+    "kaggriculture_meta_lab/seat_087c0/corpus/top15/ultimatum_game_top15.py"
    ],
-   "start_seed": 66000,
-   "games": 64,
+   "start_seed": 67000,
+   "games": 32,
    "threads": 4,
    "parity_k": 4
   }
