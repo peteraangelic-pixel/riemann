@@ -1,0 +1,10 @@
+{
+  "opponent": "random",
+  "games": 10,
+  "note": "Local kaggle-environments smoke; environment seed control is not exposed by this runner.",
+  "v6": {"rewards": [117860,100269,97915,71388,65844,70093,63609,119956,120139,89051], "mean": 91612.4},
+  "v6b": {"rewards": [101330,104883,79890,105977,77638,97213,109339,111522,41968,62690], "mean": 89245.0},
+  "delta_v6b_minus_v6": -2367.4,
+  "errors": 0,
+  "timeouts": 0
+}
