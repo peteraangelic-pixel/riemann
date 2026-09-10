@@ -308,7 +308,7 @@ impl MarketOverlay {
         if self.opening_switch_enabled && game.turn == 1 {
             let wheat_inventory = game.market_inventory[Item::Wheat.index()];
             let inside = (self.opening_opponent_money_below == 0.0
-                    || opponent.money <= self.opening_opponent_money_below)
+                || opponent.money <= self.opening_opponent_money_below)
                 && (self.opening_opponent_money_above == 0.0
                     || opponent.money >= self.opening_opponent_money_above)
                 && (self.opening_wheat_inventory_below == 0.0
@@ -464,7 +464,8 @@ mod tests {
             "opening_switch_enabled":true,
             "opening_opponent_money_below":2600,
             "opening_wheat_inventory_below":9980
-        })).unwrap();
+        }))
+        .unwrap();
         let switched = profile.apply(&game, 0, source);
         assert_eq!(switched.market.len(), 3);
         assert_eq!(switched.market[0].kind, OrderKind::Sell(Item::Wheat));

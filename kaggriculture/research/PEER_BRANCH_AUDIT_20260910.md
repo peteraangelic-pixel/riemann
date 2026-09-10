@@ -47,6 +47,27 @@ The aggregate TOP30 binary score remains below V16's 0.6167, but V7 has the stro
 
 The branch also confirms opening rock-paper-scissors: a local head-to-head optimum can still be population-fragile. Its wide-holdout rejection of apparently strong synthetic openings is especially important.
 
+## Branch 087c0 follow-up through `ef2c149`: useful day-6 pulse, rejected as V8
+
+The newer branch work added two reusable methodological improvements: evaluation against all 84 policies in the refreshed TOP7 corpus (12 replays per team), and single-action ablation after a day-window crossover. Its V7-opening plus older market-tail crossover improved the initial six-seed screen, but lost three wins on the 2,016-game refreshed-TOP7 holdout. This independently reinforces that a margin-positive day block is not automatically promotion-grade.
+
+The most interesting surviving micro-edit added `SELL FERTILIZER 3` at step 153 and changed nothing else. On branch evidence it improved both narrow panels:
+
+- old 15-representative TOP15: 894–66 versus V7 892–68;
+- refreshed 84-policy TOP7, 12 fresh seeds, both seats: 1845–171 versus 1843–173;
+- paired refreshed-TOP7 delta: +108.96 margin and +26.56 own reward per game.
+
+It was imported under the neutral LAB name `agent_v8_fertilizer_pulse.py` and subjected to our broader gates in run `34506530879`. The complete 105-policy TOP15 result reversed the binary signal:
+
+| Candidate | W–L | Score | Own reward | Margin |
+|---|---:|---:|---:|---:|
+| V7 | **2387–133** | **0.94722** | 101,995.83 | **+28,591.19** |
+| fertilizer pulse | 2379–141 | 0.94405 | **102,129.57** | +28,533.25 |
+
+The pulse gained +133.74 own reward but lost eight games and 57.95 margin per matched case. Recovered TOP30 was binary-identical at 178–122, while the pulse was also slightly lower in own reward (−22.97) and margin (−16.20). Therefore it is retained as a useful causal feature but **rejected as static V8**. The disagreement between 15/84-policy gates and the complete 105-policy gate is precisely why promotion continues to require broad per-policy coverage.
+
+A worthwhile next experiment is state-gating this one sale rather than adding it unconditionally: evolve thresholds over the public fertilizer market state and own available fertilizer, with V7 as fail-closed identity. The branch's day/action ablation method is useful; its static finalist is not itself the answer.
+
 ## Branch 075fa: reactive V6b is not yet competitive
 
 This branch created a fail-closed, price-aware V6b with state fingerprinting and a selector. It is useful infrastructure work, but the first gameplay benchmark is negative:
