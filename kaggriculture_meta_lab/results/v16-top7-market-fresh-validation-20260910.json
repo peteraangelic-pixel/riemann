@@ -1,0 +1,128 @@
+{
+  "format": "v16-market-profile-fresh-ab-v1",
+  "profile": {
+    "enabled": true,
+    "buy_stop_day": 29,
+    "endgame_day": 27,
+    "endgame_sell_fraction_bp": 10000,
+    "start_day": 2,
+    "cash_reserve": 300,
+    "sell_fraction_bp": 10000,
+    "wheat_reserve": 2,
+    "fertilizer_reserve": 0,
+    "milk_reserve": 0,
+    "hands_per_quadrant": 2,
+    "hand_buffer": 4,
+    "max_quadrants": 3,
+    "land_min_hands": 3,
+    "cow_target": 11,
+    "sheep_target": 3,
+    "goose_target": 5,
+    "animal_response_bp": 5000,
+    "wheat_seed_target": 120,
+    "carrot_seed_target": 60,
+    "strawberry_seed_target": 36,
+    "melon_seed_target": 12,
+    "tomato_seed_target": 24,
+    "wheat_stock_target": 20,
+    "fertilizer_stock_target": 16
+  },
+  "seeds": [
+    86000,
+    86127
+  ],
+  "jobs": 2048,
+  "summary": {
+    "baseline:german": {
+      "games": 256,
+      "wins": 161,
+      "losses": 95,
+      "ties": 0,
+      "score_rate": 0.62890625,
+      "mean_margin": -44.30078125,
+      "worst_margin": -35044.0
+    },
+    "baseline:b21": {
+      "games": 256,
+      "wins": 213,
+      "losses": 43,
+      "ties": 0,
+      "score_rate": 0.83203125,
+      "mean_margin": 9628.328125,
+      "worst_margin": -4286.0
+    },
+    "baseline:kanno_lower": {
+      "games": 256,
+      "wins": 205,
+      "losses": 51,
+      "ties": 0,
+      "score_rate": 0.80078125,
+      "mean_margin": 749.30078125,
+      "worst_margin": -5981.0
+    },
+    "baseline:g2": {
+      "games": 256,
+      "wins": 256,
+      "losses": 0,
+      "ties": 0,
+      "score_rate": 1.0,
+      "mean_margin": 9919.421875,
+      "worst_margin": 4662.0
+    },
+    "profile:german": {
+      "games": 256,
+      "wins": 1,
+      "losses": 255,
+      "ties": 0,
+      "score_rate": 0.00390625,
+      "mean_margin": -8361.9921875,
+      "worst_margin": -23552.0
+    },
+    "profile:b21": {
+      "games": 256,
+      "wins": 172,
+      "losses": 84,
+      "ties": 0,
+      "score_rate": 0.671875,
+      "mean_margin": 4633.8046875,
+      "worst_margin": -12099.0
+    },
+    "profile:kanno_lower": {
+      "games": 256,
+      "wins": 12,
+      "losses": 244,
+      "ties": 0,
+      "score_rate": 0.046875,
+      "mean_margin": -3005.6953125,
+      "worst_margin": -10541.0
+    },
+    "profile:g2": {
+      "games": 256,
+      "wins": 252,
+      "losses": 4,
+      "ties": 0,
+      "score_rate": 0.984375,
+      "mean_margin": 5473.26953125,
+      "worst_margin": -2924.0
+    }
+  },
+  "deltas": {
+    "german": {
+      "score_rate": -0.625,
+      "mean_margin": -8317.69140625
+    },
+    "b21": {
+      "score_rate": -0.16015625,
+      "mean_margin": -4994.5234375
+    },
+    "kanno_lower": {
+      "score_rate": -0.75390625,
+      "mean_margin": -3754.99609375
+    },
+    "g2": {
+      "score_rate": -0.015625,
+      "mean_margin": -4446.15234375
+    }
+  },
+  "passes_strict_gate": false
+}
