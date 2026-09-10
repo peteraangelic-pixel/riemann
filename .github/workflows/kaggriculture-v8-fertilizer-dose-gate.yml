@@ -1,0 +1,63 @@
+name: Kaggriculture V8 fertilizer dose independent gate
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v8-fertilizer-dose-gate.yml"]
+permissions:
+  contents: write
+jobs:
+  gate:
+    if: contains(github.event.head_commit.message, '[kg-v8-dose]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr
+      - name: Extract all corpora
+        run: |
+          python - <<'PY'
+          import os,pathlib,py7zr,json
+          for name in ('top15','top7','top30'):
+           with py7zr.SevenZipFile(name.upper()+'.7z') as a:a.extractall('/tmp/'+name)
+           ms=list(pathlib.Path('/tmp/'+name).rglob('manifest.json'))
+           roots=[m for m in ms if 'teams' in json.loads(m.read_text())]
+           root=roots[0].parent if roots else (ms[0].parent if len(ms)==1 else pathlib.Path(os.path.commonpath([str(x.parent) for x in ms])))
+           pathlib.Path('/tmp/'+name+'-root').write_text(str(root))
+          PY
+      - name: Build simulator
+        working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - name: Independent complete TOP15 dose response
+        run: |
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
+            --corpus "$(cat /tmp/top15-root)" --workers 4 --seeds 24 --seed-start 143000 \
+            --candidate v7=kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
+            --candidate pulse1=kaggriculture_meta_lab/agents/candidates/agent_v8_fertilizer_pulse1.py \
+            --candidate pulse2=kaggriculture_meta_lab/agents/candidates/agent_v8_fertilizer_pulse2.py \
+            --candidate pulse3=kaggriculture_meta_lab/agents/candidates/agent_v8_fertilizer_pulse.py \
+            --output kaggriculture_meta_lab/results/v8-fertilizer-dose-top15-independent-20260910.json
+      - name: Refreshed complete TOP7 dose response
+        run: |
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
+            --corpus "$(cat /tmp/top7-root)" --workers 4 --seeds 12 --seed-start 145000 \
+            --candidate v7=kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
+            --candidate pulse1=kaggriculture_meta_lab/agents/candidates/agent_v8_fertilizer_pulse1.py \
+            --candidate pulse2=kaggriculture_meta_lab/agents/candidates/agent_v8_fertilizer_pulse2.py \
+            --candidate pulse3=kaggriculture_meta_lab/agents/candidates/agent_v8_fertilizer_pulse.py \
+            --output kaggriculture_meta_lab/results/v8-fertilizer-dose-top7-independent-20260910.json
+      - name: Recovered TOP30 check for evolved dose
+        run: |
+          python kaggriculture_meta_lab/scripts/benchmark_top30.py \
+            --corpus "$(cat /tmp/top30-root)" --candidate kaggriculture_meta_lab/agents/candidates/agent_v8_fertilizer_pulse2.py \
+            --max-rank 30 --workers 4 --output kaggriculture_meta_lab/results/v8-fertilizer-dose2-top30-20260910.json
+      - name: Persist independent evidence
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v8-fertilizer-dose*.json
+          git commit -m "Record V8 fertilizer dose independent gate"
+          git push origin HEAD:arena/01a0712c-riemann
