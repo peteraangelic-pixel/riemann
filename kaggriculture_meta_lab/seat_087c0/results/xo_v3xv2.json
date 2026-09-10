@@ -1,0 +1,751 @@
+{
+ "tag": "xo_v3xv2",
+ "pa": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_ep107381285_v1.py",
+ "pb": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_t7_v1.py",
+ "controls": [
+  "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_ep107381285_v1.py",
+  "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_germanjurado1_v1.py",
+  "/tmp/opp/raw_b21.py",
+  "/tmp/opp/raw_subin.py"
+ ],
+ "mask_seed": 20260910,
+ "s1": {
+  "seeds": [
+   500,
+   501,
+   502,
+   503,
+   504,
+   505
+  ],
+  "games": 2400,
+  "seconds": 96.2,
+  "top": [
+   {
+    "kid": 89,
+    "mask": "AAAAAAAAAAAAABBAAAAAAAAAAAAAAA",
+    "key": [
+     0.5,
+     0.6667,
+     5317.6667
+    ],
+    "vs_pa": {
+     "games": 12,
+     "wins": 2,
+     "losses": 2,
+     "ties": 8,
+     "errors": 0,
+     "score_rate": 0.5,
+     "mean_margin": 0.3333333333333333,
+     "worst_margin": -605.0
+    },
+    "vs_b21": {
+     "games": 12,
+     "wins": 10,
+     "losses": 2,
+     "ties": 0,
+     "errors": 0,
+     "score_rate": 0.8333333333333334,
+     "mean_margin": 10635.0,
+     "worst_margin": -2554.0
+    }
+   },
+   {
+    "kid": 95,
+    "mask": "AAAABAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "key": [
+     0.5,
+     0.6667,
+     5317.25
+    ],
+    "vs_pa": {
+     "games": 12,
+     "wins": 2,
+     "losses": 2,
+     "ties": 8,
+     "errors": 0,
+     "score_rate": 0.5,
+     "mean_margin": 0.0,
+     "worst_margin": -607.0
+    },
+    "vs_b21": {
+     "games": 12,
+     "wins": 10,
+     "losses": 2,
+     "ties": 0,
+     "errors": 0,
+     "score_rate": 0.8333333333333334,
+     "mean_margin": 10634.5,
+     "worst_margin": -2557.0
+    }
+   },
+   {
+    "kid": 80,
+    "mask": "AAAAAAABAAAAAAABAAAAAAAAAAAAAA",
+    "key": [
+     0.5,
+     0.6667,
+     5317.25
+    ],
+    "vs_pa": {
+     "games": 12,
+     "wins": 2,
+     "losses": 2,
+     "ties": 8,
+     "errors": 0,
+     "score_rate": 0.5,
+     "mean_margin": 0.0,
+     "worst_margin": -607.0
+    },
+    "vs_b21": {
+     "games": 12,
+     "wins": 10,
+     "losses": 2,
+     "ties": 0,
+     "errors": 0,
+     "score_rate": 0.8333333333333334,
+     "mean_margin": 10634.5,
+     "worst_margin": -2557.0
+    }
+   },
+   {
+    "kid": 58,
+    "mask": "AABAAAAABAAAAAAAAAAAAAAAAAAAAA",
+    "key": [
+     0.5,
+     0.6667,
+     5317.25
+    ],
+    "vs_pa": {
+     "games": 12,
+     "wins": 2,
+     "losses": 2,
+     "ties": 8,
+     "errors": 0,
+     "score_rate": 0.5,
+     "mean_margin": 0.0,
+     "worst_margin": -607.0
+    },
+    "vs_b21": {
+     "games": 12,
+     "wins": 10,
+     "losses": 2,
+     "ties": 0,
+     "errors": 0,
+     "score_rate": 0.8333333333333334,
+     "mean_margin": 10634.5,
+     "worst_margin": -2557.0
+    }
+   },
+   {
+    "kid": 11,
+    "mask": "BBBBBBAAAAAAAAAAAAAAAAAAAAAAAA",
+    "key": [
+     0.5,
+     0.6667,
+     5317.25
+    ],
+    "vs_pa": {
+     "games": 12,
+     "wins": 2,
+     "losses": 2,
+     "ties": 8,
+     "errors": 0,
+     "score_rate": 0.5,
+     "mean_margin": 0.0,
+     "worst_margin": -607.0
+    },
+    "vs_b21": {
+     "games": 12,
+     "wins": 10,
+     "losses": 2,
+     "ties": 0,
+     "errors": 0,
+     "score_rate": 0.8333333333333334,
+     "mean_margin": 10634.5,
+     "worst_margin": -2557.0
+    }
+   },
+   {
+    "kid": 9,
+    "mask": "BBBBBAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "key": [
+     0.5,
+     0.6667,
+     5317.25
+    ],
+    "vs_pa": {
+     "games": 12,
+     "wins": 2,
+     "losses": 2,
+     "ties": 8,
+     "errors": 0,
+     "score_rate": 0.5,
+     "mean_margin": 0.0,
+     "worst_margin": -607.0
+    },
+    "vs_b21": {
+     "games": 12,
+     "wins": 10,
+     "losses": 2,
+     "ties": 0,
+     "errors": 0,
+     "score_rate": 0.8333333333333334,
+     "mean_margin": 10634.5,
+     "worst_margin": -2557.0
+    }
+   },
+   {
+    "kid": 7,
+    "mask": "BBBBAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "key": [
+     0.5,
+     0.6667,
+     5317.25
+    ],
+    "vs_pa": {
+     "games": 12,
+     "wins": 2,
+     "losses": 2,
+     "ties": 8,
+     "errors": 0,
+     "score_rate": 0.5,
+     "mean_margin": 0.0,
+     "worst_margin": -607.0
+    },
+    "vs_b21": {
+     "games": 12,
+     "wins": 10,
+     "losses": 2,
+     "ties": 0,
+     "errors": 0,
+     "score_rate": 0.8333333333333334,
+     "mean_margin": 10634.5,
+     "worst_margin": -2557.0
+    }
+   },
+   {
+    "kid": 5,
+    "mask": "BBBAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "key": [
+     0.5,
+     0.6667,
+     5317.25
+    ],
+    "vs_pa": {
+     "games": 12,
+     "wins": 2,
+     "losses": 2,
+     "ties": 8,
+     "errors": 0,
+     "score_rate": 0.5,
+     "mean_margin": 0.0,
+     "worst_margin": -607.0
+    },
+    "vs_b21": {
+     "games": 12,
+     "wins": 10,
+     "losses": 2,
+     "ties": 0,
+     "errors": 0,
+     "score_rate": 0.8333333333333334,
+     "mean_margin": 10634.5,
+     "worst_margin": -2557.0
+    }
+   },
+   {
+    "kid": 3,
+    "mask": "BBAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "key": [
+     0.5,
+     0.6667,
+     5317.25
+    ],
+    "vs_pa": {
+     "games": 12,
+     "wins": 2,
+     "losses": 2,
+     "ties": 8,
+     "errors": 0,
+     "score_rate": 0.5,
+     "mean_margin": 0.0,
+     "worst_margin": -607.0
+    },
+    "vs_b21": {
+     "games": 12,
+     "wins": 10,
+     "losses": 2,
+     "ties": 0,
+     "errors": 0,
+     "score_rate": 0.8333333333333334,
+     "mean_margin": 10634.5,
+     "worst_margin": -2557.0
+    }
+   },
+   {
+    "kid": 1,
+    "mask": "BAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "key": [
+     0.5,
+     0.6667,
+     5317.25
+    ],
+    "vs_pa": {
+     "games": 12,
+     "wins": 2,
+     "losses": 2,
+     "ties": 8,
+     "errors": 0,
+     "score_rate": 0.5,
+     "mean_margin": 0.0,
+     "worst_margin": -607.0
+    },
+    "vs_b21": {
+     "games": 12,
+     "wins": 10,
+     "losses": 2,
+     "ties": 0,
+     "errors": 0,
+     "score_rate": 0.8333333333333334,
+     "mean_margin": 10634.5,
+     "worst_margin": -2557.0
+    }
+   },
+   {
+    "kid": 75,
+    "mask": "AAAAAAAAAAAAAAABAAAABAAAAAAAAA",
+    "key": [
+     0.5,
+     0.6667,
+     5316.6667
+    ],
+    "vs_pa": {
+     "games": 12,
+     "wins": 6,
+     "losses": 6,
+     "ties": 0,
+     "errors": 0,
+     "score_rate": 0.5,
+     "mean_margin": -33.666666666666664,
+     "worst_margin": -622.0
+    },
+    "vs_b21": {
+     "games": 12,
+     "wins": 10,
+     "losses": 2,
+     "ties": 0,
+     "errors": 0,
+     "score_rate": 0.8333333333333334,
+     "mean_margin": 10667.0,
+     "worst_margin": -2640.0
+    }
+   },
+   {
+    "kid": 61,
+    "mask": "AAAABAAAAAAABAAAAAAAAABAAAAAAA",
+    "key": [
+     0.3333,
+     0.5833,
+     5362.25
+    ],
+    "vs_pa": {
+     "games": 12,
+     "wins": 4,
+     "losses": 8,
+     "ties": 0,
+     "errors": 0,
+     "score_rate": 0.3333333333333333,
+     "mean_margin": -16.666666666666668,
+     "worst_margin": -632.0
+    },
+    "vs_b21": {
+     "games": 12,
+     "wins": 10,
+     "losses": 2,
+     "ties": 0,
+     "errors": 0,
+     "score_rate": 0.8333333333333334,
+     "mean_margin": 10741.166666666666,
+     "worst_margin": -2500.0
+    }
+   }
+  ]
+ },
+ "s2": {
+  "seeds": [
+   510,
+   511,
+   512,
+   513,
+   514,
+   515,
+   516,
+   517
+  ],
+  "games": 768,
+  "seconds": 30.7,
+  "top": [
+   {
+    "kid": 89,
+    "mask": "AAAAAAAAAAAAABBAAAAAAAAAAAAAAA",
+    "key": [
+     0.75,
+     0.9375,
+     4376.4688
+    ],
+    "controls": {
+     "champion_tape_kanno_ep107381285_v1": {
+      "games": 16,
+      "wins": 8,
+      "losses": 0,
+      "ties": 8,
+      "errors": 0,
+      "score_rate": 0.75,
+      "mean_margin": 5.25,
+      "worst_margin": 0.0
+     },
+     "champion_tape_germanjurado1_v1": {
+      "games": 16,
+      "wins": 16,
+      "losses": 0,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 1.0,
+      "mean_margin": 827.0,
+      "worst_margin": 574.0
+     },
+     "raw_b21": {
+      "games": 16,
+      "wins": 16,
+      "losses": 0,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 1.0,
+      "mean_margin": 10203.875,
+      "worst_margin": 1314.0
+     },
+     "raw_subin": {
+      "games": 16,
+      "wins": 16,
+      "losses": 0,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 1.0,
+      "mean_margin": 6469.75,
+      "worst_margin": 4934.0
+     }
+    }
+   },
+   {
+    "kid": 95,
+    "mask": "AAAABAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "key": [
+     0.5,
+     0.875,
+     4368.25
+    ],
+    "controls": {
+     "champion_tape_kanno_ep107381285_v1": {
+      "games": 16,
+      "wins": 0,
+      "losses": 0,
+      "ties": 16,
+      "errors": 0,
+      "score_rate": 0.5,
+      "mean_margin": 0.0,
+      "worst_margin": 0.0
+     },
+     "champion_tape_germanjurado1_v1": {
+      "games": 16,
+      "wins": 16,
+      "losses": 0,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 1.0,
+      "mean_margin": 818.125,
+      "worst_margin": 566.0
+     },
+     "raw_b21": {
+      "games": 16,
+      "wins": 16,
+      "losses": 0,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 1.0,
+      "mean_margin": 10194.5,
+      "worst_margin": 1311.0
+     },
+     "raw_subin": {
+      "games": 16,
+      "wins": 16,
+      "losses": 0,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 1.0,
+      "mean_margin": 6460.375,
+      "worst_margin": 4934.0
+     }
+    }
+   },
+   {
+    "kid": 80,
+    "mask": "AAAAAAABAAAAAAABAAAAAAAAAAAAAA",
+    "key": [
+     0.5,
+     0.875,
+     4368.25
+    ],
+    "controls": {
+     "champion_tape_kanno_ep107381285_v1": {
+      "games": 16,
+      "wins": 0,
+      "losses": 0,
+      "ties": 16,
+      "errors": 0,
+      "score_rate": 0.5,
+      "mean_margin": 0.0,
+      "worst_margin": 0.0
+     },
+     "champion_tape_germanjurado1_v1": {
+      "games": 16,
+      "wins": 16,
+      "losses": 0,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 1.0,
+      "mean_margin": 818.125,
+      "worst_margin": 566.0
+     },
+     "raw_b21": {
+      "games": 16,
+      "wins": 16,
+      "losses": 0,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 1.0,
+      "mean_margin": 10194.5,
+      "worst_margin": 1311.0
+     },
+     "raw_subin": {
+      "games": 16,
+      "wins": 16,
+      "losses": 0,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 1.0,
+      "mean_margin": 6460.375,
+      "worst_margin": 4934.0
+     }
+    }
+   }
+  ]
+ },
+ "s3": {
+  "seeds": [
+   520,
+   551
+  ],
+  "games": 1024,
+  "seconds": 43.8,
+  "finalists": [
+   {
+    "kid": 89,
+    "mask": "AAAAAAAAAAAAABBAAAAAAAAAAAAAAA",
+    "key": [
+     0.7031,
+     0.8906,
+     4469.9023
+    ],
+    "controls": {
+     "champion_tape_kanno_ep107381285_v1": {
+      "games": 64,
+      "wins": 27,
+      "losses": 1,
+      "ties": 36,
+      "errors": 0,
+      "score_rate": 0.703125,
+      "mean_margin": 4.21875,
+      "worst_margin": -303.0
+     },
+     "champion_tape_germanjurado1_v1": {
+      "games": 64,
+      "wins": 63,
+      "losses": 1,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 0.984375,
+      "mean_margin": 855.71875,
+      "worst_margin": -2634.0
+     },
+     "raw_b21": {
+      "games": 64,
+      "wins": 56,
+      "losses": 8,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 0.875,
+      "mean_margin": 9334.40625,
+      "worst_margin": -5154.0
+     },
+     "raw_subin": {
+      "games": 64,
+      "wins": 64,
+      "losses": 0,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 1.0,
+      "mean_margin": 7685.265625,
+      "worst_margin": 3963.0
+     }
+    }
+   },
+   {
+    "kid": 95,
+    "mask": "AAAABAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "key": [
+     0.5,
+     0.8398,
+     4463.1875
+    ],
+    "controls": {
+     "champion_tape_kanno_ep107381285_v1": {
+      "games": 64,
+      "wins": 1,
+      "losses": 1,
+      "ties": 62,
+      "errors": 0,
+      "score_rate": 0.5,
+      "mean_margin": 0.0,
+      "worst_margin": -303.0
+     },
+     "champion_tape_germanjurado1_v1": {
+      "games": 64,
+      "wins": 63,
+      "losses": 1,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 0.984375,
+      "mean_margin": 848.453125,
+      "worst_margin": -2635.0
+     },
+     "raw_b21": {
+      "games": 64,
+      "wins": 56,
+      "losses": 8,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 0.875,
+      "mean_margin": 9326.46875,
+      "worst_margin": -5157.0
+     },
+     "raw_subin": {
+      "games": 64,
+      "wins": 64,
+      "losses": 0,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 1.0,
+      "mean_margin": 7677.828125,
+      "worst_margin": 3963.0
+     }
+    }
+   },
+   {
+    "kid": 80,
+    "mask": "AAAAAAABAAAAAAABAAAAAAAAAAAAAA",
+    "key": [
+     0.5,
+     0.8398,
+     4463.1875
+    ],
+    "controls": {
+     "champion_tape_kanno_ep107381285_v1": {
+      "games": 64,
+      "wins": 1,
+      "losses": 1,
+      "ties": 62,
+      "errors": 0,
+      "score_rate": 0.5,
+      "mean_margin": 0.0,
+      "worst_margin": -303.0
+     },
+     "champion_tape_germanjurado1_v1": {
+      "games": 64,
+      "wins": 63,
+      "losses": 1,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 0.984375,
+      "mean_margin": 848.453125,
+      "worst_margin": -2635.0
+     },
+     "raw_b21": {
+      "games": 64,
+      "wins": 56,
+      "losses": 8,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 0.875,
+      "mean_margin": 9326.46875,
+      "worst_margin": -5157.0
+     },
+     "raw_subin": {
+      "games": 64,
+      "wins": 64,
+      "losses": 0,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 1.0,
+      "mean_margin": 7677.828125,
+      "worst_margin": 3963.0
+     }
+    }
+   }
+  ],
+  "baseline": {
+   "kid": "parentA",
+   "controls": {
+    "champion_tape_kanno_ep107381285_v1": {
+     "games": 64,
+     "wins": 1,
+     "losses": 1,
+     "ties": 62,
+     "errors": 0,
+     "score_rate": 0.5,
+     "mean_margin": 0.0,
+     "worst_margin": -303.0
+    },
+    "champion_tape_germanjurado1_v1": {
+     "games": 64,
+     "wins": 63,
+     "losses": 1,
+     "ties": 0,
+     "errors": 0,
+     "score_rate": 0.984375,
+     "mean_margin": 848.453125,
+     "worst_margin": -2635.0
+    },
+    "raw_b21": {
+     "games": 64,
+     "wins": 56,
+     "losses": 8,
+     "ties": 0,
+     "errors": 0,
+     "score_rate": 0.875,
+     "mean_margin": 9326.46875,
+     "worst_margin": -5157.0
+    },
+    "raw_subin": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "errors": 0,
+     "score_rate": 1.0,
+     "mean_margin": 7677.828125,
+     "worst_margin": 3963.0
+    }
+   }
+  }
+ }
+}

@@ -220,3 +220,30 @@ v2 vs v3: farmer+hands identyczne w 719/719, te same sumy (260 hire, 2 landy,
 to timing sprzedaży w endgame — zgodnie z diagnozą (decyzje w ost. ~5 dniach).
 
 **Nowy mistrz: `agents/champion_tape_kanno_ep107381285_v1.py`** (v3).
+
+## Przegląd LAB-a 0712c + V4 (day-crossover)
+
+LAB rodzeństwa (Rust, ~10k gier w sekundy w CI): ich Python-fallback
+(fast_static_tournament.py) to odpowiednik naszego fast_h2h — construkcja
+szybkościowa już mamy. Prawdziwy łup to METODY: day-crossover search
+(spójne dni 24-turowe kanno×GJ, populacja 256, holdout + regresje) oraz
+sygnał live: **V16 (= nasz v2, 16/16 remisów) zdobył live 824.9**,
+V15 (= v1) 1445.6, V14 milk0 1683.0 — wszystkie taśmy statyczne lądują
+800–1700, daleko od G2 (~2300). Rodzeństwo unieważniło statyczny sygnał
+promocji; live V2 (user submituje) to następny punkt danych.
+
+Ich crossover-winner (maska GKK…K, +402/g nad V16) przegrywa z naszym v3
+**0-16 (−1448/g)** — v3 > ich najlepszy artefakt. Ale metoda działa:
+własny `scripts/search_day_crossover.py` (100 masek, S1→S2→S3, guard
+hashujący taśmy w workerach), pary v3×v2 i v3×v1.
+
+Para v3×v1: zwycięzca kid-17, maska B×9+A×21 (dni GJ 0–8 + v3 9–29),
+plateau cięć 8/9/10. Holdout S3 (seedy 520–551): vs v3 **63-1 (+329)**,
+vs v2 63-1 (+1639), vs b21 56-8 (tyle samo co baseline v3), vs subin 64-0.
+Re-walidacja fresh 600–615: vs v3 **31-1 (+206)** → łącznie **94-2/96**.
+Regresje: vs v1 16-0 (+1086), yusuke 16-0 (+9174), himanshu 16-0 (+8811).
+Bramka slow vs reaktywne G2: **16-0 (+8295)**. Parity fast/slow 4/4.
+Para v3×v2 odrzucona (najlepszy 27-1-36, +4/g — szum).
+
+**Nowy mistrz: `agents/champion_tape_daycrossover_v4.py`** (v4).
+Sanity pliku repo vs emisja LAB: 4/4 remisów.

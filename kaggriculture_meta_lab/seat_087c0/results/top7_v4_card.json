@@ -1,0 +1,72 @@
+{
+ "champion": "v4 = champion_tape_daycrossover_v4.py (GJ days 0-8 x v3 days 9-29)",
+ "mask": "BBBBBBBBBAAAAAAAAAAAAAAAAAAAAA",
+ "method": "search_day_crossover.py; S1 screen 100 masks vs {v3,b21} seeds 500-505; S2 top12 vs {v3,v2,b21,subin} seeds 510-517; S3 top3 + baseline vs same controls seeds 520-551 (64 games/control)",
+ "holdout_S3": {
+  "vs_v3": {
+   "w": 63,
+   "l": 1,
+   "t": 0,
+   "mean_margin": 329
+  },
+  "vs_v2": {
+   "w": 63,
+   "l": 1,
+   "t": 0,
+   "mean_margin": 1639
+  },
+  "vs_b21": {
+   "w": 56,
+   "l": 8,
+   "t": 0,
+   "mean_margin": 9193
+  },
+  "vs_subin": {
+   "w": 64,
+   "l": 0,
+   "t": 0,
+   "mean_margin": 6402
+  }
+ },
+ "fresh_revalidation_seeds_600_615": {
+  "vs_v3": {
+   "w": 31,
+   "l": 1,
+   "t": 0,
+   "mean_margin": 206
+  }
+ },
+ "total_vs_v3": {
+  "w": 94,
+  "l": 2,
+  "t": 0,
+  "games": 96
+ },
+ "regression": {
+  "vs_v1": {
+   "w": 16,
+   "l": 0,
+   "mean_margin": 1086
+  },
+  "vs_yusuke_t7": {
+   "w": 16,
+   "l": 0,
+   "mean_margin": 9174
+  },
+  "vs_himanshu_t7": {
+   "w": 16,
+   "l": 0,
+   "mean_margin": 8811
+  }
+ },
+ "slow_gate_vs_reactive_G2": {
+  "w": 16,
+  "l": 0,
+  "mean_margin": 8295
+ },
+ "parity_fast_vs_slow": "4/4 OK",
+ "sanity_repo_file_vs_lab_winner": "4/4 ties",
+ "plateau": "cuts at day 8/9/10 all >= 0.875 worst score-rate (kid-15/17/19)",
+ "rejected_pair": "v3xv2 crossover: best kid-89 only 27-1-36 vs v3 (+4/g) - no promotion",
+ "sibling_artifacts": "their x_winner loses 0-16 (-1448/g) to v3; their V16 == v2 (16/16 ties) -> V16 live 824.9 predicts v2 live band"
+}
