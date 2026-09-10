@@ -35,7 +35,15 @@ Run 34494565323 evaluated 8 shared fresh seeds against all 105 selected TOP15 po
 | V16/V2 | 1471–209 | 0.8756 | 90,022 | +10,028 | 0.8382 |
 | G2 control | 674–1006 | 0.4012 | 80,820 | −5,096 | 0.3951 |
 
-V7 versus V16 gains +12,521 own reward and +17,407 margin per matched case; versus V6 it gains +12,683 own reward and +16,951 margin. Against the special omitted archetype it remains robust at 102–10 and +5,851. This is a genuinely large result rather than a narrow binary exploit, and it significantly exceeds G4/G2 and every previous static candidate on all three principal local metrics. It is now the leading V7 candidate, subject to TOP30/TOP7 and eventually live validation.
+V7 versus V16 gains +12,521 own reward and +17,407 margin per matched case; versus V6 it gains +12,683 own reward and +16,951 margin. Against the special omitted archetype it remains robust at 102–10 and +5,851. This is a genuinely large result rather than a narrow binary exploit, and it significantly exceeds G4/G2 and every previous static candidate on all three principal local metrics.
+
+Secondary gates in run 34495271206 also passed:
+
+- complete matched TOP7: V7 1255–89, score 0.9338, own reward 101,827, margin +25,660; V6 control 1188–156, score 0.8839, own reward 88,516, margin +12,911;
+- recovered TOP30 original seeds: V7 178–122, score 0.5933, own reward 100,670, margin +12,523;
+- TOP30 best-listed subset: 98–46, score 0.6806, own reward 104,203, margin +19,188.
+
+The aggregate TOP30 binary score remains below V16's 0.6167, but V7 has the strongest TOP30 own reward and margin by a large amount and the strongest best-listed binary score. It is now the leading V7 candidate pending live validation.
 
 The branch also confirms opening rock-paper-scissors: a local head-to-head optimum can still be population-fragile. Its wide-holdout rejection of apparently strong synthetic openings is especially important.
 
