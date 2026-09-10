@@ -2,31 +2,30 @@
  "jobs": [
   {
    "type": "h2h",
-   "tag": "screen2-holdout",
+   "tag": "v7race-panel",
    "candidates": [
     "kaggriculture_meta_lab/seat_087c0/candidates/v6-t1b60.py",
     "kaggriculture_meta_lab/seat_087c0/candidates/v6-t0b14-20.py",
-    "kaggriculture_meta_lab/seat_087c0/candidates/v6-t0b7-13.py",
     "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v6.py"
    ],
    "opponents": [
-    "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v6.py",
-    "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_evolved_v5.py",
-    "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_daycrossover_v4.py",
-    "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_ep107381285_v1.py",
-    "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_t7_v1.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/peer/ours_peer_v4_hybrid_holdout_winner.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/peer/v3_market_genetic_holdout_winner.py",
+    "kaggriculture_meta_lab/seat_087c0/corpus/top15/aaaabbs_top15.py",
+    "kaggriculture_meta_lab/seat_087c0/corpus/top15/binghua_top15.py",
+    "kaggriculture_meta_lab/seat_087c0/corpus/top15/cooked_top15.py",
     "kaggriculture_meta_lab/seat_087c0/corpus/top15/deepernet_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/kanno_top15.py",
     "kaggriculture_meta_lab/seat_087c0/corpus/top15/germanjurado1_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/raw_b21.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/raw_subin.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/yusuke_hayashi_t7.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/himanshu_kumar_t7.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/spataro_top15.py"
+    "kaggriculture_meta_lab/seat_087c0/corpus/top15/himanshu_kumar_top15.py",
+    "kaggriculture_meta_lab/seat_087c0/corpus/top15/kanno_top15.py",
+    "kaggriculture_meta_lab/seat_087c0/corpus/top15/mengfei_li_top15.py",
+    "kaggriculture_meta_lab/seat_087c0/corpus/top15/mtmr_s1_top15.py",
+    "kaggriculture_meta_lab/seat_087c0/corpus/top15/otter_vibe_top15.py",
+    "kaggriculture_meta_lab/seat_087c0/corpus/top15/pensukesan_top15.py",
+    "kaggriculture_meta_lab/seat_087c0/corpus/top15/spataro_top15.py",
+    "kaggriculture_meta_lab/seat_087c0/corpus/top15/team_top15.py",
+    "kaggriculture_meta_lab/seat_087c0/corpus/top15/terry_luo_top15.py",
+    "kaggriculture_meta_lab/seat_087c0/corpus/top15/ultimatum_game_top15.py"
    ],
-   "start_seed": 58000,
+   "start_seed": 59000,
    "games": 64,
    "threads": 4,
    "parity_k": 4
