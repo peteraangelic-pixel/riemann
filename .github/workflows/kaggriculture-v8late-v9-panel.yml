@@ -2,7 +2,7 @@ name: Late401 versus V9 exact TOP12 panel
 on:
   push:
     branches: ["arena/01a087c0-riemann"]
-    paths: [".github/workflows/kaggriculture-v8late-v9-panel.yml"]
+    paths: [".github/workflows/kaggriculture-v8late-v9-panel.yml", "kaggriculture_meta_lab/seat_087c0/scripts/evaluate_late_v9_panel.py"]
 permissions: {contents: write}
 jobs:
   compare:
