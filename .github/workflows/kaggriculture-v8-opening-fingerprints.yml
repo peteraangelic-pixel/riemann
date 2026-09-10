@@ -1,0 +1,56 @@
+name: Kaggriculture V8 opening fingerprints
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v8-opening-fingerprints.yml"]
+permissions:
+  contents: write
+jobs:
+  collect:
+    if: contains(github.event.head_commit.message, '[kg-v8-fingerprint]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr
+      - name: Extract corpora
+        run: |
+          python - <<'PY'
+          import json,pathlib,py7zr
+          for arc,out,want in [('TOP7.7z','/tmp/new7',7),('TOP15.7z','/tmp/top15',15)]:
+           with py7zr.SevenZipFile(arc) as a:a.extractall(out)
+           aggregates=[]
+           for m in pathlib.Path(out).rglob('manifest.json'):
+            d=json.loads(m.read_text())
+            if isinstance(d.get('teams'),list) and len(d['teams'])==want:aggregates.append(m.parent)
+           if aggregates:root=aggregates[0]
+           else:
+            manifests=list(pathlib.Path(out).glob('*/manifest.json'))
+            if len(manifests)<want:raise SystemExit(f'cannot resolve {arc}')
+            root=manifests[0].parent.parent
+           pathlib.Path('/tmp/'+('new7-root' if want==7 else 'top15-root')).write_text(str(root))
+          PY
+      - name: Build simulator
+        working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - name: Collect exact public states
+        run: |
+          B=kaggriculture_meta_lab/rust_port/target/release/kg_sim
+          C=kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py
+          python kaggriculture_meta_lab/scripts/collect_v8_opening_fingerprints.py \
+            --corpus "$(cat /tmp/new7-root)" --candidate "$C" --binary "$B" --max-rank 7 \
+            --output kaggriculture_meta_lab/results/v8-opening-fingerprints-latest-top7-20260910.json
+          python kaggriculture_meta_lab/scripts/collect_v8_opening_fingerprints.py \
+            --corpus "$(cat /tmp/top15-root)" --candidate "$C" --binary "$B" --max-rank 15 \
+            --output kaggriculture_meta_lab/results/v8-opening-fingerprints-top15-20260910.json
+      - name: Persist fingerprints
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v8-opening-fingerprints-*.json
+          git commit -m "Record public opening fingerprints for V8 routing"
+          git push origin HEAD:arena/01a0712c-riemann
