@@ -1,0 +1,196 @@
+{
+  "candidate": "champion_tape_germanjurado1.py",
+  "source": {
+    "archive": "TOP15.7z",
+    "archive_sha256": "820cd7e2cbb02b8c88566707231d9cbbd26047d1d69e2374f5490488087f4b19",
+    "episode": 107218640,
+    "replay_sha256": "0b64beccaef9de1dad9a0e4a63e7f1f5b551b8fb98e016216077b3aeb5bc6cbe",
+    "seed": 726872323,
+    "recorded_rewards": [
+      131745,
+      126919
+    ],
+    "reproduced_rewards": [
+      131745.0,
+      126919.0
+    ]
+  },
+  "runs": [
+    {
+      "candidate": "kaggriculture_meta_lab/agents/candidates/champion_tape_germanjurado1.py",
+      "games": 8,
+      "workers": 8,
+      "elapsed_seconds": 52.27416856900004,
+      "games_per_second": 0.30607851713376505,
+      "opponents": {
+        "agent_v10_subin_g2_83": {
+          "games": 16,
+          "wins": 16,
+          "losses": 0,
+          "ties": 0,
+          "errors": 0,
+          "win_rate": 1.0,
+          "score_rate": 1.0,
+          "ci_low": 0.8063923194655637,
+          "ci_high": 1.0,
+          "mean_margin": 6472.1875,
+          "median_margin": 7067.0,
+          "p10_margin": 3180.0,
+          "mean_self": 109852.1875,
+          "mean_opp": 103380.0
+        }
+      },
+      "pooled": {
+        "games": 16,
+        "wins": 16,
+        "losses": 0,
+        "ties": 0,
+        "errors": 0,
+        "win_rate": 1.0,
+        "score_rate": 1.0,
+        "ci_low": 0.8063923194655637,
+        "ci_high": 1.0,
+        "mean_margin": 6472.1875,
+        "median_margin": 7067.0,
+        "p10_margin": 3180.0,
+        "mean_self": 109852.1875,
+        "mean_opp": 103380.0
+      },
+      "source_report": "tournament-20260910-081604.json"
+    },
+    {
+      "candidate": "kaggriculture_meta_lab/agents/candidates/champion_tape_germanjurado1.py",
+      "games": 8,
+      "workers": 8,
+      "elapsed_seconds": 53.53758549899999,
+      "games_per_second": 0.29885546482664704,
+      "opponents": {
+        "agent_v9_b21_s16": {
+          "games": 16,
+          "wins": 16,
+          "losses": 0,
+          "ties": 0,
+          "errors": 0,
+          "win_rate": 1.0,
+          "score_rate": 1.0,
+          "ci_low": 0.8063923194655637,
+          "ci_high": 1.0,
+          "mean_margin": 9954.875,
+          "median_margin": 11723.5,
+          "p10_margin": 85.0,
+          "mean_self": 101406.375,
+          "mean_opp": 91451.5
+        }
+      },
+      "pooled": {
+        "games": 16,
+        "wins": 16,
+        "losses": 0,
+        "ties": 0,
+        "errors": 0,
+        "win_rate": 1.0,
+        "score_rate": 1.0,
+        "ci_low": 0.8063923194655637,
+        "ci_high": 1.0,
+        "mean_margin": 9954.875,
+        "median_margin": 11723.5,
+        "p10_margin": 85.0,
+        "mean_self": 101406.375,
+        "mean_opp": 91451.5
+      },
+      "source_report": "tournament-20260910-081702.json"
+    },
+    {
+      "candidate": "kaggriculture_meta_lab/agents/candidates/champion_tape_germanjurado1.py",
+      "games": 16,
+      "workers": 8,
+      "elapsed_seconds": 104.08128806700006,
+      "games_per_second": 0.30745199828234926,
+      "opponents": {
+        "agent_v10_subin_g2_83": {
+          "games": 32,
+          "wins": 32,
+          "losses": 0,
+          "ties": 0,
+          "errors": 0,
+          "win_rate": 1.0,
+          "score_rate": 1.0,
+          "ci_low": 0.8928208017449293,
+          "ci_high": 1.0,
+          "mean_margin": 5530.6875,
+          "median_margin": 5320.0,
+          "p10_margin": 2086.0,
+          "mean_self": 101272.5625,
+          "mean_opp": 95741.875
+        }
+      },
+      "pooled": {
+        "games": 32,
+        "wins": 32,
+        "losses": 0,
+        "ties": 0,
+        "errors": 0,
+        "win_rate": 1.0,
+        "score_rate": 1.0,
+        "ci_low": 0.8928208017449293,
+        "ci_high": 1.0,
+        "mean_margin": 5530.6875,
+        "median_margin": 5320.0,
+        "p10_margin": 2086.0,
+        "mean_self": 101272.5625,
+        "mean_opp": 95741.875
+      },
+      "source_report": "tournament-20260910-081908.json"
+    },
+    {
+      "candidate": "kaggriculture_meta_lab/agents/candidates/champion_tape_germanjurado1.py",
+      "games": 8,
+      "workers": 8,
+      "elapsed_seconds": 54.62108937200003,
+      "games_per_second": 0.2929271492743598,
+      "opponents": {
+        "agent_v11_subin_g4_29": {
+          "games": 16,
+          "wins": 16,
+          "losses": 0,
+          "ties": 0,
+          "errors": 0,
+          "win_rate": 1.0,
+          "score_rate": 1.0,
+          "ci_low": 0.8063923194655637,
+          "ci_high": 1.0,
+          "mean_margin": 23946.0625,
+          "median_margin": 16649.5,
+          "p10_margin": 12242.0,
+          "mean_self": 123541.1875,
+          "mean_opp": 99595.125
+        }
+      },
+      "pooled": {
+        "games": 16,
+        "wins": 16,
+        "losses": 0,
+        "ties": 0,
+        "errors": 0,
+        "win_rate": 1.0,
+        "score_rate": 1.0,
+        "ci_low": 0.8063923194655637,
+        "ci_high": 1.0,
+        "mean_margin": 23946.0625,
+        "median_margin": 16649.5,
+        "p10_margin": 12242.0,
+        "mean_self": 123541.1875,
+        "mean_opp": 99595.125
+      },
+      "source_report": "tournament-20260910-082011.json"
+    }
+  ],
+  "combined_g2": {
+    "games": 48,
+    "wins": 48,
+    "losses": 0,
+    "ties": 0,
+    "errors": 0
+  },
+  "decision": "promising candidate; no V-number before independent holdout/promotion decision"
+}
