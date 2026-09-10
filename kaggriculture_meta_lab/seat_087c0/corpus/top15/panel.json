@@ -1,0 +1,167 @@
+[
+ {
+  "team": "DeeperNet",
+  "slug": "deepernet",
+  "rank": 13,
+  "lb_score": 2908.3,
+  "file": "replay_06_107220449.json",
+  "seat": 0,
+  "reward": 123603.0,
+  "opp": "OceanMix",
+  "status": "DONE"
+ },
+ {
+  "team": "GermanJurado1",
+  "slug": "germanjurado1",
+  "rank": 10,
+  "lb_score": 2920.4,
+  "file": "replay_03_107218640.json",
+  "seat": 0,
+  "reward": 131745.0,
+  "opp": "mtmr_s1",
+  "status": "DONE"
+ },
+ {
+  "team": "Himanshu Kumar",
+  "slug": "himanshu_kumar",
+  "rank": 3,
+  "lb_score": 2977.8,
+  "file": "replay_01_107221966.json",
+  "seat": 1,
+  "reward": 134643.0,
+  "opp": "Michael Shihong Zhang",
+  "status": "DONE"
+ },
+ {
+  "team": "Mengfei Li",
+  "slug": "mengfei_li",
+  "rank": 9,
+  "lb_score": 2929.4,
+  "file": "replay_05_107217428.json",
+  "seat": 0,
+  "reward": 116492.0,
+  "opp": "Asy Mortenson",
+  "status": "DONE"
+ },
+ {
+  "team": "Otter Vibe",
+  "slug": "otter_vibe",
+  "rank": 1,
+  "lb_score": 2987.0,
+  "file": "replay_03_107217016.json",
+  "seat": 1,
+  "reward": 130220.0,
+  "opp": "Himanshu Kumar",
+  "status": "DONE"
+ },
+ {
+  "team": "SpaTaro",
+  "slug": "spataro",
+  "rank": 2,
+  "lb_score": 2984.1,
+  "file": "replay_07_107210201.json",
+  "seat": 0,
+  "reward": 144820.0,
+  "opp": "GUAM",
+  "status": "DONE"
+ },
+ {
+  "team": "Terry Luo",
+  "slug": "terry_luo",
+  "rank": 7,
+  "lb_score": 2934.9,
+  "file": "replay_06_107212753.json",
+  "seat": 0,
+  "reward": 128945.0,
+  "opp": "DeeperNet",
+  "status": "DONE"
+ },
+ {
+  "team": "binghua",
+  "slug": "binghua",
+  "rank": 8,
+  "lb_score": 2930.2,
+  "file": "replay_06_107213063.json",
+  "seat": 1,
+  "reward": 137604.0,
+  "opp": "ChandramouliNagasundaram",
+  "status": "DONE"
+ },
+ {
+  "team": "cooked",
+  "slug": "cooked",
+  "rank": 5,
+  "lb_score": 2943.1,
+  "file": "replay_06_107219390.json",
+  "seat": 1,
+  "reward": 143303.0,
+  "opp": "OceanMix",
+  "status": "DONE"
+ },
+ {
+  "team": "kanno",
+  "slug": "kanno",
+  "rank": 6,
+  "lb_score": 2940.2,
+  "file": "replay_02_107222367.json",
+  "seat": 0,
+  "reward": 122030.0,
+  "opp": "Squirrel",
+  "status": "DONE"
+ },
+ {
+  "team": "mtmr_s1",
+  "slug": "mtmr_s1",
+  "rank": 11,
+  "lb_score": 2916.1,
+  "file": "replay_02_107222491.json",
+  "seat": 0,
+  "reward": 129442.0,
+  "opp": "automatylicza",
+  "status": "DONE"
+ },
+ {
+  "team": "pensukesan",
+  "slug": "pensukesan",
+  "rank": 4,
+  "lb_score": 2968.7,
+  "file": "replay_04_107220180.json",
+  "seat": 0,
+  "reward": 107759.0,
+  "opp": "AI\u662f\u6211\u7684\u8c46\u5305",
+  "status": "DONE"
+ },
+ {
+  "team": "ultimatum_game",
+  "slug": "ultimatum_game",
+  "rank": 15,
+  "lb_score": 2896.8,
+  "file": "replay_05_107212126.json",
+  "seat": 1,
+  "reward": 144720.0,
+  "opp": "Mengfei Li",
+  "status": "DONE"
+ },
+ {
+  "team": "\u30c7\u30ef\u30f3\u30b7\u30e5",
+  "slug": "team",
+  "rank": 12,
+  "lb_score": 2911.4,
+  "file": "replay_02_107219997.json",
+  "seat": 1,
+  "reward": 135372.0,
+  "opp": "try",
+  "status": "DONE"
+ },
+ {
+  "team": "\u9ec4\u65ed\u4f1faaaabbs",
+  "slug": "aaaabbs",
+  "rank": 14,
+  "lb_score": 2906.5,
+  "file": "replay_05_107220504.json",
+  "seat": 1,
+  "reward": 145408.0,
+  "opp": "yuki0731",
+  "status": "DONE"
+ }
+]
