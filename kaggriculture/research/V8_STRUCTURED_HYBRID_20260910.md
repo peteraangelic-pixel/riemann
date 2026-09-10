@@ -47,11 +47,13 @@ Grouping matched outcomes by the opponent's recorded turn-0 market action reveal
 
 Several opposing openings have the same net wheat-inventory effect, so wheat inventory alone cannot distinguish them. Their transaction order changes post-turn-0 money, while high-hire openings also expose a different public hand count. This supplies a concrete feature basis for the next selector: opponent money plus hand count and selected market inventories after turn 0.
 
-## Decision
+## Revised decision after corpus-age correction
 
-Do not promote the static hybrid. It is the strongest current V8 component but has a clear complete-TOP15 binary regression.
+The complete TOP15 archive is roughly two days older than the latest TOP7 and represents a substantially older leaderboard population. It remains useful as a legacy robustness/adversarial stress test, but it must **not veto a candidate that transfers across the latest and immediately previous TOP7 generations**. Earlier wording gave TOP15 too much promotion authority and understated the hybrid.
 
-Proceed with a fail-closed selector that defaults to V7 and enables the old market tail only for public post-opening fingerprints supported on both corpora. Candidate selection and the final gate must use disjoint seeds; exact generated Python source requires an independent execution check.
+The static hybrid is therefore restored as the primary V8 candidate. It dominates V7 on the latest TOP7 screen in wins, own reward and margin; branch evidence also showed a win gain on the immediately previous TOP7 generation. Promotion now depends principally on a large, independent two-generation TOP7 gate. TOP15 is reported separately as legacy-regression evidence and may motivate a router, but is no longer the main objective.
+
+The fail-closed selector remains valuable if it can preserve current-meta gains while cheaply retaining historical robustness. Candidate selection and final gates still require disjoint seeds, and exact generated Python source requires an independent execution check.
 
 ## First fixed router and independent holdout
 
@@ -64,7 +66,7 @@ Independent 16-seed holdout:
 | latest TOP7 | 2431–257 | 2423–265 | **+8** | +848.00 | +791.39 | +41 |
 | complete TOP15 | 3176–184 | 3174–186 | **+2** | +66.02 | +111.59 | **−96** |
 
-The router preserved an aggregate gain on unseen seeds, but it is **not promotion-grade**: latest TOP7 contains a four-win regression in one team, TOP15 contains a two-win regression in one team, and TOP15 q10 margin fell. The static hybrid's latest-meta gain also shrank from +35 to +8, showing substantial seed variance.
+The router preserved an aggregate gain on unseen seeds. Under the corrected corpus priority, its +8 latest-TOP7 wins and simultaneous improvements in reward, margin and q10 are positive current-meta evidence. A four-win per-team shift and the shrinkage from +35 to +8 still require a larger current/previous-TOP7 holdout. The two-win TOP15 gain with lower TOP15 q10 is retained as secondary historical-risk evidence, not as a promotion veto.
 
 A safer post-opening rule (`opponent money <= 2200`) was diagnostically team-safe on the TOP15 holdout (+4 wins and +39 q10), but still inherited the same four-win latest-TOP7 regression because distinct current policies share an identical turn-0 fingerprint. It must not be selected post hoc without another holdout.
 
