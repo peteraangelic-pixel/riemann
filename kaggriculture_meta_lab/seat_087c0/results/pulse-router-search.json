@@ -1,0 +1,6042 @@
+{
+  "format": "pulse-router-search-v1",
+  "policies": 84,
+  "screen_seeds": [
+    136000,
+    136001
+  ],
+  "holdout_seeds": [
+    137000,
+    137007
+  ],
+  "total_jobs": 100464,
+  "screen_top": [
+    {
+      "name": "money-le-100-own1",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_max": 100,
+        "pulse_own_fertilizer_min": 1
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95055.68154761905,
+      "mean_margin": 23715.71130952381,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81029.10416666667,
+          "mean_margin": 5350.395833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83975.95833333333,
+          "mean_margin": 15118.833333333334
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83956.52083333333,
+          "mean_margin": 19393.645833333332
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95055.68154761905,
+        23715.71130952381
+      ]
+    },
+    {
+      "name": "money-le-100-own2",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_max": 100,
+        "pulse_own_fertilizer_min": 2
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95055.68154761905,
+      "mean_margin": 23715.71130952381,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81029.10416666667,
+          "mean_margin": 5350.395833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83975.95833333333,
+          "mean_margin": 15118.833333333334
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83956.52083333333,
+          "mean_margin": 19393.645833333332
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95055.68154761905,
+        23715.71130952381
+      ]
+    },
+    {
+      "name": "money-le-100-own3",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_max": 100,
+        "pulse_own_fertilizer_min": 3
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95055.68154761905,
+      "mean_margin": 23715.71130952381,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81029.10416666667,
+          "mean_margin": 5350.395833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83975.95833333333,
+          "mean_margin": 15118.833333333334
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83956.52083333333,
+          "mean_margin": 19393.645833333332
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95055.68154761905,
+        23715.71130952381
+      ]
+    },
+    {
+      "name": "inv-ge-10050-own1",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_market_inventory_min": 10050,
+        "pulse_own_fertilizer_min": 1
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95041.36607142857,
+      "mean_margin": 23702.071428571428,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.541666666666
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 80921.77083333333,
+          "mean_margin": 5239.333333333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77306.16666666667,
+          "mean_margin": 4452.125
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83978.45833333333,
+          "mean_margin": 15124.833333333334
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83957.14583333333,
+          "mean_margin": 19395.5625
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95041.36607142857,
+        23702.071428571428
+      ]
+    },
+    {
+      "name": "inv-ge-10050-own2",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_market_inventory_min": 10050,
+        "pulse_own_fertilizer_min": 2
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95041.36607142857,
+      "mean_margin": 23702.071428571428,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.541666666666
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 80921.77083333333,
+          "mean_margin": 5239.333333333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77306.16666666667,
+          "mean_margin": 4452.125
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83978.45833333333,
+          "mean_margin": 15124.833333333334
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83957.14583333333,
+          "mean_margin": 19395.5625
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95041.36607142857,
+        23702.071428571428
+      ]
+    },
+    {
+      "name": "inv-ge-10050-own3",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_market_inventory_min": 10050,
+        "pulse_own_fertilizer_min": 3
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95041.36607142857,
+      "mean_margin": 23702.071428571428,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.541666666666
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 80921.77083333333,
+          "mean_margin": 5239.333333333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77306.16666666667,
+          "mean_margin": 4452.125
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83978.45833333333,
+          "mean_margin": 15124.833333333334
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83957.14583333333,
+          "mean_margin": 19395.5625
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95041.36607142857,
+        23702.071428571428
+      ]
+    },
+    {
+      "name": "money-ge-250-own1",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 250,
+        "pulse_own_fertilizer_min": 1
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95035.01190476191,
+      "mean_margin": 23678.520833333332,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114042.0625,
+          "mean_margin": 37983.541666666664
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89378.10416666667,
+          "mean_margin": 16143.708333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81029.27083333333,
+          "mean_margin": 5350.895833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135708.27083333334,
+          "mean_margin": 67580.20833333333
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77305.33333333333,
+          "mean_margin": 4450.458333333333
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83978.45833333333,
+          "mean_margin": 15124.833333333334
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83803.58333333333,
+          "mean_margin": 19116.0
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95035.01190476191,
+        23678.520833333332
+      ]
+    },
+    {
+      "name": "money-ge-250-own2",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 250,
+        "pulse_own_fertilizer_min": 2
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95035.01190476191,
+      "mean_margin": 23678.520833333332,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114042.0625,
+          "mean_margin": 37983.541666666664
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89378.10416666667,
+          "mean_margin": 16143.708333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81029.27083333333,
+          "mean_margin": 5350.895833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135708.27083333334,
+          "mean_margin": 67580.20833333333
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77305.33333333333,
+          "mean_margin": 4450.458333333333
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83978.45833333333,
+          "mean_margin": 15124.833333333334
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83803.58333333333,
+          "mean_margin": 19116.0
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95035.01190476191,
+        23678.520833333332
+      ]
+    },
+    {
+      "name": "money-ge-250-own3",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 250,
+        "pulse_own_fertilizer_min": 3
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95035.01190476191,
+      "mean_margin": 23678.520833333332,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114042.0625,
+          "mean_margin": 37983.541666666664
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89378.10416666667,
+          "mean_margin": 16143.708333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81029.27083333333,
+          "mean_margin": 5350.895833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135708.27083333334,
+          "mean_margin": 67580.20833333333
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77305.33333333333,
+          "mean_margin": 4450.458333333333
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83978.45833333333,
+          "mean_margin": 15124.833333333334
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83803.58333333333,
+          "mean_margin": 19116.0
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95035.01190476191,
+        23678.520833333332
+      ]
+    },
+    {
+      "name": "money-ge-500-own1",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_own_fertilizer_min": 1
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95034.16071428571,
+      "mean_margin": 23676.66964285714,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114042.0625,
+          "mean_margin": 37983.541666666664
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83978.33333333333,
+          "mean_margin": 15124.541666666666
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.625,
+          "mean_margin": 19113.416666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95034.16071428571,
+        23676.66964285714
+      ]
+    },
+    {
+      "name": "mge500-ige9950-o1",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_market_inventory_min": 9950,
+        "pulse_own_fertilizer_min": 1
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95034.16071428571,
+      "mean_margin": 23676.66964285714,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114042.0625,
+          "mean_margin": 37983.541666666664
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83978.33333333333,
+          "mean_margin": 15124.541666666666
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.625,
+          "mean_margin": 19113.416666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95034.16071428571,
+        23676.66964285714
+      ]
+    },
+    {
+      "name": "mge500-ige10000-o1",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_market_inventory_min": 10000,
+        "pulse_own_fertilizer_min": 1
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95034.16071428571,
+      "mean_margin": 23676.66964285714,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114042.0625,
+          "mean_margin": 37983.541666666664
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83978.33333333333,
+          "mean_margin": 15124.541666666666
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.625,
+          "mean_margin": 19113.416666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95034.16071428571,
+        23676.66964285714
+      ]
+    },
+    {
+      "name": "money-ge-500-own2",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_own_fertilizer_min": 2
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95034.16071428571,
+      "mean_margin": 23676.66964285714,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114042.0625,
+          "mean_margin": 37983.541666666664
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83978.33333333333,
+          "mean_margin": 15124.541666666666
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.625,
+          "mean_margin": 19113.416666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95034.16071428571,
+        23676.66964285714
+      ]
+    },
+    {
+      "name": "mge500-ige9950-o2",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_market_inventory_min": 9950,
+        "pulse_own_fertilizer_min": 2
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95034.16071428571,
+      "mean_margin": 23676.66964285714,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114042.0625,
+          "mean_margin": 37983.541666666664
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83978.33333333333,
+          "mean_margin": 15124.541666666666
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.625,
+          "mean_margin": 19113.416666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95034.16071428571,
+        23676.66964285714
+      ]
+    },
+    {
+      "name": "mge500-ige10000-o2",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_market_inventory_min": 10000,
+        "pulse_own_fertilizer_min": 2
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95034.16071428571,
+      "mean_margin": 23676.66964285714,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114042.0625,
+          "mean_margin": 37983.541666666664
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83978.33333333333,
+          "mean_margin": 15124.541666666666
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.625,
+          "mean_margin": 19113.416666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95034.16071428571,
+        23676.66964285714
+      ]
+    },
+    {
+      "name": "money-ge-500-own3",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_own_fertilizer_min": 3
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95034.16071428571,
+      "mean_margin": 23676.66964285714,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114042.0625,
+          "mean_margin": 37983.541666666664
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83978.33333333333,
+          "mean_margin": 15124.541666666666
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.625,
+          "mean_margin": 19113.416666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95034.16071428571,
+        23676.66964285714
+      ]
+    },
+    {
+      "name": "mge500-ige9950-o3",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_market_inventory_min": 9950,
+        "pulse_own_fertilizer_min": 3
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95034.16071428571,
+      "mean_margin": 23676.66964285714,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114042.0625,
+          "mean_margin": 37983.541666666664
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83978.33333333333,
+          "mean_margin": 15124.541666666666
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.625,
+          "mean_margin": 19113.416666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95034.16071428571,
+        23676.66964285714
+      ]
+    },
+    {
+      "name": "mge500-ige10000-o3",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_market_inventory_min": 10000,
+        "pulse_own_fertilizer_min": 3
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95034.16071428571,
+      "mean_margin": 23676.66964285714,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114042.0625,
+          "mean_margin": 37983.541666666664
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83978.33333333333,
+          "mean_margin": 15124.541666666666
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.625,
+          "mean_margin": 19113.416666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95034.16071428571,
+        23676.66964285714
+      ]
+    },
+    {
+      "name": "money-ge-750-own1",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 750,
+        "pulse_own_fertilizer_min": 1
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.98214285714,
+      "mean_margin": 23676.318452380954,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114041.85416666667,
+          "mean_margin": 37983.125
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83977.54166666667,
+          "mean_margin": 15123.0
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.98214285714,
+        23676.318452380954
+      ]
+    },
+    {
+      "name": "money-ge-750-own2",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 750,
+        "pulse_own_fertilizer_min": 2
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.98214285714,
+      "mean_margin": 23676.318452380954,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114041.85416666667,
+          "mean_margin": 37983.125
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83977.54166666667,
+          "mean_margin": 15123.0
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.98214285714,
+        23676.318452380954
+      ]
+    },
+    {
+      "name": "money-ge-750-own3",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 750,
+        "pulse_own_fertilizer_min": 3
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.98214285714,
+      "mean_margin": 23676.318452380954,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114041.85416666667,
+          "mean_margin": 37983.125
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83977.54166666667,
+          "mean_margin": 15123.0
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.98214285714,
+        23676.318452380954
+      ]
+    },
+    {
+      "name": "mge500-ige10050-o1",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_market_inventory_min": 10050,
+        "pulse_own_fertilizer_min": 1
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.91666666667,
+      "mean_margin": 23676.17261904762,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83978.33333333333,
+          "mean_margin": 15124.541666666666
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.91666666667,
+        23676.17261904762
+      ]
+    },
+    {
+      "name": "mge500-ige10050-o2",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_market_inventory_min": 10050,
+        "pulse_own_fertilizer_min": 2
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.91666666667,
+      "mean_margin": 23676.17261904762,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83978.33333333333,
+          "mean_margin": 15124.541666666666
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.91666666667,
+        23676.17261904762
+      ]
+    },
+    {
+      "name": "mge500-ige10050-o3",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_market_inventory_min": 10050,
+        "pulse_own_fertilizer_min": 3
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.91666666667,
+      "mean_margin": 23676.17261904762,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83978.33333333333,
+          "mean_margin": 15124.541666666666
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.91666666667,
+        23676.17261904762
+      ]
+    },
+    {
+      "name": "money-ge-1000-own1",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 1000,
+        "pulse_own_fertilizer_min": 1
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.76785714286,
+      "mean_margin": 23675.880952380954,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83977.29166666667,
+          "mean_margin": 15122.5
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.76785714286,
+        23675.880952380954
+      ]
+    },
+    {
+      "name": "mge1000-ige9950-o1",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 1000,
+        "pulse_market_inventory_min": 9950,
+        "pulse_own_fertilizer_min": 1
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.76785714286,
+      "mean_margin": 23675.880952380954,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83977.29166666667,
+          "mean_margin": 15122.5
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.76785714286,
+        23675.880952380954
+      ]
+    },
+    {
+      "name": "mge1000-ige10000-o1",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 1000,
+        "pulse_market_inventory_min": 10000,
+        "pulse_own_fertilizer_min": 1
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.76785714286,
+      "mean_margin": 23675.880952380954,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83977.29166666667,
+          "mean_margin": 15122.5
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.76785714286,
+        23675.880952380954
+      ]
+    },
+    {
+      "name": "mge1000-ige10050-o1",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 1000,
+        "pulse_market_inventory_min": 10050,
+        "pulse_own_fertilizer_min": 1
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.76785714286,
+      "mean_margin": 23675.880952380954,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83977.29166666667,
+          "mean_margin": 15122.5
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.76785714286,
+        23675.880952380954
+      ]
+    },
+    {
+      "name": "money-ge-1000-own2",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 1000,
+        "pulse_own_fertilizer_min": 2
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.76785714286,
+      "mean_margin": 23675.880952380954,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83977.29166666667,
+          "mean_margin": 15122.5
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.76785714286,
+        23675.880952380954
+      ]
+    },
+    {
+      "name": "mge1000-ige9950-o2",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 1000,
+        "pulse_market_inventory_min": 9950,
+        "pulse_own_fertilizer_min": 2
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.76785714286,
+      "mean_margin": 23675.880952380954,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83977.29166666667,
+          "mean_margin": 15122.5
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.76785714286,
+        23675.880952380954
+      ]
+    },
+    {
+      "name": "mge1000-ige10000-o2",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 1000,
+        "pulse_market_inventory_min": 10000,
+        "pulse_own_fertilizer_min": 2
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.76785714286,
+      "mean_margin": 23675.880952380954,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83977.29166666667,
+          "mean_margin": 15122.5
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.76785714286,
+        23675.880952380954
+      ]
+    },
+    {
+      "name": "mge1000-ige10050-o2",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 1000,
+        "pulse_market_inventory_min": 10050,
+        "pulse_own_fertilizer_min": 2
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.76785714286,
+      "mean_margin": 23675.880952380954,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83977.29166666667,
+          "mean_margin": 15122.5
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.76785714286,
+        23675.880952380954
+      ]
+    },
+    {
+      "name": "money-ge-1000-own3",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 1000,
+        "pulse_own_fertilizer_min": 3
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.76785714286,
+      "mean_margin": 23675.880952380954,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83977.29166666667,
+          "mean_margin": 15122.5
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.76785714286,
+        23675.880952380954
+      ]
+    },
+    {
+      "name": "mge1000-ige9950-o3",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 1000,
+        "pulse_market_inventory_min": 9950,
+        "pulse_own_fertilizer_min": 3
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.76785714286,
+      "mean_margin": 23675.880952380954,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83977.29166666667,
+          "mean_margin": 15122.5
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.76785714286,
+        23675.880952380954
+      ]
+    },
+    {
+      "name": "mge1000-ige10000-o3",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 1000,
+        "pulse_market_inventory_min": 10000,
+        "pulse_own_fertilizer_min": 3
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.76785714286,
+      "mean_margin": 23675.880952380954,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83977.29166666667,
+          "mean_margin": 15122.5
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.76785714286,
+        23675.880952380954
+      ]
+    },
+    {
+      "name": "mge1000-ige10050-o3",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 1000,
+        "pulse_market_inventory_min": 10050,
+        "pulse_own_fertilizer_min": 3
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.76785714286,
+      "mean_margin": 23675.880952380954,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83977.29166666667,
+          "mean_margin": 15122.5
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.76785714286,
+        23675.880952380954
+      ]
+    },
+    {
+      "name": "money-ge-1500-own1",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 1500,
+        "pulse_own_fertilizer_min": 1
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.66071428571,
+      "mean_margin": 23675.60714285714,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83976.54166666667,
+          "mean_margin": 15120.583333333334
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.66071428571,
+        23675.60714285714
+      ]
+    },
+    {
+      "name": "money-ge-1500-own2",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 1500,
+        "pulse_own_fertilizer_min": 2
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.66071428571,
+      "mean_margin": 23675.60714285714,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83976.54166666667,
+          "mean_margin": 15120.583333333334
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.66071428571,
+        23675.60714285714
+      ]
+    },
+    {
+      "name": "money-ge-1500-own3",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 1500,
+        "pulse_own_fertilizer_min": 3
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.66071428571,
+      "mean_margin": 23675.60714285714,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83976.54166666667,
+          "mean_margin": 15120.583333333334
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.66071428571,
+        23675.60714285714
+      ]
+    },
+    {
+      "name": "identity",
+      "profile": {
+        "enabled": true
+      },
+      "games": 336,
+      "wins": 276,
+      "losses": 60,
+      "ties": 0,
+      "score_rate": 0.8214285714285714,
+      "mean_reward": 95033.57738095238,
+      "mean_margin": 23675.35714285714,
+      "teams": {
+        "SpaTaro": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 114040.60416666667,
+          "mean_margin": 37980.5625
+        },
+        "Otter Vibe": {
+          "games": 48,
+          "wins": 43,
+          "losses": 5,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 89377.47916666667,
+          "mean_margin": 16142.458333333334
+        },
+        "feel the agi": {
+          "games": 48,
+          "wins": 32,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 81028.52083333333,
+          "mean_margin": 5348.645833333333
+        },
+        "Himanshu Kumar": {
+          "games": 48,
+          "wins": 48,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135707.9375,
+          "mean_margin": 67579.54166666667
+        },
+        "Unknown Mother-Goose": {
+          "games": 48,
+          "wins": 27,
+          "losses": 21,
+          "ties": 0,
+          "score_rate": 0.5625,
+          "mean_reward": 77302.16666666667,
+          "mean_margin": 4444.541666666667
+        },
+        "binghua": {
+          "games": 48,
+          "wins": 44,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 83975.95833333333,
+          "mean_margin": 15118.833333333334
+        },
+        "Mengfei Li": {
+          "games": 48,
+          "wins": 38,
+          "losses": 10,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 83802.375,
+          "mean_margin": 19112.916666666668
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8214285714285714,
+        95033.57738095238,
+        23675.35714285714
+      ]
+    }
+  ],
+  "holdout": [
+    {
+      "name": "money-le-100-own1",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_max": 100,
+        "pulse_own_fertilizer_min": 1
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104297.35788690476,
+      "mean_margin": 29258.28125,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 111082.19791666667,
+          "mean_margin": 42247.875
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.239583333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95054.46875,
+          "mean_margin": 12247.78125
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105049.97916666667,
+          "mean_margin": 16345.708333333334
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88560.19791666667,
+          "mean_margin": 14863.505208333334
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 99032.72916666667,
+          "mean_margin": 28155.302083333332
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104297.35788690476,
+        29258.28125
+      ]
+    },
+    {
+      "name": "money-le-100-own2",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_max": 100,
+        "pulse_own_fertilizer_min": 2
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104297.35788690476,
+      "mean_margin": 29258.28125,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 111082.19791666667,
+          "mean_margin": 42247.875
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.239583333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95054.46875,
+          "mean_margin": 12247.78125
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105049.97916666667,
+          "mean_margin": 16345.708333333334
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88560.19791666667,
+          "mean_margin": 14863.505208333334
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 99032.72916666667,
+          "mean_margin": 28155.302083333332
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104297.35788690476,
+        29258.28125
+      ]
+    },
+    {
+      "name": "money-le-100-own3",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_max": 100,
+        "pulse_own_fertilizer_min": 3
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104297.35788690476,
+      "mean_margin": 29258.28125,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 111082.19791666667,
+          "mean_margin": 42247.875
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.239583333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95054.46875,
+          "mean_margin": 12247.78125
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105049.97916666667,
+          "mean_margin": 16345.708333333334
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88560.19791666667,
+          "mean_margin": 14863.505208333334
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 99032.72916666667,
+          "mean_margin": 28155.302083333332
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104297.35788690476,
+        29258.28125
+      ]
+    },
+    {
+      "name": "inv-ge-10050-own1",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_market_inventory_min": 10050,
+        "pulse_own_fertilizer_min": 1
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104267.34300595238,
+      "mean_margin": 29249.928571428572,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 111082.19791666667,
+          "mean_margin": 42247.875
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.322916666668
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 94952.61458333333,
+          "mean_margin": 12199.895833333334
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105048.90625,
+          "mean_margin": 16349.791666666666
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88452.92708333333,
+          "mean_margin": 14848.401041666666
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 99032.82291666667,
+          "mean_margin": 28155.65625
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104267.34300595238,
+        29249.928571428572
+      ]
+    },
+    {
+      "name": "inv-ge-10050-own2",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_market_inventory_min": 10050,
+        "pulse_own_fertilizer_min": 2
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104267.34300595238,
+      "mean_margin": 29249.928571428572,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 111082.19791666667,
+          "mean_margin": 42247.875
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.322916666668
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 94952.61458333333,
+          "mean_margin": 12199.895833333334
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105048.90625,
+          "mean_margin": 16349.791666666666
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88452.92708333333,
+          "mean_margin": 14848.401041666666
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 99032.82291666667,
+          "mean_margin": 28155.65625
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104267.34300595238,
+        29249.928571428572
+      ]
+    },
+    {
+      "name": "inv-ge-10050-own3",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_market_inventory_min": 10050,
+        "pulse_own_fertilizer_min": 3
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104267.34300595238,
+      "mean_margin": 29249.928571428572,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 111082.19791666667,
+          "mean_margin": 42247.875
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.322916666668
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 94952.61458333333,
+          "mean_margin": 12199.895833333334
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105048.90625,
+          "mean_margin": 16349.791666666666
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88452.92708333333,
+          "mean_margin": 14848.401041666666
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 99032.82291666667,
+          "mean_margin": 28155.65625
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104267.34300595238,
+        29249.928571428572
+      ]
+    },
+    {
+      "name": "identity",
+      "profile": {
+        "enabled": true
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104220.79389880953,
+      "mean_margin": 29160.313988095237,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 111082.19791666667,
+          "mean_margin": 42247.875
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.239583333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95053.82291666667,
+          "mean_margin": 12245.84375
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105049.97916666667,
+          "mean_margin": 16345.708333333334
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88560.19791666667,
+          "mean_margin": 14863.505208333334
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 98497.42708333333,
+          "mean_margin": 27471.46875
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104220.79389880953,
+        29160.313988095237
+      ]
+    },
+    {
+      "name": "mge500-ige10050-o1",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_market_inventory_min": 10050,
+        "pulse_own_fertilizer_min": 1
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104205.43080357143,
+      "mean_margin": 29158.071428571428,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 111082.19791666667,
+          "mean_margin": 42247.875
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.239583333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95053.82291666667,
+          "mean_margin": 12245.84375
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105049.97916666667,
+          "mean_margin": 16345.708333333334
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88452.65625,
+          "mean_margin": 14847.807291666666
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 98497.42708333333,
+          "mean_margin": 27471.46875
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104205.43080357143,
+        29158.071428571428
+      ]
+    },
+    {
+      "name": "mge500-ige10050-o2",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_market_inventory_min": 10050,
+        "pulse_own_fertilizer_min": 2
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104205.43080357143,
+      "mean_margin": 29158.071428571428,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 111082.19791666667,
+          "mean_margin": 42247.875
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.239583333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95053.82291666667,
+          "mean_margin": 12245.84375
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105049.97916666667,
+          "mean_margin": 16345.708333333334
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88452.65625,
+          "mean_margin": 14847.807291666666
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 98497.42708333333,
+          "mean_margin": 27471.46875
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104205.43080357143,
+        29158.071428571428
+      ]
+    },
+    {
+      "name": "mge500-ige10050-o3",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_market_inventory_min": 10050,
+        "pulse_own_fertilizer_min": 3
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104205.43080357143,
+      "mean_margin": 29158.071428571428,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 111082.19791666667,
+          "mean_margin": 42247.875
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.239583333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95053.82291666667,
+          "mean_margin": 12245.84375
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105049.97916666667,
+          "mean_margin": 16345.708333333334
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88452.65625,
+          "mean_margin": 14847.807291666666
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 98497.42708333333,
+          "mean_margin": 27471.46875
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104205.43080357143,
+        29158.071428571428
+      ]
+    },
+    {
+      "name": "money-ge-750-own1",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 750,
+        "pulse_own_fertilizer_min": 1
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104205.33407738095,
+      "mean_margin": 29157.885416666668,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 111082.19791666667,
+          "mean_margin": 42247.875
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.239583333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95053.82291666667,
+          "mean_margin": 12245.84375
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105049.97916666667,
+          "mean_margin": 16345.708333333334
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88451.97916666667,
+          "mean_margin": 14846.505208333334
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 98497.42708333333,
+          "mean_margin": 27471.46875
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104205.33407738095,
+        29157.885416666668
+      ]
+    },
+    {
+      "name": "money-ge-750-own2",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 750,
+        "pulse_own_fertilizer_min": 2
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104205.33407738095,
+      "mean_margin": 29157.885416666668,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 111082.19791666667,
+          "mean_margin": 42247.875
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.239583333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95053.82291666667,
+          "mean_margin": 12245.84375
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105049.97916666667,
+          "mean_margin": 16345.708333333334
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88451.97916666667,
+          "mean_margin": 14846.505208333334
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 98497.42708333333,
+          "mean_margin": 27471.46875
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104205.33407738095,
+        29157.885416666668
+      ]
+    },
+    {
+      "name": "money-ge-750-own3",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 750,
+        "pulse_own_fertilizer_min": 3
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104205.33407738095,
+      "mean_margin": 29157.885416666668,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 111082.19791666667,
+          "mean_margin": 42247.875
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.239583333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95053.82291666667,
+          "mean_margin": 12245.84375
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105049.97916666667,
+          "mean_margin": 16345.708333333334
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88451.97916666667,
+          "mean_margin": 14846.505208333334
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 98497.42708333333,
+          "mean_margin": 27471.46875
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104205.33407738095,
+        29157.885416666668
+      ]
+    },
+    {
+      "name": "money-ge-500-own1",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_own_fertilizer_min": 1
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104180.77901785714,
+      "mean_margin": 29156.964285714286,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 110909.57291666667,
+          "mean_margin": 42240.0
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.239583333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95053.82291666667,
+          "mean_margin": 12245.84375
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105049.97916666667,
+          "mean_margin": 16345.708333333334
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88452.65625,
+          "mean_margin": 14847.807291666666
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 98497.48958333333,
+          "mean_margin": 27471.59375
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104180.77901785714,
+        29156.964285714286
+      ]
+    },
+    {
+      "name": "mge500-ige9950-o1",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_market_inventory_min": 9950,
+        "pulse_own_fertilizer_min": 1
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104180.77901785714,
+      "mean_margin": 29156.964285714286,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 110909.57291666667,
+          "mean_margin": 42240.0
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.239583333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95053.82291666667,
+          "mean_margin": 12245.84375
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105049.97916666667,
+          "mean_margin": 16345.708333333334
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88452.65625,
+          "mean_margin": 14847.807291666666
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 98497.48958333333,
+          "mean_margin": 27471.59375
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104180.77901785714,
+        29156.964285714286
+      ]
+    },
+    {
+      "name": "mge500-ige10000-o1",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_market_inventory_min": 10000,
+        "pulse_own_fertilizer_min": 1
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104180.77901785714,
+      "mean_margin": 29156.964285714286,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 110909.57291666667,
+          "mean_margin": 42240.0
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.239583333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95053.82291666667,
+          "mean_margin": 12245.84375
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105049.97916666667,
+          "mean_margin": 16345.708333333334
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88452.65625,
+          "mean_margin": 14847.807291666666
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 98497.48958333333,
+          "mean_margin": 27471.59375
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104180.77901785714,
+        29156.964285714286
+      ]
+    },
+    {
+      "name": "money-ge-500-own2",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_own_fertilizer_min": 2
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104180.77901785714,
+      "mean_margin": 29156.964285714286,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 110909.57291666667,
+          "mean_margin": 42240.0
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.239583333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95053.82291666667,
+          "mean_margin": 12245.84375
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105049.97916666667,
+          "mean_margin": 16345.708333333334
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88452.65625,
+          "mean_margin": 14847.807291666666
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 98497.48958333333,
+          "mean_margin": 27471.59375
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104180.77901785714,
+        29156.964285714286
+      ]
+    },
+    {
+      "name": "mge500-ige9950-o2",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_market_inventory_min": 9950,
+        "pulse_own_fertilizer_min": 2
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104180.77901785714,
+      "mean_margin": 29156.964285714286,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 110909.57291666667,
+          "mean_margin": 42240.0
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.239583333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95053.82291666667,
+          "mean_margin": 12245.84375
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105049.97916666667,
+          "mean_margin": 16345.708333333334
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88452.65625,
+          "mean_margin": 14847.807291666666
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 98497.48958333333,
+          "mean_margin": 27471.59375
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104180.77901785714,
+        29156.964285714286
+      ]
+    },
+    {
+      "name": "mge500-ige10000-o2",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_market_inventory_min": 10000,
+        "pulse_own_fertilizer_min": 2
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104180.77901785714,
+      "mean_margin": 29156.964285714286,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 110909.57291666667,
+          "mean_margin": 42240.0
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.239583333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95053.82291666667,
+          "mean_margin": 12245.84375
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105049.97916666667,
+          "mean_margin": 16345.708333333334
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88452.65625,
+          "mean_margin": 14847.807291666666
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 98497.48958333333,
+          "mean_margin": 27471.59375
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104180.77901785714,
+        29156.964285714286
+      ]
+    },
+    {
+      "name": "money-ge-500-own3",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_own_fertilizer_min": 3
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104180.77901785714,
+      "mean_margin": 29156.964285714286,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 110909.57291666667,
+          "mean_margin": 42240.0
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.239583333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95053.82291666667,
+          "mean_margin": 12245.84375
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105049.97916666667,
+          "mean_margin": 16345.708333333334
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88452.65625,
+          "mean_margin": 14847.807291666666
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 98497.48958333333,
+          "mean_margin": 27471.59375
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104180.77901785714,
+        29156.964285714286
+      ]
+    },
+    {
+      "name": "mge500-ige9950-o3",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_market_inventory_min": 9950,
+        "pulse_own_fertilizer_min": 3
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104180.77901785714,
+      "mean_margin": 29156.964285714286,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 110909.57291666667,
+          "mean_margin": 42240.0
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.239583333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95053.82291666667,
+          "mean_margin": 12245.84375
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105049.97916666667,
+          "mean_margin": 16345.708333333334
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88452.65625,
+          "mean_margin": 14847.807291666666
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 98497.48958333333,
+          "mean_margin": 27471.59375
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104180.77901785714,
+        29156.964285714286
+      ]
+    },
+    {
+      "name": "mge500-ige10000-o3",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 500,
+        "pulse_market_inventory_min": 10000,
+        "pulse_own_fertilizer_min": 3
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104180.77901785714,
+      "mean_margin": 29156.964285714286,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 110909.57291666667,
+          "mean_margin": 42240.0
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.23958333333,
+          "mean_margin": 25982.239583333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95053.82291666667,
+          "mean_margin": 12245.84375
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.69270833333,
+          "mean_margin": 64965.557291666664
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105049.97916666667,
+          "mean_margin": 16345.708333333334
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88452.65625,
+          "mean_margin": 14847.807291666666
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 98497.48958333333,
+          "mean_margin": 27471.59375
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104180.77901785714,
+        29156.964285714286
+      ]
+    },
+    {
+      "name": "money-ge-250-own1",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 250,
+        "pulse_own_fertilizer_min": 1
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104180.67336309524,
+      "mean_margin": 29157.697916666668,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 110909.57291666667,
+          "mean_margin": 42240.0
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.83333333333,
+          "mean_margin": 25983.427083333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95054.09375,
+          "mean_margin": 12246.447916666666
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.734375,
+          "mean_margin": 64965.640625
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105047.44791666667,
+          "mean_margin": 16346.979166666666
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88452.92708333333,
+          "mean_margin": 14848.401041666666
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 98498.10416666667,
+          "mean_margin": 27472.989583333332
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104180.67336309524,
+        29157.697916666668
+      ]
+    },
+    {
+      "name": "money-ge-250-own2",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 250,
+        "pulse_own_fertilizer_min": 2
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104180.67336309524,
+      "mean_margin": 29157.697916666668,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 110909.57291666667,
+          "mean_margin": 42240.0
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.83333333333,
+          "mean_margin": 25983.427083333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95054.09375,
+          "mean_margin": 12246.447916666666
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.734375,
+          "mean_margin": 64965.640625
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105047.44791666667,
+          "mean_margin": 16346.979166666666
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88452.92708333333,
+          "mean_margin": 14848.401041666666
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 98498.10416666667,
+          "mean_margin": 27472.989583333332
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104180.67336309524,
+        29157.697916666668
+      ]
+    },
+    {
+      "name": "money-ge-250-own3",
+      "profile": {
+        "enabled": true,
+        "pulse_turn": 153,
+        "pulse_fertilizer_qty": 3,
+        "pulse_opponent_money_min": 250,
+        "pulse_own_fertilizer_min": 3
+      },
+      "games": 1344,
+      "wins": 1278,
+      "losses": 66,
+      "ties": 0,
+      "score_rate": 0.9508928571428571,
+      "mean_reward": 104180.67336309524,
+      "mean_margin": 29157.697916666668,
+      "teams": {
+        "SpaTaro": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 110909.57291666667,
+          "mean_margin": 42240.0
+        },
+        "Otter Vibe": {
+          "games": 192,
+          "wins": 180,
+          "losses": 12,
+          "ties": 0,
+          "score_rate": 0.9375,
+          "mean_reward": 109907.83333333333,
+          "mean_margin": 25983.427083333332
+        },
+        "feel the agi": {
+          "games": 192,
+          "wins": 168,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.875,
+          "mean_reward": 95054.09375,
+          "mean_margin": 12246.447916666666
+        },
+        "Himanshu Kumar": {
+          "games": 192,
+          "wins": 192,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 121394.734375,
+          "mean_margin": 64965.640625
+        },
+        "Unknown Mother-Goose": {
+          "games": 192,
+          "wins": 178,
+          "losses": 14,
+          "ties": 0,
+          "score_rate": 0.9270833333333334,
+          "mean_reward": 105047.44791666667,
+          "mean_margin": 16346.979166666666
+        },
+        "binghua": {
+          "games": 192,
+          "wins": 188,
+          "losses": 4,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 88452.92708333333,
+          "mean_margin": 14848.401041666666
+        },
+        "Mengfei Li": {
+          "games": 192,
+          "wins": 184,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9583333333333334,
+          "mean_reward": 98498.10416666667,
+          "mean_margin": 27472.989583333332
+        }
+      },
+      "regressed_teams": 0,
+      "worst_team_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9508928571428571,
+        104180.67336309524,
+        29157.697916666668
+      ]
+    }
+  ],
+  "winner": {
+    "name": "money-le-100-own1",
+    "profile": {
+      "enabled": true,
+      "pulse_turn": 153,
+      "pulse_fertilizer_qty": 3,
+      "pulse_opponent_money_max": 100,
+      "pulse_own_fertilizer_min": 1
+    },
+    "games": 1344,
+    "wins": 1278,
+    "losses": 66,
+    "ties": 0,
+    "score_rate": 0.9508928571428571,
+    "mean_reward": 104297.35788690476,
+    "mean_margin": 29258.28125,
+    "teams": {
+      "SpaTaro": {
+        "games": 192,
+        "wins": 188,
+        "losses": 4,
+        "ties": 0,
+        "score_rate": 0.9791666666666666,
+        "mean_reward": 111082.19791666667,
+        "mean_margin": 42247.875
+      },
+      "Otter Vibe": {
+        "games": 192,
+        "wins": 180,
+        "losses": 12,
+        "ties": 0,
+        "score_rate": 0.9375,
+        "mean_reward": 109907.23958333333,
+        "mean_margin": 25982.239583333332
+      },
+      "feel the agi": {
+        "games": 192,
+        "wins": 168,
+        "losses": 24,
+        "ties": 0,
+        "score_rate": 0.875,
+        "mean_reward": 95054.46875,
+        "mean_margin": 12247.78125
+      },
+      "Himanshu Kumar": {
+        "games": 192,
+        "wins": 192,
+        "losses": 0,
+        "ties": 0,
+        "score_rate": 1.0,
+        "mean_reward": 121394.69270833333,
+        "mean_margin": 64965.557291666664
+      },
+      "Unknown Mother-Goose": {
+        "games": 192,
+        "wins": 178,
+        "losses": 14,
+        "ties": 0,
+        "score_rate": 0.9270833333333334,
+        "mean_reward": 105049.97916666667,
+        "mean_margin": 16345.708333333334
+      },
+      "binghua": {
+        "games": 192,
+        "wins": 188,
+        "losses": 4,
+        "ties": 0,
+        "score_rate": 0.9791666666666666,
+        "mean_reward": 88560.19791666667,
+        "mean_margin": 14863.505208333334
+      },
+      "Mengfei Li": {
+        "games": 192,
+        "wins": 184,
+        "losses": 8,
+        "ties": 0,
+        "score_rate": 0.9583333333333334,
+        "mean_reward": 99032.72916666667,
+        "mean_margin": 28155.302083333332
+      }
+    },
+    "regressed_teams": 0,
+    "worst_team_delta": 0.0,
+    "fitness": [
+      0,
+      0.0,
+      0.9508928571428571,
+      104297.35788690476,
+      29258.28125
+    ]
+  }
+}
