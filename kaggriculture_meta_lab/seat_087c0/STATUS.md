@@ -139,3 +139,7 @@
 - Decoded action SHA256 `d3d6aee618ae6190750b6b8b2f16ae76e837e49f02d54ab0badb6a9a68150357`; exact composition independently asserted as V7 through t400 plus V16/V2 market from t401.
 - Promoted byte-for-byte strategic copy to `agents/champion_tape_v8.py`. Evidence: +82 wins over V7 on fixed three-current-corpus gate; positive on latest TOP7 (+19), previous TOP7 (+14), TOP12 (+49), and removes full-tail ymg_aq catastrophe. No Kaggle submission performed.
 - V7 retained as historical champion/control; formal current-meta local champion is V8 late401.
+
+## 2026-09-10 (30): peer V9 audit and exact-panel comparison
+- Peer branch V9 routes after t0 using public state: hybrid only when own money in [3000,3010], except opponent money=3000 with zero opponent hands; otherwise V7. Exact row composition on its 6912-game TOP12 panel reports 5811-1101 (+68 vs V7), 103892 reward, +21483 margin. Earlier TOP7 fingerprints all route full V8, retaining +61. Python closed-loop vs G2: 64-0, zero errors; useful execution check but weak ranking evidence because G2 scores poorly locally.
+- Our late401 remains plausibly stronger and simpler: +49 vs V7 in 3456 TOP12 games and +82 across three current corpora, without post-holdout fingerprint routing. Launched exact same TOP12 archive/seeds 158000-158031 panel for V7/full/late401. This permits direct aggregate and per-team comparison against frozen V9 counterfactual, avoiding incompatible panels.
