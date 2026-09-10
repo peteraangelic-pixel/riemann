@@ -68,3 +68,16 @@ Nie wolno promować hybryd. Wynik tłumaczy też wcześniejsze porażki prostych
 - Najbardziej obiecujące ulepszenie nie polega na podmianie market tape, lecz na reaktywnym selektorze całych planów: rozpoznać po pierwszych obserwowanych krokach rodzinę presji przeciwnika i wybrać spójny plan German albo Kanno.
 - Drugim kierunkiem jest przeniesienie idei SpaTaro: ograniczony, stanowy handel premium z pełnym sekwencyjnym księgowaniem, testowany jako kompletna polityka, nie luźny overlay.
 - Każdy następny kandydat musi przejść G2, G4, B21, TOP7 open-loop, fresh paired seeds i zero-crash. Wyniku V15 live nie należy zastępować samą przewagą lockstep.
+
+## Aktualizacja po audycie `arena/01a087c0-riemann` — Kanno best-sub v2
+
+Gałąź doszła do ważniejszego kandydata niż nasz wcześniejszy Kanno `107377838`: wybrała **best-listed submission 56133568 (public 2975.9), epizod 107384200**. Jej commit `4614aab` raportuje 75–53 przeciw Germanowi w dwóch blokach, 96–0 przeciw raw Subinowi, 85–11 przeciw B21, 32–0 (+10063) przeciw pełnemu G2 oraz 184–8 w round-robin TOP7.
+
+Niezależna weryfikacja:
+
+- lokalna rekonstrukcja i artefakt gałęzi mają **719/719 identycznych akcji**;
+- dokładnie odtworzono źródło na seedzie 522182097: `[84925, 78077]`;
+- fresh seedy 76000–76127 × oba seaty: **212–44** przeciw V15 (+602.4), **145–111** przeciw Kanno z niżej notowanego submissionu oraz **213–43** przeciw B21 (+9745.1), zero błędów;
+- pełny G2, fresh seedy 77000–77007: **16–0, +9623**; V15 na identycznych seedach **16–0, +5347**. Paired delta +4276.4, kandydat lepszy w 14/16 gier.
+
+To zmienia ocenę: `top7_kanno_bestsub_ep107384200.py` jest obecnie kandydatem jakości submission, mocniejszym niż V15 na bezpośrednim fresh H2H, G2 i porównywalnym B21. Nie podmieniono po cichu już wysłanego V15; kolejna promocja/submission powinna być jawną decyzją i dostać osobny numer.

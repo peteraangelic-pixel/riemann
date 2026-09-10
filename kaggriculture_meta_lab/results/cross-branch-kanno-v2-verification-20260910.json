@@ -1,0 +1,480 @@
+{
+  "cross_branch": {
+    "head": "4614aab",
+    "candidate_actions_equal": "719/719",
+    "source_episode": 107384200,
+    "submission": 56133568,
+    "public_score": 2975.9,
+    "reported": {
+      "vs_v15_combined": "75-53 / 128",
+      "vs_raw_subin": "96-0 +8322",
+      "vs_b21": "85-11 +10963",
+      "vs_g2": "32-0 +10063",
+      "top7_round_robin": "184-8"
+    }
+  },
+  "independent": {
+    "source_reproduction": {
+      "seed": 522182097,
+      "rewards": [
+        84925.0,
+        78077.0
+      ]
+    },
+    "fresh_static_76000_76127": {
+      "vs_v15": "212-44 +602.4",
+      "vs_lower_submission_kanno": "145-111 +54.1",
+      "vs_b21": "213-43 +9745.1"
+    },
+    "fresh_g2_77000_77007": {
+      "candidate": "16-0 +9623",
+      "v15_control": "16-0 +5347",
+      "paired_delta_mean": 4276.375,
+      "paired_better": 14,
+      "paired_worse": 2
+    },
+    "runs": [
+      {
+        "candidate": "kaggriculture_meta_lab/agents/candidates/top7_kanno_bestsub_ep107384200.py",
+        "games": 8,
+        "workers": 8,
+        "elapsed_seconds": 53.45593387300005,
+        "games_per_second": 0.2993119536179576,
+        "opponents": {
+          "agent_v10_subin_g2_83": {
+            "games": 16,
+            "wins": 16,
+            "losses": 0,
+            "ties": 0,
+            "errors": 0,
+            "win_rate": 1.0,
+            "score_rate": 1.0,
+            "ci_low": 0.8063923194655637,
+            "ci_high": 1.0,
+            "mean_margin": 9623.0625,
+            "median_margin": 9781.0,
+            "p10_margin": 6207.0,
+            "mean_self": 99033.5,
+            "mean_opp": 89410.4375
+          }
+        },
+        "pooled": {
+          "games": 16,
+          "wins": 16,
+          "losses": 0,
+          "ties": 0,
+          "errors": 0,
+          "win_rate": 1.0,
+          "score_rate": 1.0,
+          "ci_low": 0.8063923194655637,
+          "ci_high": 1.0,
+          "mean_margin": 9623.0625,
+          "median_margin": 9781.0,
+          "p10_margin": 6207.0,
+          "mean_self": 99033.5,
+          "mean_opp": 89410.4375
+        },
+        "rows": [
+          {
+            "tag": "top7-kanno-bestsub-vs-g2-fresh",
+            "seed": 77000,
+            "seat": 0,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 136192.0,
+            "opp_reward": 123889.0,
+            "margin": 12303.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "top7-kanno-bestsub-vs-g2-fresh",
+            "seed": 77001,
+            "seat": 0,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 99247.0,
+            "opp_reward": 90215.0,
+            "margin": 9032.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "top7-kanno-bestsub-vs-g2-fresh",
+            "seed": 77003,
+            "seat": 0,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 95911.0,
+            "opp_reward": 86764.0,
+            "margin": 9147.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "top7-kanno-bestsub-vs-g2-fresh",
+            "seed": 77001,
+            "seat": 1,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 99247.0,
+            "opp_reward": 90215.0,
+            "margin": 9032.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "top7-kanno-bestsub-vs-g2-fresh",
+            "seed": 77003,
+            "seat": 1,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 95911.0,
+            "opp_reward": 86764.0,
+            "margin": 9147.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "top7-kanno-bestsub-vs-g2-fresh",
+            "seed": 77000,
+            "seat": 1,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 132154.0,
+            "opp_reward": 118562.0,
+            "margin": 13592.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "top7-kanno-bestsub-vs-g2-fresh",
+            "seed": 77002,
+            "seat": 0,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 77385.0,
+            "opp_reward": 70079.0,
+            "margin": 7306.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "top7-kanno-bestsub-vs-g2-fresh",
+            "seed": 77002,
+            "seat": 1,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 77385.0,
+            "opp_reward": 70079.0,
+            "margin": 7306.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "top7-kanno-bestsub-vs-g2-fresh",
+            "seed": 77004,
+            "seat": 0,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 109349.0,
+            "opp_reward": 98862.0,
+            "margin": 10487.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "top7-kanno-bestsub-vs-g2-fresh",
+            "seed": 77004,
+            "seat": 1,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 109349.0,
+            "opp_reward": 98862.0,
+            "margin": 10487.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "top7-kanno-bestsub-vs-g2-fresh",
+            "seed": 77006,
+            "seat": 0,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 103173.0,
+            "opp_reward": 91730.0,
+            "margin": 11443.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "top7-kanno-bestsub-vs-g2-fresh",
+            "seed": 77005,
+            "seat": 0,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 103223.0,
+            "opp_reward": 92808.0,
+            "margin": 10415.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "top7-kanno-bestsub-vs-g2-fresh",
+            "seed": 77007,
+            "seat": 1,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 69807.0,
+            "opp_reward": 63600.0,
+            "margin": 6207.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "top7-kanno-bestsub-vs-g2-fresh",
+            "seed": 77005,
+            "seat": 1,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 103223.0,
+            "opp_reward": 92808.0,
+            "margin": 10415.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "top7-kanno-bestsub-vs-g2-fresh",
+            "seed": 77006,
+            "seat": 1,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 103173.0,
+            "opp_reward": 91730.0,
+            "margin": 11443.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "top7-kanno-bestsub-vs-g2-fresh",
+            "seed": 77007,
+            "seat": 0,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 69807.0,
+            "opp_reward": 63600.0,
+            "margin": 6207.0,
+            "outcome": "win",
+            "error": null
+          }
+        ],
+        "source_report": "tournament-20260910-101718.json"
+      },
+      {
+        "candidate": "kaggriculture_meta_lab/agents/candidates/champion_tape_germanjurado1.py",
+        "games": 8,
+        "workers": 8,
+        "elapsed_seconds": 56.851132497000435,
+        "games_per_second": 0.2814367858167854,
+        "opponents": {
+          "agent_v10_subin_g2_83": {
+            "games": 16,
+            "wins": 16,
+            "losses": 0,
+            "ties": 0,
+            "errors": 0,
+            "win_rate": 1.0,
+            "score_rate": 1.0,
+            "ci_low": 0.8063923194655637,
+            "ci_high": 1.0,
+            "mean_margin": 5346.6875,
+            "median_margin": 5262.0,
+            "p10_margin": 2496.0,
+            "mean_self": 89616.4375,
+            "mean_opp": 84269.75
+          }
+        },
+        "pooled": {
+          "games": 16,
+          "wins": 16,
+          "losses": 0,
+          "ties": 0,
+          "errors": 0,
+          "win_rate": 1.0,
+          "score_rate": 1.0,
+          "ci_low": 0.8063923194655637,
+          "ci_high": 1.0,
+          "mean_margin": 5346.6875,
+          "median_margin": 5262.0,
+          "p10_margin": 2496.0,
+          "mean_self": 89616.4375,
+          "mean_opp": 84269.75
+        },
+        "rows": [
+          {
+            "tag": "german-v15-vs-g2-fresh-control",
+            "seed": 77003,
+            "seat": 0,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 86410.0,
+            "opp_reward": 83026.0,
+            "margin": 3384.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "german-v15-vs-g2-fresh-control",
+            "seed": 77000,
+            "seat": 1,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 91256.0,
+            "opp_reward": 86011.0,
+            "margin": 5245.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "german-v15-vs-g2-fresh-control",
+            "seed": 77001,
+            "seat": 0,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 133138.0,
+            "opp_reward": 122199.0,
+            "margin": 10939.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "german-v15-vs-g2-fresh-control",
+            "seed": 77000,
+            "seat": 0,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 90539.0,
+            "opp_reward": 86707.0,
+            "margin": 3832.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "german-v15-vs-g2-fresh-control",
+            "seed": 77001,
+            "seat": 1,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 133138.0,
+            "opp_reward": 122199.0,
+            "margin": 10939.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "german-v15-vs-g2-fresh-control",
+            "seed": 77002,
+            "seat": 1,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 89583.0,
+            "opp_reward": 83513.0,
+            "margin": 6070.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "german-v15-vs-g2-fresh-control",
+            "seed": 77003,
+            "seat": 1,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 86410.0,
+            "opp_reward": 83026.0,
+            "margin": 3384.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "german-v15-vs-g2-fresh-control",
+            "seed": 77002,
+            "seat": 0,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 89583.0,
+            "opp_reward": 83513.0,
+            "margin": 6070.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "german-v15-vs-g2-fresh-control",
+            "seed": 77004,
+            "seat": 0,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 83477.0,
+            "opp_reward": 78856.0,
+            "margin": 4621.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "german-v15-vs-g2-fresh-control",
+            "seed": 77005,
+            "seat": 0,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 60943.0,
+            "opp_reward": 58447.0,
+            "margin": 2496.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "german-v15-vs-g2-fresh-control",
+            "seed": 77006,
+            "seat": 0,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 80725.0,
+            "opp_reward": 75279.0,
+            "margin": 5446.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "german-v15-vs-g2-fresh-control",
+            "seed": 77005,
+            "seat": 1,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 60943.0,
+            "opp_reward": 58447.0,
+            "margin": 2496.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "german-v15-vs-g2-fresh-control",
+            "seed": 77004,
+            "seat": 1,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 83477.0,
+            "opp_reward": 78856.0,
+            "margin": 4621.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "german-v15-vs-g2-fresh-control",
+            "seed": 77006,
+            "seat": 1,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 80725.0,
+            "opp_reward": 75279.0,
+            "margin": 5446.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "german-v15-vs-g2-fresh-control",
+            "seed": 77007,
+            "seat": 0,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 91758.0,
+            "opp_reward": 86479.0,
+            "margin": 5279.0,
+            "outcome": "win",
+            "error": null
+          },
+          {
+            "tag": "german-v15-vs-g2-fresh-control",
+            "seed": 77007,
+            "seat": 1,
+            "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+            "self_reward": 91758.0,
+            "opp_reward": 86479.0,
+            "margin": 5279.0,
+            "outcome": "win",
+            "error": null
+          }
+        ],
+        "source_report": "tournament-20260910-101820.json"
+      }
+    ]
+  },
+  "decision": "submission-grade challenger; do not silently replace already-submitted V15 without explicit promotion/submission decision"
+}
