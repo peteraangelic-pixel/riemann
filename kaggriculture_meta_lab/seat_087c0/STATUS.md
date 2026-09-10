@@ -99,3 +99,9 @@
 - Fixed t1 router (`own money in [3000,3010]`) independent holdout: TOP7 +8 wins/+848 reward/+791 margin/+41 q10; TOP15 +2 wins/+66 reward/+112 margin/-96 q10. Not promotion-grade: one team regressed by 4 wins on TOP7, one by 2 on TOP15. Peer pivoted to richer public t120 trajectory fingerprints across all 189 policies.
 - Avoid duplicating peer t120 search. This branch will finish independent V4 gate, then independently gate peer's eventual frozen candidate.
 - Azure/GitHub log and artifact downloads both return EOF. Gate diagnostic is now emitted in small check annotations to expose the actual evaluator error without changing candidates or seeds.
+
+## 2026-09-10 (23): current-meta reprioritization
+- User correction accepted: complete TOP15 consists of ~2-day-old strategies now plausibly TOP200-500 and is historical compatibility evidence, not an equal-weight veto. Promotion priority is latest TOP7, previous TOP7, fresh seeds/both seats, then live leaderboard; old TOP15/TOP30 are secondary.
+- Reclassify static V7-open/V16-tail hybrid as strongest current V8 candidate: latest TOP7 3642-390 vs V7 3607-425 (+35), +882 reward, +983 margin, improves six current teams with only -3 net wins over two teams. Old TOP15 -22 is specialization evidence, not automatic rejection.
+- Imported exact peer structured hybrid for independent testing. Launched 24-seed matched gate on the immediately previous TOP7 generation versus V7 and V16; no reuse of old TOP15 as primary selector.
+- V4 fixed gate failure diagnosed: evaluator requires control named `identity`; script used `v7`, causing post-simulation `StopIteration`. Corrected label only; candidates and seed range unchanged.

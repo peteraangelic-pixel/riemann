@@ -8,7 +8,7 @@ from kaggriculture_lab.rust_backend import _source
 from search_single_market_mutations import evaluate
 ap=argparse.ArgumentParser();ap.add_argument('--top7',type=Path,required=True);ap.add_argument('--top15',type=Path,required=True);ap.add_argument('--binary',type=Path,required=True);ap.add_argument('--v7',type=Path,required=True);ap.add_argument('--v4',type=Path,required=True);ap.add_argument('--output',type=Path,required=True);a=ap.parse_args()
 v7=_source(str(a.v7.resolve())).actions;v4=_source(str(a.v4.resolve())).actions;variants=[]
-for name,steps in [('v7',()),('m401',(401,)),('m409',(409,)),('m401409',(401,409)),('m360',(360,))]:
+for name,steps in [('identity',()),('m401',(401,)),('m409',(409,)),('m401409',(401,409)),('m360',(360,))]:
  t=copy.deepcopy(v7)
  for seat in (0,1):
   for step in steps:t[seat][step]['market']=copy.deepcopy(v4[seat][step]['market'])
