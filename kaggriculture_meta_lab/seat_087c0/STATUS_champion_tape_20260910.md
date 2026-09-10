@@ -193,3 +193,30 @@ Diagnoza porażek kanno vs v1 (18L/30W, swap0, świeże seedy): gry remisowe do
 porażki częściej przy YARN_STORE (1.39 vs 0.80/gra), wygrane przy
 BRUNCH/ICE_CREAM (1.4 vs ~1.0/gra). Mała próba; do potwierdzenia na 200+
 seedach przed projektowaniem interwencji.
+
+## All-episode screen: v2 dethroned by its own sibling -> v3
+
+Trop sklepowy UBITY: 200 świeżych gier kanno-vs-v1, korelacje miksu sklepów
+z marginesem |r|<=0.19 (YARN -0.02, BRUNCH -0.07). Poprzedni wzorzec to był
+szum z małej próby. (`results/shoptrace_800_899.json`, `scripts/trace_shops.py`)
+
+Metodologia: identyczne taśmy dają 28 remisów + 2W/2L z idealną antysymetrią
+swapów (efekt kolejności miejsc ~0.5-0.9k, znosi się dokładnie przy obu
+swapach). Procedura obu-seatów pozostaje obowiązkowa.
+
+Screening 34 taśm (WSZYSTKIE epizody best-sub TOP7, nie tylko max-bank) vs v2,
+seedy 100–115: kanno_ep107381285 (bank źródłowy 59 494 — NAJNIŻSZY z 34!)
+wygrywa **32-0 (+1.7k/g)**; następny najlepszy ma 8-24. Bank nie przewiduje
+siły taśmy — potwierdzenie trzecie, najmocniejsze.
+
+Walidacja fresh 200–231: vs v2 **63-1 (+1.5k/g)** (łącznie 95-1/96); vs v1
+62-2; vs subin 64-0 (+7.9k); vs b21 48-16 (+8.0k, identyczne W/L co v2 na tych
+samych seedach); vs yusuke 64-0; vs himanshu 63-1. Vs G2 (slow, 100–115):
+**32-0 (+9.1k)**.
+
+v2 vs v3: farmer+hands identyczne w 719/719, te same sumy (260 hire, 2 landy,
+8/6/3 zwierzęta); różnica TYLKO mikrotiming rynku na 84 krokach (głównie dni
+18–29, np. ten sam SELL przesunięty o kilka kroków). Cała przewaga rodzeństwa
+to timing sprzedaży w endgame — zgodnie z diagnozą (decyzje w ost. ~5 dniach).
+
+**Nowy mistrz: `agents/champion_tape_kanno_ep107381285_v1.py`** (v3).

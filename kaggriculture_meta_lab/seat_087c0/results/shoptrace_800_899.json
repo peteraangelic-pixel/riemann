@@ -1,0 +1,17 @@
+{
+ "w": 122,
+ "l": 78,
+ "t": 0,
+ "mean_margin": -213.2,
+ "shop_corr": {
+  "PIZZA_SHOP": 0.186,
+  "BAKERY": -0.112,
+  "FARMERS_MARKET": -0.101,
+  "BRUNCH_SPOT": -0.073,
+  "PET_CAFE": 0.073,
+  "YARN_STORE": -0.02,
+  "SMOOTHIE_SHOP": 0.007,
+  "ICE_CREAM_SHOP": 0.005
+ },
+ "games_per_s": 23.7
+}
