@@ -1,0 +1,1106 @@
+{
+  "format": "v4-fixed-component-gate-v1",
+  "policies": 189,
+  "seeds": [
+    144000,
+    144015
+  ],
+  "jobs": 30240,
+  "results": [
+    {
+      "name": "m401",
+      "games": 6048,
+      "wins": 5612,
+      "losses": 436,
+      "ties": 0,
+      "score_rate": 0.9279100529100529,
+      "mean_reward": 105336.8976521164,
+      "mean_margin": 27431.75281084656,
+      "groups": {
+        "new7::SpaTaro": {
+          "games": 384,
+          "wins": 369,
+          "losses": 15,
+          "ties": 0,
+          "score_rate": 0.9609375,
+          "mean_reward": 107426.41145833333,
+          "mean_margin": 40657.497395833336
+        },
+        "new7::Otter Vibe": {
+          "games": 384,
+          "wins": 344,
+          "losses": 40,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 109769.49739583333,
+          "mean_margin": 23460.463541666668
+        },
+        "new7::Unknown Mother-Goose": {
+          "games": 384,
+          "wins": 338,
+          "losses": 46,
+          "ties": 0,
+          "score_rate": 0.8802083333333334,
+          "mean_reward": 101036.3203125,
+          "mean_margin": 14623.286458333334
+        },
+        "new7::feel the agi": {
+          "games": 384,
+          "wins": 302,
+          "losses": 82,
+          "ties": 0,
+          "score_rate": 0.7864583333333334,
+          "mean_reward": 98998.3359375,
+          "mean_margin": 12232.544270833334
+        },
+        "new7::Himanshu Kumar": {
+          "games": 384,
+          "wins": 376,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 130567.703125,
+          "mean_margin": 66485.30989583333
+        },
+        "new7::Mengfei Li": {
+          "games": 384,
+          "wins": 352,
+          "losses": 32,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 96568.21614583333,
+          "mean_margin": 17140.09375
+        },
+        "new7::binghua": {
+          "games": 384,
+          "wins": 354,
+          "losses": 30,
+          "ties": 0,
+          "score_rate": 0.921875,
+          "mean_reward": 92192.76041666667,
+          "mean_margin": 14172.963541666666
+        },
+        "full15::Otter Vibe": {
+          "games": 224,
+          "wins": 202,
+          "losses": 22,
+          "ties": 0,
+          "score_rate": 0.9017857142857143,
+          "mean_reward": 112941.21428571429,
+          "mean_margin": 27001.928571428572
+        },
+        "full15::SpaTaro": {
+          "games": 224,
+          "wins": 218,
+          "losses": 6,
+          "ties": 0,
+          "score_rate": 0.9732142857142857,
+          "mean_reward": 105407.58928571429,
+          "mean_margin": 40728.27678571428
+        },
+        "full15::Himanshu Kumar": {
+          "games": 224,
+          "wins": 208,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.9285714285714286,
+          "mean_reward": 129701.96428571429,
+          "mean_margin": 65846.44642857143
+        },
+        "full15::pensukesan": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 130386.39732142857,
+          "mean_margin": 64289.93303571428
+        },
+        "full15::cooked": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135342.36160714287,
+          "mean_margin": 73609.27232142857
+        },
+        "full15::kanno": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 94353.09375,
+          "mean_margin": 5297.616071428572
+        },
+        "full15::Terry Luo": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 133866.6830357143,
+          "mean_margin": 73227.75892857143
+        },
+        "full15::binghua": {
+          "games": 224,
+          "wins": 218,
+          "losses": 6,
+          "ties": 0,
+          "score_rate": 0.9732142857142857,
+          "mean_reward": 96575.65625,
+          "mean_margin": 17079.160714285714
+        },
+        "full15::Mengfei Li": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 94750.34375,
+          "mean_margin": 18401.83035714286
+        },
+        "full15::GermanJurado1": {
+          "games": 224,
+          "wins": 218,
+          "losses": 6,
+          "ties": 0,
+          "score_rate": 0.9732142857142857,
+          "mean_reward": 89307.79910714286,
+          "mean_margin": 4547.410714285715
+        },
+        "full15::mtmr_s1": {
+          "games": 224,
+          "wins": 200,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.8928571428571429,
+          "mean_reward": 96062.44196428571,
+          "mean_margin": 7529.325892857143
+        },
+        "full15::\u30c7\u30ef\u30f3\u30b7\u30e5": {
+          "games": 224,
+          "wins": 177,
+          "losses": 47,
+          "ties": 0,
+          "score_rate": 0.7901785714285714,
+          "mean_reward": 89117.27678571429,
+          "mean_margin": 2473.65625
+        },
+        "full15::DeeperNet": {
+          "games": 224,
+          "wins": 208,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.9285714285714286,
+          "mean_reward": 89266.26785714286,
+          "mean_margin": 4508.660714285715
+        },
+        "full15::\u9ec4\u65ed\u4f1faaaabbs": {
+          "games": 224,
+          "wins": 184,
+          "losses": 40,
+          "ties": 0,
+          "score_rate": 0.8214285714285714,
+          "mean_reward": 96174.04017857143,
+          "mean_margin": 9079.151785714286
+        },
+        "full15::ultimatum_game": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 88170.11607142857,
+          "mean_margin": 3427.4821428571427
+        }
+      },
+      "regressed_groups": 0,
+      "worst_group_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9279100529100529,
+        105336.8976521164,
+        27431.75281084656
+      ]
+    },
+    {
+      "name": "m401409",
+      "games": 6048,
+      "wins": 5612,
+      "losses": 436,
+      "ties": 0,
+      "score_rate": 0.9279100529100529,
+      "mean_reward": 105336.84011243386,
+      "mean_margin": 27431.554067460318,
+      "groups": {
+        "new7::SpaTaro": {
+          "games": 384,
+          "wins": 369,
+          "losses": 15,
+          "ties": 0,
+          "score_rate": 0.9609375,
+          "mean_reward": 107426.41145833333,
+          "mean_margin": 40657.497395833336
+        },
+        "new7::Otter Vibe": {
+          "games": 384,
+          "wins": 344,
+          "losses": 40,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 109771.4140625,
+          "mean_margin": 23464.296875
+        },
+        "new7::Unknown Mother-Goose": {
+          "games": 384,
+          "wins": 338,
+          "losses": 46,
+          "ties": 0,
+          "score_rate": 0.8802083333333334,
+          "mean_reward": 101036.13802083333,
+          "mean_margin": 14622.833333333334
+        },
+        "new7::feel the agi": {
+          "games": 384,
+          "wins": 302,
+          "losses": 82,
+          "ties": 0,
+          "score_rate": 0.7864583333333334,
+          "mean_reward": 98998.3359375,
+          "mean_margin": 12232.544270833334
+        },
+        "new7::Himanshu Kumar": {
+          "games": 384,
+          "wins": 376,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 130567.703125,
+          "mean_margin": 66485.30989583333
+        },
+        "new7::Mengfei Li": {
+          "games": 384,
+          "wins": 352,
+          "losses": 32,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 96568.75260416667,
+          "mean_margin": 17141.166666666668
+        },
+        "new7::binghua": {
+          "games": 384,
+          "wins": 354,
+          "losses": 30,
+          "ties": 0,
+          "score_rate": 0.921875,
+          "mean_reward": 92192.76041666667,
+          "mean_margin": 14172.963541666666
+        },
+        "full15::Otter Vibe": {
+          "games": 224,
+          "wins": 202,
+          "losses": 22,
+          "ties": 0,
+          "score_rate": 0.9017857142857143,
+          "mean_reward": 112944.07142857143,
+          "mean_margin": 27007.64285714286
+        },
+        "full15::SpaTaro": {
+          "games": 224,
+          "wins": 218,
+          "losses": 6,
+          "ties": 0,
+          "score_rate": 0.9732142857142857,
+          "mean_reward": 105407.77678571429,
+          "mean_margin": 40728.6875
+        },
+        "full15::Himanshu Kumar": {
+          "games": 224,
+          "wins": 208,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.9285714285714286,
+          "mean_reward": 129701.96428571429,
+          "mean_margin": 65846.44642857143
+        },
+        "full15::pensukesan": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 130386.39732142857,
+          "mean_margin": 64289.93303571428
+        },
+        "full15::cooked": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135342.20089285713,
+          "mean_margin": 73608.95089285714
+        },
+        "full15::kanno": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 94351.09375,
+          "mean_margin": 5293.330357142857
+        },
+        "full15::Terry Luo": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 133866.6830357143,
+          "mean_margin": 73227.75892857143
+        },
+        "full15::binghua": {
+          "games": 224,
+          "wins": 218,
+          "losses": 6,
+          "ties": 0,
+          "score_rate": 0.9732142857142857,
+          "mean_reward": 96575.65625,
+          "mean_margin": 17079.160714285714
+        },
+        "full15::Mengfei Li": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 94751.48660714286,
+          "mean_margin": 18404.116071428572
+        },
+        "full15::GermanJurado1": {
+          "games": 224,
+          "wins": 218,
+          "losses": 6,
+          "ties": 0,
+          "score_rate": 0.9732142857142857,
+          "mean_reward": 89305.79910714286,
+          "mean_margin": 4542.410714285715
+        },
+        "full15::mtmr_s1": {
+          "games": 224,
+          "wins": 200,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.8928571428571429,
+          "mean_reward": 96062.28125,
+          "mean_margin": 7528.861607142857
+        },
+        "full15::\u30c7\u30ef\u30f3\u30b7\u30e5": {
+          "games": 224,
+          "wins": 177,
+          "losses": 47,
+          "ties": 0,
+          "score_rate": 0.7901785714285714,
+          "mean_reward": 89115.27678571429,
+          "mean_margin": 2469.65625
+        },
+        "full15::DeeperNet": {
+          "games": 224,
+          "wins": 208,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.9285714285714286,
+          "mean_reward": 89266.26785714286,
+          "mean_margin": 4508.660714285715
+        },
+        "full15::\u9ec4\u65ed\u4f1faaaabbs": {
+          "games": 224,
+          "wins": 184,
+          "losses": 40,
+          "ties": 0,
+          "score_rate": 0.8214285714285714,
+          "mean_reward": 96172.72767857143,
+          "mean_margin": 9076.098214285714
+        },
+        "full15::ultimatum_game": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 88168.11607142857,
+          "mean_margin": 3423.1964285714284
+        }
+      },
+      "regressed_groups": 0,
+      "worst_group_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9279100529100529,
+        105336.84011243386,
+        27431.554067460318
+      ]
+    },
+    {
+      "name": "identity",
+      "games": 6048,
+      "wins": 5611,
+      "losses": 436,
+      "ties": 1,
+      "score_rate": 0.9278273809523809,
+      "mean_reward": 105327.25727513227,
+      "mean_margin": 27436.238425925927,
+      "groups": {
+        "new7::SpaTaro": {
+          "games": 384,
+          "wins": 369,
+          "losses": 15,
+          "ties": 0,
+          "score_rate": 0.9609375,
+          "mean_reward": 107413.3046875,
+          "mean_margin": 40652.9375
+        },
+        "new7::Otter Vibe": {
+          "games": 384,
+          "wins": 344,
+          "losses": 40,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 109755.48177083333,
+          "mean_margin": 23453.994791666668
+        },
+        "new7::Unknown Mother-Goose": {
+          "games": 384,
+          "wins": 338,
+          "losses": 46,
+          "ties": 0,
+          "score_rate": 0.8802083333333334,
+          "mean_reward": 101020.22135416667,
+          "mean_margin": 14615.635416666666
+        },
+        "new7::feel the agi": {
+          "games": 384,
+          "wins": 302,
+          "losses": 82,
+          "ties": 0,
+          "score_rate": 0.7864583333333334,
+          "mean_reward": 99011.22135416667,
+          "mean_margin": 12282.3984375
+        },
+        "new7::Himanshu Kumar": {
+          "games": 384,
+          "wins": 376,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 130559.20833333333,
+          "mean_margin": 66489.7890625
+        },
+        "new7::Mengfei Li": {
+          "games": 384,
+          "wins": 352,
+          "losses": 32,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 96542.09635416667,
+          "mean_margin": 17113.682291666668
+        },
+        "new7::binghua": {
+          "games": 384,
+          "wins": 353,
+          "losses": 30,
+          "ties": 1,
+          "score_rate": 0.9205729166666666,
+          "mean_reward": 92189.82552083333,
+          "mean_margin": 14191.809895833334
+        },
+        "full15::Otter Vibe": {
+          "games": 224,
+          "wins": 202,
+          "losses": 22,
+          "ties": 0,
+          "score_rate": 0.9017857142857143,
+          "mean_reward": 112926.45089285714,
+          "mean_margin": 26995.147321428572
+        },
+        "full15::SpaTaro": {
+          "games": 224,
+          "wins": 218,
+          "losses": 6,
+          "ties": 0,
+          "score_rate": 0.9732142857142857,
+          "mean_reward": 105391.25892857143,
+          "mean_margin": 40715.08928571428
+        },
+        "full15::Himanshu Kumar": {
+          "games": 224,
+          "wins": 208,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.9285714285714286,
+          "mean_reward": 129692.33035714286,
+          "mean_margin": 65850.05357142857
+        },
+        "full15::pensukesan": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 130379.12946428571,
+          "mean_margin": 64297.18303571428
+        },
+        "full15::cooked": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135324.20089285713,
+          "mean_margin": 73593.08482142857
+        },
+        "full15::kanno": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 94329.16517857143,
+          "mean_margin": 5277.071428571428
+        },
+        "full15::Terry Luo": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 133861.86160714287,
+          "mean_margin": 73238.14285714286
+        },
+        "full15::binghua": {
+          "games": 224,
+          "wins": 218,
+          "losses": 6,
+          "ties": 0,
+          "score_rate": 0.9732142857142857,
+          "mean_reward": 96589.60267857143,
+          "mean_margin": 17132.76785714286
+        },
+        "full15::Mengfei Li": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 94723.5,
+          "mean_margin": 18374.790178571428
+        },
+        "full15::GermanJurado1": {
+          "games": 224,
+          "wins": 218,
+          "losses": 6,
+          "ties": 0,
+          "score_rate": 0.9732142857142857,
+          "mean_reward": 89330.44196428571,
+          "mean_margin": 4612.303571428572
+        },
+        "full15::mtmr_s1": {
+          "games": 224,
+          "wins": 200,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.8928571428571429,
+          "mean_reward": 96038.14732142857,
+          "mean_margin": 7510.558035714285
+        },
+        "full15::\u30c7\u30ef\u30f3\u30b7\u30e5": {
+          "games": 224,
+          "wins": 177,
+          "losses": 47,
+          "ties": 0,
+          "score_rate": 0.7901785714285714,
+          "mean_reward": 89089.36607142857,
+          "mean_margin": 2445.745535714286
+        },
+        "full15::DeeperNet": {
+          "games": 224,
+          "wins": 208,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.9285714285714286,
+          "mean_reward": 89239.66071428571,
+          "mean_margin": 4482.464285714285
+        },
+        "full15::\u9ec4\u65ed\u4f1faaaabbs": {
+          "games": 224,
+          "wins": 184,
+          "losses": 40,
+          "ties": 0,
+          "score_rate": 0.8214285714285714,
+          "mean_reward": 96167.91964285714,
+          "mean_margin": 9096.308035714286
+        },
+        "full15::ultimatum_game": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 88196.29464285714,
+          "mean_margin": 3500.160714285714
+        }
+      },
+      "regressed_groups": 0,
+      "worst_group_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9278273809523809,
+        105327.25727513227,
+        27436.238425925927
+      ]
+    },
+    {
+      "name": "m409",
+      "games": 6048,
+      "wins": 5611,
+      "losses": 436,
+      "ties": 1,
+      "score_rate": 0.9278273809523809,
+      "mean_reward": 105327.19973544973,
+      "mean_margin": 27436.039682539682,
+      "groups": {
+        "new7::SpaTaro": {
+          "games": 384,
+          "wins": 369,
+          "losses": 15,
+          "ties": 0,
+          "score_rate": 0.9609375,
+          "mean_reward": 107413.3046875,
+          "mean_margin": 40652.9375
+        },
+        "new7::Otter Vibe": {
+          "games": 384,
+          "wins": 344,
+          "losses": 40,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 109757.3984375,
+          "mean_margin": 23457.828125
+        },
+        "new7::Unknown Mother-Goose": {
+          "games": 384,
+          "wins": 338,
+          "losses": 46,
+          "ties": 0,
+          "score_rate": 0.8802083333333334,
+          "mean_reward": 101020.0390625,
+          "mean_margin": 14615.182291666666
+        },
+        "new7::feel the agi": {
+          "games": 384,
+          "wins": 302,
+          "losses": 82,
+          "ties": 0,
+          "score_rate": 0.7864583333333334,
+          "mean_reward": 99011.22135416667,
+          "mean_margin": 12282.3984375
+        },
+        "new7::Himanshu Kumar": {
+          "games": 384,
+          "wins": 376,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 130559.20833333333,
+          "mean_margin": 66489.7890625
+        },
+        "new7::Mengfei Li": {
+          "games": 384,
+          "wins": 352,
+          "losses": 32,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 96542.6328125,
+          "mean_margin": 17114.755208333332
+        },
+        "new7::binghua": {
+          "games": 384,
+          "wins": 353,
+          "losses": 30,
+          "ties": 1,
+          "score_rate": 0.9205729166666666,
+          "mean_reward": 92189.82552083333,
+          "mean_margin": 14191.809895833334
+        },
+        "full15::Otter Vibe": {
+          "games": 224,
+          "wins": 202,
+          "losses": 22,
+          "ties": 0,
+          "score_rate": 0.9017857142857143,
+          "mean_reward": 112929.30803571429,
+          "mean_margin": 27000.86160714286
+        },
+        "full15::SpaTaro": {
+          "games": 224,
+          "wins": 218,
+          "losses": 6,
+          "ties": 0,
+          "score_rate": 0.9732142857142857,
+          "mean_reward": 105391.44642857143,
+          "mean_margin": 40715.5
+        },
+        "full15::Himanshu Kumar": {
+          "games": 224,
+          "wins": 208,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.9285714285714286,
+          "mean_reward": 129692.33035714286,
+          "mean_margin": 65850.05357142857
+        },
+        "full15::pensukesan": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 130379.12946428571,
+          "mean_margin": 64297.18303571428
+        },
+        "full15::cooked": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135324.04017857142,
+          "mean_margin": 73592.76339285714
+        },
+        "full15::kanno": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 94327.16517857143,
+          "mean_margin": 5272.785714285715
+        },
+        "full15::Terry Luo": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 133861.86160714287,
+          "mean_margin": 73238.14285714286
+        },
+        "full15::binghua": {
+          "games": 224,
+          "wins": 218,
+          "losses": 6,
+          "ties": 0,
+          "score_rate": 0.9732142857142857,
+          "mean_reward": 96589.60267857143,
+          "mean_margin": 17132.76785714286
+        },
+        "full15::Mengfei Li": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 94724.64285714286,
+          "mean_margin": 18377.07589285714
+        },
+        "full15::GermanJurado1": {
+          "games": 224,
+          "wins": 218,
+          "losses": 6,
+          "ties": 0,
+          "score_rate": 0.9732142857142857,
+          "mean_reward": 89328.44196428571,
+          "mean_margin": 4607.303571428572
+        },
+        "full15::mtmr_s1": {
+          "games": 224,
+          "wins": 200,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.8928571428571429,
+          "mean_reward": 96037.98660714286,
+          "mean_margin": 7510.09375
+        },
+        "full15::\u30c7\u30ef\u30f3\u30b7\u30e5": {
+          "games": 224,
+          "wins": 177,
+          "losses": 47,
+          "ties": 0,
+          "score_rate": 0.7901785714285714,
+          "mean_reward": 89087.36607142857,
+          "mean_margin": 2441.745535714286
+        },
+        "full15::DeeperNet": {
+          "games": 224,
+          "wins": 208,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.9285714285714286,
+          "mean_reward": 89239.66071428571,
+          "mean_margin": 4482.464285714285
+        },
+        "full15::\u9ec4\u65ed\u4f1faaaabbs": {
+          "games": 224,
+          "wins": 184,
+          "losses": 40,
+          "ties": 0,
+          "score_rate": 0.8214285714285714,
+          "mean_reward": 96166.60714285714,
+          "mean_margin": 9093.254464285714
+        },
+        "full15::ultimatum_game": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 88194.29464285714,
+          "mean_margin": 3495.875
+        }
+      },
+      "regressed_groups": 0,
+      "worst_group_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9278273809523809,
+        105327.19973544973,
+        27436.039682539682
+      ]
+    },
+    {
+      "name": "m360",
+      "games": 6048,
+      "wins": 5611,
+      "losses": 436,
+      "ties": 1,
+      "score_rate": 0.9278273809523809,
+      "mean_reward": 105322.50231481482,
+      "mean_margin": 27426.521825396827,
+      "groups": {
+        "new7::SpaTaro": {
+          "games": 384,
+          "wins": 369,
+          "losses": 15,
+          "ties": 0,
+          "score_rate": 0.9609375,
+          "mean_reward": 107412.97135416667,
+          "mean_margin": 40652.354166666664
+        },
+        "new7::Otter Vibe": {
+          "games": 384,
+          "wins": 344,
+          "losses": 40,
+          "ties": 0,
+          "score_rate": 0.8958333333333334,
+          "mean_reward": 109740.81510416667,
+          "mean_margin": 23425.661458333332
+        },
+        "new7::Unknown Mother-Goose": {
+          "games": 384,
+          "wins": 338,
+          "losses": 46,
+          "ties": 0,
+          "score_rate": 0.8802083333333334,
+          "mean_reward": 101020.22135416667,
+          "mean_margin": 14615.635416666666
+        },
+        "new7::feel the agi": {
+          "games": 384,
+          "wins": 302,
+          "losses": 82,
+          "ties": 0,
+          "score_rate": 0.7864583333333334,
+          "mean_reward": 99006.01302083333,
+          "mean_margin": 12271.981770833334
+        },
+        "new7::Himanshu Kumar": {
+          "games": 384,
+          "wins": 376,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9791666666666666,
+          "mean_reward": 130559.20833333333,
+          "mean_margin": 66489.7890625
+        },
+        "new7::Mengfei Li": {
+          "games": 384,
+          "wins": 352,
+          "losses": 32,
+          "ties": 0,
+          "score_rate": 0.9166666666666666,
+          "mean_reward": 96542.09635416667,
+          "mean_margin": 17113.682291666668
+        },
+        "new7::binghua": {
+          "games": 384,
+          "wins": 353,
+          "losses": 30,
+          "ties": 1,
+          "score_rate": 0.9205729166666666,
+          "mean_reward": 92191.8359375,
+          "mean_margin": 14196.221354166666
+        },
+        "full15::Otter Vibe": {
+          "games": 224,
+          "wins": 202,
+          "losses": 22,
+          "ties": 0,
+          "score_rate": 0.9017857142857143,
+          "mean_reward": 112918.59375,
+          "mean_margin": 26980.004464285714
+        },
+        "full15::SpaTaro": {
+          "games": 224,
+          "wins": 218,
+          "losses": 6,
+          "ties": 0,
+          "score_rate": 0.9732142857142857,
+          "mean_reward": 105391.25892857143,
+          "mean_margin": 40715.08928571428
+        },
+        "full15::Himanshu Kumar": {
+          "games": 224,
+          "wins": 208,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.9285714285714286,
+          "mean_reward": 129692.33035714286,
+          "mean_margin": 65850.05357142857
+        },
+        "full15::pensukesan": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 130367.61160714286,
+          "mean_margin": 64272.74553571428
+        },
+        "full15::cooked": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 135318.1205357143,
+          "mean_margin": 73580.30803571429
+        },
+        "full15::kanno": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 94302.16517857143,
+          "mean_margin": 5219.785714285715
+        },
+        "full15::Terry Luo": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 133847.5580357143,
+          "mean_margin": 73208.30357142857
+        },
+        "full15::binghua": {
+          "games": 224,
+          "wins": 218,
+          "losses": 6,
+          "ties": 0,
+          "score_rate": 0.9732142857142857,
+          "mean_reward": 96589.60267857143,
+          "mean_margin": 17132.76785714286
+        },
+        "full15::Mengfei Li": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 94723.5,
+          "mean_margin": 18374.790178571428
+        },
+        "full15::GermanJurado1": {
+          "games": 224,
+          "wins": 218,
+          "losses": 6,
+          "ties": 0,
+          "score_rate": 0.9732142857142857,
+          "mean_reward": 89330.44196428571,
+          "mean_margin": 4612.303571428572
+        },
+        "full15::mtmr_s1": {
+          "games": 224,
+          "wins": 200,
+          "losses": 24,
+          "ties": 0,
+          "score_rate": 0.8928571428571429,
+          "mean_reward": 96037.29017857143,
+          "mean_margin": 7508.986607142857
+        },
+        "full15::\u30c7\u30ef\u30f3\u30b7\u30e5": {
+          "games": 224,
+          "wins": 177,
+          "losses": 47,
+          "ties": 0,
+          "score_rate": 0.7901785714285714,
+          "mean_reward": 89089.36607142857,
+          "mean_margin": 2445.745535714286
+        },
+        "full15::DeeperNet": {
+          "games": 224,
+          "wins": 208,
+          "losses": 16,
+          "ties": 0,
+          "score_rate": 0.9285714285714286,
+          "mean_reward": 89239.66071428571,
+          "mean_margin": 4482.464285714285
+        },
+        "full15::\u9ec4\u65ed\u4f1faaaabbs": {
+          "games": 224,
+          "wins": 184,
+          "losses": 40,
+          "ties": 0,
+          "score_rate": 0.8214285714285714,
+          "mean_reward": 96156.34821428571,
+          "mean_margin": 9071.879464285714
+        },
+        "full15::ultimatum_game": {
+          "games": 224,
+          "wins": 224,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 88178.29464285714,
+          "mean_margin": 3463.160714285714
+        }
+      },
+      "regressed_groups": 0,
+      "worst_group_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.9278273809523809,
+        105322.50231481482,
+        27426.521825396827
+      ]
+    }
+  ]
+}
