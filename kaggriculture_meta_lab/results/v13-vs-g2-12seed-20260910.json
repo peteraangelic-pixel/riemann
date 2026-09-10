@@ -1,0 +1,31 @@
+{
+  "candidate": "agents/variants/agent_v13_b21_recovery.py",
+  "seeds": 12,
+  "both_seats": true,
+  "controls": [
+    {
+      "control": "agents/ref/agent_v10_subin_g2_83.py",
+      "games": 24,
+      "wins": 0,
+      "losses": 24,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 0.0,
+      "score_rate": 0.0,
+      "ci_low": 1.3877787807814457e-17,
+      "ci_high": 0.13797620467498017,
+      "mean_margin": -12159.25,
+      "median_margin": -13584.0,
+      "p10_margin": -20423.0,
+      "mean_self": 95971.33333333333,
+      "mean_opp": 108130.58333333333,
+      "gate_pass": false,
+      "gate_reasons": [
+        "95% CI low 0.0% <= 50% (score rate 0.0%)",
+        "mean margin -12159 <= 0"
+      ]
+    }
+  ],
+  "all_controls_pass": false,
+  "elapsed_s": 74.57552652300001
+}
