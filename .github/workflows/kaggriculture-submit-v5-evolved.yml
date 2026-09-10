@@ -1,0 +1,58 @@
+name: Kaggriculture submit V5 evolved champion
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-submit-v5-evolved.yml"]
+permissions:
+  contents: write
+jobs:
+  submit:
+    if: contains(github.event.head_commit.message, '[kaggr-submit-v5-evolved]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install --disable-pip-version-check kaggle
+      - name: Validate and package V5
+        run: |
+          python -m py_compile kaggriculture_meta_lab/agents/candidates/peer_v5_evolved.py
+          PYTHONPATH=kaggriculture_meta_lab python - <<'PY'
+          from kaggriculture_lab.rust_backend import _source
+          p='kaggriculture_meta_lab/agents/candidates/peer_v5_evolved.py'
+          tape=_source(p)
+          assert tape is not None and tape.trim_hands
+          assert len(tape.actions)==2 and all(len(s)==719 for s in tape.actions)
+          PY
+          work=$(mktemp -d)
+          cp kaggriculture_meta_lab/agents/candidates/peer_v5_evolved.py "$work/main.py"
+          tar -C "$work" -czf "$work/submission-v5-evolved.tar.gz" main.py
+          test $(wc -c < "$work/submission-v5-evolved.tar.gz") -lt 100000000
+          echo "$work" > /tmp/workdir
+      - name: Submit V5 to Kaggle
+        env: {KAGGLE_API_TOKEN: "${{ secrets.KAGGLE_API_TOKEN }}"}
+        run: |
+          mkdir -p ~/.kaggle
+          printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]' > ~/.kaggle/access_token
+          chmod 600 ~/.kaggle/access_token
+          work=$(cat /tmp/workdir)
+          kaggle competitions submit -c kaggriculture \
+            -f "$work/submission-v5-evolved.tar.gz" \
+            -m "V5 evolved shared champion 472-40 hybrid 512-0 G2 $GITHUB_SHA"
+          sleep 15
+          kaggle competitions submissions -c kaggriculture --csv > kaggriculture_meta_lab/results/kaggle-v5-evolved-status-20260910.csv
+          python - <<'PY'
+          import csv,json
+          rows=list(csv.DictReader(open('kaggriculture_meta_lab/results/kaggle-v5-evolved-status-20260910.csv')))
+          row=next(r for r in rows if 'V5 evolved shared champion' in r.get('description',''))
+          json.dump(row,open('kaggriculture_meta_lab/results/kaggle-v5-evolved-submission-20260910.json','w'),indent=2)
+          print(row)
+          PY
+      - name: Persist submission reference
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/kaggle-v5-evolved-status-20260910.csv kaggriculture_meta_lab/results/kaggle-v5-evolved-submission-20260910.json
+          git commit -m "Record V5 evolved Kaggle submission"
+          git push origin HEAD:arena/01a0712c-riemann
