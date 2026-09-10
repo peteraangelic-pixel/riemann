@@ -2,7 +2,7 @@ name: Kaggriculture read-only live audit
 
 on:
   push:
-    branches: ["arena/01a07c52-riemann"]
+    branches: ["arena/01a087c0-riemann"]
     paths:
       - ".github/workflows/kaggriculture-live-audit.yml"
       - "kaggriculture_meta_lab/research/live_status.py"

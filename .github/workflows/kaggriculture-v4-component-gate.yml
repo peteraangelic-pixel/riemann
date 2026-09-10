@@ -30,12 +30,15 @@ jobs:
       - working-directory: kaggriculture_meta_lab/rust_port
         run: cargo build --release --locked
       - run: |
-          C="--candidate v7=kaggriculture_meta_lab/seat_087c0/candidates/audit-v7.py --candidate m401=kaggriculture_meta_lab/seat_087c0/candidates/audit-v4m401.py --candidate m409=kaggriculture_meta_lab/seat_087c0/candidates/audit-v4m409.py --candidate m401409=kaggriculture_meta_lab/seat_087c0/candidates/audit-v4m401409.py --candidate m360=kaggriculture_meta_lab/seat_087c0/candidates/audit-v4m360.py"
-          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py --corpus "$(cat /tmp/top7-root)" --workers 4 --seeds 16 --seed-start 144000 $C --output kaggriculture_meta_lab/seat_087c0/results/v4-components-final-top7.json
-          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py --corpus "$(cat /tmp/top15-root)" --workers 4 --seeds 16 --seed-start 144000 $C --output kaggriculture_meta_lab/seat_087c0/results/v4-components-final-top15.json
+          python kaggriculture_meta_lab/seat_087c0/scripts/gate_v4_components.py \
+            --top7 "$(cat /tmp/top7-root)" --top15 "$(cat /tmp/top15-root)" \
+            --binary kaggriculture_meta_lab/rust_port/target/release/kg_sim \
+            --v7 kaggriculture_meta_lab/seat_087c0/candidates/audit-v7.py \
+            --v4 kaggriculture_meta_lab/seat_087c0/candidates/audit-v4raw.py \
+            --output kaggriculture_meta_lab/seat_087c0/results/v4-components-final.json
       - run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add kaggriculture_meta_lab/seat_087c0/results/v4-components-final-*.json
+          git add kaggriculture_meta_lab/seat_087c0/results/v4-components-final.json
           git commit -m "Record selected V4 components final gate"
           git push origin HEAD:arena/01a087c0-riemann
