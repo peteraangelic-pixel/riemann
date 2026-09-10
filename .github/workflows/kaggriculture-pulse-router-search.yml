@@ -1,0 +1,49 @@
+name: Fertilizer pulse shallow-router search
+on:
+  push:
+    branches: ["arena/01a087c0-riemann"]
+    paths:
+      - ".github/workflows/kaggriculture-pulse-router-search.yml"
+      - "kaggriculture_meta_lab/seat_087c0/scripts/search_pulse_router.py"
+permissions:
+  contents: write
+jobs:
+  search:
+    if: contains(github.event.head_commit.message, '[kg-router-search]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr
+      - name: Retrieve newest 84-policy TOP7 corpus
+        run: |
+          git fetch origin arena/01a0712c-riemann
+          git show FETCH_HEAD:TOP7.7z > /tmp/TOP7.7z
+          python - <<'PY'
+          import json,pathlib,py7zr
+          with py7zr.SevenZipFile('/tmp/TOP7.7z') as a:a.extractall('/tmp/top7')
+          roots=[m for m in pathlib.Path('/tmp/top7').rglob('manifest.json') if 'teams' in json.loads(m.read_text())]
+          pathlib.Path('/tmp/top7-root').write_text(str(roots[0].parent))
+          PY
+      - name: Build and test router primitive
+        working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo test --release --locked
+      - name: Search depth-1/2 fail-closed pulse gates
+        run: |
+          python kaggriculture_meta_lab/seat_087c0/scripts/search_pulse_router.py \
+            --corpus "$(cat /tmp/top7-root)" \
+            --binary kaggriculture_meta_lab/rust_port/target/release/kg_sim \
+            --candidate kaggriculture_meta_lab/seat_087c0/candidates/audit-v7.py \
+            --threads 4 \
+            --output kaggriculture_meta_lab/seat_087c0/results/pulse-router-search.json
+      - name: Persist search evidence
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/seat_087c0/results/pulse-router-search.json
+          git commit -m "Record shallow fertilizer-pulse router search"
+          git push origin HEAD:arena/01a087c0-riemann
