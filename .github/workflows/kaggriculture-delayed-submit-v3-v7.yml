@@ -1,0 +1,77 @@
+name: Kaggriculture delayed UTC-reset V3 and V7 submission
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-delayed-submit-v3-v7.yml"]
+permissions: {contents: write}
+jobs:
+  submit-after-reset:
+    if: contains(github.event.head_commit.message, '[kg-delayed-v3-v7]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - name: Wait until 2026-09-11 00:05 UTC (02:05 Warsaw)
+        run: |
+          target=$(date -u -d '2026-09-11 00:05:00 UTC' +%s)
+          now=$(date -u +%s)
+          delay=$((target-now))
+          if [ "$delay" -gt 0 ]; then
+            echo "Waiting ${delay}s; now=$(date -u --iso-8601=seconds), target=2026-09-11T00:05:00Z"
+            sleep "$delay"
+          fi
+          echo "Submission window reached: $(date -u --iso-8601=seconds)"
+      - run: pip install --disable-pip-version-check kaggle
+      - name: Package V3 and V7 as main.py
+        run: |
+          mkdir -p /tmp/v3 /tmp/v7
+          cp kaggriculture_meta_lab/agents/candidates/agent_v3_coherent_replay.py /tmp/v3/main.py
+          cp kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py /tmp/v7/main.py
+          python -m py_compile /tmp/v3/main.py /tmp/v7/main.py
+          tar -C /tmp/v3 -czf /tmp/submission-v3.tar.gz main.py
+          tar -C /tmp/v7 -czf /tmp/submission-v7.tar.gz main.py
+          test $(wc -c </tmp/submission-v3.tar.gz) -lt 100000000
+          test $(wc -c </tmp/submission-v7.tar.gz) -lt 100000000
+      - name: Submit V3 followed by V7
+        env: {KAGGLE_API_TOKEN: "${{ secrets.KAGGLE_API_TOKEN }}"}
+        run: |
+          mkdir -p ~/.kaggle kaggriculture_meta_lab/results
+          printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]' > ~/.kaggle/access_token
+          chmod 600 ~/.kaggle/access_token
+          set +e
+          kaggle competitions submit -c kaggriculture -f /tmp/submission-v3.tar.gz \
+            -m "V3 coherent replay UTC reset evaluation $GITHUB_SHA" >/tmp/v3.out 2>&1
+          echo $? >/tmp/v3.code
+          sleep 5
+          kaggle competitions submit -c kaggriculture -f /tmp/submission-v7.tar.gz \
+            -m "V7 market probe UTC reset control $GITHUB_SHA" >/tmp/v7.out 2>&1
+          echo $? >/tmp/v7.code
+          sleep 5
+          kaggle competitions submissions -c kaggriculture --csv \
+            >kaggriculture_meta_lab/results/kaggle-v3-v7-delayed-status-20260911.csv 2>/tmp/list.err
+          echo $? >/tmp/list.code
+          set -e
+          cat /tmp/v3.out
+          cat /tmp/v7.out
+          python - <<'PY'
+          import csv,json,pathlib
+          csv_path=pathlib.Path('kaggriculture_meta_lab/results/kaggle-v3-v7-delayed-status-20260911.csv')
+          list_code=int(pathlib.Path('/tmp/list.code').read_text())
+          rows=list(csv.DictReader(csv_path.open())) if list_code==0 and csv_path.exists() else []
+          specs={'v3':'V3 coherent replay UTC reset evaluation','v7':'V7 market probe UTC reset control'}
+          result={'scheduled_target_utc':'2026-09-11T00:05:00Z','list_exit_code':list_code,'list_error':pathlib.Path('/tmp/list.err').read_text(),'attempts':{}}
+          for name,prefix in specs.items():
+           result['attempts'][name]={'exit_code':int(pathlib.Path('/tmp/'+name+'.code').read_text()),'output':pathlib.Path('/tmp/'+name+'.out').read_text(),'accepted_submission':next((row for row in rows if prefix in row.get('description','')),None)}
+          pathlib.Path('kaggriculture_meta_lab/results/kaggle-v3-v7-delayed-submit-20260911.json').write_text(json.dumps(result,indent=2)+'\n')
+          print(json.dumps(result,indent=2))
+          PY
+      - name: Persist exact accepted references or rejections
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/kaggle-v3-v7-delayed-*-20260911.*
+          git commit -m "Record delayed UTC-reset V3 and V7 submissions"
+          git pull --rebase origin arena/01a0712c-riemann
+          git push origin HEAD:arena/01a0712c-riemann
