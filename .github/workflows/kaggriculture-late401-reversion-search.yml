@@ -1,0 +1,47 @@
+name: V10 late401 single reversion search
+on:
+  push:
+    branches: ["arena/01a087c0-riemann"]
+    paths: [".github/workflows/kaggriculture-late401-reversion-search.yml"]
+permissions: {contents: write}
+jobs:
+  search:
+    if: contains(github.event.head_commit.message, '[kg-v10-reversions]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr
+      - run: |
+          git fetch origin arena/01a0712c-riemann
+          git show FETCH_HEAD:TOP7.7z >/tmp/latest.7z
+          git show d6ae369:TOP7.7z >/tmp/previous.7z
+          git show FETCH_HEAD:TOP12.7z >/tmp/top12.7z
+          python - <<'PY'
+          import json,pathlib,py7zr
+          for n in ('latest','previous','top12'):
+           d=pathlib.Path('/tmp')/n
+           with py7zr.SevenZipFile('/tmp/'+n+'.7z') as z:z.extractall(d)
+           m=next(x for x in d.rglob('manifest.json') if 'teams' in json.loads(x.read_text()))
+           pathlib.Path('/tmp/'+n+'-root').write_text(str(m.parent))
+          PY
+      - working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - run: |
+          python kaggriculture_meta_lab/seat_087c0/scripts/search_late401_reversions.py \
+            --latest "$(cat /tmp/latest-root)" --previous "$(cat /tmp/previous-root)" --top12 "$(cat /tmp/top12-root)" \
+            --binary kaggriculture_meta_lab/rust_port/target/release/kg_sim \
+            --v7 kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v7.py \
+            --late kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v8.py \
+            --output kaggriculture_meta_lab/seat_087c0/results/v10-late401-reversion-search.json
+      - run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/seat_087c0/results/v10-late401-reversion-search.json
+          git commit -m "Record V10 late401 single reversion search"
+          git pull --rebase origin arena/01a087c0-riemann
+          git push origin HEAD:arena/01a087c0-riemann

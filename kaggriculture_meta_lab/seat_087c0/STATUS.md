@@ -166,3 +166,7 @@
 - Independent exact-source Python smoke green (run 34538465438): expected source SHA256 `4400b28538fdd578f9baf8457162ea681cbc1630924317a6daf6a81ab3356f64`, 48 TOP12 replay games in Kaggle Environments 1.32.7, both seats, 32-16, zero errors.
 - V10 evidence: identical to late401 on both TOP7; independently +14 wins over late401/V9 on exact 6912-game TOP12 panel (5825-1087 inferred exact branch composition vs 5811-1101); fail-closed one-fingerprint V7 route.
 - Promoted byte-identical source to `agents/champion_tape_v10.py`. V8 late401 remains static control/fallback. No Kaggle submission performed.
+
+## 2026-09-11 (37): V10 late-tail refinement launched
+- Formal V10 retained. Started interpretable scan of all 64 actual post-t401 market differences: each candidate reverts exactly one late401 V16 market turn back to V7, leaving opening, workers, all other late actions, and V10 routing design untouched.
+- Selection corpus: combined latest TOP7 + previous TOP7 + TOP12 (276 policies), 2 fresh screen seeds. Identity plus top 24 move to disjoint 8-seed holdout. Stable winners only will enter small combination tests before insertion into V10 LATE branch.
