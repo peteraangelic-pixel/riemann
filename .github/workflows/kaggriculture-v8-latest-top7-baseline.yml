@@ -1,0 +1,52 @@
+name: Kaggriculture V8 latest TOP7 baseline
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v8-latest-top7-baseline.yml"]
+permissions:
+  contents: write
+jobs:
+  baseline:
+    if: contains(github.event.head_commit.message, '[kg-v8-latest7]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr
+      - name: Extract latest TOP7
+        run: |
+          python - <<'PY'
+          import json,pathlib,py7zr
+          with py7zr.SevenZipFile('TOP7.7z') as a:a.extractall('/tmp/latest7')
+          roots=[]
+          for m in pathlib.Path('/tmp/latest7').rglob('manifest.json'):
+           d=json.loads(m.read_text())
+           if isinstance(d.get('teams'),list) and len(d['teams'])==7:roots.append(m.parent)
+          if len(roots)!=1:raise SystemExit(f'expected one 7-team aggregate manifest, got {roots}')
+          pathlib.Path('/tmp/latest7-root').write_text(str(roots[0]))
+          PY
+      - name: Build simulator
+        working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - name: Broad matched baseline
+        run: |
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
+            --corpus "$(cat /tmp/latest7-root)" --workers 4 --seeds 16 --seed-start 147000 \
+            --candidate v7=kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
+            --candidate v6=kaggriculture_meta_lab/agents/candidates/agent_v6_safe_opening.py \
+            --candidate v5=kaggriculture_meta_lab/agents/candidates/peer_v5_evolved.py \
+            --candidate v3=kaggriculture_meta_lab/agents/candidates/agent_v3_coherent_replay.py \
+            --candidate v16=kaggriculture_meta_lab/agents/variants/agent_v16_kanno_top7_champion.py \
+            --candidate g2_open=kaggriculture_meta_lab/agents/candidates/agent_v8_control_g2_open_loop.py \
+            --output kaggriculture_meta_lab/results/v8-latest-top7-baseline-20260910.json
+      - name: Persist evidence
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v8-latest-top7-baseline-20260910.json
+          git commit -m "Record latest TOP7 V8 baseline"
+          git push origin HEAD:arena/01a0712c-riemann
