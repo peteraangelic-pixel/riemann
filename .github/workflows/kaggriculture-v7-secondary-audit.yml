@@ -31,6 +31,7 @@ jobs:
           python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
             --corpus "$(cat /tmp/top7-root)" --workers 4 --seeds 8 \
             --candidate v7=kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
+            --candidate v6=kaggriculture_meta_lab/agents/candidates/agent_v6_safe_opening.py \
             --output kaggriculture_meta_lab/results/v7-top7-fresh-20260910.json
           python kaggriculture_meta_lab/scripts/benchmark_top30.py \
             --corpus "$(cat /tmp/top30-root)" --candidate kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
