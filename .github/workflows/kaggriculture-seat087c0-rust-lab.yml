@@ -1,40 +1,23 @@
 name: seat087c0 Rust LAB (static H2H batches)
 
 # Large static-tape H2H batches on the Rust kg_sim engine (~3500 games/s).
-# Manual dispatch only; results are committed back to this branch under
-# kaggriculture_meta_lab/seat_087c0/results/rust_<tag>.json and uploaded
-# as an artifact. Reactive agents (G2/G4) are NOT valid inputs here.
+# Trigger: push to this branch touching lab_queue.json with [kg-lab] in the
+# message (the sandbox token cannot dispatch workflows via API, so the queue
+# file carries the batch spec). workflow_dispatch is also declared for manual
+# runs from the GitHub UI.
+# Results: results/rust_<tag>.json per queued job, committed back to this
+# branch + uploaded as an artifact. Reactive agents (G2/G4) are NOT valid
+# inputs here.
 on:
+  push:
+    branches: ["arena/01a087c0-riemann"]
+    paths: ["kaggriculture_meta_lab/seat_087c0/lab_queue.json"]
   workflow_dispatch:
     inputs:
-      candidates:
-        description: 'JSON list of candidate agent paths'
-        required: true
-        default: '["kaggriculture_meta_lab/seat_087c0/agents/champion_tape_daycrossover_v4.py"]'
-      opponents:
-        description: 'JSON list of opponent agent/corpus paths'
-        required: true
-        default: '["kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_ep107381285_v1.py","kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_t7_v1.py","kaggriculture_meta_lab/seat_087c0/agents/champion_tape_germanjurado1_v1.py","kaggriculture_meta_lab/seat_087c0/corpus/raw_b21.py","kaggriculture_meta_lab/seat_087c0/corpus/raw_subin.py"]'
-      start_seed:
-        description: 'First seed (unique seeds run in both seats)'
-        required: true
-        default: '1000'
-      games:
-        description: 'Unique seeds per pair (total games = 2x this)'
-        required: true
-        default: '64'
-      threads:
-        description: 'Rayon threads for kg_sim'
-        required: true
-        default: '4'
-      parity_k:
-        description: 'Rust-vs-Python parity games per pair (0 to skip)'
-        required: true
-        default: '8'
       tag:
-        description: 'Results tag (file: results/rust_<tag>.json)'
-        required: true
-        default: 'lab'
+        description: 'Queue must contain a job with this tag (runs it only)'
+        required: false
+        default: ''
 
 concurrency:
   group: seat087c0-rust-lab-${{ github.ref }}
@@ -45,8 +28,9 @@ permissions:
 
 jobs:
   lab:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[kg-lab]')
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v6
         with:
@@ -61,19 +45,15 @@ jobs:
       - name: Build kg_sim
         working-directory: kaggriculture_meta_lab/rust_port
         run: cargo build --release --locked
-      - name: Run Rust H2H batch
-        run: |
-          SEEDS=$(python -c "import json; s=int('${{ inputs.start_seed }}'); print(json.dumps(list(range(s, s + int('${{ inputs.games }}')))))")
-          python kaggriculture_meta_lab/seat_087c0/scripts/rust_h2h.py \
-            '${{ inputs.candidates }}' '${{ inputs.opponents }}' "$SEEDS" \
-            kaggriculture_meta_lab/seat_087c0/results/rust_${{ inputs.tag }}.json \
-            --binary kaggriculture_meta_lab/rust_port/target/release/kg_sim \
-            --threads '${{ inputs.threads }}' --py-parity-k '${{ inputs.parity_k }}'
+      - name: Run queued LAB jobs
+        env:
+          LAB_TAG: ${{ inputs.tag }}
+        run: python kaggriculture_meta_lab/seat_087c0/scripts/run_lab_queue.py
       - uses: actions/upload-artifact@v5
         if: always()
         with:
-          name: rust-lab-${{ inputs.tag }}-${{ github.sha }}
-          path: kaggriculture_meta_lab/seat_087c0/results/rust_${{ inputs.tag }}.json
+          name: rust-lab-${{ github.sha }}
+          path: kaggriculture_meta_lab/seat_087c0/results/rust_*.json
           retention-days: 30
       - name: Commit results back
         if: success()
@@ -81,6 +61,6 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git pull --rebase origin "${{ github.ref_name }}"
-          git add kaggriculture_meta_lab/seat_087c0/results/rust_${{ inputs.tag }}.json
-          git commit -m "Rust LAB [${{ inputs.tag }}]: ${{ inputs.candidates }} vs ${{ inputs.opponents }} seeds ${{ inputs.start_seed }}+${{ inputs.games }}"
+          git add kaggriculture_meta_lab/seat_087c0/results/rust_*.json
+          git commit -m "Rust LAB results ${{ github.sha }}"
           git push origin HEAD:${{ github.ref_name }}
