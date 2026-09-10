@@ -1,0 +1,141 @@
+{
+  "format": "late401-exact-v9-panel-v2",
+  "method": "Python decode to pure JSON tape, direct kg_sim",
+  "policies": 108,
+  "seeds": [
+    158000,
+    158031
+  ],
+  "jobs": 6912,
+  "results": [
+    {
+      "name": "identity",
+      "games": 6912,
+      "wins": 5811,
+      "losses": 1101,
+      "ties": 0,
+      "score_rate": 0.8407118055555556,
+      "mean_reward": 103902.68894675926,
+      "mean_margin": 21490.422019675927,
+      "groups": {
+        "top12::SpaTaro": {
+          "games": 576,
+          "wins": 553,
+          "losses": 23,
+          "ties": 0,
+          "score_rate": 0.9600694444444444,
+          "mean_reward": 104331.04340277778,
+          "mean_margin": 33112.979166666664
+        },
+        "top12::Otter Vibe": {
+          "games": 576,
+          "wins": 542,
+          "losses": 34,
+          "ties": 0,
+          "score_rate": 0.9409722222222222,
+          "mean_reward": 110120.09027777778,
+          "mean_margin": 27528.425347222223
+        },
+        "top12::ymg_aq": {
+          "games": 576,
+          "wins": 82,
+          "losses": 494,
+          "ties": 0,
+          "score_rate": 0.1423611111111111,
+          "mean_reward": 85453.33333333333,
+          "mean_margin": -17173.215277777777
+        },
+        "top12::Unknown Mother-Goose": {
+          "games": 576,
+          "wins": 456,
+          "losses": 120,
+          "ties": 0,
+          "score_rate": 0.7916666666666666,
+          "mean_reward": 103821.24131944444,
+          "mean_margin": 14982.663194444445
+        },
+        "top12::feel the agi": {
+          "games": 576,
+          "wins": 467,
+          "losses": 109,
+          "ties": 0,
+          "score_rate": 0.8107638888888888,
+          "mean_reward": 98173.06944444444,
+          "mean_margin": 11068.411458333334
+        },
+        "top12::binghua": {
+          "games": 576,
+          "wins": 523,
+          "losses": 53,
+          "ties": 0,
+          "score_rate": 0.9079861111111112,
+          "mean_reward": 97208.69791666667,
+          "mean_margin": 15095.40625
+        },
+        "top12::Himanshu Kumar": {
+          "games": 576,
+          "wins": 576,
+          "losses": 0,
+          "ties": 0,
+          "score_rate": 1.0,
+          "mean_reward": 136685.84548611112,
+          "mean_margin": 73327.43923611111
+        },
+        "top12::kanno": {
+          "games": 576,
+          "wins": 498,
+          "losses": 78,
+          "ties": 0,
+          "score_rate": 0.8645833333333334,
+          "mean_reward": 94501.52083333333,
+          "mean_margin": 5803.505208333333
+        },
+        "top12::Tarang222": {
+          "games": 576,
+          "wins": 495,
+          "losses": 81,
+          "ties": 0,
+          "score_rate": 0.859375,
+          "mean_reward": 97502.39756944444,
+          "mean_margin": 8810.088541666666
+        },
+        "top12::Mengfei Li": {
+          "games": 576,
+          "wins": 539,
+          "losses": 37,
+          "ties": 0,
+          "score_rate": 0.9357638888888888,
+          "mean_reward": 100691.34201388889,
+          "mean_margin": 20900.17361111111
+        },
+        "top12::mtmr_s1": {
+          "games": 576,
+          "wins": 512,
+          "losses": 64,
+          "ties": 0,
+          "score_rate": 0.8888888888888888,
+          "mean_reward": 95511.79861111111,
+          "mean_margin": 9914.366319444445
+        },
+        "top12::cooked": {
+          "games": 576,
+          "wins": 568,
+          "losses": 8,
+          "ties": 0,
+          "score_rate": 0.9861111111111112,
+          "mean_reward": 122831.88715277778,
+          "mean_margin": 54514.821180555555
+        }
+      },
+      "regressed_groups": 0,
+      "worst_group_delta": 0.0,
+      "fitness": [
+        0,
+        0.0,
+        0.8407118055555556,
+        103902.68894675926,
+        21490.422019675927
+      ]
+    }
+  ]
+}
