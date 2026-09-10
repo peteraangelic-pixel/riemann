@@ -153,3 +153,6 @@
 ## 2026-09-11 (33): pure-JSON exact V9-panel evaluator
 - Rust source parser still marked 6912/6912 compressed-wrapper games failed; not SHA-related. Replaced generic source benchmark with proven path: Python decodes exact champion ACTIONS, writes pure JSON tapes, direct kg_sim evaluate. Same TOP12/seeds and action table.
 - Peer branch V10 adaptive late-market keeps late401 except one t1 public fingerprint (opponent money=3000, zero hands) routes V7. Exact matched composition: 2948-508 on prior TOP12 panel, only +2 wins over late401 2946-510; both TOP7 identical. Python closed loop: 32-0 vs G2, 2-2-28 vs V9. Useful candidate but +2 is post-hoc and needs independent holdout; static late401 remains current champion.
+
+## 2026-09-11 (34): exact decoder correction
+- Pure-JSON run failed before games: static `_source` extractor returned None for compressed formal V8. Corrected candidate decode to proven `fast_h2h.load_tape`; local validation returns 2×719 actions. Opponent replay extraction unchanged; same panel/seeds.

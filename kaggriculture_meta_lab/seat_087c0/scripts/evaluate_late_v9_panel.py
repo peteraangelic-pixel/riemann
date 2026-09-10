@@ -6,8 +6,9 @@ ROOT=Path(__file__).resolve().parents[2];sys.path[:0]=[str(ROOT),str(ROOT/'scrip
 from benchmark_top30 import build_top30_jobs
 from kaggriculture_lab.rust_backend import _source
 from search_single_market_mutations import evaluate
+from fast_h2h import load_tape
 ap=argparse.ArgumentParser();ap.add_argument('--top12',type=Path,required=True);ap.add_argument('--binary',type=Path,required=True);ap.add_argument('--candidate',type=Path,required=True);ap.add_argument('--output',type=Path,required=True);a=ap.parse_args()
-tape=_source(str(a.candidate.resolve())).actions
+tape=load_tape(str(a.candidate.resolve()))
 with tempfile.TemporaryDirectory(prefix='late-v9-panel-') as raw:
  td=Path(raw);jobs,meta=build_top30_jobs(a.top12.resolve(),a.candidate.resolve(),99);opps=[]
  for i in range(0,len(jobs),2):
