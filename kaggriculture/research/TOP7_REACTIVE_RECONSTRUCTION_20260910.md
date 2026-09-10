@@ -110,3 +110,7 @@ Wynik: zero kandydatów spełniających ścisłą bramkę per-control. Czysty V1
 Druga kampania `34467193690` sprawdziła 512 reaktywnych profili rynku na TOP7: 34816 gier. Profil treningowy podnosił score rate 0.574→0.632 i margines +1194→+7047. Jednak niezależny A/B `34467434393`, 2048 fresh gier, obalił go na wszystkich kontrolach: vs German delta −62.5 pp/−8318, B21 −16.0 pp/−4995, Kanno-lower −75.4 pp/−3755, G2 −1.6 pp/−4446. Profil został odrzucony.
 
 Wniosek: dalsze masowe losowanie statycznych bloków lub jednego globalnego profilu nie jest właściwą przestrzenią. Następna warstwa musi wybierać akcje na podstawie bieżącego stanu, popytu sklepów i profilu przeciwnika; LAB pozostaje silnikiem oceny, a nie substytutem sensownej reprezentacji polityki.
+
+## Wynik live V16
+
+Kaggle ref 56142365 zakończył się statusem COMPLETE z publicScore **824.9**. To katastrofalnie przeczy rankingowi statycznego Rust replay (m.in. 16–0 nad G2) i definitywnie dyskwalifikuje V16 jako generalnego championa. G2 (~2300 według użytkownika) pozostaje punktem odniesienia. Taśmy TOP7 zachowują wartość jako demonstracje i donory cech, ale ich head-to-head w lokalnym open-loop nie może być główną metryką promocji; następne wersje muszą być reaktywnymi politykami i przechodzić małe testy live przed większym zaufaniem.
