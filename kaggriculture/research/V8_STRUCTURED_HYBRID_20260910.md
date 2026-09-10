@@ -60,7 +60,9 @@ The required two-generation gate subsequently passed in run `34527997807`:
 | latest, 32 seeds | **4906–470** | 4845–531 | **+61** | +1,014.21 | +1,231.04 |
 | immediately previous, 24 seeds | **3645–387** | 3620–412 | **+25** | +644.72 | +837.61 |
 
-Across the two principal current-meta generations the hybrid gains **86 wins** over V7 while improving both own reward and margin in each independently seeded gate. V16 itself loses to V7 on both generations, confirming that the gain comes from the structured V7-opening/V16-market-tail combination rather than simply selecting the older complete policy. The static hybrid is now promotion-grade under the corrected current-meta objective, pending exact-source Python execution validation and neutral packaging.
+Across the two principal current-meta generations the hybrid gains **86 wins** over V7 while improving both own reward and margin in each independently seeded gate. V16 itself loses to V7 on both generations, confirming that the gain comes from the structured V7-opening/V16-market-tail combination rather than simply selecting the older complete policy.
+
+The policy was neutrally packaged as `agent_v8_market_tail.py`. Its decoded action SHA-256 is exactly identical to the tested LAB hybrid (`2f23d0850e9dbd3d32571fab602652af76062f10b9982925b3073175d20a488b`). Run `34528613807` then executed the exact promoted source through Kaggle Environments 1.32.7 against 14 latest-TOP7 replay policies in both physical seats: 28 games, **zero agent errors**. V8 market-tail is therefore promoted as the current local champion under the corrected current-meta objective.
 
 The fail-closed selector remains valuable if it can preserve current-meta gains while cheaply retaining historical robustness. Candidate selection and final gates still require disjoint seeds, and exact generated Python source requires an independent execution check.
 
@@ -88,6 +90,7 @@ Branch `arena/01a087c0-riemann` through `09e2c56` scanned all 42 post-opening V4
 ## Artifacts
 
 - `kaggriculture_meta_lab/agents/candidates/agent_v8_lab_safe_open_old_market.py`
+- `kaggriculture_meta_lab/agents/candidates/agent_v8_market_tail.py` — promoted current local champion
 - `kaggriculture_meta_lab/agents/candidates/agent_v8_tail_router.py`
 - `kaggriculture_meta_lab/results/v8-tail-router-new7-composite-holdout-20260910.json`
 - `kaggriculture_meta_lab/results/v8-tail-router-top15-composite-holdout-20260910.json`
@@ -95,3 +98,6 @@ Branch `arena/01a087c0-riemann` through `09e2c56` scanned all 42 post-opening V4
 - `kaggriculture_meta_lab/results/v8-trajectory120-top15-20260910.json`
 - `kaggriculture_meta_lab/results/v8-structured-hybrid-latest-top7-20260910.json`
 - `kaggriculture_meta_lab/results/v8-structured-hybrid-top15-20260910.json`
+- `kaggriculture_meta_lab/results/v8-two-top7-latest-20260910.json`
+- `kaggriculture_meta_lab/results/v8-two-top7-previous-20260910.json`
+- `kaggriculture_meta_lab/results/v8-market-tail-python-validation-20260910.json`
