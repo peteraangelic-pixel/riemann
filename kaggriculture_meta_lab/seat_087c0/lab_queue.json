@@ -2,10 +2,11 @@
  "jobs": [
   {
    "type": "h2h",
-   "tag": "v7-b55-holdout",
+   "tag": "v8-v2market-old-panel",
    "candidates": [
-    "kaggriculture_meta_lab/seat_087c0/candidates/v7-t1b55.py",
-    "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v7.py"
+    "kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2market2.py",
+    "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v7.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/v7-t1b55.py"
    ],
    "opponents": [
     "kaggriculture_meta_lab/seat_087c0/corpus/top15/aaaabbs_top15.py",
@@ -24,12 +25,10 @@
     "kaggriculture_meta_lab/seat_087c0/corpus/top15/terry_luo_top15.py",
     "kaggriculture_meta_lab/seat_087c0/corpus/top15/ultimatum_game_top15.py",
     "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v6.py",
-    "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_evolved_v5.py",
-    "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_daycrossover_v4.py",
     "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_ep107381285_v1.py",
     "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_t7_v1.py"
    ],
-   "start_seed": 65000,
+   "start_seed": 66000,
    "games": 64,
    "threads": 4,
    "parity_k": 4

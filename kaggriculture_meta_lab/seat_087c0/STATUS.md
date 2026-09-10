@@ -37,3 +37,10 @@
 - Micro panel fresh 63000+: b55 1791-129 (+31050/g) vs V7 1789-131 (+30738/g); b45/b50 po 1712-208. b55 zachowuje cooked/DN/MTMR i poprawia GJ (128-0 +8450 vs 126-2 +3736), lecz przewaga tylko 2/1920.
 - b40 final panel fresh 62000+: 1762-158 (+30533/g) vs V7 1777-143 (+31508/g). ODRZUCONY: bezpośrednie lustro 127-1 było pułapką; regresja MTMR przeważa edge GJ.
 - Kolejny gate: b55 vs V7 × TOP15 + V2/V3/V4/V5/V6, 128 gier/parę, fresh 65000+.
+
+## 2026-09-10 (12): newest 84-policy TOP7 → V8 market-tail breakthrough
+- New corpus from peer branch: 7 current teams × 12 latest replay policies = 84 tapes. Initial fresh audit (8 seeds, both seats): V7 1175-169 (+26779) > V2 1170-174 (+17874) > V3 1162-182 > V6 1121-223. b55 exactly same W/L as V7 and -0.71 gold paired: no V8 promotion.
+- Population split: V7 crushes new Himanshu 192-0 +77621; V2 better feel-the-agi (154 vs 127 wins), Mengfei (174 vs 172), Otter (176 vs 172). Motivated V7-opening + V2-tail decomposition.
+- Crossover screen (6 fresh seeds, 10080 games): `v7-v2market2` 941-67, score .9335, +29819 vs V7 925-83, .9177, +29137. Team deltas W/144: Him 144=, Mengfei 135>128, Otter 138=, Spa 142=, Unknown 114>112, binghua 144>140, feel 124>121. Worst-team .792 > .778.
+- Mechanism isolated: V2 hands from t2 ≡ V7 exactly (1008/1008 equal); V2 market from t2 accounts for complete gain. Tail cuts t2/day1/day2/day3/day5 are identical in realized games, day10 slightly worse: useful market divergence is early and stabilizes before day5.
+- Candidate V8m = V7 t0+t1 + V2 market from t2 + V7 hands. Gates launched: newest TOP7 12 fresh seeds 133000+ and old TOP15+V2/V3/V6 panel 128 games fresh 66000+.
