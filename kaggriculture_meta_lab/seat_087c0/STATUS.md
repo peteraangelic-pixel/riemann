@@ -76,3 +76,9 @@
 - Preregistered combined gate: 189 policies ×32 seeds ×2 seats ×8 profiles = 96768 games. `money<=100` exactly ties V7 binary globally and per corpus: 11175-921; +61 own reward/+39 margin overall, zero team regressions. New7 margin +93, full15 margin -4. No ranking win → t153 router CLOSED (economic curiosity only).
 - Broader rules overactivate: unconditional/`money<=2500` lose 8 wins (11167-929); inventory>=10050 shifts +2 wins new7 but -2 full15 and regresses 2 teams. Confirms no transferable binary edge.
 - Next unbiased search launched: transplant each individual differing V2 market action into V7 across all 719 turns; screen directly on combined 84+105 policy corpora, then fresh-seed holdout top30. This generalizes the successful causal ablation beyond hand-picked day6.
+
+## 2026-09-10 (19): all-turn scan + repaired V4/V5 audit
+- All 114 differing V2 market turns scanned singly on combined 189 policies (183708 games). Holdout: t153 2834-190 vs V7 2830-194, t154/t152 2833-191, but this conflicts with preregistered 32-seed gate where t153 tied exactly and prior full gate where it lost. Confirms seed variance/selection winner's curse; no promotion. Late screen winners t649/650 did not survive holdout.
+- Exact structural audit: V5 differs from V7 ONLY at t0,t1; remaining 717 turns identical. Therefore V7 is already repaired V5.1. buy55 remains alternate t1 microvariant, not confirmed better.
+- V4 differs from V7 at 43 turns (40 market, 4 hands including overlap), so repaired V4 is a genuinely distinct body. Created `v4safe01` (V7 t0+t1), `v4safe0`, `v4safe1`, plus raw control. Broad matched audit launched on latest uploaded TOP7 and full 105-policy TOP15, 8 fresh seeds each, controls V7+b55.
+- Latest TOP7 manifest generated 2026-09-10 18:19 UTC: SpaTaro 3113.9, Otter 3018.8, Unknown 2989.3, feel 2982.4, Himanshu 2976.6, Mengfei 2972.4, binghua 2966.4.

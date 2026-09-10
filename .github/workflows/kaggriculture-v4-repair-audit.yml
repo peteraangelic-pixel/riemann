@@ -1,0 +1,45 @@
+name: Repaired V4 broad population audit
+on:
+  push:
+    branches: ["arena/01a087c0-riemann"]
+    paths: [".github/workflows/kaggriculture-v4-repair-audit.yml"]
+permissions:
+  contents: write
+jobs:
+  audit:
+    if: contains(github.event.head_commit.message, '[kg-v4-repair]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr
+      - name: Retrieve latest TOP7 and full TOP15
+        run: |
+          git fetch origin arena/01a0712c-riemann
+          for n in TOP7 TOP15; do git show FETCH_HEAD:$n.7z >/tmp/$n.7z; done
+          python - <<'PY'
+          import json,pathlib,py7zr
+          for n in ('TOP7','TOP15'):
+           dst=pathlib.Path('/tmp')/n.lower()
+           with py7zr.SevenZipFile('/tmp/'+n+'.7z') as a:a.extractall(dst)
+           roots=[m for m in dst.rglob('manifest.json') if 'teams' in json.loads(m.read_text())]
+           pathlib.Path('/tmp/'+n.lower()+'-root').write_text(str(roots[0].parent))
+          PY
+      - working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - name: Audit repaired V4 variants on both populations
+        run: |
+          C="--candidate v7=kaggriculture_meta_lab/seat_087c0/candidates/audit-v7.py --candidate b55=kaggriculture_meta_lab/seat_087c0/candidates/audit-b55.py --candidate v4safe01=kaggriculture_meta_lab/seat_087c0/candidates/audit-v4safe01.py --candidate v4safe0=kaggriculture_meta_lab/seat_087c0/candidates/audit-v4safe0.py --candidate v4safe1=kaggriculture_meta_lab/seat_087c0/candidates/audit-v4safe1.py --candidate v4raw=kaggriculture_meta_lab/seat_087c0/candidates/audit-v4raw.py"
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py --corpus "$(cat /tmp/top7-root)" --workers 4 --seeds 8 --seed-start 141000 $C --output kaggriculture_meta_lab/seat_087c0/results/v4-repair-latest-top7.json
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py --corpus "$(cat /tmp/top15-root)" --workers 4 --seeds 8 --seed-start 141000 $C --output kaggriculture_meta_lab/seat_087c0/results/v4-repair-full-top15.json
+      - name: Persist results
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/seat_087c0/results/v4-repair-*.json
+          git commit -m "Record repaired V4 broad population audit"
+          git push origin HEAD:arena/01a087c0-riemann
