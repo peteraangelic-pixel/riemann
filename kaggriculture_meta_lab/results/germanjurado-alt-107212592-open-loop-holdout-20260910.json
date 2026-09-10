@@ -1,0 +1,98 @@
+[
+  {
+    "self": 108432.0,
+    "opp": 110596.0,
+    "margin": -2164.0,
+    "outcome": "loss",
+    "rec_self": 108454.0,
+    "rec_opp": 110575.0,
+    "seed": 1140335161,
+    "error": null,
+    "episode": 107222875,
+    "names": [
+      "Mengfei Li",
+      "GermanJurado1"
+    ],
+    "source_seat": 1
+  },
+  {
+    "self": 62496.0,
+    "opp": 55985.0,
+    "margin": 6511.0,
+    "outcome": "win",
+    "rec_self": 62485.0,
+    "rec_opp": 55406.0,
+    "seed": 1887455687,
+    "error": null,
+    "episode": 107218522,
+    "names": [
+      "OceanMix",
+      "GermanJurado1"
+    ],
+    "source_seat": 1
+  },
+  {
+    "self": 133745.0,
+    "opp": 128532.0,
+    "margin": 5213.0,
+    "outcome": "win",
+    "rec_self": 131745.0,
+    "rec_opp": 126919.0,
+    "seed": 726872323,
+    "error": null,
+    "episode": 107218640,
+    "names": [
+      "GermanJurado1",
+      "mtmr_s1"
+    ],
+    "source_seat": 0
+  },
+  {
+    "self": 92332.0,
+    "opp": 76215.0,
+    "margin": 16117.0,
+    "outcome": "win",
+    "rec_self": 81708.0,
+    "rec_opp": 85624.0,
+    "seed": 1815932088,
+    "error": null,
+    "episode": 107217614,
+    "names": [
+      "GermanJurado1",
+      "kanno"
+    ],
+    "source_seat": 0
+  },
+  {
+    "self": 95533.0,
+    "opp": 94570.0,
+    "margin": 963.0,
+    "outcome": "win",
+    "rec_self": 95929.0,
+    "rec_opp": 90783.0,
+    "seed": 1684271818,
+    "error": null,
+    "episode": 107217458,
+    "names": [
+      "cooked",
+      "GermanJurado1"
+    ],
+    "source_seat": 1
+  },
+  {
+    "self": 90212.0,
+    "opp": 87591.0,
+    "margin": 2621.0,
+    "outcome": "win",
+    "rec_self": 90099.0,
+    "rec_opp": 87460.0,
+    "seed": 1075146275,
+    "error": null,
+    "episode": 107218072,
+    "names": [
+      "GUAM",
+      "GermanJurado1"
+    ],
+    "source_seat": 1
+  }
+]

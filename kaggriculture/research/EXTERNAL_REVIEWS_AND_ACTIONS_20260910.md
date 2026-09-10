@@ -72,3 +72,26 @@ Open-loop na sześciu pozostałych replayach GermanJurado1 w TOP15, bez epizodu 
 Maszynowe wyniki: `kaggriculture_meta_lab/results/germanjurado-reconstruction-screen-20260910.json` oraz `germanjurado-top15-open-loop-holdout-20260910.json`.
 
 Adapter reaktywny został ponadto uruchomiony na wszystkich **1440 obserwacjach graczy** z epizodu 107218640: zachował dokładny kluczowy schemat akcji oraz liczbę akcji `hands`, bez wyjątku. To test integracji schematu, nie test siły tej polityki.
+
+## Audyt gałęzi `arena/01a087c0-riemann` i dogrywka
+
+Sprawdzono osiągalne commity `8511d13`, `7affdba` i `aa215c5`. „Nowy mistrz” tej gałęzi nie jest inną polityką: po dekodowaniu jego **719/719 akcji jest identyczne** z naszym `champion_tape_germanjurado1.py`. Różni się formatem pakowania (pojedynczy strumień ignorujący seat kontra dwa identyczne strumienie), nie zachowaniem. Niezależne uruchomienie seedów 100–115 przeciw G2 odtworzyło **dokładnie wszystkie 32 wiersze**, wynik 32–0, średnie 103863.46875 / 96602.46875, margines +7261.0.
+
+CI run `34455457302` zakończył się sukcesem po synchronizacji Rust porta z naszą gałęzią. Potwierdza simulator/benchmark, nie wynik mistrza. Nie należy cherry-pickować wcześniejszego stanu CI z `8511d13`: usuwał overlay i parytet LAB oraz robił kosztowny batch 14k bezwarunkowo. Przyjęto natomiast pomysł szybkiego fallbacku `py_reference`: `scripts/fast_static_tournament.py` osiąga około 20 gier/s lokalnie i przez konserwatywny `_source` **odrzuca G2/G4**, zamiast błędnie traktować je jak gołe taśmy. Reaktywne overlaye nadal wymagają pełnego runnera.
+
+Przeskanowano wszystkie siedem epizodów GermanJurado1. Alternatywa z epizodu `107212592` jest ciekawym specjalistą:
+
+- dokładna reprodukcja źródła `[71058, 69945]` na seedzie `1067427524`;
+- G2, świeże seedy 44000–44007: 16–0, +10824 wobec +8877 lidera;
+- G2, 45000–45015: 32–0, +7814 wobec +6068 lidera;
+- paired delta na 48 grach: średnio **+1813.4**, dodatnia w 45/48;
+- G4 44000–44007: 16–0, +24942 wobec +23604 lidera;
+- wspólny open-loop holdout po wyłączeniu obu epizodów źródłowych: 4–1 i +24048 wobec 4–1 i +20120 lidera.
+
+Nie zastępuje jednak lidera ogólnego:
+
+- świeże 128 seedów × oba seaty przeciw B21: lider 216–40 (+10313), alternatywa 212–44 (+9998.5);
+- syntetyczny fresh TOP15 static, 15 rywali × 8 seedów × oba seaty: lider 179–51–10, alternatywa 173–67–0;
+- alternatywa przegrywa bezpośrednio z liderem w tym panelu.
+
+Decyzja: zachować `107218640` jako lidera ogólnego, a `107212592` jako specjalistę G2/G4 oraz materiał do przyszłego selektora/ensemble. Proste recovery na PASS przegrało 0–16 z rodzicem (-4772), a G2-style market guard 1–15 (-212); oba eksperymenty odrzucono i nie są promowane. Akcje PASS i rynek tej taśmy są silnie skoordynowane, więc lokalne „oczywiste poprawki” niszczą plan.

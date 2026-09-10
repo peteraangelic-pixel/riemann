@@ -1,0 +1,183 @@
+{
+  "branch_audit": {
+    "commit": "aa215c5",
+    "reported_champion_commit": "8511d13",
+    "policy_actions_equal": "719/719",
+    "independent_g2_seed_100_115_rows_equal": "32/32",
+    "ci_run": 34455457302,
+    "ci_conclusion": "success",
+    "ci_note": "validated synchronized Rust simulator; not a champion tournament"
+  },
+  "alternate": {
+    "episode": 107212592,
+    "submission": 56112696,
+    "recorded_seat": 1,
+    "source_seed": 1067427524,
+    "recorded_rewards": [
+      71058,
+      69945
+    ],
+    "reproduced_rewards": [
+      71058.0,
+      69945.0
+    ]
+  },
+  "closed_loop_runs": [
+    {
+      "source_report": "tournament-20260910-091235.json",
+      "candidate": "kaggriculture_meta_lab/agents/candidates/champion_tape_germanjurado1_ep107212592.py",
+      "pooled": {
+        "games": 16,
+        "wins": 16,
+        "losses": 0,
+        "ties": 0,
+        "errors": 0,
+        "win_rate": 1.0,
+        "score_rate": 1.0,
+        "ci_low": 0.8063923194655637,
+        "ci_high": 1.0,
+        "mean_margin": 10824.1875,
+        "median_margin": 9988.0,
+        "p10_margin": 6740.0,
+        "mean_self": 106629.4375,
+        "mean_opp": 95805.25
+      }
+    },
+    {
+      "source_report": "tournament-20260910-091335.json",
+      "candidate": "kaggriculture_meta_lab/agents/candidates/champion_tape_germanjurado1.py",
+      "pooled": {
+        "games": 16,
+        "wins": 16,
+        "losses": 0,
+        "ties": 0,
+        "errors": 0,
+        "win_rate": 1.0,
+        "score_rate": 1.0,
+        "ci_low": 0.8063923194655637,
+        "ci_high": 1.0,
+        "mean_margin": 8876.75,
+        "median_margin": 7952.0,
+        "p10_margin": 3909.0,
+        "mean_self": 104444.375,
+        "mean_opp": 95567.625
+      }
+    },
+    {
+      "source_report": "tournament-20260910-091434.json",
+      "candidate": "kaggriculture_meta_lab/agents/candidates/champion_tape_germanjurado1_ep107212592.py",
+      "pooled": {
+        "games": 16,
+        "wins": 16,
+        "losses": 0,
+        "ties": 0,
+        "errors": 0,
+        "win_rate": 1.0,
+        "score_rate": 1.0,
+        "ci_low": 0.8063923194655637,
+        "ci_high": 1.0,
+        "mean_margin": 24941.625,
+        "median_margin": 19998.0,
+        "p10_margin": 14397.0,
+        "mean_self": 123361.8125,
+        "mean_opp": 98420.1875
+      }
+    },
+    {
+      "source_report": "tournament-20260910-091533.json",
+      "candidate": "kaggriculture_meta_lab/agents/candidates/champion_tape_germanjurado1.py",
+      "pooled": {
+        "games": 16,
+        "wins": 16,
+        "losses": 0,
+        "ties": 0,
+        "errors": 0,
+        "win_rate": 1.0,
+        "score_rate": 1.0,
+        "ci_low": 0.8063923194655637,
+        "ci_high": 1.0,
+        "mean_margin": 23604.125,
+        "median_margin": 18515.0,
+        "p10_margin": 12486.0,
+        "mean_self": 121518.875,
+        "mean_opp": 97914.75
+      }
+    },
+    {
+      "source_report": "tournament-20260910-091838.json",
+      "candidate": "kaggriculture_meta_lab/agents/candidates/champion_tape_germanjurado1_ep107212592.py",
+      "pooled": {
+        "games": 32,
+        "wins": 32,
+        "losses": 0,
+        "ties": 0,
+        "errors": 0,
+        "win_rate": 1.0,
+        "score_rate": 1.0,
+        "ci_low": 0.8928208017449293,
+        "ci_high": 1.0,
+        "mean_margin": 7814.46875,
+        "median_margin": 7428.0,
+        "p10_margin": 5051.0,
+        "mean_self": 99724.75,
+        "mean_opp": 91910.28125
+      }
+    },
+    {
+      "source_report": "tournament-20260910-092027.json",
+      "candidate": "kaggriculture_meta_lab/agents/candidates/champion_tape_germanjurado1.py",
+      "pooled": {
+        "games": 32,
+        "wins": 32,
+        "losses": 0,
+        "ties": 0,
+        "errors": 0,
+        "win_rate": 1.0,
+        "score_rate": 1.0,
+        "ci_low": 0.8928208017449293,
+        "ci_high": 1.0,
+        "mean_margin": 6068.15625,
+        "median_margin": 5483.5,
+        "p10_margin": 2540.0,
+        "mean_self": 97773.84375,
+        "mean_opp": 91705.6875
+      }
+    },
+    {
+      "source_report": "tournament-20260910-083150.json",
+      "candidate": "kaggriculture_meta_lab/agents/candidates/champion_tape_germanjurado1.py",
+      "pooled": {
+        "games": 32,
+        "wins": 32,
+        "losses": 0,
+        "ties": 0,
+        "errors": 0,
+        "win_rate": 1.0,
+        "score_rate": 1.0,
+        "ci_low": 0.8928208017449293,
+        "ci_high": 1.0,
+        "mean_margin": 7261.0,
+        "median_margin": 5929.0,
+        "p10_margin": 2934.0,
+        "mean_self": 103863.46875,
+        "mean_opp": 96602.46875
+      }
+    }
+  ],
+  "paired_g2_alt_minus_parent": {
+    "games": 48,
+    "positive": 45,
+    "negative": 3,
+    "mean_margin_delta": 1813.3541666666667,
+    "median_margin_delta": 1858.0
+  },
+  "b21_fast_fresh_50000_50127": {
+    "parent": "216-40, +10313.0",
+    "alternate": "212-44, +9998.5"
+  },
+  "top15_static_fresh_60000_60007": {
+    "parent": "179 wins, 51 losses, 10 ties, +5602.5 mean margin",
+    "alternate": "173 wins, 67 losses, 0 ties, +5604.9 mean margin"
+  },
+  "decision": "retain episode 107218640 as general leader; keep 107212592 as G2/G4 specialist and ensemble/teacher candidate"
+}

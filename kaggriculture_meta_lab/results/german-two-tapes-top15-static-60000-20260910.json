@@ -1,0 +1,212 @@
+[
+  {
+    "candidate": "current",
+    "opponent": "deepernet",
+    "wins": 0,
+    "losses": 16,
+    "mean_margin": -67676.625
+  },
+  {
+    "candidate": "current",
+    "opponent": "germanjurado1",
+    "wins": 3,
+    "losses": 3,
+    "mean_margin": 0.0
+  },
+  {
+    "candidate": "current",
+    "opponent": "himanshu_kumar",
+    "wins": 10,
+    "losses": 6,
+    "mean_margin": 5180.625
+  },
+  {
+    "candidate": "current",
+    "opponent": "mengfei_li",
+    "wins": 13,
+    "losses": 3,
+    "mean_margin": 16145.375
+  },
+  {
+    "candidate": "current",
+    "opponent": "otter_vibe",
+    "wins": 16,
+    "losses": 0,
+    "mean_margin": 37427.3125
+  },
+  {
+    "candidate": "current",
+    "opponent": "spataro",
+    "wins": 16,
+    "losses": 0,
+    "mean_margin": 26195.0625
+  },
+  {
+    "candidate": "current",
+    "opponent": "terry_luo",
+    "wins": 12,
+    "losses": 4,
+    "mean_margin": 7370.375
+  },
+  {
+    "candidate": "current",
+    "opponent": "binghua",
+    "wins": 14,
+    "losses": 2,
+    "mean_margin": 20467.9375
+  },
+  {
+    "candidate": "current",
+    "opponent": "cooked",
+    "wins": 13,
+    "losses": 3,
+    "mean_margin": 10743.25
+  },
+  {
+    "candidate": "current",
+    "opponent": "kanno",
+    "wins": 16,
+    "losses": 0,
+    "mean_margin": 5886.75
+  },
+  {
+    "candidate": "current",
+    "opponent": "mtmr_s1",
+    "wins": 12,
+    "losses": 4,
+    "mean_margin": 5934.6875
+  },
+  {
+    "candidate": "current",
+    "opponent": "pensukesan",
+    "wins": 16,
+    "losses": 0,
+    "mean_margin": 3987.4375
+  },
+  {
+    "candidate": "current",
+    "opponent": "ultimatum_game",
+    "wins": 16,
+    "losses": 0,
+    "mean_margin": 5522.625
+  },
+  {
+    "candidate": "current",
+    "opponent": "",
+    "wins": 10,
+    "losses": 6,
+    "mean_margin": -141.5
+  },
+  {
+    "candidate": "current",
+    "opponent": "aaaabbs",
+    "wins": 12,
+    "losses": 4,
+    "mean_margin": 6994.125
+  },
+  {
+    "candidate": "alt107212592",
+    "opponent": "deepernet",
+    "wins": 0,
+    "losses": 16,
+    "mean_margin": -70131.3125
+  },
+  {
+    "candidate": "alt107212592",
+    "opponent": "germanjurado1",
+    "wins": 3,
+    "losses": 13,
+    "mean_margin": -956.6875
+  },
+  {
+    "candidate": "alt107212592",
+    "opponent": "himanshu_kumar",
+    "wins": 9,
+    "losses": 7,
+    "mean_margin": 3639.4375
+  },
+  {
+    "candidate": "alt107212592",
+    "opponent": "mengfei_li",
+    "wins": 13,
+    "losses": 3,
+    "mean_margin": 18438.6875
+  },
+  {
+    "candidate": "alt107212592",
+    "opponent": "otter_vibe",
+    "wins": 16,
+    "losses": 0,
+    "mean_margin": 40420.75
+  },
+  {
+    "candidate": "alt107212592",
+    "opponent": "spataro",
+    "wins": 16,
+    "losses": 0,
+    "mean_margin": 27465.875
+  },
+  {
+    "candidate": "alt107212592",
+    "opponent": "terry_luo",
+    "wins": 12,
+    "losses": 4,
+    "mean_margin": 6971.25
+  },
+  {
+    "candidate": "alt107212592",
+    "opponent": "binghua",
+    "wins": 14,
+    "losses": 2,
+    "mean_margin": 22620.5
+  },
+  {
+    "candidate": "alt107212592",
+    "opponent": "cooked",
+    "wins": 12,
+    "losses": 4,
+    "mean_margin": 9594.75
+  },
+  {
+    "candidate": "alt107212592",
+    "opponent": "kanno",
+    "wins": 14,
+    "losses": 2,
+    "mean_margin": 2570.25
+  },
+  {
+    "candidate": "alt107212592",
+    "opponent": "mtmr_s1",
+    "wins": 12,
+    "losses": 4,
+    "mean_margin": 6170.375
+  },
+  {
+    "candidate": "alt107212592",
+    "opponent": "pensukesan",
+    "wins": 15,
+    "losses": 1,
+    "mean_margin": 3948.875
+  },
+  {
+    "candidate": "alt107212592",
+    "opponent": "ultimatum_game",
+    "wins": 16,
+    "losses": 0,
+    "mean_margin": 7264.0625
+  },
+  {
+    "candidate": "alt107212592",
+    "opponent": "",
+    "wins": 8,
+    "losses": 8,
+    "mean_margin": -2395.9375
+  },
+  {
+    "candidate": "alt107212592",
+    "opponent": "aaaabbs",
+    "wins": 13,
+    "losses": 3,
+    "mean_margin": 8452.125
+  }
+]
