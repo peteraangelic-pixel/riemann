@@ -1,0 +1,93 @@
+[
+  {
+    "rank": 1,
+    "team": "SpaTaro",
+    "leaderboard_score": 3055.3,
+    "replays": 12,
+    "buy": 507.1666666666667,
+    "sell": 306.1666666666667,
+    "hire": 280.1666666666667,
+    "animals": 11.916666666666666,
+    "fertilizer": 42.083333333333336,
+    "first_sell": 9.416666666666666,
+    "first_land": 68.91666666666667
+  },
+  {
+    "rank": 2,
+    "team": "Himanshu Kumar",
+    "leaderboard_score": 3022.1,
+    "replays": 12,
+    "buy": 268.75,
+    "sell": 406.9166666666667,
+    "hire": 263.3333333333333,
+    "animals": 12,
+    "fertilizer": 126.33333333333333,
+    "first_sell": 1,
+    "first_land": 151
+  },
+  {
+    "rank": 3,
+    "team": "Otter Vibe",
+    "leaderboard_score": 2988.5,
+    "replays": 12,
+    "buy": 85.16666666666667,
+    "sell": 206.16666666666666,
+    "hire": 279.4166666666667,
+    "animals": 11.333333333333334,
+    "fertilizer": 59.833333333333336,
+    "first_sell": 38.416666666666664,
+    "first_land": 121
+  },
+  {
+    "rank": 4,
+    "team": "binghua",
+    "leaderboard_score": 2980.6,
+    "replays": 12,
+    "buy": 218.91666666666666,
+    "sell": 240,
+    "hire": 298,
+    "animals": 11.833333333333334,
+    "fertilizer": 80.58333333333333,
+    "first_sell": 31.416666666666668,
+    "first_land": 130
+  },
+  {
+    "rank": 5,
+    "team": "デワンシュ",
+    "leaderboard_score": 2978.8,
+    "replays": 12,
+    "buy": 275.1666666666667,
+    "sell": 555.3333333333334,
+    "hire": 262.75,
+    "animals": 12,
+    "fertilizer": 128.41666666666666,
+    "first_sell": 1,
+    "first_land": 151
+  },
+  {
+    "rank": 6,
+    "team": "kanno",
+    "leaderboard_score": 2972.3,
+    "replays": 12,
+    "buy": 267.8333333333333,
+    "sell": 469,
+    "hire": 262.5833333333333,
+    "animals": 12.083333333333334,
+    "fertilizer": 127.66666666666667,
+    "first_sell": 1,
+    "first_land": 151
+  },
+  {
+    "rank": 7,
+    "team": "Yusuke Hayashi",
+    "leaderboard_score": 2965.7,
+    "replays": 12,
+    "buy": 274,
+    "sell": 411.1666666666667,
+    "hire": 263.5,
+    "animals": 12.166666666666666,
+    "fertilizer": 119.83333333333333,
+    "first_sell": 1,
+    "first_land": 151
+  }
+]
