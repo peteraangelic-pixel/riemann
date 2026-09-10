@@ -1,6 +1,9 @@
 name: Kaggriculture V8 reactive independent gate
 on:
   workflow_dispatch:
+  push:
+    branches: [arena/01a0712c-riemann]
+    paths: [.github/workflows/kaggriculture-v8-reactive-gate.yml]
 permissions:
   contents: read
 jobs:
