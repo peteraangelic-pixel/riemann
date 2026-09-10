@@ -93,3 +93,9 @@
 - 42 post-opening components, 189 policies, 126252 games. Holdout identity 2767-257. V4 market t401 and t409 each 2769-255 (+2); t360 2767-255 (+2 ties); all other leading components binary-neutral. This remains post-selection evidence only.
 - Preregistered final gate launched on fresh 32 seeds for latest TOP7 and full TOP15 separately: identity, m401, m409, m401+m409, m360. No threshold/router fitting.
 - Peer branch latest TOP7 baseline (2688 games/candidate): V7 2427-261, V6 2412-276, V3 2408-280, V16 2432-256. V7 exceeds V6 by 15 wins and ~3411 reward/~7759 margin per game. Peer-v6 differs from formal V6 only at t1 and is identical to V7, so there is no third hidden V6.
+
+## 2026-09-10 (22): peer branch structured hybrid audit
+- Peer branch achievement: static V7 opening + V16 tail from t2 scored 3642-390 vs V7 3607-425 on latest TOP7 (+35) but 4688-352 vs 4710-330 on TOP15 (-22); reject static hybrid.
+- Fixed t1 router (`own money in [3000,3010]`) independent holdout: TOP7 +8 wins/+848 reward/+791 margin/+41 q10; TOP15 +2 wins/+66 reward/+112 margin/-96 q10. Not promotion-grade: one team regressed by 4 wins on TOP7, one by 2 on TOP15. Peer pivoted to richer public t120 trajectory fingerprints across all 189 policies.
+- Avoid duplicating peer t120 search. This branch will finish independent V4 gate, then independently gate peer's eventual frozen candidate.
+- Azure/GitHub log and artifact downloads both return EOF. Gate diagnostic is now emitted in small check annotations to expose the actual evaluator error without changing candidates or seeds.

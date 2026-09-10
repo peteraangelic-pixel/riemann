@@ -55,6 +55,14 @@ jobs:
           git add kaggriculture_meta_lab/seat_087c0/results/v4-components-final.json
           git commit -m "Record selected V4 components final gate"
           git push origin HEAD:arena/01a087c0-riemann
-      - name: Preserve failed status after diagnostics
+      - name: Expose diagnostic through check annotations
         if: steps.calculation.outcome != 'success'
-        run: exit 1
+        run: |
+          python - <<'PY'
+          import os
+          text=open('/tmp/v4-gate.log',errors='replace').read()
+          text=text.replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+          for i in range(0,len(text),2800):
+              print(f'::error title=V4 gate diagnostic part {i//2800+1}::{text[i:i+2800]}')
+          PY
+          exit 1
