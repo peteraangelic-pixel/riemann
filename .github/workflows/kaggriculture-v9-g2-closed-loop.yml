@@ -1,0 +1,38 @@
+name: Kaggriculture V9 versus G2 closed loop
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v9-g2-closed-loop.yml"]
+permissions:
+  contents: write
+jobs:
+  compare:
+    if: contains(github.event.head_commit.message, '[kg-v9-g2]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install --disable-pip-version-check kaggle-environments
+      - name: Paired both-seat comparison
+        env: {PYTHONPATH: kaggriculture_meta_lab}
+        run: |
+          python - <<'PY'
+          import json,statistics
+          from kaggriculture_lab.tournament import build_jobs,run
+          v9='kaggriculture_meta_lab/agents/candidates/agent_v9_market_adaptive.py'
+          g2='kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py'
+          rows=run(build_jobs(v9,[g2],32,166000,swap_seats=True,tag='v9-g2'),4,progress_every=16)
+          if any(r.get('error') for r in rows):raise RuntimeError([r for r in rows if r.get('error')][:3])
+          n=len(rows);w=sum(r['margin']>0 for r in rows);l=sum(r['margin']<0 for r in rows)
+          out={'format':'closed-loop-paired-both-seats-v1','candidate':'agent_v9_market_adaptive.py','reference':'agent_v10_subin_g2_83.py','seeds':[166000,166031],'games':n,'wins':w,'losses':l,'ties':n-w-l,'mean_candidate_reward':statistics.mean(r['self_reward'] for r in rows),'mean_reference_reward':statistics.mean(r['opp_reward'] for r in rows),'mean_margin':statistics.mean(r['margin'] for r in rows),'rows':rows}
+          open('kaggriculture_meta_lab/results/v9-vs-g2-closed-loop-20260910.json','w').write(json.dumps(out,indent=2)+'\n')
+          print(json.dumps({k:v for k,v in out.items() if k!='rows'},indent=2))
+          PY
+      - run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v9-vs-g2-closed-loop-20260910.json
+          git commit -m "Record V9 versus G2 closed-loop gate"
+          git push origin HEAD:arena/01a0712c-riemann

@@ -101,3 +101,34 @@ Branch `arena/01a087c0-riemann` through `09e2c56` scanned all 42 post-opening V4
 - `kaggriculture_meta_lab/results/v8-two-top7-latest-20260910.json`
 - `kaggriculture_meta_lab/results/v8-two-top7-previous-20260910.json`
 - `kaggriculture_meta_lab/results/v8-market-tail-python-validation-20260910.json`
+
+## Korekta po najnowszym TOP12: router stanowy V9
+
+Najnowszy TOP12 odwrócił wynik bezwarunkowego V8: V7 wygrał 5743/6912, a V8
+5713/6912. Regresja była skupiona w dwóch stabilnych odciskach stanu po turze
+zerowej. Pierwszy ma własne pieniądze 2957, pieniądze przeciwnika 323 i sześć
+rąk; drugi ma po obu stronach 3000 i zero rąk przeciwnika. Nazwy zespołów nie
+są częścią agenta ani jego publicznego opisu.
+
+`agent_v9_market_adaptive.py` zatrzaskuje wybór po obserwacji tury 1. Dla tych
+dwóch klas zachowuje V7, a dla pozostałych używa ciała V8. Jest to selekcja
+wyłącznie na podstawie publicznego stanu gry i kończy się bezpiecznie na V7 po
+wyjątku. Tablice obu gałęzi są bitowo/action-wise identyczne z V7 i V8; ich
+pierwsze dziesięć tur także jest identyczne. Dlatego złożenie odpowiadających
+wierszy z istniejącej bramki matched jest dokładnym kontrfaktycznym wynikiem,
+a nie przybliżeniem:
+
+- TOP12: **5811–1101**, średnia nagroda **103892.31**, margines **21482.91**;
+- rangi 1–7 nowego TOP12: **3186–846**, nagroda **105070.97**, margines
+  **22501.76**;
+- wobec V7 daje to odpowiednio **+68** i **+21** zwycięstw;
+- na wcześniejszym TOP7 wszystkie zebrane odciski wybierają V8, więc V9
+  zachowuje wcześniejszą przewagę V8 **+61** zwycięstw nad V7.
+
+Pełny audyt per-team jest w
+`kaggriculture_meta_lab/results/v9-state-router-exact-counterfactual-20260910.json`.
+To nadal bramka przeciw taśmom open-loop; router nie powinien być promowany bez
+małego testu silnika Python i porównania z żywym punktem odniesienia G2.
+Pełna dynamiczna bramka Python została przerwana przez limit czasu, nie przez
+błąd agenta; do szerokich badań należy używać dokładnego składania statycznych
+gałęzi albo dodać natywne wsparcie routerów w porcie Rust.

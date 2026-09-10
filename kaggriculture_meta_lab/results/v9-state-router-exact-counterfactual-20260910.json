@@ -1,0 +1,124 @@
+{
+  "format": "exact-counterfactual-state-router-v1",
+  "source": "kaggriculture_meta_lab/results/v8-newest-top12-gate-20260910.json",
+  "source_sha256": "cd9503fb7cb68f4c04e951e7e6960725298c5bf4d5922d1da82b84d10b336ce6",
+  "method": "V9 actions equal V7 on turn-1 fingerprints own_money=2957 or opponent_money=3000 with zero opponent hands; otherwise equal V8. Source V7/V8 rows share identical tapes, seeds and seats.",
+  "open_loop_limitations": "Opponent policies are replay tapes. Turn-1 fingerprints are deterministic in this corpus but strategy updates can change them.",
+  "subsets": {
+    "top7": {
+      "games": 4032,
+      "wins": 3186,
+      "losses": 846,
+      "ties": 0,
+      "mean_candidate_reward": 105070.97346230158,
+      "mean_margin": 22501.758432539682,
+      "teams": {
+        "ymg_aq": {
+          "wins": 77,
+          "losses": 499,
+          "ties": 0
+        },
+        "SpaTaro": {
+          "wins": 547,
+          "losses": 29,
+          "ties": 0
+        },
+        "Otter Vibe": {
+          "wins": 542,
+          "losses": 34,
+          "ties": 0
+        },
+        "Unknown Mother-Goose": {
+          "wins": 456,
+          "losses": 120,
+          "ties": 0
+        },
+        "feel the agi": {
+          "wins": 465,
+          "losses": 111,
+          "ties": 0
+        },
+        "binghua": {
+          "wins": 523,
+          "losses": 53,
+          "ties": 0
+        },
+        "Himanshu Kumar": {
+          "wins": 576,
+          "losses": 0,
+          "ties": 0
+        }
+      }
+    },
+    "top12": {
+      "games": 6912,
+      "wins": 5811,
+      "losses": 1101,
+      "ties": 0,
+      "mean_candidate_reward": 103892.31264467593,
+      "mean_margin": 21482.911747685186,
+      "teams": {
+        "ymg_aq": {
+          "wins": 77,
+          "losses": 499,
+          "ties": 0
+        },
+        "kanno": {
+          "wins": 512,
+          "losses": 64,
+          "ties": 0
+        },
+        "SpaTaro": {
+          "wins": 547,
+          "losses": 29,
+          "ties": 0
+        },
+        "Otter Vibe": {
+          "wins": 542,
+          "losses": 34,
+          "ties": 0
+        },
+        "Unknown Mother-Goose": {
+          "wins": 456,
+          "losses": 120,
+          "ties": 0
+        },
+        "feel the agi": {
+          "wins": 465,
+          "losses": 111,
+          "ties": 0
+        },
+        "binghua": {
+          "wins": 523,
+          "losses": 53,
+          "ties": 0
+        },
+        "Himanshu Kumar": {
+          "wins": 576,
+          "losses": 0,
+          "ties": 0
+        },
+        "Tarang222": {
+          "wins": 494,
+          "losses": 82,
+          "ties": 0
+        },
+        "Mengfei Li": {
+          "wins": 539,
+          "losses": 37,
+          "ties": 0
+        },
+        "mtmr_s1": {
+          "wins": 512,
+          "losses": 64,
+          "ties": 0
+        },
+        "cooked": {
+          "wins": 568,
+          "losses": 8,
+          "ties": 0
+        }
+      }
+    }
+  }
+}
