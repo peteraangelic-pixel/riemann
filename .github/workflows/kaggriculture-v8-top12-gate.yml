@@ -1,0 +1,47 @@
+name: Kaggriculture V8 newest TOP12 gate
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v8-top12-gate.yml"]
+permissions:
+  contents: write
+jobs:
+  gate:
+    if: contains(github.event.head_commit.message, '[kg-v8-top12]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr
+      - name: Extract and verify TOP12
+        run: |
+          python - <<'PY'
+          import json,pathlib,py7zr
+          with py7zr.SevenZipFile('TOP12.7z') as a:a.extractall('/tmp/top12')
+          roots=[m.parent for m in pathlib.Path('/tmp/top12').rglob('manifest.json') if isinstance(json.loads(m.read_text()).get('teams'),list) and len(json.loads(m.read_text())['teams'])==12]
+          if len(roots)!=1:raise SystemExit(f'expected one TOP12 root: {roots}')
+          d=json.loads((roots[0]/'manifest.json').read_text());assert sum(len(t['selected_episodes']) for t in d['teams'])==108
+          pathlib.Path('/tmp/top12-root').write_text(str(roots[0]))
+          print('generated',d.get('generated_at_utc'),'replays',108)
+          PY
+      - working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - name: Matched current-meta gate
+        run: |
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
+            --corpus "$(cat /tmp/top12-root)" --workers 4 --seeds 32 --seed-start 158000 \
+            --candidate v7=kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
+            --candidate v8=kaggriculture_meta_lab/agents/candidates/agent_v8_market_tail.py \
+            --candidate v16=kaggriculture_meta_lab/agents/variants/agent_v16_kanno_top7_champion.py \
+            --output kaggriculture_meta_lab/results/v8-newest-top12-gate-20260910.json
+      - name: Persist evidence
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v8-newest-top12-gate-20260910.json
+          git commit -m "Record newest TOP12 V8 gate"
+          git push origin HEAD:arena/01a0712c-riemann
