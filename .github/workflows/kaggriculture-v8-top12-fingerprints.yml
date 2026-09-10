@@ -1,0 +1,39 @@
+name: Kaggriculture V8 TOP12 fingerprints
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v8-top12-fingerprints.yml"]
+permissions:
+  contents: write
+jobs:
+  collect:
+    if: contains(github.event.head_commit.message, '[kg-v8-top12-fp]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr
+      - run: |
+          python - <<'PY'
+          import json,pathlib,py7zr
+          with py7zr.SevenZipFile('TOP12.7z') as a:a.extractall('/tmp/top12')
+          m=next(m for m in pathlib.Path('/tmp/top12').rglob('manifest.json') if len(json.loads(m.read_text()).get('teams',[]))==12)
+          pathlib.Path('/tmp/top12-root').write_text(str(m.parent))
+          PY
+      - working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - run: |
+          python kaggriculture_meta_lab/scripts/collect_v8_opening_fingerprints.py --decision-turn 1 \
+            --corpus "$(cat /tmp/top12-root)" --candidate kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
+            --binary kaggriculture_meta_lab/rust_port/target/release/kg_sim --max-rank 12 \
+            --output kaggriculture_meta_lab/results/v8-opening-fingerprints-top12-20260910.json
+      - run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v8-opening-fingerprints-top12-20260910.json
+          git commit -m "Record TOP12 opening fingerprints"
+          git push origin HEAD:arena/01a0712c-riemann
