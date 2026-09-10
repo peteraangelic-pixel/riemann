@@ -1,0 +1,58 @@
+name: Kaggriculture V8 fertilizer pulse broad gate
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v8-fertilizer-gate.yml"]
+permissions:
+  contents: write
+jobs:
+  gate:
+    if: contains(github.event.head_commit.message, '[kg-v8-fertilizer]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr
+      - name: Extract complete TOP15 and recovered TOP30
+        run: |
+          python - <<'PY'
+          import os,pathlib,py7zr
+          for name in ('top15','top30'):
+           with py7zr.SevenZipFile(name.upper()+'.7z') as a:a.extractall('/tmp/'+name)
+           ms=list(pathlib.Path('/tmp/'+name).rglob('manifest.json'))
+           roots=[m for m in ms if 'teams' in __import__('json').loads(m.read_text())]
+           root=roots[0].parent if roots else (ms[0].parent if len(ms)==1 else pathlib.Path(os.path.commonpath([str(x.parent) for x in ms])))
+           pathlib.Path('/tmp/'+name+'-root').write_text(str(root))
+           print(name,root)
+          PY
+      - name: Build simulator and verify static compilation
+        working-directory: kaggriculture_meta_lab/rust_port
+        run: |
+          cargo build --release --locked
+          python -m unittest tests.test_agent_tape -v
+      - name: Complete matched fresh TOP15 gate
+        run: |
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
+            --corpus "$(cat /tmp/top15-root)" --workers 4 --seeds 12 --seed-start 138000 \
+            --candidate v7=kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
+            --candidate v8f=kaggriculture_meta_lab/agents/candidates/agent_v8_fertilizer_pulse.py \
+            --output kaggriculture_meta_lab/results/v8-fertilizer-top15-fresh-20260910.json
+      - name: Recovered TOP30 original-seed gate
+        run: |
+          python kaggriculture_meta_lab/scripts/benchmark_top30.py \
+            --corpus "$(cat /tmp/top30-root)" --candidate kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
+            --max-rank 30 --workers 4 --output kaggriculture_meta_lab/results/v8-fertilizer-top30-v7-20260910.json
+          python kaggriculture_meta_lab/scripts/benchmark_top30.py \
+            --corpus "$(cat /tmp/top30-root)" --candidate kaggriculture_meta_lab/agents/candidates/agent_v8_fertilizer_pulse.py \
+            --max-rank 30 --workers 4 --output kaggriculture_meta_lab/results/v8-fertilizer-top30-pulse-20260910.json
+      - name: Persist evidence
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v8-fertilizer-*.json
+          git commit -m "Record V8 fertilizer pulse broad gate"
+          git push origin HEAD:arena/01a0712c-riemann

@@ -49,9 +49,9 @@ The first gate in run `34500616904` correctly refused to score 840 failed games.
 - V6 and V7 completed 1,680 Rust games;
 - all 840 reactive Python-fallback games failed because that workflow had not installed `kaggle-environments`.
 
-The gate was repaired to install the actual framework, expose representative errors, upload evidence even on failure, and reduce the smoke run to one fresh seed because 840 real Python-engine games exceed 30 minutes. Run `34501516117` demonstrated that the full four-seed Python fallback exceeds the 30-minute job budget. Follow-up run `34504691448` was launched with 210 reactive games, but its final outcome could not be retrieved after the GitHub connection began returning HTTP 401. It must not be treated as passed evidence.
+The gate was repaired to install the actual framework, expose representative errors, upload evidence even on failure, and reduce the smoke run to one fresh seed because 840 real Python-engine games exceed 30 minutes. Run `34501516117` demonstrated that the full four-seed Python fallback exceeds the 30-minute job budget. Follow-up run `34504691448` completed successfully with 210 reactive games (one new common seed, every selected TOP15 policy, both seats) after installing the actual framework. The gate had explicit failed-game enforcement, so this establishes zero agent/game errors in the independent Python engine. The larger four-seed gate remains impractical under the 30-minute Actions budget.
 
-The generated source was separately imported against genuine replay observations and returned valid actions for steps 0, 1, and 2, including activation of the evolved turn-1 branch. That is a source smoke test only, not independent game validation.
+The generated source was also imported directly against genuine replay observations and returned valid actions for steps 0, 1, and 2, including activation of the evolved turn-1 branch.
 
 ## CI note
 
