@@ -1,0 +1,266 @@
+{
+  "format": "ours-peer-v4-hybrid-independent-v1",
+  "seeds": [
+    97000,
+    97255
+  ],
+  "jobs": 10240,
+  "zero_errors": true,
+  "direct": {
+    "ours": {
+      "games": 512,
+      "wins": 485,
+      "losses": 27,
+      "ties": 0,
+      "score_rate": 0.947265625,
+      "mean_margin": 523.599609375,
+      "worst_margin": -7227.0
+    },
+    "peer": {
+      "games": 512,
+      "wins": 481,
+      "losses": 31,
+      "ties": 0,
+      "score_rate": 0.939453125,
+      "mean_margin": 350.505859375,
+      "worst_margin": -7265.0
+    }
+  },
+  "summary": {
+    "hybrid:v3": {
+      "games": 512,
+      "wins": 493,
+      "losses": 19,
+      "ties": 0,
+      "score_rate": 0.962890625,
+      "mean_margin": 964.6015625,
+      "worst_margin": -6896.0
+    },
+    "hybrid:v16": {
+      "games": 512,
+      "wins": 509,
+      "losses": 3,
+      "ties": 0,
+      "score_rate": 0.994140625,
+      "mean_margin": 2401.853515625,
+      "worst_margin": -6250.0
+    },
+    "hybrid:german": {
+      "games": 512,
+      "wins": 503,
+      "losses": 9,
+      "ties": 0,
+      "score_rate": 0.982421875,
+      "mean_margin": 1405.537109375,
+      "worst_margin": -6030.0
+    },
+    "hybrid:b21": {
+      "games": 512,
+      "wins": 432,
+      "losses": 80,
+      "ties": 0,
+      "score_rate": 0.84375,
+      "mean_margin": 10246.369140625,
+      "worst_margin": -6683.0
+    },
+    "hybrid:yusuke": {
+      "games": 512,
+      "wins": 511,
+      "losses": 1,
+      "ties": 0,
+      "score_rate": 0.998046875,
+      "mean_margin": 6411.009765625,
+      "worst_margin": -1.0
+    },
+    "hybrid:g2": {
+      "games": 512,
+      "wins": 512,
+      "losses": 0,
+      "ties": 0,
+      "score_rate": 1.0,
+      "mean_margin": 7181.259765625,
+      "worst_margin": 1291.0
+    },
+    "ours:v3": {
+      "games": 512,
+      "wins": 480,
+      "losses": 32,
+      "ties": 0,
+      "score_rate": 0.9375,
+      "mean_margin": 318.517578125,
+      "worst_margin": -7293.0
+    },
+    "ours:v16": {
+      "games": 512,
+      "wins": 506,
+      "losses": 6,
+      "ties": 0,
+      "score_rate": 0.98828125,
+      "mean_margin": 1802.244140625,
+      "worst_margin": -5531.0
+    },
+    "ours:german": {
+      "games": 512,
+      "wins": 483,
+      "losses": 29,
+      "ties": 0,
+      "score_rate": 0.943359375,
+      "mean_margin": 848.3203125,
+      "worst_margin": -10043.0
+    },
+    "ours:b21": {
+      "games": 512,
+      "wins": 434,
+      "losses": 78,
+      "ties": 0,
+      "score_rate": 0.84765625,
+      "mean_margin": 10342.451171875,
+      "worst_margin": -6459.0
+    },
+    "ours:yusuke": {
+      "games": 512,
+      "wins": 512,
+      "losses": 0,
+      "ties": 0,
+      "score_rate": 1.0,
+      "mean_margin": 6465.19140625,
+      "worst_margin": 19.0
+    },
+    "ours:g2": {
+      "games": 512,
+      "wins": 512,
+      "losses": 0,
+      "ties": 0,
+      "score_rate": 1.0,
+      "mean_margin": 9021.130859375,
+      "worst_margin": 3366.0
+    },
+    "peer:v3": {
+      "games": 512,
+      "wins": 485,
+      "losses": 27,
+      "ties": 0,
+      "score_rate": 0.947265625,
+      "mean_margin": 587.984375,
+      "worst_margin": -7179.0
+    },
+    "peer:v16": {
+      "games": 512,
+      "wins": 507,
+      "losses": 5,
+      "ties": 0,
+      "score_rate": 0.990234375,
+      "mean_margin": 2087.27734375,
+      "worst_margin": -6325.0
+    },
+    "peer:german": {
+      "games": 512,
+      "wins": 502,
+      "losses": 10,
+      "ties": 0,
+      "score_rate": 0.98046875,
+      "mean_margin": 1304.552734375,
+      "worst_margin": -6104.0
+    },
+    "peer:b21": {
+      "games": 512,
+      "wins": 432,
+      "losses": 80,
+      "ties": 0,
+      "score_rate": 0.84375,
+      "mean_margin": 9999.390625,
+      "worst_margin": -6815.0
+    },
+    "peer:yusuke": {
+      "games": 512,
+      "wins": 511,
+      "losses": 1,
+      "ties": 0,
+      "score_rate": 0.998046875,
+      "mean_margin": 6126.46484375,
+      "worst_margin": -453.0
+    },
+    "peer:g2": {
+      "games": 512,
+      "wins": 512,
+      "losses": 0,
+      "ties": 0,
+      "score_rate": 1.0,
+      "mean_margin": 6969.08984375,
+      "worst_margin": 1125.0
+    },
+    "direct:ours": {
+      "games": 512,
+      "wins": 485,
+      "losses": 27,
+      "ties": 0,
+      "score_rate": 0.947265625,
+      "mean_margin": 523.599609375,
+      "worst_margin": -7227.0
+    },
+    "direct:peer": {
+      "games": 512,
+      "wins": 481,
+      "losses": 31,
+      "ties": 0,
+      "score_rate": 0.939453125,
+      "mean_margin": 350.505859375,
+      "worst_margin": -7265.0
+    }
+  },
+  "deltas": {
+    "ours": {
+      "v3": {
+        "score_rate": 0.025390625,
+        "mean_margin": 646.083984375
+      },
+      "v16": {
+        "score_rate": 0.005859375,
+        "mean_margin": 599.609375
+      },
+      "german": {
+        "score_rate": 0.0390625,
+        "mean_margin": 557.216796875
+      },
+      "b21": {
+        "score_rate": -0.00390625,
+        "mean_margin": -96.08203125
+      },
+      "yusuke": {
+        "score_rate": -0.001953125,
+        "mean_margin": -54.181640625
+      },
+      "g2": {
+        "score_rate": 0.0,
+        "mean_margin": -1839.87109375
+      }
+    },
+    "peer": {
+      "v3": {
+        "score_rate": 0.015625,
+        "mean_margin": 376.6171875
+      },
+      "v16": {
+        "score_rate": 0.00390625,
+        "mean_margin": 314.576171875
+      },
+      "german": {
+        "score_rate": 0.001953125,
+        "mean_margin": 100.984375
+      },
+      "b21": {
+        "score_rate": 0.0,
+        "mean_margin": 246.978515625
+      },
+      "yusuke": {
+        "score_rate": 0.0,
+        "mean_margin": 284.544921875
+      },
+      "g2": {
+        "score_rate": 0.0,
+        "mean_margin": 212.169921875
+      }
+    }
+  },
+  "passes_strict_gate": true
+}
