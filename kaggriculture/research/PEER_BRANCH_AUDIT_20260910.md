@@ -68,6 +68,32 @@ The pulse gained +133.74 own reward but lost eight games and 57.95 margin per ma
 
 A worthwhile next experiment is state-gating this one sale rather than adding it unconditionally: evolve thresholds over the public fertilizer market state and own available fertilizer, with V7 as fail-closed identity. The branch's day/action ablation method is useful; its static finalist is not itself the answer.
 
+## Branch 087c0 follow-up through `ba4dc6c`: broad negative results and one useful split
+
+The branch subsequently completed several experiments that overlap the planned V8 work and therefore should not be repeated blindly:
+
+- a shallow step-153 state-router search on the refreshed TOP7 and complete TOP15;
+- a preregistered 189-policy × 32-seed cross-corpus gate;
+- all 114 individual V2→V7 market mutations over all 719 turns;
+- a repaired-V4-body audit on the latest uploaded TOP7 and complete TOP15.
+
+The fixed router gate closed the step-153 family: `opponent money <= 100` tied V7 at 11175–921 and improved only economic metrics, while broader conditions lost wins or moved wins between corpora. The all-turn scan's apparent step-153 +4 holdout gain contradicted the preregistered gate, confirming winner's-curse noise. Late mutations at steps 649–650 also failed holdout.
+
+The repaired V4 body (`v4safe01`, retaining the V7 turns 0–1) was genuinely distinct but not better. On the latest TOP7 it scored 1204–140 versus V7 1205–139 and reduced mean margin by 347; on complete TOP15 it tied V7 at 1584–96 but reduced reward and margin. Raw and partially repaired V4 variants regressed heavily. V5 was proven to differ from V7 only at turns 0–1, so V7 already contains its entire late body.
+
+The useful remaining signal is the newest-meta V7/V16 split, not another static mutation scan. Our independent 16-seed run `34516259027` over the latest uploaded 84-policy TOP7 produced:
+
+| Candidate | W–L | Own reward | Margin |
+|---|---:|---:|---:|
+| V16/V2 | **2432–256** | 109,331.73 | +20,868.61 |
+| V7 | 2427–261 | **111,976.74** | **+27,922.38** |
+| V6 | 2412–276 | 108,566.25 | +20,163.18 |
+| V3 | 2408–280 | 108,498.23 | +20,133.43 |
+| V5 | 2377–311 | 108,463.70 | +19,484.08 |
+| G2 static base control | 2296–392 | 109,136.22 | +20,185.13 |
+
+V16 gains only five net wins and gives up about 7,054 margin per game. Its advantage concentrates in selected current policies, while V7 remains dramatically safer against the complete TOP15 and one current strategy family. This motivates a fail-closed public-state selector or counterfactual router; it does not justify replacing V7 with V16.
+
 ## Branch 075fa: reactive V6b is not yet competitive
 
 This branch created a fail-closed, price-aware V6b with state fingerprinting and a selector. It is useful infrastructure work, but the first gameplay benchmark is negative:
