@@ -1,0 +1,522 @@
+{
+ "bodies": {
+  "T": "kaggriculture_meta_lab/seat_087c0/candidates/v6-t1b60.py"
+ },
+ "donors": {},
+ "key_controls": [
+  "deepernet",
+  "subin",
+  "himanshu",
+  "v4",
+  "v3",
+  "v2",
+  "hybrid"
+ ],
+ "variants": [
+  {
+   "name": "base-T",
+   "body": "T",
+   "overrides": {}
+  },
+  {
+   "name": "b40",
+   "body": "T",
+   "overrides": {
+    "1": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       40
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       90
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       5
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "BUY_ANIMAL",
+       "COW",
+       2
+      ],
+      [
+       "BUY_ANIMAL",
+       "SHEEP",
+       2
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "b50",
+   "body": "T",
+   "overrides": {
+    "1": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       50
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       90
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       5
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "BUY_ANIMAL",
+       "COW",
+       2
+      ],
+      [
+       "BUY_ANIMAL",
+       "SHEEP",
+       2
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "b70",
+   "body": "T",
+   "overrides": {
+    "1": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       70
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       90
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       5
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "BUY_ANIMAL",
+       "COW",
+       2
+      ],
+      [
+       "BUY_ANIMAL",
+       "SHEEP",
+       2
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "b80",
+   "body": "T",
+   "overrides": {
+    "1": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       80
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       90
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       5
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "BUY_ANIMAL",
+       "COW",
+       2
+      ],
+      [
+       "BUY_ANIMAL",
+       "SHEEP",
+       2
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "b60s120",
+   "body": "T",
+   "overrides": {
+    "1": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       60
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       120
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       5
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "BUY_ANIMAL",
+       "COW",
+       2
+      ],
+      [
+       "BUY_ANIMAL",
+       "SHEEP",
+       2
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "b60s150",
+   "body": "T",
+   "overrides": {
+    "1": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       60
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       150
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       5
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "BUY_ANIMAL",
+       "COW",
+       2
+      ],
+      [
+       "BUY_ANIMAL",
+       "SHEEP",
+       2
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "b50s120",
+   "body": "T",
+   "overrides": {
+    "1": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       50
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       120
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       5
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "BUY_ANIMAL",
+       "COW",
+       2
+      ],
+      [
+       "BUY_ANIMAL",
+       "SHEEP",
+       2
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "b70s120",
+   "body": "T",
+   "overrides": {
+    "1": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       70
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       120
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       5
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "BUY_ANIMAL",
+       "COW",
+       2
+      ],
+      [
+       "BUY_ANIMAL",
+       "SHEEP",
+       2
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "b70s150",
+   "body": "T",
+   "overrides": {
+    "1": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       70
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       150
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       5
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "BUY_ANIMAL",
+       "COW",
+       2
+      ],
+      [
+       "BUY_ANIMAL",
+       "SHEEP",
+       2
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "b60s75",
+   "body": "T",
+   "overrides": {
+    "1": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       60
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       75
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       5
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "BUY_ANIMAL",
+       "COW",
+       2
+      ],
+      [
+       "BUY_ANIMAL",
+       "SHEEP",
+       2
+      ]
+     ]
+    }
+   }
+  }
+ ]
+}
