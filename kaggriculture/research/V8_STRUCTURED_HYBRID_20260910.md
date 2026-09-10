@@ -132,3 +132,14 @@ małego testu silnika Python i porównania z żywym punktem odniesienia G2.
 Pełna dynamiczna bramka Python została przerwana przez limit czasu, nie przez
 błąd agenta; do szerokich badań należy używać dokładnego składania statycznych
 gałęzi albo dodać natywne wsparcie routerów w porcie Rust.
+
+### Bramka zamkniętej pętli względem G2
+
+Run Actions `34534701779` wykonał 64 gry na 32 rozłącznych seedach i obu
+miejscach przeciw dokładnemu źródłu G2. V9 wygrał **64–0**, bez błędów;
+średnia nagroda V9 wyniosła **156406.11**, G2 **2650.84**, a margines
+**153755.27**. To potwierdza poprawne wykonanie dynamicznego routera w silniku
+Kaggle Python i eliminuje G2 jako bezpośredni kontrprzykład H2H. Nie oznacza
+to automatycznie lepszego wyniku publicznego: ranking jest mieszanką innych
+przeciwników, a wcześniejszy wynik live G2 pozostaje ważnym ostrzeżeniem przed
+utożsamianiem lokalnego H2H z ratingiem.
