@@ -1,0 +1,58 @@
+name: Kaggriculture submit V3 and V7 overnight
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-submit-v3-v7.yml"]
+permissions: {contents: write}
+jobs:
+  submit:
+    if: contains(github.event.head_commit.message, '[kg-submit-v3-v7]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install --disable-pip-version-check kaggle
+      - name: Package neutral main.py archives
+        run: |
+          mkdir -p /tmp/v3 /tmp/v7
+          cp kaggriculture_meta_lab/agents/candidates/agent_v3_coherent_replay.py /tmp/v3/main.py
+          cp kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py /tmp/v7/main.py
+          python -m py_compile /tmp/v3/main.py /tmp/v7/main.py
+          tar -C /tmp/v3 -czf /tmp/submission-v3.tar.gz main.py
+          tar -C /tmp/v7 -czf /tmp/submission-v7.tar.gz main.py
+          test $(wc -c </tmp/submission-v3.tar.gz) -lt 100000000
+          test $(wc -c </tmp/submission-v7.tar.gz) -lt 100000000
+      - name: Submit both candidates and preserve exact responses
+        env: {KAGGLE_API_TOKEN: "${{ secrets.KAGGLE_API_TOKEN }}"}
+        run: |
+          mkdir -p ~/.kaggle kaggriculture_meta_lab/results
+          printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]' > ~/.kaggle/access_token
+          chmod 600 ~/.kaggle/access_token
+          set +e
+          kaggle competitions submit -c kaggriculture -f /tmp/submission-v3.tar.gz -m "V3 coherent replay overnight evaluation $GITHUB_SHA" >/tmp/v3.out 2>&1
+          echo $? >/tmp/v3.code
+          kaggle competitions submit -c kaggriculture -f /tmp/submission-v7.tar.gz -m "V7 market probe overnight control $GITHUB_SHA" >/tmp/v7.out 2>&1
+          echo $? >/tmp/v7.code
+          kaggle competitions submissions -c kaggriculture --csv >kaggriculture_meta_lab/results/kaggle-v3-v7-status-20260911.csv 2>/tmp/list.err
+          echo $? >/tmp/list.code
+          set -e
+          cat /tmp/v3.out; cat /tmp/v7.out
+          python - <<'PY'
+          import csv,json,pathlib
+          rows=[];p=pathlib.Path('kaggriculture_meta_lab/results/kaggle-v3-v7-status-20260911.csv')
+          if int(pathlib.Path('/tmp/list.code').read_text())==0 and p.exists():rows=list(csv.DictReader(p.open()))
+          specs={'v3':'V3 coherent replay overnight evaluation','v7':'V7 market probe overnight control'}
+          out={'list_exit_code':int(pathlib.Path('/tmp/list.code').read_text()),'list_error':pathlib.Path('/tmp/list.err').read_text(),'attempts':{}}
+          for name,prefix in specs.items():
+           out['attempts'][name]={'exit_code':int(pathlib.Path('/tmp/'+name+'.code').read_text()),'output':pathlib.Path('/tmp/'+name+'.out').read_text(),'accepted_submission':next((r for r in rows if prefix in r.get('description','')),None)}
+          pathlib.Path('kaggriculture_meta_lab/results/kaggle-v3-v7-submit-20260911.json').write_text(json.dumps(out,indent=2)+'\n');print(json.dumps(out,indent=2))
+          PY
+      - run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/kaggle-v3-v7-*-20260911.*
+          git commit -m "Record overnight V3 and V7 submission attempts"
+          git pull --rebase origin arena/01a0712c-riemann
+          git push origin HEAD:arena/01a0712c-riemann

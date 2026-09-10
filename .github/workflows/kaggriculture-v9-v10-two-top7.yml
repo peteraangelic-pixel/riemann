@@ -1,0 +1,73 @@
+name: Kaggriculture V8 V9 V10 two TOP7 gate
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v9-v10-two-top7.yml"]
+permissions: {contents: write}
+jobs:
+  gate:
+    if: contains(github.event.head_commit.message, '[kg-v910-two7]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr
+      - name: Extract corpora
+        run: |
+          python - <<'PY'
+          import json,pathlib,py7zr
+          for archive,label,n in [('TOP12.7z','new',12),('TOP7.7z','previous',7)]:
+           out=pathlib.Path('/tmp/'+label)
+           with py7zr.SevenZipFile(archive) as z:z.extractall(out)
+           roots=[m.parent for m in out.rglob('manifest.json') if len(json.loads(m.read_text()).get('teams',[]))==n]
+           assert len(roots)==1,(label,roots)
+           pathlib.Path('/tmp/'+label+'-root').write_text(str(roots[0]))
+          PY
+      - working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - name: Newest TOP12 source panel
+        run: |
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py --corpus "$(cat /tmp/new-root)" --workers 4 --seeds 32 --seed-start 172000 \
+            --candidate v7=kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
+            --candidate v8=kaggriculture_meta_lab/agents/candidates/agent_v8_late401_official.py \
+            --candidate full=kaggriculture_meta_lab/agents/candidates/agent_v8_market_tail.py \
+            --output /tmp/new.json
+      - name: Previous TOP7 source panel
+        run: |
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py --corpus "$(cat /tmp/previous-root)" --workers 4 --seeds 32 --seed-start 172000 \
+            --candidate v7=kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
+            --candidate v8=kaggriculture_meta_lab/agents/candidates/agent_v8_late401_official.py \
+            --candidate full=kaggriculture_meta_lab/agents/candidates/agent_v8_market_tail.py \
+            --output /tmp/previous.json
+      - name: Compose exact routed policies and persist
+        run: |
+          python - <<'PY'
+          import json,statistics,pathlib,collections
+          def stat(rows):
+           n=len(rows);w=sum(r['margin']>0 for r in rows);l=sum(r['margin']<0 for r in rows)
+           return {'games':n,'wins':w,'losses':l,'ties':n-w-l,'mean_reward':statistics.mean(r['self_reward'] for r in rows),'mean_margin':statistics.mean(r['margin'] for r in rows)}
+          out={'format':'exact-routed-two-top7-gate-v1','seeds':[172000,172031],'both_seats':True,'corpora':{}}
+          for corpus,path in [('newest_top7','/tmp/new.json'),('previous_top7','/tmp/previous.json')]:
+           d=json.load(open(path)); rows=[r for r in d['rows'] if corpus=='previous_top7' or r['rank']<=7]
+           by=collections.defaultdict(list)
+           for r in rows:by[r['candidate']].append(r)
+           # On newest TOP7 V9 falls back for the 2957-money fingerprint; V10 uses late V8.
+           if corpus=='newest_top7':
+            v9=[r for r in rows if r['candidate']==('v7' if r['team']=='ymg_aq' else 'full')]
+           else:v9=by['full']
+           v10=by['v8']
+           out['corpora'][corpus]={'v7':stat(by['v7']),'official_v8':stat(by['v8']),'v9':stat(v9),'v10':stat(v10),'per_team':{}}
+           for name,selected in [('v7',by['v7']),('official_v8',by['v8']),('v9',v9),('v10',v10)]:
+            for team in sorted({r['team'] for r in selected}):out['corpora'][corpus]['per_team'].setdefault(team,{})[name]=stat([r for r in selected if r['team']==team])
+          p=pathlib.Path('kaggriculture_meta_lab/results/v8-v9-v10-two-top7-20260911.json');p.write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n');print(json.dumps(out['corpora'],ensure_ascii=False,indent=2))
+          PY
+      - run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v8-v9-v10-two-top7-20260911.json
+          git commit -m "Record V8 V9 V10 two-TOP7 gate"
+          git push origin HEAD:arena/01a0712c-riemann
