@@ -51,7 +51,16 @@ Several opposing openings have the same net wheat-inventory effect, so wheat inv
 
 The complete TOP15 archive is roughly two days older than the latest TOP7 and represents a substantially older leaderboard population. It remains useful as a legacy robustness/adversarial stress test, but it must **not veto a candidate that transfers across the latest and immediately previous TOP7 generations**. Earlier wording gave TOP15 too much promotion authority and understated the hybrid.
 
-The static hybrid is therefore restored as the primary V8 candidate. It dominates V7 on the latest TOP7 screen in wins, own reward and margin; branch evidence also showed a win gain on the immediately previous TOP7 generation. Promotion now depends principally on a large, independent two-generation TOP7 gate. TOP15 is reported separately as legacy-regression evidence and may motivate a router, but is no longer the main objective.
+The static hybrid is therefore restored as the primary V8 candidate. It dominates V7 on the latest TOP7 screen in wins, own reward and margin; branch evidence also showed a win gain on the immediately previous TOP7 generation. TOP15 is reported separately as legacy-regression evidence and may motivate a router, but is no longer the main objective.
+
+The required two-generation gate subsequently passed in run `34527997807`:
+
+| TOP7 generation | Hybrid | V7 | Win delta | Reward delta | Margin delta |
+|---|---:|---:|---:|---:|---:|
+| latest, 32 seeds | **4906–470** | 4845–531 | **+61** | +1,014.21 | +1,231.04 |
+| immediately previous, 24 seeds | **3645–387** | 3620–412 | **+25** | +644.72 | +837.61 |
+
+Across the two principal current-meta generations the hybrid gains **86 wins** over V7 while improving both own reward and margin in each independently seeded gate. V16 itself loses to V7 on both generations, confirming that the gain comes from the structured V7-opening/V16-market-tail combination rather than simply selecting the older complete policy. The static hybrid is now promotion-grade under the corrected current-meta objective, pending exact-source Python execution validation and neutral packaging.
 
 The fail-closed selector remains valuable if it can preserve current-meta gains while cheaply retaining historical robustness. Candidate selection and final gates still require disjoint seeds, and exact generated Python source requires an independent execution check.
 

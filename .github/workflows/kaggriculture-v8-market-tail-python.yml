@@ -1,0 +1,49 @@
+name: Kaggriculture V8 market tail Python validation
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v8-market-tail-python.yml"]
+permissions:
+  contents: write
+jobs:
+  validate:
+    if: contains(github.event.head_commit.message, '[kg-v8-python]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install --disable-pip-version-check py7zr kaggle-environments==1.32.7
+      - name: Execute exact promoted source in Python engine
+        run: |
+          python - <<'PY'
+          import json,pathlib,py7zr,sys
+          with py7zr.SevenZipFile('TOP7.7z') as a:a.extractall('/tmp/latest')
+          roots=[m.parent for m in pathlib.Path('/tmp/latest').rglob('manifest.json') if isinstance(json.loads(m.read_text()).get('teams'),list) and len(json.loads(m.read_text())['teams'])==7]
+          sys.path[:0]=['kaggriculture_meta_lab','kaggriculture_meta_lab/scripts']
+          from benchmark_top30 import build_top30_jobs
+          from kaggriculture_lab.tournament import run
+          candidate=pathlib.Path('kaggriculture_meta_lab/agents/candidates/agent_v8_market_tail.py').resolve()
+          jobs,meta=build_top30_jobs(roots[0],candidate,7)
+          selected=[];selected_meta=[];counts={}
+          for job,m in zip(jobs,meta):
+           key=(m['team'],m['episode_id'])
+           if key not in counts and sum(k[0]==m['team'] for k in counts)<2:counts[key]=True
+           if key in counts:selected.append(job);selected_meta.append(m)
+          rows=run(selected,workers=2,progress_every=10)
+          enriched=[{**r,**m} for r,m in zip(rows,selected_meta)]
+          errors=[r for r in enriched if r.get('error') or r.get('outcome')=='error']
+          result={'format':'v8-exact-python-validation-v1','games':len(enriched),'errors':len(errors),'wins':sum(r['outcome']=='win' for r in enriched),'losses':sum(r['outcome']=='loss' for r in enriched),'rows':enriched}
+          pathlib.Path('kaggriculture_meta_lab/results/v8-market-tail-python-validation-20260910.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps({k:result[k] for k in ('games','errors','wins','losses')},indent=2))
+          if errors:raise SystemExit(1)
+          PY
+      - name: Persist validation
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v8-market-tail-python-validation-20260910.json
+          git commit -m "Record exact V8 Python validation"
+          git push origin HEAD:arena/01a0712c-riemann
