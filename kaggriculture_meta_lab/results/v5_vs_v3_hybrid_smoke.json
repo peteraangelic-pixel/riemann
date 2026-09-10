@@ -1,0 +1,74 @@
+[
+ {
+  "cand": "champion_tape_evolved_v5",
+  "opp": "v3_market_genetic_holdout_winner",
+  "w": 4,
+  "l": 0,
+  "t": 0,
+  "margin_sum": 1510.0,
+  "mean_cand": 122240.0,
+  "mean_opp": 121862.5,
+  "games": [
+   {
+    "seed": 100,
+    "swap": 0,
+    "r0": 101514.0,
+    "r1": 101110.0
+   },
+   {
+    "seed": 100,
+    "swap": 1,
+    "r0": 101514.0,
+    "r1": 101110.0
+   },
+   {
+    "seed": 101,
+    "swap": 0,
+    "r0": 142966.0,
+    "r1": 142615.0
+   },
+   {
+    "seed": 101,
+    "swap": 1,
+    "r0": 142966.0,
+    "r1": 142615.0
+   }
+  ]
+ },
+ {
+  "cand": "champion_tape_evolved_v5",
+  "opp": "ours_peer_v4_hybrid_holdout_winner",
+  "w": 4,
+  "l": 0,
+  "t": 0,
+  "margin_sum": 182.0,
+  "mean_cand": 85055.0,
+  "mean_opp": 85009.5,
+  "games": [
+   {
+    "seed": 100,
+    "swap": 0,
+    "r0": 75882.0,
+    "r1": 75810.0
+   },
+   {
+    "seed": 100,
+    "swap": 1,
+    "r0": 75882.0,
+    "r1": 75810.0
+   },
+   {
+    "seed": 101,
+    "swap": 0,
+    "r0": 94228.0,
+    "r1": 94209.0
+   },
+   {
+    "seed": 101,
+    "swap": 1,
+    "r0": 94228.0,
+    "r1": 94209.0
+   }
+  ]
+ }
+]
