@@ -1,0 +1,118 @@
+# Mistrz z taśm TOP15 — status 2026-09-10 (seat 087c0)
+
+## Cel tej rundy
+
+Użytkownik: „zrób wszystko, by stworzyć nowego mistrza" (TOP15 ~2900 score/mecz,
+jego G2 max ~2400). Bramka mistrza: kandydat musi wygrać **≥50% gier przeciwko
+b21 oraz v10sub** (najsilniejsze mierzalne taśmy, wiele seedów, obie strony).
+
+**Wynik: bramka zaliczona z ogromnym zapasem.** Nowy kandydat na mistrza:
+`agents/champion_tape_germanjurado1_v1.py`.
+
+## Przełom metodologiczny: naprawa kompilacji taśm z replayów
+
+Wcześniejsza runda skompilowała taśmy TOP15 ad-hoc i wszystkie przegrały z b21 —
+**te wyniki były artefaktem błędu wyrównania wierszy i zostają unieważnione**.
+
+Poprawne mapowanie (potwierdzone empirycznie, dokładna reprodukcja oryginalnych
+meczów, co do złotówki):
+
+- `steps` ma 720 wierszy; wiersz 0 to inicjalizacja, a akcja wykonana w kroku `s`
+  jest zapisana w wierszu `s+1` → taśma `_ACTIONS = steps[1:]`, agent zwraca
+  `_ACTIONS[min(step, N-1)]`;
+- seat to nagrany seat drużyny z `info.TeamNames` (przy self-play: seat 0);
+- bez trimowania hands (surowa taśma) — trim tylko jako opcja runtime.
+
+Weryfikacja wierności (python engine, oba seaty z tego samego replaya, oryginalny seed):
+
+| Epizod | Oryginał | Odtworzenie |
+|---|---|---|
+| SpaTaro 107210201 (seed 2059401071) | 144 820 / 131 575 | **144 820 / 131 575** |
+| Otter Vibe 107217016 (seed 740417262) | 118 379 / 130 220 | **118 379 / 130 220** |
+| ultimatum_game 107212126 | 177 788 / 144 720 | **177 788 / 144 720** |
+
+## Screening 15 taśm TOP15 (best-listed submission, epizod o najwyższej nagrodzie)
+
+Każda taśma vs v10sub: seedy 100–107 × obie strony (silnik deterministyczny
+i symetryczny — obie strony dają identyczne wyniki, czyli 8 unikalnych seedów).
+
+| Kandydat | W/L | margines/g | średnia kandydat / v10sub |
+|---|---|---|---|
+| terry_luo | 16-0 | **+72 413** | 130 011 / 57 598 |
+| aaaabbs | 16-0 | **+73 213** | 130 450 / 57 238 |
+| ultimatum_game | 16-0 | **+68 235** | 132 072 / 63 837 |
+| kanno | 16-0 | +9 237 | 114 585 / 105 348 |
+| germanjurado1 | 16-0 | +7 412 | 113 152 / 105 740 |
+| pensukesan | 16-0 | +6 046 | 100 934 / 94 888 |
+| dewangshu | 10-6 | +2 169 | 88 035 / 85 866 |
+| cooked | 6-10 | −4 417 | 92 912 / 97 329 |
+| mtmr_s1 | 4-12 | −5 766 | — |
+| deepernet | 4-12 | −6 201 | — |
+| himanshu_kumar | 2-14 | −5 526 | — |
+| otter_vibe | 1-15 | −26 096 | 72 427 / 98 523 |
+| binghua | 0-16 | −25 844 | — |
+| spataro | 0-16 | −24 411 | — |
+| mengfei_li | 0-16 | −28 798 | — |
+| (kontrola) agent_b21 | 0-16 | −12 841 | 87 062 / 99 902 |
+
+Uwaga: wielkie marginesy terry_luo/aaaabbs/ultimatum_game wynikają z załamania
+statycznych przeciwników (ich wrapper gubi akcje przy dywergencji stanu), nie
+tylko z siły taśmy.
+
+## Pogłębienie (seedy 100–115 × obie strony = 32 gry na parę)
+
+| Kandydat | vs v10sub | vs b21 |
+|---|---|---|
+| terry_luo | 32-0 (+68 189/g) | 24-8 (+3 258/g) |
+| ultimatum_game | 32-0 (+69 989/g) | 29-3 (+10 243/g) |
+| aaaabbs | 32-0 (+69 936/g) | 32-0 (+82 742/g) |
+| germanjurado1 | 32-0 (+7 266/g) | 32-0 (+13 900/g) |
+| kanno | 32-0 (+8 723/g) | 32-0 (+14 632/g) |
+| pensukesan | 32-0 (+5 728/g) | 32-0 (+15 545/g) |
+| dewangshu | 12-20 (−1 992/g) — odpada | 32-0 |
+
+## Round-robin finalistów (seedy 100–111 × obie strony = 24 gry na parę)
+
+- terry_luo–ultimatum_game: 12-12 (+488/g)
+- terry_luo–aaaabbs: terry 24-0 (+1 825/g)
+- ultimatum_game–aaaabbs: ulti 16-8 (+311/g)
+- **germanjurado1**: 24-0 vs terry_luo, 24-0 vs ultimatum_game, 22-2 vs aaaabbs,
+  24-0 vs kanno, 19-5 vs pensukesan — **wygrywa wszystko**
+- kanno: 24-0 vs pensukesan, ale 0-24 vs germanjurado1 i 0-24 vs aaaabbs
+- aaaabbs: 24-0 vs kanno, ale 2-22 vs germanjurado1
+
+Nietransytywność (aaaabbs > kanno, kanno > terry, terry > aaaabbs) rozstrzyga na
+korzyść **germanjurado1** — jedynej taśmy wygrywającej z każdym finalistą
+i z obydwoma baseline'ami bez załamań przeciwnika.
+
+## Walidacja końcowa mistrza (nowe seedy 116–131, poza treningiem selekcji)
+
+`champion_tape_germanjurado1_v1.py` (wariant z runtime trim hands):
+
+- vs v10sub: **32-0**, średnio 98 472 vs 92 473 (+5 999/g)
+- vs b21: **28-4**, +8 393/g
+- vs aastik: **28-4**, +7 487/g
+- trim na seedach 100–103: 8-0 vs v10sub (+7 750/g), 8-0 vs b21 (+14 161/g)
+- sanity vs reaktywny V12 (farmosa): brak błędów, 112k–170k vs 0.9k–21k
+- pasywnie (seedy 100–105): **908 323** (dla kontekstu: V12 = 275 282)
+
+Źródło taśmy: GermanJurado1 (TOP15 rank 10, public 2916.0, best-listed submission
+56113029, epizod 107218640, seat 0, nagroda źródłowa 131 745). Artefakt: 719 akcji,
+blob base85+zlib ~12,3 kB, plik samodzielny.
+
+## Zastrzeżenia
+
+- To **open-loop imitacja publicznego replaya**, nie oryginalna reaktywna polityka;
+  na lidze przeciw reaktywnym rywalom przewaga będzie mniejsza niż lokalnie.
+- Submisja na Kaggle: decyzja użytkownika; z tego seatu **zero** akcji Kaggle
+  (brak submissionów, brak `[kaggr-submit]`, brak API key).
+- Linia V12/V21 i jej bramka (275 282, seedy 100–105) pozostają bez zmian.
+
+## Pliki
+
+- `agents/champion_tape_germanjurado1_v1.py` — finalny kandydat na mistrza
+- `scripts/compile_top15_master_tape.py` — poprawny kompilator taśm z replayów
+- `scripts/h2h_tape_runner.py` — runner H2H (sekwencyjny, log per gra)
+- `results/` — surowe wyniki: `screen_g{1,2,3}.json`, `deep_{1,2,3}.json`,
+  `rr_{a,b,c}.json`, `final_new.json`, `final_trim.json`, `chosen.json`
+- korpus TOP15: `TOP15.7z` w roocie repo (nie commitowany), rozpakowany do `/tmp`
