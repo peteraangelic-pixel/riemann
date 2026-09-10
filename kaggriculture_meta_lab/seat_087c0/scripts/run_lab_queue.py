@@ -65,6 +65,19 @@ def main():
             subprocess.run(cmd, check=True)
             print(f"### LAB ablate {tag} done -> {out}", flush=True)
             continue
+        if job.get("type", "h2h") == "screen":
+            out = SEAT / "results" / f"rust_{tag}.json"
+            cmd = [sys.executable, str(SEAT / "scripts" / "screen_openings.py"),
+                   "--spec", job["spec"]]
+            cmd += ["--controls"] + [f"{k}={v}" for k, v in job["controls"].items()]
+            cmd += ["--start-seed", str(job["start_seed"]), "--games", str(job["games"]),
+                    "--engine", job.get("engine", "rust"), "--binary", binary,
+                    "--threads", str(job.get("threads", 4)),
+                    "--output", str(out), "--tag", tag]
+            print(f"### LAB screen {tag}", flush=True)
+            subprocess.run(cmd, check=True)
+            print(f"### LAB screen {tag} done -> {out}", flush=True)
+            continue
         seeds = list(range(int(job["start_seed"]), int(job["start_seed"]) + int(job["games"])))
         out = SEAT / "results" / f"rust_{tag}.json"
         cmd = [sys.executable, str(SEAT / "scripts" / "rust_h2h.py"),
