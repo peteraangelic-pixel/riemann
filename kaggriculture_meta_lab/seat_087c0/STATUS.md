@@ -156,3 +156,8 @@
 
 ## 2026-09-11 (34): exact decoder correction
 - Pure-JSON run failed before games: static `_source` extractor returned None for compressed formal V8. Corrected candidate decode to proven `fast_h2h.load_tape`; local validation returns 2×719 actions. Opponent replay extraction unchanged; same panel/seeds.
+
+## 2026-09-11 (35): V10 independently supported
+- Exact V9 source panel completed: late401 5811-1101, 103902.69 reward, +21490.42 margin; exactly ties V9 W/L and is +10.38 reward/+7.51 margin.
+- Peer applied previously selected V10 no-op-opening exception to this disjoint 32-seed panel: 5825-1087, +14 wins over both late401 and V9. New 32-seed two-TOP7 gate: V10 identical late401, latest +14 vs V7; previous +45 vs V7. Thus V10 now has independent evidence and preserves current-meta TOP7 behavior.
+- Imported exact V10 source SHA256 `4400b28538fdd578f9baf8457162ea681cbc1630924317a6daf6a81ab3356f64`; launched independent Kaggle Environments 1.32.7 TOP12 both-seat smoke. Promote only after zero-error result.
