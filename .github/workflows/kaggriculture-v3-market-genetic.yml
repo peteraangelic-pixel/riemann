@@ -1,0 +1,41 @@
+name: Kaggriculture V3 market-timing evolution
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v3-market-genetic.yml"]
+permissions:
+  contents: write
+jobs:
+  evolve:
+    if: contains(github.event.head_commit.message, '[kg-v3-market-genetic]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr
+      - run: |
+          python - <<'PY'
+          import py7zr
+          with py7zr.SevenZipFile('TOP7.7z') as archive: archive.extractall('/tmp/top7')
+          PY
+      - working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - run: |
+          python kaggriculture_meta_lab/scripts/search_v3_market_genetic.py \
+            --corpus /tmp/top7 --binary kaggriculture_meta_lab/rust_port/target/release/kg_sim \
+            --population 768 --generations 5 --threads 4 \
+            --output kaggriculture_meta_lab/results/v3-market-genetic-lab-20260910.json \
+            --agent-output kaggriculture_meta_lab/agents/candidates/v3_market_genetic_holdout_winner.py
+      - run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v3-market-genetic-lab-20260910.json
+          if test -f kaggriculture_meta_lab/agents/candidates/v3_market_genetic_holdout_winner.py; then
+            python -m py_compile kaggriculture_meta_lab/agents/candidates/v3_market_genetic_holdout_winner.py
+            git add kaggriculture_meta_lab/agents/candidates/v3_market_genetic_holdout_winner.py
+          fi
+          git commit -m "Record V3 market-timing evolution"
+          git push origin HEAD:arena/01a0712c-riemann
