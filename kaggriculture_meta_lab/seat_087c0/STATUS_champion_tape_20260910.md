@@ -262,3 +262,11 @@ z lokalnymi wynikami. Corpus zamrożony w repo (9 taśm).
 Uwaga live: V16 (bliźniak v2) po ~20 min miał 824.9, po ~40 min już ~1500
 i rośnie — unieważnienie statyków przez rodzeństwo było przedwczesne;
 wyniki live dryfują w górę z liczbą gier. Czekamy na live V2.
+
+## V4 mega-walidacja w LAB (3584 gry, seedy 2000–2255, ~3500 g/s)
+
+vs v3 473-39 (+903/g, 92.4%); vs v2 504-8 (+2424); vs v1 498-14 (+1283);
+vs b21 426-86 (+9699, 83.2%); vs subin 512-0 (+7062); vs yusuke 510-2;
+vs himanshu 501-11. Łącznie 3424-160 (95.5%). V4 utrzymany — uwaga, że
+win-rate vs v3 spada z ~98% (96 gier) do ~92% (512 gier): duże N ma sens
+i teraz jest tanie (cały batch ~3 s + cache'owany build).
