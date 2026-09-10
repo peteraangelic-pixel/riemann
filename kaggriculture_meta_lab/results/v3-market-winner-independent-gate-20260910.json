@@ -1,0 +1,155 @@
+{
+  "format": "v3-market-winner-independent-gate-v1",
+  "seeds": [
+    93000,
+    93255
+  ],
+  "jobs": 6656,
+  "zero_errors": true,
+  "summary": {
+    "winner:v16": {
+      "games": 512,
+      "wins": 504,
+      "losses": 8,
+      "ties": 0,
+      "score_rate": 0.984375,
+      "mean_margin": 1707.40625,
+      "worst_margin": -6077.0
+    },
+    "winner:german": {
+      "games": 512,
+      "wins": 489,
+      "losses": 23,
+      "ties": 0,
+      "score_rate": 0.955078125,
+      "mean_margin": 863.21875,
+      "worst_margin": -6881.0
+    },
+    "winner:b21": {
+      "games": 512,
+      "wins": 419,
+      "losses": 93,
+      "ties": 0,
+      "score_rate": 0.818359375,
+      "mean_margin": 9883.99609375,
+      "worst_margin": -5347.0
+    },
+    "winner:yusuke": {
+      "games": 512,
+      "wins": 512,
+      "losses": 0,
+      "ties": 0,
+      "score_rate": 1.0,
+      "mean_margin": 6093.78125,
+      "worst_margin": 934.0
+    },
+    "winner:himanshu": {
+      "games": 512,
+      "wins": 502,
+      "losses": 10,
+      "ties": 0,
+      "score_rate": 0.98046875,
+      "mean_margin": 5450.931640625,
+      "worst_margin": -1301.0
+    },
+    "winner:g2": {
+      "games": 512,
+      "wins": 512,
+      "losses": 0,
+      "ties": 0,
+      "score_rate": 1.0,
+      "mean_margin": 9032.423828125,
+      "worst_margin": 3568.0
+    },
+    "v3:v16": {
+      "games": 512,
+      "wins": 504,
+      "losses": 8,
+      "ties": 0,
+      "score_rate": 0.984375,
+      "mean_margin": 1466.779296875,
+      "worst_margin": -6661.0
+    },
+    "v3:german": {
+      "games": 512,
+      "wins": 484,
+      "losses": 28,
+      "ties": 0,
+      "score_rate": 0.9453125,
+      "mean_margin": 500.21875,
+      "worst_margin": -66519.0
+    },
+    "v3:b21": {
+      "games": 512,
+      "wins": 418,
+      "losses": 94,
+      "ties": 0,
+      "score_rate": 0.81640625,
+      "mean_margin": 9676.59765625,
+      "worst_margin": -5355.0
+    },
+    "v3:yusuke": {
+      "games": 512,
+      "wins": 512,
+      "losses": 0,
+      "ties": 0,
+      "score_rate": 1.0,
+      "mean_margin": 5881.07421875,
+      "worst_margin": 704.0
+    },
+    "v3:himanshu": {
+      "games": 512,
+      "wins": 477,
+      "losses": 35,
+      "ties": 0,
+      "score_rate": 0.931640625,
+      "mean_margin": 5023.86328125,
+      "worst_margin": -2096.0
+    },
+    "v3:g2": {
+      "games": 512,
+      "wins": 512,
+      "losses": 0,
+      "ties": 0,
+      "score_rate": 1.0,
+      "mean_margin": 8842.83203125,
+      "worst_margin": 3421.0
+    },
+    "direct:v3": {
+      "games": 512,
+      "wins": 484,
+      "losses": 28,
+      "ties": 0,
+      "score_rate": 0.9453125,
+      "mean_margin": 302.32421875,
+      "worst_margin": -7041.0
+    }
+  },
+  "deltas": {
+    "v16": {
+      "score_rate": 0.0,
+      "mean_margin": 240.626953125
+    },
+    "german": {
+      "score_rate": 0.009765625,
+      "mean_margin": 363.0
+    },
+    "b21": {
+      "score_rate": 0.001953125,
+      "mean_margin": 207.3984375
+    },
+    "yusuke": {
+      "score_rate": 0.0,
+      "mean_margin": 212.70703125
+    },
+    "himanshu": {
+      "score_rate": 0.048828125,
+      "mean_margin": 427.068359375
+    },
+    "g2": {
+      "score_rate": 0.0,
+      "mean_margin": 189.591796875
+    }
+  },
+  "passes_strict_gate": true
+}
