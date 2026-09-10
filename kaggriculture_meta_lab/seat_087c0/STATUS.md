@@ -161,3 +161,8 @@
 - Exact V9 source panel completed: late401 5811-1101, 103902.69 reward, +21490.42 margin; exactly ties V9 W/L and is +10.38 reward/+7.51 margin.
 - Peer applied previously selected V10 no-op-opening exception to this disjoint 32-seed panel: 5825-1087, +14 wins over both late401 and V9. New 32-seed two-TOP7 gate: V10 identical late401, latest +14 vs V7; previous +45 vs V7. Thus V10 now has independent evidence and preserves current-meta TOP7 behavior.
 - Imported exact V10 source SHA256 `4400b28538fdd578f9baf8457162ea681cbc1630924317a6daf6a81ab3356f64`; launched independent Kaggle Environments 1.32.7 TOP12 both-seat smoke. Promote only after zero-error result.
+
+## 2026-09-11 (36): V10 formally promoted
+- Independent exact-source Python smoke green (run 34538465438): expected source SHA256 `4400b28538fdd578f9baf8457162ea681cbc1630924317a6daf6a81ab3356f64`, 48 TOP12 replay games in Kaggle Environments 1.32.7, both seats, 32-16, zero errors.
+- V10 evidence: identical to late401 on both TOP7; independently +14 wins over late401/V9 on exact 6912-game TOP12 panel (5825-1087 inferred exact branch composition vs 5811-1101); fail-closed one-fingerprint V7 route.
+- Promoted byte-identical source to `agents/champion_tape_v10.py`. V8 late401 remains static control/fallback. No Kaggle submission performed.
