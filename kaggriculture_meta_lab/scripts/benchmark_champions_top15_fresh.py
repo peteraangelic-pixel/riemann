@@ -25,10 +25,11 @@ def main():
  enriched=[]
  for row,(c,m) in zip(rows,labels):enriched.append({**row,'candidate':c,'rank':m['rank'],'team':m['team'],'best_listed_submission':m['best_listed_submission'],'source_episode_id':m['episode_id']})
  if any(r.get('error') for r in enriched):raise RuntimeError(f"{sum(bool(r.get('error')) for r in enriched)} failed games")
+ maximum=max(m['rank'] for _,m in records);limits=sorted({x for x in (5,10,15,maximum) if x<=maximum})
  summary={}
  for c in candidates:
   cr=[r for r in enriched if r['candidate']==c];summary[c]={}
-  for limit in (5,10,15):
+  for limit in limits:
    selected=[r for r in cr if r['rank']<=limit];best=[r for r in selected if r['best_listed_submission']]
    summary[c][f'top{limit}']={'all_selected':stat(selected),'best_listed_only':stat(best),'teams':len({r['team'] for r in selected})}
  # Matched paired deltas use identical team tape, seed and physical seat ordering.
@@ -39,5 +40,5 @@ def main():
    if a1>=b1:continue
    d=[x['margin']-y['margin'] for x,y in zip(byc[a1],byc[b1])]
    paired[f'{a1}-minus-{b1}']={'games':len(d),'better':sum(x>0 for x in d),'worse':sum(x<0 for x in d),'equal':sum(x==0 for x in d),'mean_margin_delta':statistics.mean(d),'mean_reward_delta':statistics.mean(x['self_reward']-y['self_reward'] for x,y in zip(byc[a1],byc[b1]))}
- out={'format':'champions-top15-fresh-matched-v1','mode':'all 180 selected TOP15 policy tapes; 8 common fresh seeds; candidate both seats','seeds':[101000,101000+a.seeds-1],'jobs':len(jobs),'candidates':{k:str(v.relative_to(ROOT)) for k,v in candidates.items()},'summary':summary,'paired':paired,'rows':enriched};a.output.parent.mkdir(parents=True,exist_ok=True);a.output.write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n');print(json.dumps({'jobs':len(jobs),'summary':summary,'paired':paired},ensure_ascii=False,indent=2))
+ out={'format':'champions-replay-corpus-fresh-matched-v2','mode':f'all {len(records)} selected TOP{maximum} policy tapes; {a.seeds} common fresh seeds; candidate both seats','seeds':[101000,101000+a.seeds-1],'jobs':len(jobs),'candidates':{k:str(v.relative_to(ROOT)) for k,v in candidates.items()},'summary':summary,'paired':paired,'rows':enriched};a.output.parent.mkdir(parents=True,exist_ok=True);a.output.write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n');print(json.dumps({'jobs':len(jobs),'summary':summary,'paired':paired},ensure_ascii=False,indent=2))
 if __name__=='__main__':main()
