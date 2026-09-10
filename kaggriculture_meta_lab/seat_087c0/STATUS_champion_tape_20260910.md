@@ -292,3 +292,16 @@ genom cut + 120 bloków, 11 dawców rynku (8 kanno z TOP7.7z + V4 + hybryda
 + market-parent), 10 kontroli, podłogi regresji vs klon V4, klony V4/hyb/V3
 wstrzykiwane co generację, holdout + ostra elekcja. Pliki peer w
 corpus/peer/ (verbatim + PROVENANCE.md).
+
+## V5 ukoronowany (ewolucja v5-evo1, 279k gier)
+
+Zwycięzca: cut=5, rynek 83 hyb + 12 v3k + 10 mkt + reszta kanno.
+Holdout (128/kontrolę): vs v4 124-4 (+384), vs hybryda 123-5 (+25),
+vs b21 110-18 (tyle samo co V4). Fresh 43000+ (256/kontrolę): vs v4
+240-16 (+364), vs hybryda 236-20 (+24), vs b21 209-47. Łącznie vs
+hybryda 359-25 (93.5%), vs v4 364-20 (94.8%). Przewaga nad hybrydą
+wąska w marży (+24–25/g), ale stabilna na 384 grach; W/L decydujące.
+Bramka slow vs G2: 16-0 (+7285). Sanity 4/4.
+
+**Nowy mistrz: `agents/champion_tape_evolved_v5.py`** (v5). Bijemy
+najlepszy artefakt obu gałęzi na każdej osi.

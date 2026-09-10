@@ -1,0 +1,116 @@
+{
+ "champion": "v5 = champion_tape_evolved_v5.py (cut=5, 83hyb/12v3k/10mkt market blocks)",
+ "campaign": "search_rust_evolve tag v5-evo1; pop 384x4 gens; 11 market donors; 10 controls; 279084 games; train 41000+, holdout 42000-42063",
+ "holdout_128_per_control": {
+  "vs_v4": [
+   124,
+   4,
+   0,
+   384
+  ],
+  "vs_hybrid": [
+   123,
+   5,
+   0,
+   25
+  ],
+  "vs_v3": [
+   125,
+   3,
+   0,
+   724
+  ],
+  "vs_v2": [
+   126,
+   2,
+   0,
+   2192
+  ],
+  "vs_v1": [
+   127,
+   1,
+   0,
+   1387
+  ],
+  "vs_b21": [
+   110,
+   18,
+   0,
+   10888
+  ],
+  "vs_subin": [
+   128,
+   0,
+   0,
+   6856
+  ],
+  "vs_yusuke": [
+   128,
+   0,
+   0,
+   5484
+  ],
+  "vs_himanshu": [
+   126,
+   0,
+   2,
+   5032
+  ],
+  "vs_mkt": [
+   124,
+   4,
+   0,
+   419
+  ]
+ },
+ "fresh_256_per_control_seeds_43000": {
+  "vs_v4": [
+   240,
+   16,
+   0,
+   364
+  ],
+  "vs_hybrid": [
+   236,
+   20,
+   0,
+   24
+  ],
+  "vs_v3": [
+   245,
+   11,
+   0,
+   1030
+  ],
+  "vs_b21": [
+   209,
+   47,
+   0,
+   9398
+  ],
+  "vs_subin": [
+   256,
+   0,
+   0,
+   7608
+  ],
+  "vs_mkt": [
+   239,
+   17,
+   0,
+   552
+  ]
+ },
+ "combined": {
+  "vs_hybrid": "359-25 (93.5%)",
+  "vs_v4": "364-20 (94.8%)"
+ },
+ "slow_gate_vs_reactive_G2": [
+  16,
+  0,
+  0,
+  7285
+ ],
+ "sanity_repo_vs_lab_emission": "4/4 ties",
+ "note": "edge over hybrid is narrow in margin (+24..25/g) but stable across holdout+fresh (384 games); W/L decisive"
+}
