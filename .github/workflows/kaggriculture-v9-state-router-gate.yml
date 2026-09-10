@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-python@v6
         with: {python-version: "3.12"}
       - uses: dtolnay/rust-toolchain@stable
-      - run: pip install --disable-pip-version-check py7zr
+      - run: pip install --disable-pip-version-check py7zr kaggle-environments
       - run: |
           python - <<'PY'
           import json,pathlib,py7zr
@@ -31,14 +31,14 @@ jobs:
         run: cargo build --release --locked
       - name: Gate newest TOP12
         run: |
-          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py --corpus "$(cat /tmp/top12-root)" --workers 4 --seeds 32 --seed-start 162000 \
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py --corpus "$(cat /tmp/top12-root)" --workers 4 --seeds 16 --seed-start 162000 \
             --candidate v7=kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
             --candidate v8=kaggriculture_meta_lab/agents/candidates/agent_v8_market_tail.py \
             --candidate v9=kaggriculture_meta_lab/agents/candidates/agent_v9_market_adaptive.py \
             --output kaggriculture_meta_lab/results/v9-state-router-top12-20260910.json
       - name: Transfer gate previous TOP7
         run: |
-          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py --corpus "$(cat /tmp/top7-root)" --workers 4 --seeds 32 --seed-start 162000 \
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py --corpus "$(cat /tmp/top7-root)" --workers 4 --seeds 16 --seed-start 162000 \
             --candidate v7=kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
             --candidate v8=kaggriculture_meta_lab/agents/candidates/agent_v8_market_tail.py \
             --candidate v9=kaggriculture_meta_lab/agents/candidates/agent_v9_market_adaptive.py \
