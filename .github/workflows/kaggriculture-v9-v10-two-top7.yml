@@ -71,3 +71,5 @@ jobs:
           git add kaggriculture_meta_lab/results/v8-v9-v10-two-top7-20260911.json
           git commit -m "Record V8 V9 V10 two-TOP7 gate"
           git push origin HEAD:arena/01a0712c-riemann
+
+# exact-source rerun
