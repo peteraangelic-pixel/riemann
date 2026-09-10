@@ -191,11 +191,12 @@ It was rejected: 0–8 and −10,605 versus V11, 0–8 and −10,378 versus V7, 
 capital and labor; these families must now be introduced as small ablations,
 not a 100,000-profile search.
 
-The explicitly requested G4-29 was submitted after its first package exceeded
-the platform's uncompressed source limit and returned ERROR. The semantically
-identical compact package was framework-validated, uploaded as ref **56131785**,
-and reached **COMPLETE / public score 600.0**. This does not reverse its
-closed-loop rejection (8–24 versus B21).
+The explicitly requested G4-29 was submitted after its first package returned
+ERROR for an unresolved evaluation reason. The earlier 15 kB check was an
+internal conservative packaging gate, not Kaggle's 100 MB submission limit.
+The cleaned, framework-validated package was uploaded as ref **56131785** and
+reached **COMPLETE**. This does not reverse its closed-loop rejection (8–24
+versus B21).
 
 ## V13 recovery promotion over G4 (2026-09-10)
 
@@ -214,3 +215,27 @@ Against B21 it remains rejected at 1–23 and −4,479. V13 is therefore a genui
 framework-validated improvement over G4, not the new overall champion. The next
 target is positive transfer over B21 through exact state estimation and
 candidate-level legality/economic scoring rather than further tape overrides.
+
+## Live-informed V13/V14 cycle (2026-09-10)
+
+The user reported that G2 held about 2300 live score while G4 fell near 1000,
+showing that closed-loop G4 comparisons were insufficient. A direct fresh
+paired comparison confirmed the warning: V13 lost **0–24** to G2 with mean
+margin **−12,159**, despite beating G4 20–4. V13 was submitted as authorized
+(ref **56139063**) and completed with an early public score **689.5**.
+
+A one-factor closed-loop screen around G2 isolated its one-unit milk reserve.
+Selling all milk (`milk0`) was the only positive factor; cash thresholds and
+start day were behaviorally identical in the sampled games, while reserves of
+2–3 milk were negative. Exact V14 validation against submitted G2 produced
+**29–3**, mean margin **+217.6**, 32 games, both seats and zero errors. V14 was
+submitted as ref **56139250** and reached COMPLETE with an initial 600.0 score.
+The material margin is small, so live accumulation and fresh transfer remain
+essential before calling it a durable champion.
+
+The layered reactive implementation has now started with exact immutable state
+estimation (`reactive_state.py`) and bounded typed candidates
+(`reactive_candidates.py`). These expose real crop/animal/unit/market state,
+preconditions, cash/feed guards, travel cost, immediate gain, future gain and
+risk. They are not yet wired into a submission selector; V14 remains the live
+control while this integration is developed and tested against it.

@@ -12,7 +12,8 @@ retains them if an old experiment ever needs reconstruction.
 - `agents/variants/agent_v10_subin_106845775.py` — static Subin structural source.
 - `agents/variants/agent_v11_subin_g4_29.py` — compact submitted G4 control.
 - `agents/variants/agent_v11_reactive_score.py` — clean-slate reactive planner kernel.
-- `agents/variants/agent_v13_b21_recovery.py` — compact promoted recovery candidate; 20–4 vs G4.
+- `agents/variants/agent_v13_b21_recovery.py` — compact recovery control; 20–4 vs G4 but 0–24 vs G2.
+- `agents/variants/agent_v14_subin_g2_milk0.py` — active live candidate; 29–3 vs submitted G2.
 
 ## Active corpus and evidence
 
