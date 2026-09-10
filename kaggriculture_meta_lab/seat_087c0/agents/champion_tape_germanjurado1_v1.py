@@ -6,7 +6,7 @@ executed at observed step s in row s+1; reproduction of the source episode is
 exact. Hands are clipped to the live farm at runtime.
 Local head-to-head (kaggriculture python engine, both physical seats):
 - vs v10sub (static Subin, episode 106845775): 64-0 (seeds 100-131) and 8-0 trimmed (100-103)
-- vs b21: 68-4 (seeds 100-131)
+- vs b21: 60-4 (seeds 100-131); trimmed variant 8-0 (100-103, counted separately)
 - vs aastik: 28-4 (seeds 116-131)
 - round-robin winner over six TOP15-derived finalists (seeds 100-111).
 Not the original reactive policy.

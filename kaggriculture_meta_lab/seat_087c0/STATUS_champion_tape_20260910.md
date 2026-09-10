@@ -116,3 +116,27 @@ blob base85+zlib ~12,3 kB, plik samodzielny.
 - `results/` — surowe wyniki: `screen_g{1,2,3}.json`, `deep_{1,2,3}.json`,
   `rr_{a,b,c}.json`, `final_new.json`, `final_trim.json`, `chosen.json`
 - korpus TOP15: `TOP15.7z` w roocie repo (nie commitowany), rozpakowany do `/tmp`
+
+## Dogrywka (ten sam dzień): G2/G4, szybki runner, konwergencja między gałęziami
+
+- vs G2 (`agent_v10_subin_g2_83` z `arena/01a0712c`): **32-0**, +7 261/g, seedy
+  100–115 × obie strony (`results/champ_vs_g2.json`); vs wariant G2-milk0: **32-0**,
+  +6 837/g.
+- vs G4 (`agent_v11_subin_g4_29` z `arena/01a0712c`): **32-0**, +14 526/g, seedy
+  100–115 × obie strony (`results/champ_vs_g4.json`).
+- Nowy `scripts/fast_h2h.py`: batch przez przypięty surowy symulator Python
+  (`rust_port/tools/py_reference.py`, mechanika bajtowo identyczna z wheel 1.32.7),
+  multiprocessing. Parzystość ze slow harness: 8/8 gier co do złotówki, w tym
+  identyczne porażki z b21 (seedy 118, 127). Re-walidacja 100–131: vs subin **64-0**
+  (+6 632/g), vs b21 **60-4** (+11 146/g) — 128 gier w ~9 s (~15 gier/s, ~90×
+  szybciej niż 6 s/gra). Wyniki: `results/fast_valid_100_131.json`.
+- **Erratum**: wcześniejsze „68-4 vs b21" podwójnie liczyło 8 gier wariantu trim
+  (100–103); poprawny wynik głównego artefaktu na 100–131 to **60-4**.
+- Niezależna konwergencja: gałąź `arena/01a0712c` zrekonstruowała tę samą taśmę
+  (epizod 107218640) — akcje **identyczne w 719/719**, a ich świeże seedy
+  (41000+, 42000+) dają łącznie 48-0 vs G2. Dwie niezależne rekonstrukcje, jeden artefakt.
+- Zsynchronizowano `rust_port` (silnik + `overlay.rs`) z `arena/01a0712c`; kompilacja
+  i testy walidowane w CI (`kaggriculture-rust.yml`). Lokalny Rust w tym sandboxie
+  jest nieosiągalny (brak toolchaina, allowlista sieci blokujehosts Rust/artefakty),
+  więc batch idzie szybką ścieżką Python — na każdej normalnej maszynie
+  `cargo build --release` daje udokumentowane 100–180×.
