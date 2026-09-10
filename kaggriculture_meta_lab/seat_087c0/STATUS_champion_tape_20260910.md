@@ -171,3 +171,25 @@ PASS w try/except; weryfikacja: 8/8 remisów z taśmą źródłową).
 Uwaga o kontrolach (sygnał live od użytkownika): G2 ~2300, G4 ~1300 — G4 jako
 przeciwnik słaby (deprioritized); G2 pozostaje live-strong control. Lokalny
 margines vs GJ uporządkował je poprawnie (G2 7.3k < G4 14.5k straty).
+
+## Ablacja overlayów na v2: wszystko odrzucone (negatywny wynik)
+
+Infrastruktura: `scripts/fast_overlay_h2h.py` (hook `overlay(action,obs,cfg)` na
+surowym simie) + `scripts/bake_overlay_agent.py` + `scripts/overlay_lib/` (5
+overlayów: wierne porty G2 i G4 oraz izolowane komponenty). Walidacja hooka:
+fast(subin+g2exact) == slow(G2) na 6/6 gier co do złotówki.
+
+Ablacja kanno+overlay vs nagi kanno, 100 świeżych gier (seedy 500–549 ×2):
+- g2exact: 3-97, −163/g (całość szkody z milkcap; cashgate solo: 3-3-94, ±0)
+- buystop(d29): 0-100, −3 963/g (zakupy dni 29–30 są load-bearing!)
+- g4full: 0-100, −41 549/g (katastrofa; targety strojone pod Subina niszczą
+  ekonomię kanno: 73k vs 114k)
+Wniosek: overlaye walidowane na słabszych bazach nie transferują w górę; krawędź
+mistrza tkwi dokładnie w mikro-decyzjach, które overlaye nadpisują. Brak
+promocji do v2.1 (kryterium: udowodniony +margines na 100+ seedach).
+
+Diagnoza porażek kanno vs v1 (18L/30W, swap0, świeże seedy): gry remisowe do
+~dnia 24, rozstrzygnięcie w ostatnich ~5 dniach. Trop: miks sklepów —
+porażki częściej przy YARN_STORE (1.39 vs 0.80/gra), wygrane przy
+BRUNCH/ICE_CREAM (1.4 vs ~1.0/gra). Mała próba; do potwierdzenia na 200+
+seedach przed projektowaniem interwencji.
