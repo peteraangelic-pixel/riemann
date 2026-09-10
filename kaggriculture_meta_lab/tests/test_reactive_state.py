@@ -5,7 +5,8 @@ def observation():
     own = [[None for _ in range(10)] for _ in range(10)]
     opp = [[None for _ in range(10)] for _ in range(10)]
     own[0][0] = {"kind": "PLANT", "crop": "WHEAT", "planted_day": 2,
-                 "yield_units": 3, "watered_today": False, "consecutive_unwatered": 1}
+                 "yield_units": 3, "watered_today": False, "consecutive_unwatered": 1,
+                 "fertilized_until_day": 0}
     own[1][0] = {"kind": "PASTURE", "animal": "COW", "yield_units": 2,
                  "fed_today": False, "cared_today": True, "fertilizer_available": True}
     own[9][9] = "LOCKED"
@@ -45,6 +46,7 @@ def test_estimator_classifies_tiles_and_opponent_without_private_leak():
     assert wheat.position == (0, 0)
     assert wheat.mature(state.day)
     assert wheat.unwatered_days == 1
+    assert wheat.fertilized_until == 0  # integer zero is valid state, not missing
     cow = state.own.animals("COW")[0]
     assert cow.fertilizer_ready and not cow.fed
     assert state.own.locked_cells == ((9, 9),)

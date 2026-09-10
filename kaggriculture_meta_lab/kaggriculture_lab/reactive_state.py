@@ -107,7 +107,8 @@ def _tile(x: int, y: int, raw: Any) -> TileState | None:
         unwatered_days=int(raw.get("consecutive_unwatered", 0) or 0),
         fed=bool(raw.get("fed_today")), cared=bool(raw.get("cared_today")),
         fertilizer_ready=bool(raw.get("fertilizer_available")),
-        fertilized_until=int(raw.get("fertilized_until_day", -1) or -1),
+        fertilized_until=(int(raw["fertilized_until_day"])
+                          if isinstance(raw.get("fertilized_until_day"), (int, float)) else -1),
     )
 
 
