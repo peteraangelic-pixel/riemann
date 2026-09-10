@@ -133,3 +133,9 @@
 - Per corpus late vs V7: latest TOP7 +19 (2511-177 vs 2492-196); previous TOP7 +14 (2475-213 vs 2461-227); TOP12 +49 (2946-510 vs 2897-558-1). Full hybrid only +1 latest over late, but loses 5 previous and 40 TOP12.
 - ymg_aq: V7 36-251, full hybrid 0-288 catastrophic, late 39-249. kanno late -2 wins vs V7. Late boundary naturally removes full-tail specialization without a team-name router.
 - start393 and start401 realized identically; choose later/more conservative start401. Standalone exact source generated with decoded-action SHA256 d3d6aee618ae6190750b6b8b2f16ae76e837e49f02d54ab0badb6a9a68150357. Exact composition/hash + Kaggle Environments TOP12 both-seat smoke gate launched before formal champion replacement.
+
+## 2026-09-10 (29): V8 late401 formally promoted
+- Exact standalone Python validation green (run 34534230635): 48 Kaggle Environments 1.32.7 games on fresh TOP12 episodes, both seats, 32-16, zero errors.
+- Decoded action SHA256 `d3d6aee618ae6190750b6b8b2f16ae76e837e49f02d54ab0badb6a9a68150357`; exact composition independently asserted as V7 through t400 plus V16/V2 market from t401.
+- Promoted byte-for-byte strategic copy to `agents/champion_tape_v8.py`. Evidence: +82 wins over V7 on fixed three-current-corpus gate; positive on latest TOP7 (+19), previous TOP7 (+14), TOP12 (+49), and removes full-tail ymg_aq catastrophe. No Kaggle submission performed.
+- V7 retained as historical champion/control; formal current-meta local champion is V8 late401.
