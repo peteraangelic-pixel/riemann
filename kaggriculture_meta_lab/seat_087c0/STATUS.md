@@ -23,3 +23,10 @@
 - MECHANIZM (insight strukturalny): t1-buy-85 V5/V6 to DOTACJA dla taśm dump-zależnych (subin/him/cook/terry/pens/G2-83 balansują dzień 0 na cenie t1); buy-60 wstrzymuje popyt → ich ekonomia dnia 0 nie domyka się (fail hire/krowy), nasza rośnie gładko. t1b60 nigdy nie zapada się sam (30 taśm × 128 gier, zero dipów).
 - KORONACJA: `agents/champion_tape_v7.py` = V6 + t1 buy60. Submit-queue: v3 (A/B#1, spójność) → V7 (A/B#2). V6 pozostaje fallbackiem.
 - Screen3 `opening3` (mikro-grid t1 buy×sell, 11×16, 5632 gier, seedy 60000): sufit — wszystkie warianty 32-0 ze światem oprócz DN; buy40 rank1 (DN 21-11 +2 = szum, T-mirror 32-0), sell 75-150 flat, buy70+ gubi lustra. b40 → holdout screen3-holdout (seedy 61000+, w drodze).
+
+## 2026-09-10 (10): peer 0712c audit + b40 rejection
+- Gałąź 0712c „V7 market probe” jest byte-for-byte identyczna z naszym `champion_tape_v7.py` (SHA taśmy `0ef9d8afb6134e1e`). Nie jest to konkurencyjny nowy mistrz, lecz niezależny import naszego t1b60.
+- Ich pełny audit 105 polityk TOP15 × 8 seedów × oba seaty potwierdził V7: 1603-77/1680, +27435/g vs V6 1527-153, V3 1510-170, V2/V16 1471-209. Reużywalny insight: pełne 105-policy corpus gate jest silniejszy niż 15 reprezentantów.
+- Lokalny slow-G2 b40: 16-0, +153393/g (uruchomiony lokalnie, nie Actions).
+- b40 panel TOP15 fresh 62000+: ODRZUCONY jako następca V7 mimo wygrania lustra 127-1. Regresja MTMR 88-40 +4305 vs V7 101-27 +12531; niższa marża cooked 61920 vs 64927. Wniosek: buy40 przesuwa rock-paper-scissors, nie dominuje populacyjnie.
+- Następnie: panel kompromisów t1 buy45/50/55 vs V7 × TOP15, fresh 63000+.

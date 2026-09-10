@@ -2,9 +2,11 @@
  "jobs": [
   {
    "type": "h2h",
-   "tag": "b40-panel",
+   "tag": "v7-micro-panel",
    "candidates": [
-    "kaggriculture_meta_lab/seat_087c0/candidates/v6-t1b40.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/v7-t1b45.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/v7-t1b50.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/v7-t1b55.py",
     "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v7.py"
    ],
    "opponents": [
@@ -24,7 +26,7 @@
     "kaggriculture_meta_lab/seat_087c0/corpus/top15/terry_luo_top15.py",
     "kaggriculture_meta_lab/seat_087c0/corpus/top15/ultimatum_game_top15.py"
    ],
-   "start_seed": 62000,
+   "start_seed": 63000,
    "games": 64,
    "threads": 4,
    "parity_k": 4
