@@ -1,0 +1,47 @@
+name: seat087c0 live snapshot (read-only)
+
+# Read-only Kaggle status for team Lauresowe 3D. Trigger: push to this
+# branch touching live_queue.json with [kg-live] in the message.
+# NEVER submits: this workflow has no submit step and no submit inputs.
+on:
+  push:
+    branches: ["arena/01a087c0-riemann"]
+    paths: ["kaggriculture_meta_lab/seat_087c0/live_queue.json"]
+
+concurrency:
+  group: seat087c0-live-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    if: contains(github.event.head_commit.message, '[kg-live]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install read-only API client
+        run: python -m pip install --quiet --disable-pip-version-check kaggle==2.2.4
+      - name: Take snapshot
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+        run: |
+          OUT=kaggriculture_meta_lab/seat_087c0/results/live_${{ github.run_id }}.json
+          python kaggriculture_meta_lab/seat_087c0/scripts/live_snapshot.py --output "$OUT"
+          echo "SNAPSHOT_FILE=$OUT" >> "$GITHUB_ENV"
+      - name: Commit snapshot back
+        if: always()
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git pull --rebase origin "${{ github.ref_name }}"
+          git add kaggriculture_meta_lab/seat_087c0/results/live_*.json
+          git commit -m "Live snapshot ${{ github.run_id }}" || echo "nothing to commit"
+          git push origin HEAD:${{ github.ref_name }}
