@@ -146,3 +146,6 @@
 
 ## 2026-09-11 (31): exact V9-panel retry bounded
 - Initial exact-panel run failed during calculation after ~3.5 min; GitHub logs again unavailable via EOF. Controls V7/full already exist exactly on peer panel, so retry computes only missing late401 (6912 jobs vs 20736), same TOP12 and seeds 158000-158031. Failure output is emitted via check annotations.
+
+## 2026-09-11 (32): Rust audit wrapper fix
+- Exact-panel diagnostic: 6912/6912 jobs ran in 74s but all returned Rust parse/runtime errors for standalone champion source. Strategy already passes Python exact gate; prior Rust gates decoded to JSON first. Added `audit-v8late401.py` without auxiliary `ACTION_SHA256` assignment and asserted its 719×2 actions exactly equal formal champion. Exact same TOP12/seeds panel retry uses wrapper only; champion remains unchanged.

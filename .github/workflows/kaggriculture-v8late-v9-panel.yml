@@ -35,7 +35,7 @@ jobs:
           set -o pipefail
           python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
             --corpus "$(cat /tmp/top12-root)" --workers 4 --seeds 32 --seed-start 158000 \
-            --candidate late401=kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v8.py \
+            --candidate late401=kaggriculture_meta_lab/seat_087c0/candidates/audit-v8late401.py \
             --output kaggriculture_meta_lab/seat_087c0/results/v8late-v9-source-panel.json \
             2>&1 | tee /tmp/late-v9.log
       - name: Expose failure diagnostics
