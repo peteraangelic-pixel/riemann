@@ -1,0 +1,30 @@
+{
+  "candidate": "agents/variants/agent_v14_subin_g2_milk0.py",
+  "seeds": 16,
+  "both_seats": true,
+  "controls": [
+    {
+      "control": "agents/ref/agent_v10_subin_g2_83.py",
+      "games": 32,
+      "wins": 29,
+      "losses": 3,
+      "ties": 0,
+      "errors": 0,
+      "win_rate": 0.90625,
+      "score_rate": 0.90625,
+      "ci_low": 0.7578184527161212,
+      "ci_high": 0.9675984487016337,
+      "mean_margin": 217.5625,
+      "median_margin": 235.0,
+      "p10_margin": -459.0,
+      "mean_self": 105309.375,
+      "mean_opp": 105091.8125,
+      "gate_pass": true,
+      "gate_reasons": [
+        "PASS: 29W/3L/0T, score 90.6% (CI 75.8-96.8), margin +218"
+      ]
+    }
+  ],
+  "all_controls_pass": true,
+  "elapsed_s": 100.81611950599999
+}
