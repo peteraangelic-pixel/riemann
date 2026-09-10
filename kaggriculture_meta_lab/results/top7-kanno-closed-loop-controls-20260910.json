@@ -1,0 +1,445 @@
+{
+  "candidate": "top7_kanno_ep107377838.py",
+  "runs": [
+    {
+      "candidate": "kaggriculture_meta_lab/agents/candidates/top7_kanno_ep107377838.py",
+      "games": 8,
+      "workers": 8,
+      "elapsed_seconds": 56.993178438000086,
+      "games_per_second": 0.28073535181768405,
+      "opponents": {
+        "agent_v10_subin_g2_83": {
+          "games": 16,
+          "wins": 16,
+          "losses": 0,
+          "ties": 0,
+          "errors": 0,
+          "win_rate": 1.0,
+          "score_rate": 1.0,
+          "ci_low": 0.8063923194655637,
+          "ci_high": 1.0,
+          "mean_margin": 8421.5,
+          "median_margin": 8051.0,
+          "p10_margin": 5344.0,
+          "mean_self": 96853.875,
+          "mean_opp": 88432.375
+        }
+      },
+      "pooled": {
+        "games": 16,
+        "wins": 16,
+        "losses": 0,
+        "ties": 0,
+        "errors": 0,
+        "win_rate": 1.0,
+        "score_rate": 1.0,
+        "ci_low": 0.8063923194655637,
+        "ci_high": 1.0,
+        "mean_margin": 8421.5,
+        "median_margin": 8051.0,
+        "p10_margin": 5344.0,
+        "mean_self": 96853.875,
+        "mean_opp": 88432.375
+      },
+      "rows": [
+        {
+          "tag": "top7-kanno-vs-g2-persisted",
+          "seed": 73002,
+          "seat": 0,
+          "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+          "self_reward": 118559.0,
+          "opp_reward": 110370.0,
+          "margin": 8189.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g2-persisted",
+          "seed": 73001,
+          "seat": 0,
+          "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+          "self_reward": 83594.0,
+          "opp_reward": 73870.0,
+          "margin": 9724.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g2-persisted",
+          "seed": 73001,
+          "seat": 1,
+          "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+          "self_reward": 83594.0,
+          "opp_reward": 73870.0,
+          "margin": 9724.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g2-persisted",
+          "seed": 73003,
+          "seat": 0,
+          "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+          "self_reward": 115400.0,
+          "opp_reward": 106689.0,
+          "margin": 8711.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g2-persisted",
+          "seed": 73000,
+          "seat": 0,
+          "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+          "self_reward": 93483.0,
+          "opp_reward": 86365.0,
+          "margin": 7118.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g2-persisted",
+          "seed": 73003,
+          "seat": 1,
+          "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+          "self_reward": 115400.0,
+          "opp_reward": 106689.0,
+          "margin": 8711.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g2-persisted",
+          "seed": 73000,
+          "seat": 1,
+          "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+          "self_reward": 93483.0,
+          "opp_reward": 86365.0,
+          "margin": 7118.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g2-persisted",
+          "seed": 73002,
+          "seat": 1,
+          "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+          "self_reward": 118559.0,
+          "opp_reward": 110370.0,
+          "margin": 8189.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g2-persisted",
+          "seed": 73006,
+          "seat": 0,
+          "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+          "self_reward": 58491.0,
+          "opp_reward": 50578.0,
+          "margin": 7913.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g2-persisted",
+          "seed": 73005,
+          "seat": 0,
+          "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+          "self_reward": 121802.0,
+          "opp_reward": 109067.0,
+          "margin": 12735.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g2-persisted",
+          "seed": 73005,
+          "seat": 1,
+          "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+          "self_reward": 121802.0,
+          "opp_reward": 109067.0,
+          "margin": 12735.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g2-persisted",
+          "seed": 73004,
+          "seat": 1,
+          "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+          "self_reward": 83680.0,
+          "opp_reward": 78038.0,
+          "margin": 5642.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g2-persisted",
+          "seed": 73006,
+          "seat": 1,
+          "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+          "self_reward": 58491.0,
+          "opp_reward": 50578.0,
+          "margin": 7913.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g2-persisted",
+          "seed": 73007,
+          "seat": 1,
+          "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+          "self_reward": 100134.0,
+          "opp_reward": 92645.0,
+          "margin": 7489.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g2-persisted",
+          "seed": 73004,
+          "seat": 0,
+          "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+          "self_reward": 83056.0,
+          "opp_reward": 77712.0,
+          "margin": 5344.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g2-persisted",
+          "seed": 73007,
+          "seat": 0,
+          "opponent": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+          "self_reward": 100134.0,
+          "opp_reward": 92645.0,
+          "margin": 7489.0,
+          "outcome": "win",
+          "error": null
+        }
+      ],
+      "source_report": "tournament-20260910-095232.json"
+    },
+    {
+      "candidate": "kaggriculture_meta_lab/agents/candidates/top7_kanno_ep107377838.py",
+      "games": 8,
+      "workers": 4,
+      "elapsed_seconds": 106.45300218800003,
+      "games_per_second": 0.15030106874527968,
+      "opponents": {
+        "agent_v11_subin_g4_29": {
+          "games": 16,
+          "wins": 16,
+          "losses": 0,
+          "ties": 0,
+          "errors": 0,
+          "win_rate": 1.0,
+          "score_rate": 1.0,
+          "ci_low": 0.8063923194655637,
+          "ci_high": 1.0,
+          "mean_margin": 39840.125,
+          "median_margin": 33596.0,
+          "p10_margin": 11283.0,
+          "mean_self": 113939.625,
+          "mean_opp": 74099.5
+        }
+      },
+      "pooled": {
+        "games": 16,
+        "wins": 16,
+        "losses": 0,
+        "ties": 0,
+        "errors": 0,
+        "win_rate": 1.0,
+        "score_rate": 1.0,
+        "ci_low": 0.8063923194655637,
+        "ci_high": 1.0,
+        "mean_margin": 39840.125,
+        "median_margin": 33596.0,
+        "p10_margin": 11283.0,
+        "mean_self": 113939.625,
+        "mean_opp": 74099.5
+      },
+      "rows": [
+        {
+          "tag": "top7-kanno-vs-g4-smoke",
+          "seed": 73000,
+          "seat": 0,
+          "opponent": "kaggriculture_meta_lab/agents/variants/agent_v11_subin_g4_29.py",
+          "self_reward": 102813.0,
+          "opp_reward": 53298.0,
+          "margin": 49515.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g4-smoke",
+          "seed": 73001,
+          "seat": 1,
+          "opponent": "kaggriculture_meta_lab/agents/variants/agent_v11_subin_g4_29.py",
+          "self_reward": 131305.0,
+          "opp_reward": 64790.0,
+          "margin": 66515.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g4-smoke",
+          "seed": 73000,
+          "seat": 1,
+          "opponent": "kaggriculture_meta_lab/agents/variants/agent_v11_subin_g4_29.py",
+          "self_reward": 102813.0,
+          "opp_reward": 53298.0,
+          "margin": 49515.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g4-smoke",
+          "seed": 73001,
+          "seat": 0,
+          "opponent": "kaggriculture_meta_lab/agents/variants/agent_v11_subin_g4_29.py",
+          "self_reward": 131305.0,
+          "opp_reward": 64790.0,
+          "margin": 66515.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g4-smoke",
+          "seed": 73002,
+          "seat": 0,
+          "opponent": "kaggriculture_meta_lab/agents/variants/agent_v11_subin_g4_29.py",
+          "self_reward": 90554.0,
+          "opp_reward": 75704.0,
+          "margin": 14850.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g4-smoke",
+          "seed": 73002,
+          "seat": 1,
+          "opponent": "kaggriculture_meta_lab/agents/variants/agent_v11_subin_g4_29.py",
+          "self_reward": 90554.0,
+          "opp_reward": 75704.0,
+          "margin": 14850.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g4-smoke",
+          "seed": 73003,
+          "seat": 1,
+          "opponent": "kaggriculture_meta_lab/agents/variants/agent_v11_subin_g4_29.py",
+          "self_reward": 114755.0,
+          "opp_reward": 98277.0,
+          "margin": 16478.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g4-smoke",
+          "seed": 73003,
+          "seat": 0,
+          "opponent": "kaggriculture_meta_lab/agents/variants/agent_v11_subin_g4_29.py",
+          "self_reward": 114755.0,
+          "opp_reward": 98277.0,
+          "margin": 16478.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g4-smoke",
+          "seed": 73005,
+          "seat": 0,
+          "opponent": "kaggriculture_meta_lab/agents/variants/agent_v11_subin_g4_29.py",
+          "self_reward": 153703.0,
+          "opp_reward": 81128.0,
+          "margin": 72575.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g4-smoke",
+          "seed": 73004,
+          "seat": 0,
+          "opponent": "kaggriculture_meta_lab/agents/variants/agent_v11_subin_g4_29.py",
+          "self_reward": 106340.0,
+          "opp_reward": 89547.0,
+          "margin": 16793.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g4-smoke",
+          "seed": 73005,
+          "seat": 1,
+          "opponent": "kaggriculture_meta_lab/agents/variants/agent_v11_subin_g4_29.py",
+          "self_reward": 153703.0,
+          "opp_reward": 81128.0,
+          "margin": 72575.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g4-smoke",
+          "seed": 73004,
+          "seat": 1,
+          "opponent": "kaggriculture_meta_lab/agents/variants/agent_v11_subin_g4_29.py",
+          "self_reward": 106960.0,
+          "opp_reward": 89283.0,
+          "margin": 17677.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g4-smoke",
+          "seed": 73006,
+          "seat": 0,
+          "opponent": "kaggriculture_meta_lab/agents/variants/agent_v11_subin_g4_29.py",
+          "self_reward": 138566.0,
+          "opp_reward": 68296.0,
+          "margin": 70270.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g4-smoke",
+          "seed": 73006,
+          "seat": 1,
+          "opponent": "kaggriculture_meta_lab/agents/variants/agent_v11_subin_g4_29.py",
+          "self_reward": 138566.0,
+          "opp_reward": 68296.0,
+          "margin": 70270.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g4-smoke",
+          "seed": 73007,
+          "seat": 0,
+          "opponent": "kaggriculture_meta_lab/agents/variants/agent_v11_subin_g4_29.py",
+          "self_reward": 73171.0,
+          "opp_reward": 61888.0,
+          "margin": 11283.0,
+          "outcome": "win",
+          "error": null
+        },
+        {
+          "tag": "top7-kanno-vs-g4-smoke",
+          "seed": 73007,
+          "seat": 1,
+          "opponent": "kaggriculture_meta_lab/agents/variants/agent_v11_subin_g4_29.py",
+          "self_reward": 73171.0,
+          "opp_reward": 61888.0,
+          "margin": 11283.0,
+          "outcome": "win",
+          "error": null
+        }
+      ],
+      "source_report": "tournament-20260910-094729.json"
+    }
+  ]
+}

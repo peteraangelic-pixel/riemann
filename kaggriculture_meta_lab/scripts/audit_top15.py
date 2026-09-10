@@ -29,20 +29,23 @@ def require(condition: bool, message: str) -> None:
         raise ValueError(message)
 
 
-def audit(root: Path, archive: Path | None = None) -> dict[str, Any]:
+def audit(root: Path, archive: Path | None = None, *, expected_teams: int = 15,
+          expected_episodes: int = 7) -> dict[str, Any]:
     manifest_paths = sorted(root.glob("*/manifest.json"))
-    require(len(manifest_paths) == 15, "expected exactly 15 per-team manifests")
+    require(len(manifest_paths) == expected_teams,
+            f"expected exactly {expected_teams} per-team manifests")
     loaded = [(path, load(path)) for path in manifest_paths]
     for path, team in loaded:
         require(team.get("folder") == path.parent.name,
                 f"folder identity mismatch: {path}")
     teams = [team for _, team in loaded]
     teams.sort(key=lambda team: int(team["rank"]))
-    require([int(team["rank"]) for team in teams] == list(range(1, 16)), "bad TOP15 ranks")
+    require([int(team["rank"]) for team in teams] == list(range(1, expected_teams + 1)),
+            "bad corpus ranks")
 
     folders = [team.get("folder") for team in teams]
     require(all(isinstance(folder, str) for folder in folders), "bad folder field")
-    require(len(set(folders)) == 15, "duplicate folder field")
+    require(len(set(folders)) == expected_teams, "duplicate folder field")
     require({path.name for path in root.iterdir() if path.is_dir()} == set(folders),
             "corpus directories do not match manifests")
 
@@ -61,10 +64,10 @@ def audit(root: Path, archive: Path | None = None) -> dict[str, Any]:
         active_ids = {int(item["submission_id"]) for item in active}
         require(len(active_ids) == len(active), f"duplicate active submission: {team['folder']}")
         episodes = team.get("selected_episodes")
-        require(isinstance(episodes, list) and len(episodes) == 7,
-                f"expected seven selected episodes: {team['folder']}")
+        require(isinstance(episodes, list) and len(episodes) == expected_episodes,
+                f"expected {expected_episodes} selected episodes: {team['folder']}")
         expected = {entry.get("file") for entry in episodes}
-        require(len(expected) == 7 and all(isinstance(name, str) for name in expected),
+        require(len(expected) == expected_episodes and all(isinstance(name, str) for name in expected),
                 f"bad replay filenames: {team['folder']}")
         actual = {path.name for path in folder.glob("replay_*.json")}
         require(actual == expected, f"raw replay set mismatch: {team['folder']}")
@@ -127,18 +130,21 @@ def audit(root: Path, archive: Path | None = None) -> dict[str, Any]:
     conflicting = {str(key): sorted(values) for key, values in hashes_by_episode.items()
                    if len(values) != 1}
     require(not conflicting, f"same episode has conflicting raw bytes: {conflicting}")
-    require(len(slots) == len(paths) == 105, "expected 105 selected replay paths")
+    expected_slots = expected_teams * expected_episodes
+    require(len(slots) == len(paths) == expected_slots,
+            f"expected {expected_slots} selected replay paths")
 
     manifest_digest = hashlib.sha256()
     for path in manifest_paths:
         manifest_digest.update(path.relative_to(root).as_posix().encode())
         manifest_digest.update(path.read_bytes())
     result: dict[str, Any] = {
-        "format": "kaggriculture-top15-audit-v1",
+        "format": "kaggriculture-replay-corpus-audit-v2",
         "source_manifests_sha256": manifest_digest.hexdigest(),
         "archive": None,
         "summary": {
-            "teams": 15, "selected_slots": len(slots), "raw_files": len(paths),
+            "teams": expected_teams, "episodes_per_team": expected_episodes,
+            "selected_slots": len(slots), "raw_files": len(paths),
             "unique_episodes": len(hashes_by_episode),
             "duplicate_episode_slots": len(slots) - len(hashes_by_episode),
             "unique_seeds": len(seed_counts), "zero_seed_slots": seed_counts[0],
@@ -160,11 +166,16 @@ def audit(root: Path, archive: Path | None = None) -> dict[str, Any]:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("root", type=Path, help="extracted per-team TOP15 directory")
+    parser.add_argument("root", type=Path, help="extracted per-team replay corpus directory")
     parser.add_argument("--archive", type=Path)
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--expected-teams", type=int, default=15)
+    parser.add_argument("--expected-episodes", type=int, default=7)
     args = parser.parse_args()
-    rendered = json.dumps(audit(args.root.resolve(), args.archive), ensure_ascii=False, indent=2) + "\n"
+    rendered = json.dumps(audit(args.root.resolve(), args.archive,
+                                expected_teams=args.expected_teams,
+                                expected_episodes=args.expected_episodes),
+                          ensure_ascii=False, indent=2) + "\n"
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(rendered, encoding="utf-8")
