@@ -1,0 +1,65 @@
+{
+  "format": "top7-family-ablation-spec-v1",
+  "source": "TOP7.7z",
+  "controls": [
+    "agent_v9_b21_s16",
+    "agent_v10_subin_g2_83",
+    "champion_tape_germanjurado1_v1"
+  ],
+  "families": {
+    "F1_spataro_fast_expansion_turnover": {
+      "hypothesis": "Early land expansion and high buy turnover support a fast industrial opening.",
+      "observed_anchor": "SpaTaro",
+      "observed": {
+        "first_sell_step_mean": 9.4,
+        "first_land_step_mean": 68.9,
+        "buy_mean": 507.2,
+        "sell_mean": 306.2,
+        "hire_mean": 280.2,
+        "fertilizer_mean": 42.1,
+        "animal_order_mean": 11.9
+      },
+      "bounded_genes": {
+        "start_day": [0, 2, 4, 6],
+        "buy_stop_day": [27, 28, 29, 30],
+        "cash_reserve": [100, 200, 300],
+        "sell_fraction_bp": [8500, 9000, 9500, 10000],
+        "land_mode": ["TIMED", "AUTO"],
+        "land_first_buy_day": [2, 3, 4],
+        "animal_target_total": [10, 12, 14],
+        "fertilizer_reserve": [0, 2, 5]
+      }
+    },
+    "F2_active_fertilizer_industrial": {
+      "hypothesis": "Immediate selling plus fertilizer-intensive production drives active industrial output.",
+      "observed_anchor": "Himanshu/Yusuke/kanno/dewan슈",
+      "observed": {
+        "first_sell_step_mean": 1.0,
+        "first_land_step_mean": 151.0,
+        "buy_mean": [267.8, 275.2],
+        "sell_mean": [406.9, 555.3],
+        "hire_mean": [262.6, 263.5],
+        "fertilizer_mean": [119.8, 128.4],
+        "animal_order_mean": [12.0, 12.2]
+      },
+      "bounded_genes": {
+        "start_day": [0, 1, 2],
+        "buy_stop_day": [27, 28, 29],
+        "cash_reserve": [100, 200, 300],
+        "sell_fraction_bp": [9000, 9500, 10000],
+        "fertilize_mode": ["ALL_VALID", "PREMIUM_ONLY", "RESERVE_GATED"],
+        "fertilizer_reserve": [0, 2, 5, 10],
+        "land_mode": ["AUTO", "TIMED"],
+        "animal_target_total": [10, 12, 14],
+        "waterer_workers": [1, 2, 3]
+      }
+    }
+  },
+  "evaluation": {
+    "same_seeds": true,
+    "both_seats": true,
+    "controls": ["G2", "B21/S16", "GermanJurado1", "G4_negative_control"],
+    "corpora": ["TOP15", "TOP7", "old_TOP30", "fresh_holdout"],
+    "promotion": ["zero_crashes", "zero_timeouts", "positive_material_margin", "no_TOP7_regression"]
+  }
+}
