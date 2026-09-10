@@ -92,3 +92,21 @@ Obowiązkowa niezależna dogrywka ujawniła regresję:
 - fresh B21: crossover **204–52, +6774.9**; czysty V16 na identycznych seedach **214–42, +10337.4**.
 
 Crossover zostaje odrzucony mimo zwycięstwa selekcyjnego. Żaden z 16 finalistów holdout nie poprawił Germana, zachowując jednocześnie zarówno score rate, jak i margines B21 rodzica. To mocny sygnał, że czysty Kanno jest na aktualnym froncie Pareto statycznych mieszanek, a dalsza poprawa wymaga reaktywnego wyboru/rynku zamiast kolejnego splice taśm.
+
+## Korekta oceny LAB i rozszerzona kampania
+
+Uwaga użytkownika była trafna: pierwszy job nie był „zaawansowanym LAB-em permutacji V16”, tylko **pilotem 256 jednopokoleniowych masek pełnych dni dwóch taśm**. Liczba 20k gier brzmiała szeroko, ale przestrzeń polityk była wąska, panel nie zawierał pełnego G2, a kryterium premiowało bezpośredni matchup z Germanem. To wyjaśnia pozorne zwycięstwo i regresję B21; problemem nie był simulator, lecz projekt eksperymentu.
+
+Uruchomiono właściwszą kampanię `34466997632`:
+
+- 384 osobniki × 4 iteracje, krzyżowanie i mutacje 120 spójnych bloków sześciogodzinnych;
+- siedmiu donorów: V16, German, Kanno-lower oraz najlepsze taśmy Yusuke, Himanshu, SpaTaro i binghua;
+- pięć kontroli, w tym **pełny G2 realizowany przez zweryfikowany Rust overlay**;
+- zmienne bloki seedów między generacjami i osobny holdout 85000–85031;
+- **133120 gier** w 1m35 całego Actions joba.
+
+Wynik: zero kandydatów spełniających ścisłą bramkę per-control. Czysty V16 na holdout: G2 64–0 (+10108.9), B21 47–17 (+9698.3), Kanno-lower 59–5. Nie wyemitowano fałszywego „ulepszenia”. To dowód, że V16 jest lokalnym optimum w przestrzeni statycznych splice, nie że LAB jest niesprawny.
+
+Druga kampania `34467193690` sprawdziła 512 reaktywnych profili rynku na TOP7: 34816 gier. Profil treningowy podnosił score rate 0.574→0.632 i margines +1194→+7047. Jednak niezależny A/B `34467434393`, 2048 fresh gier, obalił go na wszystkich kontrolach: vs German delta −62.5 pp/−8318, B21 −16.0 pp/−4995, Kanno-lower −75.4 pp/−3755, G2 −1.6 pp/−4446. Profil został odrzucony.
+
+Wniosek: dalsze masowe losowanie statycznych bloków lub jednego globalnego profilu nie jest właściwą przestrzenią. Następna warstwa musi wybierać akcje na podstawie bieżącego stanu, popytu sklepów i profilu przeciwnika; LAB pozostaje silnikiem oceny, a nie substytutem sensownej reprezentacji polityki.
