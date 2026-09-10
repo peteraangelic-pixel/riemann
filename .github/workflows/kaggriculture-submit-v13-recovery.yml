@@ -1,0 +1,65 @@
+name: Kaggriculture submit authorized V13 recovery
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-submit-v13-recovery.yml"]
+permissions:
+  contents: write
+jobs:
+  validate-compare-submit:
+    if: contains(github.event.head_commit.message, '[kaggr-submit-v13-recovery]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PYTHONPATH: kaggriculture_meta_lab
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install --disable-pip-version-check kaggle-environments==1.32.7 kaggle
+      - name: Validate exact V13 and compare with submitted G2
+        run: |
+          python -m py_compile kaggriculture_meta_lab/agents/variants/agent_v13_b21_recovery.py
+          python kaggriculture_meta_lab/scripts/validate_current.py \
+            --candidate agents/variants/agent_v13_b21_recovery.py \
+            --control agents/ref/agent_v10_subin_g2_83.py \
+            --games 12 --workers 4 --start-seed 20261180 || true
+          result=$(ls -t kaggriculture_meta_lab/results/validate-current-*.json | head -1)
+          cp "$result" kaggriculture_meta_lab/results/v13-vs-g2-12seed-20260910.json
+          python - <<'PY'
+          import json
+          d=json.load(open('kaggriculture_meta_lab/results/v13-vs-g2-12seed-20260910.json'))
+          assert d['controls'][0]['games']==24
+          assert d['controls'][0]['errors']==0
+          PY
+      - name: Configure Kaggle token
+        env: {KAGGLE_API_TOKEN: "${{ secrets.KAGGLE_API_TOKEN }}"}
+        run: |
+          mkdir -p ~/.kaggle
+          printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]' > ~/.kaggle/access_token
+          chmod 600 ~/.kaggle/access_token
+      - name: Package and submit authorized V13
+        run: |
+          work=$(mktemp -d)
+          cp kaggriculture_meta_lab/agents/variants/agent_v13_b21_recovery.py "$work/main.py"
+          tar -C "$work" -czf "$work/submission-v13-b21-recovery.tar.gz" main.py
+          test $(wc -c < "$work/submission-v13-b21-recovery.tar.gz") -lt 100000000
+          kaggle competitions submit -c kaggriculture \
+            -f "$work/submission-v13-b21-recovery.tar.gz" \
+            -m "V13 B21 idle recovery 20-4 vs G4 authorized $GITHUB_SHA"
+          sleep 15
+          kaggle competitions submissions -c kaggriculture --csv > kaggriculture_meta_lab/results/kaggle-v13-recovery-status-20260910.csv
+          python - <<'PY'
+          import csv,json
+          rows=list(csv.DictReader(open('kaggriculture_meta_lab/results/kaggle-v13-recovery-status-20260910.csv')))
+          row=next(r for r in rows if 'V13 B21 idle recovery' in r['description'])
+          json.dump(row,open('kaggriculture_meta_lab/results/kaggle-v13-recovery-submission-20260910.json','w'),indent=2)
+          print(row)
+          PY
+      - name: Persist comparison and submission reference
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v13-vs-g2-12seed-20260910.json kaggriculture_meta_lab/results/kaggle-v13-recovery-status-20260910.csv kaggriculture_meta_lab/results/kaggle-v13-recovery-submission-20260910.json
+          git commit -m "Record V13 versus G2 and Kaggle submission"
+          git push origin HEAD:arena/01a0712c-riemann
