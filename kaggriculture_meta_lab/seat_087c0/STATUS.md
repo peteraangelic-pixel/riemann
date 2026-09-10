@@ -50,3 +50,8 @@
 - Old TOP15 window screen: d6 (t144-168) 926-34 vs V7 923-37; DN 58-6 vs 54-10, Kanno 64-0 held. Day7 block negative. Thus tradeoff localized to 10 differing market actions on day6, mostly timing of FERTILIZER sells plus step166 FERTILIZER2→WOOL2.
 - Launched single-action/group ablation (10 singles + fertilizer groups) vs old TOP15, fresh 68000+; survivors then go to newest TOP7.
 - Peer 0712c reactive V8: learned selector `opponent money >=2800` picks V6 at t1; evolutionary holdout 1630-50 but static V7 also 1630-50 and higher margin. Independent Python gate initially failed 840 games; retry run pending. Treat as unconfirmed until zero-error independent gate.
+
+## 2026-09-10 (14): day6 action ablation → fertilizer-add finalists
+- Old TOP15 single/group ablation fresh 68000+: `fert-add` (V2 additions at t144,152,153,154; retain all V7 sells) 896-64 vs V7 892-68, DN 52-12 vs 50-14, Kanno 64-0 held. `fert-early` also 896-64 but lower margin; single t153 894-66. Singles t144/145/150/152/154/155/157/166/167 mostly binary-neutral. `fert-remove` catastrophic 802-158 (Kanno 50-14, GJ 48-16).
+- Structural conclusion: edge is extra early-day6 FERTILIZER dumping, not replacement/timing removal and not WOOL at t166. Preserve V7 baseline sells.
+- Newest TOP7 finalist holdout launched: fert-add, fert-early, s153, V7 ×84 policies×12 seeds, fresh 135000+.
