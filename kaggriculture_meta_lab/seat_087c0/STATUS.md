@@ -55,3 +55,9 @@
 - Old TOP15 single/group ablation fresh 68000+: `fert-add` (V2 additions at t144,152,153,154; retain all V7 sells) 896-64 vs V7 892-68, DN 52-12 vs 50-14, Kanno 64-0 held. `fert-early` also 896-64 but lower margin; single t153 894-66. Singles t144/145/150/152/154/155/157/166/167 mostly binary-neutral. `fert-remove` catastrophic 802-158 (Kanno 50-14, GJ 48-16).
 - Structural conclusion: edge is extra early-day6 FERTILIZER dumping, not replacement/timing removal and not WOOL at t166. Preserve V7 baseline sells.
 - Newest TOP7 finalist holdout launched: fert-add, fert-early, s153, V7 ×84 policies×12 seeds, fresh 135000+.
+
+## 2026-09-10 (15): static pulse rejected broadly; conditional-router foundation
+- Final old representative holdout fresh 69000+: V7 2191-113 vs s153/fert-add 2189-115; DN pulse 99-29 vs V7 101-27. Slow-G2 s153 passed 16-0 +152282/g, but binary broad gate wins over slow gate.
+- Independent peer complete 105-policy TOP15 ×12 seeds: V7 2387-133 vs exact s153 pulse 2379-141; pulse +134 own reward but -58 margin. TOP30 binary identical 178-122, pulse -23 reward/-16 margin. Static t153 REJECTED as V8; it was screen-selected noise on 15/84 policy subsets.
+- The earlier 941-67 market-tail breakthrough was a valid selection-screen result, later invalidated by independent old-population holdout (Kanno 70-58). Its value was causal localization t2→day5-10→day6→t153, not promotion.
+- Next direction: fail-closed state-gated t153 pulse. Added Rust `MarketOverlay` primitive with pulse turn/qty and public opponent-money, fertilizer-market-inventory, own-fertilizer bounds; default disabled. Unit test verifies activation and fail-closed path. CI foundation queued.

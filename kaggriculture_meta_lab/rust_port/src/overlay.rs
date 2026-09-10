@@ -50,6 +50,15 @@ pub struct MarketOverlay {
     pub melon_seed_target: i64,
     pub wheat_stock_target: i64,
     pub fertilizer_stock_target: i64,
+    // Optional one-turn fertilizer pulse used to learn a fail-closed V7 router.
+    // A negative turn disables it; zero maxima mean "no upper bound".
+    pub pulse_turn: i64,
+    pub pulse_fertilizer_qty: u64,
+    pub pulse_opponent_money_min: f64,
+    pub pulse_opponent_money_max: f64,
+    pub pulse_market_inventory_min: f64,
+    pub pulse_market_inventory_max: f64,
+    pub pulse_own_fertilizer_min: i64,
 }
 
 impl Default for MarketOverlay {
@@ -95,6 +104,13 @@ impl Default for MarketOverlay {
             melon_seed_target: 0,
             wheat_stock_target: 0,
             fertilizer_stock_target: 0,
+            pulse_turn: -1,
+            pulse_fertilizer_qty: 0,
+            pulse_opponent_money_min: 0.0,
+            pulse_opponent_money_max: 0.0,
+            pulse_market_inventory_min: 0.0,
+            pulse_market_inventory_max: 0.0,
+            pulse_own_fertilizer_min: 0,
         }
     }
 }
@@ -124,6 +140,10 @@ impl MarketOverlay {
             self.min_milk_price,
             self.min_wool_price,
             self.min_fertilizer_price,
+            self.pulse_opponent_money_min,
+            self.pulse_opponent_money_max,
+            self.pulse_market_inventory_min,
+            self.pulse_market_inventory_max,
         ];
         if prices.iter().any(|v| !v.is_finite() || *v < 0.0) {
             return Err(
@@ -156,6 +176,7 @@ impl MarketOverlay {
             self.melon_seed_target,
             self.wheat_stock_target,
             self.fertilizer_stock_target,
+            self.pulse_own_fertilizer_min,
         ]
         .iter()
         .any(|v| *v < 0)
@@ -294,6 +315,23 @@ impl MarketOverlay {
             available.saturating_mul(fraction) / 10_000
         });
         let opponent = &game.farms[1 - seat];
+        let fertilizer_inventory = game.market_inventory[Item::Fertilizer.index()];
+        let pulse_matches = self.pulse_turn >= 0
+            && game.turn as i64 == self.pulse_turn
+            && self.pulse_fertilizer_qty > 0
+            && opponent.money >= self.pulse_opponent_money_min
+            && (self.pulse_opponent_money_max == 0.0
+                || opponent.money <= self.pulse_opponent_money_max)
+            && fertilizer_inventory >= self.pulse_market_inventory_min
+            && (self.pulse_market_inventory_max == 0.0
+                || fertilizer_inventory <= self.pulse_market_inventory_max)
+            && projected_shed[Item::Fertilizer.index()] >= self.pulse_own_fertilizer_min;
+        if pulse_matches {
+            action.market.push(crate::tape::Order {
+                kind: OrderKind::Sell(Item::Fertilizer),
+                remaining: self.pulse_fertilizer_qty,
+            });
+        }
         let mut animal_budget = [u64::MAX; ITEM_COUNT];
         for item in [Item::Cow, Item::Sheep, Item::Goose] {
             let base = self.animal_target(item);
@@ -535,6 +573,26 @@ mod tests {
         game.step([&out, &tape.seats[1][0]], false);
         assert_eq!(game.farms[0].shed[Item::Wheat.index()], 0);
         assert!(game.farms[0].money > cfg.starting_money);
+    }
+
+    #[test]
+    fn conditional_fertilizer_pulse_is_fail_closed() {
+        let cfg = Config::default();
+        let tape = Tape::from_json(&json!([[{}],[{}]])).unwrap();
+        let mut game = Game::new(&cfg, 0, [0, 0]);
+        game.turn = 153;
+        game.farms[0].shed[Item::Fertilizer.index()] = 3;
+        let yes = MarketOverlay::from_json(&json!({
+            "enabled": true, "pulse_turn": 153, "pulse_fertilizer_qty": 3,
+            "pulse_opponent_money_min": 2000, "pulse_own_fertilizer_min": 3
+        })).unwrap().apply(&game, 0, &tape.seats[0][0]);
+        assert_eq!(yes.market.len(), 1);
+        assert_eq!(yes.market[0].remaining, 3);
+        let no = MarketOverlay::from_json(&json!({
+            "enabled": true, "pulse_turn": 153, "pulse_fertilizer_qty": 3,
+            "pulse_opponent_money_min": 4000, "pulse_own_fertilizer_min": 3
+        })).unwrap().apply(&game, 0, &tape.seats[0][0]);
+        assert!(no.market.is_empty());
     }
 
     #[test]
