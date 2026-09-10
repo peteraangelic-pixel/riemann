@@ -1,4 +1,5 @@
 name: Kaggriculture V8 fertilizer router evolution
+# Complete holdout always retains the V7 identity control.
 on:
   push:
     branches: ["arena/01a0712c-riemann"]
