@@ -127,3 +127,9 @@
 - Frozen TOP12 (108 policies×24 seeds×2 seats): V7 4282-902; full V8 market-tail 4264-920 (-18); V16 3852-1332. Full hybrid -276 reward/-983 margin vs V7.
 - Team split explains net: V8 vs V7 ymg_aq -43, kanno -17, SpaTaro/Unknown -2 each; gains Tarang +24, feel +9, Mengfei +5, Otter +3, binghua/cooked +2, mtmr +1. Broad gains are cancelled by two severe specialized regressions.
 - Launched fixed 16-seed gate on latest TOP7 + previous TOP7 + TOP12: V7, full hybrid, start393, start401. No TOP12-derived team router; test asks whether selected late boundary naturally removes full-tail regressions.
+
+## 2026-09-10 (28): late V8 wins three-current-corpus gate
+- Fixed 16-seed, 276-policy gate (35328 jobs): V7 7850-981-1; full t2 hybrid 7888-944; late start393=start401 7932-900. Late V8 +82 wins vs V7, +706 reward, +645 margin; +44 wins vs full hybrid.
+- Per corpus late vs V7: latest TOP7 +19 (2511-177 vs 2492-196); previous TOP7 +14 (2475-213 vs 2461-227); TOP12 +49 (2946-510 vs 2897-558-1). Full hybrid only +1 latest over late, but loses 5 previous and 40 TOP12.
+- ymg_aq: V7 36-251, full hybrid 0-288 catastrophic, late 39-249. kanno late -2 wins vs V7. Late boundary naturally removes full-tail specialization without a team-name router.
+- start393 and start401 realized identically; choose later/more conservative start401. Standalone exact source generated with decoded-action SHA256 d3d6aee618ae6190750b6b8b2f16ae76e837e49f02d54ab0badb6a9a68150357. Exact composition/hash + Kaggle Environments TOP12 both-seat smoke gate launched before formal champion replacement.

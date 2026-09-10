@@ -1,0 +1,51 @@
+name: V8 late401 exact Python validation
+on:
+  push:
+    branches: ["arena/01a087c0-riemann"]
+    paths: [".github/workflows/kaggriculture-v8-late401-python.yml"]
+permissions: {contents: write}
+jobs:
+  validate:
+    if: contains(github.event.head_commit.message, '[kg-v8-late-python]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install --disable-pip-version-check py7zr kaggle-environments==1.32.7
+      - run: |
+          git fetch origin arena/01a0712c-riemann
+          git show FETCH_HEAD:TOP12.7z >/tmp/top12.7z
+          python - <<'PY'
+          import copy,hashlib,importlib.util,json,pathlib,py7zr,sys
+          with py7zr.SevenZipFile('/tmp/top12.7z') as z:z.extractall('/tmp/top12')
+          roots=[m.parent for m in pathlib.Path('/tmp/top12').rglob('manifest.json') if len(json.loads(m.read_text()).get('teams',[]))==12]
+          sys.path[:0]=['kaggriculture_meta_lab','kaggriculture_meta_lab/scripts','kaggriculture_meta_lab/seat_087c0/scripts']
+          from benchmark_top30 import build_top30_jobs
+          from fast_h2h import load_tape
+          from kaggriculture_lab.tournament import run
+          cp=pathlib.Path('kaggriculture_meta_lab/seat_087c0/candidates/agent_v8_late401.py').resolve()
+          spec=importlib.util.spec_from_file_location('candidate',cp);mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
+          raw=json.dumps(mod.ACTIONS,separators=(',',':')).encode();assert hashlib.sha256(raw).hexdigest()==mod.ACTION_SHA256
+          v7=load_tape('kaggriculture_meta_lab/seat_087c0/candidates/audit-v7.py');v16=load_tape('kaggriculture_meta_lab/seat_087c0/candidates/audit-v2.py');expected=copy.deepcopy(v7)
+          for s in (0,1):
+           for i in range(401,719):expected[s][i]['market']=copy.deepcopy(v16[s][i].get('market',[]))
+          assert mod.ACTIONS==expected
+          jobs,meta=build_top30_jobs(roots[0],cp,12);selected=[];sm=[];seen={}
+          for job,m in zip(jobs,meta):
+           key=(m['team'],m['episode_id'])
+           if key not in seen and sum(k[0]==m['team'] for k in seen)<2:seen[key]=1
+           if key in seen:selected.append(job);sm.append(m)
+          rows=run(selected,workers=2,progress_every=12);enriched=[{**r,**m} for r,m in zip(rows,sm)];errors=[r for r in enriched if r.get('error') or r.get('outcome')=='error']
+          out={'format':'v8-late401-exact-python-v1','action_sha256':mod.ACTION_SHA256,'games':len(rows),'errors':len(errors),'wins':sum(r['outcome']=='win' for r in rows),'losses':sum(r['outcome']=='loss' for r in rows),'rows':enriched}
+          p=pathlib.Path('kaggriculture_meta_lab/seat_087c0/results/v8-late401-python.json');p.write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n');print({k:out[k] for k in ('action_sha256','games','errors','wins','losses')});assert not errors
+          PY
+      - run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/seat_087c0/results/v8-late401-python.json
+          git commit -m "Record V8 late401 exact Python validation"
+          git pull --rebase origin arena/01a087c0-riemann
+          git push origin HEAD:arena/01a087c0-riemann
