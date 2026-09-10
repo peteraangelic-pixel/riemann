@@ -1,0 +1,43 @@
+name: Kaggriculture V7 TOP7 TOP30 audit
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v7-secondary-audit.yml"]
+permissions:
+  contents: write
+jobs:
+  audit:
+    if: contains(github.event.head_commit.message, '[kg-v7-secondary]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr
+      - run: |
+          python - <<'PY'
+          import os,pathlib,py7zr
+          for name in ('top7','top30'):
+           with py7zr.SevenZipFile(name.upper()+'.7z') as a:a.extractall('/tmp/'+name)
+           ms=list(pathlib.Path('/tmp/'+name).rglob('manifest.json'))
+           root=ms[0].parent if len(ms)==1 else pathlib.Path(os.path.commonpath([str(x.parent) for x in ms]))
+           pathlib.Path('/tmp/'+name+'-root').write_text(str(root))
+          PY
+      - working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - run: |
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
+            --corpus "$(cat /tmp/top7-root)" --workers 4 --seeds 8 \
+            --candidate v7=kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
+            --output kaggriculture_meta_lab/results/v7-top7-fresh-20260910.json
+          python kaggriculture_meta_lab/scripts/benchmark_top30.py \
+            --corpus "$(cat /tmp/top30-root)" --candidate kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
+            --max-rank 30 --workers 4 --output kaggriculture_meta_lab/results/v7-top30-original-seeds-20260910.json
+      - run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v7-top7-fresh-20260910.json kaggriculture_meta_lab/results/v7-top30-original-seeds-20260910.json
+          git commit -m "Record V7 TOP7 TOP30 audit"
+          git push origin HEAD:arena/01a0712c-riemann
