@@ -1,0 +1,52 @@
+name: Kaggriculture V8 fertilizer router evolution
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v8-fertilizer-router.yml"]
+permissions:
+  contents: write
+jobs:
+  evolve:
+    if: contains(github.event.head_commit.message, '[kg-v8-router]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr
+      - name: Extract complete TOP15
+        run: |
+          python - <<'PY'
+          import os,pathlib,py7zr,json
+          with py7zr.SevenZipFile('TOP15.7z') as a:a.extractall('/tmp/top15')
+          ms=list(pathlib.Path('/tmp/top15').rglob('manifest.json'))
+          roots=[m for m in ms if 'teams' in json.loads(m.read_text())]
+          root=roots[0].parent if roots else pathlib.Path(os.path.commonpath([str(x.parent) for x in ms]))
+          pathlib.Path('/tmp/top15-root').write_text(str(root))
+          PY
+      - name: Build and test router primitive
+        working-directory: kaggriculture_meta_lab/rust_port
+        run: |
+          cargo fmt --check
+          cargo test --release --locked conditional_fertilizer_pulse_is_fail_closed
+          cargo clippy --release --locked -- -D warnings
+          cargo build --release --locked
+      - name: Evolve depth-two public-state router
+        run: |
+          python kaggriculture_meta_lab/scripts/search_v8_fertilizer_router.py \
+            --corpus "$(cat /tmp/top15-root)" \
+            --binary kaggriculture_meta_lab/rust_port/target/release/kg_sim \
+            --population 192 --generations 4 --threads 4 \
+            --output kaggriculture_meta_lab/results/v8-fertilizer-router-evolution-20260910.json \
+            --agent-output kaggriculture_meta_lab/agents/candidates/agent_v8_fertilizer_router.py
+      - name: Persist router evidence and finalist
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v8-fertilizer-router-evolution-20260910.json \
+            kaggriculture_meta_lab/agents/candidates/agent_v8_fertilizer_router.py
+          git commit -m "Record V8 fertilizer router evolution"
+          git push origin HEAD:arena/01a0712c-riemann
