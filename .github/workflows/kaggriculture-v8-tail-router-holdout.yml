@@ -1,0 +1,58 @@
+name: Kaggriculture V8 tail router independent holdout
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v8-tail-router-holdout.yml"]
+permissions:
+  contents: write
+jobs:
+  holdout:
+    if: contains(github.event.head_commit.message, '[kg-v8-tail-router]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr
+      - name: Extract corpora
+        run: |
+          python - <<'PY'
+          import json,pathlib,py7zr
+          for arc,out,want in [('TOP7.7z','/tmp/new7',7),('TOP15.7z','/tmp/top15',15)]:
+           with py7zr.SevenZipFile(arc) as a:a.extractall(out)
+           roots=[]
+           for m in pathlib.Path(out).rglob('manifest.json'):
+            d=json.loads(m.read_text())
+            if isinstance(d.get('teams'),list) and len(d['teams'])==want:roots.append(m.parent)
+           if roots:root=roots[0]
+           else:
+            ms=list(pathlib.Path(out).glob('*/manifest.json'));root=ms[0].parent.parent
+           pathlib.Path('/tmp/'+('new7-root' if want==7 else 'top15-root')).write_text(str(root))
+          PY
+      - name: Build simulator
+        working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - name: Fresh matched controls and fixed-rule composition
+        run: |
+          for corpus in new7 top15; do
+            root=/tmp/$corpus-root
+            python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
+              --corpus "$(cat $root)" --workers 4 --seeds 16 --seed-start 152000 \
+              --candidate v7=kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
+              --candidate hybrid=kaggriculture_meta_lab/agents/candidates/agent_v8_lab_safe_open_old_market.py \
+              --output kaggriculture_meta_lab/results/v8-tail-router-$corpus-matched-holdout-20260910.json
+            fp=kaggriculture_meta_lab/results/v8-opening-fingerprints-$([ "$corpus" = new7 ] && echo latest-top7 || echo top15)-20260910.json
+            python kaggriculture_meta_lab/scripts/compose_v8_tail_router.py \
+              --matched kaggriculture_meta_lab/results/v8-tail-router-$corpus-matched-holdout-20260910.json \
+              --fingerprints "$fp" --output kaggriculture_meta_lab/results/v8-tail-router-$corpus-composite-holdout-20260910.json
+          done
+      - name: Persist holdout
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v8-tail-router-*-holdout-20260910.json
+          git commit -m "Record fixed V8 tail router holdout"
+          git push origin HEAD:arena/01a0712c-riemann
