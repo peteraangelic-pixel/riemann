@@ -12,3 +12,14 @@
 - KORONACJA: `agents/champion_tape_v6.py` = V5-body + V16-t0 + GJ-t1.
 - Nowe narzędzia: `scripts/screen_openings.py` + `specs/opening_screen1.json` + job `screen` w driverze + `scripts/slow_gate.py` (odtworzony minimalny harness slow po utracie brancha a20ab).
 - Live: v2 champion; pierwsze A/B = v3 (spójność), drugie = V6. V5/V4 nie submitować.
+
+## 2026-09-10 (9): screen2 hill-climb V6 → V7 (t1 buy85→buy60), screen3 mikro-grid
+- Screen2 `opening2` (29 wariantów × 15 kontroli, 13920 gier, seedy 57000): rank1 t1b60 (DN 24-8, hyb 31-1, mirrory V5+V6 31-1).
+  Ustalenia: t2 IRRELEVANT (t2GJ/t2V16 ≡ base); t0-sell 45-90 flat; single-buy t0 łamie himanshu (19-13, potwierdzenie load-bearing struktury V16-t0); triple-buy psuje DN (17-15 — DOKŁADNIE 2 buy'e to sweet spot); t1-buy100 łamie hybrydę (klif 85→100); WSZYSTKIE edge-stackingi z V16 FAIL (v4/v3/hyb leżą — potwierdzenie ostrzeżenia z ablacji: lokalny edge H2H nie transferuje); t1-ogon (BUY5) knife-edge (usunięcie = 0-32 wszędzie).
+- Holdout screen2 (fresh 58000+, 128×15): t1b60 SWEEP — bije V6 128-0 i V5 128-0 (koniec klątwy lustra!), hyb 128-0, G15 128-0, DN 100-28 = V6; eksplozje marży: subin +77k, himanshu +73k (×11-15 vs V6).
+- Trace t1b60-vs-subin (seed 58000): dzień 0 IDENTYCZNY (+390, ±5 złota), potem monotoniczne dokładanie 29 dni (+99k vs +10k V6) BEZ skoku kaskady i BEZ upadku przeciwnika (subin rośnie gładko do 48k) — sygnatura realnego edge'u, ta sama klasa co ekstrakcja v3-vs-DN.
+- Panel TOP15 (fresh 59000+, 128×15): t1b60 1770-150 (+458k) vs V6 1690-230 (+197k) — ściśle lepszy w KAŻDEJ z 15 kontroli (cooked 128-0 +63k, terry 128-0 +68k, pensukesan 128-0 +77k, him_top15 128-0 +75k, DN 91-37 held). t0b14-20 ODRZUCONY (cooked 85-43 regresja, mniej winów niż V6).
+- Slow-G2 (16 gier): 16-0 +152k/g; G2-83 (taśma + patch shed, BEZ crasha — legit play) zapada się do 87-15k we wszystkich grach.
+- MECHANIZM (insight strukturalny): t1-buy-85 V5/V6 to DOTACJA dla taśm dump-zależnych (subin/him/cook/terry/pens/G2-83 balansują dzień 0 na cenie t1); buy-60 wstrzymuje popyt → ich ekonomia dnia 0 nie domyka się (fail hire/krowy), nasza rośnie gładko. t1b60 nigdy nie zapada się sam (30 taśm × 128 gier, zero dipów).
+- KORONACJA: `agents/champion_tape_v7.py` = V6 + t1 buy60. Submit-queue: v3 (A/B#1, spójność) → V7 (A/B#2). V6 pozostaje fallbackiem.
+- Screen3 `opening3` (mikro-grid t1 buy×sell, 11×16, 5632 gier, seedy 60000): sufit — wszystkie warianty 32-0 ze światem oprócz DN; buy40 rank1 (DN 21-11 +2 = szum, T-mirror 32-0), sell 75-150 flat, buy70+ gubi lustra. b40 → holdout screen3-holdout (seedy 61000+, w drodze).
