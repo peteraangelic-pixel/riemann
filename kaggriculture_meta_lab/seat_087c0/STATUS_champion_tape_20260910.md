@@ -140,3 +140,34 @@ blob base85+zlib ~12,3 kB, plik samodzielny.
   jest nieosiągalny (brak toolchaina, allowlista sieci blokujehosts Rust/artefakty),
   więc batch idzie szybką ścieżką Python — na każdej normalnej maszynie
   `cargo build --release` daje udokumentowane 100–180×.
+
+## TOP7: detronizacja v1, nowy mistrz v2 (kanno)
+
+Korpus `TOP7.7z` (gałąź `arena/01a0712c`, epizody z 2026-09-10 ~06:30):
+SpaTaro 3055.3, Himanshu 3022.1, Otter 2988.5, binghua 2980.6,
+デワンシュ 2978.8, kanno 2975.9 (sub 56133568), Yusuke Hayashi 2965.7.
+Skompilowano 7 taśm (best-sub, epizod o max banku); wszystkie 7 reprodukują
+źródłowe mecze co do złotówki (`results/top7_chosen.json`).
+
+Kampania seeds 100–115 ×2 (49 par, ~1500 gier, `results/top7_campaign1.json`):
+- v1 (GJ) vs TOP7: 32-0 SpaTaro (+33k, zapadnięcie), 23-9 Himanshu (+6.8k),
+  30-2 Otter, 30-2 binghua, 32-0 dewangshu, **15-17 kanno (+497/g dla v1)**,
+  32-0 Yusuke (+7.4k).
+- Round-robin TOP7: kanno 184-8, Yusuke 144-48, Himanshu 114-78, dewangshu
+  118-74, Otter 61-131, binghua 42-150, SpaTaro 9-183 (rank-1 live = czysta
+  reaktywność, nie przenosi się do open-loop).
+- kanno vs v1 to rodzeństwo: identyczny profil makro (259/260 hire, 2 landy d6,
+  8 krów/6 owiec/3 gęsi, 163/33/31/12 seedów); różnice tylko mikro (58 kroków
+  hands i 239 market, głównie dodatkowe CARE + inny mikrotiming rynku).
+
+Walidacja świeże seedy 200-215/300-315/400-415 (`results/top7_deep_gj_kanno.json`):
+v1 vs kanno **38-58**; kanno vs subin 96-0 (+8.3k vs +5.8k v1); kanno vs b21
+85-11 (+11.0k vs 83-13/+10.5k v1). Vs G2 (slow, 100–115): kanno **32-0 +10.1k**
+vs +7.3k v1 (`results/top7_kanno_vs_g2.json`). Łącznie kanno vs v1: **75-53**
+(128 gier, dwa niezależne bloki seedów).
+
+**Nowy mistrz: `agents/champion_tape_kanno_t7_v1.py`** (719 akcji, trim + fallback
+PASS w try/except; weryfikacja: 8/8 remisów z taśmą źródłową).
+Uwaga o kontrolach (sygnał live od użytkownika): G2 ~2300, G4 ~1300 — G4 jako
+przeciwnik słaby (deprioritized); G2 pozostaje live-strong control. Lokalny
+margines vs GJ uporządkował je poprawnie (G2 7.3k < G4 14.5k straty).

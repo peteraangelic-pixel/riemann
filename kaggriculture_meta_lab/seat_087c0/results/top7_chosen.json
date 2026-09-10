@@ -1,0 +1,86 @@
+{
+ "himanshu_kumar": {
+  "team": "Himanshu Kumar",
+  "rank": 2,
+  "sub": 56122709,
+  "score": 3022.1,
+  "episode": 107382217,
+  "file": "replay_01_107382217.json",
+  "seat": 1,
+  "reward": 101732.0,
+  "n_actions": 719,
+  "path": "/tmp/top7/agents/himanshu_kumar.py"
+ },
+ "otter_vibe": {
+  "team": "Otter Vibe",
+  "rank": 3,
+  "sub": 56097405,
+  "score": 2988.5,
+  "episode": 107377081,
+  "file": "replay_03_107377081.json",
+  "seat": 0,
+  "reward": 128699.0,
+  "n_actions": 719,
+  "path": "/tmp/top7/agents/otter_vibe.py"
+ },
+ "spataro": {
+  "team": "SpaTaro",
+  "rank": 1,
+  "sub": 56114097,
+  "score": 3055.3,
+  "episode": 107362641,
+  "file": "replay_09_107362641.json",
+  "seat": 1,
+  "reward": 131731.0,
+  "n_actions": 719,
+  "path": "/tmp/top7/agents/spataro.py"
+ },
+ "yusuke_hayashi": {
+  "team": "Yusuke Hayashi",
+  "rank": 7,
+  "sub": 56136071,
+  "score": 2965.7,
+  "episode": 107377081,
+  "file": "replay_11_107377081.json",
+  "seat": 1,
+  "reward": 134757.0,
+  "n_actions": 719,
+  "path": "/tmp/top7/agents/yusuke_hayashi.py"
+ },
+ "binghua": {
+  "team": "binghua",
+  "rank": 4,
+  "sub": 56092906,
+  "score": 2980.6,
+  "episode": 107365958,
+  "file": "replay_11_107365958.json",
+  "seat": 0,
+  "reward": 132359.0,
+  "n_actions": 719,
+  "path": "/tmp/top7/agents/binghua.py"
+ },
+ "kanno": {
+  "team": "kanno",
+  "rank": 6,
+  "sub": 56133568,
+  "score": 2975.9,
+  "episode": 107384200,
+  "file": "replay_01_107384200.json",
+  "seat": 0,
+  "reward": 84925.0,
+  "n_actions": 719,
+  "path": "/tmp/top7/agents/kanno.py"
+ },
+ "": {
+  "team": "\u30c7\u30ef\u30f3\u30b7\u30e5",
+  "rank": 5,
+  "sub": 56133847,
+  "score": 2978.8,
+  "episode": 107381282,
+  "file": "replay_06_107381282.json",
+  "seat": 1,
+  "reward": 107373.0,
+  "n_actions": 719,
+  "path": "/tmp/top7/agents/.py"
+ }
+}
