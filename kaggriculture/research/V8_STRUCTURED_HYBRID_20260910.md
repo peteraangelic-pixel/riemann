@@ -143,3 +143,22 @@ Kaggle Python i eliminuje G2 jako bezpośredni kontrprzykład H2H. Nie oznacza
 to automatycznie lepszego wyniku publicznego: ranking jest mieszanką innych
 przeciwników, a wcześniejszy wynik live G2 pozostaje ważnym ostrzeżeniem przed
 utożsamianiem lokalnego H2H z ratingiem.
+
+## Oficjalny V8 z gałęzi 087c0 i decyzja przed wysłaniem (2026-09-11)
+
+Zaimportowano i sprawdzono promowany w `arena/01a087c0-riemann` wariant z
+commita `30b6f79`: V7 do tury 400, a następnie późny ogon rynku. Na wspólnym
+panelu 276 polityk, 16 seedach i obu miejscach osiągnął 7932-900 wobec
+7850-981-1 V7. Rozbicie: najnowszy TOP7 +19 wygranych, poprzedni TOP7 +14,
+TOP12 +49. Pełny ogon od tury 2 miał tylko +38 łącznie i przegrał wszystkie
+288 gier z jednym nowym odciskiem strategii; późny wariant nie ma tej awarii.
+
+Utworzono neutralny `agent_v10_late_market_adaptive.py`: zachowuje późny V8,
+ale dla odcisku otwarcia 3000 pieniędzy i zero rąk przeciwnika wraca do V7.
+Dokładne złożenie matched rows daje na TOP12 2948-508, czyli +51 wygranych nad
+V7 i +2 nad oficjalnym późnym V8; oba TOP7 pozostają identyczne z późnym V8.
+Bramka Kaggle Python `34535750918` zakończyła się bez błędów: 32-0 z G2 oraz
+2-2-28 bezpośrednio z V9 (średni margines zero). Rekomendowana kolejność prób:
+V10 adaptive late-market, oficjalny statyczny late-market V8, następnie V9 jako
+bardziej agresywny i odmienny eksperyment. Nie wyłączać stabilnych zgłoszeń
+V16/G2 przed ustabilizowaniem nowych ratingów.
