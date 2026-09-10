@@ -1,0 +1,51 @@
+name: New TOP7 12-game corpus audit
+on:
+  push:
+    branches: ["arena/01a087c0-riemann"]
+    paths: [".github/workflows/kaggriculture-new-top7-audit.yml"]
+permissions:
+  contents: write
+jobs:
+  audit:
+    if: contains(github.event.head_commit.message, '[kg-new-top7]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr
+      - name: Retrieve and extract newest 12-game TOP7 corpus
+        run: |
+          git fetch origin arena/01a0712c-riemann
+          git show FETCH_HEAD:TOP7.7z > /tmp/TOP7.7z
+          python - <<'PY'
+          import os,pathlib,py7zr
+          with py7zr.SevenZipFile('/tmp/TOP7.7z') as a:a.extractall('/tmp/top7-new')
+          ms=list(pathlib.Path('/tmp/top7-new').rglob('manifest.json'))
+          roots=[m for m in ms if 'teams' in __import__('json').loads(m.read_text())]
+          root=(roots[0].parent if roots else pathlib.Path(os.path.commonpath([str(x.parent) for x in ms])))
+          pathlib.Path('/tmp/top7-new-root').write_text(str(root))
+          print('corpus root',root,'manifests',len(ms))
+          PY
+      - working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - name: Matched audit of our champions against every selected new policy
+        run: |
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
+            --corpus "$(cat /tmp/top7-new-root)" --workers 4 --seeds 8 --seed-start 131000 \
+            --candidate v7=kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v7.py \
+            --candidate b55=kaggriculture_meta_lab/seat_087c0/candidates/v7-t1b55.py \
+            --candidate v6=kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v6.py \
+            --candidate v3=kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_ep107381285_v1.py \
+            --candidate v2=kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_t7_v1.py \
+            --output kaggriculture_meta_lab/seat_087c0/results/new-top7-12games-audit.json
+      - name: Persist result
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/seat_087c0/results/new-top7-12games-audit.json
+          git commit -m "Record new TOP7 12-game corpus audit"
+          git push origin HEAD:arena/01a087c0-riemann
