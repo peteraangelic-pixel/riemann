@@ -113,4 +113,4 @@ Wniosek: dalsze masowe losowanie statycznych bloków lub jednego globalnego prof
 
 ## Wynik live V16
 
-Kaggle ref 56142365 zakończył się statusem COMPLETE z publicScore **824.9**. To katastrofalnie przeczy rankingowi statycznego Rust replay (m.in. 16–0 nad G2) i definitywnie dyskwalifikuje V16 jako generalnego championa. G2 (~2300 według użytkownika) pozostaje punktem odniesienia. Taśmy TOP7 zachowują wartość jako demonstracje i donory cech, ale ich head-to-head w lokalnym open-loop nie może być główną metryką promocji; następne wersje muszą być reaktywnymi politykami i przechodzić małe testy live przed większym zaufaniem.
+Pierwszy odczyt Kaggle ref 56142365 po zaledwie kilku minutach pokazał COMPLETE/publicScore **824.9**, ale nie był wynikiem ustabilizowanym. Użytkownik zaobserwował następnie ponad **1100**, 100% wygranych i gry do około 179 tys. złota; pełna stabilizacja zwykle wymaga 20–30 minut lub dłużej. Nie wolno traktować wczesnego publicScore jako finalnej oceny ani na jego podstawie dyskwalifikować V16. G2 (~2300 według użytkownika) pozostaje mocną kontrolą live, a końcowe wnioski wymagają dojrzałej próbki gier.
