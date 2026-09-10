@@ -2,10 +2,16 @@
  "jobs": [
   {
    "type": "h2h",
-   "tag": "v7-micro-panel",
+   "tag": "peer-v6-cross",
    "candidates": [
-    "kaggriculture_meta_lab/seat_087c0/candidates/v7-t1b45.py",
-    "kaggriculture_meta_lab/seat_087c0/candidates/v7-t1b50.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/peer-v6.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/peer-preb20.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/peer-preb40.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/peer-preb55.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/peer-preb60.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/peer-postb20.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/peer-postb40.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/peer-postb60.py",
     "kaggriculture_meta_lab/seat_087c0/candidates/v7-t1b55.py",
     "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v7.py"
    ],
@@ -24,10 +30,12 @@
     "kaggriculture_meta_lab/seat_087c0/corpus/top15/spataro_top15.py",
     "kaggriculture_meta_lab/seat_087c0/corpus/top15/team_top15.py",
     "kaggriculture_meta_lab/seat_087c0/corpus/top15/terry_luo_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/ultimatum_game_top15.py"
+    "kaggriculture_meta_lab/seat_087c0/corpus/top15/ultimatum_game_top15.py",
+    "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v7.py",
+    "kaggriculture_meta_lab/seat_087c0/candidates/v7-t1b55.py"
    ],
-   "start_seed": 63000,
-   "games": 64,
+   "start_seed": 64000,
+   "games": 32,
    "threads": 4,
    "parity_k": 4
   }
