@@ -118,3 +118,7 @@
 - V4 fixed gate 30240 games: identity 5611-436; m401 5612-436 (one loss converted to tie), m401409 same; negligible and economically slightly worse. Close V4 direction without promotion.
 - Fresh TOP12 snapshot generated 2026-09-10 20:57 UTC. Frozen V8/V7/V16 24-seed holdout launched before any TOP12 tuning. TOP12 replay freshness is valuable even where leaderboard agents have old submission dates.
 - Hybrid boundary calculation succeeded; workflow failed only in persist step due concurrent bot push race with V4. Exact run rerun unchanged.
+
+## 2026-09-10 (26): hybrid boundary holdout
+- Two-TOP7 boundary scan: 228 variants/113 actual differing turns, 239232 jobs. Holdout V7 2480-208; full hybrid 2484-204; late start t393/t401 2491-197. Late start matches full hybrid on latest TOP7 (1230-114) and improves previous TOP7 to 1261-83 vs full 1254-90 and V7 1256-88. Economically full hybrid remains stronger (+29394 margin vs late +28907 vs V7 +28226); late start has 2 regressed groups vs full 4. Requires frozen larger gate.
+- Frozen TOP12 calculation succeeded but persist raced boundary bot commit. Workflow now rebases before push and reruns exact unchanged V7/V16/V8 24-seed gate; TOP12 still clean with respect to candidate tuning.

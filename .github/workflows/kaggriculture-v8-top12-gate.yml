@@ -43,4 +43,5 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add kaggriculture_meta_lab/seat_087c0/results/v8-frozen-top12.json
           git commit -m "Record frozen V8 market-tail TOP12 holdout"
+          git pull --rebase origin arena/01a087c0-riemann
           git push origin HEAD:arena/01a087c0-riemann
