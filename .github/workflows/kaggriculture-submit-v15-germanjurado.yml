@@ -1,0 +1,58 @@
+name: Kaggriculture submit V15 GermanJurado champion
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-submit-v15-germanjurado.yml"]
+permissions:
+  contents: write
+jobs:
+  submit:
+    if: contains(github.event.head_commit.message, '[kaggr-submit-v15-german]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install --disable-pip-version-check kaggle
+      - name: Validate and package exact promoted agent
+        run: |
+          python -m py_compile kaggriculture_meta_lab/agents/variants/agent_v15_germanjurado_champion.py
+          PYTHONPATH=kaggriculture_meta_lab python - <<'PY'
+          from kaggriculture_lab.rust_backend import _source
+          p="kaggriculture_meta_lab/agents/variants/agent_v15_germanjurado_champion.py"
+          tape=_source(p)
+          assert tape is not None and tape.trim_hands
+          assert len(tape.actions)==2 and all(len(stream)==719 for stream in tape.actions)
+          PY
+          work=$(mktemp -d)
+          cp kaggriculture_meta_lab/agents/variants/agent_v15_germanjurado_champion.py "$work/main.py"
+          tar -C "$work" -czf "$work/submission-v15-germanjurado-champion.tar.gz" main.py
+          test $(wc -c < "$work/submission-v15-germanjurado-champion.tar.gz") -lt 100000000
+          echo "$work" > /tmp/workdir
+      - name: Configure token and submit
+        env: {KAGGLE_API_TOKEN: "${{ secrets.KAGGLE_API_TOKEN }}"}
+        run: |
+          mkdir -p ~/.kaggle
+          printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]' > ~/.kaggle/access_token
+          chmod 600 ~/.kaggle/access_token
+          work=$(cat /tmp/workdir)
+          kaggle competitions submit -c kaggriculture \
+            -f "$work/submission-v15-germanjurado-champion.tar.gz" \
+            -m "V15 GermanJurado TOP15 champion 48-0 G2 16-0 G4 $GITHUB_SHA"
+          sleep 15
+          kaggle competitions submissions -c kaggriculture --csv > kaggriculture_meta_lab/results/kaggle-v15-german-status-20260910.csv
+          python - <<'PY'
+          import csv,json
+          rows=list(csv.DictReader(open('kaggriculture_meta_lab/results/kaggle-v15-german-status-20260910.csv')))
+          row=next(r for r in rows if 'V15 GermanJurado' in r['description'])
+          json.dump(row,open('kaggriculture_meta_lab/results/kaggle-v15-german-submission-20260910.json','w'),indent=2)
+          print(row)
+          PY
+      - name: Persist submission reference
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/kaggle-v15-german-status-20260910.csv kaggriculture_meta_lab/results/kaggle-v15-german-submission-20260910.json
+          git commit -m "Record V15 GermanJurado Kaggle submission"
+          git push origin HEAD:arena/01a0712c-riemann
