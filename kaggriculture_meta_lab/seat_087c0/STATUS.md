@@ -61,3 +61,8 @@
 - Independent peer complete 105-policy TOP15 ×12 seeds: V7 2387-133 vs exact s153 pulse 2379-141; pulse +134 own reward but -58 margin. TOP30 binary identical 178-122, pulse -23 reward/-16 margin. Static t153 REJECTED as V8; it was screen-selected noise on 15/84 policy subsets.
 - The earlier 941-67 market-tail breakthrough was a valid selection-screen result, later invalidated by independent old-population holdout (Kanno 70-58). Its value was causal localization t2→day5-10→day6→t153, not promotion.
 - Next direction: fail-closed state-gated t153 pulse. Added Rust `MarketOverlay` primitive with pulse turn/qty and public opponent-money, fertilizer-market-inventory, own-fertilizer bounds; default disabled. Unit test verifies activation and fail-closed path. CI foundation queued.
+
+## 2026-09-10 (16): shallow pulse router newest-TOP7 search
+- Rust router CI green (fmt/test/clippy/full simulator CI).
+- Search 100464 games on 84-policy newest TOP7: every holdout finalist tied V7 binary at 1278-66; no router creates wins. Best economic rule: pulse iff opponent money <=100 at t153, own fertilizer >=1 (own>=1/2/3 equivalent): +76.6 own reward, +98.0 margin, zero team regressions. Inventory>=10050: +46 reward/+90 margin. These are economic/selectivity signals, not promotion.
+- Next: independent full 105-policy TOP15 search with same fixed grid and fresh seeds. Require rule-family transfer across corpora; otherwise abandon t153 router rather than overfit.

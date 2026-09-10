@@ -1,0 +1,47 @@
+name: Fertilizer pulse router full TOP15 search
+on:
+  push:
+    branches: ["arena/01a087c0-riemann"]
+    paths:
+      - ".github/workflows/kaggriculture-pulse-router-top15.yml"
+permissions:
+  contents: write
+jobs:
+  search:
+    if: contains(github.event.head_commit.message, '[kg-router-top15]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr
+      - name: Retrieve full 105-policy TOP15 corpus
+        run: |
+          git fetch origin arena/01a0712c-riemann
+          git show FETCH_HEAD:TOP15.7z > /tmp/TOP15.7z
+          python - <<'PY'
+          import json,pathlib,py7zr
+          with py7zr.SevenZipFile('/tmp/TOP15.7z') as a:a.extractall('/tmp/top15')
+          roots=[m for m in pathlib.Path('/tmp/top15').rglob('manifest.json') if 'teams' in json.loads(m.read_text())]
+          pathlib.Path('/tmp/top15-root').write_text(str(roots[0].parent))
+          PY
+      - working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - name: Independent shallow-router search on complete TOP15
+        run: |
+          python kaggriculture_meta_lab/seat_087c0/scripts/search_pulse_router.py \
+            --corpus "$(cat /tmp/top15-root)" \
+            --binary kaggriculture_meta_lab/rust_port/target/release/kg_sim \
+            --candidate kaggriculture_meta_lab/seat_087c0/candidates/audit-v7.py \
+            --threads 4 \
+            --output kaggriculture_meta_lab/seat_087c0/results/pulse-router-top15-search.json
+      - name: Persist result
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/seat_087c0/results/pulse-router-top15-search.json
+          git commit -m "Record full TOP15 shallow pulse-router search"
+          git push origin HEAD:arena/01a087c0-riemann
