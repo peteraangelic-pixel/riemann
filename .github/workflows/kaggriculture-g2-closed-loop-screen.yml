@@ -1,4 +1,4 @@
-name: Kaggriculture G2 closed-loop local screen
+name: Kaggriculture V14 milk-zero holdout
 on:
   push:
     branches: ["arena/01a0712c-riemann"]
@@ -6,26 +6,32 @@ on:
 permissions:
   contents: write
 jobs:
-  screen:
-    if: contains(github.event.head_commit.message, '[kg-g2-closed-screen]')
+  holdout:
+    if: contains(github.event.head_commit.message, '[kg-v14-milk0]')
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 12
     env: {PYTHONPATH: kaggriculture_meta_lab}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
         with: {python-version: "3.12"}
       - run: pip install --disable-pip-version-check kaggle-environments==1.32.7
-      - name: Screen one-factor G2 policies in one worker pool
+      - name: Paired V14 versus submitted G2
         run: |
-          python kaggriculture_meta_lab/scripts/screen_g2_closed_loop.py \
-            --base kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py \
-            --games 3 --workers 4 --start-seed 20261220 \
-            --output kaggriculture_meta_lab/results/g2-closed-loop-one-factor-20260910.json
-      - name: Persist screen
+          rc=0
+          python kaggriculture_meta_lab/scripts/validate_current.py \
+            --candidate agents/variants/agent_v14_subin_g2_milk0.py \
+            --control agents/ref/agent_v10_subin_g2_83.py \
+            --games 16 --workers 4 --start-seed 20261260 || rc=$?
+          result=$(ls -t kaggriculture_meta_lab/results/validate-current-*.json | head -1)
+          cp "$result" kaggriculture_meta_lab/results/v14-milk0-vs-g2-16seed-20260910.json
+          exit "$rc"
+      - name: Persist result
+        if: always()
         run: |
+          test -f kaggriculture_meta_lab/results/v14-milk0-vs-g2-16seed-20260910.json
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add kaggriculture_meta_lab/results/g2-closed-loop-one-factor-20260910.json
-          git commit -m "Record G2 closed-loop one-factor screen"
+          git add kaggriculture_meta_lab/results/v14-milk0-vs-g2-16seed-20260910.json
+          git commit -m "Record V14 milk-zero versus G2 holdout"
           git push origin HEAD:arena/01a0712c-riemann
