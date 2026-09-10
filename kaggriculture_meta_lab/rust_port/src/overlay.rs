@@ -578,20 +578,24 @@ mod tests {
     #[test]
     fn conditional_fertilizer_pulse_is_fail_closed() {
         let cfg = Config::default();
-        let tape = Tape::from_json(&json!([[{}],[{}]])).unwrap();
+        let tape = Tape::from_json(&json!([[{}], [{}]])).unwrap();
         let mut game = Game::new(&cfg, 0, [0, 0]);
         game.turn = 153;
         game.farms[0].shed[Item::Fertilizer.index()] = 3;
         let yes = MarketOverlay::from_json(&json!({
             "enabled": true, "pulse_turn": 153, "pulse_fertilizer_qty": 3,
             "pulse_opponent_money_min": 2000, "pulse_own_fertilizer_min": 3
-        })).unwrap().apply(&game, 0, &tape.seats[0][0]);
+        }))
+        .unwrap()
+        .apply(&game, 0, &tape.seats[0][0]);
         assert_eq!(yes.market.len(), 1);
         assert_eq!(yes.market[0].remaining, 3);
         let no = MarketOverlay::from_json(&json!({
             "enabled": true, "pulse_turn": 153, "pulse_fertilizer_qty": 3,
             "pulse_opponent_money_min": 4000, "pulse_own_fertilizer_min": 3
-        })).unwrap().apply(&game, 0, &tape.seats[0][0]);
+        }))
+        .unwrap()
+        .apply(&game, 0, &tape.seats[0][0]);
         assert!(no.market.is_empty());
     }
 
