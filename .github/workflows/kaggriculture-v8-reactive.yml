@@ -42,17 +42,17 @@ jobs:
             --candidate v7=kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
             --candidate v8r=kaggriculture_meta_lab/agents/candidates/agent_v8_reactive_opening.py \
             --output kaggriculture_meta_lab/results/v8-reactive-independent-top15-20260910.json \
-            > kaggriculture_meta_lab/results/v8-reactive-independent-gate.log 2>&1
-          echo $? > kaggriculture_meta_lab/results/v8-reactive-independent-gate.exit
-          cat kaggriculture_meta_lab/results/v8-reactive-independent-gate.log
+            > kaggriculture_meta_lab/results/v8-reactive-independent-gate.txt 2>&1
+          echo $? > kaggriculture_meta_lab/results/v8-reactive-independent-gate-exit.txt
+          cat kaggriculture_meta_lab/results/v8-reactive-independent-gate.txt
           set -e
       - name: Persist evidence, finalist and exact independent-gate outcome
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add kaggriculture_meta_lab/results/v8-reactive-evolution-20260910.json \
-            kaggriculture_meta_lab/results/v8-reactive-independent-gate.log \
-            kaggriculture_meta_lab/results/v8-reactive-independent-gate.exit \
+            kaggriculture_meta_lab/results/v8-reactive-independent-gate.txt \
+            kaggriculture_meta_lab/results/v8-reactive-independent-gate-exit.txt \
             kaggriculture_meta_lab/agents/candidates/agent_v8_reactive_opening.py
           test ! -f kaggriculture_meta_lab/results/v8-reactive-independent-top15-20260910.json || \
             git add kaggriculture_meta_lab/results/v8-reactive-independent-top15-20260910.json
