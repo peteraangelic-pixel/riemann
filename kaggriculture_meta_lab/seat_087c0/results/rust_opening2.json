@@ -1,0 +1,3889 @@
+{
+ "tag": "opening2",
+ "total_jobs": 13920,
+ "key_controls": [
+  "deepernet",
+  "subin",
+  "himanshu",
+  "v4",
+  "v3",
+  "v2",
+  "hybrid"
+ ],
+ "controls": [
+  "v5",
+  "v6",
+  "v4",
+  "v3",
+  "v2",
+  "hybrid",
+  "mkt",
+  "deepernet",
+  "kanno_top15",
+  "germanjurado1_top15",
+  "b21",
+  "subin",
+  "yusuke",
+  "himanshu",
+  "spataro"
+ ],
+ "ranked": [
+  {
+   "rank": 1,
+   "name": "t1b60",
+   "body": "V6",
+   "key": [
+    0.75,
+    7.0,
+    0.9646,
+    17946.9067
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 2004.9
+    },
+    "v6": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 2017.9
+    },
+    "v4": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 2385.4
+    },
+    "v3": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 4750.0
+    },
+    "v2": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6226.7
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 2031.8
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 3565.4
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 24,
+     "losses": 8,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 6723.5
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 3585.6
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 3358.0
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 12649.4
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 82560.9
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 12001.8
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 76321.2
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 49021.1
+    }
+   }
+  },
+  {
+   "rank": 2,
+   "name": "t0b10-17",
+   "body": "V6",
+   "key": [
+    0.75,
+    0.0,
+    0.8833,
+    7316.5733
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -6.0
+    },
+    "v6": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 9.0
+    },
+    "v4": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 427.3
+    },
+    "v3": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 766.0
+    },
+    "v2": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 2249.4
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 19.4
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 406.2
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 24,
+     "losses": 8,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 6731.5
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 8303.7
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 1440.9
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 11406.8
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6744.8
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 17251.8
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 4976.7
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 49021.1
+    }
+   }
+  },
+  {
+   "rank": 3,
+   "name": "t2GJ",
+   "body": "V6",
+   "key": [
+    0.75,
+    0.0,
+    0.8563,
+    6535.8067
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -6.0
+    },
+    "v6": {
+     "games": 32,
+     "wins": 3,
+     "losses": 3,
+     "ties": 26,
+     "score_rate": 0.5,
+     "mean_margin": 0.0
+    },
+    "v4": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 427.3
+    },
+    "v3": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 758.1
+    },
+    "v2": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 2241.5
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 19.4
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 398.2
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 24,
+     "losses": 8,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 6716.5
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 7375.6
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 1440.9
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 12649.4
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6741.8
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 5279.6
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 4973.7
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 49021.1
+    }
+   }
+  },
+  {
+   "rank": 4,
+   "name": "t2V16",
+   "body": "V6",
+   "key": [
+    0.75,
+    0.0,
+    0.8563,
+    6535.8067
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -6.0
+    },
+    "v6": {
+     "games": 32,
+     "wins": 3,
+     "losses": 3,
+     "ties": 26,
+     "score_rate": 0.5,
+     "mean_margin": 0.0
+    },
+    "v4": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 427.3
+    },
+    "v3": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 758.1
+    },
+    "v2": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 2241.5
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 19.4
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 398.2
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 24,
+     "losses": 8,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 6716.5
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 7375.6
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 1440.9
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 12649.4
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6741.8
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 5279.6
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 4973.7
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 49021.1
+    }
+   }
+  },
+  {
+   "rank": 5,
+   "name": "t1s120",
+   "body": "V6",
+   "key": [
+    0.75,
+    0.0,
+    0.8563,
+    6535.8067
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -6.0
+    },
+    "v6": {
+     "games": 32,
+     "wins": 3,
+     "losses": 3,
+     "ties": 26,
+     "score_rate": 0.5,
+     "mean_margin": 0.0
+    },
+    "v4": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 427.3
+    },
+    "v3": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 758.1
+    },
+    "v2": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 2241.5
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 19.4
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 398.2
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 24,
+     "losses": 8,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 6716.5
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 7375.6
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 1440.9
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 12649.4
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6741.8
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 5279.6
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 4973.7
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 49021.1
+    }
+   }
+  },
+  {
+   "rank": 6,
+   "name": "t0s90",
+   "body": "V6",
+   "key": [
+    0.75,
+    0.0,
+    0.8563,
+    6535.8067
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -6.0
+    },
+    "v6": {
+     "games": 32,
+     "wins": 3,
+     "losses": 3,
+     "ties": 26,
+     "score_rate": 0.5,
+     "mean_margin": 0.0
+    },
+    "v4": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 427.3
+    },
+    "v3": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 758.1
+    },
+    "v2": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 2241.5
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 19.4
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 398.2
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 24,
+     "losses": 8,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 6716.5
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 7375.6
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 1440.9
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 12649.4
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6741.8
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 5279.6
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 4973.7
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 49021.1
+    }
+   }
+  },
+  {
+   "rank": 7,
+   "name": "t0s75",
+   "body": "V6",
+   "key": [
+    0.75,
+    0.0,
+    0.8563,
+    6535.8067
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -6.0
+    },
+    "v6": {
+     "games": 32,
+     "wins": 3,
+     "losses": 3,
+     "ties": 26,
+     "score_rate": 0.5,
+     "mean_margin": 0.0
+    },
+    "v4": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 427.3
+    },
+    "v3": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 758.1
+    },
+    "v2": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 2241.5
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 19.4
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 398.2
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 24,
+     "losses": 8,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 6716.5
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 7375.6
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 1440.9
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 12649.4
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6741.8
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 5279.6
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 4973.7
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 49021.1
+    }
+   }
+  },
+  {
+   "rank": 8,
+   "name": "t0s45",
+   "body": "V6",
+   "key": [
+    0.75,
+    0.0,
+    0.8563,
+    6535.8067
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -6.0
+    },
+    "v6": {
+     "games": 32,
+     "wins": 3,
+     "losses": 3,
+     "ties": 26,
+     "score_rate": 0.5,
+     "mean_margin": 0.0
+    },
+    "v4": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 427.3
+    },
+    "v3": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 758.1
+    },
+    "v2": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 2241.5
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 19.4
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 398.2
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 24,
+     "losses": 8,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 6716.5
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 7375.6
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 1440.9
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 12649.4
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6741.8
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 5279.6
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 4973.7
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 49021.1
+    }
+   }
+  },
+  {
+   "rank": 9,
+   "name": "base-V6",
+   "body": "V6",
+   "key": [
+    0.75,
+    0.0,
+    0.8563,
+    6535.8067
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -6.0
+    },
+    "v6": {
+     "games": 32,
+     "wins": 3,
+     "losses": 3,
+     "ties": 26,
+     "score_rate": 0.5,
+     "mean_margin": 0.0
+    },
+    "v4": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 427.3
+    },
+    "v3": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 758.1
+    },
+    "v2": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 2241.5
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 19.4
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 398.2
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 24,
+     "losses": 8,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 6716.5
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 7375.6
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 1440.9
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 12649.4
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6741.8
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 5279.6
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 4973.7
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 49021.1
+    }
+   }
+  },
+  {
+   "rank": 10,
+   "name": "t0b14-20",
+   "body": "V6",
+   "key": [
+    0.75,
+    0.0,
+    0.8417,
+    30386.3467
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -6.0
+    },
+    "v6": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -16.0
+    },
+    "v4": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 427.3
+    },
+    "v3": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 76992.6
+    },
+    "v2": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 80857.3
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 19.4
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 62062.4
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 24,
+     "losses": 8,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8518.2
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 82825.1
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 1440.9
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 12430.1
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 7594.9
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 68542.8
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 5085.1
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 49021.1
+    }
+   }
+  },
+  {
+   "rank": 11,
+   "name": "t0b7-13",
+   "body": "V6",
+   "key": [
+    0.75,
+    -19.2,
+    0.8938,
+    11373.5667
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -6.0
+    },
+    "v6": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 34.7
+    },
+    "v4": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 427.3
+    },
+    "v3": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 33593.2
+    },
+    "v2": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 30528.8
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 19.4
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 3677.5
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 24,
+     "losses": 8,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 6697.3
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 3578.6
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 1440.9
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 12649.4
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6728.8
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 17251.8
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 4960.7
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 49021.1
+    }
+   }
+  },
+  {
+   "rank": 12,
+   "name": "t0b27s45",
+   "body": "V6",
+   "key": [
+    0.5938,
+    -4065.5,
+    0.8708,
+    14858.08
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -6.0
+    },
+    "v6": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 31286.2
+    },
+    "v4": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 427.3
+    },
+    "v3": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 2298.6
+    },
+    "v2": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 3795.1
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 19.4
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 1986.1
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 23,
+     "losses": 9,
+     "ties": 0,
+     "score_rate": 0.7188,
+     "mean_margin": 6758.6
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 57574.3
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 1440.9
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 12433.5
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2676.3
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 51332.3
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 19,
+     "losses": 13,
+     "ties": 0,
+     "score_rate": 0.5938,
+     "mean_margin": 1827.5
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 49021.1
+    }
+   }
+  },
+  {
+   "rank": 13,
+   "name": "t0single27",
+   "body": "V6",
+   "key": [
+    0.5938,
+    -4065.5,
+    0.8708,
+    14858.08
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -6.0
+    },
+    "v6": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 31286.2
+    },
+    "v4": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 427.3
+    },
+    "v3": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 2298.6
+    },
+    "v2": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 3795.1
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 19.4
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 1986.1
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 23,
+     "losses": 9,
+     "ties": 0,
+     "score_rate": 0.7188,
+     "mean_margin": 6758.6
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 57574.3
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 1440.9
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 12433.5
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2676.3
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 51332.3
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 19,
+     "losses": 13,
+     "ties": 0,
+     "score_rate": 0.5938,
+     "mean_margin": 1827.5
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 49021.1
+    }
+   }
+  },
+  {
+   "rank": 14,
+   "name": "t0triple",
+   "body": "V6",
+   "key": [
+    0.5312,
+    -4047.6,
+    0.7479,
+    5429.0933
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -6.0
+    },
+    "v6": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -383.9
+    },
+    "v4": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 427.3
+    },
+    "v3": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 523.4
+    },
+    "v2": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2045.2
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 19.4
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 15,
+     "losses": 17,
+     "ties": 0,
+     "score_rate": 0.4688,
+     "mean_margin": 11.9
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 17,
+     "losses": 15,
+     "ties": 0,
+     "score_rate": 0.5312,
+     "mean_margin": 2668.9
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 1597.0
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 1440.9
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 12403.9
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6748.8
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 13,
+     "losses": 19,
+     "ties": 0,
+     "score_rate": 0.4062,
+     "mean_margin": -62.2
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 4980.7
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 49021.1
+    }
+   }
+  },
+  {
+   "rank": 15,
+   "name": "t1b100",
+   "body": "V6",
+   "key": [
+    0.3438,
+    -22.7,
+    0.7646,
+    16079.0067
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -28.7
+    },
+    "v6": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -34.7
+    },
+    "v4": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 404.6
+    },
+    "v3": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 7012.4
+    },
+    "v2": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 8117.5
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 11,
+     "losses": 21,
+     "ties": 0,
+     "score_rate": 0.3438,
+     "mean_margin": -3.2
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 1677.5
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 23,
+     "losses": 9,
+     "ties": 0,
+     "score_rate": 0.7188,
+     "mean_margin": 6924.0
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6855.1
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 1418.2
+    },
+    "b21": {
+     "games": 32,
+     "wins": 22,
+     "losses": 10,
+     "ties": 0,
+     "score_rate": 0.6875,
+     "mean_margin": 6094.2
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 75494.2
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 27,
+     "losses": 5,
+     "ties": 0,
+     "score_rate": 0.8438,
+     "mean_margin": 10382.7
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 61737.2
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 55134.1
+    }
+   }
+  },
+  {
+   "rank": 16,
+   "name": "edge108",
+   "body": "V6",
+   "key": [
+    0.1875,
+    -1009.3,
+    0.75,
+    6272.1067
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 6,
+     "losses": 26,
+     "ties": 0,
+     "score_rate": 0.1875,
+     "mean_margin": -238.7
+    },
+    "v6": {
+     "games": 32,
+     "wins": 6,
+     "losses": 26,
+     "ties": 0,
+     "score_rate": 0.1875,
+     "mean_margin": -232.7
+    },
+    "v4": {
+     "games": 32,
+     "wins": 25,
+     "losses": 7,
+     "ties": 0,
+     "score_rate": 0.7812,
+     "mean_margin": 191.0
+    },
+    "v3": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 498.7
+    },
+    "v2": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 1232.2
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 6,
+     "losses": 26,
+     "ties": 0,
+     "score_rate": 0.1875,
+     "mean_margin": -212.3
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 24,
+     "losses": 8,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 141.8
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 22,
+     "losses": 10,
+     "ties": 0,
+     "score_rate": 0.6875,
+     "mean_margin": 5803.8
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6359.6
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 25,
+     "losses": 7,
+     "ties": 0,
+     "score_rate": 0.7812,
+     "mean_margin": 474.0
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 12956.5
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 7298.2
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 4962.6
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 5529.5
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 49317.4
+    }
+   }
+  },
+  {
+   "rank": 17,
+   "name": "edge89",
+   "body": "V6",
+   "key": [
+    0.0938,
+    -841.9,
+    0.7031,
+    6111.24
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -454.1
+    },
+    "v6": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -448.1
+    },
+    "v4": {
+     "games": 32,
+     "wins": 16,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.5,
+     "mean_margin": -44.9
+    },
+    "v3": {
+     "games": 32,
+     "wins": 25,
+     "losses": 6,
+     "ties": 1,
+     "score_rate": 0.7969,
+     "mean_margin": 382.6
+    },
+    "v2": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 1651.3
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -428.9
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 22,
+     "losses": 10,
+     "ties": 0,
+     "score_rate": 0.6875,
+     "mean_margin": 43.0
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 22,
+     "losses": 10,
+     "ties": 0,
+     "score_rate": 0.6875,
+     "mean_margin": 5874.6
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6982.0
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 1210.4
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 11923.6
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6443.9
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 4834.9
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 4640.4
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 49057.9
+    }
+   }
+  },
+  {
+   "rank": 18,
+   "name": "edge95",
+   "body": "V6",
+   "key": [
+    0.0938,
+    -1066.7,
+    0.6333,
+    5649.2867
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -1039.2
+    },
+    "v6": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -1033.2
+    },
+    "v4": {
+     "games": 32,
+     "wins": 7,
+     "losses": 25,
+     "ties": 0,
+     "score_rate": 0.2188,
+     "mean_margin": -590.4
+    },
+    "v3": {
+     "games": 32,
+     "wins": 20,
+     "losses": 12,
+     "ties": 0,
+     "score_rate": 0.625,
+     "mean_margin": -87.2
+    },
+    "v2": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 1445.3
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -1012.0
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 10,
+     "losses": 22,
+     "ties": 0,
+     "score_rate": 0.3125,
+     "mean_margin": -456.3
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 22,
+     "losses": 10,
+     "ties": 0,
+     "score_rate": 0.6875,
+     "mean_margin": 5649.8
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6764.5
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 21,
+     "losses": 11,
+     "ties": 0,
+     "score_rate": 0.6562,
+     "mean_margin": 498.3
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 11499.5
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6007.5
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 4366.2
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 4023.1
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 48703.4
+    }
+   }
+  },
+  {
+   "rank": 19,
+   "name": "edge104",
+   "body": "V6",
+   "key": [
+    0.0625,
+    -804.5,
+    0.6604,
+    5937.6867
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 2,
+     "losses": 30,
+     "ties": 0,
+     "score_rate": 0.0625,
+     "mean_margin": -526.9
+    },
+    "v6": {
+     "games": 32,
+     "wins": 2,
+     "losses": 30,
+     "ties": 0,
+     "score_rate": 0.0625,
+     "mean_margin": -520.9
+    },
+    "v4": {
+     "games": 32,
+     "wins": 19,
+     "losses": 13,
+     "ties": 0,
+     "score_rate": 0.5938,
+     "mean_margin": -95.3
+    },
+    "v3": {
+     "games": 32,
+     "wins": 18,
+     "losses": 14,
+     "ties": 0,
+     "score_rate": 0.5625,
+     "mean_margin": 72.2
+    },
+    "v2": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 1437.0
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 2,
+     "losses": 30,
+     "ties": 0,
+     "score_rate": 0.0625,
+     "mean_margin": -500.8
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 11,
+     "losses": 21,
+     "ties": 0,
+     "score_rate": 0.3438,
+     "mean_margin": -284.7
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 22,
+     "losses": 10,
+     "ties": 0,
+     "score_rate": 0.6875,
+     "mean_margin": 5969.0
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6408.2
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 26,
+     "losses": 6,
+     "ties": 0,
+     "score_rate": 0.8125,
+     "mean_margin": 854.1
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 12466.1
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6260.1
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 4527.7
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 4586.0
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 48413.5
+    }
+   }
+  },
+  {
+   "rank": 20,
+   "name": "edge29",
+   "body": "V6",
+   "key": [
+    0.0625,
+    -1752.0,
+    0.5937,
+    5272.68
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 2,
+     "losses": 30,
+     "ties": 0,
+     "score_rate": 0.0625,
+     "mean_margin": -1063.7
+    },
+    "v6": {
+     "games": 32,
+     "wins": 2,
+     "losses": 30,
+     "ties": 0,
+     "score_rate": 0.0625,
+     "mean_margin": -1089.7
+    },
+    "v4": {
+     "games": 32,
+     "wins": 5,
+     "losses": 27,
+     "ties": 0,
+     "score_rate": 0.1562,
+     "mean_margin": -660.3
+    },
+    "v3": {
+     "games": 32,
+     "wins": 12,
+     "losses": 20,
+     "ties": 0,
+     "score_rate": 0.375,
+     "mean_margin": -274.9
+    },
+    "v2": {
+     "games": 32,
+     "wins": 24,
+     "losses": 8,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 925.3
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 2,
+     "losses": 30,
+     "ties": 0,
+     "score_rate": 0.0625,
+     "mean_margin": -1037.9
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 11,
+     "losses": 21,
+     "ties": 0,
+     "score_rate": 0.3438,
+     "mean_margin": -593.2
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 26,
+     "losses": 6,
+     "ties": 0,
+     "score_rate": 0.8125,
+     "mean_margin": 7895.1
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 7018.3
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 19,
+     "losses": 13,
+     "ties": 0,
+     "score_rate": 0.5938,
+     "mean_margin": 295.7
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 9467.4
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 5680.2
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 3230.3
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 3221.7
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 46075.9
+    }
+   }
+  },
+  {
+   "rank": 21,
+   "name": "t0nosell",
+   "body": "V6",
+   "key": [
+    0.0625,
+    -6777.5,
+    0.5813,
+    4779.0333
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 1959.6
+    },
+    "v6": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 1938.4
+    },
+    "v4": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 2339.1
+    },
+    "v3": {
+     "games": 32,
+     "wins": 2,
+     "losses": 30,
+     "ties": 0,
+     "score_rate": 0.0625,
+     "mean_margin": -1473.3
+    },
+    "v2": {
+     "games": 32,
+     "wins": 12,
+     "losses": 20,
+     "ties": 0,
+     "score_rate": 0.375,
+     "mean_margin": 15.6
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 1986.4
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 1,
+     "losses": 31,
+     "ties": 0,
+     "score_rate": 0.0312,
+     "mean_margin": -1911.2
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 22,
+     "losses": 10,
+     "ties": 0,
+     "score_rate": 0.6875,
+     "mean_margin": 4943.4
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 4,
+     "losses": 28,
+     "ties": 0,
+     "score_rate": 0.125,
+     "mean_margin": -1016.1
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 3311.6
+    },
+    "b21": {
+     "games": 32,
+     "wins": 23,
+     "losses": 9,
+     "ties": 0,
+     "score_rate": 0.7188,
+     "mean_margin": 6062.5
+    },
+    "subin": {
+     "games": 32,
+     "wins": 17,
+     "losses": 15,
+     "ties": 0,
+     "score_rate": 0.5312,
+     "mean_margin": -35.7
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 2,
+     "losses": 30,
+     "ties": 0,
+     "score_rate": 0.0625,
+     "mean_margin": -2563.7
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 8,
+     "losses": 24,
+     "ties": 0,
+     "score_rate": 0.25,
+     "mean_margin": -795.7
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 56924.6
+    }
+   }
+  },
+  {
+   "rank": 22,
+   "name": "edge100",
+   "body": "V6",
+   "key": [
+    0.0312,
+    -815.4,
+    0.625,
+    5899.26
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 1,
+     "losses": 31,
+     "ties": 0,
+     "score_rate": 0.0312,
+     "mean_margin": -623.5
+    },
+    "v6": {
+     "games": 32,
+     "wins": 1,
+     "losses": 31,
+     "ties": 0,
+     "score_rate": 0.0312,
+     "mean_margin": -617.5
+    },
+    "v4": {
+     "games": 32,
+     "wins": 5,
+     "losses": 27,
+     "ties": 0,
+     "score_rate": 0.1562,
+     "mean_margin": -187.2
+    },
+    "v3": {
+     "games": 32,
+     "wins": 20,
+     "losses": 12,
+     "ties": 0,
+     "score_rate": 0.625,
+     "mean_margin": 132.0
+    },
+    "v2": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 1535.2
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 1,
+     "losses": 31,
+     "ties": 0,
+     "score_rate": 0.0312,
+     "mean_margin": -595.8
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 4,
+     "losses": 28,
+     "ties": 0,
+     "score_rate": 0.125,
+     "mean_margin": -227.8
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 22,
+     "losses": 10,
+     "ties": 0,
+     "score_rate": 0.6875,
+     "mean_margin": 5901.1
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6704.3
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 856.0
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 11947.2
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6177.9
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 4666.0
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 4213.0
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 48608.0
+    }
+   }
+  },
+  {
+   "rank": 23,
+   "name": "edge97",
+   "body": "V6",
+   "key": [
+    0.0312,
+    -1919.6,
+    0.5646,
+    5191.7733
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 1,
+     "losses": 31,
+     "ties": 0,
+     "score_rate": 0.0312,
+     "mean_margin": -1487.6
+    },
+    "v6": {
+     "games": 32,
+     "wins": 1,
+     "losses": 31,
+     "ties": 0,
+     "score_rate": 0.0312,
+     "mean_margin": -1481.6
+    },
+    "v4": {
+     "games": 32,
+     "wins": 2,
+     "losses": 30,
+     "ties": 0,
+     "score_rate": 0.0625,
+     "mean_margin": -1051.3
+    },
+    "v3": {
+     "games": 32,
+     "wins": 6,
+     "losses": 26,
+     "ties": 0,
+     "score_rate": 0.1875,
+     "mean_margin": -457.5
+    },
+    "v2": {
+     "games": 32,
+     "wins": 26,
+     "losses": 6,
+     "ties": 0,
+     "score_rate": 0.8125,
+     "mean_margin": 601.7
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 1,
+     "losses": 31,
+     "ties": 0,
+     "score_rate": 0.0312,
+     "mean_margin": -1462.8
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -826.9
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 22,
+     "losses": 10,
+     "ties": 0,
+     "score_rate": 0.6875,
+     "mean_margin": 4796.9
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 5797.3
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 22,
+     "losses": 10,
+     "ties": 0,
+     "score_rate": 0.6875,
+     "mean_margin": 215.9
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 11022.5
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 5849.8
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 4172.2
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 4165.3
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 48022.7
+    }
+   }
+  },
+  {
+   "rank": 24,
+   "name": "edge97-108",
+   "body": "V6",
+   "key": [
+    0.0312,
+    -2623.3,
+    0.4812,
+    4944.52
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 1,
+     "losses": 31,
+     "ties": 0,
+     "score_rate": 0.0312,
+     "mean_margin": -1703.7
+    },
+    "v6": {
+     "games": 32,
+     "wins": 1,
+     "losses": 31,
+     "ties": 0,
+     "score_rate": 0.0312,
+     "mean_margin": -1697.7
+    },
+    "v4": {
+     "games": 32,
+     "wins": 1,
+     "losses": 31,
+     "ties": 0,
+     "score_rate": 0.0312,
+     "mean_margin": -1268.9
+    },
+    "v3": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -705.0
+    },
+    "v2": {
+     "games": 32,
+     "wins": 7,
+     "losses": 25,
+     "ties": 0,
+     "score_rate": 0.2188,
+     "mean_margin": -345.8
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 1,
+     "losses": 31,
+     "ties": 0,
+     "score_rate": 0.0312,
+     "mean_margin": -1678.0
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 3,
+     "losses": 29,
+     "ties": 0,
+     "score_rate": 0.0938,
+     "mean_margin": -1070.5
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 22,
+     "losses": 10,
+     "ties": 0,
+     "score_rate": 0.6875,
+     "mean_margin": 4093.2
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 4778.8
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 6,
+     "losses": 26,
+     "ties": 0,
+     "score_rate": 0.1875,
+     "mean_margin": -739.1
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 11294.6
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6292.4
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 3883.5
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 4584.2
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 48449.8
+    }
+   }
+  },
+  {
+   "rank": 25,
+   "name": "base-V5",
+   "body": "V5",
+   "key": [
+    0.0,
+    0.0,
+    0.8604,
+    5047.7133
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 3,
+     "losses": 3,
+     "ties": 26,
+     "score_rate": 0.5,
+     "mean_margin": 0.0
+    },
+    "v6": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 6.0
+    },
+    "v4": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 433.3
+    },
+    "v3": {
+     "games": 32,
+     "wins": 30,
+     "losses": 2,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 762.0
+    },
+    "v2": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 2245.4
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 25.4
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 29,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9062,
+     "mean_margin": 403.2
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -55484.8
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 5501.9
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 1446.9
+    },
+    "b21": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 12585.8
+    },
+    "subin": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 6743.8
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 5313.6
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 31,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9688,
+     "mean_margin": 4978.7
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 90754.5
+    }
+   }
+  },
+  {
+   "rank": 26,
+   "name": "t1buy20",
+   "body": "V6",
+   "key": [
+    0.0,
+    -7230.4,
+    0.2125,
+    -421.4133
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -7174.0
+    },
+    "v6": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -7178.0
+    },
+    "v4": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -6803.1
+    },
+    "v3": {
+     "games": 32,
+     "wins": 2,
+     "losses": 30,
+     "ties": 0,
+     "score_rate": 0.0625,
+     "mean_margin": -5945.4
+    },
+    "v2": {
+     "games": 32,
+     "wins": 2,
+     "losses": 30,
+     "ties": 0,
+     "score_rate": 0.0625,
+     "mean_margin": -4445.8
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -7149.1
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 2,
+     "losses": 30,
+     "ties": 0,
+     "score_rate": 0.0625,
+     "mean_margin": -6251.9
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 22,
+     "losses": 10,
+     "ties": 0,
+     "score_rate": 0.6875,
+     "mean_margin": 2040.2
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -3904.9
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -5721.8
+    },
+    "b21": {
+     "games": 32,
+     "wins": 13,
+     "losses": 19,
+     "ties": 0,
+     "score_rate": 0.4062,
+     "mean_margin": -1776.7
+    },
+    "subin": {
+     "games": 32,
+     "wins": 15,
+     "losses": 17,
+     "ties": 0,
+     "score_rate": 0.4688,
+     "mean_margin": 599.3
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 8,
+     "losses": 24,
+     "ties": 0,
+     "score_rate": 0.25,
+     "mean_margin": -1911.1
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 6,
+     "losses": 26,
+     "ties": 0,
+     "score_rate": 0.1875,
+     "mean_margin": -1282.7
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 50583.8
+    }
+   }
+  },
+  {
+   "rank": 27,
+   "name": "edgeAll",
+   "body": "V6",
+   "key": [
+    0.0,
+    -7335.0,
+    0.2979,
+    383.7533
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -6104.7
+    },
+    "v6": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -6136.0
+    },
+    "v4": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -5726.4
+    },
+    "v3": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -5038.3
+    },
+    "v2": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -5093.5
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -6079.0
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -5331.8
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 21,
+     "losses": 11,
+     "ties": 0,
+     "score_rate": 0.6562,
+     "mean_margin": 1985.4
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 20,
+     "losses": 12,
+     "ties": 0,
+     "score_rate": 0.625,
+     "mean_margin": 973.2
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -4780.4
+    },
+    "b21": {
+     "games": 32,
+     "wins": 26,
+     "losses": 6,
+     "ties": 0,
+     "score_rate": 0.8125,
+     "mean_margin": 4481.4
+    },
+    "subin": {
+     "games": 32,
+     "wins": 28,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 1803.1
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 8,
+     "losses": 24,
+     "ties": 0,
+     "score_rate": 0.25,
+     "mean_margin": -1477.4
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 8,
+     "losses": 24,
+     "ties": 0,
+     "score_rate": 0.25,
+     "mean_margin": -599.1
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 42879.8
+    }
+   }
+  },
+  {
+   "rank": 28,
+   "name": "t1s60",
+   "body": "V6",
+   "key": [
+    0.0,
+    -43618.0,
+    0.1354,
+    -12408.1467
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -13072.5
+    },
+    "v6": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -13159.8
+    },
+    "v4": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -12652.8
+    },
+    "v3": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -10660.2
+    },
+    "v2": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -9151.9
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -13041.6
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -10975.9
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 12,
+     "losses": 20,
+     "ties": 0,
+     "score_rate": 0.375,
+     "mean_margin": -8020.5
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 4,
+     "losses": 28,
+     "ties": 0,
+     "score_rate": 0.125,
+     "mean_margin": -2140.3
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -11646.9
+    },
+    "b21": {
+     "games": 32,
+     "wins": 17,
+     "losses": 15,
+     "ties": 0,
+     "score_rate": 0.5312,
+     "mean_margin": -2423.8
+    },
+    "subin": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -36876.2
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -37240.8
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -36345.8
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 32,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 31286.8
+    }
+   }
+  },
+  {
+   "rank": 29,
+   "name": "t1buynone",
+   "body": "V6",
+   "key": [
+    0.0,
+    -110477.4,
+    0.0,
+    -101250.6133
+   ],
+   "stats": {
+    "v5": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -109297.2
+    },
+    "v6": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -107143.8
+    },
+    "v4": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -109178.3
+    },
+    "v3": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -107419.8
+    },
+    "v2": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -108235.9
+    },
+    "hybrid": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -109260.5
+    },
+    "mkt": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -107520.8
+    },
+    "deepernet": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -98376.9
+    },
+    "kanno_top15": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -78273.6
+    },
+    "germanjurado1_top15": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -109125.2
+    },
+    "b21": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -105484.1
+    },
+    "subin": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -100459.1
+    },
+    "yusuke": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -94102.4
+    },
+    "himanshu": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -96596.4
+    },
+    "spataro": {
+     "games": 32,
+     "wins": 0,
+     "losses": 32,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -78285.2
+    }
+   }
+  }
+ ]
+}
