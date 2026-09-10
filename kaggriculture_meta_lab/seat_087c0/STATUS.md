@@ -66,3 +66,8 @@
 - Rust router CI green (fmt/test/clippy/full simulator CI).
 - Search 100464 games on 84-policy newest TOP7: every holdout finalist tied V7 binary at 1278-66; no router creates wins. Best economic rule: pulse iff opponent money <=100 at t153, own fertilizer >=1 (own>=1/2/3 equivalent): +76.6 own reward, +98.0 margin, zero team regressions. Inventory>=10050: +46 reward/+90 margin. These are economic/selectivity signals, not promotion.
 - Next: independent full 105-policy TOP15 search with same fixed grid and fresh seeds. Require rule-family transfer across corpora; otherwise abandon t153 router rather than overfit.
+
+## 2026-09-10 (17): independent full-TOP15 router search → fixed cross-corpus gate
+- Full 105-policy TOP15 independent search (125580 games): best pulse profiles 1622-58 vs identity V7 1620-60, zero team regressions; many thresholds collapsed to identical behavior (`money<=2500..20000`, `inventory>=9900..10020`), indicating sparse/discrete activation rather than a stable calibrated boundary.
+- Newest-TOP7 winner `money<=100` was not selected among TOP15 finalists; no direct rule-family transfer established. Do not promote.
+- Launched preregistered fixed-rule final gate: identity, unconditional-own1, money<=100/500/2500, inventory>=10050 and two intersections; combined 84+105=189 policies, 32 fresh seeds, both seats (~96768 games). No post-hoc threshold selection. If no binary cross-corpus gain, abandon t153 router.
