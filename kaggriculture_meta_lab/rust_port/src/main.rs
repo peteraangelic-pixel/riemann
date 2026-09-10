@@ -1,5 +1,5 @@
 use clap::{Parser, ValueEnum};
-use kg_sim::{Config, Outcome, PreparedTape, Replay, Tape};
+use kg_sim::{Config, MarketOverlay, Outcome, PreparedTape, Replay, Tape};
 use rayon::prelude::*;
 use serde_json::Value;
 use std::{
@@ -31,6 +31,11 @@ struct Args {
     tape_a: Option<PathBuf>,
     #[arg(long, required_unless_present = "jobs", conflicts_with = "jobs")]
     tape_b: Option<PathBuf>,
+    /// Optional state-dependent market profiles in input A/B order.
+    #[arg(long, conflicts_with = "jobs")]
+    overlay_a: Option<PathBuf>,
+    #[arg(long, conflicts_with = "jobs")]
+    overlay_b: Option<PathBuf>,
     #[arg(
         long,
         required_unless_present = "jobs",
@@ -100,16 +105,47 @@ impl TapeCache<'_> {
     }
 }
 
+#[derive(Default)]
+struct OverlayCache {
+    entries: HashMap<PathBuf, Result<Arc<MarketOverlay>>>,
+}
+
+impl OverlayCache {
+    fn load_optional(&mut self, path: &Path) -> Result<Option<Arc<MarketOverlay>>> {
+        if path.as_os_str().is_empty() {
+            return Ok(None);
+        }
+        let path = path
+            .canonicalize()
+            .map_err(|e| format!("{}: {e}", path.display()))?;
+        self.entries
+            .entry(path.clone())
+            .or_insert_with(|| {
+                let profile = MarketOverlay::from_json(&read_json(&path)?)
+                    .map_err(|e| format!("{}: {e}", path.display()))?;
+                Ok(Arc::new(profile))
+            })
+            .clone()
+            .map(Some)
+    }
+}
+
 struct Job {
     seed: i64,
     a: Arc<PreparedTape>,
     b: Arc<PreparedTape>,
+    overlays: [Option<Arc<MarketOverlay>>; 2],
     reverse: bool,
 }
 
-fn parse_job(record: &csv::StringRecord, dir: &Path, cache: &mut TapeCache<'_>) -> Result<Job> {
-    if record.len() != 4 {
-        return Err("expected four CSV fields: seed,tape_a,tape_b,reverse".into());
+fn parse_job(
+    record: &csv::StringRecord,
+    dir: &Path,
+    cache: &mut TapeCache<'_>,
+    overlays: &mut OverlayCache,
+) -> Result<Job> {
+    if record.len() != 4 && record.len() != 6 {
+        return Err("expected CSV fields seed,tape_a,tape_b,reverse[,overlay_a,overlay_b]".into());
     }
     let seed = record[0]
         .parse::<i64>()
@@ -124,10 +160,27 @@ fn parse_job(record: &csv::StringRecord, dir: &Path, cache: &mut TapeCache<'_>) 
     }
     let a = cache.load(&dir.join(&record[1]))?;
     let b = cache.load(&dir.join(&record[2]))?;
+    let profiles = if record.len() == 6 {
+        [
+            if record[4].is_empty() {
+                None
+            } else {
+                overlays.load_optional(&dir.join(&record[4]))?
+            },
+            if record[5].is_empty() {
+                None
+            } else {
+                overlays.load_optional(&dir.join(&record[5]))?
+            },
+        ]
+    } else {
+        [None, None]
+    };
     Ok(Job {
         seed,
         a,
         b,
+        overlays: profiles,
         reverse,
     })
 }
@@ -168,6 +221,7 @@ fn execute(args: Args) -> Result<bool> {
         turns,
         entries: HashMap::new(),
     };
+    let mut overlay_cache = OverlayCache::default();
     let mut stdout = BufWriter::new(io::stdout().lock());
     let failed;
     if let Some(path) = &args.jobs {
@@ -181,10 +235,15 @@ fn execute(args: Args) -> Result<bool> {
         let mut jobs = Vec::new();
         for (i, record) in reader.records().enumerate() {
             let parsed = record.map_err(|e| e.to_string()).and_then(|r| {
-                if i == 0 && r.iter().eq(["seed", "tape_a", "tape_b", "reverse"]) {
+                let is_header = i == 0
+                    && r.get(0) == Some("seed")
+                    && r.get(1) == Some("tape_a")
+                    && r.get(2) == Some("tape_b")
+                    && r.get(3) == Some("reverse");
+                if is_header {
                     return Ok(None);
                 }
-                parse_job(&r, dir, &mut cache).map(Some)
+                parse_job(&r, dir, &mut cache, &mut overlay_cache).map(Some)
             });
             match parsed {
                 Ok(None) => {}
@@ -201,13 +260,14 @@ fn execute(args: Args) -> Result<bool> {
         let outcomes: Vec<Outcome> = pool.install(|| {
             jobs.par_iter()
                 .map(|job| match job {
-                    Ok(job) => Replay::new_with_hand_trimming(
+                    Ok(job) => Replay::new_with_overlays(
                         &config,
                         &job.a,
                         &job.b,
                         job.seed,
                         job.reverse,
                         trim_hands,
+                        [job.overlays[0].as_deref(), job.overlays[1].as_deref()],
                     )
                     .run(),
                     Err(e) => Outcome::error(e),
@@ -221,13 +281,22 @@ fn execute(args: Args) -> Result<bool> {
     } else {
         let a = cache.load(args.tape_a.as_deref().expect("clap requires tape-a"))?;
         let b = cache.load(args.tape_b.as_deref().expect("clap requires tape-b"))?;
-        let mut replay = Replay::new_with_hand_trimming(
+        let overlay_a = match args.overlay_a.as_deref() {
+            Some(path) => overlay_cache.load_optional(path)?,
+            None => None,
+        };
+        let overlay_b = match args.overlay_b.as_deref() {
+            Some(path) => overlay_cache.load_optional(path)?,
+            None => None,
+        };
+        let mut replay = Replay::new_with_overlays(
             &config,
             &a,
             &b,
             args.seed.expect("clap requires seed"),
             args.reverse_seats,
             trim_hands,
+            [overlay_a.as_deref(), overlay_b.as_deref()],
         );
         if let Some(path) = &args.trace {
             let file = File::create(path).map_err(|e| format!("{}: {e}", path.display()))?;

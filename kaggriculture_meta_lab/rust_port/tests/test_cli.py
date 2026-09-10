@@ -130,6 +130,17 @@ class CliTests(unittest.TestCase):
         _, proc = self.call("--jobs", path, "--steps", 2, single=False, env={**os.environ, "RAYON_NUM_THREADS": "2"})
         self.assertEqual(outputs, [proc.stdout] * 3)
 
+    def test_batch_accepts_blank_overlay_column_as_no_profile(self):
+        profile = self.dir / "profile.json"
+        profile.write_text('{"enabled":false}')
+        path = self.dir / "overlay-jobs.csv"
+        with path.open("w", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(["seed", "tape_a", "tape_b", "reverse", "overlay_a", "overlay_b"])
+            writer.writerow([0, self.a.name, self.b.name, 0, profile.name, ""])
+        rows, _ = self.call("--jobs", path, "--steps", 2, single=False)
+        self.assertEqual(rows, [{"rewards": [2990.0, 2960.0], "errors": []}])
+
     def test_bad_batch_row_is_not_a_zero_reward_game(self):
         path = self.dir / "bad.csv"
         with path.open("w", newline="") as f:

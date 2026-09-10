@@ -6,11 +6,15 @@ on:
     paths:
       - "kaggriculture_meta_lab/rust_port/**"
       - "!kaggriculture_meta_lab/rust_port/VALIDATION.md"
+      - "kaggriculture_meta_lab/kaggriculture_lab/rust_backend.py"
+      - "kaggriculture_meta_lab/scripts/check_rust_lab_parity.py"
       - ".github/workflows/kaggriculture-rust.yml"
   pull_request:
     paths:
       - "kaggriculture_meta_lab/rust_port/**"
       - "!kaggriculture_meta_lab/rust_port/VALIDATION.md"
+      - "kaggriculture_meta_lab/kaggriculture_lab/rust_backend.py"
+      - "kaggriculture_meta_lab/scripts/check_rust_lab_parity.py"
       - ".github/workflows/kaggriculture-rust.yml"
   workflow_dispatch:
     inputs:
@@ -76,11 +80,18 @@ jobs:
         run: |
           python tools/ci_run.py python tools/check.py --check --seeds 64 --threads 4
           python tools/ci_run.py --report work/check-report.json
+      - name: Integrated LAB parity on static and raw-replay jobs
+        if: contains(github.event.head_commit.message, '[kg-lab-parity]')
+        run: |
+          python -m pip install --disable-pip-version-check kaggle-environments==1.32.7
+          set -o pipefail
+          python ../scripts/check_rust_lab_parity.py | tee work/lab-parity.txt
       - name: Small end-to-end benchmark (informational)
         run: |
           python tools/ci_run.py python tools/benchmark.py --games 64 --threads 4 --repeats 3
           python tools/ci_run.py --report work/benchmark.json
-      - name: 14k-game batch, thread determinism and independent Python samples
+      - name: 14k-game batch, thread determinism and independent Python samples (opt-in)
+        if: contains(github.event.head_commit.message, '[kg-rust-large]')
         run: |
           python tools/ci_run.py python tools/benchmark_batch.py --games 14000 --threads 1,4,16 --repeats 3 --python-checks 64
           python tools/ci_run.py --report work/batch-benchmark.json
@@ -104,4 +115,5 @@ jobs:
             kaggriculture_meta_lab/rust_port/work/benchmark.json
             kaggriculture_meta_lab/rust_port/work/batch-benchmark.json
             kaggriculture_meta_lab/rust_port/work/framework-report.json
+            kaggriculture_meta_lab/rust_port/work/lab-parity.txt
           retention-days: 7
