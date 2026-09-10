@@ -81,3 +81,14 @@ Niezależna weryfikacja:
 - pełny G2, fresh seedy 77000–77007: **16–0, +9623**; V15 na identycznych seedach **16–0, +5347**. Paired delta +4276.4, kandydat lepszy w 14/16 gier.
 
 To zmienia ocenę: `top7_kanno_bestsub_ep107384200.py` jest obecnie kandydatem jakości submission, mocniejszym niż V15 na bezpośrednim fresh H2H, G2 i porównywalnym B21. Nie podmieniono po cichu już wysłanego V15; kolejna promocja/submission powinna być jawną decyzją i dostać osobny numer.
+
+## V16 LAB: day-level crossover
+
+Po autoryzacji V16 uruchomiono GitHub Actions LAB `34466271319`. Rust przeliczył 256 spójnych planów dziennych German/Kanno: 16384 gier treningowych i 4352 holdout w 47 sekund całego joba. Zwycięzca trening/holdout używał dni German 0, 17 i 23, a w pozostałych dniach Kanno. Na holdout podniósł średni score rate z 0.7383 do 0.9023 i został wyemitowany jako `v16_day_crossover_holdout_winner.py`.
+
+Obowiązkowa niezależna dogrywka ujawniła regresję:
+
+- fresh direct vs V16 parent: 245–11 (+401.8), więc crossover faktycznie zmienia matchup;
+- fresh B21: crossover **204–52, +6774.9**; czysty V16 na identycznych seedach **214–42, +10337.4**.
+
+Crossover zostaje odrzucony mimo zwycięstwa selekcyjnego. Żaden z 16 finalistów holdout nie poprawił Germana, zachowując jednocześnie zarówno score rate, jak i margines B21 rodzica. To mocny sygnał, że czysty Kanno jest na aktualnym froncie Pareto statycznych mieszanek, a dalsza poprawa wymaga reaktywnego wyboru/rynku zamiast kolejnego splice taśm.
