@@ -53,8 +53,34 @@ Do not promote the static hybrid. It is the strongest current V8 component but h
 
 Proceed with a fail-closed selector that defaults to V7 and enables the old market tail only for public post-opening fingerprints supported on both corpora. Candidate selection and the final gate must use disjoint seeds; exact generated Python source requires an independent execution check.
 
+## First fixed router and independent holdout
+
+Exact Rust traces of the public post-turn-0 state exposed a compact selection signal. A preregistered first router latched the hybrid tail when own money after turn 0 was in `[3000, 3010]`; otherwise it retained V7. Selection evidence predicted gains on both corpora, so it was frozen before run `34521271714`.
+
+Independent 16-seed holdout:
+
+| Corpus | Router | V7 | Win delta | Reward delta | Margin delta | q10 delta |
+|---|---:|---:|---:|---:|---:|---:|
+| latest TOP7 | 2431–257 | 2423–265 | **+8** | +848.00 | +791.39 | +41 |
+| complete TOP15 | 3176–184 | 3174–186 | **+2** | +66.02 | +111.59 | **−96** |
+
+The router preserved an aggregate gain on unseen seeds, but it is **not promotion-grade**: latest TOP7 contains a four-win regression in one team, TOP15 contains a two-win regression in one team, and TOP15 q10 margin fell. The static hybrid's latest-meta gain also shrank from +35 to +8, showing substantial seed variance.
+
+A safer post-opening rule (`opponent money <= 2200`) was diagnostically team-safe on the TOP15 holdout (+4 wins and +39 q10), but still inherited the same four-win latest-TOP7 regression because distinct current policies share an identical turn-0 fingerprint. It must not be selected post hoc without another holdout.
+
+This identifies the technical limitation of turn-1 routing: materially different replay tails can produce the same immediate public fingerprint. Branch 087c0 previously established that hybrid tails starting at turns 2 through 120 often realize identically, so the next experiment delays the decision to turn 120 and uses the evolved public trajectory (money, hands, unlocked land, tile composition and market vector). Exact turn-120 traces were collected in run `34521812851` for all 189 policies and both seats.
+
+## Latest peer-branch check
+
+Branch `arena/01a087c0-riemann` through `09e2c56` scanned all 42 post-opening V4 components over 189 policies (126,252 games). Steps 401 and 409 showed only +2 post-selection holdout wins; step 360 converted losses to ties. Its preregistered component gate has failed three times at the evaluation step and has not produced final evidence, so none of these components is imported yet.
+
 ## Artifacts
 
 - `kaggriculture_meta_lab/agents/candidates/agent_v8_lab_safe_open_old_market.py`
+- `kaggriculture_meta_lab/agents/candidates/agent_v8_tail_router.py`
+- `kaggriculture_meta_lab/results/v8-tail-router-new7-composite-holdout-20260910.json`
+- `kaggriculture_meta_lab/results/v8-tail-router-top15-composite-holdout-20260910.json`
+- `kaggriculture_meta_lab/results/v8-trajectory120-latest-top7-20260910.json`
+- `kaggriculture_meta_lab/results/v8-trajectory120-top15-20260910.json`
 - `kaggriculture_meta_lab/results/v8-structured-hybrid-latest-top7-20260910.json`
 - `kaggriculture_meta_lab/results/v8-structured-hybrid-top15-20260910.json`
