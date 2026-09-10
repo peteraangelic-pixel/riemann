@@ -88,3 +88,8 @@
 - Full TOP15 (105×8): V7=b55=v4safe01 exactly 1584-96 binary; v4safe01 -391 margin/-282 reward. t0-only 1514-166; t1-only 1335-345; raw 1417-263. Both opening fixes jointly necessary; safe01 near-binary but economically dominated.
 - V5 differs from V7 only t0/t1, so V7 literally is repaired V5.1; buy55 is a neutral microvariant, not current champion.
 - Launched V4 post-opening component scan: every individual differing market/hands/farmer component after t1 transplanted into V7, directly screened on combined latest 84-policy TOP7 + full 105-policy TOP15, fresh screen/holdout seeds. Goal: separate cancelling good/bad V4 body features.
+
+## 2026-09-10 (21): V4 components result and fixed final gate
+- 42 post-opening components, 189 policies, 126252 games. Holdout identity 2767-257. V4 market t401 and t409 each 2769-255 (+2); t360 2767-255 (+2 ties); all other leading components binary-neutral. This remains post-selection evidence only.
+- Preregistered final gate launched on fresh 32 seeds for latest TOP7 and full TOP15 separately: identity, m401, m409, m401+m409, m360. No threshold/router fitting.
+- Peer branch latest TOP7 baseline (2688 games/candidate): V7 2427-261, V6 2412-276, V3 2408-280, V16 2432-256. V7 exceeds V6 by 15 wins and ~3411 reward/~7759 margin per game. Peer-v6 differs from formal V6 only at t1 and is identical to V7, so there is no third hidden V6.
