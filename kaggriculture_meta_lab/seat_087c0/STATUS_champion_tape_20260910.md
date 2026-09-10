@@ -247,3 +247,18 @@ Para v3×v2 odrzucona (najlepszy 27-1-36, +4/g — szum).
 
 **Nowy mistrz: `agents/champion_tape_daycrossover_v4.py`** (v4).
 Sanity pliku repo vs emisja LAB: 4/4 remisów.
+
+## Rust LAB w Actions (bring-up OK)
+
+Trigger push-kolejką (`lab_queue.json` + `[kg-lab]` w message), bo token
+sandboxa nie ma rights do dispatch API (403). Wzorzec: build kg_sim
+(cargo --release, cache Swatinem) → `run_lab_queue.py` → `rust_h2h.py`
+(Rayom batche, trim per-tape) → wyniki commitowane z powrotem na gałąź.
+Bring-up `bringup-v4` (run 34470368169): SUCCESS, ~1350 g/s (55x lokalnie),
+parity Rust-vs-Python 8/8 na każdej parze, 0 błędów.
+V4 na świeżych seedach 1000–1015: vs v3 32-0 (+303), vs v2 32-0 (+1769),
+vs v1 32-0 (+1386), vs b21 26-6 (+10770), vs subin 32-0 (+5769) — zgodnie
+z lokalnymi wynikami. Corpus zamrożony w repo (9 taśm).
+Uwaga live: V16 (bliźniak v2) po ~20 min miał 824.9, po ~40 min już ~1500
+i rośnie — unieważnienie statyków przez rodzeństwo było przedwczesne;
+wyniki live dryfują w górę z liczbą gier. Czekamy na live V2.
