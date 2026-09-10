@@ -143,3 +143,6 @@
 ## 2026-09-10 (30): peer V9 audit and exact-panel comparison
 - Peer branch V9 routes after t0 using public state: hybrid only when own money in [3000,3010], except opponent money=3000 with zero opponent hands; otherwise V7. Exact row composition on its 6912-game TOP12 panel reports 5811-1101 (+68 vs V7), 103892 reward, +21483 margin. Earlier TOP7 fingerprints all route full V8, retaining +61. Python closed-loop vs G2: 64-0, zero errors; useful execution check but weak ranking evidence because G2 scores poorly locally.
 - Our late401 remains plausibly stronger and simpler: +49 vs V7 in 3456 TOP12 games and +82 across three current corpora, without post-holdout fingerprint routing. Launched exact same TOP12 archive/seeds 158000-158031 panel for V7/full/late401. This permits direct aggregate and per-team comparison against frozen V9 counterfactual, avoiding incompatible panels.
+
+## 2026-09-11 (31): exact V9-panel retry bounded
+- Initial exact-panel run failed during calculation after ~3.5 min; GitHub logs again unavailable via EOF. Controls V7/full already exist exactly on peer panel, so retry computes only missing late401 (6912 jobs vs 20736), same TOP12 and seeds 158000-158031. Failure output is emitted via check annotations.

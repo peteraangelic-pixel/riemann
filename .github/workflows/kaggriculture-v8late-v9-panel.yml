@@ -28,15 +28,27 @@ jobs:
           PY
       - working-directory: kaggriculture_meta_lab/rust_port
         run: cargo build --release --locked
-      - name: Reproduce V9 source panel with late401 candidate
+      - name: Run only missing late401 policy and retain diagnostics
+        id: calculation
+        continue-on-error: true
         run: |
+          set -o pipefail
           python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
             --corpus "$(cat /tmp/top12-root)" --workers 4 --seeds 32 --seed-start 158000 \
-            --candidate v7=kaggriculture_meta_lab/seat_087c0/candidates/audit-v7.py \
-            --candidate full=kaggriculture_meta_lab/seat_087c0/candidates/peer-v8-structured-hybrid.py \
             --candidate late401=kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v8.py \
-            --output kaggriculture_meta_lab/seat_087c0/results/v8late-v9-source-panel.json
-      - run: |
+            --output kaggriculture_meta_lab/seat_087c0/results/v8late-v9-source-panel.json \
+            2>&1 | tee /tmp/late-v9.log
+      - name: Expose failure diagnostics
+        if: steps.calculation.outcome != 'success'
+        run: |
+          python - <<'PY'
+          text=open('/tmp/late-v9.log',errors='replace').read().replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+          for i in range(0,len(text),2800):print(f'::error title=late401 panel diagnostic {i//2800+1}::{text[i:i+2800]}')
+          PY
+          exit 1
+      - name: Persist successful result
+        if: steps.calculation.outcome == 'success'
+        run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add kaggriculture_meta_lab/seat_087c0/results/v8late-v9-source-panel.json
