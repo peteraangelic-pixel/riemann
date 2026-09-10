@@ -1,0 +1,50 @@
+{
+  "name": "v6_state_fingerprint_block_lab",
+  "status": "prepared_not_promoted",
+  "parents": [
+    "champion_tape_evolved_v5.py",
+    "ours_peer_v4_hybrid_holdout_winner.py",
+    "champion_tape_daycrossover_v4.py",
+    "v3_market_genetic_holdout_winner.py",
+    "champion_tape_kanno_ep107381285_v1.py"
+  ],
+  "genome": {
+    "day_cut": [0, 12],
+    "market_blocks": 120,
+    "block_size_steps": 6,
+    "fingerprint_fields": [
+      "cash",
+      "unlocked_land",
+      "worker_count",
+      "inventory",
+      "animal_placement",
+      "market_queue"
+    ],
+    "modes": [
+      "kanno_micro_plan",
+      "production",
+      "recovery",
+      "expansion"
+    ]
+  },
+  "controls": ["v5", "hybrid", "v4", "v3", "kanno", "g2", "b21"],
+  "selection": [
+    "zero_errors_and_timeouts",
+    "rust_python_parity",
+    "regression_floor_against_all_controls",
+    "positive_material_margin_on_fresh_holdout",
+    "maximize_mean_margin"
+  ],
+  "validation": {
+    "development": "TOP5_TOP10_TOP15",
+    "diagnostic_holdout": "TOP7",
+    "late_benchmark": "TOP30",
+    "required_seats": 2,
+    "fresh_seed_blocks": [200, 1000, 43000]
+  },
+  "claims": {
+    "closed_loop": false,
+    "open_loop_tape": true,
+    "promotion_requires_transfer_test": true
+  }
+}
