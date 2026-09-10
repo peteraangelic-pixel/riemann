@@ -1,0 +1,66 @@
+name: Kaggriculture V8 two-generation TOP7 gate
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v8-two-top7-gate.yml"]
+permissions:
+  contents: write
+jobs:
+  gate:
+    if: contains(github.event.head_commit.message, '[kg-v8-two-top7]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr
+      - name: Recover latest and previous TOP7
+        run: |
+          git show d6ae369:TOP7.7z >/tmp/previous.7z
+          python - <<'PY'
+          import json,pathlib,py7zr,shutil
+          with py7zr.SevenZipFile('TOP7.7z') as a:a.extractall('/tmp/latest')
+          roots=[m.parent for m in pathlib.Path('/tmp/latest').rglob('manifest.json') if isinstance(json.loads(m.read_text()).get('teams'),list) and len(json.loads(m.read_text())['teams'])==7]
+          if len(roots)!=1:raise SystemExit(f'latest roots: {roots}')
+          pathlib.Path('/tmp/latest-root').write_text(str(roots[0]))
+          with py7zr.SevenZipFile('/tmp/previous.7z') as a:a.extractall('/tmp/previous-all')
+          by_rank={}
+          for m in pathlib.Path('/tmp/previous-all').rglob('manifest.json'):
+           d=json.loads(m.read_text())
+           if 'team_name' not in d or len(d.get('selected_episodes',[]))!=12:continue
+           freshness=max(e.get('end_time','') for e in d['selected_episodes']);rank=int(d['rank'])
+           if rank not in by_rank or freshness>by_rank[rank][0]:by_rank[rank]=(freshness,m,d)
+          chosen=[by_rank[r] for r in sorted(by_rank)[:7]]
+          if len(chosen)!=7:raise SystemExit(f'previous ranks: {sorted(by_rank)}')
+          out=pathlib.Path('/tmp/previous7');out.mkdir();teams=[]
+          for freshness,m,d in chosen:
+           shutil.copytree(m.parent,out/d['folder']);teams.append(d);print('selected',d['rank'],d['team_name'],freshness)
+          (out/'manifest.json').write_text(json.dumps({'competition':'kaggriculture','teams':teams}))
+          pathlib.Path('/tmp/previous-root').write_text(str(out))
+          PY
+      - working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - name: Large latest TOP7 gate
+        run: |
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py --corpus "$(cat /tmp/latest-root)" --workers 4 --seeds 32 --seed-start 154000 \
+            --candidate v7=kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
+            --candidate hybrid=kaggriculture_meta_lab/agents/candidates/agent_v8_lab_safe_open_old_market.py \
+            --candidate v16=kaggriculture_meta_lab/agents/variants/agent_v16_kanno_top7_champion.py \
+            --output kaggriculture_meta_lab/results/v8-two-top7-latest-20260910.json
+      - name: Independent previous TOP7 gate
+        run: |
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py --corpus "$(cat /tmp/previous-root)" --workers 4 --seeds 24 --seed-start 156000 \
+            --candidate v7=kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
+            --candidate hybrid=kaggriculture_meta_lab/agents/candidates/agent_v8_lab_safe_open_old_market.py \
+            --candidate v16=kaggriculture_meta_lab/agents/variants/agent_v16_kanno_top7_champion.py \
+            --output kaggriculture_meta_lab/results/v8-two-top7-previous-20260910.json
+      - name: Persist evidence
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v8-two-top7-*.json
+          git commit -m "Record two-generation TOP7 V8 gate"
+          git push origin HEAD:arena/01a0712c-riemann
