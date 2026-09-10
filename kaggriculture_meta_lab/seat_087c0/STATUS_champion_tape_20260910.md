@@ -334,3 +334,33 @@ kanno!) i v4 (koherentny rynek v3 + opening GJ) — oba bez splicowanego
 rynku, więc mogą transferować jak V16. V6 = rdzeń V16 + małe odwracalne
 reakcje state-gated (town-cycle!), metryki absolute-economy, panel o
 różnych podażach.
+
+## Panel TOP15 (7680 gier, seedy 50000+) + wina V5 znaleziona
+
+Brakowało testów vs obce strategie — nadrobione: 15 taśm TOP15
+(best-reward z 7 najnowszych epizodów, corpus/top15/ + panel.json).
+v2: 83.8% (OWN 96658) | v3: 90.9% (96125) | v4: 85.6% (96469) | v5: 85.7% (97625).
+v3 najlepszy vs TOP15. v2 przegrywa z kanno_top15 (54-74) i remisuje
+GJ_top15 (69-59) — znane słabości rodzinne.
+
+BOMBA: v4 i v5 dostają 0-128 od deepernet_top15 (-69k/-48k/g), gdy v2/v3
+wygrywają 88-40/100-28. Winny = DZIEŃ 0 (sam revert dnia 0: 0-24 -> 15-9;
+reszta dni nic). Różnica to 2 kroki rynku t0/t1: flip pszenicy kanno
+(kup 27/sprzedaj 60+) vs GJ (kup 5). Ablacja CI (121 wariantów): revert
+bloku 0 naprawia DN 0-64 -> 50-14 (+54k) kosztem -964/g vs v2; żaden
+inny blok nie ma znaczenia. V5 day0 == V4 day0 (odziedziczone).
+Mechanizm: kanno-flip EKSTRAHUJE ~400 z kanno-flippującego oponenta w
+t0/t1 (DN: 2557 vs 2634) i dokłada przez 29 dni; GJ-opening nie.
+
+To NIE jest "fix", tylko PAPIER-KAMIEŃ-NOŻYCE otwarć: V5.1 (V5+kanno
+blok0) naprawia DN (100-28) i trzyma świat zewnętrzny (v2 125-3, v3
+119-9, b21 107-21, kanno-T15 127-1, GJ-T15 117-11), ale przegrywa
+lustra: vs V5 7-121, vs v4 62-66. V4.1 naprawia DN, ale łamie v3
+(10-118!) i GJ-taśmę (9-119) — ODRZUCONY. Wniosek: cała przewaga V4 nad
+v3 (94-2) pochodzi z otwarcia; reszta genomu jest gorsza od v3.
+Zalety NIE kumulują się przechodnio (DN > GJ-otwarcie > kanno > DN).
+
+V6: otwarcie musi być maximinowe (kanno-flip, brak katastrof) albo
+mieszane/reaktywne (obserwacja t0 oponenta -> kontra w t1+). V5.1 to
+nasiono V6 / kandydat live #2; v3 to najbezpieczniejszy następny submit
+(koherencja + 90.9% + zero dziur); V4 nie submitować (dziura DN).
