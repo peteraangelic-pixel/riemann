@@ -1,0 +1,14 @@
+  200/840 games in 18s (10.95/s)
+  400/840 games in 35s (11.44/s)
+  600/840 games in 52s (11.58/s)
+  800/840 games in 68s (11.69/s)
+  840/840 games in 72s (11.72/s)
+  [rust] 1680 games in 1.093s (1537.1/s; trim A/B=True/False)
+Traceback (most recent call last):
+  File "/home/runner/work/riemann/riemann/kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py", line 51, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/runner/work/riemann/riemann/kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py", line 34, in main
+    if any(r.get('error') for r in enriched):raise RuntimeError(f"{sum(bool(r.get('error')) for r in enriched)} failed games")
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: 840 failed games
