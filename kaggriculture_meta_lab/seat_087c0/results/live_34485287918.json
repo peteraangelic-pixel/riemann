@@ -1,0 +1,337 @@
+{
+  "as_of_utc": "2026-09-10T13:52:01.914095+00:00",
+  "competition": "kaggriculture",
+  "mode": "read-only",
+  "errors": [],
+  "leaderboard_rows": 8524,
+  "our_team": [
+    {
+      "rank": "114",
+      "teamid": "16839754",
+      "teamname": "Lauresowe 3D",
+      "lastsubmissiondate": "2026-09-10 11:58:33",
+      "score": "2769.7",
+      "submissioncount": "2",
+      "teammemberusernames": "lauresowe3d"
+    }
+  ],
+  "top20": [
+    {
+      "rank": "1",
+      "teamid": "16640510",
+      "teamname": "SpaTaro",
+      "lastsubmissiondate": "2026-09-09 05:04:06",
+      "score": "3086.6",
+      "submissioncount": "2",
+      "teammemberusernames": "tarosqrd2"
+    },
+    {
+      "rank": "2",
+      "teamid": "16760569",
+      "teamname": "Otter Vibe",
+      "lastsubmissiondate": "2026-09-08 11:36:43",
+      "score": "3032.8",
+      "submissioncount": "2",
+      "teammemberusernames": "gyuminsong"
+    },
+    {
+      "rank": "3",
+      "teamid": "16805699",
+      "teamname": "feel the agi",
+      "lastsubmissiondate": "2026-09-10 00:01:38",
+      "score": "2998.0",
+      "submissioncount": "2",
+      "teammemberusernames": "nulldata"
+    },
+    {
+      "rank": "4",
+      "teamid": "16657785",
+      "teamname": "Himanshu Kumar",
+      "lastsubmissiondate": "2026-09-09 18:32:55",
+      "score": "2990.9",
+      "submissioncount": "2",
+      "teammemberusernames": "himanshujha2812"
+    },
+    {
+      "rank": "5",
+      "teamid": "16685556",
+      "teamname": "binghua",
+      "lastsubmissiondate": "2026-09-08 13:50:16",
+      "score": "2977.1",
+      "submissioncount": "2",
+      "teammemberusernames": "binghua123"
+    },
+    {
+      "rank": "6",
+      "teamid": "16622349",
+      "teamname": "Mengfei Li",
+      "lastsubmissiondate": "2026-09-06 05:20:24",
+      "score": "2968.5",
+      "submissioncount": "2",
+      "teammemberusernames": "meli19"
+    },
+    {
+      "rank": "7",
+      "teamid": "16730612",
+      "teamname": "Unknown Mother-Goose",
+      "lastsubmissiondate": "2026-09-10 11:51:09",
+      "score": "2967.0",
+      "submissioncount": "2",
+      "teammemberusernames": "linkinpony"
+    },
+    {
+      "rank": "8",
+      "teamid": "16732496",
+      "teamname": "kanno",
+      "lastsubmissiondate": "2026-09-10 04:33:53",
+      "score": "2963.2",
+      "submissioncount": "2",
+      "teammemberusernames": "kannomasaki"
+    },
+    {
+      "rank": "9",
+      "teamid": "16681405",
+      "teamname": "Yusuke Hayashi",
+      "lastsubmissiondate": "2026-09-10 03:13:48",
+      "score": "2955.3",
+      "submissioncount": "2",
+      "teammemberusernames": "yhay81"
+    },
+    {
+      "rank": "10",
+      "teamid": "16758882",
+      "teamname": "mtmr_s1",
+      "lastsubmissiondate": "2026-09-09 14:49:54",
+      "score": "2952.8",
+      "submissioncount": "2",
+      "teammemberusernames": "mtmrs1"
+    },
+    {
+      "rank": "11",
+      "teamid": "16797543",
+      "teamname": "Tarang222",
+      "lastsubmissiondate": "2026-09-09 07:37:56",
+      "score": "2944.3",
+      "submissioncount": "2",
+      "teammemberusernames": "tarang222"
+    },
+    {
+      "rank": "12",
+      "teamid": "16839530",
+      "teamname": "que la cuenten como quieran",
+      "lastsubmissiondate": "2026-09-10 01:11:33",
+      "score": "2943.0",
+      "submissioncount": "2",
+      "teammemberusernames": "germanjurado1"
+    },
+    {
+      "rank": "13",
+      "teamid": "16801351",
+      "teamname": "デワンシュ",
+      "lastsubmissiondate": "2026-09-10 09:52:20",
+      "score": "2941.4",
+      "submissioncount": "2",
+      "teammemberusernames": "shade012"
+    },
+    {
+      "rank": "14",
+      "teamid": "16748173",
+      "teamname": "pensukesan",
+      "lastsubmissiondate": "2026-09-09 13:16:06",
+      "score": "2940.0",
+      "submissioncount": "2",
+      "teammemberusernames": "pensukesan"
+    },
+    {
+      "rank": "15",
+      "teamid": "16741542",
+      "teamname": "let cats farm",
+      "lastsubmissiondate": "2026-09-10 00:18:27",
+      "score": "2936.9",
+      "submissioncount": "2",
+      "teammemberusernames": "amonkizawa"
+    },
+    {
+      "rank": "16",
+      "teamid": "16850683",
+      "teamname": "cooked",
+      "lastsubmissiondate": "2026-09-10 03:15:38",
+      "score": "2933.2",
+      "submissioncount": "2",
+      "teammemberusernames": "jentopia,toasty3302,xenonminer"
+    },
+    {
+      "rank": "17",
+      "teamid": "16845258",
+      "teamname": "Squirrel",
+      "lastsubmissiondate": "2026-09-09 18:00:48",
+      "score": "2931.5",
+      "submissioncount": "2",
+      "teammemberusernames": "bunnykeeper"
+    },
+    {
+      "rank": "18",
+      "teamid": "16663946",
+      "teamname": "Hello San Francisco",
+      "lastsubmissiondate": "2026-09-10 06:01:27",
+      "score": "2924.8",
+      "submissioncount": "2",
+      "teammemberusernames": "circiumaru,dulgherustefan,radugoga"
+    },
+    {
+      "rank": "19",
+      "teamid": "16695664",
+      "teamname": "Bantam",
+      "lastsubmissiondate": "2026-09-10 07:19:32",
+      "score": "2916.3",
+      "submissioncount": "2",
+      "teammemberusernames": "bantam"
+    },
+    {
+      "rank": "20",
+      "teamid": "16807373",
+      "teamname": "junxing peng",
+      "lastsubmissiondate": "2026-09-10 09:36:21",
+      "score": "2913.8",
+      "submissioncount": "2",
+      "teammemberusernames": "junxingpeng"
+    }
+  ],
+  "recent_submissions": [
+    {
+      "ref": 56143699,
+      "file": "",
+      "date": "2026-09-10 11:58:33.047000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "1868.8",
+      "private_score": "",
+      "description": "V5 evolved shared champion 472-40 hybrid 512-0 G2 4e671fbe3047cf1b3024a7381db47a9b17c709cf"
+    },
+    {
+      "ref": 56142365,
+      "file": "",
+      "date": "2026-09-10 10:26:46.510000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "2769.7",
+      "private_score": "",
+      "description": "V16 Kanno TOP7 best-sub champion 212-44 V15 16-0 G2 43163a9fd57a09c45f7cd394513efef67852f0bc"
+    },
+    {
+      "ref": 56141709,
+      "file": "",
+      "date": "2026-09-10 09:34:58.737000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "1705.8",
+      "private_score": "",
+      "description": "V15 GermanJurado TOP15 champion 48-0 G2 16-0 G4 9ab8878daef2d04fc2fad6dc34856c5e8b88b375"
+    },
+    {
+      "ref": 56139250,
+      "file": "",
+      "date": "2026-09-10 06:49:33.977000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "1687.5",
+      "private_score": "",
+      "description": "V14 G2 milk0 29-3 vs submitted G2 authorized continuation d557a814714dd75542589d011bf0f5fb63f27e57"
+    },
+    {
+      "ref": 56139063,
+      "file": "",
+      "date": "2026-09-10 06:39:44.370000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "1459.5",
+      "private_score": "",
+      "description": "V13 B21 idle recovery 20-4 vs G4 authorized 82644f01d1c31fdd1425553fb40804c643f8661c"
+    },
+    {
+      "ref": 56131785,
+      "file": "",
+      "date": "2026-09-09 22:24:29.813000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "1015.0",
+      "private_score": "",
+      "description": "V11 G4-29 corrected compact framework-validated explicitly requested 9a7fa036a4d1438e8b1cecd30b8e13164c6b33a2"
+    },
+    {
+      "ref": 56131561,
+      "file": "",
+      "date": "2026-09-09 22:06:39.830000",
+      "status": "SubmissionStatus.ERROR",
+      "public_score": "",
+      "private_score": "",
+      "description": "V11 G4-29 TOP5 18-18 TOP10 27-39 TOP15 29-83 closed8-24 explicitly requested d9c5793f994dadd826ceef75daa89cc98b6b9889"
+    },
+    {
+      "ref": 56130711,
+      "file": "",
+      "date": "2026-09-09 20:43:02.840000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "2314.3",
+      "private_score": "",
+      "description": "V10 G2-83 corrected compact exact-policy framework-validated 3aa7732de48b27500bf32598dded6380b166795f"
+    },
+    {
+      "ref": 56130004,
+      "file": "",
+      "date": "2026-09-09 19:39:17.157000",
+      "status": "SubmissionStatus.ERROR",
+      "public_score": "",
+      "private_score": "",
+      "description": "V10 Subin G2-83 cash250 milk1 TOP30 margin672 closed23of32 54dda17e1b918adb80a358a6eef4e0ba7964b896"
+    },
+    {
+      "ref": 56126199,
+      "file": "",
+      "date": "2026-09-09 15:21:39.150000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "2131.8",
+      "private_score": "",
+      "description": "V10 static Subin 106845775 open-loop46.7 closed-loop26of32 3ab8d399901661a48b35e97215d77eb97fc79692"
+    },
+    {
+      "ref": 56071535,
+      "file": "",
+      "date": "2026-09-07 07:14:06.533000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "1767.2",
+      "private_score": "",
+      "description": "V9 B21-S16 TOP49 184of490 margin+835 1819433f0c62bfdcc1f15f4631c27781d19a57f7"
+    },
+    {
+      "ref": 56054139,
+      "file": "",
+      "date": "2026-09-06 11:37:46.603000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "1800.9",
+      "private_score": "",
+      "description": "V8 hybrid 200k 72of85 e76ffc5922574b7ff133b669efddb51b177dfd75"
+    },
+    {
+      "ref": 56054137,
+      "file": "",
+      "date": "2026-09-06 11:37:44.677000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "2215.3",
+      "private_score": "",
+      "description": "V8 Aastik rating 73of85 e76ffc5922574b7ff133b669efddb51b177dfd75"
+    },
+    {
+      "ref": 56044395,
+      "file": "",
+      "date": "2026-09-06 01:43:49.250000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "2193.5",
+      "private_score": "",
+      "description": "kaggr ci fa2830bf30b2ca7e8e8562aeeb88708f0eb82de1"
+    },
+    {
+      "ref": 56037841,
+      "file": "",
+      "date": "2026-09-05 17:31:03.340000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "608.4",
+      "private_score": "",
+      "description": "kaggr ci bf032aea97d414e3ce50fcedbc971b9e4ab967fe"
+    }
+  ]
+}
