@@ -33,3 +33,5 @@ jobs:
           fi
           git commit -m "Record ours plus peer V4 hybrid LAB"
           git push origin HEAD:arena/01a0712c-riemann
+
+# Second trigger uses baseline-relative per-control fitness before parent H2H.
