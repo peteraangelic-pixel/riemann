@@ -1,0 +1,47 @@
+name: Kaggriculture V16 V3 V4 V5 TOP15 audit
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-champions-top15.yml"]
+permissions:
+  contents: write
+jobs:
+  top15:
+    if: contains(github.event.head_commit.message, '[kg-champions-top15]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr
+      - run: |
+          python - <<'PY'
+          import py7zr
+          with py7zr.SevenZipFile('TOP15.7z') as archive: archive.extractall('/tmp/top15')
+          PY
+      - working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - name: Original replay-seed corpus benchmarks
+        run: |
+          for spec in \
+            'v16 kaggriculture_meta_lab/agents/variants/agent_v16_kanno_top7_champion.py' \
+            'v3 kaggriculture_meta_lab/agents/candidates/top7_kanno_ep107381285_v3_sibling.py' \
+            'v4 kaggriculture_meta_lab/agents/candidates/peer_v4_german9_kanno_v3.py' \
+            'v5 kaggriculture_meta_lab/agents/candidates/peer_v5_evolved.py'; do
+            set -- $spec
+            python kaggriculture_meta_lab/scripts/benchmark_top30.py --corpus /tmp/top15 --candidate "$2" \
+              --max-rank 15 --workers 4 --output "kaggriculture_meta_lab/results/${1}-top15-original-seeds-20260910.json"
+          done
+      - name: Matched fresh-seed TOP15 stress test
+        run: |
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
+            --corpus /tmp/top15 --workers 4 --seeds 8 \
+            --output kaggriculture_meta_lab/results/v16-v3-v4-v5-top15-fresh-20260910.json
+      - run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/*-top15-original-seeds-20260910.json kaggriculture_meta_lab/results/v16-v3-v4-v5-top15-fresh-20260910.json
+          git commit -m "Record V16 V3 V4 V5 TOP15 audit"
+          git push origin HEAD:arena/01a0712c-riemann
