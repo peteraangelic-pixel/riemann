@@ -1,35 +1,19 @@
 {
  "jobs": [
   {
-   "type": "h2h",
-   "tag": "top15-panel",
-   "candidates": [
-    "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_t7_v1.py",
-    "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_ep107381285_v1.py",
-    "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_daycrossover_v4.py",
-    "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_evolved_v5.py"
-   ],
-   "opponents": [
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/aaaabbs_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/binghua_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/cooked_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/deepernet_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/germanjurado1_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/himanshu_kumar_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/kanno_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/mengfei_li_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/mtmr_s1_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/otter_vibe_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/pensukesan_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/spataro_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/team_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/terry_luo_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/ultimatum_game_top15.py"
-   ],
-   "start_seed": 50000,
-   "games": 64,
-   "threads": 4,
-   "parity_k": 4
+   "type": "ablate",
+   "tag": "v5-v16-blocks",
+   "base": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_evolved_v5.py",
+   "donor": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_t7_v1.py",
+   "block": 6,
+   "controls": {
+    "v2": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_t7_v1.py",
+    "deepernet": "kaggriculture_meta_lab/seat_087c0/corpus/top15/deepernet_top15.py",
+    "b21": "kaggriculture_meta_lab/seat_087c0/corpus/raw_b21.py"
+   },
+   "start_seed": 51000,
+   "games": 32,
+   "threads": 4
   }
  ]
 }
