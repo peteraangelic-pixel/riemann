@@ -1,0 +1,1825 @@
+{
+  "format": "kaggriculture-day-crossover-search-v1",
+  "population": 256,
+  "mask_seed": 20260910,
+  "true_means_german_day": true,
+  "train_seeds": [
+    80000,
+    80007
+  ],
+  "holdout_seeds": [
+    81000,
+    81031
+  ],
+  "opponents": [
+    "german",
+    "b21",
+    "german_alt",
+    "kanno_lower"
+  ],
+  "train_jobs": 16384,
+  "holdout_jobs": 4352,
+  "finalists": [
+    133,
+    218,
+    109,
+    217,
+    19,
+    17,
+    21,
+    25,
+    27,
+    29,
+    43,
+    3,
+    5,
+    7,
+    9,
+    11
+  ],
+  "baseline_holdout": {
+    "controls": {
+      "german": {
+        "games": 64,
+        "wins": 30,
+        "losses": 34,
+        "ties": 0,
+        "score_rate": 0.46875,
+        "mean_margin": -49.25,
+        "worst_margin": -3506.0
+      },
+      "b21": {
+        "games": 64,
+        "wins": 46,
+        "losses": 18,
+        "ties": 0,
+        "score_rate": 0.71875,
+        "mean_margin": 8507.265625,
+        "worst_margin": -4165.0
+      },
+      "german_alt": {
+        "games": 64,
+        "wins": 61,
+        "losses": 3,
+        "ties": 0,
+        "score_rate": 0.953125,
+        "mean_margin": 2322.28125,
+        "worst_margin": -1838.0
+      },
+      "kanno_lower": {
+        "games": 64,
+        "wins": 52,
+        "losses": 12,
+        "ties": 0,
+        "score_rate": 0.8125,
+        "mean_margin": 569.359375,
+        "worst_margin": -4606.0
+      }
+    },
+    "worst_score_rate": 0.46875,
+    "mean_score_rate": 0.73828125,
+    "mean_margin": 2837.4140625
+  },
+  "winner_index": 218,
+  "winner_mask": "GKKKKKKKKKKKKKKKKGKKKKKGKKKKKK",
+  "winner_holdout": {
+    "controls": {
+      "german": {
+        "games": 64,
+        "wins": 60,
+        "losses": 4,
+        "ties": 0,
+        "score_rate": 0.9375,
+        "mean_margin": 432.703125,
+        "worst_margin": -5295.0
+      },
+      "b21": {
+        "games": 64,
+        "wins": 46,
+        "losses": 18,
+        "ties": 0,
+        "score_rate": 0.71875,
+        "mean_margin": 6333.859375,
+        "worst_margin": -4578.0
+      },
+      "german_alt": {
+        "games": 64,
+        "wins": 63,
+        "losses": 1,
+        "ties": 0,
+        "score_rate": 0.984375,
+        "mean_margin": 2871.421875,
+        "worst_margin": -2151.0
+      },
+      "kanno_lower": {
+        "games": 64,
+        "wins": 62,
+        "losses": 2,
+        "ties": 0,
+        "score_rate": 0.96875,
+        "mean_margin": 831.53125,
+        "worst_margin": -1291.0
+      }
+    },
+    "worst_score_rate": 0.71875,
+    "mean_score_rate": 0.90234375,
+    "mean_margin": 2617.37890625
+  },
+  "emitted": true,
+  "top_train": [
+    {
+      "index": 133,
+      "mask": "GKKGGKKGKGKKKKKKKGGGKKKGKKKGKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 16,
+            "wins": 14,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.875,
+            "mean_margin": 804.125,
+            "worst_margin": -3149.0
+          },
+          "b21": {
+            "games": 16,
+            "wins": 13,
+            "losses": 3,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 7006.375,
+            "worst_margin": -3773.0
+          },
+          "german_alt": {
+            "games": 16,
+            "wins": 14,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.875,
+            "mean_margin": 2566.125,
+            "worst_margin": -898.0
+          },
+          "kanno_lower": {
+            "games": 16,
+            "wins": 12,
+            "losses": 4,
+            "ties": 0,
+            "score_rate": 0.75,
+            "mean_margin": 1382.9375,
+            "worst_margin": -3704.0
+          }
+        },
+        "worst_score_rate": 0.75,
+        "mean_score_rate": 0.828125,
+        "mean_margin": 2939.890625
+      }
+    },
+    {
+      "index": 218,
+      "mask": "GKKKKKKKKKKKKKKKKGKKKKKGKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 16,
+            "wins": 11,
+            "losses": 5,
+            "ties": 0,
+            "score_rate": 0.6875,
+            "mean_margin": 235.6875,
+            "worst_margin": -8811.0
+          },
+          "b21": {
+            "games": 16,
+            "wins": 13,
+            "losses": 3,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 6324.0625,
+            "worst_margin": -3615.0
+          },
+          "german_alt": {
+            "games": 16,
+            "wins": 14,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.875,
+            "mean_margin": 2796.0625,
+            "worst_margin": -5632.0
+          },
+          "kanno_lower": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 1985.1875,
+            "worst_margin": -2963.0
+          }
+        },
+        "worst_score_rate": 0.6875,
+        "mean_score_rate": 0.828125,
+        "mean_margin": 2835.25
+      }
+    },
+    {
+      "index": 109,
+      "mask": "GGKKKGKKKKKKKGKKGKKGKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 16,
+            "wins": 10,
+            "losses": 6,
+            "ties": 0,
+            "score_rate": 0.625,
+            "mean_margin": 306.3125,
+            "worst_margin": -8974.0
+          },
+          "b21": {
+            "games": 16,
+            "wins": 13,
+            "losses": 3,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 6203.625,
+            "worst_margin": -3568.0
+          },
+          "german_alt": {
+            "games": 16,
+            "wins": 14,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.875,
+            "mean_margin": 2739.8125,
+            "worst_margin": -5551.0
+          },
+          "kanno_lower": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 1840.25,
+            "worst_margin": -3767.0
+          }
+        },
+        "worst_score_rate": 0.625,
+        "mean_score_rate": 0.8125,
+        "mean_margin": 2772.5
+      }
+    },
+    {
+      "index": 217,
+      "mask": "GKGKKKKKKKKKKKKGKKKGKGKGGKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 16,
+            "wins": 11,
+            "losses": 5,
+            "ties": 0,
+            "score_rate": 0.6875,
+            "mean_margin": 59.375,
+            "worst_margin": -9550.0
+          },
+          "b21": {
+            "games": 16,
+            "wins": 13,
+            "losses": 3,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 6353.625,
+            "worst_margin": -3554.0
+          },
+          "german_alt": {
+            "games": 16,
+            "wins": 14,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.875,
+            "mean_margin": 1991.375,
+            "worst_margin": -7021.0
+          },
+          "kanno_lower": {
+            "games": 16,
+            "wins": 10,
+            "losses": 6,
+            "ties": 0,
+            "score_rate": 0.625,
+            "mean_margin": 1044.125,
+            "worst_margin": -5129.0
+          }
+        },
+        "worst_score_rate": 0.625,
+        "mean_score_rate": 0.75,
+        "mean_margin": 2362.125
+      }
+    },
+    {
+      "index": 19,
+      "mask": "GGGGGGGGGKKKKKKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 16,
+            "wins": 9,
+            "losses": 7,
+            "ties": 0,
+            "score_rate": 0.5625,
+            "mean_margin": 646.5625,
+            "worst_margin": -3006.0
+          },
+          "b21": {
+            "games": 16,
+            "wins": 13,
+            "losses": 3,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 8653.75,
+            "worst_margin": -3497.0
+          },
+          "german_alt": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 3279.875,
+            "worst_margin": -796.0
+          },
+          "kanno_lower": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 1683.625,
+            "worst_margin": -2417.0
+          }
+        },
+        "worst_score_rate": 0.5625,
+        "mean_score_rate": 0.8125,
+        "mean_margin": 3565.953125
+      }
+    },
+    {
+      "index": 17,
+      "mask": "GGGGGGGGKKKKKKKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 16,
+            "wins": 9,
+            "losses": 7,
+            "ties": 0,
+            "score_rate": 0.5625,
+            "mean_margin": 623.8125,
+            "worst_margin": -3001.0
+          },
+          "b21": {
+            "games": 16,
+            "wins": 13,
+            "losses": 3,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 8627.0,
+            "worst_margin": -3527.0
+          },
+          "german_alt": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 3257.125,
+            "worst_margin": -791.0
+          },
+          "kanno_lower": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 1658.25,
+            "worst_margin": -2412.0
+          }
+        },
+        "worst_score_rate": 0.5625,
+        "mean_score_rate": 0.8125,
+        "mean_margin": 3541.546875
+      }
+    },
+    {
+      "index": 21,
+      "mask": "GGGGGGGGGGKKKKKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 16,
+            "wins": 9,
+            "losses": 7,
+            "ties": 0,
+            "score_rate": 0.5625,
+            "mean_margin": 513.5625,
+            "worst_margin": -3170.0
+          },
+          "b21": {
+            "games": 16,
+            "wins": 13,
+            "losses": 3,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 8643.625,
+            "worst_margin": -3508.0
+          },
+          "german_alt": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 3146.875,
+            "worst_margin": -811.0
+          },
+          "kanno_lower": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 1595.5625,
+            "worst_margin": -2544.0
+          }
+        },
+        "worst_score_rate": 0.5625,
+        "mean_score_rate": 0.8125,
+        "mean_margin": 3474.90625
+      }
+    },
+    {
+      "index": 25,
+      "mask": "GGGGGGGGGGGGKKKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 16,
+            "wins": 9,
+            "losses": 7,
+            "ties": 0,
+            "score_rate": 0.5625,
+            "mean_margin": 418.625,
+            "worst_margin": -3222.0
+          },
+          "b21": {
+            "games": 16,
+            "wins": 13,
+            "losses": 3,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 8564.1875,
+            "worst_margin": -3601.0
+          },
+          "german_alt": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 3051.9375,
+            "worst_margin": -943.0
+          },
+          "kanno_lower": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 1524.0,
+            "worst_margin": -2575.0
+          }
+        },
+        "worst_score_rate": 0.5625,
+        "mean_score_rate": 0.8125,
+        "mean_margin": 3389.6875
+      }
+    },
+    {
+      "index": 27,
+      "mask": "GGGGGGGGGGGGGKKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 16,
+            "wins": 9,
+            "losses": 7,
+            "ties": 0,
+            "score_rate": 0.5625,
+            "mean_margin": 288.75,
+            "worst_margin": -3302.0
+          },
+          "b21": {
+            "games": 16,
+            "wins": 13,
+            "losses": 3,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 8494.0,
+            "worst_margin": -3678.0
+          },
+          "german_alt": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 2985.3125,
+            "worst_margin": -988.0
+          },
+          "kanno_lower": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 1510.125,
+            "worst_margin": -2575.0
+          }
+        },
+        "worst_score_rate": 0.5625,
+        "mean_score_rate": 0.8125,
+        "mean_margin": 3319.546875
+      }
+    },
+    {
+      "index": 29,
+      "mask": "GGGGGGGGGGGGGGKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 16,
+            "wins": 9,
+            "losses": 7,
+            "ties": 0,
+            "score_rate": 0.5625,
+            "mean_margin": 277.0,
+            "worst_margin": -3306.0
+          },
+          "b21": {
+            "games": 16,
+            "wins": 13,
+            "losses": 3,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 8431.5625,
+            "worst_margin": -3744.0
+          },
+          "german_alt": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 2989.9375,
+            "worst_margin": -982.0
+          },
+          "kanno_lower": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 1500.5625,
+            "worst_margin": -2579.0
+          }
+        },
+        "worst_score_rate": 0.5625,
+        "mean_score_rate": 0.8125,
+        "mean_margin": 3299.765625
+      }
+    },
+    {
+      "index": 43,
+      "mask": "GGGGGGGGGGGGGGGGGGGGGKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 16,
+            "wins": 9,
+            "losses": 7,
+            "ties": 0,
+            "score_rate": 0.5625,
+            "mean_margin": 186.25,
+            "worst_margin": -3375.0
+          },
+          "b21": {
+            "games": 16,
+            "wins": 13,
+            "losses": 3,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 8174.625,
+            "worst_margin": -4051.0
+          },
+          "german_alt": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 2817.3125,
+            "worst_margin": -1089.0
+          },
+          "kanno_lower": {
+            "games": 16,
+            "wins": 14,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.875,
+            "mean_margin": 1245.6875,
+            "worst_margin": -2531.0
+          }
+        },
+        "worst_score_rate": 0.5625,
+        "mean_score_rate": 0.796875,
+        "mean_margin": 3105.96875
+      }
+    },
+    {
+      "index": 3,
+      "mask": "GKKKKKKKKKKKKKKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 16,
+            "wins": 9,
+            "losses": 7,
+            "ties": 0,
+            "score_rate": 0.5625,
+            "mean_margin": 310.1875,
+            "worst_margin": -9015.0
+          },
+          "b21": {
+            "games": 16,
+            "wins": 13,
+            "losses": 3,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 6558.875,
+            "worst_margin": -3456.0
+          },
+          "german_alt": {
+            "games": 16,
+            "wins": 14,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.875,
+            "mean_margin": 2930.5,
+            "worst_margin": -5373.0
+          },
+          "kanno_lower": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 2099.75,
+            "worst_margin": -2902.0
+          }
+        },
+        "worst_score_rate": 0.5625,
+        "mean_score_rate": 0.796875,
+        "mean_margin": 2974.828125
+      }
+    },
+    {
+      "index": 5,
+      "mask": "GGKKKKKKKKKKKKKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 16,
+            "wins": 9,
+            "losses": 7,
+            "ties": 0,
+            "score_rate": 0.5625,
+            "mean_margin": 310.1875,
+            "worst_margin": -9015.0
+          },
+          "b21": {
+            "games": 16,
+            "wins": 13,
+            "losses": 3,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 6558.875,
+            "worst_margin": -3456.0
+          },
+          "german_alt": {
+            "games": 16,
+            "wins": 14,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.875,
+            "mean_margin": 2930.5,
+            "worst_margin": -5373.0
+          },
+          "kanno_lower": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 2099.75,
+            "worst_margin": -2902.0
+          }
+        },
+        "worst_score_rate": 0.5625,
+        "mean_score_rate": 0.796875,
+        "mean_margin": 2974.828125
+      }
+    },
+    {
+      "index": 7,
+      "mask": "GGGKKKKKKKKKKKKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 16,
+            "wins": 9,
+            "losses": 7,
+            "ties": 0,
+            "score_rate": 0.5625,
+            "mean_margin": 310.1875,
+            "worst_margin": -9015.0
+          },
+          "b21": {
+            "games": 16,
+            "wins": 13,
+            "losses": 3,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 6558.875,
+            "worst_margin": -3456.0
+          },
+          "german_alt": {
+            "games": 16,
+            "wins": 14,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.875,
+            "mean_margin": 2930.5,
+            "worst_margin": -5373.0
+          },
+          "kanno_lower": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 2099.75,
+            "worst_margin": -2902.0
+          }
+        },
+        "worst_score_rate": 0.5625,
+        "mean_score_rate": 0.796875,
+        "mean_margin": 2974.828125
+      }
+    },
+    {
+      "index": 9,
+      "mask": "GGGGKKKKKKKKKKKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 16,
+            "wins": 9,
+            "losses": 7,
+            "ties": 0,
+            "score_rate": 0.5625,
+            "mean_margin": 310.1875,
+            "worst_margin": -9015.0
+          },
+          "b21": {
+            "games": 16,
+            "wins": 13,
+            "losses": 3,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 6558.875,
+            "worst_margin": -3456.0
+          },
+          "german_alt": {
+            "games": 16,
+            "wins": 14,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.875,
+            "mean_margin": 2930.5,
+            "worst_margin": -5373.0
+          },
+          "kanno_lower": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 2099.75,
+            "worst_margin": -2902.0
+          }
+        },
+        "worst_score_rate": 0.5625,
+        "mean_score_rate": 0.796875,
+        "mean_margin": 2974.828125
+      }
+    },
+    {
+      "index": 11,
+      "mask": "GGGGGKKKKKKKKKKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 16,
+            "wins": 9,
+            "losses": 7,
+            "ties": 0,
+            "score_rate": 0.5625,
+            "mean_margin": 310.1875,
+            "worst_margin": -9015.0
+          },
+          "b21": {
+            "games": 16,
+            "wins": 13,
+            "losses": 3,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 6558.875,
+            "worst_margin": -3456.0
+          },
+          "german_alt": {
+            "games": 16,
+            "wins": 14,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.875,
+            "mean_margin": 2930.5,
+            "worst_margin": -5373.0
+          },
+          "kanno_lower": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 2099.75,
+            "worst_margin": -2902.0
+          }
+        },
+        "worst_score_rate": 0.5625,
+        "mean_score_rate": 0.796875,
+        "mean_margin": 2974.828125
+      }
+    },
+    {
+      "index": 13,
+      "mask": "GGGGGGKKKKKKKKKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 16,
+            "wins": 9,
+            "losses": 7,
+            "ties": 0,
+            "score_rate": 0.5625,
+            "mean_margin": 308.9375,
+            "worst_margin": -9017.0
+          },
+          "b21": {
+            "games": 16,
+            "wins": 13,
+            "losses": 3,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 6558.875,
+            "worst_margin": -3456.0
+          },
+          "german_alt": {
+            "games": 16,
+            "wins": 14,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.875,
+            "mean_margin": 2929.25,
+            "worst_margin": -5375.0
+          },
+          "kanno_lower": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 2098.625,
+            "worst_margin": -2904.0
+          }
+        },
+        "worst_score_rate": 0.5625,
+        "mean_score_rate": 0.796875,
+        "mean_margin": 2973.921875
+      }
+    },
+    {
+      "index": 147,
+      "mask": "GKKKGKKKKKKKKKGKGKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 16,
+            "wins": 9,
+            "losses": 7,
+            "ties": 0,
+            "score_rate": 0.5625,
+            "mean_margin": 307.0625,
+            "worst_margin": -9056.0
+          },
+          "b21": {
+            "games": 16,
+            "wins": 13,
+            "losses": 3,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 6522.1875,
+            "worst_margin": -3480.0
+          },
+          "german_alt": {
+            "games": 16,
+            "wins": 14,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.875,
+            "mean_margin": 2857.125,
+            "worst_margin": -5262.0
+          },
+          "kanno_lower": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 2044.8125,
+            "worst_margin": -2740.0
+          }
+        },
+        "worst_score_rate": 0.5625,
+        "mean_score_rate": 0.796875,
+        "mean_margin": 2932.796875
+      }
+    },
+    {
+      "index": 175,
+      "mask": "GKKKKKKKKKKKKKKGKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 16,
+            "wins": 9,
+            "losses": 7,
+            "ties": 0,
+            "score_rate": 0.5625,
+            "mean_margin": 182.3125,
+            "worst_margin": -9197.0
+          },
+          "b21": {
+            "games": 16,
+            "wins": 13,
+            "losses": 3,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 6523.3125,
+            "worst_margin": -3498.0
+          },
+          "german_alt": {
+            "games": 16,
+            "wins": 14,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.875,
+            "mean_margin": 2874.5,
+            "worst_margin": -5454.0
+          },
+          "kanno_lower": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 2046.1875,
+            "worst_margin": -3051.0
+          }
+        },
+        "worst_score_rate": 0.5625,
+        "mean_score_rate": 0.796875,
+        "mean_margin": 2906.578125
+      }
+    },
+    {
+      "index": 142,
+      "mask": "GKKKGKKKGKKKKKKKGKGKGKKGKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 16,
+            "wins": 9,
+            "losses": 7,
+            "ties": 0,
+            "score_rate": 0.5625,
+            "mean_margin": 161.25,
+            "worst_margin": -8916.0
+          },
+          "b21": {
+            "games": 16,
+            "wins": 13,
+            "losses": 3,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 6019.75,
+            "worst_margin": -4012.0
+          },
+          "german_alt": {
+            "games": 16,
+            "wins": 14,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.875,
+            "mean_margin": 2539.5625,
+            "worst_margin": -5775.0
+          },
+          "kanno_lower": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 1763.0,
+            "worst_margin": -2687.0
+          }
+        },
+        "worst_score_rate": 0.5625,
+        "mean_score_rate": 0.796875,
+        "mean_margin": 2620.890625
+      }
+    }
+  ],
+  "holdout": [
+    {
+      "index": 133,
+      "mask": "GKKGGKKGKGKKKKKKKGGGKKKGKKKGKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 64,
+            "wins": 61,
+            "losses": 3,
+            "ties": 0,
+            "score_rate": 0.953125,
+            "mean_margin": 708.234375,
+            "worst_margin": -2452.0
+          },
+          "b21": {
+            "games": 64,
+            "wins": 48,
+            "losses": 16,
+            "ties": 0,
+            "score_rate": 0.75,
+            "mean_margin": 7067.21875,
+            "worst_margin": -4900.0
+          },
+          "german_alt": {
+            "games": 64,
+            "wins": 63,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.984375,
+            "mean_margin": 2280.234375,
+            "worst_margin": -147.0
+          },
+          "kanno_lower": {
+            "games": 64,
+            "wins": 46,
+            "losses": 18,
+            "ties": 0,
+            "score_rate": 0.71875,
+            "mean_margin": 324.640625,
+            "worst_margin": -1440.0
+          }
+        },
+        "worst_score_rate": 0.71875,
+        "mean_score_rate": 0.8515625,
+        "mean_margin": 2595.08203125
+      }
+    },
+    {
+      "index": 218,
+      "mask": "GKKKKKKKKKKKKKKKKGKKKKKGKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 64,
+            "wins": 60,
+            "losses": 4,
+            "ties": 0,
+            "score_rate": 0.9375,
+            "mean_margin": 432.703125,
+            "worst_margin": -5295.0
+          },
+          "b21": {
+            "games": 64,
+            "wins": 46,
+            "losses": 18,
+            "ties": 0,
+            "score_rate": 0.71875,
+            "mean_margin": 6333.859375,
+            "worst_margin": -4578.0
+          },
+          "german_alt": {
+            "games": 64,
+            "wins": 63,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.984375,
+            "mean_margin": 2871.421875,
+            "worst_margin": -2151.0
+          },
+          "kanno_lower": {
+            "games": 64,
+            "wins": 62,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.96875,
+            "mean_margin": 831.53125,
+            "worst_margin": -1291.0
+          }
+        },
+        "worst_score_rate": 0.71875,
+        "mean_score_rate": 0.90234375,
+        "mean_margin": 2617.37890625
+      }
+    },
+    {
+      "index": 109,
+      "mask": "GGKKKGKKKKKKKGKKGKKGKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 64,
+            "wins": 52,
+            "losses": 12,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 405.421875,
+            "worst_margin": -5055.0
+          },
+          "b21": {
+            "games": 64,
+            "wins": 46,
+            "losses": 18,
+            "ties": 0,
+            "score_rate": 0.71875,
+            "mean_margin": 6146.1875,
+            "worst_margin": -4878.0
+          },
+          "german_alt": {
+            "games": 64,
+            "wins": 63,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.984375,
+            "mean_margin": 2794.90625,
+            "worst_margin": -1748.0
+          },
+          "kanno_lower": {
+            "games": 64,
+            "wins": 62,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.96875,
+            "mean_margin": 766.296875,
+            "worst_margin": -1396.0
+          }
+        },
+        "worst_score_rate": 0.71875,
+        "mean_score_rate": 0.87109375,
+        "mean_margin": 2528.203125
+      }
+    },
+    {
+      "index": 217,
+      "mask": "GKGKKKKKKKKKKKKGKKKGKGKGGKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 64,
+            "wins": 56,
+            "losses": 8,
+            "ties": 0,
+            "score_rate": 0.875,
+            "mean_margin": 269.578125,
+            "worst_margin": -5935.0
+          },
+          "b21": {
+            "games": 64,
+            "wins": 48,
+            "losses": 16,
+            "ties": 0,
+            "score_rate": 0.75,
+            "mean_margin": 6431.703125,
+            "worst_margin": -4493.0
+          },
+          "german_alt": {
+            "games": 64,
+            "wins": 63,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.984375,
+            "mean_margin": 2052.21875,
+            "worst_margin": -3310.0
+          },
+          "kanno_lower": {
+            "games": 64,
+            "wins": 20,
+            "losses": 44,
+            "ties": 0,
+            "score_rate": 0.3125,
+            "mean_margin": 58.171875,
+            "worst_margin": -1639.0
+          }
+        },
+        "worst_score_rate": 0.3125,
+        "mean_score_rate": 0.73046875,
+        "mean_margin": 2202.91796875
+      }
+    },
+    {
+      "index": 19,
+      "mask": "GGGGGGGGGKKKKKKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 64,
+            "wins": 54,
+            "losses": 10,
+            "ties": 0,
+            "score_rate": 0.84375,
+            "mean_margin": 470.28125,
+            "worst_margin": -2183.0
+          },
+          "b21": {
+            "games": 64,
+            "wins": 46,
+            "losses": 18,
+            "ties": 0,
+            "score_rate": 0.71875,
+            "mean_margin": 8344.875,
+            "worst_margin": -4427.0
+          },
+          "german_alt": {
+            "games": 64,
+            "wins": 64,
+            "losses": 0,
+            "ties": 0,
+            "score_rate": 1.0,
+            "mean_margin": 2942.953125,
+            "worst_margin": 1284.0
+          },
+          "kanno_lower": {
+            "games": 64,
+            "wins": 62,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.96875,
+            "mean_margin": 847.40625,
+            "worst_margin": -1242.0
+          }
+        },
+        "worst_score_rate": 0.71875,
+        "mean_score_rate": 0.8828125,
+        "mean_margin": 3151.37890625
+      }
+    },
+    {
+      "index": 17,
+      "mask": "GGGGGGGGKKKKKKKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 64,
+            "wins": 54,
+            "losses": 10,
+            "ties": 0,
+            "score_rate": 0.84375,
+            "mean_margin": 443.8125,
+            "worst_margin": -2178.0
+          },
+          "b21": {
+            "games": 64,
+            "wins": 46,
+            "losses": 18,
+            "ties": 0,
+            "score_rate": 0.71875,
+            "mean_margin": 8316.203125,
+            "worst_margin": -4457.0
+          },
+          "german_alt": {
+            "games": 64,
+            "wins": 64,
+            "losses": 0,
+            "ties": 0,
+            "score_rate": 1.0,
+            "mean_margin": 2916.484375,
+            "worst_margin": 1257.0
+          },
+          "kanno_lower": {
+            "games": 64,
+            "wins": 62,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.96875,
+            "mean_margin": 818.046875,
+            "worst_margin": -1237.0
+          }
+        },
+        "worst_score_rate": 0.71875,
+        "mean_score_rate": 0.8828125,
+        "mean_margin": 3123.63671875
+      }
+    },
+    {
+      "index": 21,
+      "mask": "GGGGGGGGGGKKKKKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 64,
+            "wins": 52,
+            "losses": 12,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 356.390625,
+            "worst_margin": -2347.0
+          },
+          "b21": {
+            "games": 64,
+            "wins": 46,
+            "losses": 18,
+            "ties": 0,
+            "score_rate": 0.71875,
+            "mean_margin": 8332.84375,
+            "worst_margin": -4438.0
+          },
+          "german_alt": {
+            "games": 64,
+            "wins": 64,
+            "losses": 0,
+            "ties": 0,
+            "score_rate": 1.0,
+            "mean_margin": 2829.0625,
+            "worst_margin": 1113.0
+          },
+          "kanno_lower": {
+            "games": 64,
+            "wins": 58,
+            "losses": 6,
+            "ties": 0,
+            "score_rate": 0.90625,
+            "mean_margin": 763.25,
+            "worst_margin": -1253.0
+          }
+        },
+        "worst_score_rate": 0.71875,
+        "mean_score_rate": 0.859375,
+        "mean_margin": 3070.38671875
+      }
+    },
+    {
+      "index": 25,
+      "mask": "GGGGGGGGGGGGKKKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 64,
+            "wins": 50,
+            "losses": 14,
+            "ties": 0,
+            "score_rate": 0.78125,
+            "mean_margin": 264.71875,
+            "worst_margin": -2397.0
+          },
+          "b21": {
+            "games": 64,
+            "wins": 46,
+            "losses": 18,
+            "ties": 0,
+            "score_rate": 0.71875,
+            "mean_margin": 8262.546875,
+            "worst_margin": -4531.0
+          },
+          "german_alt": {
+            "games": 64,
+            "wins": 64,
+            "losses": 0,
+            "ties": 0,
+            "score_rate": 1.0,
+            "mean_margin": 2737.390625,
+            "worst_margin": 993.0
+          },
+          "kanno_lower": {
+            "games": 64,
+            "wins": 58,
+            "losses": 6,
+            "ties": 0,
+            "score_rate": 0.90625,
+            "mean_margin": 680.78125,
+            "worst_margin": -1357.0
+          }
+        },
+        "worst_score_rate": 0.71875,
+        "mean_score_rate": 0.8515625,
+        "mean_margin": 2986.359375
+      }
+    },
+    {
+      "index": 27,
+      "mask": "GGGGGGGGGGGGGKKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 64,
+            "wins": 42,
+            "losses": 22,
+            "ties": 0,
+            "score_rate": 0.65625,
+            "mean_margin": 130.765625,
+            "worst_margin": -2487.0
+          },
+          "b21": {
+            "games": 64,
+            "wins": 46,
+            "losses": 18,
+            "ties": 0,
+            "score_rate": 0.71875,
+            "mean_margin": 8187.875,
+            "worst_margin": -4608.0
+          },
+          "german_alt": {
+            "games": 64,
+            "wins": 64,
+            "losses": 0,
+            "ties": 0,
+            "score_rate": 1.0,
+            "mean_margin": 2667.8125,
+            "worst_margin": 923.0
+          },
+          "kanno_lower": {
+            "games": 64,
+            "wins": 58,
+            "losses": 6,
+            "ties": 0,
+            "score_rate": 0.90625,
+            "mean_margin": 665.078125,
+            "worst_margin": -1357.0
+          }
+        },
+        "worst_score_rate": 0.65625,
+        "mean_score_rate": 0.8203125,
+        "mean_margin": 2912.8828125
+      }
+    },
+    {
+      "index": 29,
+      "mask": "GGGGGGGGGGGGGGKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 64,
+            "wins": 42,
+            "losses": 22,
+            "ties": 0,
+            "score_rate": 0.65625,
+            "mean_margin": 119.234375,
+            "worst_margin": -2499.0
+          },
+          "b21": {
+            "games": 64,
+            "wins": 46,
+            "losses": 18,
+            "ties": 0,
+            "score_rate": 0.71875,
+            "mean_margin": 8125.484375,
+            "worst_margin": -4674.0
+          },
+          "german_alt": {
+            "games": 64,
+            "wins": 64,
+            "losses": 0,
+            "ties": 0,
+            "score_rate": 1.0,
+            "mean_margin": 2673.59375,
+            "worst_margin": 923.0
+          },
+          "kanno_lower": {
+            "games": 64,
+            "wins": 58,
+            "losses": 6,
+            "ties": 0,
+            "score_rate": 0.90625,
+            "mean_margin": 653.78125,
+            "worst_margin": -1376.0
+          }
+        },
+        "worst_score_rate": 0.65625,
+        "mean_score_rate": 0.8203125,
+        "mean_margin": 2893.0234375
+      }
+    },
+    {
+      "index": 43,
+      "mask": "GGGGGGGGGGGGGGGGGGGGGKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 64,
+            "wins": 28,
+            "losses": 36,
+            "ties": 0,
+            "score_rate": 0.4375,
+            "mean_margin": -12.453125,
+            "worst_margin": -2411.0
+          },
+          "b21": {
+            "games": 64,
+            "wins": 45,
+            "losses": 19,
+            "ties": 0,
+            "score_rate": 0.703125,
+            "mean_margin": 7903.484375,
+            "worst_margin": -4850.0
+          },
+          "german_alt": {
+            "games": 64,
+            "wins": 64,
+            "losses": 0,
+            "ties": 0,
+            "score_rate": 1.0,
+            "mean_margin": 2573.625,
+            "worst_margin": 683.0
+          },
+          "kanno_lower": {
+            "games": 64,
+            "wins": 52,
+            "losses": 12,
+            "ties": 0,
+            "score_rate": 0.8125,
+            "mean_margin": 534.1875,
+            "worst_margin": -1494.0
+          }
+        },
+        "worst_score_rate": 0.4375,
+        "mean_score_rate": 0.73828125,
+        "mean_margin": 2749.7109375
+      }
+    },
+    {
+      "index": 3,
+      "mask": "GKKKKKKKKKKKKKKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 64,
+            "wins": 56,
+            "losses": 8,
+            "ties": 0,
+            "score_rate": 0.875,
+            "mean_margin": 465.875,
+            "worst_margin": -5412.0
+          },
+          "b21": {
+            "games": 64,
+            "wins": 46,
+            "losses": 18,
+            "ties": 0,
+            "score_rate": 0.71875,
+            "mean_margin": 6466.59375,
+            "worst_margin": -4385.0
+          },
+          "german_alt": {
+            "games": 64,
+            "wins": 63,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.984375,
+            "mean_margin": 2939.078125,
+            "worst_margin": -1922.0
+          },
+          "kanno_lower": {
+            "games": 64,
+            "wins": 62,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.96875,
+            "mean_margin": 890.1875,
+            "worst_margin": -1285.0
+          }
+        },
+        "worst_score_rate": 0.71875,
+        "mean_score_rate": 0.88671875,
+        "mean_margin": 2690.43359375
+      }
+    },
+    {
+      "index": 5,
+      "mask": "GGKKKKKKKKKKKKKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 64,
+            "wins": 56,
+            "losses": 8,
+            "ties": 0,
+            "score_rate": 0.875,
+            "mean_margin": 465.875,
+            "worst_margin": -5412.0
+          },
+          "b21": {
+            "games": 64,
+            "wins": 46,
+            "losses": 18,
+            "ties": 0,
+            "score_rate": 0.71875,
+            "mean_margin": 6466.59375,
+            "worst_margin": -4385.0
+          },
+          "german_alt": {
+            "games": 64,
+            "wins": 63,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.984375,
+            "mean_margin": 2939.078125,
+            "worst_margin": -1922.0
+          },
+          "kanno_lower": {
+            "games": 64,
+            "wins": 62,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.96875,
+            "mean_margin": 890.1875,
+            "worst_margin": -1285.0
+          }
+        },
+        "worst_score_rate": 0.71875,
+        "mean_score_rate": 0.88671875,
+        "mean_margin": 2690.43359375
+      }
+    },
+    {
+      "index": 7,
+      "mask": "GGGKKKKKKKKKKKKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 64,
+            "wins": 56,
+            "losses": 8,
+            "ties": 0,
+            "score_rate": 0.875,
+            "mean_margin": 465.875,
+            "worst_margin": -5412.0
+          },
+          "b21": {
+            "games": 64,
+            "wins": 46,
+            "losses": 18,
+            "ties": 0,
+            "score_rate": 0.71875,
+            "mean_margin": 6466.59375,
+            "worst_margin": -4385.0
+          },
+          "german_alt": {
+            "games": 64,
+            "wins": 63,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.984375,
+            "mean_margin": 2939.078125,
+            "worst_margin": -1922.0
+          },
+          "kanno_lower": {
+            "games": 64,
+            "wins": 62,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.96875,
+            "mean_margin": 890.1875,
+            "worst_margin": -1285.0
+          }
+        },
+        "worst_score_rate": 0.71875,
+        "mean_score_rate": 0.88671875,
+        "mean_margin": 2690.43359375
+      }
+    },
+    {
+      "index": 9,
+      "mask": "GGGGKKKKKKKKKKKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 64,
+            "wins": 56,
+            "losses": 8,
+            "ties": 0,
+            "score_rate": 0.875,
+            "mean_margin": 465.875,
+            "worst_margin": -5412.0
+          },
+          "b21": {
+            "games": 64,
+            "wins": 46,
+            "losses": 18,
+            "ties": 0,
+            "score_rate": 0.71875,
+            "mean_margin": 6466.59375,
+            "worst_margin": -4385.0
+          },
+          "german_alt": {
+            "games": 64,
+            "wins": 63,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.984375,
+            "mean_margin": 2939.078125,
+            "worst_margin": -1922.0
+          },
+          "kanno_lower": {
+            "games": 64,
+            "wins": 62,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.96875,
+            "mean_margin": 890.1875,
+            "worst_margin": -1285.0
+          }
+        },
+        "worst_score_rate": 0.71875,
+        "mean_score_rate": 0.88671875,
+        "mean_margin": 2690.43359375
+      }
+    },
+    {
+      "index": 11,
+      "mask": "GGGGGKKKKKKKKKKKKKKKKKKKKKKKKK",
+      "summary": {
+        "controls": {
+          "german": {
+            "games": 64,
+            "wins": 56,
+            "losses": 8,
+            "ties": 0,
+            "score_rate": 0.875,
+            "mean_margin": 465.875,
+            "worst_margin": -5412.0
+          },
+          "b21": {
+            "games": 64,
+            "wins": 46,
+            "losses": 18,
+            "ties": 0,
+            "score_rate": 0.71875,
+            "mean_margin": 6466.59375,
+            "worst_margin": -4385.0
+          },
+          "german_alt": {
+            "games": 64,
+            "wins": 63,
+            "losses": 1,
+            "ties": 0,
+            "score_rate": 0.984375,
+            "mean_margin": 2939.078125,
+            "worst_margin": -1922.0
+          },
+          "kanno_lower": {
+            "games": 64,
+            "wins": 62,
+            "losses": 2,
+            "ties": 0,
+            "score_rate": 0.96875,
+            "mean_margin": 890.1875,
+            "worst_margin": -1285.0
+          }
+        },
+        "worst_score_rate": 0.71875,
+        "mean_score_rate": 0.88671875,
+        "mean_margin": 2690.43359375
+      }
+    }
+  ]
+}
