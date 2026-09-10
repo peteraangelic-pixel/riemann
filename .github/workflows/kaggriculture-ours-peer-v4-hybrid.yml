@@ -1,0 +1,35 @@
+name: Kaggriculture ours plus peer V4 hybrid LAB
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-ours-peer-v4-hybrid.yml"]
+permissions:
+  contents: write
+jobs:
+  hybrid:
+    if: contains(github.event.head_commit.message, '[kg-peer-v4-hybrid]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - run: |
+          python kaggriculture_meta_lab/scripts/search_ours_peer_v4_hybrid.py \
+            --binary kaggriculture_meta_lab/rust_port/target/release/kg_sim \
+            --population 512 --generations 4 --threads 4 \
+            --output kaggriculture_meta_lab/results/ours-peer-v4-hybrid-lab-20260910.json \
+            --agent-output kaggriculture_meta_lab/agents/candidates/ours_peer_v4_hybrid_holdout_winner.py
+      - run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/ours-peer-v4-hybrid-lab-20260910.json
+          if test -f kaggriculture_meta_lab/agents/candidates/ours_peer_v4_hybrid_holdout_winner.py; then
+            python -m py_compile kaggriculture_meta_lab/agents/candidates/ours_peer_v4_hybrid_holdout_winner.py
+            git add kaggriculture_meta_lab/agents/candidates/ours_peer_v4_hybrid_holdout_winner.py
+          fi
+          git commit -m "Record ours plus peer V4 hybrid LAB"
+          git push origin HEAD:arena/01a0712c-riemann
