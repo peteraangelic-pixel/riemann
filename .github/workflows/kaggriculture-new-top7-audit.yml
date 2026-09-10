@@ -36,11 +36,11 @@ jobs:
         run: |
           python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
             --corpus "$(cat /tmp/top7-new-root)" --workers 4 --seeds 8 --seed-start 131000 \
-            --candidate v7=kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v7.py \
-            --candidate b55=kaggriculture_meta_lab/seat_087c0/candidates/v7-t1b55.py \
-            --candidate v6=kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v6.py \
-            --candidate v3=kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_ep107381285_v1.py \
-            --candidate v2=kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_t7_v1.py \
+            --candidate v7=kaggriculture_meta_lab/seat_087c0/candidates/audit-v7.py \
+            --candidate b55=kaggriculture_meta_lab/seat_087c0/candidates/audit-b55.py \
+            --candidate v6=kaggriculture_meta_lab/seat_087c0/candidates/audit-v6.py \
+            --candidate v3=kaggriculture_meta_lab/seat_087c0/candidates/audit-v3.py \
+            --candidate v2=kaggriculture_meta_lab/seat_087c0/candidates/audit-v2.py \
             --output kaggriculture_meta_lab/seat_087c0/results/new-top7-12games-audit.json
       - name: Persist result
         run: |
