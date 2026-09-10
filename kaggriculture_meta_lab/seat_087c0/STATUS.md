@@ -122,3 +122,8 @@
 ## 2026-09-10 (26): hybrid boundary holdout
 - Two-TOP7 boundary scan: 228 variants/113 actual differing turns, 239232 jobs. Holdout V7 2480-208; full hybrid 2484-204; late start t393/t401 2491-197. Late start matches full hybrid on latest TOP7 (1230-114) and improves previous TOP7 to 1261-83 vs full 1254-90 and V7 1256-88. Economically full hybrid remains stronger (+29394 margin vs late +28907 vs V7 +28226); late start has 2 regressed groups vs full 4. Requires frozen larger gate.
 - Frozen TOP12 calculation succeeded but persist raced boundary bot commit. Workflow now rebases before push and reruns exact unchanged V7/V16/V8 24-seed gate; TOP12 still clean with respect to candidate tuning.
+
+## 2026-09-10 (27): fresh TOP12 reveals hybrid specialization
+- Frozen TOP12 (108 policies×24 seeds×2 seats): V7 4282-902; full V8 market-tail 4264-920 (-18); V16 3852-1332. Full hybrid -276 reward/-983 margin vs V7.
+- Team split explains net: V8 vs V7 ymg_aq -43, kanno -17, SpaTaro/Unknown -2 each; gains Tarang +24, feel +9, Mengfei +5, Otter +3, binghua/cooked +2, mtmr +1. Broad gains are cancelled by two severe specialized regressions.
+- Launched fixed 16-seed gate on latest TOP7 + previous TOP7 + TOP12: V7, full hybrid, start393, start401. No TOP12-derived team router; test asks whether selected late boundary naturally removes full-tail regressions.
