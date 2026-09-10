@@ -162,3 +162,28 @@ Bramka Kaggle Python `34535750918` zakończyła się bez błędów: 32-0 z G2 or
 V10 adaptive late-market, oficjalny statyczny late-market V8, następnie V9 jako
 bardziej agresywny i odmienny eksperyment. Nie wyłączać stabilnych zgłoszeń
 V16/G2 przed ustabilizowaniem nowych ratingów.
+
+## Nocna bramka dwóch TOP7 i końcowy test drugiej gałęzi (2026-09-11)
+
+Run `34537508100`, 32 nowe seedy 172000-172031 i oba miejsca, potwierdził:
+
+- najnowszy TOP7 z TOP12: V7 3161-871; oficjalny late401 V8 i V10
+  3175-855-2; V9 3166-866. V10/V8 mają +14 wygranych nad V7 i +9 nad V9;
+- poprzedni TOP7: V7 4852-524; V8/V10 4897-479; V9 4897-478-1.
+  V9 ma tę samą liczbę wygranych, jedną porażkę zamienia w remis oraz ma wyższą
+  nagrodę i margines, ale na najnowszym TOP7 przegrywa binarnie z late401.
+
+Po zakończeniu tej bramki sprawdzono końcowy run drugiej gałęzi `34537677766`.
+Na dokładnym panelu TOP12 V9 (seedy 158000-158031) oficjalny late401 uzyskał
+5811-1101, identyczną liczbę zwycięstw jak V9, lecz około +10.38 nagrody i
++7.51 marginesu. Jego wynik dla odcisku 3000/zero-rąk wynosił 498-78, podczas
+gdy V7 na tych samych wierszach 512-64. Dokładne złożenie V10 daje zatem
+**5825-1087**, czyli +14 zwycięstw nad V8 i V9. V10 jest aktualnym lokalnym
+liderem; V8 pozostaje prostszym wariantem kontrolnym, a V9 bardziej agresywną
+alternatywą ekonomiczną.
+
+Próby nocnego wysłania V3 i V7 (run `34536782290`) przesłały oba archiwa, ale
+API Kaggle zwróciło HTTP 400 dla obu i nie utworzyło żadnej referencji.
+Dokładne odpowiedzi są w `kaggle-v3-v7-submit-20260911.json`; najbardziej
+prawdopodobną przyczyną jest limit aktywnych zgłoszeń, ale API nie podało
+bardziej szczegółowego komunikatu.
