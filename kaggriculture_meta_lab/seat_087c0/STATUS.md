@@ -111,3 +111,10 @@
 - Together with latest TOP7 +35/4032, structured V7-open + V16-market-tail is now the experimental V8 baseline; old TOP15 regression is secondary historical specialization evidence.
 - Launched two-current-generation boundary scan: all actual V7/V16 differing market turns tested as (a) later hybrid start and (b) earlier return to V7. Combined latest+previous TOP7 screen; top 30 plus controls receive disjoint 8-seed holdout.
 - Fixed V4 gate control label `v7`→`identity` after diagnostic StopIteration and added script path trigger.
+
+## 2026-09-10 (25): V8 confirmation, TOP12 holdout
+- Peer branch independently promoted identical structured hybrid as `V8 market-tail`: latest TOP7 4906-470 vs V7 4845-531 (+61, 32 seeds); previous TOP7 3645-387 vs 3620-412 (+25, 24 seeds); exact Python action hash matched LAB and 28 Kaggle Environment games had zero errors.
+- Our independent previous TOP7 gate gave +24; combined independent evidence strongly confirms V8 under current-meta objective.
+- V4 fixed gate 30240 games: identity 5611-436; m401 5612-436 (one loss converted to tie), m401409 same; negligible and economically slightly worse. Close V4 direction without promotion.
+- Fresh TOP12 snapshot generated 2026-09-10 20:57 UTC. Frozen V8/V7/V16 24-seed holdout launched before any TOP12 tuning. TOP12 replay freshness is valuable even where leaderboard agents have old submission dates.
+- Hybrid boundary calculation succeeded; workflow failed only in persist step due concurrent bot push race with V4. Exact run rerun unchanged.

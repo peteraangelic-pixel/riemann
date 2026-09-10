@@ -1,0 +1,46 @@
+name: Frozen V8 market-tail TOP12 holdout
+on:
+  push:
+    branches: ["arena/01a087c0-riemann"]
+    paths: [".github/workflows/kaggriculture-v8-top12-gate.yml"]
+permissions: {contents: write}
+jobs:
+  gate:
+    if: contains(github.event.head_commit.message, '[kg-v8-top12]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr
+      - name: Retrieve fresh TOP12
+        run: |
+          git fetch origin arena/01a0712c-riemann
+          git show FETCH_HEAD:TOP12.7z >/tmp/top12.7z
+          python - <<'PY'
+          import json,pathlib,py7zr
+          d=pathlib.Path('/tmp/top12')
+          with py7zr.SevenZipFile('/tmp/top12.7z') as z:z.extractall(d)
+          m=next(x for x in d.rglob('manifest.json') if 'teams' in json.loads(x.read_text()))
+          pathlib.Path('/tmp/top12-root').write_text(str(m.parent))
+          PY
+      - working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - name: Frozen independent holdout
+        run: |
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
+            --corpus "$(cat /tmp/top12-root)" --workers 4 --seeds 24 --seed-start 149000 \
+            --candidate v7=kaggriculture_meta_lab/seat_087c0/candidates/audit-v7.py \
+            --candidate v16=kaggriculture_meta_lab/seat_087c0/candidates/audit-v2.py \
+            --candidate v8=kaggriculture_meta_lab/seat_087c0/candidates/peer-v8-structured-hybrid.py \
+            --output kaggriculture_meta_lab/seat_087c0/results/v8-frozen-top12.json
+      - name: Persist
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/seat_087c0/results/v8-frozen-top12.json
+          git commit -m "Record frozen V8 market-tail TOP12 holdout"
+          git push origin HEAD:arena/01a087c0-riemann

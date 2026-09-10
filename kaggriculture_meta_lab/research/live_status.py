@@ -61,7 +61,7 @@ def main():
             report["leaderboard_rows"] = len(rows)
             report["leaderboard_headers"] = list(rows[0]) if rows else []
             report["our_team"] = [safe_row(row) for row in ours]
-            report["top10"] = [safe_row(row) for row in normalized[:10]]
+            report["top12"] = [safe_row(row) for row in normalized[:12]]
         # Explicitly project away private scores, user identity and descriptions.
         submissions = api.competition_submissions("kaggriculture", page_size=20) or []
         report["recent_submission_public_scores"] = [
