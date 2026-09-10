@@ -305,3 +305,32 @@ Bramka slow vs G2: 16-0 (+7285). Sanity 4/4.
 
 **Nowy mistrz: `agents/champion_tape_evolved_v5.py`** (v5). Bijemy
 najlepszy artefakt obu gałęzi na każdej osi.
+
+## LIVE REVERSAL (13:52 UTC): V16/v2 = 2769.7, V5 = 1868.8
+
+Snapshot `results/live_34485287918.json` (8524 zespoły): Lauresowe 3D
+miejsce 114, wynik 2769.7 (= V16, ref 56142365). V5 (ref 56143699,
+submit rodzeństwa) COMPLETE 1868.8. Lokalnie V5 bije v2 254-2 (+2413/g);
+live przegrywa o ~900 pkt. V15 (=v1) 1705.8, V10 G2-83 2314.3.
+V5 > v1 transferuje (lokalnie i live), V5 < v2 nie — winny jest splicowany
+rynek (V5 vs V16: farmer/hands 1/719, market 115/719).
+
+Wnioski (wspólne z 0712c LIVE_V16_V5_REVERSAL): lokalny H2H na statycznym
+panelu premiuje eksploatację wspólnego rynku (antagonistic edge), live
+premiuje odporność populacyjną. Koherentny replay (V16: pełna trajektoria
+jednego meczu Kanno) transferuje; Frankenstein rynku nie.
+
+KOREKTA BRAMEK: "pełny G2" w raportach = statyczna taśma Subina + stanowy
+market overlay (agent_v10_subin_g2_83: symulacja shed, cap MILK, gate
+gotówki) — NIE oryginalna reaktywna polityka jednostek. Dotyczy też moich
+"16-0 vs reactive G2": czytać jako "vs G2-market-overlay control".
+Overlay live 2314 > V5 live 1868 mimo lokalnego 512-0 — kolejny revers.
+
+**LIVE CHAMPION: v2 (= V16).** v3/v4/v5 to artefakty LAB (lokalne tytuły
+bez transferu). V5 = cenny negatywny eksperyment (ich audyt 2^14: pełne
+V5 jest lokalnym optimum, brak V6 z tasowania).
+Hipotezy do live A/B (submituje user): v3 (w 100% koherentny replay
+kanno!) i v4 (koherentny rynek v3 + opening GJ) — oba bez splicowanego
+rynku, więc mogą transferować jak V16. V6 = rdzeń V16 + małe odwracalne
+reakcje state-gated (town-cycle!), metryki absolute-economy, panel o
+różnych podażach.
