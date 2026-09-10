@@ -1,0 +1,52 @@
+name: Kaggriculture V8 reactive independent gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr kaggle-environments
+      - name: Extract TOP15
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import py7zr
+          out=Path('/tmp/top15')
+          with py7zr.SevenZipFile('TOP15.7z') as archive: archive.extractall(out)
+          candidates=[p for p in out.rglob('*') if p.is_dir() and any(p.rglob('*.json'))]
+          candidates.sort(key=lambda p:(len(p.parts),str(p)))
+          Path('/tmp/top15-root').write_text(str(candidates[0]))
+          PY
+      - name: Build simulator
+        working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - name: Independent Python-engine gate
+        id: gate
+        continue-on-error: true
+        run: |
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
+            --corpus "$(cat /tmp/top15-root)" --workers 4 --seeds 4 --seed-start 125000 \
+            --candidate v6=kaggriculture_meta_lab/agents/candidates/agent_v6_safe_opening.py \
+            --candidate v7=kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
+            --candidate v8r=kaggriculture_meta_lab/agents/candidates/agent_v8_reactive_opening.py \
+            --output /tmp/v8-reactive-independent-top15.json 2>&1 | tee /tmp/v8-reactive-gate.txt
+          test ${PIPESTATUS[0]} -eq 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v8-reactive-independent-gate
+          path: |
+            /tmp/v8-reactive-gate.txt
+            /tmp/v8-reactive-independent-top15.json
+          if-no-files-found: warn
+      - name: Enforce gate
+        if: steps.gate.outcome != 'success'
+        run: exit 1

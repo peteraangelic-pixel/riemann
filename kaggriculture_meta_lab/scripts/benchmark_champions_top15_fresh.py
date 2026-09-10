@@ -31,7 +31,10 @@ def main():
  rows=rust_backend.run_rust(jobs,a.workers)
  enriched=[]
  for row,(c,m) in zip(rows,labels):enriched.append({**row,'candidate':c,'rank':m['rank'],'team':m['team'],'best_listed_submission':m['best_listed_submission'],'source_episode_id':m['episode_id']})
- if any(r.get('error') for r in enriched):raise RuntimeError(f"{sum(bool(r.get('error')) for r in enriched)} failed games")
+ if any(r.get('error') for r in enriched):
+  failed=[r for r in enriched if r.get('error')]
+  examples=[{'candidate':r['candidate'],'rank':r['rank'],'team':r['team'],'seed':r['seed'],'seat':r['seat'],'error':r['error']} for r in failed[:8]]
+  raise RuntimeError(f"{len(failed)} failed games; examples={json.dumps(examples,ensure_ascii=False)}")
  maximum=max(m['rank'] for _,m in records);limits=sorted({x for x in (5,10,15,maximum) if x<=maximum})
  summary={}
  for c in candidates:
