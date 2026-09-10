@@ -1,4 +1,4 @@
-name: Kaggriculture V7 peer discovery audit
+name: Kaggriculture V7 peer discovery full audit
 on:
   push:
     branches: ["arena/01a0712c-riemann"]
