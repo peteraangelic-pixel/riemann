@@ -1,1 +1,47 @@
-{"jobs": [{"tag": "v4-mega", "candidates": ["kaggriculture_meta_lab/seat_087c0/agents/champion_tape_daycrossover_v4.py"], "opponents": ["kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_ep107381285_v1.py", "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_t7_v1.py", "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_germanjurado1_v1.py", "kaggriculture_meta_lab/seat_087c0/corpus/raw_b21.py", "kaggriculture_meta_lab/seat_087c0/corpus/raw_subin.py", "kaggriculture_meta_lab/seat_087c0/corpus/yusuke_hayashi_t7.py", "kaggriculture_meta_lab/seat_087c0/corpus/himanshu_kumar_t7.py"], "start_seed": 2000, "games": 256, "threads": 4, "parity_k": 4}]}
+{
+ "jobs": [
+  {
+   "type": "search",
+   "tag": "v5-evo1",
+   "donors": {
+    "v3k": "kaggriculture_meta_lab/seat_087c0/corpus/kanno_donors/kanno_ep107381285_s0.py",
+    "v2k": "kaggriculture_meta_lab/seat_087c0/corpus/kanno_donors/kanno_ep107384200_s0.py",
+    "k740": "kaggriculture_meta_lab/seat_087c0/corpus/kanno_donors/kanno_ep107383740_s0.py",
+    "k770": "kaggriculture_meta_lab/seat_087c0/corpus/kanno_donors/kanno_ep107381770_s0.py",
+    "k902": "kaggriculture_meta_lab/seat_087c0/corpus/kanno_donors/kanno_ep107381902_s0.py",
+    "k867s1": "kaggriculture_meta_lab/seat_087c0/corpus/kanno_donors/kanno_ep107378867_s1.py",
+    "k838s1": "kaggriculture_meta_lab/seat_087c0/corpus/kanno_donors/kanno_ep107377838_s1.py",
+    "k895": "kaggriculture_meta_lab/seat_087c0/corpus/kanno_donors/kanno_ep107376895_s0.py",
+    "v4": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_daycrossover_v4.py",
+    "hyb": "kaggriculture_meta_lab/seat_087c0/corpus/peer/ours_peer_v4_hybrid_holdout_winner.py",
+    "mkt": "kaggriculture_meta_lab/seat_087c0/corpus/peer/v3_market_genetic_holdout_winner.py"
+   },
+   "units_german": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_germanjurado1_v1.py",
+   "units_v3": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_ep107381285_v1.py",
+   "controls": {
+    "v4": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_daycrossover_v4.py",
+    "hybrid": "kaggriculture_meta_lab/seat_087c0/corpus/peer/ours_peer_v4_hybrid_holdout_winner.py",
+    "v3": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_ep107381285_v1.py",
+    "v2": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_t7_v1.py",
+    "v1": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_germanjurado1_v1.py",
+    "b21": "kaggriculture_meta_lab/seat_087c0/corpus/raw_b21.py",
+    "subin": "kaggriculture_meta_lab/seat_087c0/corpus/raw_subin.py",
+    "yusuke": "kaggriculture_meta_lab/seat_087c0/corpus/yusuke_hayashi_t7.py",
+    "himanshu": "kaggriculture_meta_lab/seat_087c0/corpus/himanshu_kumar_t7.py",
+    "mkt": "kaggriculture_meta_lab/seat_087c0/corpus/peer/v3_market_genetic_holdout_winner.py"
+   },
+   "idx_v4": 8,
+   "idx_hybrid": 9,
+   "idx_v3": 0,
+   "population": 384,
+   "generations": 4,
+   "elite": 48,
+   "finalists": 24,
+   "train_seeds": 8,
+   "seed_base": 41000,
+   "holdout_start": 42000,
+   "holdout_games": 64,
+   "threads": 4
+  }
+ ]
+}

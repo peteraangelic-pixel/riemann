@@ -270,3 +270,25 @@ vs b21 426-86 (+9699, 83.2%); vs subin 512-0 (+7062); vs yusuke 510-2;
 vs himanshu 501-11. Łącznie 3424-160 (95.5%). V4 utrzymany — uwaga, że
 win-rate vs v3 spada z ~98% (96 gier) do ~92% (512 gier): duże N ma sens
 i teraz jest tanie (cały batch ~3 s + cache'owany build).
+
+## Zwiad 0712c (head d969c683) + ewolucja V5
+
+Rodzeństwo zaudytowało naszą gałąź i znalazło MECHANIZM v3: różnice v2→v3
+to 84 kroki market, MILK/WOOL/EGG/STRAWBERRY przesunięte z fazy step%4==3
+do step%4==1 — town konsumuje co 4 tury, faza 1 to sprzedaż tuż po szoku
+popytowym (realizacja ceny). Sygnał town-cycle do użycia w przyszłości.
+
+Ich broń: (1) `v3_market_genetic_holdout_winner` — ewolucja 120 bloków
+rynku (8 dawców kanno, 768×5, 452k gier), 484-28 vs V3; (2) hybryda
+(market-parent × NASZ V4): jednostki GJ dni 0–4 + kanno od 5, rynek
+70/39/11 — niezależna bramka 10240 gier: **481-31 (+350/g) vs nasz V4**.
+Weryfikacja lokalna: hybryda vs V4 13-3 (+416); market-parent vs V4
+4-12 (sam nie bije V4 — opening jest load-bearing); ich rekonstrukcja
+V4 = 719/719 (2-2-4, margines 0). V16 live skorygowany: wczesne 824.9 to
+nie był wynik stabilny (user: 1100+, 100% win) — statyki zrehabilitowane.
+
+Odpowiedź: własna ewolucja `search_rust_evolve.py` (Rust, kolejka Actions):
+genom cut + 120 bloków, 11 dawców rynku (8 kanno z TOP7.7z + V4 + hybryda
++ market-parent), 10 kontroli, podłogi regresji vs klon V4, klony V4/hyb/V3
+wstrzykiwane co generację, holdout + ostra elekcja. Pliki peer w
+corpus/peer/ (verbatim + PROVENANCE.md).
