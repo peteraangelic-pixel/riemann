@@ -1,0 +1,36 @@
+name: Kaggriculture poll V16 live status
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-poll-v16-status.yml"]
+permissions:
+  contents: write
+jobs:
+  poll:
+    if: contains(github.event.head_commit.message, '[kg-poll-v16]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install --disable-pip-version-check kaggle
+      - env: {KAGGLE_API_TOKEN: "${{ secrets.KAGGLE_API_TOKEN }}"}
+        run: |
+          mkdir -p ~/.kaggle
+          printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]' > ~/.kaggle/access_token
+          chmod 600 ~/.kaggle/access_token
+          kaggle competitions submissions -c kaggriculture --csv > /tmp/submissions.csv
+          python - <<'PY'
+          import csv,json
+          rows=list(csv.DictReader(open('/tmp/submissions.csv')))
+          row=next(r for r in rows if r.get('ref')=='56142365' or 'V16 Kanno TOP7' in r.get('description',''))
+          json.dump(row,open('kaggriculture_meta_lab/results/kaggle-v16-kanno-submission-20260910.json','w'),indent=2)
+          print(row)
+          PY
+      - run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/kaggle-v16-kanno-submission-20260910.json
+          git diff --cached --quiet || git commit -m "Refresh V16 Kaggle status"
+          git push origin HEAD:arena/01a0712c-riemann
