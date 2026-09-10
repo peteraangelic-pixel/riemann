@@ -1,0 +1,94 @@
+{
+  "base": "kaggriculture_meta_lab/agents/ref/agent_v10_subin_g2_83.py",
+  "seeds": 3,
+  "profiles": {
+    "identity": {
+      "games": 6,
+      "wins": 1,
+      "losses": 1,
+      "ties": 4,
+      "errors": 0,
+      "score_rate": 0.5,
+      "mean_margin": 0.0,
+      "mean_self": 68280.33333333333,
+      "mean_opp": 68280.33333333333
+    },
+    "cash200": {
+      "games": 6,
+      "wins": 1,
+      "losses": 1,
+      "ties": 4,
+      "errors": 0,
+      "score_rate": 0.5,
+      "mean_margin": 0.0,
+      "mean_self": 68280.33333333333,
+      "mean_opp": 68280.33333333333
+    },
+    "cash300": {
+      "games": 6,
+      "wins": 1,
+      "losses": 1,
+      "ties": 4,
+      "errors": 0,
+      "score_rate": 0.5,
+      "mean_margin": 0.0,
+      "mean_self": 68280.33333333333,
+      "mean_opp": 68280.33333333333
+    },
+    "milk0": {
+      "games": 6,
+      "wins": 5,
+      "losses": 1,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 0.8333333333333334,
+      "mean_margin": 180.0,
+      "mean_self": 68471.0,
+      "mean_opp": 68291.0
+    },
+    "milk2": {
+      "games": 6,
+      "wins": 1,
+      "losses": 5,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 0.16666666666666666,
+      "mean_margin": -227.33333333333334,
+      "mean_self": 71094.66666666667,
+      "mean_opp": 71322.0
+    },
+    "milk3": {
+      "games": 6,
+      "wins": 0,
+      "losses": 6,
+      "ties": 0,
+      "errors": 0,
+      "score_rate": 0.0,
+      "mean_margin": -867.6666666666666,
+      "mean_self": 74958.0,
+      "mean_opp": 75825.66666666667
+    },
+    "start4": {
+      "games": 6,
+      "wins": 1,
+      "losses": 1,
+      "ties": 4,
+      "errors": 0,
+      "score_rate": 0.5,
+      "mean_margin": 0.0,
+      "mean_self": 68280.33333333333,
+      "mean_opp": 68280.33333333333
+    },
+    "start8": {
+      "games": 6,
+      "wins": 1,
+      "losses": 1,
+      "ties": 4,
+      "errors": 0,
+      "score_rate": 0.5,
+      "mean_margin": 0.0,
+      "mean_self": 68280.33333333333,
+      "mean_opp": 68280.33333333333
+    }
+  }
+}
