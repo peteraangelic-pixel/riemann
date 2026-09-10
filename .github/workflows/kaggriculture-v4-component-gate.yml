@@ -2,7 +2,7 @@ name: V4 selected components final gate
 on:
   push:
     branches: ["arena/01a087c0-riemann"]
-    paths: [".github/workflows/kaggriculture-v4-component-gate.yml"]
+    paths: [".github/workflows/kaggriculture-v4-component-gate.yml", "kaggriculture_meta_lab/seat_087c0/scripts/gate_v4_components.py"]
 permissions: {contents: write}
 jobs:
   gate:

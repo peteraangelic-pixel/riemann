@@ -105,3 +105,9 @@
 - Reclassify static V7-open/V16-tail hybrid as strongest current V8 candidate: latest TOP7 3642-390 vs V7 3607-425 (+35), +882 reward, +983 margin, improves six current teams with only -3 net wins over two teams. Old TOP15 -22 is specialization evidence, not automatic rejection.
 - Imported exact peer structured hybrid for independent testing. Launched 24-seed matched gate on the immediately previous TOP7 generation versus V7 and V16; no reuse of old TOP15 as primary selector.
 - V4 fixed gate failure diagnosed: evaluator requires control named `identity`; script used `v7`, causing post-simulation `StopIteration`. Corrected label only; candidates and seed range unchanged.
+
+## 2026-09-10 (24): hybrid confirmed on second TOP7
+- Previous-generation TOP7 independent 24-seed gate: hybrid 3672-360, V7 3648-384, V16 3585-447. Hybrid +24 wins, +300 reward, +483 margin vs V7 over 4032 games.
+- Together with latest TOP7 +35/4032, structured V7-open + V16-market-tail is now the experimental V8 baseline; old TOP15 regression is secondary historical specialization evidence.
+- Launched two-current-generation boundary scan: all actual V7/V16 differing market turns tested as (a) later hybrid start and (b) earlier return to V7. Combined latest+previous TOP7 screen; top 30 plus controls receive disjoint 8-seed holdout.
+- Fixed V4 gate control label `v7`→`identity` after diagnostic StopIteration and added script path trigger.
