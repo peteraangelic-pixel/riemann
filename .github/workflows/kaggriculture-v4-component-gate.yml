@@ -29,16 +29,32 @@ jobs:
           PY
       - working-directory: kaggriculture_meta_lab/rust_port
         run: cargo build --release --locked
-      - run: |
+      - name: Run fixed gate with retained diagnostics
+        id: calculation
+        continue-on-error: true
+        run: |
+          set -o pipefail
           python kaggriculture_meta_lab/seat_087c0/scripts/gate_v4_components.py \
             --top7 "$(cat /tmp/top7-root)" --top15 "$(cat /tmp/top15-root)" \
             --binary kaggriculture_meta_lab/rust_port/target/release/kg_sim \
             --v7 kaggriculture_meta_lab/seat_087c0/candidates/audit-v7.py \
             --v4 kaggriculture_meta_lab/seat_087c0/candidates/audit-v4raw.py \
-            --output kaggriculture_meta_lab/seat_087c0/results/v4-components-final.json
-      - run: |
+            --output kaggriculture_meta_lab/seat_087c0/results/v4-components-final.json \
+            2>&1 | tee /tmp/v4-gate.log
+      - name: Upload diagnostic log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v4-gate-diagnostic
+          path: /tmp/v4-gate.log
+      - name: Persist successful result
+        if: steps.calculation.outcome == 'success'
+        run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add kaggriculture_meta_lab/seat_087c0/results/v4-components-final.json
           git commit -m "Record selected V4 components final gate"
           git push origin HEAD:arena/01a087c0-riemann
+      - name: Preserve failed status after diagnostics
+        if: steps.calculation.outcome != 'success'
+        run: exit 1
