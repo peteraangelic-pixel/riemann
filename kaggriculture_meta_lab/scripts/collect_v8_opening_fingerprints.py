@@ -21,6 +21,8 @@ def main() -> None:
     parser.add_argument("--candidate", type=Path, required=True)
     parser.add_argument("--binary", type=Path, required=True)
     parser.add_argument("--max-rank", type=int, default=30)
+    parser.add_argument("--decision-turn", type=int, default=1,
+                        help="public observation turn to capture after executing this many actions")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
 
@@ -48,7 +50,7 @@ def main() -> None:
             command = [
                 str(args.binary.resolve()), "--tape-a", str(candidate_path),
                 "--tape-b", str(exported[opponent]), "--seed", str(seed),
-                "--steps", "1", "--step-mode", "turns", "--trim-hands-a",
+                "--steps", str(args.decision_turn), "--step-mode", "turns", "--trim-hands-a",
                 "--trace", str(trace),
             ]
             if candidate_seat == 1:
@@ -57,11 +59,19 @@ def main() -> None:
             if result.returncode:
                 raise RuntimeError(f"trace failed: {result.stdout} {result.stderr}")
             states = [json.loads(line) for line in trace.read_text().splitlines()]
-            if len(states) != 2 or states[1].get("step") != 1:
+            if len(states) != args.decision_turn + 1 or states[-1].get("step") != args.decision_turn:
                 raise RuntimeError(f"unexpected trace horizon: {len(states)}")
-            state = states[1]
+            state = states[-1]
             own = state["farms"][candidate_seat]
             opp = state["farms"][1 - candidate_seat]
+            def tile_counts(farm):
+                counts = {}
+                for row in farm.get("tiles", []):
+                    for tile in row:
+                        if isinstance(tile, dict):
+                            key = str(tile.get("animal") or tile.get("crop") or tile.get("kind") or "OTHER")
+                            counts[key] = counts.get(key, 0) + 1
+                return counts
             rows.append({
                 **meta,
                 "seed": seed,
@@ -70,13 +80,18 @@ def main() -> None:
                 "opponent_money": opp["money"],
                 "own_hands": len(own["hands"]),
                 "opponent_hands": len(opp["hands"]),
+                "own_unlocked": len(own.get("unlocked_quadrants", [])),
+                "opponent_unlocked": len(opp.get("unlocked_quadrants", [])),
+                "own_tiles": tile_counts(own),
+                "opponent_tiles": tile_counts(opp),
                 "market_inventory": state["market"]["inventory"],
                 "market_prices": state["market"]["prices"],
             })
 
     result = {
-        "format": "v8-public-post-turn0-fingerprints-v1",
+        "format": "v8-public-route-fingerprints-v2",
         "mode": "candidate versus every selected replay policy, both physical seats",
+        "decision_turn": args.decision_turn,
         "candidate": str(args.candidate),
         "policies": len(rows) // 2,
         "rows": rows,
