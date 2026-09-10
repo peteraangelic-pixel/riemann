@@ -1,0 +1,77 @@
+{
+  "format": "peer-v3-sibling-independent-v1",
+  "source_branch": "arena/01a087c0-riemann",
+  "source_commit": "9cecb65",
+  "source_episode": 107381285,
+  "seeds": [
+    90000,
+    90127
+  ],
+  "jobs": 1792,
+  "zero_errors": true,
+  "summary": {
+    "v16": {
+      "games": 256,
+      "wins": 249,
+      "losses": 7,
+      "ties": 0,
+      "score_rate": 0.97265625,
+      "mean_margin": 1497.33203125,
+      "worst_margin": -2180.0
+    },
+    "german": {
+      "games": 256,
+      "wins": 241,
+      "losses": 15,
+      "ties": 0,
+      "score_rate": 0.94140625,
+      "mean_margin": 711.08203125,
+      "worst_margin": -13815.0
+    },
+    "b21": {
+      "games": 256,
+      "wins": 214,
+      "losses": 42,
+      "ties": 0,
+      "score_rate": 0.8359375,
+      "mean_margin": 9964.56640625,
+      "worst_margin": -6310.0
+    },
+    "kanno_lower": {
+      "games": 256,
+      "wins": 233,
+      "losses": 23,
+      "ties": 0,
+      "score_rate": 0.91015625,
+      "mean_margin": 589.88671875,
+      "worst_margin": -3040.0
+    },
+    "yusuke": {
+      "games": 256,
+      "wins": 256,
+      "losses": 0,
+      "ties": 0,
+      "score_rate": 1.0,
+      "mean_margin": 6528.015625,
+      "worst_margin": 160.0
+    },
+    "himanshu": {
+      "games": 256,
+      "wins": 250,
+      "losses": 6,
+      "ties": 0,
+      "score_rate": 0.9765625,
+      "mean_margin": 6221.71875,
+      "worst_margin": -1414.0
+    },
+    "g2": {
+      "games": 256,
+      "wins": 256,
+      "losses": 0,
+      "ties": 0,
+      "score_rate": 1.0,
+      "mean_margin": 9247.1484375,
+      "worst_margin": 3595.0
+    }
+  }
+}
