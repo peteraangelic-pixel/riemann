@@ -71,3 +71,8 @@
 - Full 105-policy TOP15 independent search (125580 games): best pulse profiles 1622-58 vs identity V7 1620-60, zero team regressions; many thresholds collapsed to identical behavior (`money<=2500..20000`, `inventory>=9900..10020`), indicating sparse/discrete activation rather than a stable calibrated boundary.
 - Newest-TOP7 winner `money<=100` was not selected among TOP15 finalists; no direct rule-family transfer established. Do not promote.
 - Launched preregistered fixed-rule final gate: identity, unconditional-own1, money<=100/500/2500, inventory>=10050 and two intersections; combined 84+105=189 policies, 32 fresh seeds, both seats (~96768 games). No post-hoc threshold selection. If no binary cross-corpus gain, abandon t153 router.
+
+## 2026-09-10 (18): fixed router gate closes t153; all-turn mutation scan
+- Preregistered combined gate: 189 policies ×32 seeds ×2 seats ×8 profiles = 96768 games. `money<=100` exactly ties V7 binary globally and per corpus: 11175-921; +61 own reward/+39 margin overall, zero team regressions. New7 margin +93, full15 margin -4. No ranking win → t153 router CLOSED (economic curiosity only).
+- Broader rules overactivate: unconditional/`money<=2500` lose 8 wins (11167-929); inventory>=10050 shifts +2 wins new7 but -2 full15 and regresses 2 teams. Confirms no transferable binary edge.
+- Next unbiased search launched: transplant each individual differing V2 market action into V7 across all 719 turns; screen directly on combined 84+105 policy corpora, then fresh-seed holdout top30. This generalizes the successful causal ablation beyond hand-picked day6.
