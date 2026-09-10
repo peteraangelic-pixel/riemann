@@ -35,17 +35,22 @@ jobs:
       - name: Matched audit of our champions against every selected new policy
         run: |
           python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
-            --corpus "$(cat /tmp/top7-new-root)" --workers 4 --seeds 8 --seed-start 131000 \
+            --corpus "$(cat /tmp/top7-new-root)" --workers 4 --seeds 6 --seed-start 132000 \
             --candidate v7=kaggriculture_meta_lab/seat_087c0/candidates/audit-v7.py \
-            --candidate b55=kaggriculture_meta_lab/seat_087c0/candidates/audit-b55.py \
-            --candidate v6=kaggriculture_meta_lab/seat_087c0/candidates/audit-v6.py \
-            --candidate v3=kaggriculture_meta_lab/seat_087c0/candidates/audit-v3.py \
             --candidate v2=kaggriculture_meta_lab/seat_087c0/candidates/audit-v2.py \
-            --output kaggriculture_meta_lab/seat_087c0/results/new-top7-12games-audit.json
+            --candidate v7-v2tail2=kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2tail2.py \
+            --candidate v7-v2tail24=kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2tail24.py \
+            --candidate v7-v2tail48=kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2tail48.py \
+            --candidate v7-v2tail72=kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2tail72.py \
+            --candidate v7-v2tail120=kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2tail120.py \
+            --candidate v7-v2tail240=kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2tail240.py \
+            --candidate v7-v2hands2=kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2hands2.py \
+            --candidate v7-v2market2=kaggriculture_meta_lab/seat_087c0/candidates/audit-v7-v2market2.py \
+            --output kaggriculture_meta_lab/seat_087c0/results/new-top7-v7-v2-crossovers.json
       - name: Persist result
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add kaggriculture_meta_lab/seat_087c0/results/new-top7-12games-audit.json
+          git add kaggriculture_meta_lab/seat_087c0/results/new-top7-v7-v2-crossovers.json
           git commit -m "Record new TOP7 12-game corpus audit"
           git push origin HEAD:arena/01a087c0-riemann
