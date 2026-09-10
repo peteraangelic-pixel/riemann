@@ -1,0 +1,4361 @@
+{
+ "tag": "v5-v16-blocks",
+ "base": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_evolved_v5.py",
+ "donor": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_t7_v1.py",
+ "block": 6,
+ "variants": [
+  {
+   "variant": 0,
+   "steps": [
+    0,
+    6
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 63,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9844,
+     "mean_margin": 1795.5,
+     "mean_own": 86701.9
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 50,
+     "losses": 14,
+     "ties": 0,
+     "score_rate": 0.7812,
+     "mean_margin": 10664.5,
+     "mean_own": 99082.6
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8690.9,
+     "mean_own": 88878.9
+    }
+   }
+  },
+  {
+   "variant": 1,
+   "steps": [
+    6,
+    12
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 2,
+   "steps": [
+    12,
+    18
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 3,
+   "steps": [
+    18,
+    24
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 4,
+   "steps": [
+    24,
+    30
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 5,
+   "steps": [
+    30,
+    36
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 6,
+   "steps": [
+    36,
+    42
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 7,
+   "steps": [
+    42,
+    48
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 8,
+   "steps": [
+    48,
+    54
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 9,
+   "steps": [
+    54,
+    60
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 10,
+   "steps": [
+    60,
+    66
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 11,
+   "steps": [
+    66,
+    72
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 12,
+   "steps": [
+    72,
+    78
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 13,
+   "steps": [
+    78,
+    84
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 14,
+   "steps": [
+    84,
+    90
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 15,
+   "steps": [
+    90,
+    96
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 16,
+   "steps": [
+    96,
+    102
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 17,
+   "steps": [
+    102,
+    108
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 18,
+   "steps": [
+    108,
+    114
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 19,
+   "steps": [
+    114,
+    120
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 20,
+   "steps": [
+    120,
+    126
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 21,
+   "steps": [
+    126,
+    132
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 63,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9844,
+     "mean_margin": 2714.4,
+     "mean_own": 90934.6
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8557.3,
+     "mean_own": 88802.5
+    }
+   }
+  },
+  {
+   "variant": 22,
+   "steps": [
+    132,
+    138
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2760.4,
+     "mean_own": 90956.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 23,
+   "steps": [
+    138,
+    144
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 63,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9844,
+     "mean_margin": 2717.4,
+     "mean_own": 90935.6
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8557.3,
+     "mean_own": 88802.5
+    }
+   }
+  },
+  {
+   "variant": 24,
+   "steps": [
+    144,
+    150
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2761.4,
+     "mean_own": 90956.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 25,
+   "steps": [
+    150,
+    156
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2764.6,
+     "mean_own": 90960.9
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43729.7,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8590.3,
+     "mean_own": 88805.5
+    }
+   }
+  },
+  {
+   "variant": 26,
+   "steps": [
+    156,
+    162
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 63,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9844,
+     "mean_margin": 2682.8,
+     "mean_own": 90917.9
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43193.3,
+     "mean_own": 74392.1
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8518.3,
+     "mean_own": 88784.2
+    }
+   }
+  },
+  {
+   "variant": 27,
+   "steps": [
+    162,
+    168
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 63,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9844,
+     "mean_margin": 2598.5,
+     "mean_own": 90876.4
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -44116.2,
+     "mean_own": 73149.5
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8434.4,
+     "mean_own": 88737.3
+    }
+   }
+  },
+  {
+   "variant": 28,
+   "steps": [
+    168,
+    174
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2858.9,
+     "mean_own": 91016.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43731.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 7426.0,
+     "mean_own": 90265.4
+    }
+   }
+  },
+  {
+   "variant": 29,
+   "steps": [
+    174,
+    180
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 56,
+     "losses": 8,
+     "ties": 0,
+     "score_rate": 0.875,
+     "mean_margin": 1525.8,
+     "mean_own": 93928.6
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -52698.7,
+     "mean_own": 65299.3
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8746.2,
+     "mean_own": 90657.4
+    }
+   }
+  },
+  {
+   "variant": 30,
+   "steps": [
+    180,
+    186
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 31,
+   "steps": [
+    186,
+    192
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 32,
+   "steps": [
+    192,
+    198
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -77585.2,
+     "mean_own": 51054.7
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 33,
+   "steps": [
+    198,
+    204
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 34,
+   "steps": [
+    204,
+    210
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43692.2,
+     "mean_own": 73588.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 35,
+   "steps": [
+    210,
+    216
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 36,
+   "steps": [
+    216,
+    222
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 37,
+   "steps": [
+    222,
+    228
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 38,
+   "steps": [
+    228,
+    234
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 39,
+   "steps": [
+    234,
+    240
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 40,
+   "steps": [
+    240,
+    246
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2757.3,
+     "mean_own": 90954.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43734.5,
+     "mean_own": 72898.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8581.3,
+     "mean_own": 88802.5
+    }
+   }
+  },
+  {
+   "variant": 41,
+   "steps": [
+    246,
+    252
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 42,
+   "steps": [
+    252,
+    258
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 43,
+   "steps": [
+    258,
+    264
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2750.4,
+     "mean_own": 90955.4
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8586.9,
+     "mean_own": 88807.5
+    }
+   }
+  },
+  {
+   "variant": 44,
+   "steps": [
+    264,
+    270
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 45,
+   "steps": [
+    270,
+    276
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 46,
+   "steps": [
+    276,
+    282
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 47,
+   "steps": [
+    282,
+    288
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 48,
+   "steps": [
+    288,
+    294
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 63,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9844,
+     "mean_margin": 2700.5,
+     "mean_own": 90927.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 49,
+   "steps": [
+    294,
+    300
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 50,
+   "steps": [
+    300,
+    306
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 63,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9844,
+     "mean_margin": 2272.5,
+     "mean_own": 90934.1
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8161.4,
+     "mean_own": 88777.5
+    }
+   }
+  },
+  {
+   "variant": 51,
+   "steps": [
+    306,
+    312
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 52,
+   "steps": [
+    312,
+    318
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 53,
+   "steps": [
+    318,
+    324
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 54,
+   "steps": [
+    324,
+    330
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 55,
+   "steps": [
+    330,
+    336
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 56,
+   "steps": [
+    336,
+    342
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 57,
+   "steps": [
+    342,
+    348
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 58,
+   "steps": [
+    348,
+    354
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 59,
+   "steps": [
+    354,
+    360
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2668.4,
+     "mean_own": 90969.9
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43723.2,
+     "mean_own": 72908.4
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8555.8,
+     "mean_own": 88839.9
+    }
+   }
+  },
+  {
+   "variant": 60,
+   "steps": [
+    360,
+    366
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 63,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9844,
+     "mean_margin": 2698.4,
+     "mean_own": 90927.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43735.5,
+     "mean_own": 72897.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8579.4,
+     "mean_own": 88800.0
+    }
+   }
+  },
+  {
+   "variant": 61,
+   "steps": [
+    366,
+    372
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 62,
+   "steps": [
+    372,
+    378
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 63,
+   "steps": [
+    378,
+    384
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 64,
+   "steps": [
+    384,
+    390
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2494.2,
+     "mean_own": 90891.1
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43630.9,
+     "mean_own": 73007.9
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8016.4,
+     "mean_own": 88670.3
+    }
+   }
+  },
+  {
+   "variant": 65,
+   "steps": [
+    390,
+    396
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 66,
+   "steps": [
+    396,
+    402
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2681.5,
+     "mean_own": 90931.4
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43726.8,
+     "mean_own": 72904.8
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8574.1,
+     "mean_own": 88812.8
+    }
+   }
+  },
+  {
+   "variant": 67,
+   "steps": [
+    402,
+    408
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 68,
+   "steps": [
+    408,
+    414
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2754.4,
+     "mean_own": 90953.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.6,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 69,
+   "steps": [
+    414,
+    420
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 70,
+   "steps": [
+    420,
+    426
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 71,
+   "steps": [
+    426,
+    432
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 72,
+   "steps": [
+    432,
+    438
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.3,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.1
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 73,
+   "steps": [
+    438,
+    444
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2716.8,
+     "mean_own": 90945.4
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8603.0,
+     "mean_own": 88823.5
+    }
+   }
+  },
+  {
+   "variant": 74,
+   "steps": [
+    444,
+    450
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 75,
+   "steps": [
+    450,
+    456
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 76,
+   "steps": [
+    456,
+    462
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 63,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9844,
+     "mean_margin": 2266.0,
+     "mean_own": 90842.4
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43870.9,
+     "mean_own": 72809.4
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8304.5,
+     "mean_own": 88761.8
+    }
+   }
+  },
+  {
+   "variant": 77,
+   "steps": [
+    462,
+    468
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.3,
+     "mean_own": 90955.6
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.9,
+     "mean_own": 72899.0
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 78,
+   "steps": [
+    468,
+    474
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 79,
+   "steps": [
+    474,
+    480
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2772.0,
+     "mean_own": 90949.1
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43612.7,
+     "mean_own": 72967.3
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8620.0,
+     "mean_own": 88792.5
+    }
+   }
+  },
+  {
+   "variant": 80,
+   "steps": [
+    480,
+    486
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 63,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9844,
+     "mean_margin": 2470.7,
+     "mean_own": 90961.9
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43739.4,
+     "mean_own": 72897.9
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8465.3,
+     "mean_own": 88873.6
+    }
+   }
+  },
+  {
+   "variant": 81,
+   "steps": [
+    486,
+    492
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2829.2,
+     "mean_own": 91023.0
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43743.1,
+     "mean_own": 72897.8
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8587.9,
+     "mean_own": 88815.1
+    }
+   }
+  },
+  {
+   "variant": 82,
+   "steps": [
+    492,
+    498
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 83,
+   "steps": [
+    498,
+    504
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 84,
+   "steps": [
+    504,
+    510
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2616.4,
+     "mean_own": 90904.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43731.4,
+     "mean_own": 72899.8
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8519.8,
+     "mean_own": 88773.2
+    }
+   }
+  },
+  {
+   "variant": 85,
+   "steps": [
+    510,
+    516
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 86,
+   "steps": [
+    516,
+    522
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2813.7,
+     "mean_own": 90976.4
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43734.6,
+     "mean_own": 72897.0
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8568.1,
+     "mean_own": 88788.7
+    }
+   }
+  },
+  {
+   "variant": 87,
+   "steps": [
+    522,
+    528
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 88,
+   "steps": [
+    528,
+    534
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 89,
+   "steps": [
+    534,
+    540
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 63,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9844,
+     "mean_margin": 2139.2,
+     "mean_own": 90930.5
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -44053.8,
+     "mean_own": 72729.5
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8051.9,
+     "mean_own": 88636.2
+    }
+   }
+  },
+  {
+   "variant": 90,
+   "steps": [
+    540,
+    546
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 91,
+   "steps": [
+    546,
+    552
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 92,
+   "steps": [
+    552,
+    558
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 63,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9844,
+     "mean_margin": 2243.7,
+     "mean_own": 90804.8
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43729.8,
+     "mean_own": 72900.5
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 7784.0,
+     "mean_own": 88410.8
+    }
+   }
+  },
+  {
+   "variant": 93,
+   "steps": [
+    558,
+    564
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 94,
+   "steps": [
+    564,
+    570
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2822.2,
+     "mean_own": 90981.0
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43747.4,
+     "mean_own": 72884.3
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8684.9,
+     "mean_own": 88820.3
+    }
+   }
+  },
+  {
+   "variant": 95,
+   "steps": [
+    570,
+    576
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 60,
+     "losses": 4,
+     "ties": 0,
+     "score_rate": 0.9375,
+     "mean_margin": 1957.1,
+     "mean_own": 90559.1
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -44043.9,
+     "mean_own": 72686.8
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 7647.4,
+     "mean_own": 88225.5
+    }
+   }
+  },
+  {
+   "variant": 96,
+   "steps": [
+    576,
+    582
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2756.4,
+     "mean_own": 90954.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8583.2,
+     "mean_own": 88802.9
+    }
+   }
+  },
+  {
+   "variant": 97,
+   "steps": [
+    582,
+    588
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 881.7,
+     "mean_own": 90143.4
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -44782.3,
+     "mean_own": 72069.7
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 7203.5,
+     "mean_own": 88126.3
+    }
+   }
+  },
+  {
+   "variant": 98,
+   "steps": [
+    588,
+    594
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2722.4,
+     "mean_own": 90950.5
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43645.9,
+     "mean_own": 72961.7
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8494.2,
+     "mean_own": 88737.8
+    }
+   }
+  },
+  {
+   "variant": 99,
+   "steps": [
+    594,
+    600
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2660.2,
+     "mean_own": 90967.8
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -44479.9,
+     "mean_own": 72223.9
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8482.4,
+     "mean_own": 88802.8
+    }
+   }
+  },
+  {
+   "variant": 100,
+   "steps": [
+    600,
+    606
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 63,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9844,
+     "mean_margin": 2003.4,
+     "mean_own": 90356.5
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43699.0,
+     "mean_own": 72938.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 7808.8,
+     "mean_own": 88234.9
+    }
+   }
+  },
+  {
+   "variant": 101,
+   "steps": [
+    606,
+    612
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2193.9,
+     "mean_own": 90669.5
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43760.8,
+     "mean_own": 72895.6
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 7976.5,
+     "mean_own": 88299.7
+    }
+   }
+  },
+  {
+   "variant": 102,
+   "steps": [
+    612,
+    618
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2644.1,
+     "mean_own": 90897.3
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43733.3,
+     "mean_own": 72898.7
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8621.6,
+     "mean_own": 88813.2
+    }
+   }
+  },
+  {
+   "variant": 103,
+   "steps": [
+    618,
+    624
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2758.1,
+     "mean_own": 90952.6
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8575.0,
+     "mean_own": 88795.6
+    }
+   }
+  },
+  {
+   "variant": 104,
+   "steps": [
+    624,
+    630
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 61,
+     "losses": 3,
+     "ties": 0,
+     "score_rate": 0.9531,
+     "mean_margin": 1945.8,
+     "mean_own": 90453.9
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43335.6,
+     "mean_own": 73269.7
+    },
+    "b21": {
+     "games": 64,
+     "wins": 46,
+     "losses": 18,
+     "ties": 0,
+     "score_rate": 0.7188,
+     "mean_margin": 8064.2,
+     "mean_own": 88399.9
+    }
+   }
+  },
+  {
+   "variant": 105,
+   "steps": [
+    630,
+    636
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2756.5,
+     "mean_own": 90954.4
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43735.2,
+     "mean_own": 72897.7
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 106,
+   "steps": [
+    636,
+    642
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2761.8,
+     "mean_own": 90959.3
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8588.3,
+     "mean_own": 88808.9
+    }
+   }
+  },
+  {
+   "variant": 107,
+   "steps": [
+    642,
+    648
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2757.0,
+     "mean_own": 90952.5
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8577.3,
+     "mean_own": 88797.9
+    }
+   }
+  },
+  {
+   "variant": 108,
+   "steps": [
+    648,
+    654
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 63,
+     "losses": 1,
+     "ties": 0,
+     "score_rate": 0.9844,
+     "mean_margin": 1751.4,
+     "mean_own": 90737.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -44189.3,
+     "mean_own": 72778.3
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8836.0,
+     "mean_own": 89156.2
+    }
+   }
+  },
+  {
+   "variant": 109,
+   "steps": [
+    654,
+    660
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2786.0,
+     "mean_own": 90969.0
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43723.8,
+     "mean_own": 72902.1
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8573.5,
+     "mean_own": 88794.1
+    }
+   }
+  },
+  {
+   "variant": 110,
+   "steps": [
+    660,
+    666
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2790.3,
+     "mean_own": 90974.3
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43745.2,
+     "mean_own": 72890.7
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8573.6,
+     "mean_own": 88794.2
+    }
+   }
+  },
+  {
+   "variant": 111,
+   "steps": [
+    666,
+    672
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2751.9,
+     "mean_own": 90957.2
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43728.5,
+     "mean_own": 72903.1
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8511.8,
+     "mean_own": 88772.0
+    }
+   }
+  },
+  {
+   "variant": 112,
+   "steps": [
+    672,
+    678
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2736.3,
+     "mean_own": 90952.5
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43739.5,
+     "mean_own": 72906.0
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8609.9,
+     "mean_own": 88828.5
+    }
+   }
+  },
+  {
+   "variant": 113,
+   "steps": [
+    678,
+    684
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 114,
+   "steps": [
+    684,
+    690
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2495.2,
+     "mean_own": 91059.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43613.9,
+     "mean_own": 73017.3
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8979.1,
+     "mean_own": 89245.7
+    }
+   }
+  },
+  {
+   "variant": 115,
+   "steps": [
+    690,
+    696
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2756.7,
+     "mean_own": 90922.8
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43796.9,
+     "mean_own": 72837.4
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8581.5,
+     "mean_own": 88776.2
+    }
+   }
+  },
+  {
+   "variant": 116,
+   "steps": [
+    696,
+    702
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 117,
+   "steps": [
+    702,
+    708
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 118,
+   "steps": [
+    708,
+    714
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": 119,
+   "steps": [
+    714,
+    719
+   ],
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  },
+  {
+   "variant": "baseline",
+   "steps": null,
+   "controls": {
+    "v2": {
+     "games": 64,
+     "wins": 64,
+     "losses": 0,
+     "ties": 0,
+     "score_rate": 1.0,
+     "mean_margin": 2759.4,
+     "mean_own": 90955.7
+    },
+    "deepernet": {
+     "games": 64,
+     "wins": 0,
+     "losses": 64,
+     "ties": 0,
+     "score_rate": 0.0,
+     "mean_margin": -43732.5,
+     "mean_own": 72899.2
+    },
+    "b21": {
+     "games": 64,
+     "wins": 48,
+     "losses": 16,
+     "ties": 0,
+     "score_rate": 0.75,
+     "mean_margin": 8582.5,
+     "mean_own": 88803.1
+    }
+   }
+  }
+ ]
+}
