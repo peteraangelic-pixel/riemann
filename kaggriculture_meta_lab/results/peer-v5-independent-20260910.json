@@ -1,0 +1,76 @@
+{
+  "format": "peer-v5-independent-v1",
+  "source_branch": "arena/01a087c0-riemann",
+  "source_commit": "a6073fe",
+  "seeds": [
+    100000,
+    100255
+  ],
+  "jobs": 3584,
+  "zero_errors": true,
+  "summary": {
+    "our_hybrid": {
+      "games": 512,
+      "wins": 472,
+      "losses": 40,
+      "ties": 0,
+      "score_rate": 0.921875,
+      "mean_margin": 25.958984375,
+      "worst_margin": -6139.0
+    },
+    "our_market": {
+      "games": 512,
+      "wins": 483,
+      "losses": 29,
+      "ties": 0,
+      "score_rate": 0.943359375,
+      "mean_margin": 600.537109375,
+      "worst_margin": -10038.0
+    },
+    "peer_v4": {
+      "games": 512,
+      "wins": 479,
+      "losses": 33,
+      "ties": 0,
+      "score_rate": 0.935546875,
+      "mean_margin": 381.67578125,
+      "worst_margin": -5656.0
+    },
+    "v3": {
+      "games": 512,
+      "wins": 490,
+      "losses": 22,
+      "ties": 0,
+      "score_rate": 0.95703125,
+      "mean_margin": 1211.255859375,
+      "worst_margin": -9793.0
+    },
+    "b21": {
+      "games": 512,
+      "wins": 424,
+      "losses": 88,
+      "ties": 0,
+      "score_rate": 0.828125,
+      "mean_margin": 9940.14453125,
+      "worst_margin": -5918.0
+    },
+    "yusuke": {
+      "games": 512,
+      "wins": 511,
+      "losses": 1,
+      "ties": 0,
+      "score_rate": 0.998046875,
+      "mean_margin": 6515.412109375,
+      "worst_margin": -136.0
+    },
+    "g2": {
+      "games": 512,
+      "wins": 512,
+      "losses": 0,
+      "ties": 0,
+      "score_rate": 1.0,
+      "mean_margin": 7238.373046875,
+      "worst_margin": 638.0
+    }
+  }
+}
