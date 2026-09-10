@@ -20,7 +20,8 @@ def main():
    name,sep,path=spec.partition('=')
    if not sep or not name or not path:ap.error('--candidate must be NAME=PATH')
    candidates[name]=Path(path).resolve()
- template,meta=build_top30_jobs(a.corpus.resolve(),candidates['v16'].resolve(),15);records=[]
+ template_path=next(iter(candidates.values()))
+ template,meta=build_top30_jobs(a.corpus.resolve(),template_path.resolve(),15);records=[]
  for i in range(0,len(template),2):records.append((template[i][2],meta[i]))
  jobs=[];labels=[]
  for cname,cpath in candidates.items():

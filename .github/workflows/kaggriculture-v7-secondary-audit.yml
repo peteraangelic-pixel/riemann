@@ -1,4 +1,4 @@
-name: Kaggriculture V7 TOP7 TOP30 audit
+name: Kaggriculture V7 secondary corpus audit
 on:
   push:
     branches: ["arena/01a0712c-riemann"]
