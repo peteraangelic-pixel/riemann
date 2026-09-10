@@ -1,33 +1,29 @@
 {
  "jobs": [
   {
-   "type": "h2h",
-   "tag": "v6seed-panel",
-   "candidates": [
-    "kaggriculture_meta_lab/seat_087c0/candidates/v5-s0v16s1gj.py",
-    "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_evolved_v5.py"
-   ],
-   "opponents": [
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/aaaabbs_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/binghua_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/cooked_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/deepernet_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/germanjurado1_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/himanshu_kumar_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/kanno_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/mengfei_li_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/mtmr_s1_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/otter_vibe_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/pensukesan_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/spataro_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/team_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/terry_luo_top15.py",
-    "kaggriculture_meta_lab/seat_087c0/corpus/top15/ultimatum_game_top15.py"
-   ],
-   "start_seed": 55000,
-   "games": 64,
-   "threads": 4,
-   "parity_k": 4
+   "type": "screen",
+   "tag": "opening2",
+   "spec": "kaggriculture_meta_lab/seat_087c0/specs/opening_screen2.json",
+   "controls": {
+    "v5": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_evolved_v5.py",
+    "v6": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v6.py",
+    "v4": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_daycrossover_v4.py",
+    "v3": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_ep107381285_v1.py",
+    "v2": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_t7_v1.py",
+    "hybrid": "kaggriculture_meta_lab/seat_087c0/corpus/peer/ours_peer_v4_hybrid_holdout_winner.py",
+    "mkt": "kaggriculture_meta_lab/seat_087c0/corpus/peer/v3_market_genetic_holdout_winner.py",
+    "deepernet": "kaggriculture_meta_lab/seat_087c0/corpus/top15/deepernet_top15.py",
+    "kanno_top15": "kaggriculture_meta_lab/seat_087c0/corpus/top15/kanno_top15.py",
+    "germanjurado1_top15": "kaggriculture_meta_lab/seat_087c0/corpus/top15/germanjurado1_top15.py",
+    "b21": "kaggriculture_meta_lab/seat_087c0/corpus/raw_b21.py",
+    "subin": "kaggriculture_meta_lab/seat_087c0/corpus/raw_subin.py",
+    "yusuke": "kaggriculture_meta_lab/seat_087c0/corpus/yusuke_hayashi_t7.py",
+    "himanshu": "kaggriculture_meta_lab/seat_087c0/corpus/himanshu_kumar_t7.py",
+    "spataro": "kaggriculture_meta_lab/seat_087c0/corpus/top15/spataro_top15.py"
+   },
+   "start_seed": 57000,
+   "games": 16,
+   "threads": 4
   }
  ]
 }

@@ -1,0 +1,929 @@
+{
+ "bodies": {
+  "V5": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_evolved_v5.py",
+  "V4": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_daycrossover_v4.py",
+  "v3": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_ep107381285_v1.py",
+  "v2": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_t7_v1.py",
+  "V6": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v6.py"
+ },
+ "donors": {
+  "V16": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_t7_v1.py",
+  "v3": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_kanno_ep107381285_v1.py",
+  "GJ": "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_germanjurado1_v1.py",
+  "hybrid": "kaggriculture_meta_lab/seat_087c0/corpus/peer/ours_peer_v4_hybrid_holdout_winner.py",
+  "mkt": "kaggriculture_meta_lab/seat_087c0/corpus/peer/v3_market_genetic_holdout_winner.py",
+  "DN": "kaggriculture_meta_lab/seat_087c0/corpus/top15/deepernet_top15.py",
+  "K15": "kaggriculture_meta_lab/seat_087c0/corpus/top15/kanno_top15.py"
+ },
+ "key_controls": [
+  "deepernet",
+  "subin",
+  "himanshu",
+  "v4",
+  "v3",
+  "v2",
+  "hybrid"
+ ],
+ "variants": [
+  {
+   "name": "base-V6",
+   "body": "V6",
+   "overrides": {}
+  },
+  {
+   "name": "base-V5",
+   "body": "V5",
+   "overrides": {}
+  },
+  {
+   "name": "t0s45",
+   "body": "V6",
+   "overrides": {
+    "0": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       7
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       20
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       45
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "t0s75",
+   "body": "V6",
+   "overrides": {
+    "0": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       7
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       20
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       75
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "t0s90",
+   "body": "V6",
+   "overrides": {
+    "0": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       7
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       20
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       90
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "t0b10-17",
+   "body": "V6",
+   "overrides": {
+    "0": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       10
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       17
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       60
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "t0b7-13",
+   "body": "V6",
+   "overrides": {
+    "0": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       7
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       13
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       60
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "t0b14-20",
+   "body": "V6",
+   "overrides": {
+    "0": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       14
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       20
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       60
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "t0triple",
+   "body": "V6",
+   "overrides": {
+    "0": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       9
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       9
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       9
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       60
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "t0single27",
+   "body": "V6",
+   "overrides": {
+    "0": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       27
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       60
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "t0b27s45",
+   "body": "V6",
+   "overrides": {
+    "0": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       27
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       45
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "t0nosell",
+   "body": "V6",
+   "overrides": {
+    "0": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       27
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "t1s120",
+   "body": "V6",
+   "overrides": {
+    "1": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       85
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       120
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       5
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "BUY_ANIMAL",
+       "COW",
+       2
+      ],
+      [
+       "BUY_ANIMAL",
+       "SHEEP",
+       2
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "t1s60",
+   "body": "V6",
+   "overrides": {
+    "1": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       85
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       60
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       5
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "BUY_ANIMAL",
+       "COW",
+       2
+      ],
+      [
+       "BUY_ANIMAL",
+       "SHEEP",
+       2
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "t1b60",
+   "body": "V6",
+   "overrides": {
+    "1": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       60
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       90
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       5
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "BUY_ANIMAL",
+       "COW",
+       2
+      ],
+      [
+       "BUY_ANIMAL",
+       "SHEEP",
+       2
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "t1b100",
+   "body": "V6",
+   "overrides": {
+    "1": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       100
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       90
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       5
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "BUY_ANIMAL",
+       "COW",
+       2
+      ],
+      [
+       "BUY_ANIMAL",
+       "SHEEP",
+       2
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "t1buynone",
+   "body": "V6",
+   "overrides": {
+    "1": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       85
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       90
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "BUY_ANIMAL",
+       "COW",
+       2
+      ],
+      [
+       "BUY_ANIMAL",
+       "SHEEP",
+       2
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "t1buy20",
+   "body": "V6",
+   "overrides": {
+    "1": {
+     "market": [
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       85
+      ],
+      [
+       "SELL",
+       "WHEAT",
+       90
+      ],
+      [
+       "BUY_PRODUCT",
+       "WHEAT",
+       20
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "HIRE"
+      ],
+      [
+       "BUY_ANIMAL",
+       "COW",
+       2
+      ],
+      [
+       "BUY_ANIMAL",
+       "SHEEP",
+       2
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "name": "edge29",
+   "body": "V6",
+   "overrides": {
+    "174": {
+     "market_from": "V16"
+    },
+    "175": {
+     "market_from": "V16"
+    },
+    "176": {
+     "market_from": "V16"
+    },
+    "177": {
+     "market_from": "V16"
+    },
+    "178": {
+     "market_from": "V16"
+    },
+    "179": {
+     "market_from": "V16"
+    }
+   }
+  },
+  {
+   "name": "edge89",
+   "body": "V6",
+   "overrides": {
+    "534": {
+     "market_from": "V16"
+    },
+    "535": {
+     "market_from": "V16"
+    },
+    "536": {
+     "market_from": "V16"
+    },
+    "537": {
+     "market_from": "V16"
+    },
+    "538": {
+     "market_from": "V16"
+    },
+    "539": {
+     "market_from": "V16"
+    }
+   }
+  },
+  {
+   "name": "edge95",
+   "body": "V6",
+   "overrides": {
+    "570": {
+     "market_from": "V16"
+    },
+    "571": {
+     "market_from": "V16"
+    },
+    "572": {
+     "market_from": "V16"
+    },
+    "573": {
+     "market_from": "V16"
+    },
+    "574": {
+     "market_from": "V16"
+    },
+    "575": {
+     "market_from": "V16"
+    }
+   }
+  },
+  {
+   "name": "edge97",
+   "body": "V6",
+   "overrides": {
+    "582": {
+     "market_from": "V16"
+    },
+    "583": {
+     "market_from": "V16"
+    },
+    "584": {
+     "market_from": "V16"
+    },
+    "585": {
+     "market_from": "V16"
+    },
+    "586": {
+     "market_from": "V16"
+    },
+    "587": {
+     "market_from": "V16"
+    }
+   }
+  },
+  {
+   "name": "edge100",
+   "body": "V6",
+   "overrides": {
+    "600": {
+     "market_from": "V16"
+    },
+    "601": {
+     "market_from": "V16"
+    },
+    "602": {
+     "market_from": "V16"
+    },
+    "603": {
+     "market_from": "V16"
+    },
+    "604": {
+     "market_from": "V16"
+    },
+    "605": {
+     "market_from": "V16"
+    }
+   }
+  },
+  {
+   "name": "edge104",
+   "body": "V6",
+   "overrides": {
+    "624": {
+     "market_from": "V16"
+    },
+    "625": {
+     "market_from": "V16"
+    },
+    "626": {
+     "market_from": "V16"
+    },
+    "627": {
+     "market_from": "V16"
+    },
+    "628": {
+     "market_from": "V16"
+    },
+    "629": {
+     "market_from": "V16"
+    }
+   }
+  },
+  {
+   "name": "edge108",
+   "body": "V6",
+   "overrides": {
+    "648": {
+     "market_from": "V16"
+    },
+    "649": {
+     "market_from": "V16"
+    },
+    "650": {
+     "market_from": "V16"
+    },
+    "651": {
+     "market_from": "V16"
+    },
+    "652": {
+     "market_from": "V16"
+    },
+    "653": {
+     "market_from": "V16"
+    }
+   }
+  },
+  {
+   "name": "edgeAll",
+   "body": "V6",
+   "overrides": {
+    "174": {
+     "market_from": "V16"
+    },
+    "175": {
+     "market_from": "V16"
+    },
+    "176": {
+     "market_from": "V16"
+    },
+    "177": {
+     "market_from": "V16"
+    },
+    "178": {
+     "market_from": "V16"
+    },
+    "179": {
+     "market_from": "V16"
+    },
+    "534": {
+     "market_from": "V16"
+    },
+    "535": {
+     "market_from": "V16"
+    },
+    "536": {
+     "market_from": "V16"
+    },
+    "537": {
+     "market_from": "V16"
+    },
+    "538": {
+     "market_from": "V16"
+    },
+    "539": {
+     "market_from": "V16"
+    },
+    "570": {
+     "market_from": "V16"
+    },
+    "571": {
+     "market_from": "V16"
+    },
+    "572": {
+     "market_from": "V16"
+    },
+    "573": {
+     "market_from": "V16"
+    },
+    "574": {
+     "market_from": "V16"
+    },
+    "575": {
+     "market_from": "V16"
+    },
+    "582": {
+     "market_from": "V16"
+    },
+    "583": {
+     "market_from": "V16"
+    },
+    "584": {
+     "market_from": "V16"
+    },
+    "585": {
+     "market_from": "V16"
+    },
+    "586": {
+     "market_from": "V16"
+    },
+    "587": {
+     "market_from": "V16"
+    },
+    "600": {
+     "market_from": "V16"
+    },
+    "601": {
+     "market_from": "V16"
+    },
+    "602": {
+     "market_from": "V16"
+    },
+    "603": {
+     "market_from": "V16"
+    },
+    "604": {
+     "market_from": "V16"
+    },
+    "605": {
+     "market_from": "V16"
+    },
+    "624": {
+     "market_from": "V16"
+    },
+    "625": {
+     "market_from": "V16"
+    },
+    "626": {
+     "market_from": "V16"
+    },
+    "627": {
+     "market_from": "V16"
+    },
+    "628": {
+     "market_from": "V16"
+    },
+    "629": {
+     "market_from": "V16"
+    },
+    "648": {
+     "market_from": "V16"
+    },
+    "649": {
+     "market_from": "V16"
+    },
+    "650": {
+     "market_from": "V16"
+    },
+    "651": {
+     "market_from": "V16"
+    },
+    "652": {
+     "market_from": "V16"
+    },
+    "653": {
+     "market_from": "V16"
+    }
+   }
+  },
+  {
+   "name": "edge97-108",
+   "body": "V6",
+   "overrides": {
+    "582": {
+     "market_from": "V16"
+    },
+    "583": {
+     "market_from": "V16"
+    },
+    "584": {
+     "market_from": "V16"
+    },
+    "585": {
+     "market_from": "V16"
+    },
+    "586": {
+     "market_from": "V16"
+    },
+    "587": {
+     "market_from": "V16"
+    },
+    "648": {
+     "market_from": "V16"
+    },
+    "649": {
+     "market_from": "V16"
+    },
+    "650": {
+     "market_from": "V16"
+    },
+    "651": {
+     "market_from": "V16"
+    },
+    "652": {
+     "market_from": "V16"
+    },
+    "653": {
+     "market_from": "V16"
+    }
+   }
+  },
+  {
+   "name": "t2V16",
+   "body": "V6",
+   "overrides": {
+    "2": {
+     "market_from": "V16"
+    }
+   }
+  },
+  {
+   "name": "t2GJ",
+   "body": "V6",
+   "overrides": {
+    "2": {
+     "market_from": "GJ"
+    }
+   }
+  }
+ ]
+}
