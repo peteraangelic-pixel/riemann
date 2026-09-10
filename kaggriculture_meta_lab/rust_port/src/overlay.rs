@@ -2,7 +2,7 @@
 use crate::{
     data::{Item, ACCESS, BOARD_SIZE, ITEM_COUNT},
     engine::{Farm, Game, Tile},
-    tape::{Action, OrderKind, UnitAction},
+    tape::{Action, Order, OrderKind, UnitAction},
 };
 use serde::Deserialize;
 
@@ -50,6 +50,14 @@ pub struct MarketOverlay {
     pub melon_seed_target: i64,
     pub wheat_stock_target: i64,
     pub fertilizer_stock_target: i64,
+    // V8 turn-1 opening selector. When enabled, replace the V7 wheat prefix
+    // with the conservative V6 order if the post-turn-0 public fingerprint
+    // falls inside all nonzero bounds.
+    pub opening_switch_enabled: bool,
+    pub opening_opponent_money_below: f64,
+    pub opening_opponent_money_above: f64,
+    pub opening_wheat_inventory_below: f64,
+    pub opening_wheat_inventory_above: f64,
 }
 
 impl Default for MarketOverlay {
@@ -95,6 +103,11 @@ impl Default for MarketOverlay {
             melon_seed_target: 0,
             wheat_stock_target: 0,
             fertilizer_stock_target: 0,
+            opening_switch_enabled: false,
+            opening_opponent_money_below: 0.0,
+            opening_opponent_money_above: 0.0,
+            opening_wheat_inventory_below: 0.0,
+            opening_wheat_inventory_above: 0.0,
         }
     }
 }
@@ -124,6 +137,10 @@ impl MarketOverlay {
             self.min_milk_price,
             self.min_wool_price,
             self.min_fertilizer_price,
+            self.opening_opponent_money_below,
+            self.opening_opponent_money_above,
+            self.opening_wheat_inventory_below,
+            self.opening_wheat_inventory_above,
         ];
         if prices.iter().any(|v| !v.is_finite() || *v < 0.0) {
             return Err(
@@ -287,13 +304,32 @@ impl MarketOverlay {
             self.sell_fraction_bp
         } as u64;
         let farm = &game.farms[seat];
-        let projected_shed = self.projected_shed(game, seat, source);
+        let opponent = &game.farms[1 - seat];
+        if self.opening_switch_enabled && game.turn == 1 {
+            let wheat_inventory = game.market_inventory[Item::Wheat.index()];
+            let inside = (self.opening_opponent_money_below == 0.0
+                    || opponent.money <= self.opening_opponent_money_below)
+                && (self.opening_opponent_money_above == 0.0
+                    || opponent.money >= self.opening_opponent_money_above)
+                && (self.opening_wheat_inventory_below == 0.0
+                    || wheat_inventory <= self.opening_wheat_inventory_below)
+                && (self.opening_wheat_inventory_above == 0.0
+                    || wheat_inventory >= self.opening_wheat_inventory_above);
+            if inside {
+                action.market.clear();
+                action.market.push(Order {
+                    kind: OrderKind::Sell(Item::Wheat),
+                    remaining: 13,
+                });
+                action.market.extend(source.market.iter().skip(2).copied());
+            }
+        }
+        let projected_shed = self.projected_shed(game, seat, &action);
         let mut sale_budget: [u64; ITEM_COUNT] = std::array::from_fn(|i| {
             let item = crate::data::ITEMS[i];
             let available = (projected_shed[i] - self.reserve(item)).max(0) as u64;
             available.saturating_mul(fraction) / 10_000
         });
-        let opponent = &game.farms[1 - seat];
         let mut animal_budget = [u64::MAX; ITEM_COUNT];
         for item in [Item::Cow, Item::Sheep, Item::Goose] {
             let base = self.animal_target(item);
@@ -410,6 +446,36 @@ mod tests {
     fn rejects_unsafe_ranges_and_unknown_fields() {
         assert!(MarketOverlay::from_json(&json!({"sell_fraction_bp": 10001})).is_err());
         assert!(MarketOverlay::from_json(&json!({"surprise": 1})).is_err());
+    }
+
+    #[test]
+    fn turn_one_switch_uses_public_fingerprint_and_preserves_tail() {
+        let cfg = Config::default();
+        let tape = Tape::from_json(&json!([[
+            {"market":[["BUY_PRODUCT","WHEAT",60],["SELL","WHEAT",90],["BUY_PRODUCT","WHEAT",5],["HIRE"]]}
+        ],[{}]])).unwrap();
+        let source = &tape.seats[0][0];
+        let mut game = Game::new(&cfg, 0, [0, 0]);
+        game.turn = 1;
+        game.farms[1].money = 2500.0;
+        game.market_inventory[Item::Wheat.index()] = 9973.0;
+        let profile = MarketOverlay::from_json(&json!({
+            "enabled":true,
+            "opening_switch_enabled":true,
+            "opening_opponent_money_below":2600,
+            "opening_wheat_inventory_below":9980
+        })).unwrap();
+        let switched = profile.apply(&game, 0, source);
+        assert_eq!(switched.market.len(), 3);
+        assert_eq!(switched.market[0].kind, OrderKind::Sell(Item::Wheat));
+        assert_eq!(switched.market[0].remaining, 13);
+        assert_eq!(switched.market[1].kind, OrderKind::BuyProduct(Item::Wheat));
+        assert_eq!(switched.market[2].kind, OrderKind::Hire);
+        game.farms[1].money = 2700.0;
+        let unchanged = profile.apply(&game, 0, source);
+        assert_eq!(unchanged.market.len(), 4);
+        assert_eq!(unchanged.market[0].kind, OrderKind::BuyProduct(Item::Wheat));
+        assert_eq!(unchanged.market[0].remaining, 60);
     }
 
     #[test]
