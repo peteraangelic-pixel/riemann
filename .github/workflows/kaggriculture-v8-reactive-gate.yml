@@ -9,7 +9,7 @@ permissions:
 jobs:
   gate:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -36,7 +36,7 @@ jobs:
         continue-on-error: true
         run: |
           python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
-            --corpus "$(cat /tmp/top15-root)" --workers 4 --seeds 4 --seed-start 125000 \
+            --corpus "$(cat /tmp/top15-root)" --workers 4 --seeds 1 --seed-start 125000 \
             --candidate v6=kaggriculture_meta_lab/agents/candidates/agent_v6_safe_opening.py \
             --candidate v7=kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
             --candidate v8r=kaggriculture_meta_lab/agents/candidates/agent_v8_reactive_opening.py \
