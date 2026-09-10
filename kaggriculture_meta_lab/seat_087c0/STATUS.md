@@ -82,3 +82,9 @@
 - Exact structural audit: V5 differs from V7 ONLY at t0,t1; remaining 717 turns identical. Therefore V7 is already repaired V5.1. buy55 remains alternate t1 microvariant, not confirmed better.
 - V4 differs from V7 at 43 turns (40 market, 4 hands including overlap), so repaired V4 is a genuinely distinct body. Created `v4safe01` (V7 t0+t1), `v4safe0`, `v4safe1`, plus raw control. Broad matched audit launched on latest uploaded TOP7 and full 105-policy TOP15, 8 fresh seeds each, controls V7+b55.
 - Latest TOP7 manifest generated 2026-09-10 18:19 UTC: SpaTaro 3113.9, Otter 3018.8, Unknown 2989.3, feel 2982.4, Himanshu 2976.6, Mengfei 2972.4, binghua 2966.4.
+
+## 2026-09-10 (20): repaired V4 broad audit → component scan
+- Latest TOP7 (84 policies×8 seeds): V7/b55 1205-139; v4safe01 1204-140 (-347 margin/-441 reward); v4safe0 1158-186; v4safe1 1148-196; raw V4 1158-186.
+- Full TOP15 (105×8): V7=b55=v4safe01 exactly 1584-96 binary; v4safe01 -391 margin/-282 reward. t0-only 1514-166; t1-only 1335-345; raw 1417-263. Both opening fixes jointly necessary; safe01 near-binary but economically dominated.
+- V5 differs from V7 only t0/t1, so V7 literally is repaired V5.1; buy55 is a neutral microvariant, not current champion.
+- Launched V4 post-opening component scan: every individual differing market/hands/farmer component after t1 transplanted into V7, directly screened on combined latest 84-policy TOP7 + full 105-policy TOP15, fresh screen/holdout seeds. Goal: separate cancelling good/bad V4 body features.
