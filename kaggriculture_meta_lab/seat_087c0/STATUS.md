@@ -30,3 +30,10 @@
 - Lokalny slow-G2 b40: 16-0, +153393/g (uruchomiony lokalnie, nie Actions).
 - b40 panel TOP15 fresh 62000+: ODRZUCONY jako następca V7 mimo wygrania lustra 127-1. Regresja MTMR 88-40 +4305 vs V7 101-27 +12531; niższa marża cooked 61920 vs 64927. Wniosek: buy40 przesuwa rock-paper-scissors, nie dominuje populacyjnie.
 - Następnie: panel kompromisów t1 buy45/50/55 vs V7 × TOP15, fresh 63000+.
+
+## 2026-09-10 (11): peer-V6 crossover result; b55 only survivor
+- Peer V6 differs from V7 exclusively at t1 market: peer `SELL13, BUY5`; V7 `BUY60, SELL90, BUY5`. Wszystkie 718 pozostałych tur i hands są identyczne.
+- Cross panel fresh 64000+ (8 peer hybrids + b55 + V7 × TOP15 + mirrors): exact peer V6 899-189 (+12845), wyraźnie słabszy od V7; wszystkie hybrydy SELL13 z dodatkowym buy są niestabilne/katastrofalne. Kolejność jest load-bearing: BUY po SELL jest szczególnie fatalny (postb60 2-1086, -101k/g). Nie przenosić bloku peer-V6 do V7.
+- Micro panel fresh 63000+: b55 1791-129 (+31050/g) vs V7 1789-131 (+30738/g); b45/b50 po 1712-208. b55 zachowuje cooked/DN/MTMR i poprawia GJ (128-0 +8450 vs 126-2 +3736), lecz przewaga tylko 2/1920.
+- b40 final panel fresh 62000+: 1762-158 (+30533/g) vs V7 1777-143 (+31508/g). ODRZUCONY: bezpośrednie lustro 127-1 było pułapką; regresja MTMR przeważa edge GJ.
+- Kolejny gate: b55 vs V7 × TOP15 + V2/V3/V4/V5/V6, 128 gier/parę, fresh 65000+.
