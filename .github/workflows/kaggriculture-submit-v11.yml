@@ -1,0 +1,43 @@
+name: Submit V11 to Kaggle
+on:
+  workflow_dispatch: {}
+permissions: {contents: write}
+jobs:
+  submit-v11:
+    if: contains(github.event.head_commit.message, '[kg-submit-v11]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+      KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - name: Configure Kaggle credentials
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+        run: |
+          mkdir -p ~/.kaggle
+          if [ -n "$KAGGLE_USERNAME" ] && [ -n "$KAGGLE_KEY" ]; then
+            printf '{"username":"%s","key":"%s"}' "$KAGGLE_USERNAME" "$KAGGLE_KEY" > ~/.kaggle/kaggle.json
+          elif [ -n "$KAGGLE_API_TOKEN" ]; then
+            echo "$KAGGLE_API_TOKEN" > ~/.kaggle/kaggle.json
+          else
+            echo "::error::KAGGLE_USERNAME/KAGGLE_KEY (or KAGGLE_API_TOKEN) secrets missing"
+            exit 1
+          fi
+          chmod 600 ~/.kaggle/kaggle.json
+      - name: Build V11 submission
+        run: |
+          pip install kaggle
+          cd kaggriculture_meta_lab/seat_087c0/agents
+          cp champion_tape_v11.py main.py
+          tar czf /tmp/submission-v11.tar.gz main.py
+          echo "Submission built:"
+          ls -la /tmp/submission-v11.tar.gz
+      - name: Upload to Kaggle
+        run: |
+          kaggle competitions submit -c kaggriculture -f /tmp/submission-v11.tar.gz -m "V11: V8 late401 + V10 routing + r610/r619 reversions"
+          echo "✓ V11 submitted to Kaggle"
+          kaggle competitions submissions -c kaggriculture | head -10

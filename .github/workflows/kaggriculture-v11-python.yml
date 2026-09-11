@@ -1,0 +1,74 @@
+name: V11 independent Python smoke
+on:
+  push:
+    branches: ["arena/01a08fb2-riemann"]
+    paths:
+      - "kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v11.py"
+      - ".github/workflows/kaggriculture-v11-python.yml"
+  workflow_dispatch: {}
+permissions: {contents: write}
+jobs:
+  validate:
+    if: >-
+      contains(github.event.head_commit.message, '[kg-v11-python]') ||
+      github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install --disable-pip-version-check py7zr kaggle-environments==1.32.7
+      - name: Validate V11 and run TOP12 smoke
+        run: |
+          git fetch origin arena/01a0712c-riemann
+          git show FETCH_HEAD:TOP12.7z >/tmp/top12.7z
+          python - <<'PY'
+          import hashlib,json,pathlib,py7zr,sys
+          p=pathlib.Path('kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v11.py')
+          src_sha = hashlib.sha256(p.read_bytes()).hexdigest()
+          print(f"V11 source SHA256: {src_sha}")
+          
+          # Load and verify action integrity
+          import importlib.util
+          spec = importlib.util.spec_from_file_location('v11', p)
+          mod = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(mod)
+          assert mod.ACTION_SHA256 == hashlib.sha256(json.dumps(mod._DATA, separators=(',',':')).encode()).hexdigest()
+          assert len(mod.SAFE) == 2 and len(mod.SAFE[0]) == 719
+          assert len(mod.LATE) == 2 and len(mod.LATE[0]) == 719
+          print(f"Action SHA256: {mod.ACTION_SHA256}")
+          
+          # Run TOP12 smoke
+          with py7zr.SevenZipFile('/tmp/top12.7z') as z:z.extractall('/tmp/top12')
+          roots=[m.parent for m in pathlib.Path('/tmp/top12').rglob('manifest.json') if len(json.loads(m.read_text()).get('teams',[]))==12]
+          sys.path[:0]=['kaggriculture_meta_lab','kaggriculture_meta_lab/scripts']
+          from benchmark_top30 import build_top30_jobs
+          from kaggriculture_lab.tournament import run
+          jobs,meta=build_top30_jobs(roots[0],p.resolve(),12);selected=[];sm=[];seen={}
+          for job,m in zip(jobs,meta):
+           key=(m['team'],m['episode_id'])
+           if key not in seen and sum(k[0]==m['team'] for k in seen)<2:seen[key]=1
+           if key in seen:selected.append(job);sm.append(m)
+          rows=run(selected,workers=2,progress_every=12)
+          enriched=[{**r,**m} for r,m in zip(rows,sm)]
+          errors=[r for r in enriched if r.get('error') or r.get('outcome')=='error']
+          out={'format':'v11-independent-python-smoke-v1','source_sha256':src_sha,
+               'action_sha256':mod.ACTION_SHA256,'games':len(rows),'errors':len(errors),
+               'wins':sum(r['outcome']=='win' for r in rows),
+               'losses':sum(r['outcome']=='loss' for r in rows),
+               'ties':sum(r['outcome']=='tie' for r in rows),'rows':enriched}
+          q=pathlib.Path('kaggriculture_meta_lab/seat_087c0/results/v11-python-smoke.json')
+          q.write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+          print({k:v for k,v in out.items() if k!='rows'})
+          assert not errors, f"Errors found: {errors}"
+          PY
+      - name: Persist results
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/seat_087c0/results/v11-python-smoke.json
+          git commit -m "Record V11 independent Python smoke [kg-v11-python]"
+          git pull --rebase origin arena/01a08fb2-riemann
+          git push origin HEAD:arena/01a08fb2-riemann
