@@ -168,5 +168,9 @@
 - Promoted byte-identical source to `agents/champion_tape_v10.py`. V8 late401 remains static control/fallback. No Kaggle submission performed.
 
 ## 2026-09-11 (37): V10 late-tail refinement launched
-- Formal V10 retained. Started interpretable scan of all 64 actual post-t401 market differences: each candidate reverts exactly one late401 V16 market turn back to V7, leaving opening, workers, all other late actions, and V10 routing design untouched.
+- Formal V10 retained. Started interpretable scan of all 76 actual post-t401 market differences: each candidate reverts exactly one late401 V16 market turn back to V7, leaving opening, workers, all other late actions, and V10 routing design untouched.
 - Selection corpus: combined latest TOP7 + previous TOP7 + TOP12 (276 policies), 2 fresh screen seeds. Identity plus top 24 move to disjoint 8-seed holdout. Stable winners only will enter small combination tests before insertion into V10 LATE branch.
+
+## 2026-09-11 (38): late-tail reversion screen result and combo gate
+- 76 single post-t401 V16→V7 market reversions, 276 policies, 195408 jobs. Holdout identity 3959-457. Safe winner r619 3961-455 (+2 entirely TOP12), zero regressed groups; r610 3959-456-1 converts one loss to tie, zero regressions. Neutral safe candidates include r622. r693 3961-454-1 has stronger aggregate/economics but 2 regressed groups; diagnostic only.
+- Semantics: r619 removes V16 `SELL EGG 2`; r610 removes `SELL STRAWBERRY 1`; r622 removes `SELL MILK 1`. Fixed fresh-seed combo gate launched: identity, each safe singleton, r610+r619, r619+r622, all three, plus r693 and r619+r693 diagnostics. Three current corpora, 16 new seeds, no threshold fitting.
