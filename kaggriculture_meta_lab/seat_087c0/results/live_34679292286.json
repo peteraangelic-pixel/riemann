@@ -1,0 +1,337 @@
+{
+  "as_of_utc": "2026-09-12T06:53:40.081085+00:00",
+  "competition": "kaggriculture",
+  "mode": "read-only",
+  "errors": [],
+  "leaderboard_rows": 8698,
+  "our_team": [
+    {
+      "rank": "715",
+      "teamid": "16839754",
+      "teamname": "Lauresowe 3D",
+      "lastsubmissiondate": "2026-09-11 12:18:22",
+      "score": "2426.2",
+      "submissioncount": "2",
+      "teammemberusernames": "lauresowe3d"
+    }
+  ],
+  "top20": [
+    {
+      "rank": "1",
+      "teamid": "16718819",
+      "teamname": "Majkel1337",
+      "lastsubmissiondate": "2026-09-11 02:18:56",
+      "score": "3205.8",
+      "submissioncount": "2",
+      "teammemberusernames": "majkel1337"
+    },
+    {
+      "rank": "2",
+      "teamid": "16732403",
+      "teamname": "ymg_aq",
+      "lastsubmissiondate": "2026-09-11 07:59:49",
+      "score": "3072.4",
+      "submissioncount": "2",
+      "teammemberusernames": "ymgpalaqs"
+    },
+    {
+      "rank": "3",
+      "teamid": "16730612",
+      "teamname": "Unknown Mother-Goose",
+      "lastsubmissiondate": "2026-09-11 16:44:51",
+      "score": "3053.9",
+      "submissioncount": "2",
+      "teammemberusernames": "linkinpony"
+    },
+    {
+      "rank": "4",
+      "teamid": "16621799",
+      "teamname": "Artem The Farmer 🍅",
+      "lastsubmissiondate": "2026-09-11 04:27:55",
+      "score": "3049.1",
+      "submissioncount": "2",
+      "teammemberusernames": "veshkinartem"
+    },
+    {
+      "rank": "5",
+      "teamid": "16640510",
+      "teamname": "SpaTaro",
+      "lastsubmissiondate": "2026-09-11 09:15:53",
+      "score": "3017.3",
+      "submissioncount": "2",
+      "teammemberusernames": "tarosqrd2"
+    },
+    {
+      "rank": "6",
+      "teamid": "16760569",
+      "teamname": "Otter Vibe",
+      "lastsubmissiondate": "2026-09-08 11:36:43",
+      "score": "2997.2",
+      "submissioncount": "2",
+      "teammemberusernames": "gyuminsong"
+    },
+    {
+      "rank": "7",
+      "teamid": "16805699",
+      "teamname": "feel the agi",
+      "lastsubmissiondate": "2026-09-10 00:01:38",
+      "score": "2992.1",
+      "submissioncount": "2",
+      "teammemberusernames": "nulldata"
+    },
+    {
+      "rank": "8",
+      "teamid": "16730524",
+      "teamname": "THIRD FARM CLUB",
+      "lastsubmissiondate": "2026-09-12 06:25:24",
+      "score": "2968.9",
+      "submissioncount": "2",
+      "teammemberusernames": "bowwowforeach,mooegi,shunrcn,simann"
+    },
+    {
+      "rank": "9",
+      "teamid": "16622349",
+      "teamname": "Mengfei Li",
+      "lastsubmissiondate": "2026-09-11 21:52:47",
+      "score": "2955.7",
+      "submissioncount": "2",
+      "teammemberusernames": "meli19"
+    },
+    {
+      "rank": "10",
+      "teamid": "16732521",
+      "teamname": "redblackbst",
+      "lastsubmissiondate": "2026-09-12 05:40:30",
+      "score": "2954.3",
+      "submissioncount": "2",
+      "teammemberusernames": "redblackbst"
+    },
+    {
+      "rank": "11",
+      "teamid": "16767215",
+      "teamname": "keiz",
+      "lastsubmissiondate": "2026-09-11 05:12:00",
+      "score": "2950.3",
+      "submissioncount": "2",
+      "teammemberusernames": "keizkeiz"
+    },
+    {
+      "rank": "12",
+      "teamid": "16845367",
+      "teamname": "kyy666",
+      "lastsubmissiondate": "2026-09-12 03:16:58",
+      "score": "2937.5",
+      "submissioncount": "2",
+      "teammemberusernames": "kyy666,robertmcwang"
+    },
+    {
+      "rank": "13",
+      "teamid": "16704466",
+      "teamname": "QQ Farming",
+      "lastsubmissiondate": "2026-09-10 18:07:39",
+      "score": "2937.1",
+      "submissioncount": "2",
+      "teammemberusernames": "dzjiann,hdhsjdjd,keithtyser,mitubant,ngyzly"
+    },
+    {
+      "rank": "14",
+      "teamid": "16685556",
+      "teamname": "binghua",
+      "lastsubmissiondate": "2026-09-08 13:50:16",
+      "score": "2934.6",
+      "submissioncount": "2",
+      "teammemberusernames": "binghua123"
+    },
+    {
+      "rank": "15",
+      "teamid": "16847222",
+      "teamname": "charmq",
+      "lastsubmissiondate": "2026-09-12 00:03:09",
+      "score": "2931.7",
+      "submissioncount": "2",
+      "teammemberusernames": "charmq"
+    },
+    {
+      "rank": "16",
+      "teamid": "16667242",
+      "teamname": "Gleb Tumanov",
+      "lastsubmissiondate": "2026-09-10 18:44:35",
+      "score": "2925.9",
+      "submissioncount": "2",
+      "teammemberusernames": "crachton"
+    },
+    {
+      "rank": "17",
+      "teamid": "16685634",
+      "teamname": "Syed Asad Ali",
+      "lastsubmissiondate": "2026-09-11 12:09:09",
+      "score": "2920.2",
+      "submissioncount": "2",
+      "teammemberusernames": "syed3000"
+    },
+    {
+      "rank": "18",
+      "teamid": "16706222",
+      "teamname": "Xiangyu Liu",
+      "lastsubmissiondate": "2026-09-09 13:36:50",
+      "score": "2919.9",
+      "submissioncount": "2",
+      "teammemberusernames": "xiangyuliu007"
+    },
+    {
+      "rank": "19",
+      "teamid": "16717536",
+      "teamname": "c0nrad",
+      "lastsubmissiondate": "2026-09-11 18:30:53",
+      "score": "2916.5",
+      "submissioncount": "2",
+      "teammemberusernames": "stuartlarsen"
+    },
+    {
+      "rank": "20",
+      "teamid": "16651332",
+      "teamname": "Le Viet",
+      "lastsubmissiondate": "2026-09-11 14:43:53",
+      "score": "2910.5",
+      "submissioncount": "2",
+      "teammemberusernames": "sleepyssr"
+    }
+  ],
+  "recent_submissions": [
+    {
+      "ref": 56165158,
+      "file": "",
+      "date": "2026-09-11 12:18:22.737000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "2184.5",
+      "private_score": "",
+      "description": ""
+    },
+    {
+      "ref": 56165135,
+      "file": "",
+      "date": "2026-09-11 12:17:07.840000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "2426.2",
+      "private_score": "",
+      "description": "V8 "
+    },
+    {
+      "ref": 56159750,
+      "file": "",
+      "date": "2026-09-11 06:04:51.007000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "2596.8",
+      "private_score": "",
+      "description": "V10 "
+    },
+    {
+      "ref": 56159653,
+      "file": "",
+      "date": "2026-09-11 06:00:07.770000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "1994.2",
+      "private_score": "",
+      "description": "V7 market probe morning control 0eed9f5e5c3b3e312d4dbca196817150152416bb"
+    },
+    {
+      "ref": 56154098,
+      "file": "",
+      "date": "2026-09-11 00:05:11.427000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "2116.6",
+      "private_score": "",
+      "description": "V3 coherent replay UTC reset evaluation 0eed9f5e5c3b3e312d4dbca196817150152416bb"
+    },
+    {
+      "ref": 56143699,
+      "file": "",
+      "date": "2026-09-10 11:58:33.047000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "2133.2",
+      "private_score": "",
+      "description": "V5 evolved shared champion 472-40 hybrid 512-0 G2 4e671fbe3047cf1b3024a7381db47a9b17c709cf"
+    },
+    {
+      "ref": 56142365,
+      "file": "",
+      "date": "2026-09-10 10:26:46.510000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "2823.6",
+      "private_score": "",
+      "description": "V16 Kanno TOP7 best-sub champion 212-44 V15 16-0 G2 43163a9fd57a09c45f7cd394513efef67852f0bc"
+    },
+    {
+      "ref": 56141709,
+      "file": "",
+      "date": "2026-09-10 09:34:58.737000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "1705.8",
+      "private_score": "",
+      "description": "V15 GermanJurado TOP15 champion 48-0 G2 16-0 G4 9ab8878daef2d04fc2fad6dc34856c5e8b88b375"
+    },
+    {
+      "ref": 56139250,
+      "file": "",
+      "date": "2026-09-10 06:49:33.977000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "1687.5",
+      "private_score": "",
+      "description": "V14 G2 milk0 29-3 vs submitted G2 authorized continuation d557a814714dd75542589d011bf0f5fb63f27e57"
+    },
+    {
+      "ref": 56139063,
+      "file": "",
+      "date": "2026-09-10 06:39:44.370000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "1459.5",
+      "private_score": "",
+      "description": "V13 B21 idle recovery 20-4 vs G4 authorized 82644f01d1c31fdd1425553fb40804c643f8661c"
+    },
+    {
+      "ref": 56131785,
+      "file": "",
+      "date": "2026-09-09 22:24:29.813000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "1015.0",
+      "private_score": "",
+      "description": "V11 G4-29 corrected compact framework-validated explicitly requested 9a7fa036a4d1438e8b1cecd30b8e13164c6b33a2"
+    },
+    {
+      "ref": 56131561,
+      "file": "",
+      "date": "2026-09-09 22:06:39.830000",
+      "status": "SubmissionStatus.ERROR",
+      "public_score": "",
+      "private_score": "",
+      "description": "V11 G4-29 TOP5 18-18 TOP10 27-39 TOP15 29-83 closed8-24 explicitly requested d9c5793f994dadd826ceef75daa89cc98b6b9889"
+    },
+    {
+      "ref": 56130711,
+      "file": "",
+      "date": "2026-09-09 20:43:02.840000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "2314.3",
+      "private_score": "",
+      "description": "V10 G2-83 corrected compact exact-policy framework-validated 3aa7732de48b27500bf32598dded6380b166795f"
+    },
+    {
+      "ref": 56130004,
+      "file": "",
+      "date": "2026-09-09 19:39:17.157000",
+      "status": "SubmissionStatus.ERROR",
+      "public_score": "",
+      "private_score": "",
+      "description": "V10 Subin G2-83 cash250 milk1 TOP30 margin672 closed23of32 54dda17e1b918adb80a358a6eef4e0ba7964b896"
+    },
+    {
+      "ref": 56126199,
+      "file": "",
+      "date": "2026-09-09 15:21:39.150000",
+      "status": "SubmissionStatus.COMPLETE",
+      "public_score": "2131.8",
+      "private_score": "",
+      "description": "V10 static Subin 106845775 open-loop46.7 closed-loop26of32 3ab8d399901661a48b35e97215d77eb97fc79692"
+    }
+  ]
+}
