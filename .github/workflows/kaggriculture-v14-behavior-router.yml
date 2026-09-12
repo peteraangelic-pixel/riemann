@@ -2,7 +2,9 @@ name: Kaggriculture V14 behavior router gate
 on:
   push:
     branches: ["arena/01a0712c-riemann"]
-    paths: [".github/workflows/kaggriculture-v14-behavior-router.yml"]
+    paths:
+      - ".github/workflows/kaggriculture-v14-behavior-router.yml"
+      - "kaggriculture_meta_lab/scripts/validate_v14_targeted.py"
 permissions: {contents: write}
 jobs:
   gate:

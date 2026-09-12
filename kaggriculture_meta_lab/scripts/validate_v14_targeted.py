@@ -14,6 +14,7 @@ def cls(a):
  if sum(x==('HIRE',) for x in ops)==7 and not any(x and x[0]=='BUY_PRODUCT' for x in ops):return 'near-negative'
  return None
 def stat(rs):
+ if not rs:return {'games':0,'wins':0,'losses':0,'mean_reward':None,'mean_margin':None,'routes':0}
  return {'games':len(rs),'wins':sum(r['margin']>0 for r in rs),'losses':sum(r['margin']<0 for r in rs),'mean_reward':statistics.mean(r['self_reward'] for r in rs),'mean_margin':statistics.mean(r['margin'] for r in rs),'routes':sum(r.get('route_expected',False) for r in rs)}
 def main():
  a=argparse.ArgumentParser();a.add_argument('--corpus',type=Path,required=True);a.add_argument('--v8',type=Path,required=True);a.add_argument('--v14',type=Path,required=True);a.add_argument('--seeds',type=int,default=4);a.add_argument('--seed-start',type=int,default=186000);a.add_argument('--workers',type=int,default=4);a.add_argument('--output',type=Path,required=True);z=a.parse_args()
