@@ -1,7 +1,816 @@
-"""Standalone V8: V7 through turn 400, V16/V2 market tail from turn 401."""
-import base64,copy,json,zlib
-ACTIONS=json.loads(zlib.decompress(base64.b85decode('c-rlKO^+N|lH7mka~>)`s#v8Pr#rWsSaw%~WN%_MAO-_y1p&h9Fw#xXe;3KhkBD${Gjo4Y-LsfIF<F(B8S&zMxSN}s{rS)T_q+f8*T4Pyzy0mI|MKVWetrA#<9DAo-~Erj{;&V`zrXz8%gcZN>)-z8zx|&tumAkrpMLw-zx?{)`G?=W|McDFyVFm{w_pB!^Ldl}W_S1XS09h>-`{@raQFH1|JzKz@|WiipMENS=L7iUr@Qn*?!W%#r*|KY-?=Zoe$3ln-u?Xc>lb|geEM=T;m03;Iv#)h`isR4eSH3HenVe|_1*XX{M)bRkNWyS=W)K>{q)uR-P7S%eAD%fFPAd=%E`yE@A}hk@819LmoIPm^xM~4cfRapP-kDZ_!N1A@85oZH101<jm4kh?>QYme){&}`?unj&hK<b?fSvXagQ_h<MH^zm*4+<eE<9lm?F#Z;#ctHo`3mt{j}sKi>IS5X}i3n%fN!E1itNZX{WcJjvtn<z6}!@_J8_%C9`k1{qgOSFN1B(RqGaC=ELlJuTL}|>)U(gBUFCqakg0l8{hOYew`;g`yg}tZ@-J{Y4*M6%{F}R<pU<)ciAGrz+ZNk=@o<t<$Z4$@A$amFfYGf4fDP*%<Or`;a<FZjd2IhnT`9)yUSm^3?g1<;CK3K$$0C9#*V^xgJ5960rH9iN*?I>0@T+Q2K4sX&VYg=X=p%~Usd{G@^On7typM2$XSG`;~a4Ofyby%nB|4SA2m+w+hv`9XM9RLf3JUg{+06~&+p$KzyI`?e>#5n^zQw;|GM1buAc<oSP6JR9G`sVB{Eq27_Pf>(lUALm-U_{F5z%FzFj`y+flj<RE<0;jRLdL<#(EVHMnJGueq$om|Ud$sBwe&_k@w`?JKvBd7aAy>v!mSuRG1l+*<i+Z@a_DUY)GFfq728>uo;E8mG(9vswA1i%<AJFQtCkZw~2spKb0Ea+2pQ#Z&Ygi$^a@wAsOx1&iujX5S|deFOxt&y(|l4DcfD93EbTkjU$^NAnyIltvSTiDOr5O;?i6502(&$Ve|%-aLYP!R1~)@Ta#Q{-uX!kWs$Qf==>f4fpl32hv#kIZWUoCz+Ko^5FCaLGSDg$b+f;d4rSUfC~@T>_CA8^BM!++8Wb@?!f>*l*7tC5TM}aNnt!EG63;9R|!O37m+B0Ci^lJA!89%B(YxADgkLUB2MIGfKoyKtKU`J*Vg(T1QW#rCVSC)3}DNsoV;<&;|1TwVs^;%4oUSaLUyjOXmr-iXWIUA<vGQB#OG`ot&PXtv~q=SYgv^wj{;V}yS*Yq-HS#-fWH_{a6+sbm!NyIrc5DZ<P%gMg5GCC)UXu@?ftJ}8wZSt_E|(U9$2EhsdN7#9#10=12^y&M*KQIf?!eD?Q>K9iu`>0*<1z}6e7vDHI97{wHaU33F9)ZN;#~%?}v4TO3qr)5{-BKqR5(2Rx7x=BEc4jArZ1T^m*;37hEl>XzQXRdC1zsoWSQTVT@7;0x*z9SXG{O*D(i?2oI`Oj%Q;al2uJQ@d-M`X~E2`#E{(M`b23-t-DPCEP%`sa3h;_=g;g(q9QAuO3n@%*I+V306lA<mPv3+@I?m9<J4Z+=eZYN2jL5MK~TyxdhFZ;`JNv>JpWn^Oh5*3-$%1J4mwsQ?|!{pHZ6(|cnpgeZ>P$}x3Bmt!o?jX*(`|B%|aj8MJ^u)Zz<VhRssiyigedMjzct#`eocE>l7n{j8Kr_;O@HR#F1zL`Pa`|vMHQR1`t<oH_fM0vdkyv^v6#h-k$z+{P5vl!Q4hkfcn1i%pTk?fG0!+u0Rxvc;{qLyl6gN@%1pt5#!+^>Mg|QvHbKISHcnR(*3WpDy!fLuL7s!eB9~N?nNjJ#BM(2Y%2PD+<68L*0Etg(qPji_cKP-Yn87>gI%dFu39RD5dk~KQ+9HZPrJOd+jEBn5=oO@T>15wGziwEC3gMb6cO6MSODz{wUszs8EHJUX)@E}+Kdqbxb^rub)UEJ_4)bBKMzJ6e!-p3e}FGw(glSBf@L00F6uC8UiEn3*XGkNo5~NWLG||6H0p>WaeE}mEviuH`T<Gdpu>bO-b1KVfRYagC<q-SeIz<|jLda#H8C9r-LxR>-Zc-ATh^bzOgWdyY$V!RjYPB3NY1>Q{wNL%Z3%T^?|5lo8*+FXtgSii?%4RLNxV>S3M|?7MnHm^NqY?&V13bogzPKT?J)43=mJ!G9D3A?ZOzODHWq7x<$gSbv?(lp$5Y%+)83mjs76=U;Mjo#nC=mxz?eLxz00i>^DKE%jCVs;=p>Y^Wo)$Lmu8$kT_?zH6gCF1Lm-|=XT9y*Cz<xN%4bIljP+;dZL{Vh#cMH792*BE!I*~=%0lP<;xgVO(kauxS?mp0RNW&RS+H~nLt{q8qAFeK_fIcWU?ihd0;MBtJlRE#{G_#0I*s4qK=#%N9HJ2Q7rJ~GABlvhyIEBXFwNvwW`rAa53(5G$(Y7G$ErS60do)o$73fyY*wQpva!0=$rjnqEhS5NcIIVTA|PU6g5_egZ!YHE9m#FBM(Ql6s+TLvM^46^^khX}O0}W%X<theoH3$n?`8F)#;~-1ybvDL;uIdkFE`}{CQxjMV0j3-qT8bM>xSEQu!*i9ZQ)eed#@-(#AI|~5M2IPp}3Ia=9KMKp(#FH(9bNkp9bJjos*6CkhB7W*}#wZnawe4Gq(n^f?f_5PN`g_#e6vBq|2H!g~)m(Re_be{Q%%7GA~|48)mJ{a$R<;fnQ!%PmcFC=@lF|o?bH;&^ThHtGLEP=&Nr<%kxS5^Sk%|d@gxunoCZ2fBBg0E-ha@pzQi8pIR&V#7bf;5&{4^NTsF;%k7U%XnbFz<Ef}yA=I(9cDtqJTJ2!!=#Y-fhjYsroF|K^wE%)uAHix^P>3oOzkOP^l?X-5Nm&hYDaFd6^btA|C~t$IikUl4pUcIrI%(b~<;A-I+k{Y5rPoSOF}&-08pHhsY<6$R5TDYHhC#dAB>_s78l@%5*cqm{8m5);oEC}4$YbStxpbiu3p^Rtdm2!cwWfURUBFKjGYGH0et81Mh;6zGxF#)fLp6%Cd7<M*%7A3+&G_Z8q7vv{BQjIE7kBr$$tcD3we(D6*W_P;6rhGdTH(7bekyu}SRKQp^H;6s!57Zf2Z}qI5Sn(Lu%{J-b7nW4Wh+&JT3mR>wd@!pc3IN&<UmJ5TD#c=gpV=Pj@wEMz>3lfunkwGT1qRpl}>HC&6prhI-03q!~~1+nR7KD-^5|<HI7;=z}L;O5^)w<lk^#_CKgcH06=y+=OQ1tyk#;iXJxoYgId89nOsz>I^9?S7m(~lx!%*JQi&<t>w8O?A?RvR=f$!$93UvaF%@F)N-Z+yFVr@@7_f2=!_!fn7G>q80Yr|5iAXmg#`f~a1*3xZdv@km_`da7;t?$6_7Mk1x0#>|-t;*ctjZ~wML7&W9xv>Oa;xS<ZBUba^MapQ?__8ZZNKqJ*eV~rPM+&2&SD`MH+X$YSuvE)Tgx1#*_X`|*9x@JZ(w}Y@@RviN?x!9q)+>6fb!$>^T(qso$ZJ2qA2o86WaTR&O9XF0cXeG=Z?VM<AZ*TgXdlV!J<-X*UPvMXfxraS=Pe9&kxx|NqSKG&8(`vki8dg=s?**T_5SROsXJ9LRei!a7I4ck&B?DS+jqG0dS7kLGh|^H%kOEgp1SJU+w|%+A;rO@&|Zf9r#XtpV=_oJ~`<R3l~fW2>k*55FjsZb~;~7`VQQb7i{+TpM4kD=|zJj%J1CU=XtWn?tQzfP%BVUi>{i|p;_nra(sGI`QADsJTlfx7$a}W=Br13)8%gDz0R0SPDNeUAd-FWrK9ru=cQVXjNv1d={$bM$$oDFF<d2Map`=X<`ibY!IK#-w>M5EuV}qxPgPJj@@_wbM8pZIJL;PYk2E~To(VyWcUK#W;*$k6Cm?QjaC5)yh}U~q%s^_21t1l5OZrY8+RXp>>@W9u+Xh)J8a8->wmWKj`7(0!Np<fJq$9E3m$a!y<=OzvWuwN888)lg>n_?v+=r!l9~UpyQPz+ay;LMD{0@{$-wGjtrk}6#qSi$zv88Ybh=?wMc=tnK66<3^ARjA4^tl^cW9W=IZH=B%ThfH`q(LDk{DdjAca_9mHo`mN$-5a58=P)@@y-k(vVGodA$zHEPDzP8M*EWpao~2+$sKZ`LbSG;j;)89DMUH-Td-oezHgs@31Yg)cZP`)pE3M;acDHQVoVJ|-g%p7<T18;K_1DSWXx8}$3!WmN0yyy#HD^G0Z8RgQV*pV%uTCQlO1a>0MNQ(%TtSLAsQp)cU#ZQ3x0i<d)@>a(EtSRfZ>ol1eT|Bx3ReMNv`*D&+fBac2yB6tSHA92kU)PyS!XaeF-zp%<|U^sde=mKNtremk=!8gSi2$D=;9YRD`qJ`xx^`%oBODEq{DYk(OGkVY{ZqudA22>)l4_jOga3en<UDIuzmUI(3Qc*k|^bi<YsZ{B8aWN+Ne=k6lb7sJ?T455~ScCal2b12uD~>;_s^Ye0FySd^nXL4%0&<_};ZK^h3-hG_B*dLwNnEESfR+&Govtr&xWB^%>I%=w_g7nNa%ga$<_28Ag9o$Mq@Dl*s3gGxT&wJlJcBPKM8I~k}J0BE=mlP&(r=di;04AKqS*%j$Ar*%v<>`5hqS7I;TT=a4>vCRPcj<^vvQIVd@q0l{w7P^eOaOYUG_AcW9H1o2qkv4Iyl42&VdnMmb)(bb)1%rf}1<9#!6-89#_yRIu+*QD(w(PILDA}_xqfHjOw^pBkpaSa2hbh_fHLl%u=Tw;|?UPxpw+uAy8O`-nrlO@O2+ra79q}4-bNJetu%{fW519!{LycXwi1;fauhKUZ|3T478nm<PUX7m6p)RbOL_WM$?g(^2VgWi|7Z@vo1#7e7KII}ft#phz!MbixMIyWYL%CwETI;B^1APKUf?NwDDT!FLDP)D^W+2NN8xWaKY_pQ2M3e*pcN2_-t<-0mmSuFwxT5ri?#p~rG@8>qM}@0V@EjAsE4v}iIEQ??LK8Y6Q?McgE$Nr!(x9z}`X0MT#e`1ukx}PAG8x~xmWlOvRn4ET0$M=GoSw_q=vBI@PP9D-yUW=Vt~N)`Wg0Y<1v$Z;wpse!hrm{x)PL-1#$tO}NhR60gUVjht)^5(Wko3DThPMRm<mWUEf<gQSbWkN{bM{b)+x%X6?|kwTFEAT{S^SH3<sXdw0BzaX}!l6kM|q}2CJHtswImaUq|T==9+O9gKanMJl%;p34A~7F@}ld8)C`J8Sgu*FAGjacK=l4gouhH$nm_yv6ttiQm#KSl2oi9SCSo~%X>lxQUr+@VAE+<Bjy=-&<dt#$RT7NAcIy$9f=Y(0AeFOJ<3YkbZxq+0a~q{=kjrUgoVZ*au@ry#s%vq0T>3v<~2m)3T4OQ4)Xbn{gKT+Gj`rPgrNd=eQ`tUt`0?}_ZHMD2`LLKS+$JIn$U#1Rz^V&M}{M$6b?|#1`t9WCQijdx2Ht6)2o4>q1Vy!)`IDwIkGZr>t-{Z=`sdnu*3w*0A$E;eL2~R0)y%EWpfX`wUl{Lm{RltxojZc=3&_5oMT69@>O_uY_C=D$aQXMO(|nLyFLBP$T8hDv5}~cfXMT7ee!Mnk7($&LC`+T=0pm7Q03R-k3XIx(bpyQ`ur7g#&NYB)<_#0IKznZ?Dw#e#$c{tH*a?is(@bA(vpv%o?foZ5odfdy<(@&TX`>ajHnDYDlMSPt01;hF<Xwx7!;`syW>DmWZNM}K@4T|M8&gx(L1@z*2FP*Egv3tEL7RLwmb|8EC?{NF33z$W}N^PQ8{vPt9i&*@uw(67R-+x#dYy3d{X$)4JhJNo{t6ap&V;-@N?p|z*Ez-H=hF_V-bjv7ju(IOS;mKjaYn04EvefX=RN4j1^>kv_FT}q&xglg1yNd+RnF`NF&Cn1(NBT-JEievD2Uuw|ieg<%f4ag7stR|1{zfx|kUhAm!J3{f4$m&3t%Vw{o%d2&>W63+D5i0Bk_^EV^_S&a^5+5ioiZ4DJ^EPB&gv@s}kT0=n@~a4KT(XoiFS*6+SDeFyB4KG<1v)L{4O9lu;RZGcqld$^;7Ty#DXWM`WpEl*Ua&h+4;1XOnFu|yb-$}RnHfPvDHX>}fZkc#LQYY^VJ{3>S^*tNpK1s0e=pmG3Co`M$-(f6x%3^3gVrY;OFJESoFmhNj}J2XK+RCP@n6(_~^kVJjH*thsd+7C)l3+qg8q|sDR>ty05urXLYLq{^RPPAubJ23Ww2q9n#T`mGwsH#MwLnba|HqTawVo$P79>=X#soD`tXvVd?f{Ev@z14teM$+t;*yOHlg)4RvifhN#m#ZrJB*H$3I|%P}ESQN#iEbm#8YHHZiv7)8N#vo#M*|mLL1SEojl(N0!*%i6i_%+6zlnZ=bq8QR-A${7FL(7&>ds_P0GjL%I`2b0WQ5!vKHb`BVFf?GU}C8%OeS)}U%_KtUW9pTtfQZIM^Wh85Ba(n4k|OCJ=i68TtG**X%j!_muTpzAjd{FSm0h&A%CR6;BkNyvKrZAwT_4a^@l#PzZ0!C20X+LiNMFu-4O{R{~LZ4X&_nXkjN4=J-ui=Bs9RiE_P}XE1wioZj7tc==Q%)a`n!|u|f#k<JkLBW8{^zzF4=aqh{XA@s`obn-We4j<`;N+ONI!AfuRYIz63P<wg6SuAv41Q)1T1X&vY}W>(W@Y&0&!Z2>|p27u@nTeb=MvaeaZF}ImzZngn*j;e;6jA5F}Pncm*5Vm)c3TsN?jgf746eVYZZ_GiuJJFT0SVnO%yJkcmvNM*{f!3`|l*EIRRoN3yV6OHQ!lKiJY^7^lbQ&SxlQPRfV#UHz5N|tJuw<Mz+{R)=h0!TWC0zfT_NkX@5EWHDf=8uL2bH{!5wdb{_Rl^SyCFD1bazUzVlFD2;&4V?YI&YRguoC8#2^zZ`I;cvcGq{0i6b1XwTQu+)Q?rNdjQ8UX(I8Ll0S3#lN)*;E^patQs8*}p%6w~L?BC_7Z@@(a<k#VH^3vMkQqbdZVg(AWlqnkm{}D~8nBnBB<y+7_=0dgF^~{mb+3wP+EDpm((kP=Nih8(ZPFLA0^=%L9bT(GP4gL3AI@Q0a7qg=7p6c|QI(4H*A{D_RKUwmc3AC`$8|-6G|mPoJaFp7F)R)#`@fm>mPqL!rG?0<HQCLyD9#Y7LPUQmtFKA4lhL#(unyn`xutQMR+HjFm!urhq-UQ2_zi7Lu@1SWybm?wPQF@ub=e~qUn*M;tgdwpmD97n)ViG4y?31@ZM5nLEZA)kX{s2ogGHDc0X_N%Pmqao_-y2}4+&=HVz0W#6+o)TVt#vALn>JJVPGy1*m;oT6vLemArsu@F07WjcIU2e+k@1etWh@7m1BhibqjU4O1p}}RZSr^XX`-Q2^)O51COn^WlysZUb$ggpx?e1_n4lumJ4<njJ+XcO|rly3kgysM27K)Vmi_W!r)s#q=Hu~NOl(VSLT8w!Y1NS>zIncpP@HmNlrm+!&ZJDTZ;n5#smtHI3Rjpju309Zz+zgtusLVmq+xuRWxl@4_R(B+@r*Lu*JCqvoYI=V6>9Ldb6cGM|w|9^$x~1kr^U5#%cxQrg$G%MEc7Lkut%ZL7P~sIgGUkW-&-BoFW}|o|2<jh8exVGC-D#vfWiZk7f76mMflzA-;5?W<0{EmjVH7W2{(Vk|^X7<yG_ykA`CrS%FQJ;{tw7P>TXbI|K6PM&*uy<ZM|Tg`kDdAWt7djp{I6+#wI$)dXFby%l4r&hyt=t;(|<0p}aS-pusWX=&npd{8l4PELud3GK3PdBuIdMTW$+j{7C+O&k)a$RR1956-jdXusumRryUYk~bD<BCt~+DBBx+dM13zd>~C3k~ZQSQaT4O*uFYmKz#&Zg8INaR+wcZRR`U<KP)x8>>K=$gNyuN=@gSjg0Rv=iUnk`X;ObENVZU!)YH)*#aKP&RKSQ9r5jdMiscMz$&%FySffX&*b0N;MCeOYcsP@l0Rp_iF>Ch)+i0efovT3Z(=e}-us3l7X0*=7S6HSdrMN+BlX-qvBMV8@HOj9)jnTlYqJ9-7fN3`)E0n-P!Q3V}-ieE?*u<(fW?|#4e#^GZTYCl@w7^;_wUUVdi?8cgyRc4r)@MM^9%6k^5CpiZwBlwHh$zqd`B=784I+f4RFE-lq_Tw3gXmCGXd=Yh@GMfK(w9-0v!7nF<FFutI)$0FH&6oln3<;o+5ulQkKH3k4^+E(fOdjf7?8AIy_q)^7b0qQg@^H2>Vqr!;_~(CJrqOnf>)=ELK{P?bE#XB<v%9m9+%4Fcka}wBKTyDV`x$Rx=DuF%TvI-*Mf1r!i^4)v&;Nv4!>V>5BD?S+7<?jqNPysX2^9mZe#TDp&Mu~>xoH)=v&W4LIg3JUX>T9NY@n73M{rwQxB>J?o@<GnkoTa_Df6Cbt#f=BR(8(=Jzlp=<j|TO>|H=*6+C|s|}Sv17E3l&}-d3HWS=Jl)Wk|>n%&CJvw~&ncQofY2U#rIKzPnF6dHG$GZqXY01t*_EJg1x8?RNqO%#)6=+AU;BD6fgDqwZI7eCyIP0%sfNCr99T0X!=N1ea^Fsgx52On1>`=vGzsKI>6N%({ol{CO!gB|_%Eo^xdN&y>G*0rK05St!h^{S_M_!t8zFFP&!|#~mel4lK=c<A}qKoB0`zz<vUw-%B?o0QPJhYpAgrIypS;ab=P)yE`WK^rD>P<l|#c#^BM2l8g6YvaHH5euhePSs^t=DXcdAvX^NNy#IlLP@Q*$^@jmy$MbRc&Rqp!Tm$xT#v$Sp1H?Y-cbTA+ZN{LPScfkrbV#Bqw3J2D?ozqMxP!NYEpK25f}0OFqFiK-m|rDb<WJ+ht5m9`uXavD71jGpK_1Li?c`Ala6=1aw>n&Jr0xc0_IQ5F*ZVk=_i4ZLUsw$d3_1*zL67XH5~XaLzPL@**VX)aRQb?HE%tJ%{S#T7LRmNX6nLXTqjTM)0&2K3G~AzTywBnVTVFxr2$P3_U<o0TK?giiueeqJZGnLC$bi+^(V?2SY}HQ6-p8NP3Z|E}l^nbf_Ar&X1ofTzF3o$P%OP#7z+Wkmryz2Ger%a$xsiV7CLVE1YO@G|Z1XMQckwoJO;hsVztUl6YtP(_kM*468v|mFzrBk-nMkOZ79<c%0ikdImQprzFCAx1SWcdTdR2k4d^Q3(i)_?ItNvnMay*T$5$)sFRc;LY;fv|L!(7O2gHaK0PFfI-l*|z=%hFXGM78WOypD<B$_h96X+09wXdwy(x0q%wRb3rzVW#xD}Sf>A4w-iWUsz$(3j*r0xWQD!^K;(|laYDbayf<7aCUO8;uoiZq`a1Jzb0JA$8splY3J(j~j1zp^?m)rgDxZQHGJS0WVR#o2#(SAmk{cRy^J4PcH(pL!O4E^bYJ&Udf7anYw^np61Xh^G~7DH&fyJr$~ru#C5BdFpM1B71~@`a&AUs>AJF(NiSFkxo-y(>^4rC*$LrHB%3T*_%^|dojg@5Hm&7>D1AjaLGZ;H?&-sE_V@S32`k8&pRCI9v`&ZsU!uO{rpnTl(7&$#wyfBDk@KGEs{%Rd!~_w7MhszU38wK+G@;H%$}A@8PCD76O_`VqV?pmYh3=tOU!)cY(8hu%oacyprgYW92>PEov5^RoN=I^s)&rDh}1-T#YFCaEfYleRcRuGb0hRw_6eYNW7i~H3TDx}hR5*J044)iGrXM%h@*x<@<nWRfO(AHVtdrEUhPa@<&={ggvxK)=1q5{!X@LUA!VyT#AX0Ht;SEL<DXrquTD~P{o&E;q#S^szMzw9tJd7YEP3>&P9GLmIbfnjE0~PXxGC~?=0m;w-?BUtU%2WtA>n!aT!LM!ejo0)O<vRhB9_ju2C$Rc#ni9Fn0$RFm#%$rrndnkM1B8o$z`IX(%e3~wrj)<w6za2I-bDGdCEKPu)Q-_A+BDh7P+yVF=;ZLPVq0F`r#SvjF)A5euLyIaJxJ;pJ8HMeN@pzA&UGtw=UAYIq~q(RRs~WUY(3OMr70qXg;x$4h%dy9eit>AT8T2<7f<5q;{9adKf?$QK2r$Jy{DYm^l8DxPx5$fjcGVIHtGFw~vm?!eaYq#7+C++NP%<FPz{L%WKh!+n4V&({e0SaR~x<N+26}{>vYkK0DO6vq9Wh;nm>t%zrYb2AskuuSx9L<r$`M2!aSx4k7K*<At>$1=Ad3C^+i0D-iMp@IfMk+_q=e;Ro$BLm%=u7<H0E!P%|X77x7#VDv*=JqwavnG^Ov^G&khF8tza>c{{fb8E+80XcDT!Mhj0&>E^=A$jkek3uH<axdjIU}iGhyz#C=?aLsijnRz@m`oLI)XTKl)r#<v{hKVDa|Bj^jEV1yYMC$>NUXgz?=BSdCt;LN`TzYl1Hw>Ly!DfonkkdL(u=1xXR?Nv>yMka<Y7Kmgz7$l2;4@E8*p5U)6vj)+6abH@2M04)_@O8R}hzs1er@-2?1c!IT^jHHMEQRhVlRen2k}t*%T==jaF2a5n@-M_`Wz@$-Q|S!bVE+(Z(l=6R=$Z+?{n-6M@hsgjq0FqT<r@m+=mUfpOXQ$vUfTGVR8W#saL?0?v_}Y<16yTvNl^ZXFC<ROCVUFP6B<0~+_VZ*}j2Yjf4j!-?VHVB+m1rn`xQ{QaV6X;`#X+$W<)YGv|Oiq0vmK1;3Vz*t!1q_{b0_Ytm5-f!c~Cq@A}IndHcf{E#f*?^ddrc*l8+~gh>p#_ka7S6ryr_np`E3|+OL*4jn9UwzHgi*0d+8y9Jmq!(em*2P}4ir~uzL?V+NG@u~j@!OLk#Ua@r5WeVq6HZon=}G3ErB}1EFA`g(e-~rz>I8=HcjA|w<Ky#SaN)iNgTdm;Et>^31S7JMq(phv&6V^$p?8XOgFmK{^2RAIzTF&GR%IORpr&BFVB7hZx^!g;s7$$zFV|2sfcwf_ZYIYY1uN<g~>dam<gea^sHsIe2e8vNFQ~v%%tG*e3{)@BdatjsS2@BUBfIoD+vM;;deS@1*JcV1_Aino#ZNZ;RzP^m^d=;3U=yTc?cEj^OLoo5bf>+B|(8zzfh%_OseUMiV@{4f*JcvV>hVVhwOt+M<Dxquo-n42v>zrin>9Y#M4>R=3FMyy4`NR#}hyYV0J1&1P^^k^@5pvTudUr?I$U(?{U6BG*)x9X>O;fX`|S^W+L@TPdtj?6ri$M6=P#_^TRO-Xd`)J-o-b*L(23})aIt}Ohg{yPm+8!U<9lBF2uCbmRqWrBryWYIs$+t2VE58OsM?KSiPbg{_>H&6@+Wvfn<DnmqCGs&P~@X+fdgK$$I>|VpYvkcx2k;SxX3Ozuyixhyub@+;XuRTl7sYxKFIdSuAy^#wAx;v7(FSYJ@44Vo<A*)^(oGRp(eEiZg6cO#*DM)qv+`<CF;6iCTZ<aiw;EyFS!-B(X@^WyC8xRI0=$2ANHeG@E1?pX#Xq(||G*xiuK*&Lj|@RPPXg7a$gyN1g^l<HcOL>4UmP&U0?CxZ`tVyenxzL>o7IZFihWbRXVX>2UGo3uA?a>L!JfwnI>2)X1kPIr6$Y-`!<-@6*$pfqr|he@}}770jg;_hQ`Qw_gcIs)vdr)gNL=MatGG1n^LB6F0RFXXwffJ&Ba-0a3=Gp;$_S#ao4a@{Gb5hp@g`V!zRxlEXAm0uoW=UEb(<9o7WTCI0l=yZ1l*<@@LJ!R0xnOTo{0G?Jn7%E1Qi;HqyZy6}8`XazBPgo7|H%Oezly_RR-_$Ggxm<s_|S&QG%DZA}=!O)^+0oTuc)GKn4X8pBfK1=#{z-Zeu`7-u*<;-3nR<!As(zA_VdIrQjwq^&4Ok=)!`KB4^SqWpQoj8^UD{Y)7BV7R}O-)sbRa~Wg_Mr3_9n7c42Soph0Uxiy(nbhrD=$T(Y_)e4){+~HRXR0`e2Xuo2$=7P$$bQg0dixES7BHcZg*K$Oxh>7fKB@u@kz)is<g?8B-PF_YhOMH#o4$LFe`%vz{k}m7rBGF^jVZ<pMHGdK2FE(S-iNt*ljWq+*)lTMBCqG1VVC+Ptu%4)mvDi5O2;{ZW9?F_qVO;awTBVfx9dQ1ZZzOB=?s<Ry8^|lvkTHbs&A>_+s{l$>5O1`|UQLo*t50igwp;<dDp9t;ed++~uNgNNf;uh%c^hh970G_1P@TFf4D2vlO$>#G{8-N3u><`{}U|x;kP!*I0YMTv(5;_E)^WP7BwlSvf_msD4<%-(Z^~c7><O!WTEpIc1#{HP#=mdNE#wplZ)I{c7X2<aCx9AK<u_mnPsIoFSY@ret$fbd8R39!$+sRf*^2``SdK#Wwh$Se%r;sXx*5leMPPhAU68GsYnj+Yu-a-oT$O6u)Y6&EV<UiV5(RQZ#G@=w%(Gh+SAXT@SU~Ld-eh+$C#YT4-sj^&g2DBg5v|qPb2#;3|0%2C4_!#KWQQpD)1Y@8NU?Vaqx1^m^ljp?yzN+b|NBxpzM>7NQ@6jRoz?j@iMY)0ab;Pt(}+)AP@7KRwf|@9A+G-Tr)h|NIM1CNY4p$S7XGvOLZ3YwJAero~qzn#aa>nW<LtY-5C%1NR?xh?&pBe~$0nU6D8*w{>~uE-Ocu3nGZZKh}_g&_Bwx0)VwXzzcNhA8w@Q<<gfwMk)jBI0GM%BIFE2oWB^ReZA&mS@Q|xMsj37Aj_dQvN5U@VqRZ<>T5#H;j*jl-zNFZ4h-vqKKP99d;p*PbeCSpeHr-t`Y~^RdH3_%Z$tQenkWZefBf;M<MCIo9qdX$`}$Eyff5kbzP+2VBrb1!xs(Jjqu=#H`1<meProS=7g6h4e2Tom%f>G54>u^^{!~<YB`=L(pX`H|<DT|XoVTJdMV8~mui!!!e)+WICsZUpUeY!@Lcml4-^Qpl68``KRiN@6gIO|Hty?7gNHW$T9O*vvTq=<cY<!cj>LX8h_Ce<O^SXV{A`q1$l^0X}dvn4r8D`%27l(OY7-sgobEVt!yH~MhjL&(XQ_K~Xe4T+en7CxT^+K!hnZdxO4i2v}pyYveT^jQN1??{S$*wk_thHn$EGGf>%4!~khKLY9)g0~$dL5+`+mhY%<uVq{%p*QALd(Dpczq2Dz@n-dtYnFcK`hR#gN!^XjRLdL<##$@r$iQNOfJ%W)VRU?d%{Te_7&RZyTWDWN<F>nUDW1QzFH<=<$p>+8FKiFhx(5#Roup>taB}rNb(PPDb>^dE4=25rf*l$=VEw@p=2D6UY2N6CFdkqROd4LK6&UPAc%dQoEKz(({fsKc)gze?r3)SCnraSxN^1DbS+o`7Dsb5WTY3{A-J*jjlO~x8D(T%WG7$Na06aa`3CIg!1NXLVvI5J;PggK5(g`oDrxf_aN)tWm!8)c_}12#CUg(BWFHD22vBe>xi+s2nAf>VAo9A1L?JZUuOKYiB8d0G5@J<BS?ET9QbGT#-&Ne#*7_c9=ujb4`j5eIGHVKG3&X@F=--jOrdTvlugO3fyHktxCX~@y!gX!wH8u-)+?t@Hxo%q_oBFN&xCGssHDwARBcGu95cED9qK2(NXzzcOCGQu6wNXSg9$2>g03<q^kc3@V(W2Ni`8q#>U{P4K^$xTP`T6#<0o|ubk!$eS2T_~xMV&A%<EoUyy8C`uSE%Hy1udNnouS73ABnPB!4<Q<(5k>CpObZ95+(^ejFM1u!3O5UbmTjblh?SndT;<+WYX~9730|$i1^MHm7YzavCyf+klZ6z&|D)K16Tl=CE!Lj>&_o4$|0wcrT7{(PL)O)SMlsV;j|gWgL$0VEBie6!s{S>;VuYDnMRMDn;_qlvCoScz<nRh;yCD7nY{b;+nW4_8Fzul03C6tnd;SjScHo^OtMMUJWF8=QA&ol<lCBdz`>y+-6^s4Tm|*ZxJ^y{cP_9$8r(&J&%(vBK6{`uCpQ@?{~@LM&@!K#(=+=31Gy_m0k$_7qC$~?qw<+BqFBT`CxhZe^YMzWhe?hY4;N7vErQlFu7o4rrTbrHRaS*aej857`MA@k-HT9M<Hy2N&ZeTj$3;DaP8}NtBn>uQazA5Ky;k{JG}yhWGMMXNmkHV1Rlg<WswUvBY0`@;&wTz=E0$bhKolMbp2t|AsQ&9())^6(HL2s;BqrNHo8uNtx$=82ov;r^96r;QeUJ*{$~Z$iSW?j!+(~=+&6iE(2i2g81?`N)P$}=rP$&xM<gKjk2o&!jR4PEp2Lu#^4w60+9Xm$mI=Gscj)QJmkaq8yhsZ7KPhh5;%VahZZLLP4S!pC^-c5fL2ZpwUI<a@WG-}I1x52cnIqmM)_^C;}P;d$$+d~nM5H;Ik!$zv~tY{=zU#V_~f%ilgpxWcmqh4%lW-hSl8d^>zIY<a;Q&{|tr?{P_y*GwjB(t&iClgmA&F%QCr?hvum13SHPm1ww$O@f=lC_M@bW2w{aGtr`MRudGF_@kVo%ObJpJdw8DxV!KFxH=)x6PW5REXQIU>C?R=HZ00(7C_3j5mhOyx1GAsJcfsvS8^DhQ^GFMOC`e@1I_%z(_`^XG)6feuUqVoziLi4hOQtP+9$jF5ksRA|dK-RuuzGGx?Pn;l|v9ECzTorZLa4s!vtG9K^s(&ef7q?@$rhSVhmN^X70%$x@!3d6||7h*+3lxft!6NO0f9$*J}wB}wHY*AbcL_90XoN}u+%M8O#&y7o4iNmAZFUI-6raf;_CkYEDEh6t*Z$~*)Mb;E5t*hE*r4E1RC-YZHmGfr6;1eZTnC@$o<)O=_?Xo^o4^fQa?S22(Ts}_v+khB7W*^t8(J+nDxZRXZMR?y4AEQ_Af!zm|S)|@Fs)+?zBtlaHKO@J|-i5Ag@Su3+#mmO>1m)F&k<GoFK1;>q{?J^t2(p3Oc0uUL`wSFHw$IGL#9NMMjs|S=_U*%J4C7)PHj736Z^SYEuO%s;eADhtlzDCDWQMW><V{PqrOU#qo#njOu9hZ;v+)m-Vl6z_;2#((aRzqe<;+AWioGT&}F(+j;$fXo3htfyrNT9q8hAL+6Jbf+~yXvHQpOhEx0&EjPQI%dRLB;T{?`aJ87qHpAAwzubpFIlNVe263<DFYkcZMmhhG}Iyr$yp1@>scEE?wxvVxIG~ZCUk77pHveUBFKjGYGH0Ce}g$+UP0ZnzYCb)hN#9g^n931Cp&b<CnvVN}zj<$V@eS;#@{4uCJwMV!>OFT!9pzhCy24yDfeydWBdW!=&?9t>?iP&ejKtJDL!hcAl`O6@+tUH=SiGRf1Yvc*eEt7$bIB()8p&M?+e>*#(4;G1HFQN({h?(hIN+SEX7?E4Y<TZMw~v#5Pf-f)Nue#%IpefP52&wb5<+_sFplaTZ#W^ck%t7Esv$Kz2IkA|Isn8!=;l`G`k@TEP^VTvV$%-B<w^knBad-qWU1i7DLcdrO%i=xR~t#j-UVASl0)Swb777Mb%GYMWjRSh<Jc>8MVNvU1Y^B1gkSq?-_9dwJx7QBl6KppCS^_pQ$ok6<ack2pBG%>-TWrq9V>RZht)%3*-2&A3}NCu)P5?3)+-%z7t7i)j0ePr_FD=ymcyztCkYB;y9JPbn*g@_B2S!!-M{dE#1uHu?>WuUZ~$P*lkawt)0$e+^K6e186Tl%=!%&|MToUTH#m-_V(d<U8Q(`1{-u*n51?k8$wa3m{ljO6__X_W^At+%(Ht82I@in<z;SYQLFP)fck&;td@rTd3<Jot8-z<VXms%LvZMXFGBclr(GhZ!iGP5j!Ye74Bw<K!$K}I{V8#AYMD>KTQ4rFRTOKsqa%i=j$gY{bAvP=>VZWpdSL{#m!FVi%H*soAQFq{{FM?0z18EutfQtd;2_3_Sn5|cNJ;{N@~$nQ#v&3oL`PlZz|tgXM{(_dI@9XP1$_)$Zxvbjl9<xlgX*5>l#F|@4a+Xe*e5w%aJjBq%xhy&p6rdO(2G=WGpV7&(oa33^;f)!{zqI$>bHSx9q733P;}UhmeRkL3KxcbK#MO=h!nLi1F@fV^MsvpymX`?GA44w;l0%4~rQ{O|bx^qHamw$wQm@AD{i@K5yF~t3|^GPtbNpZ7*L&jy|dG{eg5O*87q+)u>z>pt)?+xG}?KHGADfn~3|cRPW>B#X8Cw(xR7&goWRMa_L(kB+&HpbzaoEC?&QO4gnF-B@pj^2uxyqObFy-g@`_PgKG?(F{iE3Q))|^P@Xg><b<Cvh4!wJ*vm$EM?85qBVvQojW6DrAw;&%yDeldRn93Xk;iC%5+M%UPCB_mE>wutR@1TdP&0)nr+y1oEZ6t#^DjY67x~UGQQ|X(UoQ@g##W4}A;>##6OBB^b}z^yxs#09YWbKbrS!<MbB(yv?<4@J97^h;6oa{Gm1?qM?F9f@S8RD|Q7uGcr2KB{nR&sl?{d$ZU?UoU;2kg=l83<ZbnZ45cRtDWUhdg_mdmaxB83&@_~Kx_Z)%s9>!~kc#+h0Enjy8We&Yw@;Nud4#d|O}fOQ21#FUC~c6%RV9*KD(Z?@%+&nePUYc*`wwD@)PGIzb(D4h}A+|=)=KS_royj`a*ksbTY9&^z$mXyEEpFv6F&g`*^X#~}G&hNq4m&b$^*nFU74wc<N%W4fMFBpq*bSG#Kk>30POe9DHVcZZ+-a&7q&4i`G5|bOJa=aB|FtB7}e26(8RQRGY43W^FNX4KK<-e1iBuPc)+IdjP2fVfgs&mAIMsX(t)dBzw_hGWdU-=wXIG;hfK|8x5J?6BIsfInNWbjJt#hZ&>PA0Y)VBZlp!X_%xb2${cN6|u;Q5WtUi`L#{9DrtC)-}>5u2oXZ#C5Oa`^kFYrn+E|aI+ve6|SO)svKWH28_E3xYU;YH5es(7G|``V)xeS6A)BDJ^3&td%niC+wPny^Q3(;tM!(F#yz9Cp2}3TGzGyq9KR!8V{Q&#TNCz_WA!03L20P5%N7xTMdVfbhT=acI!S|ecHOJd6FSs|b(6@4*UBA%E=Vju=j#GvMX+FPR@|pt1gDjbF(+8p4XQ|F*MBHi%vEb0m3E*{z(|m5VI(CHi#CO<u-pt}Sz`kt^NDR%l9Y&&AmDC-v9Oi;Y}2xgE*V#p-q3xSZ;D29n&+r+H42_%0(fON#2M$1PgiI{Cu9m%grFt;l3W_J^-$kq7pa)gi9Ryw{6{9^Th}tN9<QqT^Ho3#2$|D!`5L`SH`R%@=U{g^d&1S`$hk~|rm`R>xYIUEzxxo_ij(?}UCmf*FDt1e`*u*-Yr55xs;I08g?tNI*cwv-X{P1k5gv<ATBCoAN5(oud9{L%j7Tflq_4jM0F~juQ<?ToOFpgl_~P-NqrhNQvr@HW(c|kV{lQ!_&SJ3brk$rdQ73`#hdstHv3x@;c{$^KXZ2;l$;j@XYMc;JkpwxOmpJzFyj05dCq|Nr734~?Lv(ph=s=1f5d&;G&1%FvBM(}^6b(6q%mZZ5%BUkzq6R>0q^Cz&X`8N1H#I=3wews)j*qa=_(Seu-`2Qb{UiXxfY`i-Xk4M}SlmHAf3ZKZ*=NSidxtPo;I1!jXx-JJ$n@TVS|uT6fhDV!aaj|ZaM#Kx=;6q4gp|SoirD}{sKdmmSm^eY=yrNF@H6x}THabPJv2vFhHc$!rZZi}fDD$HU>Sf68LlrUTTx&zeZFk&p|_SYFA7tNULcnZ<l8(9dz^FZh)uo<?~d)Y3Ld%6Ev+eKY-hKppBXu(yCyag^$`$xo~}>6t^W}X-8Kl?huNG+fe)(udi?Rnb0qq@q+XxDLe4m@w!<1}V*_Uxai0AiR?-;EHSFf?&OsH>t6Ey}G1Sw`l{w;!Po`Jw^m!}qrH&Dm!A7M8ba@rTb}DAeQ5l0GbzyfL2#Rbw<S2-tjGm}?wl8`ociEaa2CwDA<Bo+YTi2F{A%O(}M%D$HNy@Afpdu<qE^ajs`6~Vtg~)>W(WAI7euYm8Ke_=$oXYdD06vssZ4Q1;ycT$Bn)c>%0AwrzG4f(=GHFRy8nO|K4~bzvlRK@9v7fPmtdI8R@S1doUrMkyxkKCeHWO*YIJH1BeY2ZW4l;HcRN{8;OQ`(t?nkhGEd8HGTtXK!g94=dTCd;GR;if}kLy-0wjN<Mx_ZHUeiMKV$eu-)&cc~iWheqhPlCbSg5T-Jt1AAoBtt+q9tuuH3?9vJ(BJyqSElcPUD5|TYmOT1UcKX&>!uBmihU1vl#q+gM}q8ZGo<B-3e}k&e3XF7PCb?g!%?}V9}X~3Ix?-!V-Hdh-C_;G8<$_@tOC1MSh&CfGYC`;z{yka;vxEe)s6wCyTH_i!DWXO#^2I?O>BoI2#Bh#Nu%PV*dCIo&lmd^A4&T`32I@T>5Vj+3TmB9`~)@zt7qs)X4Z-JtZWCyUJxM!Y@y3V;0jfhNOZ`=rOf8p3Q_Dyw#nnT)hbmxf(gyImRB(G+_kqFFwIDs{SuqpwXJZ)PC{|**!pr+MW0022XP1Cy^aMl(J0Yv#94#HbW*XunJbArl=x`i!YgQu%dl~H#bvlIUVBk`i|IGfPq6L)%%{6)weaPx9!lMr3<^M#{Xyq_sE3S@+ry_@J1wl>=NC*YRfWk!Zul#BtjmiqZ;f^I^X@1LefuF_7sEki2DAse<c<sI$Tn@_2mKNaJr(5G$Oa4Ct19G=6c{`XkU~}?d#u(GQK0_NNA`E3)y9B_*dY=47`i(mVdQ_quOba33mp<!f~KbzjfaE=xYxx_O=9JfV#<wil^Wgt_erkaxj0q`fqNW#UuulJlGYdNR&~_OdpX`RT6t5#3BeK9DNy^hw;p5^6Hce6GpoF4|I;<p0ANbYIytQaJ;%&y`izang}5z1sKo#f{bI{DL0|SYi#O&rv&_vlfX-3XaFa1iQ~3!qEDFN*PEuh_DZDYV?T(`4Oz@34NOvc?QWnc7E@sz^=tFkKk~+}3m5GvgaIz|U;t9;vo<dl3nvkt@jf+kr1bk9vSxBr{SPJ582Md;r(}vqvjHoa=MX7}Af73qoQVpV_sz>ms6zZUo_c20N4$l7B=VCVmCy4G&DOSuyg;N~Ps7o!+bBGWa0)ZH0VkKV_B-`%#?lEzMqqP<>c$50EN_G$67$!|5{!;R1E`M@E@5ALSTTKcak3ST`h>Hkh>GJ|Z=0<KdJopB9q!cn^h}^9~E3wS!Srs#@qDcex5|xBKFB)GE&L;*E!mI98F-;pPA58ka^(6_WKcr3iLRMg0MXSSW)u(AbW9q{>Yzt0l;pM^<h$^a5k^b6Z4U`Ia`N<Beee$@jXpqL)AcY4`oj8WYA!YwJv)&RZ9i+4nS+yp+nHI$vLRE<9Pi6HriFPuYHU-uJ+#t6!PSa{qT<DUNLz?vLGXTG#jVab4*Od36X57hFYp*VQ<l;+Z%YoIkuAy>z)|XnB^Sbx0v!sny9f1YAEh0@719q?oQzM{9AK?iyaSor2eD)#1>|E?s_qYN`^;pbr4{JyT>pl$3B?3DSlAL0=6Cz}S+uViKa@X$M6>fWw+LJZPM!IsWaG-9X4p(VcQMjrpq~>fLXggtpFL&Uv6}RkZ7Q!nxYzy?;_u?MYbJlXfE`zZ*q^wC6*kmC=s)Wce{!mOu+CUh53y4(kY6Z#8g8s@}kVM!-9BLg?G59m|Ml8uGsBPHF?_+CGz}T2TArc2f56lr_E%hzMv9)yusQ>baKDUad&FUe`jfQ)aSP!;1mtZz#I}walQdn=cl;=qAsj1$<*d{VV1jksdVB8e%1B*z1Ss_v;xHD)IYc+?l7QrkAX@ygy!_HH36w5H9H&_P9a#6Oss^_une%Nxw^DxAhPSlJ?81+&hfNhKwD@+oFT%x>+p5f7OEFvqgsd8MvuL){V;Am$+{@keCF_4@stD_LK5E|s^W2jLbri(k|p}U%(3$wRkEY*4bTB}ugwj<ztL)e>{o;oc}ypInmX3NPbaW$b`_ARft@3+X1xYlvMWW9+)0u?zV1@ysrRvqoP{H`j$2}bh9B25H#3It_)gHO+dPni#-DMQjmd_zj-;04=P#|x;BAWTpnc*hE}jHK$IJNJjBhL?SVA98S!A1s|>(nt_inn<yLEH+K*4+Y5<DwBFT8l)Jj$D9fn(V}$2ib}DZVJ%s*S^;bHC>2{_Fq{Z|i3$&AvNAw`H#lbPzF-^8bh2|5$bA~-brSX_ZorJz`S=RU)T9(QXl*jj4{Ky0sk%n_^`|i!m{ruT!UQnwW@LpDcqo|LB*!~(u@#$G)y6Drywz{nmU(N>V1pJ|OQlva5n%Ck9cvfXNzeKW=-ET84+??+ca>J$YyuJGc|RY^ma0L7u#^fi#*I{#FnSOjY6?w+cpIKYid6bCDs%SJOLiO<L{O(Nv-So`Kp!*nbU-`ci{`O=1nGflHxJNGPzwW+_NzDZrs6_G&93k;9!q_2C0|^=UcHB6C|>aDlu>A7Xmu`iOS1gOgxup&dHl|uI#mRptZ@u2s$VzBFnf6lnD<&R&R4k60djVk|IFd{YwqEGCS2RXU{SObO5O~)&c<zw9zJvf?PWbNsSthZxk!j0X49+k0u||+LRx{vwrT1?)xe#K5J^)dz{`GVX}T^&(rv_t1J3*&h6MfHZ=;D03dj0A_hhx95@_Hn6%Tr?+s9^tTZpn(Wo5l(>9j|O4?mN8jWg{#SOsS|Fu?^~D(ZL_0VplmdB|QWY52C>zD0C4gSrCk$Q8WpdSI}{i~;9Js{v>IRSZyVMZN>VuISu?L1TUhfZ%~tp`9J7SnT)Mn|vaXT(5IVNk(|?fLGc0Pet!0V}-^^-V;D(zzfl}rSiy2Q_eT5+kW^RbKI{b)%RRg&_{H!JZOLAochb}{@Z=&K9YxavyTvzk0+~GXA_Fa`H_rj6;-_{$ffvAxt3_rDr*9s!Kwzsq@hnNrKt6qEisQ5s0GQbWO0%pfF&D3CgM`k=B=u&%of!C)d@FM3mc2yv6t-(CL<*F;7*80sWp<K)0E^SY}a77$wl<j6aWc&M9_eZaCXTj*aj&3!ZoFuQD(c0smX(WQ9G7;WN-#m@Lp&?bOR*YGM9jk>%dteBgl@ZEgnL|c`nkM;jqosNe}rkLI}H^7W}L!0v67hhDlz8<ed6^Q=}bZYNqE<om|ULp9`s2oa9W{l*tI5*1`u%E5ld(;WcwJWGr_u@syzlXevO$VOB9Q3qlkS{5r@P&WhVr)Z<{t2r#My(+Np064k{sYJv_`1J(KQbA=1<$pKkn^qsf~q95`clEz?Kj$RJzJ`C)3z;%TaO^$~7ai?f)$%oTumNK>F=wA}=Y=0W;<A`B3D65j4hbhuG(|xIah8mA^yGPI9#^jVlc<=U;LRXKi3GXpUH)g@vD!JVxB`Whsla6b$%pG--Qbee8ulwKK=0<6_y3(hIBvI$H{TmqZ$nUHOPn---1$G>A!ij^&)5~LoJFYiHPMaAFNB-1=ksP<ek~lp#Ls8L!p**<~4TaR5Ku`r(t96=>OF1Pv@M`>QO+x8kO<IxWb7P>|%4A3Ia}ZRmQ%$;LSM*m_$E6x^aldW5HSS7;LcBQpFYhW)vi$CcO|t>a@#s^}!q3I6$<O)jbvG{hbWC#!pB(YDf-NQEtEi_!wGo!_b}di6jZkEd5Kv!8!&r5=y(@Z(q&U)P%4^z(B=ux`e6wcip)h-MDseBSxDaBdXgZxbniDQLi1~(=3)AH;qAVe<W#M^;L*3(pb~}}%K(n7;>X|YY;>TEpx=2OkiLFI)scg?Q($GQ^bH0ntb5vW6nTpxdaw+3EICg?knpCu&Ty~Aizj%q6&z#NY44T;jC<AnK7=vS@Hl!1kwvICn^ivg)Q52DyXs?*a9k6AB2)`;#gm7+zKFdA<)NbsWgiFCJde`t6ej31J0BeS~GXZhbFi5_L%?>b+@mp+<8rG|w>8qS_l7mqBP20Tbu2i^W{4}I&6^PgjV5imi$#nd)3-#4WYOX&#dYzO5@Y5G`a&6U`TbLz}{?zHi;wlGB)My2h5gIo|{?2@;m;YOqXW|Q2ohBqakDp7hi`DPL{kF-A8bHL-8P))Ha=V!Nl^Bz+@8r_8FV6HffP|>;A1=8}lvJAAXV-R(xPi9zVMfOjcsWmb#~rqJ1}ntX>(nAQwlgM8rqe0@<x@XAqn+`xY|n3yd<AZor{*(EtgDYInkYn(Kj+p(+BYX2KDw$Pg4U~(QOAgkS^>=`R?>liXQzX2Z4;zr+hrV$;fmDm(pV1z2qP-gCAlYSVFeS%UlMnai$8Fu<Q&KJw)ytaaamYwAC0(aUtHVt6y${yd}4VmT5<dGon~5&g(@yV;7$o-1J8f?BhzPx`gS&mJ1e{ze4hDF#?*jQ809sIJ-a-^6b?ZUVag$-U3$E*Hl$#hV+;jHopuF6z5qT*gpk|z>^l6Qoo47m9tWdNaws^v_1fa0_W+E3h^uEo(kpYq9%#NvHr$0@d`%r00Az0MI4mG1E-rZY0vK9D^(!Rrz4KAXWMA&3yavonhMPCuRj7R#<g_umaRHO5qK$f)HoIC8Ub26ag>#O;3Xn1JeNinF<^qYex8~i2g8n3o@+tqn|7JiKii)>>(o!>JvR8WXwB}6K5Oe);^Oii!$BIzhClG<#sBr_1YjHXn8c!R+Q0hIEBETB(f$0k3l93>D$txiMY&s{SceRFgQQuG=fB>^G>NlGrWv0=J$}&Ri3KZWLrz^QPZ$sEfNj}>6L~#PPOMttx?rI_s+JrC*#!6INn*K80!7wl``#xD`wN0ko*wI*k)mp$ga+9s@S&?gMSlg|Gfs2Yf2>-<rS9w6=p7yQoU2tu#x_LM;JRD5Cy~K1kage`X6fF&lwu<{?^hm8tzDm(KrPXJt^&A)ri<}fUC+$AMwaNQ!ocY8kKqm)UI!Q1w9WfgaGtqQPXPTSb!y>c*^3uY&*Znkl2Y!VXuwkehpREIAXooN=R!O@9T<7wrBJuJYcf^6>D$N&jdIQNt4cT$qHz+dh5u!BXyjip$gJY9MAf_cyN0_C<pfI}rZwQ!?4br9w9P^e$%?V46?=gwPHw@g7RVG2KK-5TV<ZG4~S1$P=kA>+*x7t5EMO6n#rBjC4PqV7Ln)Kz_Z{Y1h7G4}crrLLlb|w|Ej^!RhmNqS0X1Xw$2NN?PbdjF5td?)Fd<p5JE|!@TT%IqpJ8NW>MkQ4t7OHEQMQ0^JKqCB3hpeFVN6{bvf4h@h#V$O-;vN%6=3T)~ohuKaVtszH_7kGrouDKru<948G?Pg+T~RTjyhSi$pK0s{b^DNg(CG+de-AdJP6Oep5K2)uXp?w4YucR4L|V7o&G&c$=m5-4C5Ygm52;=-laGr@<hT7K<@G(z7l_7ct~Sl>G&OA$yVp#lKIw@^5u5^4HmhQ6Y;JxyCIM|EZ_K;+#&<}W9*WxB6rPF5L;OjSuLg`@Ro{h}R@!n)6_X@JKv_osu;ieNf}9DJpBbxHl*3;>(zk+e%{!2cFYhua(9pT*x@8;c8X{Sbe^;!kc?yqAyF6<NVeR+Z0S8e)xQbgYR%464=>_+R^*D>A4%N8iN-I`$(Oiu%#ZnAvHPX7y^SSCAYeaE|EviX??X?>4{A`>OK|4|FuRN~Q4sh3p8jmCvNxO`AWrs?Y_{1Qy36f@$4C7Nh6<``rh9b8H1KpVf;*;tf0`LOFBJ;@8U}(IUD>r>m*T{L!4HkENj*NFDEr@92X0PpzGl}lQJ1ZS7zI<V<uu$EkP||h?N{kx$G$lt~cjvpiEbo1KdNa^(@AdC#QJ{jk)Z$)@Tm1Gb;YjsRaisb~45>)jI)wlp3U1=2_Tda&*`X(qay=l*I5ZSXNw9dUuuq;*7~>GuH%sg{np1L^21-C8ioDAkJ+H%>;JL(~etY-+hrfLPd_K55r*tX!8IMLXbY3~wz#Uxm4Mi88uMe#tMvrh1#$|bgBCyx;3>@F&j}vnt04r<pJ33{z{Vo_<)GXloxsQ59F4C;Omds~K{|*>!dnRAT{;r(a3&e^x-BNnC5lqj3xX0G)K#^(8S1;c*BRwl&EVUEI@?fQn^JJte;H0UkO0kNow9g)t9;1W#^!R}2Uoqh0HCWmRA#LTQXq2t?uEJV!gRx4dW|434r4#}49Wl9&ATdC0jPWWAtHSLr%Zf?+1Q)PrKO;T~8AX*gIgzB=IcDw42cb9{R{~~bumJeD`s5;aP?tW7((KcZFWkrJ*gcCEw->ujCW2e5ZG>q1yNp0cuJK8lv#5FtOBCYG8Ov=V<KzCeRb8$GEIM$P#ee|qjfdp^63D7X=Z5lXlco-&PaI#&{xBIFvUtDU=F`(da!b+f`i&ftIj;3s6`H$T^bLs(Vh-`e_0903?6p3dWf_L$ZE==j_L+F}@ajm`$!b467D87?jOQ9_@0Sbf(bfKn_t$CR8Z|4Ys1?-@EBG61bHuLjG+FrKhB>FKv!cfO<5e%ls}NM}`KDiOyq28KGUEdr*YeT?+=DZO6Umfpu8OYFQO<*@d8#V$ynJ7qXtdY{9~6s|(l_-dntrm@blPy`DR#y<L}EJv<-r^H(}m(!O|BU{U0X2$-cpK&tpL5OgA}m~3#aR$mRpE9N1VH4?Mn+SZMFU*F=J%dJX<u^=?7dTPr^X;V4HY2^!@V%`20Pb&LC_#=bc_}oG`TSX=)or;xhN{2gXA5W3aKHec3TPSakYwDD!C=n|^x!`R%7?n)N+BPNUnOkMEy<!O0{B5EdE53s{z?8Gdb@C*8F8ibV6+_%1WmN}g?u@N(e(!wxa?dHB!qy}K(C$K$px&)j9@=yE{>QTWFiauE7QxmEzM)(3cjPW{7;^t@d9^2bPJfE{PxBT|H%fr#@L!?ds0d@O4|f!s)r><45y^hP#Dl|szx^XLB$<ZQye')))
-ACTION_SHA256='d3d6aee618ae6190750b6b8b2f16ae76e837e49f02d54ab0badb6a9a68150357'
-def agent(observation,configuration):
- p=int(observation.get("player",0));s=min(int(observation.get("step",0)),len(ACTIONS[p])-1);a=copy.deepcopy(ACTIONS[p][s]);a["hands"]=a.get("hands",[])[:len(observation["farms"][p]["hands"])];return a
-act=agent
+"""FarmOS v1 (seat 087c0) - Kaggriculture policy, v8 rewrite.
+
+Engine facts (kaggle-environments kaggriculture, verified in source):
+  * Market orders run EVERY hour (per-step), per-unit lockstep; an order list
+    longer than maxMarketOrdersPerTurn (10) is truncated.
+  * Hands are reset to [] at every end of day - they must be re-hired each
+    morning (cost = fib sequence starting over).  Farmer is permanent.
+  * PLANT consumes private seeds; if total PLANT requests for a crop in one
+    turn exceed available seeds, ALL PLANT requests for that crop are
+    dropped - so plant requests must be budgeted against seeds.
+  * PICKUP / DROP / animal-drop only work while standing on one of the four
+    shed-access tiles around (4,4): (4,4),(5,4),(4,5),(5,5).
+  * Watering: non-ongoing crops gain +1 yield per watered day inside
+    [ceil(max_yield_day/2), max_yield_day] (MELON d6..12, WHEAT d2..4);
+    EVERY plant must be watered every calendar day (2 consecutive unwatered
+    -> weed; planting day itself counts as 1 unwatered if not watered after
+    planting).  Fertilized plants gain +2 per watered day.
+  * Animals placed day P produce at end-of-day rollovers when
+    next_day - P - first_yield_day >= 0 and % interval == 0 (COW first 8,
+    every 2nd day; SHEEP 6/3; GOOSE 4/1).  Fed daily or they escape after 2
+    unfed days.  fertilizer_available=True at every rollover (+1/day/animal
+    collectible, ~$100 each) - the manure economy is the main engine.
+  * Shed capacity 100 shared by produce and unpurchased/unplaced animals.
+    EOD auto-drops hand inventories into the shed and DISCARDS overflow.
+  * Town shops eat market stock every 4 hours => WHEAT feed drifts up in
+    price over the season.
+
+Season plan (measured seed-100 prices: fert ~100, milk 160-210, wool 200+,
+melon 230-270, egg ~55, strawberry 120-290, wheat feed 25->50):
+  * d0:      5 hands, 12 MELON seeds + 2 cows, feed buffer.  Melons watered
+             daily d0-12 => 6 units each; ~72 units sold d10-12 (~16k).
+  * d1-9:    cows -> 4 (d3-4) -> 6 (d6-7) -> 8 (d9-10); sell manure daily;
+             NE land as soon as cash allows (d8-10).
+  * d8-13:   strawberry seeds (20) into NE; harvest d18+.
+  * d10-23:  wheat conveyor on freed melon rows + SW (goal feed_need+8,
+             capped 28) to offset feed purchases.
+  * d12-14:  sheep x5, geese x3, SW land, cows 8th; herd complete: 8 cows +
+             5 sheep + 3 geese => 16 fert/day + milk/wool/eggs.
+  * d24-27:  carrots sweep cells as wheat is harvested.
+  * d29:     harvest + liquidate.
+
+Worker architecture:
+  * Every worker (farmer + hands) owns a private zone (balanced row-major
+    chunk of usable cells).  MORNING (hour<8) is crop time INSIDE THE OWN
+    ZONE only, so two workers never fight over the same plant.  Workers whose
+    zone has no crop chores become feeders/transporters from early morning.
+  * Same-turn claims: each target cell can be chosen by only one worker per
+    turn, which kills the herding that previously stacked 3+ workers on one
+    plant/animal.  Animal flags (fed/cared/fert_available/watered) dedupe
+    across turns anyway.
+  * Wheat carriers feed animals before anything else; feeders fetch 8 wheat
+    per shed trip and feed on the way.  Feeding runs from hour 4 for
+    zone-idle workers, from hour 8 for everyone.
+  * Afternoon (hour>=8): feed duty -> shed drops -> animal transport
+    (placement) -> crop leftovers -> care/fert collection.
+"""
+
+CROPS = {
+    "WHEAT":      {"seed": 10, "first": 2, "max_day": 4, "max_yield": 6, "ongoing": False, "interval": 0},
+    "CARROT":     {"seed": 20, "first": 2, "max_day": 3, "max_yield": 4, "ongoing": False, "interval": 0},
+    "TOMATO":     {"seed": 50, "first": 8, "max_day": 8, "max_yield": 4, "ongoing": True, "interval": 1},
+    "STRAWBERRY": {"seed": 100, "first": 10, "max_day": 10, "max_yield": 4, "ongoing": True, "interval": 2},
+    "MELON":      {"seed": 80, "first": 10, "max_day": 12, "max_yield": 6, "ongoing": False, "interval": 0},
+}
+ANIMALS = {
+    "GOOSE": {"cost": 300, "structure": "COOP", "first": 4, "interval": 1, "max_held": 4, "product": "EGG"},
+    "COW":   {"cost": 400, "structure": "PASTURE", "first": 8, "interval": 2, "max_held": 6, "product": "MILK"},
+    "SHEEP": {"cost": 500, "structure": "PASTURE", "first": 6, "interval": 3, "max_held": 6, "product": "WOOL"},
+}
+
+# 13 pasture slots (9 NW + 4 NE col 9) + 3 coops.
+PASTURE_SITES = [(x, 3) for x in range(5)] + [(x, 4) for x in range(4)] \
+    + [(9, y) for y in range(4)]
+COOP_SITES = [(9, 4), (8, 3), (8, 4)]
+SHED_TILES = [(4, 4), (5, 4), (4, 5), (5, 5)]
+MELON_CELLS = [(x, y) for y in range(3) for x in range(5)]
+CROP_NE = [(x, y) for y in range(5) for x in range(5, 9)
+           if (x, y) not in COOP_SITES]
+SW_CELLS = [(x, y) for y in range(5, 10) for x in range(10)]
+ALL_CELLS = [(x, y) for y in range(10) for x in range(10)]
+PRODUCTS = ("WHEAT", "CARROT", "TOMATO", "STRAWBERRY", "MELON",
+            "EGG", "MILK", "WOOL", "FERTILIZER")
+SITE_CELLS = set(PASTURE_SITES) | set(COOP_SITES) | set(SHED_TILES)
+
+SELL_CAP = {"WHEAT": 8, "CARROT": 8, "TOMATO": 2, "STRAWBERRY": 5, "MELON": 8,
+            "EGG": 4, "MILK": 5, "WOOL": 3, "FERTILIZER": 8}
+SELL_FLOOR = {"WHEAT": 5, "CARROT": 5, "TOMATO": 5, "STRAWBERRY": 20, "MELON": 60,
+              "EGG": 8, "MILK": 20, "WOOL": 15, "FERTILIZER": 60}
+
+HERD = {"COW": [(0, 2), (3, 4), (6, 6), (9, 8)],
+        "SHEEP": [(10, 2), (13, 5)],
+        "GOOSE": [(12, 3)]}
+BUY_WINDOW = {"COW": 12, "SHEEP": 14, "GOOSE": 15}
+STRAW_CAP = 20
+CARROT_CAP = 26
+MELON_TARGET = 12
+
+
+def _hands_target(day):
+    if day <= 0:
+        return 5
+    if day <= 2:
+        return 6
+    if day <= 4:
+        return 7
+    if day <= 7:
+        return 8
+    if day <= 10:
+        return 9
+    if day <= 13:
+        return 10
+    if day <= 19:
+        return 11
+    return 12
+
+
+def _dist(a, b):
+    return abs(a[0] - b[0]) + abs(a[1] - b[1])
+
+
+def _move(pos, t):
+    x, y = pos
+    tx, ty = t
+    if x < tx:
+        return ["EAST"]
+    if x > tx:
+        return ["WEST"]
+    if y < ty:
+        return ["SOUTH"]
+    if y > ty:
+        return ["NORTH"]
+    return ["PASS"]
+
+
+def _count(tiles):
+    plants, animals, structs = {}, {}, {}
+    for row in tiles:
+        for t in row:
+            if not isinstance(t, dict):
+                continue
+            k = t.get("kind")
+            if k == "PLANT":
+                plants[t["crop"]] = plants.get(t["crop"], 0) + 1
+            elif "animal" in t:
+                animals[t["animal"]] = animals.get(t["animal"], 0) + 1
+            elif k in ("COOP", "PASTURE"):
+                structs[k] = structs.get(k, 0) + 1
+    return plants, animals, structs
+
+
+def _feed_need(animals):
+    return sum(animals.get(k, 0) for k in ("COW", "SHEEP", "GOOSE"))
+
+
+class Mem:
+    def __init__(self):
+        self.day = -1
+        self.bands = {}
+        self.farmer_band = []
+        self.n_hands = -1
+        self.feed_bought = 0
+
+
+def _usable(tiles):
+    return [c for c in ALL_CELLS if tiles[c[1]][c[0]] != "LOCKED"]
+
+
+def _make_bands(tiles, n):
+    """Balanced row-major chunks of usable cells (workers only)."""
+    usable = _usable(tiles)
+    m = len(usable)
+    per = max(1, m // n) if n else m
+    extra = max(0, m - per * n)
+    bands = {}
+    i = 0
+    for w in range(n):
+        take = per + (1 if w < extra else 0)
+        bands[w] = usable[i:i + take]
+        i += take
+    for w in range(n):
+        if not bands[w]:
+            bands[w] = usable[-1:] if usable else []
+    return bands
+
+
+def _decide(obs, mem):
+    player = int(obs["player"])
+    farm = obs["farms"][player]
+    private = obs["private"]
+    market = obs["market"]
+    day = int(obs["day"])
+    hour = int(obs["hour"])
+    tiles = farm["tiles"]
+    plants, animals, structs = _count(tiles)
+    money = float(farm["money"])
+    shed = private["shed"]
+    seeds = private["seeds"]
+    invs = list(private.get("inventories") or [])
+    prices = market["prices"]
+    unlocked = set(farm["unlocked_quadrants"])
+    n_hands = len(farm["hands"])
+    feed_need = _feed_need(animals)
+
+    if mem.day != day:
+        mem.feed_bought = 0
+        mem.day = day
+        mem.bands = {}
+        mem.farmer_band = []
+        mem.n_hands = -1
+    if mem.n_hands != n_hands or not mem.bands:
+        nb = n_hands + 1  # hands + farmer
+        b = _make_bands(tiles, nb)
+        mem.bands = {i: b[i] for i in range(n_hands)}
+        mem.farmer_band = b[nb - 1]
+        mem.n_hands = n_hands
+
+    room = 100 - sum(shed.values())
+
+    animal_cells = []
+    for (x, y) in ALL_CELLS:
+        t = tiles[y][x]
+        if isinstance(t, dict) and "animal" in t:
+            animal_cells.append((x, y))
+    unfed_all = [c for c in animal_cells if not tiles[c[1]][c[0]].get("fed_today")]
+    uncared_all = [c for c in animal_cells if not tiles[c[1]][c[0]].get("cared_today")]
+    fert_ready = [c for c in animal_cells if tiles[c[1]][c[0]].get("fertilizer_available")]
+
+    def floor():
+        if day <= 1:
+            return 150.0
+        if day <= 3:
+            return 300.0
+        if "NE" not in unlocked:
+            return 250.0 if day <= 10 else 60.0
+        if day <= 10:
+            return 80.0
+        if day <= 20:
+            return 80.0
+        return 50.0
+
+    def carried(kind):
+        return sum(inv.get(kind, 0) for inv in invs)
+
+    def have_animals(kind):
+        return animals.get(kind, 0) + shed.get(kind, 0) + carried(kind)
+
+    orders = []
+    est_spend = 0.0
+
+    def afford(cost):
+        nonlocal est_spend
+        if money - est_spend - cost < floor():
+            return False
+        est_spend += cost
+        return True
+
+    # ============================ MARKET ==================================
+    # Sells first (fund the buys that follow in the same list).
+    if day < 30:
+        wheat_keep = 0 if day >= 29 else max(feed_need + 8, 10)
+        fert_keep = 0 if day >= 29 else 2
+        shed_used = sum(shed.values())
+        for item in ("FERTILIZER", "EGG", "MILK", "WOOL", "MELON",
+                     "STRAWBERRY", "CARROT", "WHEAT"):
+            if len(orders) >= 9:
+                break
+            stock = shed.get(item, 0)
+            if item == "WHEAT":
+                # wheat surplus is the feed reserve: only liquidate late or
+                # when the shed is under real pressure
+                if day < 26 and shed_used < 90:
+                    continue
+                keep = wheat_keep
+                if stock <= keep:
+                    continue
+            elif item == "MELON":
+                if day < 9:
+                    continue
+                keep = 0
+                if stock <= 0:
+                    continue
+            elif item == "FERTILIZER":
+                keep = fert_keep
+                if stock <= keep:
+                    continue
+            else:
+                keep = 0
+                if stock <= 0:
+                    continue
+            price = prices.get(item, 0)
+            if price < SELL_FLOOR[item]:
+                continue
+            q = min(stock - keep, SELL_CAP[item])
+            if q > 0:
+                orders.append(["SELL", item, q])
+
+    # Hiring: hands reset each morning, so hire up to target (cost is fib).
+    if n_hands < _hands_target(day) and len(orders) < 10:
+        k = 0
+        cum = 0.0
+        ft = farm["hires_today"]
+        while len(orders) < 10 and n_hands + k < _hands_target(day):
+            nxt = _fib(ft + k)
+            if money - est_spend - cum - nxt < floor():
+                break
+            orders.append(["HIRE"])
+            cum += nxt
+            k += 1
+
+    if "NE" not in unlocked and day >= 6 and money - est_spend >= 1000 + 60:
+        orders.append(["BUY_LAND"])
+        est_spend += 1000
+    elif "NE" in unlocked and "SW" not in unlocked and day >= 12 \
+            and money - est_spend >= 2000 + 150:
+        orders.append(["BUY_LAND"])
+        est_spend += 2000
+
+    # --- seeds ------------------------------------------------------------
+    if day <= 2:
+        have = seeds.get("MELON", 0) + plants.get("MELON", 0)
+        q = min(MELON_TARGET - have, 6)
+        if q > 0 and len(orders) < 9 and afford(80 * q):
+            orders.append(["BUY_SEED", "MELON", q])
+
+    straw_total = plants.get("STRAWBERRY", 0) + seeds.get("STRAWBERRY", 0)
+    if "NE" in unlocked and 8 <= day <= 13 and straw_total < STRAW_CAP \
+            and len(orders) < 9:
+        q = min(6, STRAW_CAP - straw_total)
+        if q > 0 and afford(100 * q):
+            orders.append(["BUY_SEED", "STRAWBERRY", q])
+
+    if 9 <= day <= 23:
+        wg = min(28, max(0, feed_need + 8))
+        have = seeds.get("WHEAT", 0) + plants.get("WHEAT", 0)
+        q = min(8, wg - have)
+        if q > 0 and len(orders) < 9 and afford(10 * q):
+            orders.append(["BUY_SEED", "WHEAT", q])
+
+    if 24 <= day <= 27:
+        have = seeds.get("CARROT", 0) + plants.get("CARROT", 0)
+        q = min(8, CARROT_CAP - have)
+        if q > 0 and len(orders) < 9 and afford(20 * q):
+            orders.append(["BUY_SEED", "CARROT", q])
+
+    # --- animals ----------------------------------------------------------
+    for kind, schedule in HERD.items():
+        target = max((n for (dd, n) in schedule if day >= dd), default=0)
+        if target <= 0 or day > BUY_WINDOW[kind] or have_animals(kind) >= target:
+            continue
+        want = min(2, target - have_animals(kind))
+        cost = ANIMALS[kind]["cost"] * want
+        while want > 1 and money - est_spend - cost < floor():
+            want -= 1
+            cost = ANIMALS[kind]["cost"] * want
+        if want >= 1 and room >= want and len(orders) < 9 and afford(cost):
+            orders.append(["BUY_ANIMAL", kind, want])
+
+    # --- feed ---------------------------------------------------------------
+    if day < 29 and len(orders) < 9:
+        # shed-only basis: wheat in hands is already committed to feeding.
+        need = feed_need + 8
+        q = min(16, need - shed.get("WHEAT", 0) - mem.feed_bought)
+        px = prices.get("WHEAT", 99)
+        if q > 0 and px <= 120:
+            q = min(q, max(0, int((money - est_spend - floor()) // px)))
+            if q > 0:
+                orders.append(["BUY_PRODUCT", "WHEAT", q])
+                mem.feed_bought += q
+
+    # ============================ WORKERS =================================
+    wheat_goal = min(28, max(0, feed_need + 8)) if day >= 10 else 0
+    plant_budget = {c: n for c, n in seeds.items() if n > 0}
+
+    def _crop_here(x, y):
+        """Which crop (if any) should be planted on this empty cell."""
+        if (x, y) in SITE_CELLS:
+            return None
+        if (x, y) in MELON_CELLS:
+            if day <= 2 and plants.get("MELON", 0) < MELON_TARGET:
+                return "MELON"
+            if day >= 24 and plants.get("CARROT", 0) < CARROT_CAP:
+                return "CARROT"
+            if 10 <= day <= 23 and plants.get("WHEAT", 0) < wheat_goal:
+                return "WHEAT"
+            return None
+        if (x, y) in CROP_NE:
+            if 8 <= day <= 15 and plants.get("STRAWBERRY", 0) < STRAW_CAP \
+                    and "NE" in unlocked:
+                return "STRAWBERRY"
+            if day >= 24 and plants.get("CARROT", 0) < CARROT_CAP:
+                return "CARROT"
+            if 10 <= day <= 23 and plants.get("WHEAT", 0) < wheat_goal:
+                return "WHEAT"
+            return None
+        # SW or other free land
+        if day >= 24 and plants.get("CARROT", 0) < CARROT_CAP:
+            return "CARROT"
+        if 10 <= day <= 23 and plants.get("WHEAT", 0) < wheat_goal \
+                and "SW" in unlocked and (x, y) in SW_CELLS:
+            return "WHEAT"
+        return None
+
+    plant_left = dict(plant_budget)
+
+    def cell_ops(x, y, inv):
+        t = tiles[y][x]
+        if isinstance(t, dict) and t.get("kind") == "PLANT":
+            c = t["crop"]
+            cd = CROPS[c]
+            age = day - t["planted_day"]
+            yld = t.get("yield_units", 0)
+            if cd["ongoing"]:
+                if yld > 0 and age >= cd["first"]:
+                    return ["HARVEST"]
+                if not t.get("watered_today"):
+                    return ["WATER"]
+                return None
+            if yld > 0 and age >= cd["first"] and (
+                    yld >= cd["max_yield"] or age >= cd["max_day"] or day >= 29):
+                return ["HARVEST"]
+            if not t.get("watered_today"):
+                return ["WATER"]
+            return None
+        if isinstance(t, dict) and t.get("kind") == "WEED":
+            return ["DIG"]
+        if isinstance(t, dict) and "animal" in t:
+            if not t.get("fed_today"):
+                if inv.get("WHEAT", 0) > 0:
+                    return ["FEED"]
+                return None
+            if not t.get("cared_today"):
+                return ["CARE"]
+            if t.get("fertilizer_available"):
+                return ["COLLECT_FERTILIZER"]
+            if t.get("yield_units", 0) > 0:
+                return ["HARVEST"]
+            return None
+        if t is None:
+            crop = _crop_here(x, y)
+            if crop and plant_left.get(crop, 0) > 0:
+                return ["PLANT", crop]
+            return None
+        return None
+
+    def commit_plant(op):
+        if op and op[0] == "PLANT" and len(op) >= 2:
+            c = op[1]
+            if plant_left.get(c, 0) > 0:
+                plant_left[c] -= 1
+                return True
+            return False
+        return True
+
+    claimed = set()
+
+    def _nearest_op(cells, pos, inv, want=None, allow_claimed=False):
+        """Nearest cell in `cells` with a wanted op; claims it for this turn."""
+        best, bd, bop = None, 10 ** 9, None
+        for c in cells:
+            if c in claimed and not allow_claimed:
+                continue
+            op = cell_ops(c[0], c[1], inv)
+            if op is None:
+                continue
+            if want is not None and op[0] not in want:
+                continue
+            d = _dist(pos, c)
+            if d < bd:
+                best, bd, bop = c, d, op
+        if best is not None:
+            claimed.add(best)
+        return best, bop
+
+    PLANT_OPS = ("WATER", "HARVEST", "DIG", "PLANT")
+    ANIMAL_NEED_OPS = ("CARE", "COLLECT_FERTILIZER", "HARVEST")
+
+    def _ready_site(kind):
+        st = ANIMALS[kind]["structure"]
+        sites = PASTURE_SITES if st == "PASTURE" else COOP_SITES
+        for s in sites:
+            if s in claimed:
+                continue
+            t = tiles[s[1]][s[0]]
+            if isinstance(t, dict) and t.get("kind") == st and "animal" not in t:
+                return s
+        return None
+
+    def _empty_site(kind):
+        st = ANIMALS[kind]["structure"]
+        sites = PASTURE_SITES if st == "PASTURE" else COOP_SITES
+        for s in sites:
+            if s in claimed:
+                continue
+            if tiles[s[1]][s[0]] is None:
+                return s
+        return None
+
+    def farmer_special(pos, inv):
+        """Animal transport. Returns (action, claim_cell)."""
+        x, y = pos
+        kinds = sorted(("COW", "SHEEP", "GOOSE"),
+                       key=lambda k: -(shed.get(k, 0) + inv.get(k, 0)))
+        for kind in kinds:
+            if inv.get(kind, 0) <= 0 and shed.get(kind, 0) <= 0:
+                continue
+            if inv.get(kind, 0) > 0:
+                site = _ready_site(kind)
+                if site is None:
+                    site = _empty_site(kind)
+                if site is None:
+                    continue
+                claimed.add(site)
+                if site == (x, y):
+                    t = tiles[y][x]
+                    if isinstance(t, dict) and t.get("kind") == ANIMALS[kind]["structure"]:
+                        return ["PLACE", kind], site
+                    if t is None:
+                        return ["BUILD_" + ANIMALS[kind]["structure"]], site
+                    if isinstance(t, dict) and t.get("kind") in ("PLANT", "WEED"):
+                        return ["DIG"], site
+                    return ["PASS"], None
+                return _move(pos, site), site
+            site = _ready_site(kind)
+            if site is None:
+                site = _empty_site(kind)
+            if site is None:
+                continue
+            claimed.add(site)
+            target = min(SHED_TILES, key=lambda s: _dist(pos, s))
+            if (x, y) == tuple(target):
+                return ["PICKUP", kind, 1], None
+            return _move(pos, target), None
+        return None, None
+
+
+    def _fert_cells_any(zone):
+        """unfertilized WHEAT/CARROT plants in their bonus window"""
+        out = []
+        for (x, y) in zone:
+            t = tiles[y][x]
+            if not (isinstance(t, dict) and t.get("kind") == "PLANT"):
+                continue
+            if t["crop"] not in ("WHEAT", "CARROT"):
+                continue
+            if t.get("fertilized_until_day", -1) >= day:
+                continue
+            cd = CROPS[t["crop"]]
+            win_lo = (cd["max_yield_day"] + 1) // 2
+            age = day - t["planted_day"]
+            if win_lo - 1 <= age <= cd["max_yield_day"]:
+                out.append((x, y))
+        return out
+
+    def _feed_action(pos, inv):
+        """Returns action or None (no claim bookkeeping needed; fed flag)."""
+        if not unfed_all:
+            return None
+        x, y = pos
+        if (x, y) in unfed_all:
+            if inv.get("WHEAT", 0) > 0:
+                return ["FEED"]
+            if shed.get("WHEAT", 0) > 0:
+                tgt = min(SHED_TILES, key=lambda s: _dist(pos, s))
+                if (x, y) == tuple(tgt):
+                    return ["PICKUP", "WHEAT", min(8, shed.get("WHEAT", 0))]
+                return _move(pos, tgt)
+            return None
+        if inv.get("WHEAT", 0) > 0:
+            cand = [c for c in unfed_all if c not in claimed]
+            if not cand:
+                cand = unfed_all
+            # endangered animals first (2 unfed days = escape), then nearest
+            def feed_key(c):
+                cu = tiles[c[1]][c[0]].get("consecutive_unfed", 0)
+                return (-cu, _dist(pos, c))
+            tgt = min(cand, key=feed_key)
+            claimed.add(tgt)
+            return _move(pos, tgt)
+        if shed.get("WHEAT", 0) > 0:
+            tgt = min(SHED_TILES, key=lambda s: _dist(pos, s))
+            if (x, y) == tuple(tgt):
+                return ["PICKUP", "WHEAT", min(8, shed.get("WHEAT", 0))]
+            return _move(pos, tgt)
+        return None
+
+    def _produce_on(inv):
+        return sum(v for k, v in inv.items() if k in PRODUCTS and v > 0)
+
+    def _shed_drop(pos, inv):
+        if pos in SHED_TILES and _produce_on(inv) > 0:
+            return ["DROP"]
+        return None
+
+    # ---- worker decision flows -------------------------------------------
+    def worker_step_hand(hid, pos, inv):
+        x, y = pos
+        zone = mem.bands.get(hid) or []
+        carrying_animal = any(inv.get(k, 0) > 0 for k in ANIMALS)
+        has_wheat = inv.get("WHEAT", 0) > 0
+        # 0. carrying an animal: place it (rare, brief)
+        if carrying_animal:
+            op, _ = farmer_special(pos, inv)
+            if op is not None:
+                return op
+        # 1. a wheat carrier's mission is feeding - feed before any local op
+        if has_wheat and not carrying_animal:
+            fa = _feed_action(pos, inv)
+            if fa is not None:
+                return fa
+        # 2. underfoot job
+        if (x, y) not in claimed:
+            local = cell_ops(x, y, inv)
+            if local is not None and commit_plant(local):
+                claimed.add((x, y))
+                return local
+        # 2b. late day: guarantee every plant was watered today, then
+        # feed anything still unfed (fresh placements included)
+        if hour >= 17 and not carrying_animal:
+            best, bop = _nearest_op(ALL_CELLS, pos, inv, ("WATER",))
+            if best is not None:
+                if tuple(pos) == tuple(best):
+                    return ["WATER"]
+                return _move(pos, best)
+            fa = _feed_action(pos, inv)
+            if fa is not None:
+                return fa
+        # 3. morning: crop ops in own zone only
+        if hour < 8:
+            best, bop = _nearest_op(zone, pos, inv, PLANT_OPS)
+            if best is not None:
+                if tuple(pos) == tuple(best):
+                    op = cell_ops(best[0], best[1], inv)
+                    if op is not None and commit_plant(op):
+                        return op
+                    return ["PASS"]
+                return _move(pos, best)
+            # zone clear: act as feeder/transporter (animals don't need crops)
+        # 4. feed duty (morning for zone-idle workers too, afternoon for all)
+        if hour >= 4 or not has_wheat:
+            fa = _feed_action(pos, inv)
+            if fa is not None:
+                return fa
+        # 4b. heavy produce carriers shuttle to the shed (melons, milk, ...)
+        if hour >= 9:
+            produce = {k: v for k, v in inv.items()
+                       if k in PRODUCTS and k != "WHEAT" and v > 0}
+            if sum(produce.values()) >= 5:
+                tgt = min(SHED_TILES, key=lambda s: _dist(pos, s))
+                if (x, y) == tuple(tgt):
+                    return ["DROP"]
+                return _move(pos, tgt)
+        # 4c. fertilizer carrier: apply to a window plant before shedding it,
+        # only once this worker's own zone is fully watered today
+        if inv.get("FERTILIZER", 0) > 0 and hour >= 10:
+            zone_ok = True
+            for (zx, zy) in zone:
+                zt = tiles[zy][zx]
+                if isinstance(zt, dict) and zt.get("kind") == "PLANT" \
+                        and not zt.get("watered_today"):
+                    zone_ok = False
+                    break
+            if zone_ok:
+                tgt = None
+                for c in _fert_cells_any(zone):
+                    if c not in claimed:
+                        tgt = c
+                        break
+                if tgt is None:
+                    for c in _fert_cells_any(ALL_CELLS):
+                        if c not in claimed:
+                            tgt = c
+                            break
+                if tgt is not None:
+                    claimed.add(tgt)
+                    if tuple(pos) == tuple(tgt):
+                        return ["FERTILIZE"]
+                    return _move(pos, tgt)
+        # 5. drop produce while at the shed
+        fa = _shed_drop(pos, inv)
+        if fa is not None:
+            return fa
+        # 6. transport shed animals (unlock production)
+        op, _ = farmer_special(pos, inv)
+        if op is not None:
+            return op
+        # 7. afternoon/evening: crop leftovers, then animal ops
+        best, bop = _nearest_op(zone, pos, inv, PLANT_OPS)
+        if best is None and hour >= 8:
+            best, bop = _nearest_op(ALL_CELLS, pos, inv, PLANT_OPS)
+        if best is None and hour >= 8:
+            best, bop = _nearest_op(ALL_CELLS, pos, inv, ANIMAL_NEED_OPS)
+        if best is None and hour >= 10:
+            best, bop = _nearest_op(ALL_CELLS, pos, inv, None)
+        if best is not None:
+            if tuple(pos) == tuple(best):
+                op = cell_ops(best[0], best[1], inv)
+                if op is not None and commit_plant(op):
+                    return op
+                return ["PASS"]
+            return _move(pos, best)
+        return ["PASS"]
+
+    def farmer_step(pos, inv):
+        x, y = pos
+        zone = mem.farmer_band or []
+        carrying_animal = any(inv.get(k, 0) > 0 for k in ANIMALS)
+        has_wheat = inv.get("WHEAT", 0) > 0
+        if carrying_animal:
+            op, _ = farmer_special(pos, inv)
+            if op is not None:
+                return op
+            return ["PASS"]
+        if has_wheat:
+            fa = _feed_action(pos, inv)
+            if fa is not None:
+                return fa
+        if (x, y) not in claimed:
+            local = cell_ops(x, y, inv)
+            if local is not None and commit_plant(local):
+                claimed.add((x, y))
+                return local
+        # 2b. late day: guarantee every plant was watered today
+        if hour >= 17:
+            best, bop = _nearest_op(ALL_CELLS, pos, inv, ("WATER",))
+            if best is not None:
+                if tuple(pos) == tuple(best):
+                    return ["WATER"]
+                return _move(pos, best)
+        if hour < 8:
+            best, bop = _nearest_op(zone, pos, inv, PLANT_OPS)
+            if best is not None:
+                if tuple(pos) == tuple(best):
+                    op = cell_ops(best[0], best[1], inv)
+                    if op is not None and commit_plant(op):
+                        return op
+                    return ["PASS"]
+                return _move(pos, best)
+        # 4. feed duty
+        fa = _feed_action(pos, inv)
+        if fa is not None:
+            return fa
+        # 4c. fertilizer carrier: apply to a window plant before shedding it
+        if inv.get("FERTILIZER", 0) > 0 and hour >= 10:
+            tgt = None
+            for c in _fert_cells_any(ALL_CELLS):
+                if c not in claimed:
+                    tgt = c
+                    break
+            if tgt is not None:
+                claimed.add(tgt)
+                if tuple(pos) == tuple(tgt):
+                    return ["FERTILIZE"]
+                return _move(pos, tgt)
+        # 5. drop while at shed
+        fa = _shed_drop(pos, inv)
+        if fa is not None:
+            return fa
+        # 6. transport shed animals
+        op, _ = farmer_special(pos, inv)
+        if op is not None:
+            return op
+        # 7. crop + animal leftovers
+        best, bop = _nearest_op(ALL_CELLS, pos, inv, PLANT_OPS)
+        if best is None:
+            best, bop = _nearest_op(ALL_CELLS, pos, inv, ANIMAL_NEED_OPS)
+        if best is None:
+            best, bop = _nearest_op(ALL_CELLS, pos, inv, None)
+        if best is not None:
+            if tuple(pos) == tuple(best):
+                op = cell_ops(best[0], best[1], inv)
+                if op is not None and commit_plant(op):
+                    return op
+                return ["PASS"]
+            return _move(pos, best)
+        return ["PASS"]
+
+    farmer_action = farmer_step(tuple(farm["farmer"]), invs[0])
+    hands_actions = []
+    for i, pos in enumerate(farm["hands"]):
+        hands_actions.append(worker_step_hand(i, tuple(pos), invs[i + 1]))
+    return {"farmer": farmer_action, "hands": hands_actions, "market": orders}
+
+
+def _fib(n):
+    a, b = 1, 1
+    for _ in range(n):
+        a, b = b, a + b
+    return a
+
+
+class FarmOS:
+    def __init__(self):
+        self._mem = Mem()
+
+    def __call__(self, obs, config=None):
+        try:
+            return _decide(obs, self._mem)
+        except Exception:
+            return {"farmer": ["PASS"], "hands": [], "market": []}
+
+
+_MEM = Mem()
+
+
+def act(obs, configuration=None):
+    try:
+        return _decide(obs, _MEM)
+    except Exception:
+        return {"farmer": ["PASS"], "hands": [], "market": []}
+
+
+def agent(observation, configuration=None):
+    return act(observation)
+
+
+ACT = act
