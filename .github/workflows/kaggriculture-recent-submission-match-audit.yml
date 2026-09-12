@@ -1,4 +1,4 @@
-name: Recent Kaggriculture submission match audit
+name: V10 and V16 Kaggriculture live match audit
 on:
   push:
     branches: ["arena/01a087c0-riemann"]
@@ -21,7 +21,7 @@ jobs:
       - name: Download public episode dataset and audit four submissions
         env:
           KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
-        run: python kaggriculture_meta_lab/seat_087c0/scripts/audit_recent_submission_matches.py --submissions '[56165158,56165135,56159750,56159653]' --output kaggriculture_meta_lab/seat_087c0/results/recent-four-submission-matches.json
+        run: python kaggriculture_meta_lab/seat_087c0/scripts/audit_recent_submission_matches.py --submissions '[56159750,56142365]' --output kaggriculture_meta_lab/seat_087c0/results/recent-four-submission-matches.json
       - name: Persist report
         run: |
           git config user.name github-actions[bot]
