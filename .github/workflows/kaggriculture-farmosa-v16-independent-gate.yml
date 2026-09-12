@@ -1,0 +1,35 @@
+name: FarmOS V16 independent elite gate
+on:
+  push:
+    branches: ["arena/01a087c0-riemann"]
+    paths:
+      - ".github/workflows/kaggriculture-farmosa-v16-independent-gate.yml"
+permissions: {contents: write}
+jobs:
+  gate:
+    if: contains(github.event.head_commit.message, '[kg-farmosa-gate]')
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.11"}
+      - run: pip install --quiet kaggle-environments==1.32.7
+      - name: Independent callable-agent H2H
+        run: |
+          python -u kaggriculture_meta_lab/seat_087c0/scripts/h2h_tape_runner.py \
+            '["kaggriculture_meta_lab/seat_087c0/candidates/peer-farmosa-v16-fert-zonegate.py"]' \
+            '["kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v8.py","kaggriculture_meta_lab/seat_087c0/corpus/top3000_seat_aware/otter_vibe_seat_aware.py","kaggriculture_meta_lab/seat_087c0/corpus/top3000_seat_aware/feel_the_agi_seat_aware.py"]' \
+            '[189000,189001,189002,189003]' \
+            kaggriculture_meta_lab/seat_087c0/results/farmosa-v16-independent-elite-gate.json
+      - name: Persist result
+        if: always()
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          test -f kaggriculture_meta_lab/seat_087c0/results/farmosa-v16-independent-elite-gate.json || exit 1
+          git add kaggriculture_meta_lab/seat_087c0/results/farmosa-v16-independent-elite-gate.json
+          git commit -m "Record FarmOS V16 independent elite gate" || true
+          git pull --rebase origin "${{ github.ref_name }}"
+          git push origin HEAD:${{ github.ref_name }}
