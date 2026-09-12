@@ -1,0 +1,1702 @@
+{
+  "format": "v23-live-market-liquidity-search-v1",
+  "population": 256,
+  "live_records": 24,
+  "train_jobs": 6144,
+  "holdout_jobs": 4080,
+  "finalists": [
+    151,
+    175,
+    101,
+    163,
+    88,
+    215,
+    226,
+    216,
+    198,
+    108,
+    204,
+    63,
+    172,
+    96,
+    67,
+    229,
+    0
+  ],
+  "baseline": {
+    "games": 240,
+    "wins": 172,
+    "losses": 68,
+    "mean_reward": 93544.44166666667,
+    "mean_margin": 13979.354166666666,
+    "groups": {
+      "current-top12": {
+        "games": 216,
+        "wins": 156,
+        "mean_reward": 94350.27314814815,
+        "mean_margin": 15720.0
+      },
+      "live-56142365": {
+        "games": 12,
+        "wins": 6,
+        "mean_reward": 94261.91666666667,
+        "mean_margin": -6702.416666666667
+      },
+      "live-56183278": {
+        "games": 12,
+        "wins": 10,
+        "mean_reward": 78322.0,
+        "mean_margin": 3329.5
+      }
+    }
+  },
+  "winner": 216,
+  "winner_config": {
+    "mode": "scale",
+    "days": [
+      12,
+      14,
+      15,
+      16,
+      19,
+      22,
+      23,
+      25,
+      26,
+      29
+    ],
+    "products": [
+      "WHEAT"
+    ]
+  },
+  "winner_holdout": {
+    "games": 240,
+    "wins": 176,
+    "losses": 64,
+    "mean_reward": 94377.32083333333,
+    "mean_margin": 14974.504166666668,
+    "groups": {
+      "current-top12": {
+        "games": 216,
+        "wins": 160,
+        "mean_reward": 95274.00925925926,
+        "mean_margin": 16825.5
+      },
+      "live-56142365": {
+        "games": 12,
+        "wins": 6,
+        "mean_reward": 94305.58333333333,
+        "mean_margin": -6710.083333333333
+      },
+      "live-56183278": {
+        "games": 12,
+        "wins": 10,
+        "mean_reward": 78308.66666666667,
+        "mean_margin": 3341.1666666666665
+      }
+    }
+  },
+  "top_train": [
+    {
+      "index": 151,
+      "config": {
+        "mode": "duplicate",
+        "days": [
+          11,
+          13,
+          14,
+          15,
+          16,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "products": [
+          "MELON",
+          "STRAWBERRY",
+          "WOOL"
+        ]
+      },
+      "summary": {
+        "games": 24,
+        "wins": 18,
+        "losses": 6,
+        "mean_reward": 103262.125,
+        "mean_margin": 3632.375,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90286.25,
+            "mean_margin": -3644.5833333333335
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 12,
+            "mean_reward": 116238.0,
+            "mean_margin": 10909.333333333334
+          }
+        }
+      }
+    },
+    {
+      "index": 175,
+      "config": {
+        "mode": "duplicate",
+        "days": [
+          16,
+          17,
+          21,
+          22,
+          23,
+          24,
+          28
+        ],
+        "products": [
+          "STRAWBERRY"
+        ]
+      },
+      "summary": {
+        "games": 24,
+        "wins": 18,
+        "losses": 6,
+        "mean_reward": 103260.54166666667,
+        "mean_margin": 3646.0416666666665,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90291.08333333333,
+            "mean_margin": -3613.9166666666665
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 12,
+            "mean_reward": 116230.0,
+            "mean_margin": 10906.0
+          }
+        }
+      }
+    },
+    {
+      "index": 101,
+      "config": {
+        "mode": "scale",
+        "days": [
+          10,
+          14,
+          15,
+          16,
+          18,
+          22,
+          23,
+          26,
+          27
+        ],
+        "products": [
+          "FERTILIZER",
+          "STRAWBERRY",
+          "WHEAT",
+          "MELON",
+          "EGG"
+        ]
+      },
+      "summary": {
+        "games": 24,
+        "wins": 18,
+        "losses": 6,
+        "mean_reward": 103258.70833333333,
+        "mean_margin": 3674.0416666666665,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90390.75,
+            "mean_margin": -3487.5833333333335
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 12,
+            "mean_reward": 116126.66666666667,
+            "mean_margin": 10835.666666666666
+          }
+        }
+      }
+    },
+    {
+      "index": 163,
+      "config": {
+        "mode": "duplicate",
+        "days": [
+          23,
+          26,
+          27,
+          28,
+          29
+        ],
+        "products": [
+          "EGG",
+          "FERTILIZER",
+          "STRAWBERRY",
+          "WOOL"
+        ]
+      },
+      "summary": {
+        "games": 24,
+        "wins": 18,
+        "losses": 6,
+        "mean_reward": 103258.125,
+        "mean_margin": 3647.7083333333335,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90285.41666666667,
+            "mean_margin": -3622.75
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 12,
+            "mean_reward": 116230.83333333333,
+            "mean_margin": 10918.166666666666
+          }
+        }
+      }
+    },
+    {
+      "index": 88,
+      "config": {
+        "mode": "duplicate",
+        "days": [
+          23,
+          26,
+          28,
+          29
+        ],
+        "products": [
+          "WOOL",
+          "CARROT",
+          "WHEAT",
+          "TOMATO",
+          "EGG",
+          "STRAWBERRY",
+          "MELON",
+          "FERTILIZER"
+        ]
+      },
+      "summary": {
+        "games": 24,
+        "wins": 18,
+        "losses": 6,
+        "mean_reward": 103253.875,
+        "mean_margin": 3651.2083333333335,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90281.91666666667,
+            "mean_margin": -3617.5833333333335
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 12,
+            "mean_reward": 116225.83333333333,
+            "mean_margin": 10920.0
+          }
+        }
+      }
+    },
+    {
+      "index": 215,
+      "config": {
+        "mode": "duplicate",
+        "days": [
+          15,
+          16,
+          17,
+          18,
+          21,
+          22,
+          26,
+          27,
+          29
+        ],
+        "products": [
+          "FERTILIZER",
+          "TOMATO",
+          "EGG"
+        ]
+      },
+      "summary": {
+        "games": 24,
+        "wins": 18,
+        "losses": 6,
+        "mean_reward": 103251.375,
+        "mean_margin": 3605.9583333333335,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90269.08333333333,
+            "mean_margin": -3677.4166666666665
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 12,
+            "mean_reward": 116233.66666666667,
+            "mean_margin": 10889.333333333334
+          }
+        }
+      }
+    },
+    {
+      "index": 226,
+      "config": {
+        "mode": "duplicate",
+        "days": [
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          23,
+          25,
+          26
+        ],
+        "products": [
+          "STRAWBERRY"
+        ]
+      },
+      "summary": {
+        "games": 24,
+        "wins": 18,
+        "losses": 6,
+        "mean_reward": 103246.875,
+        "mean_margin": 3649.4583333333335,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90284.75,
+            "mean_margin": -3598.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 12,
+            "mean_reward": 116209.0,
+            "mean_margin": 10897.166666666666
+          }
+        }
+      }
+    },
+    {
+      "index": 216,
+      "config": {
+        "mode": "scale",
+        "days": [
+          12,
+          14,
+          15,
+          16,
+          19,
+          22,
+          23,
+          25,
+          26,
+          29
+        ],
+        "products": [
+          "WHEAT"
+        ]
+      },
+      "summary": {
+        "games": 24,
+        "wins": 18,
+        "losses": 6,
+        "mean_reward": 103244.20833333333,
+        "mean_margin": 3563.4166666666665,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90299.91666666667,
+            "mean_margin": -3674.1666666666665
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 12,
+            "mean_reward": 116188.5,
+            "mean_margin": 10801.0
+          }
+        }
+      }
+    },
+    {
+      "index": 198,
+      "config": {
+        "mode": "duplicate",
+        "days": [
+          23,
+          25,
+          26,
+          27,
+          28
+        ],
+        "products": [
+          "STRAWBERRY",
+          "EGG"
+        ]
+      },
+      "summary": {
+        "games": 24,
+        "wins": 18,
+        "losses": 6,
+        "mean_reward": 103243.95833333333,
+        "mean_margin": 3633.875,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90275.75,
+            "mean_margin": -3626.9166666666665
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 12,
+            "mean_reward": 116212.16666666667,
+            "mean_margin": 10894.666666666666
+          }
+        }
+      }
+    },
+    {
+      "index": 108,
+      "config": {
+        "mode": "duplicate",
+        "days": [
+          21,
+          23,
+          26,
+          29
+        ],
+        "products": [
+          "CARROT",
+          "EGG",
+          "TOMATO",
+          "FERTILIZER",
+          "MELON",
+          "WOOL",
+          "MILK",
+          "WHEAT",
+          "STRAWBERRY"
+        ]
+      },
+      "summary": {
+        "games": 24,
+        "wins": 18,
+        "losses": 6,
+        "mean_reward": 103243.33333333333,
+        "mean_margin": 3656.375,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90273.0,
+            "mean_margin": -3625.0833333333335
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 12,
+            "mean_reward": 116213.66666666667,
+            "mean_margin": 10937.833333333334
+          }
+        }
+      }
+    },
+    {
+      "index": 204,
+      "config": {
+        "mode": "scale",
+        "days": [
+          27,
+          29
+        ],
+        "products": [
+          "CARROT",
+          "MILK",
+          "WOOL",
+          "FERTILIZER"
+        ]
+      },
+      "summary": {
+        "games": 24,
+        "wins": 18,
+        "losses": 6,
+        "mean_reward": 103242.625,
+        "mean_margin": 3588.1666666666665,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90258.58333333333,
+            "mean_margin": -3696.8333333333335
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 12,
+            "mean_reward": 116226.66666666667,
+            "mean_margin": 10873.166666666666
+          }
+        }
+      }
+    },
+    {
+      "index": 63,
+      "config": {
+        "mode": "scale",
+        "days": [
+          26,
+          27,
+          28,
+          29
+        ],
+        "products": [
+          "MILK",
+          "WOOL",
+          "EGG"
+        ]
+      },
+      "summary": {
+        "games": 24,
+        "wins": 18,
+        "losses": 6,
+        "mean_reward": 103242.41666666667,
+        "mean_margin": 3580.0833333333335,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90269.0,
+            "mean_margin": -3698.3333333333335
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 12,
+            "mean_reward": 116215.83333333333,
+            "mean_margin": 10858.5
+          }
+        }
+      }
+    },
+    {
+      "index": 172,
+      "config": {
+        "mode": "scale",
+        "days": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          18,
+          20,
+          26
+        ],
+        "products": [
+          "STRAWBERRY",
+          "CARROT",
+          "WOOL",
+          "MELON"
+        ]
+      },
+      "summary": {
+        "games": 24,
+        "wins": 18,
+        "losses": 6,
+        "mean_reward": 103240.95833333333,
+        "mean_margin": 3614.125,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90270.08333333333,
+            "mean_margin": -3652.9166666666665
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 12,
+            "mean_reward": 116211.83333333333,
+            "mean_margin": 10881.166666666666
+          }
+        }
+      }
+    },
+    {
+      "index": 96,
+      "config": {
+        "mode": "scale",
+        "days": [
+          14,
+          15,
+          16,
+          17,
+          19,
+          23,
+          26,
+          28,
+          29
+        ],
+        "products": [
+          "WOOL",
+          "EGG",
+          "MELON"
+        ]
+      },
+      "summary": {
+        "games": 24,
+        "wins": 18,
+        "losses": 6,
+        "mean_reward": 103238.29166666667,
+        "mean_margin": 3547.2083333333335,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90239.58333333333,
+            "mean_margin": -3717.75
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 12,
+            "mean_reward": 116237.0,
+            "mean_margin": 10812.166666666666
+          }
+        }
+      }
+    },
+    {
+      "index": 67,
+      "config": {
+        "mode": "scale",
+        "days": [
+          28,
+          29
+        ],
+        "products": [
+          "MILK",
+          "WOOL",
+          "EGG"
+        ]
+      },
+      "summary": {
+        "games": 24,
+        "wins": 18,
+        "losses": 6,
+        "mean_reward": 103237.16666666667,
+        "mean_margin": 3562.875,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90263.66666666667,
+            "mean_margin": -3714.9166666666665
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 12,
+            "mean_reward": 116210.66666666667,
+            "mean_margin": 10840.666666666666
+          }
+        }
+      }
+    },
+    {
+      "index": 229,
+      "config": {
+        "mode": "duplicate",
+        "days": [
+          24
+        ],
+        "products": [
+          "MILK",
+          "STRAWBERRY"
+        ]
+      },
+      "summary": {
+        "games": 24,
+        "wins": 18,
+        "losses": 6,
+        "mean_reward": 103237.125,
+        "mean_margin": 3567.125,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90256.75,
+            "mean_margin": -3710.5833333333335
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 12,
+            "mean_reward": 116217.5,
+            "mean_margin": 10844.833333333334
+          }
+        }
+      }
+    },
+    {
+      "index": 122,
+      "config": {
+        "mode": "scale",
+        "days": [
+          26,
+          28
+        ],
+        "products": [
+          "MELON",
+          "CARROT",
+          "MILK",
+          "EGG",
+          "TOMATO",
+          "WOOL",
+          "FERTILIZER"
+        ]
+      },
+      "summary": {
+        "games": 24,
+        "wins": 18,
+        "losses": 6,
+        "mean_reward": 103235.66666666667,
+        "mean_margin": 3566.2083333333335,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90260.33333333333,
+            "mean_margin": -3715.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 12,
+            "mean_reward": 116211.0,
+            "mean_margin": 10847.666666666666
+          }
+        }
+      }
+    },
+    {
+      "index": 31,
+      "config": {
+        "mode": "duplicate",
+        "days": [
+          28,
+          29
+        ],
+        "products": [
+          "MILK",
+          "WOOL",
+          "EGG"
+        ]
+      },
+      "summary": {
+        "games": 24,
+        "wins": 18,
+        "losses": 6,
+        "mean_reward": 103235.66666666667,
+        "mean_margin": 3561.2083333333335,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90262.16666666667,
+            "mean_margin": -3716.75
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 12,
+            "mean_reward": 116209.16666666667,
+            "mean_margin": 10839.166666666666
+          }
+        }
+      }
+    },
+    {
+      "index": 79,
+      "config": {
+        "mode": "duplicate",
+        "days": [
+          28
+        ],
+        "products": [
+          "MELON",
+          "MILK"
+        ]
+      },
+      "summary": {
+        "games": 24,
+        "wins": 18,
+        "losses": 6,
+        "mean_reward": 103235.66666666667,
+        "mean_margin": 3561.2083333333335,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90262.16666666667,
+            "mean_margin": -3716.75
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 12,
+            "mean_reward": 116209.16666666667,
+            "mean_margin": 10839.166666666666
+          }
+        }
+      }
+    },
+    {
+      "index": 206,
+      "config": {
+        "mode": "scale",
+        "days": [
+          16,
+          17,
+          18,
+          22,
+          23,
+          24,
+          25,
+          28
+        ],
+        "products": [
+          "WOOL"
+        ]
+      },
+      "summary": {
+        "games": 24,
+        "wins": 18,
+        "losses": 6,
+        "mean_reward": 103235.625,
+        "mean_margin": 3570.2083333333335,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90268.58333333333,
+            "mean_margin": -3680.4166666666665
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 12,
+            "mean_reward": 116202.66666666667,
+            "mean_margin": 10820.833333333334
+          }
+        }
+      }
+    }
+  ],
+  "holdout": [
+    {
+      "index": 151,
+      "config": {
+        "mode": "duplicate",
+        "days": [
+          11,
+          13,
+          14,
+          15,
+          16,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "products": [
+          "MELON",
+          "STRAWBERRY",
+          "WOOL"
+        ]
+      },
+      "summary": {
+        "games": 240,
+        "wins": 172,
+        "losses": 68,
+        "mean_reward": 93537.28333333334,
+        "mean_margin": 13984.533333333333,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 156,
+            "mean_reward": 94343.9675925926,
+            "mean_margin": 15717.319444444445
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94271.08333333333,
+            "mean_margin": -6578.916666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 78283.16666666667,
+            "mean_margin": 3357.8333333333335
+          }
+        }
+      }
+    },
+    {
+      "index": 175,
+      "config": {
+        "mode": "duplicate",
+        "days": [
+          16,
+          17,
+          21,
+          22,
+          23,
+          24,
+          28
+        ],
+        "products": [
+          "STRAWBERRY"
+        ]
+      },
+      "summary": {
+        "games": 240,
+        "wins": 170,
+        "losses": 70,
+        "mean_reward": 93558.68333333333,
+        "mean_margin": 13988.1625,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 156,
+            "mean_reward": 94364.08796296296,
+            "mean_margin": 15723.861111111111
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 4,
+            "mean_reward": 94298.25,
+            "mean_margin": -6636.916666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 78321.83333333333,
+            "mean_margin": 3370.6666666666665
+          }
+        }
+      }
+    },
+    {
+      "index": 101,
+      "config": {
+        "mode": "scale",
+        "days": [
+          10,
+          14,
+          15,
+          16,
+          18,
+          22,
+          23,
+          26,
+          27
+        ],
+        "products": [
+          "FERTILIZER",
+          "STRAWBERRY",
+          "WHEAT",
+          "MELON",
+          "EGG"
+        ]
+      },
+      "summary": {
+        "games": 240,
+        "wins": 174,
+        "losses": 66,
+        "mean_reward": 94306.59166666666,
+        "mean_margin": 14937.529166666667,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 160,
+            "mean_reward": 95194.08333333333,
+            "mean_margin": 16774.39814814815
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 4,
+            "mean_reward": 94284.33333333333,
+            "mean_margin": -6676.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 78354.0,
+            "mean_margin": 3487.6666666666665
+          }
+        }
+      }
+    },
+    {
+      "index": 163,
+      "config": {
+        "mode": "duplicate",
+        "days": [
+          23,
+          26,
+          27,
+          28,
+          29
+        ],
+        "products": [
+          "EGG",
+          "FERTILIZER",
+          "STRAWBERRY",
+          "WOOL"
+        ]
+      },
+      "summary": {
+        "games": 240,
+        "wins": 170,
+        "losses": 70,
+        "mean_reward": 93542.57083333333,
+        "mean_margin": 13983.7,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 156,
+            "mean_reward": 94348.08796296296,
+            "mean_margin": 15721.828703703704
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 4,
+            "mean_reward": 94260.33333333333,
+            "mean_margin": -6697.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 78325.5,
+            "mean_margin": 3378.3333333333335
+          }
+        }
+      }
+    },
+    {
+      "index": 88,
+      "config": {
+        "mode": "duplicate",
+        "days": [
+          23,
+          26,
+          28,
+          29
+        ],
+        "products": [
+          "WOOL",
+          "CARROT",
+          "WHEAT",
+          "TOMATO",
+          "EGG",
+          "STRAWBERRY",
+          "MELON",
+          "FERTILIZER"
+        ]
+      },
+      "summary": {
+        "games": 240,
+        "wins": 173,
+        "losses": 67,
+        "mean_reward": 93796.04583333334,
+        "mean_margin": 14280.345833333333,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 157,
+            "mean_reward": 94630.0324074074,
+            "mean_margin": 16050.62962962963
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94259.16666666667,
+            "mean_margin": -6689.916666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 78321.16666666667,
+            "mean_margin": 3385.5
+          }
+        }
+      }
+    },
+    {
+      "index": 215,
+      "config": {
+        "mode": "duplicate",
+        "days": [
+          15,
+          16,
+          17,
+          18,
+          21,
+          22,
+          26,
+          27,
+          29
+        ],
+        "products": [
+          "FERTILIZER",
+          "TOMATO",
+          "EGG"
+        ]
+      },
+      "summary": {
+        "games": 240,
+        "wins": 172,
+        "losses": 68,
+        "mean_reward": 93557.37916666667,
+        "mean_margin": 14004.629166666668,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 156,
+            "mean_reward": 94362.51851851853,
+            "mean_margin": 15743.393518518518
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94281.58333333333,
+            "mean_margin": -6661.833333333333
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 78340.66666666667,
+            "mean_margin": 3373.3333333333335
+          }
+        }
+      }
+    },
+    {
+      "index": 226,
+      "config": {
+        "mode": "duplicate",
+        "days": [
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          23,
+          25,
+          26
+        ],
+        "products": [
+          "STRAWBERRY"
+        ]
+      },
+      "summary": {
+        "games": 240,
+        "wins": 170,
+        "losses": 70,
+        "mean_reward": 93526.7375,
+        "mean_margin": 13988.3375,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 156,
+            "mean_reward": 94333.0,
+            "mean_margin": 15728.444444444445
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 4,
+            "mean_reward": 94227.58333333333,
+            "mean_margin": -6717.916666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 78313.16666666667,
+            "mean_margin": 3372.6666666666665
+          }
+        }
+      }
+    },
+    {
+      "index": 216,
+      "config": {
+        "mode": "scale",
+        "days": [
+          12,
+          14,
+          15,
+          16,
+          19,
+          22,
+          23,
+          25,
+          26,
+          29
+        ],
+        "products": [
+          "WHEAT"
+        ]
+      },
+      "summary": {
+        "games": 240,
+        "wins": 176,
+        "losses": 64,
+        "mean_reward": 94377.32083333333,
+        "mean_margin": 14974.504166666668,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 160,
+            "mean_reward": 95274.00925925926,
+            "mean_margin": 16825.5
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94305.58333333333,
+            "mean_margin": -6710.083333333333
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 78308.66666666667,
+            "mean_margin": 3341.1666666666665
+          }
+        }
+      }
+    },
+    {
+      "index": 198,
+      "config": {
+        "mode": "duplicate",
+        "days": [
+          23,
+          25,
+          26,
+          27,
+          28
+        ],
+        "products": [
+          "STRAWBERRY",
+          "EGG"
+        ]
+      },
+      "summary": {
+        "games": 240,
+        "wins": 170,
+        "losses": 70,
+        "mean_reward": 93518.75,
+        "mean_margin": 13961.979166666666,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 156,
+            "mean_reward": 94323.2824074074,
+            "mean_margin": 15698.768518518518
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 4,
+            "mean_reward": 94240.08333333333,
+            "mean_margin": -6711.083333333333
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 78315.83333333333,
+            "mean_margin": 3372.8333333333335
+          }
+        }
+      }
+    },
+    {
+      "index": 108,
+      "config": {
+        "mode": "duplicate",
+        "days": [
+          21,
+          23,
+          26,
+          29
+        ],
+        "products": [
+          "CARROT",
+          "EGG",
+          "TOMATO",
+          "FERTILIZER",
+          "MELON",
+          "WOOL",
+          "MILK",
+          "WHEAT",
+          "STRAWBERRY"
+        ]
+      },
+      "summary": {
+        "games": 240,
+        "wins": 173,
+        "losses": 67,
+        "mean_reward": 93930.41666666667,
+        "mean_margin": 14456.8875,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 157,
+            "mean_reward": 94781.79629629629,
+            "mean_margin": 16245.25
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94241.5,
+            "mean_margin": -6652.75
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 78294.5,
+            "mean_margin": 3376.0
+          }
+        }
+      }
+    },
+    {
+      "index": 204,
+      "config": {
+        "mode": "scale",
+        "days": [
+          27,
+          29
+        ],
+        "products": [
+          "CARROT",
+          "MILK",
+          "WOOL",
+          "FERTILIZER"
+        ]
+      },
+      "summary": {
+        "games": 240,
+        "wins": 172,
+        "losses": 68,
+        "mean_reward": 93543.9,
+        "mean_margin": 13981.458333333334,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 156,
+            "mean_reward": 94348.66203703704,
+            "mean_margin": 15720.652777777777
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94265.91666666667,
+            "mean_margin": -6689.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 78336.16666666667,
+            "mean_margin": 3346.8333333333335
+          }
+        }
+      }
+    },
+    {
+      "index": 63,
+      "config": {
+        "mode": "scale",
+        "days": [
+          26,
+          27,
+          28,
+          29
+        ],
+        "products": [
+          "MILK",
+          "WOOL",
+          "EGG"
+        ]
+      },
+      "summary": {
+        "games": 240,
+        "wins": 172,
+        "losses": 68,
+        "mean_reward": 93547.55416666667,
+        "mean_margin": 13984.475,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 156,
+            "mean_reward": 94352.45370370371,
+            "mean_margin": 15724.541666666666
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94268.08333333333,
+            "mean_margin": -6685.083333333333
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 78338.83333333333,
+            "mean_margin": 3332.8333333333335
+          }
+        }
+      }
+    },
+    {
+      "index": 172,
+      "config": {
+        "mode": "scale",
+        "days": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          18,
+          20,
+          26
+        ],
+        "products": [
+          "STRAWBERRY",
+          "CARROT",
+          "WOOL",
+          "MELON"
+        ]
+      },
+      "summary": {
+        "games": 240,
+        "wins": 172,
+        "losses": 68,
+        "mean_reward": 93539.1,
+        "mean_margin": 13987.933333333332,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 156,
+            "mean_reward": 94344.7824074074,
+            "mean_margin": 15725.523148148148
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94275.58333333333,
+            "mean_margin": -6618.083333333333
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 78300.33333333333,
+            "mean_margin": 3317.3333333333335
+          }
+        }
+      }
+    },
+    {
+      "index": 96,
+      "config": {
+        "mode": "scale",
+        "days": [
+          14,
+          15,
+          16,
+          17,
+          19,
+          23,
+          26,
+          28,
+          29
+        ],
+        "products": [
+          "WOOL",
+          "EGG",
+          "MELON"
+        ]
+      },
+      "summary": {
+        "games": 240,
+        "wins": 172,
+        "losses": 68,
+        "mean_reward": 93541.56666666667,
+        "mean_margin": 13973.383333333333,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 156,
+            "mean_reward": 94349.81944444444,
+            "mean_margin": 15717.430555555555
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94224.41666666667,
+            "mean_margin": -6749.583333333333
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 78310.16666666667,
+            "mean_margin": 3303.5
+          }
+        }
+      }
+    },
+    {
+      "index": 67,
+      "config": {
+        "mode": "scale",
+        "days": [
+          28,
+          29
+        ],
+        "products": [
+          "MILK",
+          "WOOL",
+          "EGG"
+        ]
+      },
+      "summary": {
+        "games": 240,
+        "wins": 172,
+        "losses": 68,
+        "mean_reward": 93545.72916666667,
+        "mean_margin": 13979.241666666667,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 156,
+            "mean_reward": 94350.73148148147,
+            "mean_margin": 15720.032407407407
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94268.75,
+            "mean_margin": -6700.583333333333
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 78332.66666666667,
+            "mean_margin": 3324.8333333333335
+          }
+        }
+      }
+    },
+    {
+      "index": 229,
+      "config": {
+        "mode": "duplicate",
+        "days": [
+          24
+        ],
+        "products": [
+          "MILK",
+          "STRAWBERRY"
+        ]
+      },
+      "summary": {
+        "games": 240,
+        "wins": 172,
+        "losses": 68,
+        "mean_reward": 93567.56666666667,
+        "mean_margin": 13993.1125,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 156,
+            "mean_reward": 94374.11574074074,
+            "mean_margin": 15732.083333333334
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94300.41666666667,
+            "mean_margin": -6637.583333333333
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 78316.83333333333,
+            "mean_margin": 3322.3333333333335
+          }
+        }
+      }
+    },
+    {
+      "index": 0,
+      "config": {
+        "mode": "base",
+        "days": [],
+        "products": [
+          "WHEAT",
+          "CARROT",
+          "TOMATO",
+          "STRAWBERRY",
+          "MELON",
+          "EGG",
+          "MILK",
+          "WOOL",
+          "FERTILIZER"
+        ]
+      },
+      "summary": {
+        "games": 240,
+        "wins": 172,
+        "losses": 68,
+        "mean_reward": 93544.44166666667,
+        "mean_margin": 13979.354166666666,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 156,
+            "mean_reward": 94350.27314814815,
+            "mean_margin": 15720.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94261.91666666667,
+            "mean_margin": -6702.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 78322.0,
+            "mean_margin": 3329.5
+          }
+        }
+      }
+    }
+  ]
+}
