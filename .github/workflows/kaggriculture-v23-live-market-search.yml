@@ -1,0 +1,44 @@
+name: Kaggriculture V23 live market population search
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v23-live-market-search.yml"]
+permissions: {contents: write}
+jobs:
+  search:
+    if: contains(github.event.head_commit.message, '[kg-v23-market]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check --upgrade kaggle py7zr
+      - env: {KAGGLE_API_TOKEN: "${{ secrets.KAGGLE_API_TOKEN }}"}
+        run: |
+          mkdir -p ~/.kaggle /tmp/live;printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]' > ~/.kaggle/access_token;chmod 600 ~/.kaggle/access_token
+          for sid in 56183278 56142365;do
+           mkdir -p "/tmp/live/$sid";kaggle competitions episodes "$sid" -v > "/tmp/e-$sid"
+           grep -Eo '^[[:space:]]*[0-9]{6,}' "/tmp/e-$sid" | tr -d ' ' | head -12 > "/tmp/i-$sid"
+           while read -r eid;do kaggle competitions replay "$eid" -p "/tmp/live/$sid";done < "/tmp/i-$sid"
+          done
+      - run: |
+          python - <<'PY'
+          import json,pathlib,py7zr
+          with py7zr.SevenZipFile('TOP12.7z') as z:z.extractall('/tmp/top12')
+          roots=[m.parent for m in pathlib.Path('/tmp/top12').rglob('manifest.json') if len(json.loads(m.read_text()).get('teams',[]))==12]
+          assert len(roots)==1;pathlib.Path('/tmp/root').write_text(str(roots[0]))
+          PY
+      - working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - run: |
+          python kaggriculture_meta_lab/scripts/search_v23_live_market_liquidity.py --live /tmp/live --corpus "$(cat /tmp/root)" \
+           --binary kaggriculture_meta_lab/rust_port/target/release/kg_sim --population 256 --threads 4 \
+           --output kaggriculture_meta_lab/results/v23-live-market-search-20260912.json \
+           --agent-output kaggriculture_meta_lab/agents/candidates/agent_v23_live_market.py
+      - run: |
+          git config user.name github-actions[bot];git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v23-live-market-search-20260912.json kaggriculture_meta_lab/agents/candidates/agent_v23_live_market.py
+          git commit -m 'Record V23 live-market population search';git pull --rebase origin arena/01a0712c-riemann;git push origin HEAD:arena/01a0712c-riemann
