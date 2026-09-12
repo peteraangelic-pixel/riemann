@@ -1,0 +1,40 @@
+name: V16 observable router fingerprint profile
+on:
+  push:
+    branches: ["arena/01a087c0-riemann"]
+    paths: [".github/workflows/kaggriculture-v16-observable-router-profile.yml"]
+permissions: {contents: write}
+jobs:
+  profile:
+    if: contains(github.event.head_commit.message, '[kg-v16-router]')
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install --disable-pip-version-check py7zr kaggle-environments==1.32.7
+      - name: Extract and verify newest TOP12
+        run: |
+          test "$(git rev-parse HEAD:TOP12.7z)" = 966c612018cd7ca7b3e124e319968687a86f73c4
+          python - <<'PY'
+          import json,pathlib,py7zr
+          with py7zr.SevenZipFile('TOP12.7z') as z:z.extractall('/tmp/newest')
+          roots=[m.parent for m in pathlib.Path('/tmp/newest').rglob('manifest.json') if len(json.loads(m.read_text()).get('teams',[]))==12]
+          assert len(roots)==1,roots;pathlib.Path('/tmp/root').write_text(str(roots[0]))
+          PY
+      - name: Profile public-observation fingerprints
+        run: |
+          python kaggriculture_meta_lab/seat_087c0/scripts/profile_v16_router_fingerprints.py \
+            --corpus "$(cat /tmp/root)" \
+            --gate kaggriculture_meta_lab/seat_087c0/results/peer-v16-newest-top12-gate.json \
+            --seeds 2 --output kaggriculture_meta_lab/seat_087c0/results/v16-observable-router-fingerprints.json
+      - name: Persist result
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/seat_087c0/results/v16-observable-router-fingerprints.json
+          git commit -m "Record observable V16 router fingerprints"
+          git pull --rebase origin "${{ github.ref_name }}"
+          git push origin HEAD:${{ github.ref_name }}
