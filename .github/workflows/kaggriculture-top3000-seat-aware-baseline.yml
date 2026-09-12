@@ -1,0 +1,38 @@
+name: TOP3000 seat-aware lifecycle baseline
+on:
+  push:
+    branches: ["arena/01a087c0-riemann"]
+    paths:
+      - ".github/workflows/kaggriculture-top3000-seat-aware-baseline.yml"
+      - "kaggriculture_meta_lab/seat_087c0/scripts/compile_seat_aware_replay_tapes.py"
+      - "kaggriculture_meta_lab/seat_087c0/corpus/top3000_seat_aware/**"
+permissions: {contents: write}
+jobs:
+  baseline:
+    if: contains(github.event.head_commit.message, '[kg-top3000-baseline]')
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - name: Cross-play extracted seat-aware full lifecycle policies
+        run: |
+          python kaggriculture_meta_lab/seat_087c0/scripts/rust_h2h.py \
+            '["kaggriculture_meta_lab/seat_087c0/corpus/top3000_seat_aware/majkel1337_seat_aware.py","kaggriculture_meta_lab/seat_087c0/corpus/top3000_seat_aware/spataro_seat_aware.py","kaggriculture_meta_lab/seat_087c0/corpus/top3000_seat_aware/feel_the_agi_seat_aware.py","kaggriculture_meta_lab/seat_087c0/corpus/top3000_seat_aware/otter_vibe_seat_aware.py","kaggriculture_meta_lab/seat_087c0/corpus/top3000_seat_aware/c0nrad_seat_aware.py","kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v10.py"]' \
+            '["kaggriculture_meta_lab/seat_087c0/corpus/top3000_seat_aware/majkel1337_seat_aware.py","kaggriculture_meta_lab/seat_087c0/corpus/top3000_seat_aware/spataro_seat_aware.py","kaggriculture_meta_lab/seat_087c0/corpus/top3000_seat_aware/feel_the_agi_seat_aware.py","kaggriculture_meta_lab/seat_087c0/corpus/top3000_seat_aware/otter_vibe_seat_aware.py","kaggriculture_meta_lab/seat_087c0/corpus/top3000_seat_aware/c0nrad_seat_aware.py","kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v10.py"]' \
+            '[188000,188001,188002,188003,188004,188005,188006,188007,188008,188009,188010,188011,188012,188013,188014,188015,188016,188017,188018,188019,188020,188021,188022,188023,188024,188025,188026,188027,188028,188029,188030,188031]' \
+            kaggriculture_meta_lab/seat_087c0/results/top3000-seat-aware-baseline.json \
+            --binary kaggriculture_meta_lab/rust_port/target/release/kg_sim --threads 4 --py-parity-k 2
+      - name: Persist result
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/seat_087c0/results/top3000-seat-aware-baseline.json
+          git commit -m "Record TOP3000 seat-aware lifecycle baseline"
+          git pull --rebase origin "${{ github.ref_name }}"
+          git push origin HEAD:${{ github.ref_name }}

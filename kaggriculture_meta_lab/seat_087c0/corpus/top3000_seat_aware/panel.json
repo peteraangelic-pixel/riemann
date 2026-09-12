@@ -1,0 +1,77 @@
+[
+  {
+    "team": "Majkel1337",
+    "score": 3104.6,
+    "path": "kaggriculture_meta_lab/seat_087c0/corpus/top3000_seat_aware/majkel1337_seat_aware.py",
+    "seat0": {
+      "reward": 141375.0,
+      "episode": 107778535,
+      "opponent": "Otter Vibe"
+    },
+    "seat1": {
+      "reward": 132793.0,
+      "episode": 107768551,
+      "opponent": "feel the agi"
+    }
+  },
+  {
+    "team": "Otter Vibe",
+    "score": 3010.6,
+    "path": "kaggriculture_meta_lab/seat_087c0/corpus/top3000_seat_aware/otter_vibe_seat_aware.py",
+    "seat0": {
+      "reward": 137080.0,
+      "episode": 107768089,
+      "opponent": "elmo"
+    },
+    "seat1": {
+      "reward": 121151.0,
+      "episode": 107772760,
+      "opponent": "Majkel1337"
+    }
+  },
+  {
+    "team": "SpaTaro",
+    "score": 3091.9,
+    "path": "kaggriculture_meta_lab/seat_087c0/corpus/top3000_seat_aware/spataro_seat_aware.py",
+    "seat0": {
+      "reward": 156656.0,
+      "episode": 107776884,
+      "opponent": "KK"
+    },
+    "seat1": {
+      "reward": 114685.0,
+      "episode": 107777869,
+      "opponent": "Blox Amaze"
+    }
+  },
+  {
+    "team": "c0nrad",
+    "score": 3015.5,
+    "path": "kaggriculture_meta_lab/seat_087c0/corpus/top3000_seat_aware/c0nrad_seat_aware.py",
+    "seat0": {
+      "reward": 125541.0,
+      "episode": 107767429,
+      "opponent": "tq1d"
+    },
+    "seat1": {
+      "reward": 138677.0,
+      "episode": 107768801,
+      "opponent": "binghua"
+    }
+  },
+  {
+    "team": "feel the agi",
+    "score": 3042.6,
+    "path": "kaggriculture_meta_lab/seat_087c0/corpus/top3000_seat_aware/feel_the_agi_seat_aware.py",
+    "seat0": {
+      "reward": 131146.0,
+      "episode": 107768551,
+      "opponent": "Majkel1337"
+    },
+    "seat1": {
+      "reward": 143754.0,
+      "episode": 107770703,
+      "opponent": "3정훈"
+    }
+  }
+]
