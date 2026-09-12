@@ -34,7 +34,6 @@ jobs:
            --candidate v2=kaggriculture_meta_lab/agents/variants/agent_v16_kanno_top7_champion.py \
            --candidate v7=kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
            --candidate v8=kaggriculture_meta_lab/agents/candidates/agent_v8_late401_official.py \
-           --candidate v10=kaggriculture_meta_lab/agents/candidates/agent_v10_late_market_adaptive.py \
            --output kaggriculture_meta_lab/results/v13-current-top12-holdout-20260912.json
       - name: Previous TOP7, 4 fresh seeds
         run: |
@@ -44,7 +43,6 @@ jobs:
            --candidate v2=kaggriculture_meta_lab/agents/variants/agent_v16_kanno_top7_champion.py \
            --candidate v7=kaggriculture_meta_lab/agents/candidates/agent_v7_market_probe.py \
            --candidate v8=kaggriculture_meta_lab/agents/candidates/agent_v8_late401_official.py \
-           --candidate v10=kaggriculture_meta_lab/agents/candidates/agent_v10_late_market_adaptive.py \
            --output kaggriculture_meta_lab/results/v13-previous-top7-holdout-20260912.json
       - run: |
           git config user.name github-actions[bot];git config user.email 41898282+github-actions[bot]@users.noreply.github.com
