@@ -1,0 +1,20 @@
+{
+  "v3": {
+    "ref": "56154098",
+    "fileName": "v3.tar.gz",
+    "date": "2026-09-11 00:05:11.427000",
+    "description": "V3 coherent replay UTC reset evaluation 0eed9f5e5c3b3e312d4dbca196817150152416bb",
+    "status": "SubmissionStatus.COMPLETE",
+    "publicScore": "2116.6",
+    "privateScore": ""
+  },
+  "v7": {
+    "ref": "56159653",
+    "fileName": "v7.tar.gz",
+    "date": "2026-09-11 06:00:07.770000",
+    "description": "V7 market probe morning control 0eed9f5e5c3b3e312d4dbca196817150152416bb",
+    "status": "SubmissionStatus.COMPLETE",
+    "publicScore": "1994.2",
+    "privateScore": ""
+  }
+}
