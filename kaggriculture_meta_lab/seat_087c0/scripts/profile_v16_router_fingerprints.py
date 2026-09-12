@@ -11,7 +11,9 @@ from collections import defaultdict
 from pathlib import Path
 from kaggle_environments import make
 
-ROOT=Path(__file__).resolve().parents[2]; sys.path.insert(0,str(ROOT))
+SEAT=Path(__file__).resolve().parents[1]
+META=Path(__file__).resolve().parents[2]
+sys.path.insert(0,str(META))
 from scripts.benchmark_top30 import build_top30_jobs
 
 def load(path,name):
@@ -22,9 +24,12 @@ def features(o,p):
  q=1-p; f=o['farms'][q]; market=o.get('market',{})
  inv=market.get('inventory',market.get('inventories',{})) or {}
  def count(x): return len(x) if isinstance(x,list) else (sum(x.values()) if isinstance(x,dict) else float(x or 0))
- out={'opp_cash':float(f.get('cash',f.get('bank',0)) or 0),'opp_hands':len(f.get('hands',[])),
-      'opp_fields':count(f.get('fields',[])),'opp_pastures':count(f.get('pastures',[])),
-      'opp_animals':count(f.get('animals',[]))}
+ tiles=[x for row in (f.get('tiles') or []) if isinstance(row,list) for x in row if isinstance(x,dict)]
+ out={'opp_cash':float(f.get('money',f.get('cash',f.get('bank',0))) or 0),'opp_hands':len(f.get('hands',[])),
+      'opp_fields':sum(str(x.get('kind','')).upper()=='FIELD' for x in tiles),
+      'opp_pastures':sum(str(x.get('kind','')).upper() in ('PASTURE','COOP') for x in tiles),
+      'opp_animals':sum(bool(x.get('animal')) for x in tiles),
+      'opp_crops':sum(bool(x.get('crop')) for x in tiles)}
  for k,v in inv.items():
   if isinstance(v,(int,float)): out['market_'+str(k).lower()]=float(v)
  return out
@@ -37,7 +42,7 @@ def main():
  for (team,*_),g in by.items():
   if 'v8' in g and 'peer_v16' in g: delta[team].append(g['peer_v16']['margin']-g['v8']['margin'])
  labels={t:statistics.mean(v)>0 for t,v in delta.items()}
- v8=ROOT/'agents/champion_tape_v8.py'; template,meta=build_top30_jobs(a.corpus.resolve(),v8.resolve(),12)
+ v8=SEAT/'agents/champion_tape_v8.py'; template,meta=build_top30_jobs(a.corpus.resolve(),v8.resolve(),12)
  records=[(template[i][2],meta[i]) for i in range(0,len(template),2)]
  rows=[]
  for rid,(opp_path,m) in enumerate(records):
