@@ -2,7 +2,9 @@ name: V16 observable router fingerprint profile
 on:
   push:
     branches: ["arena/01a087c0-riemann"]
-    paths: [".github/workflows/kaggriculture-v16-observable-router-profile.yml"]
+    paths:
+      - ".github/workflows/kaggriculture-v16-observable-router-profile.yml"
+      - "kaggriculture_meta_lab/seat_087c0/scripts/profile_v16_router_fingerprints.py"
 permissions: {contents: write}
 jobs:
   profile:
