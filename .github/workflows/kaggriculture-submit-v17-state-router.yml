@@ -1,0 +1,48 @@
+name: Kaggriculture submit V17 state router
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-submit-v17-state-router.yml"]
+permissions: {contents: write}
+jobs:
+  submit:
+    if: contains(github.event.head_commit.message, '[kg-submit-v17]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install --disable-pip-version-check kaggle
+      - name: Validate and package neutral entry point
+        run: |
+          src=kaggriculture_meta_lab/agents/candidates/agent_v17_state_router.py
+          python -m py_compile "$src"
+          work=$(mktemp -d);cp "$src" "$work/main.py"
+          tar -C "$work" -czf "$work/v17-state-router.tar.gz" main.py
+          test $(wc -c < "$work/v17-state-router.tar.gz") -lt 100000000
+          echo "$work" > /tmp/workdir
+      - name: Submit authorized V17 candidate
+        env: {KAGGLE_API_TOKEN: "${{ secrets.KAGGLE_API_TOKEN }}"}
+        run: |
+          mkdir -p ~/.kaggle;printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]' > ~/.kaggle/access_token;chmod 600 ~/.kaggle/access_token
+          work=$(cat /tmp/workdir)
+          desc="V17 current animal state router $GITHUB_SHA"
+          kaggle competitions submit -c kaggriculture -f "$work/v17-state-router.tar.gz" -m "$desc"
+          sleep 15
+          kaggle competitions submissions -c kaggriculture --csv > /tmp/submissions.csv
+          python - <<'PY'
+          import csv,json,pathlib
+          rows=list(csv.DictReader(open('/tmp/submissions.csv')))
+          row=next(r for r in rows if r.get('description','').startswith('V17 current animal state router'))
+          pathlib.Path('kaggriculture_meta_lab/results/kaggle-v17-state-router-submission-20260912.json').write_text(json.dumps(row,indent=2)+'\n')
+          print(row)
+          PY
+      - name: Persist Kaggle reference
+        run: |
+          git config user.name github-actions[bot];git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/kaggle-v17-state-router-submission-20260912.json
+          git commit -m 'Record authorized V17 Kaggle submission'
+          git pull --rebase origin arena/01a0712c-riemann
+          git push origin HEAD:arena/01a0712c-riemann
