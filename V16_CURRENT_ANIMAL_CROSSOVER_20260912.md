@@ -91,9 +91,17 @@ Celowany prawdziwy test closed-loop (seed 195000, obie strony):
 | docelowy rank 8 | 0–18 | **2–16** | 139677 → **140395** | −2345 → **−1647** |
 | sąsiednie rank 7/11/12 | 44–10 | **46–8** | 139390 → 139347 | 8255 → **8372** |
 
-Router rzeczywiście przełączył politykę i zyskał cztery zwycięstwa bez regresji zbiorczej. Rozbicie: rank 7 +2 zwycięstwa, rank 8 +2, rank 11 i 12 bez zmian. W ośmioseedowym holdoucie statycznym klasy, które powinny aktywować router (rank 6/8/9 i część rank 7), agresywny wariant miał potencjał około +60 zwycięstw względem V16. V17 jest obiecującym następcą, lecz test closed-loop ma tylko jeden seed i dlatego nie zastępuje jeszcze V16 jako bezpiecznej rekomendacji.
+Router rzeczywiście przełączył politykę i zyskał cztery zwycięstwa bez regresji zbiorczej. Rozbicie: rank 7 +2 zwycięstwa, rank 8 +2, rank 11 i 12 bez zmian. W ośmioseedowym holdoucie statycznym klasy, które powinny aktywować router (rank 6/8/9 i część rank 7), agresywny wariant miał potencjał około +60 zwycięstw względem V16.
 
-Źródło V17: `kaggriculture_meta_lab/agents/candidates/agent_v17_state_router.py`; wynik: `kaggriculture_meta_lab/results/v17-state-router-targeted-20260912.json`.
+Drugi niezależny closed-loop seed 195001 rozszerzył klasę docelową na rank 6/7/8/9:
+
+- V16 i V17 po 72–0, ale V17 zwiększył średnią nagrodę **87559 → 87745** i marżę **13947 → 14128**;
+- kontrolne rank 11/12 pozostały dokładnie niezmienione: 28–8, nagroda 79096, marża 6424;
+- w rozbiciu V17 zwiększył nagrodę rank 6 o 1076 i rank 9 o 522; spadek rank 7 o 850 nie pogorszył marży ani wyniku, rank 8 był praktycznie równy.
+
+Po dwóch rzeczywistych seedach router ma łącznie +4 zwycięstwa, dodatnią zmianę marży w klasach aktywowanych i zero zmienionych wyników w chronionych rank 11/12. V17 jest obecnie najbardziej obiecującym wariantem, a V16 pozostaje prostszym wariantem bezpiecznym. Ze względu na bardzo dużą zmienność seedów V17 nadal nie powinien być wysyłany automatycznie.
+
+Źródło V17: `kaggriculture_meta_lab/agents/candidates/agent_v17_state_router.py`; wyniki: `kaggriculture_meta_lab/results/v17-state-router-targeted-20260912.json` oraz `v17-state-router-second-seed-20260912.json`.
 
 Źródła wyników:
 
