@@ -1,0 +1,42 @@
+name: Kaggriculture V14 behavior router gate
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v14-behavior-router.yml"]
+permissions: {contents: write}
+jobs:
+  gate:
+    if: contains(github.event.head_commit.message, '[kg-v14-router]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr kaggle-environments==1.32.7
+      - run: |
+          python - <<'PY'
+          import json,pathlib,py7zr
+          for arc,dst,n in [('TOP12.7z','/tmp/c',12),('TOP7.7z','/tmp/p',7)]:
+           with py7zr.SevenZipFile(arc) as z:z.extractall(dst)
+           roots=[m.parent for m in pathlib.Path(dst).rglob('manifest.json') if len(json.loads(m.read_text()).get('teams',[]))==n]
+           assert len(roots)==1;pathlib.Path(dst+'.root').write_text(str(roots[0]))
+          PY
+      - working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - name: Current TOP12 closed-loop gate
+        run: |
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py --corpus "$(cat /tmp/c.root)" --workers 4 --seeds 4 --seed-start 184000 \
+           --candidate v8=kaggriculture_meta_lab/agents/candidates/agent_v8_late401_official.py --candidate v14=kaggriculture_meta_lab/agents/candidates/agent_v14_behavior_router.py \
+           --output kaggriculture_meta_lab/results/v14-behavior-router-current-20260912.json
+      - name: Previous TOP7 closed-loop gate
+        run: |
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py --corpus "$(cat /tmp/p.root)" --workers 4 --seeds 2 --seed-start 185000 \
+           --candidate v8=kaggriculture_meta_lab/agents/candidates/agent_v8_late401_official.py --candidate v14=kaggriculture_meta_lab/agents/candidates/agent_v14_behavior_router.py \
+           --output kaggriculture_meta_lab/results/v14-behavior-router-previous-20260912.json
+      - run: |
+          git config user.name github-actions[bot];git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v14-behavior-router-*.json;git commit -m 'Record V14 behavior-router gates'
+          git pull --rebase origin arena/01a0712c-riemann;git push origin HEAD:arena/01a0712c-riemann
