@@ -1,0 +1,32 @@
+name: Recent Kaggriculture submission match audit
+on:
+  push:
+    branches: ["arena/01a087c0-riemann"]
+    paths:
+      - ".github/workflows/kaggriculture-recent-submission-match-audit.yml"
+      - "kaggriculture_meta_lab/seat_087c0/scripts/audit_recent_submission_matches.py"
+permissions:
+  contents: write
+jobs:
+  audit:
+    if: contains(github.event.head_commit.message, '[kg-match-audit]')
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: python -m pip install --quiet kaggle==2.2.4 pandas pyarrow
+      - name: Download public episode dataset and audit four submissions
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+        run: python kaggriculture_meta_lab/seat_087c0/scripts/audit_recent_submission_matches.py --submissions '[56165158,56165135,56159750,56159653]' --output kaggriculture_meta_lab/seat_087c0/results/recent-four-submission-matches.json
+      - name: Persist report
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git pull --rebase origin "${{ github.ref_name }}"
+          git add kaggriculture_meta_lab/seat_087c0/results/recent-four-submission-matches.json
+          git commit -m "Record recent four submission match audit" || true
+          git push origin HEAD:${{ github.ref_name }}
