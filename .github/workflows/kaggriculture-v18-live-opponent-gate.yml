@@ -1,0 +1,55 @@
+name: Kaggriculture V18 exact live-opponent gate
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v18-live-opponent-gate.yml"]
+permissions: {contents: write}
+jobs:
+  gate:
+    if: contains(github.event.head_commit.message, '[kg-v18-live]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check --upgrade kaggle py7zr
+      - env: {KAGGLE_API_TOKEN: "${{ secrets.KAGGLE_API_TOKEN }}"}
+        run: |
+          mkdir -p ~/.kaggle /tmp/live;printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]' > ~/.kaggle/access_token;chmod 600 ~/.kaggle/access_token
+          for sid in 56183278 56142365; do
+            mkdir -p "/tmp/live/$sid";kaggle competitions episodes "$sid" -v > "/tmp/e-$sid"
+            grep -Eo '^[[:space:]]*[0-9]{6,}' "/tmp/e-$sid" | tr -d ' ' | head -12 > "/tmp/i-$sid"
+            while read -r eid;do kaggle competitions replay "$eid" -p "/tmp/live/$sid";done < "/tmp/i-$sid"
+          done
+      - run: |
+          python - <<'PY'
+          import json,pathlib,py7zr
+          with py7zr.SevenZipFile('TOP12.7z') as z:z.extractall('/tmp/top12')
+          roots=[m.parent for m in pathlib.Path('/tmp/top12').rglob('manifest.json') if len(json.loads(m.read_text()).get('teams',[]))==12]
+          assert len(roots)==1;pathlib.Path('/tmp/top12-root').write_text(str(roots[0]))
+          PY
+      - working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - name: Evaluate V18 against exact recent live opponents
+        run: |
+          python kaggriculture_meta_lab/scripts/benchmark_live_opponent_counterfactual.py --input /tmp/live --workers 4 \
+           --candidate v18=kaggriculture_meta_lab/agents/candidates/agent_v18_live_liquidation.py \
+           --candidate v2=kaggriculture_meta_lab/agents/variants/agent_v16_kanno_top7_champion.py \
+           --candidate v16=kaggriculture_meta_lab/agents/candidates/agent_v16_current_animal_crossover.py \
+           --candidate v8=kaggriculture_meta_lab/agents/candidates/agent_v8_late401_official.py \
+           --output kaggriculture_meta_lab/results/v18-live-opponent-counterfactual-20260912.json
+      - name: Newest TOP12 transfer gate
+        run: |
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py --corpus "$(cat /tmp/top12-root)" --workers 4 --seeds 8 --seed-start 197000 \
+           --candidate v18=kaggriculture_meta_lab/agents/candidates/agent_v18_live_liquidation.py \
+           --candidate v2=kaggriculture_meta_lab/agents/variants/agent_v16_kanno_top7_champion.py \
+           --candidate v16=kaggriculture_meta_lab/agents/candidates/agent_v16_current_animal_crossover.py \
+           --candidate v8=kaggriculture_meta_lab/agents/candidates/agent_v8_late401_official.py \
+           --output kaggriculture_meta_lab/results/v18-newest-top12-transfer-20260912.json
+      - run: |
+          git config user.name github-actions[bot];git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v18-live-opponent-counterfactual-20260912.json kaggriculture_meta_lab/results/v18-newest-top12-transfer-20260912.json;git commit -m 'Record V18 exact live-opponent gate'
+          git pull --rebase origin arena/01a0712c-riemann;git push origin HEAD:arena/01a0712c-riemann
