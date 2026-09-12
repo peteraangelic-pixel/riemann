@@ -1,0 +1,40 @@
+name: Kaggriculture analyze two live submissions
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-live-two-submission-replays.yml"]
+permissions: {contents: write}
+jobs:
+  analyze:
+    if: contains(github.event.head_commit.message, '[kg-live-replays]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install --disable-pip-version-check --upgrade kaggle
+      - name: Download newest episodes and complete replays
+        env: {KAGGLE_API_TOKEN: "${{ secrets.KAGGLE_API_TOKEN }}"}
+        run: |
+          mkdir -p ~/.kaggle /tmp/live
+          printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]' > ~/.kaggle/access_token;chmod 600 ~/.kaggle/access_token
+          kaggle competitions submissions -c kaggriculture --csv > kaggriculture_meta_lab/results/live-own-submissions-20260912.csv
+          for sid in 56183278 56142365; do
+            mkdir -p "/tmp/live/$sid"
+            kaggle competitions episodes "$sid" -v | tee "/tmp/episodes-$sid.txt"
+            grep -Eo '^[[:space:]]*[0-9]{6,}' "/tmp/episodes-$sid.txt" | tr -d ' ' | head -12 > "/tmp/ids-$sid.txt"
+            test $(wc -l < "/tmp/ids-$sid.txt") -ge 2
+            while read -r eid; do kaggle competitions replay "$eid" -p "/tmp/live/$sid"; done < "/tmp/ids-$sid.txt"
+          done
+      - name: Analyze exact both-seat outcomes and behavior
+        run: |
+          python kaggriculture_meta_lab/scripts/analyze_live_submission_replays.py --input /tmp/live --submission 56183278 --submission 56142365 \
+            --output kaggriculture_meta_lab/results/live-v17-v2-replay-analysis-20260912.json
+      - name: Persist audit
+        run: |
+          git config user.name github-actions[bot];git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/live-own-submissions-20260912.csv kaggriculture_meta_lab/results/live-v17-v2-replay-analysis-20260912.json
+          git commit -m 'Record exact V17 and V2 live replay audit'
+          git pull --rebase origin arena/01a0712c-riemann;git push origin HEAD:arena/01a0712c-riemann
