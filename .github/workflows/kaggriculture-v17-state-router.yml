@@ -2,7 +2,9 @@ name: Kaggriculture V17 state router check
 on:
   push:
     branches: ["arena/01a0712c-riemann"]
-    paths: [".github/workflows/kaggriculture-v17-state-router.yml"]
+    paths:
+      - ".github/workflows/kaggriculture-v17-state-router.yml"
+      - "kaggriculture_meta_lab/scripts/validate_v17_targeted.py"
 permissions: {contents: write}
 jobs:
   check:
@@ -26,10 +28,11 @@ jobs:
       - working-directory: kaggriculture_meta_lab/rust_port
         run: cargo build --release --locked
       - run: |
-          python kaggriculture_meta_lab/scripts/validate_v17_targeted.py --corpus "$(cat /tmp/root)" --workers 4 \
+          python kaggriculture_meta_lab/scripts/validate_v17_targeted.py --corpus "$(cat /tmp/root)" --workers 4 --seed 195001 \
+           --target-ranks 6,7,8,9 --negative-ranks 11,12 \
            --safe kaggriculture_meta_lab/agents/candidates/agent_v16_current_animal_crossover.py --router kaggriculture_meta_lab/agents/candidates/agent_v17_state_router.py \
-           --output kaggriculture_meta_lab/results/v17-state-router-targeted-20260912.json
+           --output kaggriculture_meta_lab/results/v17-state-router-second-seed-20260912.json
       - run: |
           git config user.name github-actions[bot];git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add kaggriculture_meta_lab/results/v17-state-router-targeted-20260912.json;git commit -m 'Record V17 targeted state-router check'
+          git add kaggriculture_meta_lab/results/v17-state-router-second-seed-20260912.json;git commit -m 'Record V17 second-seed state-router check'
           git pull --rebase origin arena/01a0712c-riemann;git push origin HEAD:arena/01a0712c-riemann

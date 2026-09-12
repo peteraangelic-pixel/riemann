@@ -78,6 +78,23 @@ V16 zachował transfer: +10 zwycięstw nad rodzicem i +18 nad G2; względem V2 s
 
 V16 jest obecnie najmocniejszym **nowym, aktualnym i neutralnie nazwanym** kandydatem. Jest wyraźnie lepszy od G2 oraz obecnego rodzica w dwóch niezależnych panelach i bazuje na gospodarce, której źródłowy aktualny wynik wynosił 2943.2. Nadal jest częściowo open-loop, więc lokalne wyniki nie gwarantują przekroczenia 3000 live. Nie wysyłać automatycznie: obowiązuje ograniczenie dwóch aktywnych agentów i wspólna decyzja użytkownika.
 
+## Dalszy V17 — selektywny router rynku
+
+Agresywniejszy crossover (rodzic p097 przez dni 0–3, p091 od dnia 4) miał w holdoucie 1349–379, ale jego regresja skupiała się prawie wyłącznie na rank 12. Jednocześnie poprawiał charakterystyczną klasę rank 8 z 62 do 116 zwycięstw. Klasa ta wykonuje na początku duży obrót pszenicą `BUY 7, BUY 20, SELL 60`, który pozostawia publiczny stan rynku odmienny od małego arbitrażu rank 12.
+
+V17 obserwuje po pierwszej turze liczbę rąk przeciwnika oraz globalny zapas pszenicy. Dla stanu bez zatrudnionych rąk i zapasu co najmniej 9986 wybiera agresywny crossover; w pozostałych przypadkach zachowuje bezpieczny V16.
+
+Celowany prawdziwy test closed-loop (seed 195000, obie strony):
+
+| Klasa | V16 | V17 | Nagroda V16 → V17 | Marża V16 → V17 |
+|---|---:|---:|---:|---:|
+| docelowy rank 8 | 0–18 | **2–16** | 139677 → **140395** | −2345 → **−1647** |
+| sąsiednie rank 7/11/12 | 44–10 | **46–8** | 139390 → 139347 | 8255 → **8372** |
+
+Router rzeczywiście przełączył politykę i zyskał cztery zwycięstwa bez regresji zbiorczej. Rozbicie: rank 7 +2 zwycięstwa, rank 8 +2, rank 11 i 12 bez zmian. W ośmioseedowym holdoucie statycznym klasy, które powinny aktywować router (rank 6/8/9 i część rank 7), agresywny wariant miał potencjał około +60 zwycięstw względem V16. V17 jest obiecującym następcą, lecz test closed-loop ma tylko jeden seed i dlatego nie zastępuje jeszcze V16 jako bezpiecznej rekomendacji.
+
+Źródło V17: `kaggriculture_meta_lab/agents/candidates/agent_v17_state_router.py`; wynik: `kaggriculture_meta_lab/results/v17-state-router-targeted-20260912.json`.
+
 Źródła wyników:
 
 - `kaggriculture_meta_lab/results/v13-top12-parent-screen-20260912.json`
