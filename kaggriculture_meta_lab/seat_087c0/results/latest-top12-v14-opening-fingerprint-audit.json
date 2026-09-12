@@ -1,0 +1,19 @@
+{
+  "corpus_blob": "966c612018cd7ca7b3e124e319968687a86f73c4",
+  "generated_at_utc": "2026-09-11T09:48:40.925499+00:00",
+  "classifier": "arena/01a0712c V14 targeted validator",
+  "unique_route_positive_episodes": [],
+  "unique_near_negative_episodes": [
+    107768801,
+    107774526,
+    107776273,
+    107782191,
+    107782380
+  ],
+  "near_negative_team": "binghua",
+  "opening_market": [
+    ["HIRE"], ["HIRE"], ["HIRE"], ["HIRE"], ["HIRE"], ["HIRE"], ["HIRE"],
+    ["BUY_ANIMAL", "COW", 5], ["BUY_ANIMAL", "SHEEP", 1], ["BUY_SEED", "MELON", 1]
+  ],
+  "conclusion": "The V14 route-positive fingerprint is absent from the newest TOP12. Its animal branch cannot improve this corpus; V14 collapses to V8. The only targeted class is binghua's seven-hire, 5-cow, 1-sheep opening, explicitly classified near-negative."
+}
