@@ -1,0 +1,46 @@
+name: Peer V16 on newest TOP12 independent gate
+on:
+  push:
+    branches: ["arena/01a087c0-riemann"]
+    paths:
+      - ".github/workflows/kaggriculture-newest-top12-peer-v16-gate.yml"
+permissions: {contents: write}
+jobs:
+  gate:
+    if: contains(github.event.head_commit.message, '[kg-newest-v16]')
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr kaggle-environments==1.32.7
+      - name: Extract newest TOP12 and verify exact blob
+        run: |
+          test "$(git rev-parse HEAD:TOP12.7z)" = 966c612018cd7ca7b3e124e319968687a86f73c4
+          python - <<'PY'
+          import json,pathlib,py7zr
+          with py7zr.SevenZipFile('TOP12.7z') as z:z.extractall('/tmp/newest')
+          roots=[m.parent for m in pathlib.Path('/tmp/newest').rglob('manifest.json') if len(json.loads(m.read_text()).get('teams',[]))==12]
+          assert len(roots)==1,roots
+          pathlib.Path('/tmp/root').write_text(str(roots[0]))
+          PY
+      - working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - name: Closed-loop newest TOP12 gate
+        run: |
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
+            --corpus "$(cat /tmp/root)" --workers 4 --seeds 8 --seed-start 195000 \
+            --candidate v8=kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v8.py \
+            --candidate peer_v16=kaggriculture_meta_lab/seat_087c0/candidates/peer-v16-current-animal-crossover.py \
+            --output kaggriculture_meta_lab/seat_087c0/results/peer-v16-newest-top12-gate.json
+      - name: Persist result
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/seat_087c0/results/peer-v16-newest-top12-gate.json
+          git commit -m "Record peer V16 newest TOP12 independent gate"
+          git pull --rebase origin "${{ github.ref_name }}"
+          git push origin HEAD:${{ github.ref_name }}
