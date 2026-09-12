@@ -1,0 +1,36 @@
+name: Kaggriculture V15 reactive animal repair gate
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v15-reactive-animals.yml"]
+permissions: {contents: write}
+jobs:
+  gate:
+    if: contains(github.event.head_commit.message, '[kg-v15-animals]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr kaggle-environments==1.32.7
+      - run: |
+          python - <<'PY'
+          import json,pathlib,py7zr
+          with py7zr.SevenZipFile('TOP12.7z') as z:z.extractall('/tmp/c')
+          roots=[m.parent for m in pathlib.Path('/tmp/c').rglob('manifest.json') if len(json.loads(m.read_text()).get('teams',[]))==12]
+          assert len(roots)==1;pathlib.Path('/tmp/root').write_text(str(roots[0]))
+          PY
+      - working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - name: Matched lifecycle-repair gate
+        run: |
+          python kaggriculture_meta_lab/scripts/validate_v14_targeted.py --corpus "$(cat /tmp/root)" --workers 4 --seeds 2 --seed-start 190000 \
+           --v8 kaggriculture_meta_lab/agents/v13_parents/p097.py --v14 kaggriculture_meta_lab/agents/candidates/agent_v15_reactive_animals.py \
+           --output kaggriculture_meta_lab/results/v15-reactive-animal-repair-20260912.json
+      - run: |
+          git config user.name github-actions[bot];git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v15-reactive-animal-repair-20260912.json;git commit -m 'Record V15 reactive animal repair gate'
+          git pull --rebase origin arena/01a0712c-riemann;git push origin HEAD:arena/01a0712c-riemann
