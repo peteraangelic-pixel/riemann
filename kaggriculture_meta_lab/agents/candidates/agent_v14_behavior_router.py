@@ -8,7 +8,7 @@ def agent(observation,configuration=None):
  if step==0:_ROUTE[p]=False
  elif step==1:
   try:
-   opp=observation["farms"][1-p];_ROUTE[p]=len(opp["hands"])==7 and float(opp["money"])<=100
+   opp=observation["farms"][1-p];_ROUTE[p]=len(opp["hands"])==6 and float(opp["money"])<350
   except Exception:_ROUTE[p]=False
  source=_ANIMAL if _ROUTE.get(p,False) else _BASE;action=copy.deepcopy(source[p][step]);action["hands"]=action.get("hands",[])[:len(observation["farms"][p]["hands"])]
  return action
