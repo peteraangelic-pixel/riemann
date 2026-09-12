@@ -1,22 +1,20 @@
 {
-  "as_of_utc": "2026-09-12T06:58:23.510323+00:00",
+  "as_of_utc": "2026-09-12T16:23:11.796499+00:00",
   "mode": "read-only",
   "dataset": "georgymamarin/kaggriculture-episodes",
   "submission_ids": [
-    56159653,
-    56159750,
-    56165135,
-    56165158
+    56142365,
+    56159750
   ],
   "summary": {
-    "56159653": {
-      "matches": 2,
-      "w": 1,
-      "l": 1,
+    "56142365": {
+      "matches": 0,
+      "w": 0,
+      "l": 0,
       "t": 0,
-      "seat0": 1,
-      "seat1": 1,
-      "latest_rating": 1938.640812490327
+      "seat0": 0,
+      "seat1": 0,
+      "latest_rating": null
     },
     "56159750": {
       "matches": 0,
@@ -26,78 +24,7 @@
       "seat0": 0,
       "seat1": 0,
       "latest_rating": null
-    },
-    "56165135": {
-      "matches": 0,
-      "w": 0,
-      "l": 0,
-      "t": 0,
-      "seat0": 0,
-      "seat1": 0,
-      "latest_rating": null
-    },
-    "56165158": {
-      "matches": 0,
-      "w": 0,
-      "l": 0,
-      "t": 0,
-      "seat0": 0,
-      "seat1": 0,
-      "latest_rating": null
     }
   },
-  "matches": [
-    {
-      "episode_id": 107767241,
-      "submission_id": 56159653,
-      "seat": 1,
-      "final_bank": 76500,
-      "rating_after": 1872.6004492707737,
-      "opponent_submission_id": 56101688,
-      "opponent_team_id": 16744342,
-      "opponent_final_bank": 76373,
-      "outcome": "W",
-      "episode": {
-        "episode_id": 107767241,
-        "create_time": "2026-09-11T08:45:22.815087200Z",
-        "end_time": "2026-09-11T08:48:50.287767400Z",
-        "type": "EPISODE_TYPE_PUBLIC",
-        "state": "COMPLETED",
-        "sub_0": 56101688,
-        "team_0": 16744342,
-        "bank_0": 76373,
-        "rating_0": 1841.5250257124037,
-        "sub_1": 56159653,
-        "team_1": 16839754,
-        "bank_1": 76500,
-        "rating_1": 1872.6004492707737
-      }
-    },
-    {
-      "episode_id": 107781220,
-      "submission_id": 56159653,
-      "seat": 0,
-      "final_bank": 111981,
-      "rating_after": 1938.640812490327,
-      "opponent_submission_id": 56147839,
-      "opponent_team_id": 16730719,
-      "opponent_final_bank": 121339,
-      "outcome": "L",
-      "episode": {
-        "episode_id": 107781220,
-        "create_time": "2026-09-11T09:41:24.029642500Z",
-        "end_time": "2026-09-11T09:43:32.821710500Z",
-        "type": "EPISODE_TYPE_PUBLIC",
-        "state": "COMPLETED",
-        "sub_0": 56159653,
-        "team_0": 16839754,
-        "bank_0": 111981,
-        "rating_0": 1938.640812490327,
-        "sub_1": 56147839,
-        "team_1": 16730719,
-        "bank_1": 121339,
-        "rating_1": 1892.3671952977436
-      }
-    }
-  ]
+  "matches": []
 }
