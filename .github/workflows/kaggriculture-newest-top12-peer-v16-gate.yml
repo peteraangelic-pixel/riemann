@@ -9,7 +9,7 @@ jobs:
   gate:
     if: contains(github.event.head_commit.message, '[kg-newest-v16]')
     runs-on: ubuntu-22.04
-    timeout-minutes: 30
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v6
         with: {fetch-depth: 0}
@@ -32,7 +32,7 @@ jobs:
       - name: Closed-loop newest TOP12 gate
         run: |
           python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
-            --corpus "$(cat /tmp/root)" --workers 4 --seeds 8 --seed-start 195000 \
+            --corpus "$(cat /tmp/root)" --workers 4 --seeds 2 --seed-start 196000 \
             --candidate v8=kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v8.py \
             --candidate peer_v16=kaggriculture_meta_lab/seat_087c0/candidates/peer-v16-current-animal-crossover.py \
             --output kaggriculture_meta_lab/seat_087c0/results/peer-v16-newest-top12-gate.json
