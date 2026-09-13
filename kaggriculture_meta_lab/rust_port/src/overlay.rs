@@ -16,7 +16,7 @@ pub struct MarketOverlay {
     pub cash_reserve: f64,
     pub sell_fraction_bp: u32,
     pub endgame_sell_fraction_bp: u32,
-    /// Scale requested wheat sales, still capped by projected live inventory.
+    /// Scale requested wheat sales; projected live inventory remains a hard cap.
     pub wheat_sell_multiplier_bp: u32,
     pub wheat_reserve: i64,
     pub carrot_reserve: i64,
