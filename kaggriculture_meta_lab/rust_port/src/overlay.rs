@@ -419,7 +419,11 @@ impl MarketOverlay {
                     } else {
                         10_000
                     };
-                    if fraction == 10_000 && reserve == 0 && min_price == 0.0 && multiplier == 10_000 {
+                    if fraction == 10_000
+                        && reserve == 0
+                        && min_price == 0.0
+                        && multiplier == 10_000
+                    {
                         continue;
                     }
                     let quote =
@@ -642,9 +646,7 @@ mod tests {
     #[test]
     fn wheat_multiplier_increases_order_but_caps_at_live_inventory() {
         let cfg = Config::default();
-        let tape = Tape::from_json(&json!([[
-            {"market":[["SELL","WHEAT",9]]}
-        ],[{}]])).unwrap();
+        let tape = Tape::from_json(&json!([[{"market":[["SELL","WHEAT",9]]}],[{}]])).unwrap();
         let mut game = Game::new(&cfg, 0, [0, 0]);
         game.farms[0].shed[Item::Wheat.index()] = 13;
         game.farms[0].shed_total = 13;
