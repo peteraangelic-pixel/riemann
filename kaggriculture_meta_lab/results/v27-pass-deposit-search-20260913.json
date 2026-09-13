@@ -1,0 +1,1987 @@
+{
+  "format": "v27-pass-deposit-search-v1",
+  "profiles": 64,
+  "live_records": 24,
+  "train_jobs": 2560,
+  "holdout_jobs": 4608,
+  "finalists": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "baseline": {
+    "games": 288,
+    "wins": 167,
+    "losses": 103,
+    "mean_reward": 100022.65277777778,
+    "mean_margin": 5455.809027777777,
+    "groups": {
+      "current-top12": {
+        "games": 216,
+        "wins": 126,
+        "mean_reward": 102721.4074074074,
+        "mean_margin": 6964.365740740741
+      },
+      "g2": {
+        "games": 24,
+        "wins": 24,
+        "mean_reward": 102781.70833333333,
+        "mean_margin": 8394.958333333334
+      },
+      "live-56142365": {
+        "games": 12,
+        "wins": 6,
+        "mean_reward": 94261.91666666667,
+        "mean_margin": -6702.416666666667
+      },
+      "live-56183278": {
+        "games": 12,
+        "wins": 8,
+        "mean_reward": 76737.0,
+        "mean_margin": -4506.666666666667
+      },
+      "v2": {
+        "games": 24,
+        "wins": 3,
+        "mean_reward": 87498.0,
+        "mean_margin": 0.0
+      }
+    }
+  },
+  "baseline_promotion": [
+    14,
+    126,
+    24,
+    3,
+    85499.45833333334,
+    100022.65277777778
+  ],
+  "winner": 0,
+  "winner_profile": {
+    "enabled": false
+  },
+  "winner_holdout": {
+    "games": 288,
+    "wins": 167,
+    "losses": 103,
+    "mean_reward": 100022.65277777778,
+    "mean_margin": 5455.809027777777,
+    "groups": {
+      "current-top12": {
+        "games": 216,
+        "wins": 126,
+        "mean_reward": 102721.4074074074,
+        "mean_margin": 6964.365740740741
+      },
+      "g2": {
+        "games": 24,
+        "wins": 24,
+        "mean_reward": 102781.70833333333,
+        "mean_margin": 8394.958333333334
+      },
+      "live-56142365": {
+        "games": 12,
+        "wins": 6,
+        "mean_reward": 94261.91666666667,
+        "mean_margin": -6702.416666666667
+      },
+      "live-56183278": {
+        "games": 12,
+        "wins": 8,
+        "mean_reward": 76737.0,
+        "mean_margin": -4506.666666666667
+      },
+      "v2": {
+        "games": 24,
+        "wins": 3,
+        "mean_reward": 87498.0,
+        "mean_margin": 0.0
+      }
+    }
+  },
+  "winner_promotion": [
+    14,
+    126,
+    24,
+    3,
+    85499.45833333334,
+    100022.65277777778
+  ],
+  "top_train": [
+    {
+      "index": 0,
+      "profile": {
+        "enabled": false
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 1,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 0,
+        "pass_deposit_min_qty": 1
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 2,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 0,
+        "pass_deposit_min_qty": 2
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 3,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 0,
+        "pass_deposit_min_qty": 3
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 4,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 0,
+        "pass_deposit_min_qty": 5
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 5,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 0,
+        "pass_deposit_min_qty": 8
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 6,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 0,
+        "pass_deposit_min_qty": 13
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 7,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 0,
+        "pass_deposit_min_qty": 21
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 8,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 0,
+        "pass_deposit_min_qty": 34
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 9,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 0,
+        "pass_deposit_min_qty": 55
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 10,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 5,
+        "pass_deposit_min_qty": 1
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 11,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 5,
+        "pass_deposit_min_qty": 2
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 12,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 5,
+        "pass_deposit_min_qty": 3
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 13,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 5,
+        "pass_deposit_min_qty": 5
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 14,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 5,
+        "pass_deposit_min_qty": 8
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 15,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 5,
+        "pass_deposit_min_qty": 13
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 16,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 5,
+        "pass_deposit_min_qty": 21
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 17,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 5,
+        "pass_deposit_min_qty": 34
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 18,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 5,
+        "pass_deposit_min_qty": 55
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 19,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 10,
+        "pass_deposit_min_qty": 1
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 20,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 10,
+        "pass_deposit_min_qty": 2
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 21,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 10,
+        "pass_deposit_min_qty": 3
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 22,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 10,
+        "pass_deposit_min_qty": 5
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 23,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 10,
+        "pass_deposit_min_qty": 8
+      },
+      "summary": {
+        "games": 40,
+        "wins": 24,
+        "losses": 8,
+        "mean_reward": 99782.25,
+        "mean_margin": 1869.4,
+        "groups": {
+          "g2": {
+            "games": 8,
+            "wins": 8,
+            "mean_reward": 119579.25,
+            "mean_margin": 9890.0
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 94338.25,
+            "mean_margin": 3356.25
+          },
+          "v2": {
+            "games": 8,
+            "wins": 0,
+            "mean_reward": 102450.25,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    }
+  ],
+  "holdout": [
+    {
+      "index": 0,
+      "profile": {
+        "enabled": false
+      },
+      "promotion": [
+        14,
+        126,
+        24,
+        3,
+        85499.45833333334,
+        100022.65277777778
+      ],
+      "summary": {
+        "games": 288,
+        "wins": 167,
+        "losses": 103,
+        "mean_reward": 100022.65277777778,
+        "mean_margin": 5455.809027777777,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.4074074074,
+            "mean_margin": 6964.365740740741
+          },
+          "g2": {
+            "games": 24,
+            "wins": 24,
+            "mean_reward": 102781.70833333333,
+            "mean_margin": 8394.958333333334
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94261.91666666667,
+            "mean_margin": -6702.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 76737.0,
+            "mean_margin": -4506.666666666667
+          },
+          "v2": {
+            "games": 24,
+            "wins": 3,
+            "mean_reward": 87498.0,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 1,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 0,
+        "pass_deposit_min_qty": 1
+      },
+      "promotion": [
+        14,
+        126,
+        24,
+        3,
+        85499.45833333334,
+        100022.65277777778
+      ],
+      "summary": {
+        "games": 288,
+        "wins": 167,
+        "losses": 103,
+        "mean_reward": 100022.65277777778,
+        "mean_margin": 5455.809027777777,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.4074074074,
+            "mean_margin": 6964.365740740741
+          },
+          "g2": {
+            "games": 24,
+            "wins": 24,
+            "mean_reward": 102781.70833333333,
+            "mean_margin": 8394.958333333334
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94261.91666666667,
+            "mean_margin": -6702.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 76737.0,
+            "mean_margin": -4506.666666666667
+          },
+          "v2": {
+            "games": 24,
+            "wins": 3,
+            "mean_reward": 87498.0,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 2,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 0,
+        "pass_deposit_min_qty": 2
+      },
+      "promotion": [
+        14,
+        126,
+        24,
+        3,
+        85499.45833333334,
+        100022.65277777778
+      ],
+      "summary": {
+        "games": 288,
+        "wins": 167,
+        "losses": 103,
+        "mean_reward": 100022.65277777778,
+        "mean_margin": 5455.809027777777,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.4074074074,
+            "mean_margin": 6964.365740740741
+          },
+          "g2": {
+            "games": 24,
+            "wins": 24,
+            "mean_reward": 102781.70833333333,
+            "mean_margin": 8394.958333333334
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94261.91666666667,
+            "mean_margin": -6702.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 76737.0,
+            "mean_margin": -4506.666666666667
+          },
+          "v2": {
+            "games": 24,
+            "wins": 3,
+            "mean_reward": 87498.0,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 3,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 0,
+        "pass_deposit_min_qty": 3
+      },
+      "promotion": [
+        14,
+        126,
+        24,
+        3,
+        85499.45833333334,
+        100022.65277777778
+      ],
+      "summary": {
+        "games": 288,
+        "wins": 167,
+        "losses": 103,
+        "mean_reward": 100022.65277777778,
+        "mean_margin": 5455.809027777777,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.4074074074,
+            "mean_margin": 6964.365740740741
+          },
+          "g2": {
+            "games": 24,
+            "wins": 24,
+            "mean_reward": 102781.70833333333,
+            "mean_margin": 8394.958333333334
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94261.91666666667,
+            "mean_margin": -6702.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 76737.0,
+            "mean_margin": -4506.666666666667
+          },
+          "v2": {
+            "games": 24,
+            "wins": 3,
+            "mean_reward": 87498.0,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 4,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 0,
+        "pass_deposit_min_qty": 5
+      },
+      "promotion": [
+        14,
+        126,
+        24,
+        3,
+        85499.45833333334,
+        100022.65277777778
+      ],
+      "summary": {
+        "games": 288,
+        "wins": 167,
+        "losses": 103,
+        "mean_reward": 100022.65277777778,
+        "mean_margin": 5455.809027777777,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.4074074074,
+            "mean_margin": 6964.365740740741
+          },
+          "g2": {
+            "games": 24,
+            "wins": 24,
+            "mean_reward": 102781.70833333333,
+            "mean_margin": 8394.958333333334
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94261.91666666667,
+            "mean_margin": -6702.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 76737.0,
+            "mean_margin": -4506.666666666667
+          },
+          "v2": {
+            "games": 24,
+            "wins": 3,
+            "mean_reward": 87498.0,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 5,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 0,
+        "pass_deposit_min_qty": 8
+      },
+      "promotion": [
+        14,
+        126,
+        24,
+        3,
+        85499.45833333334,
+        100022.65277777778
+      ],
+      "summary": {
+        "games": 288,
+        "wins": 167,
+        "losses": 103,
+        "mean_reward": 100022.65277777778,
+        "mean_margin": 5455.809027777777,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.4074074074,
+            "mean_margin": 6964.365740740741
+          },
+          "g2": {
+            "games": 24,
+            "wins": 24,
+            "mean_reward": 102781.70833333333,
+            "mean_margin": 8394.958333333334
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94261.91666666667,
+            "mean_margin": -6702.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 76737.0,
+            "mean_margin": -4506.666666666667
+          },
+          "v2": {
+            "games": 24,
+            "wins": 3,
+            "mean_reward": 87498.0,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 6,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 0,
+        "pass_deposit_min_qty": 13
+      },
+      "promotion": [
+        14,
+        126,
+        24,
+        3,
+        85499.45833333334,
+        100022.65277777778
+      ],
+      "summary": {
+        "games": 288,
+        "wins": 167,
+        "losses": 103,
+        "mean_reward": 100022.65277777778,
+        "mean_margin": 5455.809027777777,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.4074074074,
+            "mean_margin": 6964.365740740741
+          },
+          "g2": {
+            "games": 24,
+            "wins": 24,
+            "mean_reward": 102781.70833333333,
+            "mean_margin": 8394.958333333334
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94261.91666666667,
+            "mean_margin": -6702.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 76737.0,
+            "mean_margin": -4506.666666666667
+          },
+          "v2": {
+            "games": 24,
+            "wins": 3,
+            "mean_reward": 87498.0,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 7,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 0,
+        "pass_deposit_min_qty": 21
+      },
+      "promotion": [
+        14,
+        126,
+        24,
+        3,
+        85499.45833333334,
+        100022.65277777778
+      ],
+      "summary": {
+        "games": 288,
+        "wins": 167,
+        "losses": 103,
+        "mean_reward": 100022.65277777778,
+        "mean_margin": 5455.809027777777,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.4074074074,
+            "mean_margin": 6964.365740740741
+          },
+          "g2": {
+            "games": 24,
+            "wins": 24,
+            "mean_reward": 102781.70833333333,
+            "mean_margin": 8394.958333333334
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94261.91666666667,
+            "mean_margin": -6702.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 76737.0,
+            "mean_margin": -4506.666666666667
+          },
+          "v2": {
+            "games": 24,
+            "wins": 3,
+            "mean_reward": 87498.0,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 8,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 0,
+        "pass_deposit_min_qty": 34
+      },
+      "promotion": [
+        14,
+        126,
+        24,
+        3,
+        85499.45833333334,
+        100022.65277777778
+      ],
+      "summary": {
+        "games": 288,
+        "wins": 167,
+        "losses": 103,
+        "mean_reward": 100022.65277777778,
+        "mean_margin": 5455.809027777777,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.4074074074,
+            "mean_margin": 6964.365740740741
+          },
+          "g2": {
+            "games": 24,
+            "wins": 24,
+            "mean_reward": 102781.70833333333,
+            "mean_margin": 8394.958333333334
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94261.91666666667,
+            "mean_margin": -6702.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 76737.0,
+            "mean_margin": -4506.666666666667
+          },
+          "v2": {
+            "games": 24,
+            "wins": 3,
+            "mean_reward": 87498.0,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 9,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 0,
+        "pass_deposit_min_qty": 55
+      },
+      "promotion": [
+        14,
+        126,
+        24,
+        3,
+        85499.45833333334,
+        100022.65277777778
+      ],
+      "summary": {
+        "games": 288,
+        "wins": 167,
+        "losses": 103,
+        "mean_reward": 100022.65277777778,
+        "mean_margin": 5455.809027777777,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.4074074074,
+            "mean_margin": 6964.365740740741
+          },
+          "g2": {
+            "games": 24,
+            "wins": 24,
+            "mean_reward": 102781.70833333333,
+            "mean_margin": 8394.958333333334
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94261.91666666667,
+            "mean_margin": -6702.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 76737.0,
+            "mean_margin": -4506.666666666667
+          },
+          "v2": {
+            "games": 24,
+            "wins": 3,
+            "mean_reward": 87498.0,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 10,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 5,
+        "pass_deposit_min_qty": 1
+      },
+      "promotion": [
+        14,
+        126,
+        24,
+        3,
+        85499.45833333334,
+        100022.65277777778
+      ],
+      "summary": {
+        "games": 288,
+        "wins": 167,
+        "losses": 103,
+        "mean_reward": 100022.65277777778,
+        "mean_margin": 5455.809027777777,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.4074074074,
+            "mean_margin": 6964.365740740741
+          },
+          "g2": {
+            "games": 24,
+            "wins": 24,
+            "mean_reward": 102781.70833333333,
+            "mean_margin": 8394.958333333334
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94261.91666666667,
+            "mean_margin": -6702.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 76737.0,
+            "mean_margin": -4506.666666666667
+          },
+          "v2": {
+            "games": 24,
+            "wins": 3,
+            "mean_reward": 87498.0,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 11,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 5,
+        "pass_deposit_min_qty": 2
+      },
+      "promotion": [
+        14,
+        126,
+        24,
+        3,
+        85499.45833333334,
+        100022.65277777778
+      ],
+      "summary": {
+        "games": 288,
+        "wins": 167,
+        "losses": 103,
+        "mean_reward": 100022.65277777778,
+        "mean_margin": 5455.809027777777,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.4074074074,
+            "mean_margin": 6964.365740740741
+          },
+          "g2": {
+            "games": 24,
+            "wins": 24,
+            "mean_reward": 102781.70833333333,
+            "mean_margin": 8394.958333333334
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94261.91666666667,
+            "mean_margin": -6702.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 76737.0,
+            "mean_margin": -4506.666666666667
+          },
+          "v2": {
+            "games": 24,
+            "wins": 3,
+            "mean_reward": 87498.0,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 12,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 5,
+        "pass_deposit_min_qty": 3
+      },
+      "promotion": [
+        14,
+        126,
+        24,
+        3,
+        85499.45833333334,
+        100022.65277777778
+      ],
+      "summary": {
+        "games": 288,
+        "wins": 167,
+        "losses": 103,
+        "mean_reward": 100022.65277777778,
+        "mean_margin": 5455.809027777777,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.4074074074,
+            "mean_margin": 6964.365740740741
+          },
+          "g2": {
+            "games": 24,
+            "wins": 24,
+            "mean_reward": 102781.70833333333,
+            "mean_margin": 8394.958333333334
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94261.91666666667,
+            "mean_margin": -6702.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 76737.0,
+            "mean_margin": -4506.666666666667
+          },
+          "v2": {
+            "games": 24,
+            "wins": 3,
+            "mean_reward": 87498.0,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 13,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 5,
+        "pass_deposit_min_qty": 5
+      },
+      "promotion": [
+        14,
+        126,
+        24,
+        3,
+        85499.45833333334,
+        100022.65277777778
+      ],
+      "summary": {
+        "games": 288,
+        "wins": 167,
+        "losses": 103,
+        "mean_reward": 100022.65277777778,
+        "mean_margin": 5455.809027777777,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.4074074074,
+            "mean_margin": 6964.365740740741
+          },
+          "g2": {
+            "games": 24,
+            "wins": 24,
+            "mean_reward": 102781.70833333333,
+            "mean_margin": 8394.958333333334
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94261.91666666667,
+            "mean_margin": -6702.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 76737.0,
+            "mean_margin": -4506.666666666667
+          },
+          "v2": {
+            "games": 24,
+            "wins": 3,
+            "mean_reward": 87498.0,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 14,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 5,
+        "pass_deposit_min_qty": 8
+      },
+      "promotion": [
+        14,
+        126,
+        24,
+        3,
+        85499.45833333334,
+        100022.65277777778
+      ],
+      "summary": {
+        "games": 288,
+        "wins": 167,
+        "losses": 103,
+        "mean_reward": 100022.65277777778,
+        "mean_margin": 5455.809027777777,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.4074074074,
+            "mean_margin": 6964.365740740741
+          },
+          "g2": {
+            "games": 24,
+            "wins": 24,
+            "mean_reward": 102781.70833333333,
+            "mean_margin": 8394.958333333334
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94261.91666666667,
+            "mean_margin": -6702.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 76737.0,
+            "mean_margin": -4506.666666666667
+          },
+          "v2": {
+            "games": 24,
+            "wins": 3,
+            "mean_reward": 87498.0,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    },
+    {
+      "index": 15,
+      "profile": {
+        "enabled": true,
+        "pass_deposit_start_day": 5,
+        "pass_deposit_min_qty": 13
+      },
+      "promotion": [
+        14,
+        126,
+        24,
+        3,
+        85499.45833333334,
+        100022.65277777778
+      ],
+      "summary": {
+        "games": 288,
+        "wins": 167,
+        "losses": 103,
+        "mean_reward": 100022.65277777778,
+        "mean_margin": 5455.809027777777,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.4074074074,
+            "mean_margin": 6964.365740740741
+          },
+          "g2": {
+            "games": 24,
+            "wins": 24,
+            "mean_reward": 102781.70833333333,
+            "mean_margin": 8394.958333333334
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94261.91666666667,
+            "mean_margin": -6702.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 76737.0,
+            "mean_margin": -4506.666666666667
+          },
+          "v2": {
+            "games": 24,
+            "wins": 3,
+            "mean_reward": 87498.0,
+            "mean_margin": 0.0
+          }
+        }
+      }
+    }
+  ]
+}
