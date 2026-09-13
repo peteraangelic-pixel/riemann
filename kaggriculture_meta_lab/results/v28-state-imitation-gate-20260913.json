@@ -1,0 +1,141 @@
+{
+  "format": "v28-state-imitation-gate-v1",
+  "records": 52,
+  "jobs": 208,
+  "policies": {
+    "candidate": {
+      "all": {
+        "games": 104,
+        "wins": 26,
+        "losses": 78,
+        "ties": 0,
+        "errors": 0,
+        "score_rate": 0.25,
+        "mean_reward": 80455.04807692308,
+        "mean_margin": -18740.076923076922
+      },
+      "groups": {
+        "current-top12": {
+          "games": 24,
+          "wins": 12,
+          "losses": 12,
+          "ties": 0,
+          "errors": 0,
+          "score_rate": 0.5,
+          "mean_reward": 76662.79166666667,
+          "mean_margin": -14173.875
+        },
+        "g2": {
+          "games": 16,
+          "wins": 4,
+          "losses": 12,
+          "ties": 0,
+          "errors": 0,
+          "score_rate": 0.25,
+          "mean_reward": 83315.0,
+          "mean_margin": -11518.125
+        },
+        "live-56142365": {
+          "games": 24,
+          "wins": 2,
+          "losses": 22,
+          "ties": 0,
+          "errors": 0,
+          "score_rate": 0.08333333333333333,
+          "mean_reward": 80378.875,
+          "mean_margin": -27255.791666666668
+        },
+        "live-56183278": {
+          "games": 24,
+          "wins": 4,
+          "losses": 20,
+          "ties": 0,
+          "errors": 0,
+          "score_rate": 0.16666666666666666,
+          "mean_reward": 80976.79166666667,
+          "mean_margin": -24710.916666666668
+        },
+        "v2": {
+          "games": 16,
+          "wins": 4,
+          "losses": 12,
+          "ties": 0,
+          "errors": 0,
+          "score_rate": 0.25,
+          "mean_reward": 82615.125,
+          "mean_margin": -11081.5
+        }
+      }
+    },
+    "control": {
+      "all": {
+        "games": 104,
+        "wins": 62,
+        "losses": 26,
+        "ties": 16,
+        "errors": 0,
+        "score_rate": 0.6730769230769231,
+        "mean_reward": 93666.77884615384,
+        "mean_margin": 2813.855769230769
+      },
+      "groups": {
+        "current-top12": {
+          "games": 24,
+          "wins": 16,
+          "losses": 8,
+          "ties": 0,
+          "errors": 0,
+          "score_rate": 0.6666666666666666,
+          "mean_reward": 98078.0,
+          "mean_margin": 7554.666666666667
+        },
+        "g2": {
+          "games": 16,
+          "wins": 16,
+          "losses": 0,
+          "ties": 0,
+          "errors": 0,
+          "score_rate": 1.0,
+          "mean_reward": 100664.75,
+          "mean_margin": 8693.25
+        },
+        "live-56142365": {
+          "games": 24,
+          "wins": 12,
+          "losses": 12,
+          "ties": 0,
+          "errors": 0,
+          "score_rate": 0.5,
+          "mean_reward": 92255.75,
+          "mean_margin": -5210.333333333333
+        },
+        "live-56183278": {
+          "games": 24,
+          "wins": 18,
+          "losses": 6,
+          "ties": 0,
+          "errors": 0,
+          "score_rate": 0.75,
+          "mean_reward": 92711.625,
+          "mean_margin": 4053.5416666666665
+        },
+        "v2": {
+          "games": 16,
+          "wins": 0,
+          "losses": 0,
+          "ties": 16,
+          "errors": 0,
+          "score_rate": 0.5,
+          "mean_reward": 83601.25,
+          "mean_margin": 0.0
+        }
+      }
+    }
+  },
+  "promotion": {
+    "wins_delta": -36,
+    "reward_delta": -13211.730769230766,
+    "margin_delta": -21553.93269230769,
+    "passes": false
+  }
+}
