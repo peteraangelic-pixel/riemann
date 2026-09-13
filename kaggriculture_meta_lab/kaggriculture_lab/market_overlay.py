@@ -19,6 +19,7 @@ DEFAULT_PROFILE: dict[str, Any] = {
     "enabled": False, "start_day": 0, "buy_stop_day": 30,
     "endgame_day": 27, "cash_reserve": 0.0,
     "sell_fraction_bp": 10_000, "endgame_sell_fraction_bp": 10_000,
+    "wheat_sell_multiplier_bp": 10_000,
     **{f"{p.lower()}_reserve": 0 for p in PRODUCTS},
     **{f"min_{p.lower()}_price": 0.0 for p in PRODUCTS},
 }
@@ -35,6 +36,8 @@ def validate_profile(raw: dict[str, Any]) -> dict[str, Any]:
     for key in ("sell_fraction_bp", "endgame_sell_fraction_bp"):
         if not isinstance(p[key], int) or isinstance(p[key], bool) or not 0 <= p[key] <= 10_000:
             raise ValueError(f"{key} must be an integer in 0..10000")
+    if not isinstance(p["wheat_sell_multiplier_bp"], int) or isinstance(p["wheat_sell_multiplier_bp"], bool) or not 0 <= p["wheat_sell_multiplier_bp"] <= 100_000:
+        raise ValueError("wheat_sell_multiplier_bp must be an integer in 0..100000")
     for product in PRODUCTS:
         key = f"{product.lower()}_reserve"
         if not isinstance(p[key], int) or isinstance(p[key], bool) or p[key] < 0:
@@ -106,12 +109,14 @@ def apply_market_overlay(action: dict[str, Any], state: dict[str, Any],
             product = order[1]
             reserve = p[f"{product.lower()}_reserve"]
             min_price = p[f"min_{product.lower()}_price"]
-            if fraction == 10_000 and reserve == 0 and min_price == 0.0:
+            multiplier = p["wheat_sell_multiplier_bp"] if product == "WHEAT" else 10_000
+            if fraction == 10_000 and reserve == 0 and min_price == 0.0 and multiplier == 10_000:
                 continue
             if float(prices[product]) < min_price:
                 order[2] = 0
             else:
-                order[2] = min(max(0, int(order[2])), sale_budget[product])
+                requested = max(0, int(order[2])) * multiplier // 10_000
+                order[2] = min(requested, sale_budget[product])
                 sale_budget[product] -= order[2]
         elif op in BUY_OPS and (day >= p["buy_stop_day"] or money <= p["cash_reserve"]):
             if op in {"HIRE", "BUY_LAND"}:

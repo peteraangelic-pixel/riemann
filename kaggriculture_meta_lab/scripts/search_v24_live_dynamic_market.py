@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Search state-aware market overlays on exact live opponents plus newest TOP12."""
 from __future__ import annotations
-import argparse,collections,json,statistics,sys,tempfile
+import argparse,collections,itertools,json,random,statistics,sys,tempfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];sys.path[:0]=[str(ROOT),str(ROOT/'rust_port/tools'),str(ROOT/'scripts')]
 from kaggriculture_lab.rust_backend import _source
@@ -45,10 +45,20 @@ def run(base,profiles,records,binary,threads):
   out[pi]={'games':len(z),'wins':sum(r[4]>0 for r in z),'losses':sum(r[4]<0 for r in z),'mean_reward':statistics.mean(r[2] for r in z),'mean_margin':statistics.mean(r[4] for r in z),'groups':groups}
  return out,len(jobs)
 def key(v):return v['wins'],v['mean_reward'],v['mean_margin']
+def liquidation_profiles(n):
+ controls=[{'enabled':False},{'enabled':True}]
+ grid=[{'enabled':True,'start_day':d,'wheat_sell_multiplier_bp':m,'wheat_reserve':r,'min_wheat_price':q}
+       for d,m,r,q in itertools.product(range(8,30),(12500,15000,17500,20000,25000,30000,40000,50000),(0,2,5,10),(0,10,20,30))]
+ random.Random(20260913).shuffle(grid)
+ # Always retain the interpretable no-reserve/no-threshold grid.
+ simple=[p for p in grid if p['wheat_reserve']==0 and p['min_wheat_price']==0]
+ rest=[p for p in grid if p not in simple]
+ return (controls+simple+rest)[:n]
 def main():
- p=argparse.ArgumentParser();p.add_argument('--live',type=Path,required=True);p.add_argument('--corpus',type=Path,required=True);p.add_argument('--binary',type=Path,required=True);p.add_argument('--population',type=int,default=1000);p.add_argument('--threads',type=int,default=4);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--live',type=Path,required=True);p.add_argument('--corpus',type=Path,required=True);p.add_argument('--binary',type=Path,required=True);p.add_argument('--population',type=int,default=1000);p.add_argument('--space',choices=('broad','liquidation'),default='broad');p.add_argument('--threads',type=int,default=4);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
  base=_source(str((ROOT/'agents/variants/agent_v16_kanno_top7_champion.py').resolve()));assert base
- profiles=generate_profiles(a.population,20260913);profiles.insert(1,{'enabled':True});profiles=profiles[:a.population]
+ profiles=(liquidation_profiles(a.population) if a.space=='liquidation' else generate_profiles(a.population,20260913));
+ if a.space=='broad':profiles.insert(1,{'enabled':True});profiles=profiles[:a.population]
  live=live_records(a.live);train,tj=run(base,profiles,live[::2],a.binary,a.threads);finalists=sorted(train,key=lambda i:key(train[i]),reverse=True)[:20];finalists=list(dict.fromkeys(finalists+[0,1]))
  temp,meta=build_top30_jobs(a.corpus.resolve(),ROOT/'agents/variants/agent_v16_kanno_top7_champion.py',12);current=[(temp[i][2],temp[i][0],'current-top12') for i in range(0,len(temp),2)]
  hold,hj=run(base,[profiles[i] for i in finalists],live[1::2]+current,a.binary,a.threads);mapped={finalists[i]:v for i,v in hold.items()};baseline=mapped[0]

@@ -16,6 +16,8 @@ pub struct MarketOverlay {
     pub cash_reserve: f64,
     pub sell_fraction_bp: u32,
     pub endgame_sell_fraction_bp: u32,
+    /// Scale requested wheat sales, still capped by projected live inventory.
+    pub wheat_sell_multiplier_bp: u32,
     pub wheat_reserve: i64,
     pub carrot_reserve: i64,
     pub tomato_reserve: i64,
@@ -79,6 +81,7 @@ impl Default for MarketOverlay {
             cash_reserve: 0.0,
             sell_fraction_bp: 10_000,
             endgame_sell_fraction_bp: 10_000,
+            wheat_sell_multiplier_bp: 10_000,
             wheat_reserve: 0,
             carrot_reserve: 0,
             tomato_reserve: 0,
@@ -141,6 +144,9 @@ impl MarketOverlay {
         }
         if self.sell_fraction_bp > 10_000 || self.endgame_sell_fraction_bp > 10_000 {
             return Err("overlay sell fractions must be in 0..=10000 basis points".into());
+        }
+        if self.wheat_sell_multiplier_bp > 100_000 {
+            return Err("wheat_sell_multiplier_bp must be in 0..=100000".into());
         }
         let prices = [
             self.cash_reserve,
@@ -408,7 +414,12 @@ impl MarketOverlay {
                 OrderKind::Sell(item) => {
                     let reserve = self.reserve(item);
                     let min_price = self.min_price(item);
-                    if fraction == 10_000 && reserve == 0 && min_price == 0.0 {
+                    let multiplier = if item == Item::Wheat {
+                        self.wheat_sell_multiplier_bp as u64
+                    } else {
+                        10_000
+                    };
+                    if fraction == 10_000 && reserve == 0 && min_price == 0.0 && multiplier == 10_000 {
                         continue;
                     }
                     let quote =
@@ -416,6 +427,7 @@ impl MarketOverlay {
                     if quote < min_price {
                         order.remaining = 0;
                     } else {
+                        order.remaining = order.remaining.saturating_mul(multiplier) / 10_000;
                         order.remaining = order.remaining.min(sale_budget[item.index()]);
                         sale_budget[item.index()] -= order.remaining;
                     }
@@ -625,6 +637,22 @@ mod tests {
         .unwrap();
         let out = profile.apply(&game, 0, &tape.seats[0][0]);
         assert_eq!(out.market[0].remaining, 8);
+    }
+
+    #[test]
+    fn wheat_multiplier_increases_order_but_caps_at_live_inventory() {
+        let cfg = Config::default();
+        let tape = Tape::from_json(&json!([[
+            {"market":[["SELL","WHEAT",9]]}
+        ],[{}]])).unwrap();
+        let mut game = Game::new(&cfg, 0, [0, 0]);
+        game.farms[0].shed[Item::Wheat.index()] = 13;
+        game.farms[0].shed_total = 13;
+        let profile = MarketOverlay::from_json(&json!({
+            "enabled": true, "wheat_sell_multiplier_bp": 20000
+        })).unwrap();
+        let out = profile.apply(&game, 0, &tape.seats[0][0]);
+        assert_eq!(out.market[0].remaining, 13);
     }
 
     #[test]
