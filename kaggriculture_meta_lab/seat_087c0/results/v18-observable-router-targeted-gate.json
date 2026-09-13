@@ -1,0 +1,588 @@
+{
+  "format": "v18-observable-router-targeted-gate-v1",
+  "seed": 198000,
+  "teams": [
+    "Otter Vibe",
+    "SpaTaro",
+    "c0nrad",
+    "feel the agi",
+    "mtmr_s1",
+    "redblackbst"
+  ],
+  "summary": {
+    "v8": {
+      "target": {
+        "games": 6,
+        "wins": 4,
+        "losses": 2,
+        "mean_margin": 18413.666666666668,
+        "mean_reward": 93485.66666666667
+      },
+      "negative": {
+        "games": 6,
+        "wins": 2,
+        "losses": 4,
+        "mean_margin": -8907.333333333334,
+        "mean_reward": 86905.0
+      },
+      "all": {
+        "games": 12,
+        "wins": 6,
+        "losses": 6,
+        "mean_margin": 4753.166666666667,
+        "mean_reward": 90195.33333333333
+      }
+    },
+    "safe": {
+      "target": {
+        "games": 6,
+        "wins": 4,
+        "losses": 2,
+        "mean_margin": 18214.666666666668,
+        "mean_reward": 93272.66666666667
+      },
+      "negative": {
+        "games": 6,
+        "wins": 2,
+        "losses": 4,
+        "mean_margin": -8907.333333333334,
+        "mean_reward": 86905.0
+      },
+      "all": {
+        "games": 12,
+        "wins": 6,
+        "losses": 6,
+        "mean_margin": 4653.666666666667,
+        "mean_reward": 90088.83333333333
+      }
+    },
+    "broad": {
+      "target": {
+        "games": 6,
+        "wins": 4,
+        "losses": 2,
+        "mean_margin": 18718.0,
+        "mean_reward": 93775.66666666667
+      },
+      "negative": {
+        "games": 6,
+        "wins": 2,
+        "losses": 4,
+        "mean_margin": -8965.333333333334,
+        "mean_reward": 86849.33333333333
+      },
+      "all": {
+        "games": 12,
+        "wins": 6,
+        "losses": 6,
+        "mean_margin": 4876.333333333333,
+        "mean_reward": 90312.5
+      }
+    },
+    "dual": {
+      "target": {
+        "games": 6,
+        "wins": 4,
+        "losses": 2,
+        "mean_margin": 18718.0,
+        "mean_reward": 93775.66666666667
+      },
+      "negative": {
+        "games": 6,
+        "wins": 2,
+        "losses": 4,
+        "mean_margin": -8907.333333333334,
+        "mean_reward": 86905.0
+      },
+      "all": {
+        "games": 12,
+        "wins": 6,
+        "losses": 6,
+        "mean_margin": 4905.333333333333,
+        "mean_reward": 90340.33333333333
+      }
+    }
+  },
+  "rows": [
+    {
+      "candidate": "v8",
+      "team": "SpaTaro",
+      "class": "target",
+      "seat": 0,
+      "self_reward": 116690.0,
+      "opp_reward": 67767.0,
+      "margin": 48923.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "v8",
+      "team": "SpaTaro",
+      "class": "target",
+      "seat": 1,
+      "self_reward": 116690.0,
+      "opp_reward": 67767.0,
+      "margin": 48923.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "v8",
+      "team": "feel the agi",
+      "class": "negative",
+      "seat": 0,
+      "self_reward": 90948.0,
+      "opp_reward": 105504.0,
+      "margin": -14556.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "v8",
+      "team": "feel the agi",
+      "class": "negative",
+      "seat": 1,
+      "self_reward": 90948.0,
+      "opp_reward": 105504.0,
+      "margin": -14556.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "v8",
+      "team": "c0nrad",
+      "class": "target",
+      "seat": 0,
+      "self_reward": 76282.0,
+      "opp_reward": 64042.0,
+      "margin": 12240.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "v8",
+      "team": "c0nrad",
+      "class": "target",
+      "seat": 1,
+      "self_reward": 76282.0,
+      "opp_reward": 64042.0,
+      "margin": 12240.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "v8",
+      "team": "Otter Vibe",
+      "class": "target",
+      "seat": 0,
+      "self_reward": 87485.0,
+      "opp_reward": 93407.0,
+      "margin": -5922.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "v8",
+      "team": "Otter Vibe",
+      "class": "target",
+      "seat": 1,
+      "self_reward": 87485.0,
+      "opp_reward": 93407.0,
+      "margin": -5922.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "v8",
+      "team": "mtmr_s1",
+      "class": "negative",
+      "seat": 0,
+      "self_reward": 82123.0,
+      "opp_reward": 110049.0,
+      "margin": -27926.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "v8",
+      "team": "mtmr_s1",
+      "class": "negative",
+      "seat": 1,
+      "self_reward": 82123.0,
+      "opp_reward": 110049.0,
+      "margin": -27926.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "v8",
+      "team": "redblackbst",
+      "class": "negative",
+      "seat": 0,
+      "self_reward": 87644.0,
+      "opp_reward": 71884.0,
+      "margin": 15760.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "v8",
+      "team": "redblackbst",
+      "class": "negative",
+      "seat": 1,
+      "self_reward": 87644.0,
+      "opp_reward": 71884.0,
+      "margin": 15760.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "safe",
+      "team": "SpaTaro",
+      "class": "target",
+      "seat": 0,
+      "self_reward": 116690.0,
+      "opp_reward": 67767.0,
+      "margin": 48923.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "safe",
+      "team": "SpaTaro",
+      "class": "target",
+      "seat": 1,
+      "self_reward": 116690.0,
+      "opp_reward": 67767.0,
+      "margin": 48923.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "safe",
+      "team": "feel the agi",
+      "class": "negative",
+      "seat": 0,
+      "self_reward": 90948.0,
+      "opp_reward": 105504.0,
+      "margin": -14556.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "safe",
+      "team": "feel the agi",
+      "class": "negative",
+      "seat": 1,
+      "self_reward": 90948.0,
+      "opp_reward": 105504.0,
+      "margin": -14556.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "safe",
+      "team": "c0nrad",
+      "class": "target",
+      "seat": 0,
+      "self_reward": 75694.0,
+      "opp_reward": 63995.0,
+      "margin": 11699.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "safe",
+      "team": "c0nrad",
+      "class": "target",
+      "seat": 1,
+      "self_reward": 75694.0,
+      "opp_reward": 63995.0,
+      "margin": 11699.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "safe",
+      "team": "Otter Vibe",
+      "class": "target",
+      "seat": 0,
+      "self_reward": 87434.0,
+      "opp_reward": 93412.0,
+      "margin": -5978.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "safe",
+      "team": "Otter Vibe",
+      "class": "target",
+      "seat": 1,
+      "self_reward": 87434.0,
+      "opp_reward": 93412.0,
+      "margin": -5978.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "safe",
+      "team": "mtmr_s1",
+      "class": "negative",
+      "seat": 0,
+      "self_reward": 82123.0,
+      "opp_reward": 110049.0,
+      "margin": -27926.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "safe",
+      "team": "mtmr_s1",
+      "class": "negative",
+      "seat": 1,
+      "self_reward": 82123.0,
+      "opp_reward": 110049.0,
+      "margin": -27926.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "safe",
+      "team": "redblackbst",
+      "class": "negative",
+      "seat": 0,
+      "self_reward": 87644.0,
+      "opp_reward": 71884.0,
+      "margin": 15760.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "safe",
+      "team": "redblackbst",
+      "class": "negative",
+      "seat": 1,
+      "self_reward": 87644.0,
+      "opp_reward": 71884.0,
+      "margin": 15760.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "broad",
+      "team": "SpaTaro",
+      "class": "target",
+      "seat": 0,
+      "self_reward": 117611.0,
+      "opp_reward": 67719.0,
+      "margin": 49892.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "broad",
+      "team": "SpaTaro",
+      "class": "target",
+      "seat": 1,
+      "self_reward": 117611.0,
+      "opp_reward": 67719.0,
+      "margin": 49892.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "broad",
+      "team": "feel the agi",
+      "class": "negative",
+      "seat": 0,
+      "self_reward": 90948.0,
+      "opp_reward": 105504.0,
+      "margin": -14556.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "broad",
+      "team": "feel the agi",
+      "class": "negative",
+      "seat": 1,
+      "self_reward": 90948.0,
+      "opp_reward": 105504.0,
+      "margin": -14556.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "broad",
+      "team": "c0nrad",
+      "class": "target",
+      "seat": 0,
+      "self_reward": 76282.0,
+      "opp_reward": 64042.0,
+      "margin": 12240.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "broad",
+      "team": "c0nrad",
+      "class": "target",
+      "seat": 1,
+      "self_reward": 76282.0,
+      "opp_reward": 64042.0,
+      "margin": 12240.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "broad",
+      "team": "Otter Vibe",
+      "class": "target",
+      "seat": 0,
+      "self_reward": 87434.0,
+      "opp_reward": 93412.0,
+      "margin": -5978.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "broad",
+      "team": "Otter Vibe",
+      "class": "target",
+      "seat": 1,
+      "self_reward": 87434.0,
+      "opp_reward": 93412.0,
+      "margin": -5978.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "broad",
+      "team": "mtmr_s1",
+      "class": "negative",
+      "seat": 0,
+      "self_reward": 81956.0,
+      "opp_reward": 110056.0,
+      "margin": -28100.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "broad",
+      "team": "mtmr_s1",
+      "class": "negative",
+      "seat": 1,
+      "self_reward": 81956.0,
+      "opp_reward": 110056.0,
+      "margin": -28100.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "broad",
+      "team": "redblackbst",
+      "class": "negative",
+      "seat": 0,
+      "self_reward": 87644.0,
+      "opp_reward": 71884.0,
+      "margin": 15760.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "broad",
+      "team": "redblackbst",
+      "class": "negative",
+      "seat": 1,
+      "self_reward": 87644.0,
+      "opp_reward": 71884.0,
+      "margin": 15760.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "dual",
+      "team": "SpaTaro",
+      "class": "target",
+      "seat": 0,
+      "self_reward": 117611.0,
+      "opp_reward": 67719.0,
+      "margin": 49892.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "dual",
+      "team": "SpaTaro",
+      "class": "target",
+      "seat": 1,
+      "self_reward": 117611.0,
+      "opp_reward": 67719.0,
+      "margin": 49892.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "dual",
+      "team": "feel the agi",
+      "class": "negative",
+      "seat": 0,
+      "self_reward": 90948.0,
+      "opp_reward": 105504.0,
+      "margin": -14556.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "dual",
+      "team": "feel the agi",
+      "class": "negative",
+      "seat": 1,
+      "self_reward": 90948.0,
+      "opp_reward": 105504.0,
+      "margin": -14556.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "dual",
+      "team": "c0nrad",
+      "class": "target",
+      "seat": 0,
+      "self_reward": 76282.0,
+      "opp_reward": 64042.0,
+      "margin": 12240.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "dual",
+      "team": "c0nrad",
+      "class": "target",
+      "seat": 1,
+      "self_reward": 76282.0,
+      "opp_reward": 64042.0,
+      "margin": 12240.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "dual",
+      "team": "Otter Vibe",
+      "class": "target",
+      "seat": 0,
+      "self_reward": 87434.0,
+      "opp_reward": 93412.0,
+      "margin": -5978.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "dual",
+      "team": "Otter Vibe",
+      "class": "target",
+      "seat": 1,
+      "self_reward": 87434.0,
+      "opp_reward": 93412.0,
+      "margin": -5978.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "dual",
+      "team": "mtmr_s1",
+      "class": "negative",
+      "seat": 0,
+      "self_reward": 82123.0,
+      "opp_reward": 110049.0,
+      "margin": -27926.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "dual",
+      "team": "mtmr_s1",
+      "class": "negative",
+      "seat": 1,
+      "self_reward": 82123.0,
+      "opp_reward": 110049.0,
+      "margin": -27926.0,
+      "outcome": "L"
+    },
+    {
+      "candidate": "dual",
+      "team": "redblackbst",
+      "class": "negative",
+      "seat": 0,
+      "self_reward": 87644.0,
+      "opp_reward": 71884.0,
+      "margin": 15760.0,
+      "outcome": "W"
+    },
+    {
+      "candidate": "dual",
+      "team": "redblackbst",
+      "class": "negative",
+      "seat": 1,
+      "self_reward": 87644.0,
+      "opp_reward": 71884.0,
+      "margin": 15760.0,
+      "outcome": "W"
+    }
+  ]
+}
