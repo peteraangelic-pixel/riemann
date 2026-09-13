@@ -72,3 +72,10 @@ rekonstrukcja musi rozdzielić: (1) zadanie każdej jednostki z legalnością lo
 (2) globalny docelowy skład farmy oraz (3) sekwencyjny budżet rynku. Demonstracje
 3000+ pozostają etykietami dla tych trzech decyzji, a nie gotowymi pełnymi
 akcjami do kopiowania.
+
+## Wynik V29
+
+Rozdzielenie demonstracji na legalizowane decyzje pojedynczych jednostek pogorszyło
+wynik do 11–93 i średniej nagrody 60 985; V2 na tym samym panelu uzyskał
+64–24–16. Przyczyną jest utrata wspólnego przydziału ról i konflikt lokalnie
+wybranych ruchów z globalnym rynkiem. V29 został odrzucony bez zgłoszenia.
