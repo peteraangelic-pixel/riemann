@@ -92,3 +92,23 @@ ostrzejszym wariancie bazowy V2 ma 126/216, a nie 156/216. V23 pozostaje małym
 wynikiem laboratoryjnym, ale jego +4 wygrane nie są dowodem transferu i nie
 uzasadniają zgłoszenia. Dalsza praca nie powinna stroić samej sprzedaży WHEAT;
 potrzebny jest reaktywny plan jednostek/produkcji oraz wieloseedowa walidacja.
+
+## V26–V27: spójność prefiksów i bezpieczny depozyt (2026-09-13)
+
+Census 108 aktualnych taśm TOP12 nie znalazł ani jednej strategii z pełnym
+strumieniem jednostek V2 ani jednej ze zgodnym prefiksem jednostek długości co
+najmniej 24 tur. Najbliższe taśmy miały tylko dwie identyczne pierwsze akcje
+jednostek, a ich rynek rozchodził się już w turze zero. Router przełączający V2
+na te strategie byłby ekonomicznie i logistycznie niespójny.
+
+V27 sprawdził 63 profile zastępujące wyłącznie `PASS` jednostki stojącej przy
+magazynie przez `PLACE` dla bezpiecznych produktów niebędących wejściem
+produkcyjnym. WHEAT, FERTILIZER i zwierzęta były wykluczone. Holdout obejmował
+świeże dokładne replaye obu naszych zgłoszeń, 108 polityk TOP12 oraz niezależne
+kohorty G2 i V2.
+
+Wszystkie profile były behawioralnie identyczne z bazą: **167 zwycięstw** w 288
+grach, w tym live **14/24**, TOP12 **126/216**, G2 **24/24** i V2 **3/24**
+(pozostałe gry V2 były remisami przy zerowej średniej marży). V2 nie ma więc
+użytecznej sytuacji „PASS + bezpieczny produkt przy magazynie”, którą ta
+poprawka mogłaby wykorzystać. V27 nie jest kandydatem do zgłoszenia.
