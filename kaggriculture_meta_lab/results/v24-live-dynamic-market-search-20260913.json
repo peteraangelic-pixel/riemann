@@ -1,0 +1,2205 @@
+{
+  "format": "v24-live-dynamic-market-search-v1",
+  "population": 1000,
+  "live_records": 24,
+  "train_jobs": 24000,
+  "holdout_jobs": 4800,
+  "finalists": [
+    0,
+    1,
+    359,
+    718,
+    546,
+    815,
+    183,
+    174,
+    321,
+    831,
+    849,
+    621,
+    443,
+    720,
+    98,
+    26,
+    383,
+    207,
+    955,
+    232
+  ],
+  "baseline": {
+    "games": 240,
+    "wins": 142,
+    "losses": 98,
+    "mean_reward": 101938.9375,
+    "mean_margin": 6117.85,
+    "groups": {
+      "current-top12": {
+        "games": 216,
+        "wins": 126,
+        "mean_reward": 102721.4074074074,
+        "mean_margin": 6964.365740740741
+      },
+      "live-56142365": {
+        "games": 12,
+        "wins": 6,
+        "mean_reward": 94261.91666666667,
+        "mean_margin": -6702.416666666667
+      },
+      "live-56183278": {
+        "games": 12,
+        "wins": 10,
+        "mean_reward": 95531.5,
+        "mean_margin": 3700.8333333333335
+      }
+    }
+  },
+  "winner": 0,
+  "winner_profile": {
+    "enabled": false
+  },
+  "winner_holdout": {
+    "games": 240,
+    "wins": 142,
+    "losses": 98,
+    "mean_reward": 101938.9375,
+    "mean_margin": 6117.85,
+    "groups": {
+      "current-top12": {
+        "games": 216,
+        "wins": 126,
+        "mean_reward": 102721.4074074074,
+        "mean_margin": 6964.365740740741
+      },
+      "live-56142365": {
+        "games": 12,
+        "wins": 6,
+        "mean_reward": 94261.91666666667,
+        "mean_margin": -6702.416666666667
+      },
+      "live-56183278": {
+        "games": 12,
+        "wins": 10,
+        "mean_reward": 95531.5,
+        "mean_margin": 3700.8333333333335
+      }
+    }
+  },
+  "top_train": [
+    {
+      "index": 0,
+      "profile": {
+        "enabled": false
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89788.95833333333,
+        "mean_margin": -1728.25,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89328.33333333333,
+            "mean_margin": 261.75
+          }
+        }
+      }
+    },
+    {
+      "index": 1,
+      "profile": {
+        "enabled": true
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89788.95833333333,
+        "mean_margin": -1728.25,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89328.33333333333,
+            "mean_margin": 261.75
+          }
+        }
+      }
+    },
+    {
+      "index": 359,
+      "profile": {
+        "enabled": true,
+        "start_day": 2,
+        "buy_stop_day": 25,
+        "endgame_day": 26,
+        "cash_reserve": 451,
+        "sell_fraction_bp": 7731,
+        "endgame_sell_fraction_bp": 8964,
+        "wheat_reserve": 7,
+        "melon_reserve": 4,
+        "milk_reserve": 9,
+        "wool_reserve": 1,
+        "min_wheat_price": 36,
+        "min_melon_price": 61,
+        "min_milk_price": 85,
+        "min_wool_price": 70
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 74841.83333333333,
+        "mean_margin": -59355.0,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 77593.16666666667,
+            "mean_margin": -64730.0
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 72090.5,
+            "mean_margin": -53980.0
+          }
+        }
+      }
+    },
+    {
+      "index": 718,
+      "profile": {
+        "enabled": true,
+        "start_day": 6,
+        "buy_stop_day": 28,
+        "endgame_day": 26,
+        "cash_reserve": 455,
+        "sell_fraction_bp": 9323,
+        "endgame_sell_fraction_bp": 9714,
+        "wheat_reserve": 4,
+        "melon_reserve": 5,
+        "milk_reserve": 2,
+        "wool_reserve": 9,
+        "min_wheat_price": 35,
+        "min_melon_price": 123,
+        "min_milk_price": 61,
+        "min_wool_price": 119
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 68538.79166666667,
+        "mean_margin": -57137.75,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 68873.83333333333,
+            "mean_margin": -60104.5
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 68203.75,
+            "mean_margin": -54171.0
+          }
+        }
+      }
+    },
+    {
+      "index": 546,
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 30,
+        "endgame_day": 24,
+        "cash_reserve": 707,
+        "sell_fraction_bp": 4774,
+        "endgame_sell_fraction_bp": 9319,
+        "wheat_reserve": 27,
+        "melon_reserve": 0,
+        "milk_reserve": 12,
+        "wool_reserve": 7,
+        "min_wheat_price": 1,
+        "min_melon_price": 56,
+        "min_milk_price": 17,
+        "min_wool_price": 1
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 68515.75,
+        "mean_margin": -37307.333333333336,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 73573.16666666667,
+            "mean_margin": -38735.416666666664
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 63458.333333333336,
+            "mean_margin": -35879.25
+          }
+        }
+      }
+    },
+    {
+      "index": 815,
+      "profile": {
+        "enabled": true,
+        "start_day": 9,
+        "buy_stop_day": 24,
+        "endgame_day": 26,
+        "cash_reserve": 1315,
+        "sell_fraction_bp": 9714,
+        "endgame_sell_fraction_bp": 8042,
+        "wheat_reserve": 4,
+        "melon_reserve": 0,
+        "milk_reserve": 2,
+        "wool_reserve": 6,
+        "min_wheat_price": 23,
+        "min_melon_price": 22,
+        "min_milk_price": 74,
+        "min_wool_price": 211
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 68246.70833333333,
+        "mean_margin": -44944.25,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 80371.25,
+            "mean_margin": -42422.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 56122.166666666664,
+            "mean_margin": -47466.25
+          }
+        }
+      }
+    },
+    {
+      "index": 183,
+      "profile": {
+        "enabled": true,
+        "start_day": 7,
+        "buy_stop_day": 22,
+        "endgame_day": 24,
+        "cash_reserve": 921,
+        "sell_fraction_bp": 9891,
+        "endgame_sell_fraction_bp": 9552,
+        "wheat_reserve": 28,
+        "melon_reserve": 2,
+        "milk_reserve": 6,
+        "wool_reserve": 2,
+        "min_wheat_price": 8,
+        "min_melon_price": 107,
+        "min_milk_price": 56,
+        "min_wool_price": 25
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 65580.16666666667,
+        "mean_margin": -43532.166666666664,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 65969.66666666667,
+            "mean_margin": -49194.75
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 65190.666666666664,
+            "mean_margin": -37869.583333333336
+          }
+        }
+      }
+    },
+    {
+      "index": 174,
+      "profile": {
+        "enabled": true,
+        "start_day": 7,
+        "buy_stop_day": 28,
+        "endgame_day": 26,
+        "cash_reserve": 1084,
+        "sell_fraction_bp": 6110,
+        "endgame_sell_fraction_bp": 7534,
+        "wheat_reserve": 15,
+        "melon_reserve": 2,
+        "milk_reserve": 0,
+        "wool_reserve": 4,
+        "min_wheat_price": 1,
+        "min_melon_price": 66,
+        "min_milk_price": 2,
+        "min_wool_price": 142
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 65530.291666666664,
+        "mean_margin": -40605.958333333336,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 64932.333333333336,
+            "mean_margin": -46830.333333333336
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 66128.25,
+            "mean_margin": -34381.583333333336
+          }
+        }
+      }
+    },
+    {
+      "index": 321,
+      "profile": {
+        "enabled": true,
+        "start_day": 9,
+        "buy_stop_day": 29,
+        "endgame_day": 28,
+        "cash_reserve": 1371,
+        "sell_fraction_bp": 9765,
+        "endgame_sell_fraction_bp": 9402,
+        "wheat_reserve": 2,
+        "melon_reserve": 1,
+        "milk_reserve": 18,
+        "wool_reserve": 6,
+        "min_wheat_price": 30,
+        "min_melon_price": 32,
+        "min_milk_price": 116,
+        "min_wool_price": 136
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 65490.791666666664,
+        "mean_margin": -50024.041666666664,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 80190.75,
+            "mean_margin": -43950.833333333336
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 50790.833333333336,
+            "mean_margin": -56097.25
+          }
+        }
+      }
+    },
+    {
+      "index": 831,
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 28,
+        "endgame_day": 29,
+        "cash_reserve": 117,
+        "sell_fraction_bp": 6951,
+        "endgame_sell_fraction_bp": 9365,
+        "wheat_reserve": 7,
+        "melon_reserve": 1,
+        "milk_reserve": 16,
+        "wool_reserve": 3,
+        "min_wheat_price": 18,
+        "min_melon_price": 230,
+        "min_milk_price": 29,
+        "min_wool_price": 67
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 65406.75,
+        "mean_margin": -38918.458333333336,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 74149.66666666667,
+            "mean_margin": -34755.833333333336
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 56663.833333333336,
+            "mean_margin": -43081.083333333336
+          }
+        }
+      }
+    },
+    {
+      "index": 849,
+      "profile": {
+        "enabled": true,
+        "start_day": 10,
+        "buy_stop_day": 30,
+        "endgame_day": 29,
+        "cash_reserve": 453,
+        "sell_fraction_bp": 8831,
+        "endgame_sell_fraction_bp": 9211,
+        "wheat_reserve": 1,
+        "melon_reserve": 3,
+        "milk_reserve": 14,
+        "wool_reserve": 13,
+        "min_wheat_price": 10,
+        "min_melon_price": 33,
+        "min_milk_price": 18,
+        "min_wool_price": 53
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 65183.666666666664,
+        "mean_margin": -39374.416666666664,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 72898.08333333333,
+            "mean_margin": -36822.0
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 57469.25,
+            "mean_margin": -41926.833333333336
+          }
+        }
+      }
+    },
+    {
+      "index": 621,
+      "profile": {
+        "enabled": true,
+        "start_day": 6,
+        "buy_stop_day": 26,
+        "endgame_day": 27,
+        "cash_reserve": 1144,
+        "sell_fraction_bp": 9088,
+        "endgame_sell_fraction_bp": 8771,
+        "wheat_reserve": 19,
+        "melon_reserve": 1,
+        "milk_reserve": 8,
+        "wool_reserve": 6,
+        "min_wheat_price": 7,
+        "min_melon_price": 39,
+        "min_milk_price": 11,
+        "min_wool_price": 7
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 65060.583333333336,
+        "mean_margin": -54736.0,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 62090.25,
+            "mean_margin": -52497.166666666664
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 68030.91666666667,
+            "mean_margin": -56974.833333333336
+          }
+        }
+      }
+    },
+    {
+      "index": 443,
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "buy_stop_day": 29,
+        "endgame_day": 25,
+        "cash_reserve": 1402,
+        "sell_fraction_bp": 6343,
+        "endgame_sell_fraction_bp": 9068,
+        "wheat_reserve": 22,
+        "melon_reserve": 0,
+        "milk_reserve": 6,
+        "wool_reserve": 0,
+        "min_wheat_price": 2,
+        "min_melon_price": 110,
+        "min_milk_price": 9,
+        "min_wool_price": 49
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 64384.625,
+        "mean_margin": -42834.5,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 68047.0,
+            "mean_margin": -48625.166666666664
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 60722.25,
+            "mean_margin": -37043.833333333336
+          }
+        }
+      }
+    },
+    {
+      "index": 720,
+      "profile": {
+        "enabled": true,
+        "start_day": 6,
+        "buy_stop_day": 25,
+        "endgame_day": 24,
+        "cash_reserve": 439,
+        "sell_fraction_bp": 4839,
+        "endgame_sell_fraction_bp": 8213,
+        "wheat_reserve": 7,
+        "melon_reserve": 5,
+        "milk_reserve": 0,
+        "wool_reserve": 0,
+        "min_wheat_price": 11,
+        "min_melon_price": 119,
+        "min_milk_price": 47,
+        "min_wool_price": 92
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 64346.458333333336,
+        "mean_margin": -54879.083333333336,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 59798.333333333336,
+            "mean_margin": -56131.666666666664
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 68894.58333333333,
+            "mean_margin": -53626.5
+          }
+        }
+      }
+    },
+    {
+      "index": 98,
+      "profile": {
+        "enabled": true,
+        "start_day": 5,
+        "buy_stop_day": 27,
+        "endgame_day": 28,
+        "cash_reserve": 622,
+        "sell_fraction_bp": 8279,
+        "endgame_sell_fraction_bp": 7738,
+        "wheat_reserve": 1,
+        "melon_reserve": 6,
+        "milk_reserve": 6,
+        "wool_reserve": 1,
+        "min_wheat_price": 5,
+        "min_melon_price": 26,
+        "min_milk_price": 56,
+        "min_wool_price": 73
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 64256.0,
+        "mean_margin": -45282.125,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 63811.916666666664,
+            "mean_margin": -43159.416666666664
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 64700.083333333336,
+            "mean_margin": -47404.833333333336
+          }
+        }
+      }
+    },
+    {
+      "index": 26,
+      "profile": {
+        "enabled": true,
+        "start_day": 2,
+        "buy_stop_day": 29,
+        "endgame_day": 28,
+        "cash_reserve": 85,
+        "sell_fraction_bp": 6744,
+        "endgame_sell_fraction_bp": 9743,
+        "wheat_reserve": 15,
+        "melon_reserve": 11,
+        "milk_reserve": 8,
+        "wool_reserve": 3,
+        "min_wheat_price": 12,
+        "min_melon_price": 124,
+        "min_milk_price": 8,
+        "min_wool_price": 106
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 63924.541666666664,
+        "mean_margin": -68750.75,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 69945.58333333333,
+            "mean_margin": -72302.66666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 57903.5,
+            "mean_margin": -65198.833333333336
+          }
+        }
+      }
+    },
+    {
+      "index": 383,
+      "profile": {
+        "enabled": true,
+        "start_day": 11,
+        "buy_stop_day": 22,
+        "endgame_day": 24,
+        "cash_reserve": 1032,
+        "sell_fraction_bp": 7358,
+        "endgame_sell_fraction_bp": 8057,
+        "wheat_reserve": 19,
+        "melon_reserve": 0,
+        "milk_reserve": 5,
+        "wool_reserve": 13,
+        "min_wheat_price": 30,
+        "min_melon_price": 60,
+        "min_milk_price": 1,
+        "min_wool_price": 145
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 63904.666666666664,
+        "mean_margin": -41345.166666666664,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 68095.91666666667,
+            "mean_margin": -43291.166666666664
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 59713.416666666664,
+            "mean_margin": -39399.166666666664
+          }
+        }
+      }
+    },
+    {
+      "index": 207,
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 23,
+        "endgame_day": 25,
+        "cash_reserve": 1387,
+        "sell_fraction_bp": 6553,
+        "endgame_sell_fraction_bp": 8409,
+        "wheat_reserve": 23,
+        "melon_reserve": 1,
+        "milk_reserve": 9,
+        "wool_reserve": 16,
+        "min_wheat_price": 26,
+        "min_melon_price": 96,
+        "min_milk_price": 24,
+        "min_wool_price": 1
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 63298.083333333336,
+        "mean_margin": -43436.791666666664,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 67798.91666666667,
+            "mean_margin": -46662.0
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 58797.25,
+            "mean_margin": -40211.583333333336
+          }
+        }
+      }
+    },
+    {
+      "index": 955,
+      "profile": {
+        "enabled": true,
+        "start_day": 10,
+        "buy_stop_day": 25,
+        "endgame_day": 26,
+        "cash_reserve": 925,
+        "sell_fraction_bp": 8550,
+        "endgame_sell_fraction_bp": 8424,
+        "wheat_reserve": 1,
+        "melon_reserve": 3,
+        "milk_reserve": 15,
+        "wool_reserve": 5,
+        "min_wheat_price": 15,
+        "min_melon_price": 75,
+        "min_milk_price": 4,
+        "min_wool_price": 199
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 62944.916666666664,
+        "mean_margin": -44611.416666666664,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 67926.25,
+            "mean_margin": -46394.083333333336
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 57963.583333333336,
+            "mean_margin": -42828.75
+          }
+        }
+      }
+    },
+    {
+      "index": 232,
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 22,
+        "endgame_day": 26,
+        "cash_reserve": 1045,
+        "sell_fraction_bp": 4518,
+        "endgame_sell_fraction_bp": 7968,
+        "wheat_reserve": 9,
+        "melon_reserve": 10,
+        "milk_reserve": 5,
+        "wool_reserve": 0,
+        "min_wheat_price": 20,
+        "min_melon_price": 28,
+        "min_milk_price": 81,
+        "min_wool_price": 13
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 62882.333333333336,
+        "mean_margin": -46528.833333333336,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 68136.16666666667,
+            "mean_margin": -46705.833333333336
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 57628.5,
+            "mean_margin": -46351.833333333336
+          }
+        }
+      }
+    },
+    {
+      "index": 846,
+      "profile": {
+        "enabled": true,
+        "start_day": 9,
+        "buy_stop_day": 24,
+        "endgame_day": 25,
+        "cash_reserve": 1228,
+        "sell_fraction_bp": 6715,
+        "endgame_sell_fraction_bp": 8961,
+        "wheat_reserve": 23,
+        "melon_reserve": 4,
+        "milk_reserve": 4,
+        "wool_reserve": 8,
+        "min_wheat_price": 15,
+        "min_melon_price": 61,
+        "min_milk_price": 34,
+        "min_wool_price": 58
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 62691.0,
+        "mean_margin": -47537.125,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 74062.0,
+            "mean_margin": -45377.666666666664
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 51320.0,
+            "mean_margin": -49696.583333333336
+          }
+        }
+      }
+    },
+    {
+      "index": 737,
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 25,
+        "endgame_day": 27,
+        "cash_reserve": 691,
+        "sell_fraction_bp": 5190,
+        "endgame_sell_fraction_bp": 9715,
+        "wheat_reserve": 16,
+        "melon_reserve": 10,
+        "milk_reserve": 18,
+        "wool_reserve": 13,
+        "min_wheat_price": 19,
+        "min_melon_price": 241,
+        "min_milk_price": 29,
+        "min_wool_price": 2
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 62682.833333333336,
+        "mean_margin": -46118.791666666664,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 67545.83333333333,
+            "mean_margin": -48734.75
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 57819.833333333336,
+            "mean_margin": -43502.833333333336
+          }
+        }
+      }
+    },
+    {
+      "index": 683,
+      "profile": {
+        "enabled": true,
+        "start_day": 9,
+        "buy_stop_day": 24,
+        "endgame_day": 24,
+        "cash_reserve": 805,
+        "sell_fraction_bp": 5689,
+        "endgame_sell_fraction_bp": 8764,
+        "wheat_reserve": 18,
+        "melon_reserve": 7,
+        "milk_reserve": 1,
+        "wool_reserve": 2,
+        "min_wheat_price": 18,
+        "min_melon_price": 103,
+        "min_milk_price": 5,
+        "min_wool_price": 32
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 62637.708333333336,
+        "mean_margin": -42647.5,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 66575.33333333333,
+            "mean_margin": -43053.5
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 58700.083333333336,
+            "mean_margin": -42241.5
+          }
+        }
+      }
+    },
+    {
+      "index": 832,
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 26,
+        "endgame_day": 27,
+        "cash_reserve": 1277,
+        "sell_fraction_bp": 7968,
+        "endgame_sell_fraction_bp": 8311,
+        "wheat_reserve": 1,
+        "melon_reserve": 0,
+        "milk_reserve": 8,
+        "wool_reserve": 12,
+        "min_wheat_price": 18,
+        "min_melon_price": 155,
+        "min_milk_price": 106,
+        "min_wool_price": 45
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 62598.0,
+        "mean_margin": -48075.208333333336,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 70464.25,
+            "mean_margin": -45727.166666666664
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 54731.75,
+            "mean_margin": -50423.25
+          }
+        }
+      }
+    },
+    {
+      "index": 759,
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 30,
+        "endgame_day": 24,
+        "cash_reserve": 305,
+        "sell_fraction_bp": 9649,
+        "endgame_sell_fraction_bp": 9637,
+        "wheat_reserve": 15,
+        "melon_reserve": 2,
+        "milk_reserve": 3,
+        "wool_reserve": 15,
+        "min_wheat_price": 19,
+        "min_melon_price": 93,
+        "min_milk_price": 52,
+        "min_wool_price": 16
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 62498.125,
+        "mean_margin": -41031.25,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 70733.83333333333,
+            "mean_margin": -37298.666666666664
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 54262.416666666664,
+            "mean_margin": -44763.833333333336
+          }
+        }
+      }
+    },
+    {
+      "index": 998,
+      "profile": {
+        "enabled": true,
+        "start_day": 11,
+        "buy_stop_day": 28,
+        "endgame_day": 24,
+        "cash_reserve": 1402,
+        "sell_fraction_bp": 8189,
+        "endgame_sell_fraction_bp": 8999,
+        "wheat_reserve": 3,
+        "melon_reserve": 4,
+        "milk_reserve": 2,
+        "wool_reserve": 3,
+        "min_wheat_price": 17,
+        "min_melon_price": 149,
+        "min_milk_price": 98,
+        "min_wool_price": 34
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 62248.375,
+        "mean_margin": -46575.541666666664,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 71210.16666666667,
+            "mean_margin": -41754.833333333336
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 53286.583333333336,
+            "mean_margin": -51396.25
+          }
+        }
+      }
+    },
+    {
+      "index": 142,
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 26,
+        "endgame_day": 24,
+        "cash_reserve": 1418,
+        "sell_fraction_bp": 3944,
+        "endgame_sell_fraction_bp": 9112,
+        "wheat_reserve": 4,
+        "melon_reserve": 10,
+        "milk_reserve": 4,
+        "wool_reserve": 14,
+        "min_wheat_price": 8,
+        "min_melon_price": 48,
+        "min_milk_price": 15,
+        "min_wool_price": 106
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 61993.791666666664,
+        "mean_margin": -45498.666666666664,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 69918.66666666667,
+            "mean_margin": -44150.416666666664
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 54068.916666666664,
+            "mean_margin": -46846.916666666664
+          }
+        }
+      }
+    },
+    {
+      "index": 428,
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 22,
+        "endgame_day": 27,
+        "cash_reserve": 874,
+        "sell_fraction_bp": 7741,
+        "endgame_sell_fraction_bp": 9780,
+        "wheat_reserve": 1,
+        "melon_reserve": 9,
+        "milk_reserve": 2,
+        "wool_reserve": 14,
+        "min_wheat_price": 26,
+        "min_melon_price": 13,
+        "min_milk_price": 101,
+        "min_wool_price": 35
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 61839.208333333336,
+        "mean_margin": -48222.0,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 68280.33333333333,
+            "mean_margin": -46906.916666666664
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 55398.083333333336,
+            "mean_margin": -49537.083333333336
+          }
+        }
+      }
+    },
+    {
+      "index": 877,
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 29,
+        "endgame_day": 24,
+        "cash_reserve": 457,
+        "sell_fraction_bp": 9671,
+        "endgame_sell_fraction_bp": 9839,
+        "wheat_reserve": 14,
+        "melon_reserve": 5,
+        "milk_reserve": 4,
+        "wool_reserve": 3,
+        "min_wheat_price": 39,
+        "min_melon_price": 170,
+        "min_milk_price": 35,
+        "min_wool_price": 160
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 61683.083333333336,
+        "mean_margin": -42436.0,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 69099.41666666667,
+            "mean_margin": -39972.583333333336
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 54266.75,
+            "mean_margin": -44899.416666666664
+          }
+        }
+      }
+    },
+    {
+      "index": 837,
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 22,
+        "endgame_day": 25,
+        "cash_reserve": 694,
+        "sell_fraction_bp": 8704,
+        "endgame_sell_fraction_bp": 9539,
+        "wheat_reserve": 13,
+        "melon_reserve": 11,
+        "milk_reserve": 10,
+        "wool_reserve": 1,
+        "min_wheat_price": 79,
+        "min_melon_price": 212,
+        "min_milk_price": 20,
+        "min_wool_price": 86
+      },
+      "summary": {
+        "games": 24,
+        "wins": 0,
+        "losses": 24,
+        "mean_reward": 61673.166666666664,
+        "mean_margin": -44066.75,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 67122.33333333333,
+            "mean_margin": -45044.916666666664
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 56224.0,
+            "mean_margin": -43088.583333333336
+          }
+        }
+      }
+    }
+  ],
+  "holdout": [
+    {
+      "index": 0,
+      "profile": {
+        "enabled": false
+      },
+      "summary": {
+        "games": 240,
+        "wins": 142,
+        "losses": 98,
+        "mean_reward": 101938.9375,
+        "mean_margin": 6117.85,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.4074074074,
+            "mean_margin": 6964.365740740741
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94261.91666666667,
+            "mean_margin": -6702.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95531.5,
+            "mean_margin": 3700.8333333333335
+          }
+        }
+      }
+    },
+    {
+      "index": 1,
+      "profile": {
+        "enabled": true
+      },
+      "summary": {
+        "games": 240,
+        "wins": 142,
+        "losses": 98,
+        "mean_reward": 101938.9375,
+        "mean_margin": 6117.85,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.4074074074,
+            "mean_margin": 6964.365740740741
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94261.91666666667,
+            "mean_margin": -6702.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95531.5,
+            "mean_margin": 3700.8333333333335
+          }
+        }
+      }
+    },
+    {
+      "index": 359,
+      "profile": {
+        "enabled": true,
+        "start_day": 2,
+        "buy_stop_day": 25,
+        "endgame_day": 26,
+        "cash_reserve": 451,
+        "sell_fraction_bp": 7731,
+        "endgame_sell_fraction_bp": 8964,
+        "wheat_reserve": 7,
+        "melon_reserve": 4,
+        "milk_reserve": 9,
+        "wool_reserve": 1,
+        "min_wheat_price": 36,
+        "min_melon_price": 61,
+        "min_milk_price": 85,
+        "min_wool_price": 70
+      },
+      "summary": {
+        "games": 240,
+        "wins": 16,
+        "losses": 224,
+        "mean_reward": 66276.9375,
+        "mean_margin": -42169.8625,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 16,
+            "mean_reward": 66189.12037037036,
+            "mean_margin": -41368.569444444445
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 73927.25,
+            "mean_margin": -45271.5
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 60207.333333333336,
+            "mean_margin": -53491.5
+          }
+        }
+      }
+    },
+    {
+      "index": 718,
+      "profile": {
+        "enabled": true,
+        "start_day": 6,
+        "buy_stop_day": 28,
+        "endgame_day": 26,
+        "cash_reserve": 455,
+        "sell_fraction_bp": 9323,
+        "endgame_sell_fraction_bp": 9714,
+        "wheat_reserve": 4,
+        "melon_reserve": 5,
+        "milk_reserve": 2,
+        "wool_reserve": 9,
+        "min_wheat_price": 35,
+        "min_melon_price": 123,
+        "min_milk_price": 61,
+        "min_wool_price": 119
+      },
+      "summary": {
+        "games": 240,
+        "wins": 14,
+        "losses": 226,
+        "mean_reward": 69408.47083333334,
+        "mean_margin": -46528.791666666664,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 14,
+            "mean_reward": 70647.625,
+            "mean_margin": -44179.06018518518
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 63356.666666666664,
+            "mean_margin": -67623.58333333333
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 53155.5,
+            "mean_margin": -67729.16666666667
+          }
+        }
+      }
+    },
+    {
+      "index": 546,
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 30,
+        "endgame_day": 24,
+        "cash_reserve": 707,
+        "sell_fraction_bp": 4774,
+        "endgame_sell_fraction_bp": 9319,
+        "wheat_reserve": 27,
+        "melon_reserve": 0,
+        "milk_reserve": 12,
+        "wool_reserve": 7,
+        "min_wheat_price": 1,
+        "min_melon_price": 56,
+        "min_milk_price": 17,
+        "min_wool_price": 1
+      },
+      "summary": {
+        "games": 240,
+        "wins": 37,
+        "losses": 203,
+        "mean_reward": 81045.67916666667,
+        "mean_margin": -27384.691666666666,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 37,
+            "mean_reward": 81513.63888888889,
+            "mean_margin": -26299.462962962964
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 79045.58333333333,
+            "mean_margin": -41508.0
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 74622.5,
+            "mean_margin": -32795.5
+          }
+        }
+      }
+    },
+    {
+      "index": 815,
+      "profile": {
+        "enabled": true,
+        "start_day": 9,
+        "buy_stop_day": 24,
+        "endgame_day": 26,
+        "cash_reserve": 1315,
+        "sell_fraction_bp": 9714,
+        "endgame_sell_fraction_bp": 8042,
+        "wheat_reserve": 4,
+        "melon_reserve": 0,
+        "milk_reserve": 2,
+        "wool_reserve": 6,
+        "min_wheat_price": 23,
+        "min_melon_price": 22,
+        "min_milk_price": 74,
+        "min_wool_price": 211
+      },
+      "summary": {
+        "games": 240,
+        "wins": 24,
+        "losses": 216,
+        "mean_reward": 74161.91666666667,
+        "mean_margin": -36277.2625,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 24,
+            "mean_reward": 74234.38888888889,
+            "mean_margin": -35193.05092592593
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 73424.66666666667,
+            "mean_margin": -45593.833333333336
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 73594.66666666667,
+            "mean_margin": -46476.5
+          }
+        }
+      }
+    },
+    {
+      "index": 183,
+      "profile": {
+        "enabled": true,
+        "start_day": 7,
+        "buy_stop_day": 22,
+        "endgame_day": 24,
+        "cash_reserve": 921,
+        "sell_fraction_bp": 9891,
+        "endgame_sell_fraction_bp": 9552,
+        "wheat_reserve": 28,
+        "melon_reserve": 2,
+        "milk_reserve": 6,
+        "wool_reserve": 2,
+        "min_wheat_price": 8,
+        "min_melon_price": 107,
+        "min_milk_price": 56,
+        "min_wool_price": 25
+      },
+      "summary": {
+        "games": 240,
+        "wins": 33,
+        "losses": 207,
+        "mean_reward": 75184.47083333334,
+        "mean_margin": -32124.908333333333,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 33,
+            "mean_reward": 76148.69444444444,
+            "mean_margin": -29349.13425925926
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 66303.41666666667,
+            "mean_margin": -60292.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 66709.5,
+            "mean_margin": -53921.5
+          }
+        }
+      }
+    },
+    {
+      "index": 174,
+      "profile": {
+        "enabled": true,
+        "start_day": 7,
+        "buy_stop_day": 28,
+        "endgame_day": 26,
+        "cash_reserve": 1084,
+        "sell_fraction_bp": 6110,
+        "endgame_sell_fraction_bp": 7534,
+        "wheat_reserve": 15,
+        "melon_reserve": 2,
+        "milk_reserve": 0,
+        "wool_reserve": 4,
+        "min_wheat_price": 1,
+        "min_melon_price": 66,
+        "min_milk_price": 2,
+        "min_wool_price": 142
+      },
+      "summary": {
+        "games": 240,
+        "wins": 31,
+        "losses": 209,
+        "mean_reward": 76261.675,
+        "mean_margin": -33119.041666666664,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 31,
+            "mean_reward": 76564.50925925926,
+            "mean_margin": -30969.39351851852
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 66216.83333333333,
+            "mean_margin": -54388.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 80855.5,
+            "mean_margin": -50543.5
+          }
+        }
+      }
+    },
+    {
+      "index": 321,
+      "profile": {
+        "enabled": true,
+        "start_day": 9,
+        "buy_stop_day": 29,
+        "endgame_day": 28,
+        "cash_reserve": 1371,
+        "sell_fraction_bp": 9765,
+        "endgame_sell_fraction_bp": 9402,
+        "wheat_reserve": 2,
+        "melon_reserve": 1,
+        "milk_reserve": 18,
+        "wool_reserve": 6,
+        "min_wheat_price": 30,
+        "min_melon_price": 32,
+        "min_milk_price": 116,
+        "min_wool_price": 136
+      },
+      "summary": {
+        "games": 240,
+        "wins": 20,
+        "losses": 220,
+        "mean_reward": 74494.88333333333,
+        "mean_margin": -38814.77916666667,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 20,
+            "mean_reward": 74540.72685185185,
+            "mean_margin": -37884.03703703704
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 78745.08333333333,
+            "mean_margin": -45072.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 69419.5,
+            "mean_margin": -49310.666666666664
+          }
+        }
+      }
+    },
+    {
+      "index": 831,
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 28,
+        "endgame_day": 29,
+        "cash_reserve": 117,
+        "sell_fraction_bp": 6951,
+        "endgame_sell_fraction_bp": 9365,
+        "wheat_reserve": 7,
+        "melon_reserve": 1,
+        "milk_reserve": 16,
+        "wool_reserve": 3,
+        "min_wheat_price": 18,
+        "min_melon_price": 230,
+        "min_milk_price": 29,
+        "min_wool_price": 67
+      },
+      "summary": {
+        "games": 240,
+        "wins": 33,
+        "losses": 207,
+        "mean_reward": 78646.92083333334,
+        "mean_margin": -28856.991666666665,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 33,
+            "mean_reward": 78420.06944444444,
+            "mean_margin": -28672.11111111111
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 84887.5,
+            "mean_margin": -30219.833333333332
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 76489.66666666667,
+            "mean_margin": -30822.0
+          }
+        }
+      }
+    },
+    {
+      "index": 849,
+      "profile": {
+        "enabled": true,
+        "start_day": 10,
+        "buy_stop_day": 30,
+        "endgame_day": 29,
+        "cash_reserve": 453,
+        "sell_fraction_bp": 8831,
+        "endgame_sell_fraction_bp": 9211,
+        "wheat_reserve": 1,
+        "melon_reserve": 3,
+        "milk_reserve": 14,
+        "wool_reserve": 13,
+        "min_wheat_price": 10,
+        "min_melon_price": 33,
+        "min_milk_price": 18,
+        "min_wool_price": 53
+      },
+      "summary": {
+        "games": 240,
+        "wins": 27,
+        "losses": 213,
+        "mean_reward": 77108.19583333333,
+        "mean_margin": -30454.7875,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 27,
+            "mean_reward": 76773.69907407407,
+            "mean_margin": -30392.972222222223
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 83012.16666666667,
+            "mean_margin": -32321.416666666668
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 77225.16666666667,
+            "mean_margin": -29700.833333333332
+          }
+        }
+      }
+    },
+    {
+      "index": 621,
+      "profile": {
+        "enabled": true,
+        "start_day": 6,
+        "buy_stop_day": 26,
+        "endgame_day": 27,
+        "cash_reserve": 1144,
+        "sell_fraction_bp": 9088,
+        "endgame_sell_fraction_bp": 8771,
+        "wheat_reserve": 19,
+        "melon_reserve": 1,
+        "milk_reserve": 8,
+        "wool_reserve": 6,
+        "min_wheat_price": 7,
+        "min_melon_price": 39,
+        "min_milk_price": 11,
+        "min_wool_price": 7
+      },
+      "summary": {
+        "games": 240,
+        "wins": 6,
+        "losses": 234,
+        "mean_reward": 71911.53333333334,
+        "mean_margin": -44312.566666666666,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 6,
+            "mean_reward": 72636.94444444444,
+            "mean_margin": -42720.84722222222
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 67692.41666666667,
+            "mean_margin": -58942.583333333336
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 63073.25,
+            "mean_margin": -58333.5
+          }
+        }
+      }
+    },
+    {
+      "index": 443,
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "buy_stop_day": 29,
+        "endgame_day": 25,
+        "cash_reserve": 1402,
+        "sell_fraction_bp": 6343,
+        "endgame_sell_fraction_bp": 9068,
+        "wheat_reserve": 22,
+        "melon_reserve": 0,
+        "milk_reserve": 6,
+        "wool_reserve": 0,
+        "min_wheat_price": 2,
+        "min_melon_price": 110,
+        "min_milk_price": 9,
+        "min_wool_price": 49
+      },
+      "summary": {
+        "games": 240,
+        "wins": 19,
+        "losses": 221,
+        "mean_reward": 76354.34166666666,
+        "mean_margin": -32539.170833333334,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 19,
+            "mean_reward": 76751.06018518518,
+            "mean_margin": -30240.444444444445
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 73291.08333333333,
+            "mean_margin": -53793.583333333336
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 72276.66666666667,
+            "mean_margin": -52661.833333333336
+          }
+        }
+      }
+    },
+    {
+      "index": 720,
+      "profile": {
+        "enabled": true,
+        "start_day": 6,
+        "buy_stop_day": 25,
+        "endgame_day": 24,
+        "cash_reserve": 439,
+        "sell_fraction_bp": 4839,
+        "endgame_sell_fraction_bp": 8213,
+        "wheat_reserve": 7,
+        "melon_reserve": 5,
+        "milk_reserve": 0,
+        "wool_reserve": 0,
+        "min_wheat_price": 11,
+        "min_melon_price": 119,
+        "min_milk_price": 47,
+        "min_wool_price": 92
+      },
+      "summary": {
+        "games": 240,
+        "wins": 12,
+        "losses": 228,
+        "mean_reward": 69719.81666666667,
+        "mean_margin": -42546.49166666667,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 12,
+            "mean_reward": 71010.4074074074,
+            "mean_margin": -40021.023148148146
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 59655.833333333336,
+            "mean_margin": -64651.416666666664
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 56553.166666666664,
+            "mean_margin": -65900.0
+          }
+        }
+      }
+    },
+    {
+      "index": 98,
+      "profile": {
+        "enabled": true,
+        "start_day": 5,
+        "buy_stop_day": 27,
+        "endgame_day": 28,
+        "cash_reserve": 622,
+        "sell_fraction_bp": 8279,
+        "endgame_sell_fraction_bp": 7738,
+        "wheat_reserve": 1,
+        "melon_reserve": 6,
+        "milk_reserve": 6,
+        "wool_reserve": 1,
+        "min_wheat_price": 5,
+        "min_melon_price": 26,
+        "min_milk_price": 56,
+        "min_wool_price": 73
+      },
+      "summary": {
+        "games": 240,
+        "wins": 30,
+        "losses": 210,
+        "mean_reward": 73461.17916666667,
+        "mean_margin": -29991.616666666665,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 30,
+            "mean_reward": 74792.14351851853,
+            "mean_margin": -27674.21759259259
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 53790.5,
+            "mean_margin": -56411.416666666664
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 69174.5,
+            "mean_margin": -45285.0
+          }
+        }
+      }
+    },
+    {
+      "index": 26,
+      "profile": {
+        "enabled": true,
+        "start_day": 2,
+        "buy_stop_day": 29,
+        "endgame_day": 28,
+        "cash_reserve": 85,
+        "sell_fraction_bp": 6744,
+        "endgame_sell_fraction_bp": 9743,
+        "wheat_reserve": 15,
+        "melon_reserve": 11,
+        "milk_reserve": 8,
+        "wool_reserve": 3,
+        "min_wheat_price": 12,
+        "min_melon_price": 124,
+        "min_milk_price": 8,
+        "min_wool_price": 106
+      },
+      "summary": {
+        "games": 240,
+        "wins": 10,
+        "losses": 230,
+        "mean_reward": 64191.1125,
+        "mean_margin": -49266.354166666664,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 10,
+            "mean_reward": 64596.68518518518,
+            "mean_margin": -46987.36574074074
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 68236.08333333333,
+            "mean_margin": -70589.16666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 52845.833333333336,
+            "mean_margin": -68965.33333333333
+          }
+        }
+      }
+    },
+    {
+      "index": 383,
+      "profile": {
+        "enabled": true,
+        "start_day": 11,
+        "buy_stop_day": 22,
+        "endgame_day": 24,
+        "cash_reserve": 1032,
+        "sell_fraction_bp": 7358,
+        "endgame_sell_fraction_bp": 8057,
+        "wheat_reserve": 19,
+        "melon_reserve": 0,
+        "milk_reserve": 5,
+        "wool_reserve": 13,
+        "min_wheat_price": 30,
+        "min_melon_price": 60,
+        "min_milk_price": 1,
+        "min_wool_price": 145
+      },
+      "summary": {
+        "games": 240,
+        "wins": 26,
+        "losses": 214,
+        "mean_reward": 75584.88333333333,
+        "mean_margin": -33059.208333333336,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 26,
+            "mean_reward": 75820.44444444444,
+            "mean_margin": -32312.09259259259
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 75917.0,
+            "mean_margin": -41922.5
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 71012.66666666667,
+            "mean_margin": -37644.0
+          }
+        }
+      }
+    },
+    {
+      "index": 207,
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 23,
+        "endgame_day": 25,
+        "cash_reserve": 1387,
+        "sell_fraction_bp": 6553,
+        "endgame_sell_fraction_bp": 8409,
+        "wheat_reserve": 23,
+        "melon_reserve": 1,
+        "milk_reserve": 9,
+        "wool_reserve": 16,
+        "min_wheat_price": 26,
+        "min_melon_price": 96,
+        "min_milk_price": 24,
+        "min_wool_price": 1
+      },
+      "summary": {
+        "games": 240,
+        "wins": 30,
+        "losses": 210,
+        "mean_reward": 75952.84166666666,
+        "mean_margin": -32514.5125,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 30,
+            "mean_reward": 76570.94907407407,
+            "mean_margin": -31171.560185185186
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 73000.91666666667,
+            "mean_margin": -49223.0
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 67778.83333333333,
+            "mean_margin": -39979.166666666664
+          }
+        }
+      }
+    },
+    {
+      "index": 955,
+      "profile": {
+        "enabled": true,
+        "start_day": 10,
+        "buy_stop_day": 25,
+        "endgame_day": 26,
+        "cash_reserve": 925,
+        "sell_fraction_bp": 8550,
+        "endgame_sell_fraction_bp": 8424,
+        "wheat_reserve": 1,
+        "melon_reserve": 3,
+        "milk_reserve": 15,
+        "wool_reserve": 5,
+        "min_wheat_price": 15,
+        "min_melon_price": 75,
+        "min_milk_price": 4,
+        "min_wool_price": 199
+      },
+      "summary": {
+        "games": 240,
+        "wins": 21,
+        "losses": 219,
+        "mean_reward": 73580.93333333333,
+        "mean_margin": -37814.44583333333,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 21,
+            "mean_reward": 73338.57407407407,
+            "mean_margin": -37558.77777777778
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 78784.33333333333,
+            "mean_margin": -41198.75
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 72740.0,
+            "mean_margin": -39032.166666666664
+          }
+        }
+      }
+    },
+    {
+      "index": 232,
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "buy_stop_day": 22,
+        "endgame_day": 26,
+        "cash_reserve": 1045,
+        "sell_fraction_bp": 4518,
+        "endgame_sell_fraction_bp": 7968,
+        "wheat_reserve": 9,
+        "melon_reserve": 10,
+        "milk_reserve": 5,
+        "wool_reserve": 0,
+        "min_wheat_price": 20,
+        "min_melon_price": 28,
+        "min_milk_price": 81,
+        "min_wool_price": 13
+      },
+      "summary": {
+        "games": 240,
+        "wins": 34,
+        "losses": 206,
+        "mean_reward": 77792.44166666667,
+        "mean_margin": -31170.766666666666,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 34,
+            "mean_reward": 78466.49537037036,
+            "mean_margin": -29677.50925925926
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 75351.58333333333,
+            "mean_margin": -44952.333333333336
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 0,
+            "mean_reward": 68100.33333333333,
+            "mean_margin": -44267.833333333336
+          }
+        }
+      }
+    }
+  ]
+}
