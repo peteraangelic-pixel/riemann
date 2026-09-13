@@ -79,3 +79,16 @@ Rozdzielenie demonstracji na legalizowane decyzje pojedynczych jednostek pogorsz
 wynik do 11–93 i średniej nagrody 60 985; V2 na tym samym panelu uzyskał
 64–24–16. Przyczyną jest utrata wspólnego przydziału ról i konflikt lokalnie
 wybranych ruchów z globalnym rynkiem. V29 został odrzucony bez zgłoszenia.
+
+## V30 i pakiet awaryjny
+
+Szerszy dziewięciotrajektoriowy V30 również nie przeszedł bramki: 25–79 wobec
+64–24–16 V2, mimo dodatniego bezpośredniego średniego marginesu +346 przeciw V2.
+Załamał się na aktualnym TOP12 (4/24) i G2 (2/16), więc nie wolno go zgłaszać.
+
+Na wyraźną prośbę o artefakt gotowy technicznie do Kaggle przygotowano neutralny
+ZIP `packages/stable_market_v23.zip` z `main.py` w katalogu głównym. Jest to
+wcześniejszy V23: jedyny eksperymentalny wariant, który nie zmienił wyników exact-live
+i miał małą dodatnią zmianę w pierwotnym TOP12. Nie jest to jednak potwierdzony
+następca V2 ani kandydat z wiarygodną ścieżką 3000+; pakiet nie został automatycznie
+wysłany i nie powinien zastępować aktywnego V2 bez świadomej decyzji użytkownika.
