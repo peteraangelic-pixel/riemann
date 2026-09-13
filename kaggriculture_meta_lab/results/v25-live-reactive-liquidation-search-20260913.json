@@ -1,0 +1,1825 @@
+{
+  "format": "v24-live-dynamic-market-search-v1",
+  "population": 1000,
+  "live_records": 24,
+  "train_jobs": 24000,
+  "holdout_jobs": 5280,
+  "finalists": [
+    72,
+    143,
+    827,
+    56,
+    77,
+    84,
+    85,
+    452,
+    618,
+    55,
+    155,
+    331,
+    145,
+    477,
+    25,
+    251,
+    6,
+    48,
+    93,
+    126,
+    0,
+    1
+  ],
+  "baseline": {
+    "games": 240,
+    "wins": 142,
+    "losses": 98,
+    "mean_reward": 101938.9375,
+    "mean_margin": 6117.85,
+    "groups": {
+      "current-top12": {
+        "games": 216,
+        "wins": 126,
+        "mean_reward": 102721.4074074074,
+        "mean_margin": 6964.365740740741
+      },
+      "live-56142365": {
+        "games": 12,
+        "wins": 6,
+        "mean_reward": 94261.91666666667,
+        "mean_margin": -6702.416666666667
+      },
+      "live-56183278": {
+        "games": 12,
+        "wins": 10,
+        "mean_reward": 95531.5,
+        "mean_margin": 3700.8333333333335
+      }
+    }
+  },
+  "winner": 55,
+  "winner_profile": {
+    "enabled": true,
+    "start_day": 28,
+    "wheat_sell_multiplier_bp": 17500,
+    "wheat_reserve": 0,
+    "min_wheat_price": 0
+  },
+  "winner_holdout": {
+    "games": 240,
+    "wins": 142,
+    "losses": 98,
+    "mean_reward": 101937.00416666667,
+    "mean_margin": 6117.041666666667,
+    "groups": {
+      "current-top12": {
+        "games": 216,
+        "wins": 126,
+        "mean_reward": 102719.03703703704,
+        "mean_margin": 6962.912037037037
+      },
+      "live-56142365": {
+        "games": 12,
+        "wins": 6,
+        "mean_reward": 94263.75,
+        "mean_margin": -6697.916666666667
+      },
+      "live-56183278": {
+        "games": 12,
+        "wins": 10,
+        "mean_reward": 95533.66666666667,
+        "mean_margin": 3706.3333333333335
+      }
+    }
+  },
+  "top_train": [
+    {
+      "index": 72,
+      "profile": {
+        "enabled": true,
+        "start_day": 13,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89825.79166666667,
+        "mean_margin": -1715.5833333333333,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90288.08333333333,
+            "mean_margin": -3732.3333333333335
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89363.5,
+            "mean_margin": 301.1666666666667
+          }
+        }
+      }
+    },
+    {
+      "index": 143,
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89824.25,
+        "mean_margin": -1715.4583333333333,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90288.5,
+            "mean_margin": -3730.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89360.0,
+            "mean_margin": 299.3333333333333
+          }
+        }
+      }
+    },
+    {
+      "index": 827,
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 20
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89824.25,
+        "mean_margin": -1715.4583333333333,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90288.5,
+            "mean_margin": -3730.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89360.0,
+            "mean_margin": 299.3333333333333
+          }
+        }
+      }
+    },
+    {
+      "index": 56,
+      "profile": {
+        "enabled": true,
+        "start_day": 11,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89822.58333333333,
+        "mean_margin": -1715.375,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90288.5,
+            "mean_margin": -3728.5833333333335
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89356.66666666667,
+            "mean_margin": 297.8333333333333
+          }
+        }
+      }
+    },
+    {
+      "index": 77,
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89822.58333333333,
+        "mean_margin": -1715.375,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90288.5,
+            "mean_margin": -3728.5833333333335
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89356.66666666667,
+            "mean_margin": 297.8333333333333
+          }
+        }
+      }
+    },
+    {
+      "index": 84,
+      "profile": {
+        "enabled": true,
+        "start_day": 10,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89822.58333333333,
+        "mean_margin": -1715.375,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90288.5,
+            "mean_margin": -3728.5833333333335
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89356.66666666667,
+            "mean_margin": 297.8333333333333
+          }
+        }
+      }
+    },
+    {
+      "index": 85,
+      "profile": {
+        "enabled": true,
+        "start_day": 9,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89822.58333333333,
+        "mean_margin": -1715.375,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90288.5,
+            "mean_margin": -3728.5833333333335
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89356.66666666667,
+            "mean_margin": 297.8333333333333
+          }
+        }
+      }
+    },
+    {
+      "index": 452,
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 10
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89822.58333333333,
+        "mean_margin": -1715.375,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90288.5,
+            "mean_margin": -3728.5833333333335
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89356.66666666667,
+            "mean_margin": 297.8333333333333
+          }
+        }
+      }
+    },
+    {
+      "index": 618,
+      "profile": {
+        "enabled": true,
+        "start_day": 21,
+        "wheat_sell_multiplier_bp": 17500,
+        "wheat_reserve": 2,
+        "min_wheat_price": 20
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89792.41666666667,
+        "mean_margin": -1711.9583333333333,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90180.66666666667,
+            "mean_margin": -3780.9166666666665
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89404.16666666667,
+            "mean_margin": 357.0
+          }
+        }
+      }
+    },
+    {
+      "index": 55,
+      "profile": {
+        "enabled": true,
+        "start_day": 28,
+        "wheat_sell_multiplier_bp": 17500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89792.29166666667,
+        "mean_margin": -1721.7083333333333,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90251.08333333333,
+            "mean_margin": -3714.4166666666665
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89333.5,
+            "mean_margin": 271.0
+          }
+        }
+      }
+    },
+    {
+      "index": 155,
+      "profile": {
+        "enabled": true,
+        "start_day": 28,
+        "wheat_sell_multiplier_bp": 15000,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89792.29166666667,
+        "mean_margin": -1721.7083333333333,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90251.08333333333,
+            "mean_margin": -3714.4166666666665
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89333.5,
+            "mean_margin": 271.0
+          }
+        }
+      }
+    },
+    {
+      "index": 331,
+      "profile": {
+        "enabled": true,
+        "start_day": 28,
+        "wheat_sell_multiplier_bp": 15000,
+        "wheat_reserve": 0,
+        "min_wheat_price": 20
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89792.29166666667,
+        "mean_margin": -1721.7083333333333,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90251.08333333333,
+            "mean_margin": -3714.4166666666665
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89333.5,
+            "mean_margin": 271.0
+          }
+        }
+      }
+    },
+    {
+      "index": 145,
+      "profile": {
+        "enabled": true,
+        "start_day": 15,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89791.16666666667,
+        "mean_margin": -1714.2916666666667,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90211.66666666667,
+            "mean_margin": -3751.8333333333335
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89370.66666666667,
+            "mean_margin": 323.25
+          }
+        }
+      }
+    },
+    {
+      "index": 477,
+      "profile": {
+        "enabled": true,
+        "start_day": 15,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 20
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89791.16666666667,
+        "mean_margin": -1714.2916666666667,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90211.66666666667,
+            "mean_margin": -3751.8333333333335
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89370.66666666667,
+            "mean_margin": 323.25
+          }
+        }
+      }
+    },
+    {
+      "index": 25,
+      "profile": {
+        "enabled": true,
+        "start_day": 16,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89790.33333333333,
+        "mean_margin": -1720.625,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90216.5,
+            "mean_margin": -3751.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89364.16666666667,
+            "mean_margin": 310.0
+          }
+        }
+      }
+    },
+    {
+      "index": 251,
+      "profile": {
+        "enabled": true,
+        "start_day": 16,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 10
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89790.33333333333,
+        "mean_margin": -1720.625,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90216.5,
+            "mean_margin": -3751.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89364.16666666667,
+            "mean_margin": 310.0
+          }
+        }
+      }
+    },
+    {
+      "index": 6,
+      "profile": {
+        "enabled": true,
+        "start_day": 29,
+        "wheat_sell_multiplier_bp": 25000,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89789.375,
+        "mean_margin": -1727.3333333333333,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89329.16666666667,
+            "mean_margin": 263.5833333333333
+          }
+        }
+      }
+    },
+    {
+      "index": 48,
+      "profile": {
+        "enabled": true,
+        "start_day": 29,
+        "wheat_sell_multiplier_bp": 20000,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89789.375,
+        "mean_margin": -1727.3333333333333,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89329.16666666667,
+            "mean_margin": 263.5833333333333
+          }
+        }
+      }
+    },
+    {
+      "index": 93,
+      "profile": {
+        "enabled": true,
+        "start_day": 29,
+        "wheat_sell_multiplier_bp": 50000,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89789.375,
+        "mean_margin": -1727.3333333333333,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89329.16666666667,
+            "mean_margin": 263.5833333333333
+          }
+        }
+      }
+    },
+    {
+      "index": 126,
+      "profile": {
+        "enabled": true,
+        "start_day": 29,
+        "wheat_sell_multiplier_bp": 30000,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89789.375,
+        "mean_margin": -1727.3333333333333,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89329.16666666667,
+            "mean_margin": 263.5833333333333
+          }
+        }
+      }
+    },
+    {
+      "index": 169,
+      "profile": {
+        "enabled": true,
+        "start_day": 29,
+        "wheat_sell_multiplier_bp": 40000,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89789.375,
+        "mean_margin": -1727.3333333333333,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89329.16666666667,
+            "mean_margin": 263.5833333333333
+          }
+        }
+      }
+    },
+    {
+      "index": 445,
+      "profile": {
+        "enabled": true,
+        "start_day": 29,
+        "wheat_sell_multiplier_bp": 30000,
+        "wheat_reserve": 0,
+        "min_wheat_price": 10
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89789.375,
+        "mean_margin": -1727.3333333333333,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89329.16666666667,
+            "mean_margin": 263.5833333333333
+          }
+        }
+      }
+    },
+    {
+      "index": 555,
+      "profile": {
+        "enabled": true,
+        "start_day": 29,
+        "wheat_sell_multiplier_bp": 25000,
+        "wheat_reserve": 0,
+        "min_wheat_price": 10
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89789.375,
+        "mean_margin": -1727.3333333333333,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89329.16666666667,
+            "mean_margin": 263.5833333333333
+          }
+        }
+      }
+    },
+    {
+      "index": 679,
+      "profile": {
+        "enabled": true,
+        "start_day": 29,
+        "wheat_sell_multiplier_bp": 50000,
+        "wheat_reserve": 0,
+        "min_wheat_price": 20
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89789.375,
+        "mean_margin": -1727.3333333333333,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89329.16666666667,
+            "mean_margin": 263.5833333333333
+          }
+        }
+      }
+    },
+    {
+      "index": 95,
+      "profile": {
+        "enabled": true,
+        "start_day": 29,
+        "wheat_sell_multiplier_bp": 15000,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89789.29166666667,
+        "mean_margin": -1727.5,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89329.0,
+            "mean_margin": 263.25
+          }
+        }
+      }
+    },
+    {
+      "index": 129,
+      "profile": {
+        "enabled": true,
+        "start_day": 29,
+        "wheat_sell_multiplier_bp": 17500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89789.29166666667,
+        "mean_margin": -1727.5,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89329.0,
+            "mean_margin": 263.25
+          }
+        }
+      }
+    },
+    {
+      "index": 670,
+      "profile": {
+        "enabled": true,
+        "start_day": 29,
+        "wheat_sell_multiplier_bp": 17500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 10
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89789.29166666667,
+        "mean_margin": -1727.5,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89329.0,
+            "mean_margin": 263.25
+          }
+        }
+      }
+    },
+    {
+      "index": 0,
+      "profile": {
+        "enabled": false
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89788.95833333333,
+        "mean_margin": -1728.25,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89328.33333333333,
+            "mean_margin": 261.75
+          }
+        }
+      }
+    },
+    {
+      "index": 1,
+      "profile": {
+        "enabled": true
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89788.95833333333,
+        "mean_margin": -1728.25,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89328.33333333333,
+            "mean_margin": 261.75
+          }
+        }
+      }
+    },
+    {
+      "index": 2,
+      "profile": {
+        "enabled": true,
+        "start_day": 29,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "mean_reward": 89788.95833333333,
+        "mean_margin": -1728.25,
+        "groups": {
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 90249.58333333333,
+            "mean_margin": -3718.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 8,
+            "mean_reward": 89328.33333333333,
+            "mean_margin": 261.75
+          }
+        }
+      }
+    }
+  ],
+  "holdout": [
+    {
+      "index": 72,
+      "profile": {
+        "enabled": true,
+        "start_day": 13,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 240,
+        "wins": 140,
+        "losses": 100,
+        "mean_reward": 102150.25416666667,
+        "mean_margin": 6347.85,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102955.07407407407,
+            "mean_margin": 7224.125
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 4,
+            "mean_reward": 94215.91666666667,
+            "mean_margin": -6825.75
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95597.83333333333,
+            "mean_margin": 3748.5
+          }
+        }
+      }
+    },
+    {
+      "index": 143,
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 240,
+        "wins": 140,
+        "losses": 100,
+        "mean_reward": 102163.80416666667,
+        "mean_margin": 6373.575,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102970.25925925926,
+            "mean_margin": 7252.6712962962965
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 4,
+            "mean_reward": 94214.25,
+            "mean_margin": -6826.75
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95597.16666666667,
+            "mean_margin": 3750.1666666666665
+          }
+        }
+      }
+    },
+    {
+      "index": 827,
+      "profile": {
+        "enabled": true,
+        "start_day": 12,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 20
+      },
+      "summary": {
+        "games": 240,
+        "wins": 140,
+        "losses": 100,
+        "mean_reward": 102163.80416666667,
+        "mean_margin": 6373.575,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102970.25925925926,
+            "mean_margin": 7252.6712962962965
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 4,
+            "mean_reward": 94214.25,
+            "mean_margin": -6826.75
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95597.16666666667,
+            "mean_margin": 3750.1666666666665
+          }
+        }
+      }
+    },
+    {
+      "index": 56,
+      "profile": {
+        "enabled": true,
+        "start_day": 11,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 240,
+        "wins": 140,
+        "losses": 100,
+        "mean_reward": 102199.90416666666,
+        "mean_margin": 6418.216666666666,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 103010.49074074074,
+            "mean_margin": 7302.217592592592
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 4,
+            "mean_reward": 94211.91666666667,
+            "mean_margin": -6828.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95597.33333333333,
+            "mean_margin": 3752.6666666666665
+          }
+        }
+      }
+    },
+    {
+      "index": 77,
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 240,
+        "wins": 140,
+        "losses": 100,
+        "mean_reward": 102199.90416666666,
+        "mean_margin": 6418.216666666666,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 103010.49074074074,
+            "mean_margin": 7302.217592592592
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 4,
+            "mean_reward": 94211.91666666667,
+            "mean_margin": -6828.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95597.33333333333,
+            "mean_margin": 3752.6666666666665
+          }
+        }
+      }
+    },
+    {
+      "index": 84,
+      "profile": {
+        "enabled": true,
+        "start_day": 10,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 240,
+        "wins": 140,
+        "losses": 100,
+        "mean_reward": 102199.90416666666,
+        "mean_margin": 6418.216666666666,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 103010.49074074074,
+            "mean_margin": 7302.217592592592
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 4,
+            "mean_reward": 94211.91666666667,
+            "mean_margin": -6828.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95597.33333333333,
+            "mean_margin": 3752.6666666666665
+          }
+        }
+      }
+    },
+    {
+      "index": 85,
+      "profile": {
+        "enabled": true,
+        "start_day": 9,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 240,
+        "wins": 140,
+        "losses": 100,
+        "mean_reward": 102199.90416666666,
+        "mean_margin": 6418.216666666666,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 103010.49074074074,
+            "mean_margin": 7302.217592592592
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 4,
+            "mean_reward": 94211.91666666667,
+            "mean_margin": -6828.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95597.33333333333,
+            "mean_margin": 3752.6666666666665
+          }
+        }
+      }
+    },
+    {
+      "index": 452,
+      "profile": {
+        "enabled": true,
+        "start_day": 8,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 10
+      },
+      "summary": {
+        "games": 240,
+        "wins": 140,
+        "losses": 100,
+        "mean_reward": 102199.90416666666,
+        "mean_margin": 6418.216666666666,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 103010.49074074074,
+            "mean_margin": 7302.217592592592
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 4,
+            "mean_reward": 94211.91666666667,
+            "mean_margin": -6828.25
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95597.33333333333,
+            "mean_margin": 3752.6666666666665
+          }
+        }
+      }
+    },
+    {
+      "index": 618,
+      "profile": {
+        "enabled": true,
+        "start_day": 21,
+        "wheat_sell_multiplier_bp": 17500,
+        "wheat_reserve": 2,
+        "min_wheat_price": 20
+      },
+      "summary": {
+        "games": 240,
+        "wins": 137,
+        "losses": 103,
+        "mean_reward": 102290.05833333333,
+        "mean_margin": 6530.408333333334,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 123,
+            "mean_reward": 103119.55092592593,
+            "mean_margin": 7429.856481481482
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 4,
+            "mean_reward": 94185.91666666667,
+            "mean_margin": -6769.583333333333
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95463.33333333333,
+            "mean_margin": 3640.3333333333335
+          }
+        }
+      }
+    },
+    {
+      "index": 55,
+      "profile": {
+        "enabled": true,
+        "start_day": 28,
+        "wheat_sell_multiplier_bp": 17500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 240,
+        "wins": 142,
+        "losses": 98,
+        "mean_reward": 101937.00416666667,
+        "mean_margin": 6117.041666666667,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102719.03703703704,
+            "mean_margin": 6962.912037037037
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94263.75,
+            "mean_margin": -6697.916666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95533.66666666667,
+            "mean_margin": 3706.3333333333335
+          }
+        }
+      }
+    },
+    {
+      "index": 155,
+      "profile": {
+        "enabled": true,
+        "start_day": 28,
+        "wheat_sell_multiplier_bp": 15000,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 240,
+        "wins": 142,
+        "losses": 98,
+        "mean_reward": 101937.00416666667,
+        "mean_margin": 6117.041666666667,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102719.03703703704,
+            "mean_margin": 6962.912037037037
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94263.75,
+            "mean_margin": -6697.916666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95533.66666666667,
+            "mean_margin": 3706.3333333333335
+          }
+        }
+      }
+    },
+    {
+      "index": 331,
+      "profile": {
+        "enabled": true,
+        "start_day": 28,
+        "wheat_sell_multiplier_bp": 15000,
+        "wheat_reserve": 0,
+        "min_wheat_price": 20
+      },
+      "summary": {
+        "games": 240,
+        "wins": 142,
+        "losses": 98,
+        "mean_reward": 101937.00416666667,
+        "mean_margin": 6117.041666666667,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102719.03703703704,
+            "mean_margin": 6962.912037037037
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94263.75,
+            "mean_margin": -6697.916666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95533.66666666667,
+            "mean_margin": 3706.3333333333335
+          }
+        }
+      }
+    },
+    {
+      "index": 145,
+      "profile": {
+        "enabled": true,
+        "start_day": 15,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 240,
+        "wins": 140,
+        "losses": 100,
+        "mean_reward": 102052.7375,
+        "mean_margin": 6291.291666666667,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102854.85185185185,
+            "mean_margin": 7161.560185185185
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 4,
+            "mean_reward": 94116.91666666667,
+            "mean_margin": -6825.083333333333
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95550.5,
+            "mean_margin": 3742.8333333333335
+          }
+        }
+      }
+    },
+    {
+      "index": 477,
+      "profile": {
+        "enabled": true,
+        "start_day": 15,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 20
+      },
+      "summary": {
+        "games": 240,
+        "wins": 140,
+        "losses": 100,
+        "mean_reward": 102052.7375,
+        "mean_margin": 6291.291666666667,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102854.85185185185,
+            "mean_margin": 7161.560185185185
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 4,
+            "mean_reward": 94116.91666666667,
+            "mean_margin": -6825.083333333333
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95550.5,
+            "mean_margin": 3742.8333333333335
+          }
+        }
+      }
+    },
+    {
+      "index": 25,
+      "profile": {
+        "enabled": true,
+        "start_day": 16,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 240,
+        "wins": 140,
+        "losses": 100,
+        "mean_reward": 102015.04583333334,
+        "mean_margin": 6240.004166666667,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102812.27777777778,
+            "mean_margin": 7104.2037037037035
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 4,
+            "mean_reward": 94123.41666666667,
+            "mean_margin": -6821.916666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95556.5,
+            "mean_margin": 3746.3333333333335
+          }
+        }
+      }
+    },
+    {
+      "index": 251,
+      "profile": {
+        "enabled": true,
+        "start_day": 16,
+        "wheat_sell_multiplier_bp": 12500,
+        "wheat_reserve": 0,
+        "min_wheat_price": 10
+      },
+      "summary": {
+        "games": 240,
+        "wins": 140,
+        "losses": 100,
+        "mean_reward": 102015.04583333334,
+        "mean_margin": 6240.004166666667,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102812.27777777778,
+            "mean_margin": 7104.2037037037035
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 4,
+            "mean_reward": 94123.41666666667,
+            "mean_margin": -6821.916666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95556.5,
+            "mean_margin": 3746.3333333333335
+          }
+        }
+      }
+    },
+    {
+      "index": 6,
+      "profile": {
+        "enabled": true,
+        "start_day": 29,
+        "wheat_sell_multiplier_bp": 25000,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 240,
+        "wins": 142,
+        "losses": 98,
+        "mean_reward": 101939.15416666666,
+        "mean_margin": 6118.291666666667,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.61111111111,
+            "mean_margin": 6964.782407407408
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94262.25,
+            "mean_margin": -6701.75
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95531.83333333333,
+            "mean_margin": 3701.5
+          }
+        }
+      }
+    },
+    {
+      "index": 48,
+      "profile": {
+        "enabled": true,
+        "start_day": 29,
+        "wheat_sell_multiplier_bp": 20000,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 240,
+        "wins": 142,
+        "losses": 98,
+        "mean_reward": 101939.15416666666,
+        "mean_margin": 6118.291666666667,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.61111111111,
+            "mean_margin": 6964.782407407408
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94262.25,
+            "mean_margin": -6701.75
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95531.83333333333,
+            "mean_margin": 3701.5
+          }
+        }
+      }
+    },
+    {
+      "index": 93,
+      "profile": {
+        "enabled": true,
+        "start_day": 29,
+        "wheat_sell_multiplier_bp": 50000,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 240,
+        "wins": 142,
+        "losses": 98,
+        "mean_reward": 101939.15416666666,
+        "mean_margin": 6118.291666666667,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.61111111111,
+            "mean_margin": 6964.782407407408
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94262.25,
+            "mean_margin": -6701.75
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95531.83333333333,
+            "mean_margin": 3701.5
+          }
+        }
+      }
+    },
+    {
+      "index": 126,
+      "profile": {
+        "enabled": true,
+        "start_day": 29,
+        "wheat_sell_multiplier_bp": 30000,
+        "wheat_reserve": 0,
+        "min_wheat_price": 0
+      },
+      "summary": {
+        "games": 240,
+        "wins": 142,
+        "losses": 98,
+        "mean_reward": 101939.15416666666,
+        "mean_margin": 6118.291666666667,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.61111111111,
+            "mean_margin": 6964.782407407408
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94262.25,
+            "mean_margin": -6701.75
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95531.83333333333,
+            "mean_margin": 3701.5
+          }
+        }
+      }
+    },
+    {
+      "index": 0,
+      "profile": {
+        "enabled": false
+      },
+      "summary": {
+        "games": 240,
+        "wins": 142,
+        "losses": 98,
+        "mean_reward": 101938.9375,
+        "mean_margin": 6117.85,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.4074074074,
+            "mean_margin": 6964.365740740741
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94261.91666666667,
+            "mean_margin": -6702.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95531.5,
+            "mean_margin": 3700.8333333333335
+          }
+        }
+      }
+    },
+    {
+      "index": 1,
+      "profile": {
+        "enabled": true
+      },
+      "summary": {
+        "games": 240,
+        "wins": 142,
+        "losses": 98,
+        "mean_reward": 101938.9375,
+        "mean_margin": 6117.85,
+        "groups": {
+          "current-top12": {
+            "games": 216,
+            "wins": 126,
+            "mean_reward": 102721.4074074074,
+            "mean_margin": 6964.365740740741
+          },
+          "live-56142365": {
+            "games": 12,
+            "wins": 6,
+            "mean_reward": 94261.91666666667,
+            "mean_margin": -6702.416666666667
+          },
+          "live-56183278": {
+            "games": 12,
+            "wins": 10,
+            "mean_reward": 95531.5,
+            "mean_margin": 3700.8333333333335
+          }
+        }
+      }
+    }
+  ]
+}
