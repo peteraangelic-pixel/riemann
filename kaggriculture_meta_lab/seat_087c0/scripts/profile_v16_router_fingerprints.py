@@ -15,6 +15,7 @@ SEAT=Path(__file__).resolve().parents[1]
 META=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(META))
 from scripts.benchmark_top30 import build_top30_jobs
+from kaggriculture_lab.agents import resolve
 
 def load(path,name):
  s=importlib.util.spec_from_file_location(name,path);m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
@@ -46,7 +47,7 @@ def main():
  records=[(template[i][2],meta[i]) for i in range(0,len(template),2)]
  rows=[]
  for rid,(opp_path,m) in enumerate(records):
-  cand=load(v8,f'v8_{rid}');opp=load(opp_path,f'opp_{rid}')
+  cand=load(v8,f'v8_{rid}');opp=resolve(opp_path)
   for seed in range(197000,197000+a.seeds):
    for seat in (0,1):
     snaps={}
