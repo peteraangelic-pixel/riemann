@@ -1,0 +1,39 @@
+name: Kaggriculture V26 prefix-compatible TOP12 census
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v26-prefix-census.yml"]
+permissions: {contents: write}
+jobs:
+  census:
+    if: contains(github.event.head_commit.message, '[kg-v26-census]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install --disable-pip-version-check py7zr
+      - run: |
+          python - <<'PY'
+          import json,pathlib,py7zr
+          with py7zr.SevenZipFile('TOP12.7z') as archive:
+              archive.extractall('/tmp/top12')
+          roots = [manifest.parent for manifest in pathlib.Path('/tmp/top12').rglob('manifest.json')
+                   if len(json.loads(manifest.read_text(encoding='utf-8-sig')).get('teams', [])) == 12]
+          assert len(roots) == 1, roots
+          pathlib.Path('/tmp/top12-root').write_text(str(roots[0]))
+          PY
+      - run: |
+          python kaggriculture_meta_lab/scripts/census_v26_prefix_compatible_top12.py \
+            --corpus "$(cat /tmp/top12-root)" \
+            --base kaggriculture_meta_lab/agents/variants/agent_v16_kanno_top7_champion.py \
+            --output kaggriculture_meta_lab/results/v26-prefix-compatible-top12-census-20260913.json
+      - run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v26-prefix-compatible-top12-census-20260913.json
+          git commit -m 'Record V26 prefix-compatible census'
+          git pull --rebase origin arena/01a0712c-riemann
+          git push origin HEAD:arena/01a0712c-riemann
