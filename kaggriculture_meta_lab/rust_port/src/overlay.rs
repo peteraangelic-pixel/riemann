@@ -18,6 +18,10 @@ pub struct MarketOverlay {
     pub endgame_sell_fraction_bp: u32,
     /// Scale requested wheat sales; projected live inventory remains a hard cap.
     pub wheat_sell_multiplier_bp: u32,
+    /// Replace only an idle PASS at an access tile with a bounded product deposit.
+    /// Zero quantity disables this logistics overlay.
+    pub pass_deposit_start_day: i64,
+    pub pass_deposit_min_qty: i64,
     pub wheat_reserve: i64,
     pub carrot_reserve: i64,
     pub tomato_reserve: i64,
@@ -82,6 +86,8 @@ impl Default for MarketOverlay {
             sell_fraction_bp: 10_000,
             endgame_sell_fraction_bp: 10_000,
             wheat_sell_multiplier_bp: 10_000,
+            pass_deposit_start_day: 0,
+            pass_deposit_min_qty: 0,
             wheat_reserve: 0,
             carrot_reserve: 0,
             tomato_reserve: 0,
@@ -139,8 +145,13 @@ impl MarketOverlay {
     }
 
     pub fn validate(&self) -> Result<(), String> {
-        if self.start_day < 0 || self.buy_stop_day < 0 || self.endgame_day < 0 {
-            return Err("overlay days must be non-negative".into());
+        if self.start_day < 0
+            || self.buy_stop_day < 0
+            || self.endgame_day < 0
+            || self.pass_deposit_start_day < 0
+            || self.pass_deposit_min_qty < 0
+        {
+            return Err("overlay days and deposit quantity must be non-negative".into());
         }
         if self.sell_fraction_bp > 10_000 || self.endgame_sell_fraction_bp > 10_000 {
             return Err("overlay sell fractions must be in 0..=10000 basis points".into());
@@ -349,6 +360,47 @@ impl MarketOverlay {
                     remaining: 13,
                 });
                 action.market.extend(source.market.iter().skip(2).copied());
+            }
+        }
+        if self.pass_deposit_min_qty > 0 && day >= self.pass_deposit_start_day {
+            const SAFE: [Item; 7] = [
+                Item::Carrot,
+                Item::Tomato,
+                Item::Strawberry,
+                Item::Melon,
+                Item::Egg,
+                Item::Milk,
+                Item::Wool,
+            ];
+            for (operation, unit) in std::iter::once(&mut action.farmer)
+                .chain(action.hands.iter_mut())
+                .zip(farm.units.iter())
+            {
+                if *operation != UnitAction::Pass || !ACCESS.contains(&unit.pos) {
+                    continue;
+                }
+                let mut best: Option<(Item, i64, f64)> = None;
+                for item in SAFE {
+                    let quantity = unit.inventory.amounts[item.index()];
+                    if quantity < self.pass_deposit_min_qty {
+                        continue;
+                    }
+                    let quote = game.config.curves[item.index()]
+                        .price(game.market_inventory[item.index()]);
+                    let value = quantity as f64 * quote;
+                    if best.is_none_or(|(best_item, best_quantity, best_value)| {
+                        value > best_value
+                            || (value == best_value
+                                && (quantity > best_quantity
+                                    || (quantity == best_quantity
+                                        && item.index() > best_item.index())))
+                    }) {
+                        best = Some((item, quantity, value));
+                    }
+                }
+                if let Some((item, quantity, _)) = best {
+                    *operation = UnitAction::Place(item, quantity);
+                }
             }
         }
         let projected_shed = self.projected_shed(game, seat, &action);
@@ -695,6 +747,26 @@ mod tests {
         game.step([&out, &tape.seats[1][0]], false);
         assert_eq!(game.farms[0].shed[Item::Wheat.index()], 0);
         assert!(game.farms[0].money > cfg.starting_money);
+    }
+
+    #[test]
+    fn idle_access_unit_deposits_safe_product_but_preserves_wheat_and_motion() {
+        let cfg = Config::default();
+        let tape = Tape::from_json(&json!([[
+            {"farmer":["PASS"]}, {"farmer":["NORTH"]}
+        ],[{}]]))
+        .unwrap();
+        let mut game = Game::new(&cfg, 0, [0, 0]);
+        game.farms[0].units[0].inventory.add(Item::Wheat, 50);
+        game.farms[0].units[0].inventory.add(Item::Milk, 7);
+        let profile = MarketOverlay::from_json(&json!({
+            "enabled": true, "pass_deposit_min_qty": 5
+        }))
+        .unwrap();
+        let deposited = profile.apply(&game, 0, &tape.seats[0][0]);
+        assert_eq!(deposited.farmer, UnitAction::Place(Item::Milk, 7));
+        let moving = profile.apply(&game, 0, &tape.seats[0][1]);
+        assert_eq!(moving.farmer, UnitAction::Move(0, -1));
     }
 
     #[test]

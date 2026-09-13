@@ -14,12 +14,14 @@ PRODUCTS = ("WHEAT", "CARROT", "TOMATO", "STRAWBERRY", "MELON",
 BUY_OPS = {"HIRE", "BUY_LAND", "BUY_PRODUCT", "BUY_SEED", "BUY_ANIMAL"}
 ANIMALS = {"GOOSE", "COW", "SHEEP"}
 ACCESS = {(4, 4), (5, 4), (4, 5), (5, 5)}
+SAFE_DEPOSIT_PRODUCTS = ("CARROT", "TOMATO", "STRAWBERRY", "MELON", "EGG", "MILK", "WOOL")
 
 DEFAULT_PROFILE: dict[str, Any] = {
     "enabled": False, "start_day": 0, "buy_stop_day": 30,
     "endgame_day": 27, "cash_reserve": 0.0,
     "sell_fraction_bp": 10_000, "endgame_sell_fraction_bp": 10_000,
     "wheat_sell_multiplier_bp": 10_000,
+    "pass_deposit_start_day": 0, "pass_deposit_min_qty": 0,
     **{f"{p.lower()}_reserve": 0 for p in PRODUCTS},
     **{f"min_{p.lower()}_price": 0.0 for p in PRODUCTS},
 }
@@ -30,7 +32,8 @@ def validate_profile(raw: dict[str, Any]) -> dict[str, Any]:
     if unknown:
         raise ValueError(f"unknown overlay keys: {sorted(unknown)}")
     p = DEFAULT_PROFILE | raw
-    for key in ("start_day", "buy_stop_day", "endgame_day"):
+    for key in ("start_day", "buy_stop_day", "endgame_day",
+                "pass_deposit_start_day", "pass_deposit_min_qty"):
         if not isinstance(p[key], int) or isinstance(p[key], bool) or p[key] < 0:
             raise ValueError(f"{key} must be a non-negative integer")
     for key in ("sell_fraction_bp", "endgame_sell_fraction_bp"):
@@ -85,16 +88,35 @@ def project_premarket_shed(action: dict[str, Any], state: dict[str, Any]) -> dic
     return shed
 
 
+def _deposit_safe_products_on_pass(action: dict[str, Any], state: dict[str, Any],
+                                   minimum: int) -> None:
+    """Deposit one valuable non-input product without moving an idle unit."""
+    operations = [action.get("farmer", ["PASS"]), *action.get("hands", [])]
+    prices = state.get("prices", {})
+    for unit, operation in zip(state.get("units", []), operations):
+        if tuple(unit.get("pos", ())) not in ACCESS or operation != ["PASS"]:
+            continue
+        inventory = unit.get("inventory", {})
+        eligible = [(int(inventory.get(item, 0)), float(prices.get(item, 0)), item)
+                    for item in SAFE_DEPOSIT_PRODUCTS
+                    if int(inventory.get(item, 0)) >= minimum]
+        if eligible:
+            quantity, _price, item = max(eligible, key=lambda row: (row[0] * row[1], row[0], row[2]))
+            operation[:] = ["PLACE", item, quantity]
+
+
 def apply_market_overlay(action: dict[str, Any], state: dict[str, Any],
                          profile: dict[str, Any]) -> dict[str, Any]:
-    """Return a copied action with exactly the Rust overlay's market edits."""
+    """Return a copied action with exactly the Rust overlay's bounded edits."""
     p = validate_profile(profile)
     out = copy.deepcopy(action)
     day = int(state["day"])
     if not p["enabled"] or day < p["start_day"]:
         return out
+    if p["pass_deposit_min_qty"] and day >= p["pass_deposit_start_day"]:
+        _deposit_safe_products_on_pass(out, state, p["pass_deposit_min_qty"])
     fraction = p["endgame_sell_fraction_bp"] if day >= p["endgame_day"] else p["sell_fraction_bp"]
-    shed, prices = project_premarket_shed(action, state), state["prices"]
+    shed, prices = project_premarket_shed(out, state), state["prices"]
     money = float(state["money"])
     sale_budget = {
         product: max(0, int(shed.get(product, 0)) - p[f"{product.lower()}_reserve"])

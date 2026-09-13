@@ -54,6 +54,27 @@ def test_same_turn_drop_is_included_in_saleable_inventory():
     assert out["market"][0][2] == 8
 
 
+def test_idle_access_unit_deposits_safe_product_without_moving_or_spending_wheat():
+    action = {"farmer": ["PASS"], "hands": [], "market": []}
+    live = state(day=12)
+    live["units"] = [{"pos": [4, 4], "inventory": {"WHEAT": 50, "MILK": 7, "EGG": 9}}]
+    out = apply_market_overlay(action, live, {
+        "enabled": True, "pass_deposit_start_day": 10, "pass_deposit_min_qty": 5,
+    })
+    assert out["farmer"] == ["PLACE", "MILK", 7]
+    assert action["farmer"] == ["PASS"]
+
+
+def test_deposit_overlay_never_replaces_scheduled_unit_action():
+    action = {"farmer": ["NORTH"], "hands": [], "market": []}
+    live = state(day=12)
+    live["units"] = [{"pos": [4, 4], "inventory": {"MILK": 20}}]
+    out = apply_market_overlay(action, live, {
+        "enabled": True, "pass_deposit_min_qty": 1,
+    })
+    assert out["farmer"] == ["NORTH"]
+
+
 def test_pickup_reduces_inventory_available_to_market():
     action = {"farmer": ["PICKUP", "WHEAT", 5],
               "market": [["SELL", "WHEAT", 20]]}
