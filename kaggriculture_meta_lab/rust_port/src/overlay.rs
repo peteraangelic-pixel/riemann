@@ -18,7 +18,7 @@ pub struct MarketOverlay {
     pub endgame_sell_fraction_bp: u32,
     /// Scale requested wheat sales; projected live inventory remains a hard cap.
     pub wheat_sell_multiplier_bp: u32,
-    /// Replace only an idle PASS at an access tile with a bounded product deposit.
+    /// Replace only an idle PASS at an access tile with a thresholded safe-product deposit.
     /// Zero quantity disables this logistics overlay.
     pub pass_deposit_start_day: i64,
     pub pass_deposit_min_qty: i64,
