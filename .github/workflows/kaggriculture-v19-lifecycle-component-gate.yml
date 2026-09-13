@@ -1,0 +1,48 @@
+name: V19 TOP3000 lifecycle component gate
+on:
+  push:
+    branches: ["arena/01a087c0-riemann"]
+    paths: [".github/workflows/kaggriculture-v19-lifecycle-component-gate.yml"]
+permissions: {contents: write}
+jobs:
+  gate:
+    if: contains(github.event.head_commit.message, '[kg-v19-lifecycle]')
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr
+      - name: Extract exact newest TOP12
+        run: |
+          test "$(git rev-parse HEAD:TOP12.7z)" = 966c612018cd7ca7b3e124e319968687a86f73c4
+          python - <<'PY'
+          import json,pathlib,py7zr
+          with py7zr.SevenZipFile('TOP12.7z') as z:z.extractall('/tmp/newest')
+          r=[m.parent for m in pathlib.Path('/tmp/newest').rglob('manifest.json') if len(json.loads(m.read_text()).get('teams',[]))==12]
+          assert len(r)==1;pathlib.Path('/tmp/root').write_text(str(r[0]))
+          PY
+      - working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - name: Screen complete lifecycle phases
+        shell: bash
+        run: |
+          args=(--candidate v8=kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v8.py
+                --candidate v16=kaggriculture_meta_lab/seat_087c0/candidates/peer-v16-current-animal-crossover.py)
+          for f in kaggriculture_meta_lab/seat_087c0/candidates/lifecycle_v19/*.py; do
+            n="$(basename "$f" .py)"; args+=(--candidate "$n=$f")
+          done
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
+            --corpus "$(cat /tmp/root)" --workers 4 --seeds 1 --seed-start 199000 \
+            "${args[@]}" --output kaggriculture_meta_lab/seat_087c0/results/v19-lifecycle-component-screen.json
+      - name: Persist
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/seat_087c0/results/v19-lifecycle-component-screen.json
+          git commit -m "Record V19 lifecycle component screen"
+          git pull --rebase origin "${{ github.ref_name }}"
+          git push origin HEAD:${{ github.ref_name }}
