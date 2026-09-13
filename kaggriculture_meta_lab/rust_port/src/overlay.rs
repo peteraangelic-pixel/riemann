@@ -652,7 +652,8 @@ mod tests {
         game.farms[0].shed_total = 13;
         let profile = MarketOverlay::from_json(&json!({
             "enabled": true, "wheat_sell_multiplier_bp": 20000
-        })).unwrap();
+        }))
+        .unwrap();
         let out = profile.apply(&game, 0, &tape.seats[0][0]);
         assert_eq!(out.market[0].remaining, 13);
     }
