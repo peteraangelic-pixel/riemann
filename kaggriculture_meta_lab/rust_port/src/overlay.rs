@@ -385,8 +385,8 @@ impl MarketOverlay {
                     if quantity < self.pass_deposit_min_qty {
                         continue;
                     }
-                    let quote = game.config.curves[item.index()]
-                        .price(game.market_inventory[item.index()]);
+                    let quote =
+                        game.config.curves[item.index()].price(game.market_inventory[item.index()]);
                     let value = quantity as f64 * quote;
                     if best.is_none_or(|(best_item, best_quantity, best_value)| {
                         value > best_value
