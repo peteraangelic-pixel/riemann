@@ -1,0 +1,49 @@
+name: Kaggriculture V29 unit imitation gate
+on:
+  push:
+    branches: ["arena/01a0712c-riemann"]
+    paths: [".github/workflows/kaggriculture-v29-unit-imitation.yml"]
+permissions: {contents: write}
+jobs:
+  gate:
+    if: contains(github.event.head_commit.message, '[kg-v29-imitation]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install --disable-pip-version-check --upgrade kaggle kaggle-environments py7zr
+      - env: {KAGGLE_API_TOKEN: "${{ secrets.KAGGLE_API_TOKEN }}"}
+        run: |
+          mkdir -p ~/.kaggle /tmp/live
+          printf '%s' "$KAGGLE_API_TOKEN" | tr -d '[:space:]' > ~/.kaggle/access_token
+          chmod 600 ~/.kaggle/access_token
+          for sid in 56183278 56142365; do
+            mkdir -p "/tmp/live/$sid"
+            kaggle competitions episodes "$sid" -v > "/tmp/e-$sid"
+            grep -Eo '^[[:space:]]*[0-9]{6,}' "/tmp/e-$sid" | tr -d ' ' | head -12 > "/tmp/i-$sid"
+            while read -r eid; do kaggle competitions replay "$eid" -p "/tmp/live/$sid"; done < "/tmp/i-$sid"
+          done
+      - run: |
+          python - <<'PY'
+          import json,pathlib,py7zr
+          with py7zr.SevenZipFile('TOP12.7z') as archive: archive.extractall('/tmp/top12')
+          roots=[m.parent for m in pathlib.Path('/tmp/top12').rglob('manifest.json')
+                 if len(json.loads(m.read_text(encoding='utf-8-sig')).get('teams',[]))==12]
+          assert len(roots)==1,roots
+          pathlib.Path('/tmp/top12-root').write_text(str(roots[0]))
+          PY
+      - run: |
+          python kaggriculture_meta_lab/scripts/gate_v28_state_imitation.py \
+            --candidate kaggriculture_meta_lab/agents/candidates/agent_v29_unit_imitation.py \
+            --live /tmp/live --corpus "$(cat /tmp/top12-root)" --workers 4 \
+            --output kaggriculture_meta_lab/results/v29-unit-imitation-gate-20260913.json
+      - run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/results/v29-unit-imitation-gate-20260913.json
+          git commit -m 'Record V29 unit imitation gate'
+          git pull --rebase origin arena/01a0712c-riemann
+          git push origin HEAD:arena/01a0712c-riemann
