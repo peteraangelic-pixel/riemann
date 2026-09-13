@@ -57,8 +57,18 @@ rekonstrukcji funkcji polityki z wielu pełnych trajektorii lidera 3208.3:
 - zachowuje neutralną nazwę i nie zawiera nazw graczy;
 - jest testowany fail-closed przeciw exact-live, aktualnemu TOP12, G2 i V2.
 
-To nadal eksperyment: najbliższy sąsiad może nie generalizować poza cztery
-trajektorie. Jego wartość polega na przetestowaniu kompletnej reaktywnej
-rekonstrukcji zamiast kolejnej ręcznej poprawki V2. Wynik bramki zdecyduje, czy
-rozszerzyć demonstracje i przejść do osobnych modeli jednostek/rynku, czy odrzucić
-tę reprezentację.
+## Wynik V28
+
+Bramka 208 gier zakończyła się bez błędów wykonania, ale odrzuciła reprezentację
+pełnej akcji przez najbliższy stan. V28 uzyskał 26–78 (25.0%), podczas gdy V2 na
+identycznym panelu uzyskał 62–26–16 (67.3%). Średnia nagroda V28 była niższa o
+13 212, a marża o 21 554. Rozbicie V28: TOP12 12/24, G2 4/16, exact-live V2
+2/24, exact-live V17 4/24 i bezpośrednio z V2 4/16.
+
+Wniosek jest konkretny: wybór całego wektora akcji z jednej demonstracji nadal
+miesza role pracowników i zakupy zależne od innej historii, mimo dopasowania
+stanu. Nie należy zwiększać liczby sąsiadów ani stroić wag tego modelu. Następna
+rekonstrukcja musi rozdzielić: (1) zadanie każdej jednostki z legalnością lokalną,
+(2) globalny docelowy skład farmy oraz (3) sekwencyjny budżet rynku. Demonstracje
+3000+ pozostają etykietami dla tych trzech decyzji, a nie gotowymi pełnymi
+akcjami do kopiowania.
