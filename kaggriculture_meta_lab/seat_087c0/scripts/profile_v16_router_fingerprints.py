@@ -56,7 +56,9 @@ def main():
      if s in (24,72,144,240,360,400): snaps[s]=features(obs,seat)
      return cand(obs,cfg)
     agents=[rec,opp] if seat==0 else [opp,rec]
-    env=make('kaggriculture',configuration={'episodeSteps':720,'seed':seed},debug=False);env.run(agents)
+    # Classification is frozen at step 400; simulating the remaining 319 turns
+    # adds no information and made the Python profiling workflow time out.
+    env=make('kaggriculture',configuration={'episodeSteps':401,'seed':seed},debug=False);env.run(agents)
     rows.append({'team':m['team'],'episode_id':m['episode_id'],'seed':seed,'seat':seat,'v16_beneficial':labels.get(m['team'],False),'gate_mean_delta':statistics.mean(delta[m['team']]),'snapshots':snaps})
  # Exact one-feature threshold screen, evaluated leave-one-episode-out later by the next gate.
  screen=[]

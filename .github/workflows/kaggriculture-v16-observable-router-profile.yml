@@ -31,7 +31,7 @@ jobs:
           python kaggriculture_meta_lab/seat_087c0/scripts/profile_v16_router_fingerprints.py \
             --corpus "$(cat /tmp/root)" \
             --gate kaggriculture_meta_lab/seat_087c0/results/peer-v16-newest-top12-gate.json \
-            --seeds 2 --output kaggriculture_meta_lab/seat_087c0/results/v16-observable-router-fingerprints.json
+            --seeds 1 --output kaggriculture_meta_lab/seat_087c0/results/v16-observable-router-fingerprints.json
       - name: Persist result
         run: |
           git config user.name github-actions[bot]
