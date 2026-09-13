@@ -71,3 +71,24 @@ V23 zwiększa średnią nagrodę aktualnego TOP12 o 924 i marżę o 1106, ale ni
 ## Wniosek
 
 Nie wysyłać V18–V22. V23 zachować jako punkt startowy, ale nie przedstawiać jako przełomu. Następna wersja musi zwiększyć skalę ekonomii lub dynamicznie zarządzać sprzedażą na podstawie rzeczywistego stanu magazynu/cen; kolejny statyczny crossover nie wystarczy.
+
+## V24–V25: reaktywna warstwa rynku (2026-09-13)
+
+Przeszukanie 1000 szerokich profili V24 wykazało, że samo wstrzymywanie sprzedaży,
+rezerwy i progi cenowe niszczą finansowanie taśmy V2. Każdy nieidentyczny finalista
+przegrał wszystkie 24 gry live holdoutu; kontrola V2 uzyskała 16/24.
+
+V25 rozszerzył Rust/Python overlay o bezpieczny, zależny od stanu mnożnik sprzedaży
+WHEAT: żądanie można zwiększyć, ale jest ono zawsze ograniczone zapasem w szopie
+po projekcji operacji DROP/PLACE/PICKUP z tego samego kroku. Przeszukano 1000
+kombinacji dnia startu, mnożnika, rezerwy i minimalnej ceny. Najlepsze profile nie
+zmieniły żadnego wyniku: 16/24 live i 126/216 na TOP12 przy rzeczywistych seedach.
+Różnice nagrody były śladowe (rzędu kilku punktów na około 100 tys.), więc V25 nie
+jest kandydatem do wysłania.
+
+Ważna korekta metodologiczna: wcześniejszy raport V23 mierzył TOP12 na jednym
+sztucznym seedzie 198000. V24/V25 zachowują seedy rekordów z korpusu; na tym
+ostrzejszym wariancie bazowy V2 ma 126/216, a nie 156/216. V23 pozostaje małym
+wynikiem laboratoryjnym, ale jego +4 wygrane nie są dowodem transferu i nie
+uzasadniają zgłoszenia. Dalsza praca nie powinna stroić samej sprzedaży WHEAT;
+potrzebny jest reaktywny plan jednostek/produkcji oraz wieloseedowa walidacja.
