@@ -2,7 +2,9 @@ name: V19 TOP3000 lifecycle component gate
 on:
   push:
     branches: ["arena/01a087c0-riemann"]
-    paths: [".github/workflows/kaggriculture-v19-lifecycle-component-gate.yml"]
+    paths:
+      - ".github/workflows/kaggriculture-v19-lifecycle-component-gate.yml"
+      - "kaggriculture_meta_lab/seat_087c0/candidates/lifecycle_v19/**"
 permissions: {contents: write}
 jobs:
   gate:
