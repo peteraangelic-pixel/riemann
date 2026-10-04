@@ -1,0 +1,51 @@
+name: New TOP50 meta audit
+on:
+  push:
+    branches: ["arena/01a087c0-riemann"]
+    paths: [".github/workflows/kaggriculture-top50-new-meta-audit.yml"]
+permissions: {contents: write}
+jobs:
+  audit:
+    if: contains(github.event.head_commit.message, '[kg-top50]')
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pip install --disable-pip-version-check py7zr
+      - name: Extract and inspect exact archive
+        run: |
+          test "$(git rev-parse HEAD:TOP50.7z)" = 33ef6f00f947ecb72f605d206701cda6ea3d4069
+          python - <<'PY'
+          import json,pathlib,py7zr
+          with py7zr.SevenZipFile('TOP50.7z') as z:z.extractall('/tmp/top50')
+          found=[]
+          for m in pathlib.Path('/tmp/top50').rglob('manifest.json'):
+            d=json.loads(m.read_text());found.append((len(d.get('teams',[])),m,d))
+          assert found, 'no manifest';found.sort(reverse=True,key=lambda x:x[0]);n,m,d=found[0]
+          pathlib.Path('/tmp/root').write_text(str(m.parent));pathlib.Path('/tmp/count').write_text(str(n))
+          pathlib.Path('kaggriculture_meta_lab/seat_087c0/results/top50-manifest-summary.json').write_text(json.dumps({'archive_blob':'33ef6f00f947ecb72f605d206701cda6ea3d4069','teams':n,'manifest':d},ensure_ascii=False,indent=2))
+          print('teams',n,'root',m.parent)
+          PY
+      - working-directory: kaggriculture_meta_lab/rust_port
+        run: cargo build --release --locked
+      - name: Fresh matched champion baseline
+        run: |
+          n=$(cat /tmp/count); test "$n" -le 50
+          python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
+            --corpus "$(cat /tmp/root)" --max-rank "$n" --workers 4 --seeds 2 --seed-start 200000 \
+            --candidate v8=kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v8.py \
+            --candidate v10=kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v10.py \
+            --candidate peer_v16=kaggriculture_meta_lab/seat_087c0/candidates/peer-v16-current-animal-crossover.py \
+            --output kaggriculture_meta_lab/seat_087c0/results/top50-new-meta-baseline.json
+      - name: Persist
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/seat_087c0/results/top50-*.json
+          git commit -m "Record new TOP50 meta baseline"
+          git pull --rebase origin "${{ github.ref_name }}"
+          git push origin HEAD:${{ github.ref_name }}

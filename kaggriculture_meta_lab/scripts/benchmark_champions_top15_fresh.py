@@ -12,7 +12,7 @@ def stat(rows):
  n=len(rows);w=sum(r['margin']>0 for r in rows);l=sum(r['margin']<0 for r in rows);t=n-w-l
  return {'games':n,'wins':w,'losses':l,'ties':t,'score_rate':(w+.5*t)/n,'mean_margin':statistics.mean(r['margin'] for r in rows),'mean_candidate_reward':statistics.mean(r['self_reward'] for r in rows),'mean_tape_reward':statistics.mean(r['opp_reward'] for r in rows),'errors':sum(bool(r.get('error')) for r in rows)}
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--corpus',type=Path,required=True);ap.add_argument('--output',type=Path,required=True);ap.add_argument('--workers',type=int,default=4);ap.add_argument('--seeds',type=int,default=8);ap.add_argument('--seed-start',type=int,default=101000);ap.add_argument('--candidate',action='append',metavar='NAME=PATH',help='repeat to replace the default champion set');a=ap.parse_args()
+ ap=argparse.ArgumentParser();ap.add_argument('--corpus',type=Path,required=True);ap.add_argument('--output',type=Path,required=True);ap.add_argument('--workers',type=int,default=4);ap.add_argument('--seeds',type=int,default=8);ap.add_argument('--seed-start',type=int,default=101000);ap.add_argument('--max-rank',type=int,default=15);ap.add_argument('--candidate',action='append',metavar='NAME=PATH',help='repeat to replace the default champion set');a=ap.parse_args()
  candidates={'v16':ROOT/'agents/variants/agent_v16_kanno_top7_champion.py','v3':ROOT/'agents/candidates/top7_kanno_ep107381285_v3_sibling.py','v4':ROOT/'agents/candidates/peer_v4_german9_kanno_v3.py','v5':ROOT/'agents/candidates/peer_v5_evolved.py'}
  if a.candidate:
   candidates={}
@@ -21,7 +21,7 @@ def main():
    if not sep or not name or not path:ap.error('--candidate must be NAME=PATH')
    candidates[name]=Path(path).resolve()
  template_path=next(iter(candidates.values()))
- template,meta=build_top30_jobs(a.corpus.resolve(),template_path.resolve(),15);records=[]
+ template,meta=build_top30_jobs(a.corpus.resolve(),template_path.resolve(),a.max_rank);records=[]
  for i in range(0,len(template),2):records.append((template[i][2],meta[i]))
  jobs=[];labels=[]
  for cname,cpath in candidates.items():
