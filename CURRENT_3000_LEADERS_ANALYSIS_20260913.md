@@ -92,3 +92,20 @@ wcześniejszy V23: jedyny eksperymentalny wariant, który nie zmienił wyników 
 i miał małą dodatnią zmianę w pierwotnym TOP12. Nie jest to jednak potwierdzony
 następca V2 ani kandydat z wiarygodną ścieżką 3000+; pakiet nie został automatycznie
 wysłany i nie powinien zastępować aktywnego V2 bez świadomej decyzji użytkownika.
+
+## Odświeżenie TOP50 z 4 października 2026
+
+Nowy korpus zmienia próg strukturalny: aktualne wyniki najlepszych aktywnych
+zgłoszeń mieszczą się między 3132.7 a 2827.8, a dwaj liderzy nadal przekraczają
+3000. Około dnia 10 polityki z czołówki mają już zwykle 12 pomocników, wszystkie
+cztery ćwiartki, 68–73 upraw i 20–22 zwierzęta. Najsilniejsze kończą na około
+116–126 tys. nagrody. Trzy ćwiartki i około 54 upraw V2 odpowiadają obecnie raczej
+dolnej granicy TOP12 niż architekturze lidera.
+
+Dlatego następny ekran obejmuje wszystkie 108 nowych pełnych przebiegów jako
+potencjalnych rodziców strukturalnych, ale sprawdza je na niezależnych seedach i
+bramkuje przeciw całemu nowemu korpusowi, exact-live, G2 oraz V2. Szczegółowy,
+wersjonowany plan i kryteria fail-closed zapisano w
+`kaggriculture_meta_lab/docs/V31_REFRESHED_TOP12_PLAN_20261004.md`. Wynik tego
+ekranu nie zostanie zgłoszony, jeżeli nie pokona jawnej kontroli V2; replay ma
+wyznaczyć spójną architekturę, a nie wrócić do odrzuconego nearest-state imitation.
