@@ -38,7 +38,6 @@ jobs:
           python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
             --corpus "$(cat /tmp/root)" --max-rank "$n" --workers 4 --seeds 2 --seed-start 200000 \
             --candidate v8=kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v8.py \
-            --candidate v10=kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v10.py \
             --candidate peer_v16=kaggriculture_meta_lab/seat_087c0/candidates/peer-v16-current-animal-crossover.py \
             --output kaggriculture_meta_lab/seat_087c0/results/top50-new-meta-baseline.json
       - name: Persist
