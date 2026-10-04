@@ -1,0 +1,41 @@
+name: New TOP12 lifecycle and seat profile
+on:
+  push:
+    branches: ["arena/01a087c0-riemann"]
+    paths: [".github/workflows/kaggriculture-new-top12-lifecycle-profile.yml"]
+permissions: {contents: write}
+jobs:
+  profile:
+    if: contains(github.event.head_commit.message, '[kg-newtop12-profile]')
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: "3.12"}
+      - run: pip install --disable-pip-version-check py7zr
+      - name: Extract exact new TOP12
+        run: |
+          test "$(git rev-parse HEAD:TOP50.7z)" = 33ef6f00f947ecb72f605d206701cda6ea3d4069
+          python - <<'PY'
+          import json,pathlib,py7zr
+          with py7zr.SevenZipFile('TOP50.7z') as z:z.extractall('/tmp/newtop12')
+          found=[]
+          for m in pathlib.Path('/tmp/newtop12').rglob('manifest.json'):
+            d=json.loads(m.read_text());
+            if len(d.get('teams',[]))==12:found.append(m.parent)
+          assert len(found)==1,found;pathlib.Path('/tmp/root').write_text(str(found[0]))
+          PY
+      - name: Profile all teams, seats and lifecycle actions
+        run: |
+          python kaggriculture_meta_lab/seat_087c0/scripts/profile_replay_strategies.py "$(cat /tmp/root)" \
+            --min-score 0 --output kaggriculture_meta_lab/seat_087c0/results/new-top12-lifecycle-profile.json
+      - name: Persist
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add kaggriculture_meta_lab/seat_087c0/results/new-top12-lifecycle-profile.json
+          git commit -m "Record new TOP12 lifecycle and seat profile"
+          git pull --rebase origin "${{ github.ref_name }}"
+          git push origin HEAD:${{ github.ref_name }}

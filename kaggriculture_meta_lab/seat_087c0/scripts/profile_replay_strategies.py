@@ -32,18 +32,24 @@ def main():
                 names=(d.get('info') or {}).get('TeamNames',[])
                 seat=next((i for i,n in enumerate(names) if n==man['team_name']),None)
             if seat is None: continue
-            counts=collections.Counter(); first={}; last={}; by_day=collections.Counter()
+            counts=collections.Counter(); first={}; last={}; by_day=collections.Counter(); by_phase=collections.Counter()
+            starting_cash=None
             for t,step in enumerate(d.get('steps',[])):
                 if seat>=len(step): continue
                 obs=step[seat].get('observation') or {}; day=int(obs.get('day',t//24)); hour=int(obs.get('hour',t%24))
+                if starting_cash is None:
+                    farms=obs.get('farms') or []
+                    if seat<len(farms) and isinstance(farms[seat],dict): starting_cash=farms[seat].get('money')
+                phase='opening' if day<=5 else ('production' if day<=22 else 'endgame')
                 for cmd in flat(step[seat].get('action')):
                     head=cmd.split()[0] if cmd else ''
-                    counts[head]+=1; by_day[f'{day}:{head}']+=1
+                    counts[head]+=1; by_day[f'{day}:{head}']+=1; by_phase[f'{phase}:{head}']+=1
                     first.setdefault(head,{'t':t,'day':day,'hour':hour,'cmd':cmd}); last[head]={'t':t,'day':day,'hour':hour,'cmd':cmd}
                     for p in PRODUCTS:
-                        if p in cmd: counts[f'{head}_{p}']+=1
-            team['episodes'].append({'episode_id':eid,'seat':seat,'reward':meta.get('reward'),'opponent':meta.get('opponent_team_name'),
-              'counts':dict(counts),'first':first,'last':last,'by_day':dict(by_day)})
+                        if p in cmd:
+                            counts[f'{head}_{p}']+=1;by_phase[f'{phase}:{head}_{p}']+=1
+            team['episodes'].append({'episode_id':eid,'seat':seat,'starting_cash':starting_cash,'reward':meta.get('reward'),'opponent':meta.get('opponent_team_name'),
+              'counts':dict(counts),'first':first,'last':last,'by_day':dict(by_day),'by_phase':dict(by_phase)})
         # Aggregate medians/min/max are left transparent as per-episode values plus totals.
         totals=collections.Counter()
         for e in team['episodes']: totals.update(e['counts'])
