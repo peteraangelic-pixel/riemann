@@ -33,18 +33,30 @@ jobs:
       - working-directory: kaggriculture_meta_lab/rust_port
         run: cargo build --release --locked
       - name: Fresh matched champion baseline
+        id: baseline
+        continue-on-error: true
         run: |
           n=$(cat /tmp/count); test "$n" -le 50
+          set +e
           python kaggriculture_meta_lab/scripts/benchmark_champions_top15_fresh.py \
             --corpus "$(cat /tmp/root)" --max-rank "$n" --workers 4 --seeds 2 --seed-start 200000 \
             --candidate v8=kaggriculture_meta_lab/seat_087c0/agents/champion_tape_v8.py \
             --candidate peer_v16=kaggriculture_meta_lab/seat_087c0/candidates/peer-v16-current-animal-crossover.py \
-            --output kaggriculture_meta_lab/seat_087c0/results/top50-new-meta-baseline.json
-      - name: Persist
+            --output kaggriculture_meta_lab/seat_087c0/results/top50-new-meta-baseline.json \
+            > kaggriculture_meta_lab/seat_087c0/results/top50-baseline.log 2>&1
+          rc=$?
+          echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
+          cat kaggriculture_meta_lab/seat_087c0/results/top50-baseline.log
+          exit "$rc"
+      - name: Persist diagnostics and result
+        if: always()
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add kaggriculture_meta_lab/seat_087c0/results/top50-*.json
-          git commit -m "Record new TOP50 meta baseline"
+          git add kaggriculture_meta_lab/seat_087c0/results/top50-* || true
+          git commit -m "Record new TOP50 meta baseline diagnostics" || true
           git pull --rebase origin "${{ github.ref_name }}"
           git push origin HEAD:${{ github.ref_name }}
+      - name: Fail after preserving diagnostics
+        if: steps.baseline.outcome == 'failure'
+        run: exit 1
