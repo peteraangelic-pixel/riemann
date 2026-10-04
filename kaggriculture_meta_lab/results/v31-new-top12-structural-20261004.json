@@ -1,0 +1,2347 @@
+{
+  "format": "v31-new-top12-structural-search-v1",
+  "donors": 108,
+  "train_jobs": 5184,
+  "holdout_jobs": 4144,
+  "finalists": [
+    {
+      "source_index": 70,
+      "candidate_id": "p070",
+      "train": {
+        "games": 48,
+        "wins": 46,
+        "losses": 2,
+        "ties": 0,
+        "mean_reward": 94663.91666666667,
+        "mean_margin": 25473.25,
+        "groups": {
+          "train": {
+            "games": 48,
+            "wins": 46,
+            "losses": 2,
+            "ties": 0,
+            "mean_reward": 94663.91666666667,
+            "mean_margin": 25473.25
+          }
+        }
+      },
+      "holdout": {
+        "games": 296,
+        "wins": 164,
+        "losses": 130,
+        "ties": 2,
+        "mean_reward": 106339.11824324324,
+        "mean_margin": 6337.4324324324325,
+        "groups": {
+          "g2": {
+            "games": 16,
+            "wins": 16,
+            "losses": 0,
+            "ties": 0,
+            "mean_reward": 105672.5625,
+            "mean_margin": 12588.8125
+          },
+          "live-56142365": {
+            "games": 24,
+            "wins": 18,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 106365.33333333333,
+            "mean_margin": 11429.625
+          },
+          "live-56183278": {
+            "games": 24,
+            "wins": 16,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 100701.04166666667,
+            "mean_margin": 4977.625
+          },
+          "rank01": {
+            "games": 18,
+            "wins": 12,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 110498.66666666667,
+            "mean_margin": 7331.944444444444
+          },
+          "rank02": {
+            "games": 18,
+            "wins": 8,
+            "losses": 10,
+            "ties": 0,
+            "mean_reward": 107398.5,
+            "mean_margin": 6796.0
+          },
+          "rank03": {
+            "games": 18,
+            "wins": 12,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 125090.88888888889,
+            "mean_margin": 24799.333333333332
+          },
+          "rank04": {
+            "games": 18,
+            "wins": 14,
+            "losses": 4,
+            "ties": 0,
+            "mean_reward": 109158.38888888889,
+            "mean_margin": 23270.666666666668
+          },
+          "rank05": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 95861.27777777778,
+            "mean_margin": -12082.0
+          },
+          "rank06": {
+            "games": 18,
+            "wins": 4,
+            "losses": 14,
+            "ties": 0,
+            "mean_reward": 91093.0,
+            "mean_margin": -20592.722222222223
+          },
+          "rank07": {
+            "games": 18,
+            "wins": 16,
+            "losses": 2,
+            "ties": 0,
+            "mean_reward": 116468.0,
+            "mean_margin": 40732.555555555555
+          },
+          "rank08": {
+            "games": 18,
+            "wins": 8,
+            "losses": 8,
+            "ties": 2,
+            "mean_reward": 112096.05555555556,
+            "mean_margin": 16696.38888888889
+          },
+          "rank09": {
+            "games": 18,
+            "wins": 4,
+            "losses": 14,
+            "ties": 0,
+            "mean_reward": 96254.05555555556,
+            "mean_margin": -12921.888888888889
+          },
+          "rank10": {
+            "games": 18,
+            "wins": 8,
+            "losses": 10,
+            "ties": 0,
+            "mean_reward": 119445.44444444444,
+            "mean_margin": 9578.888888888889
+          },
+          "rank11": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 111102.88888888889,
+            "mean_margin": -2155.3333333333335
+          },
+          "rank12": {
+            "games": 18,
+            "wins": 0,
+            "losses": 18,
+            "ties": 0,
+            "mean_reward": 95492.0,
+            "mean_margin": -21650.166666666668
+          },
+          "v2": {
+            "games": 16,
+            "wins": 16,
+            "losses": 0,
+            "ties": 0,
+            "mean_reward": 99797.5,
+            "mean_margin": 12763.6875
+          }
+        }
+      }
+    },
+    {
+      "source_index": 105,
+      "candidate_id": "p105",
+      "train": {
+        "games": 48,
+        "wins": 44,
+        "losses": 4,
+        "ties": 0,
+        "mean_reward": 99326.04166666667,
+        "mean_margin": 21192.875,
+        "groups": {
+          "train": {
+            "games": 48,
+            "wins": 44,
+            "losses": 4,
+            "ties": 0,
+            "mean_reward": 99326.04166666667,
+            "mean_margin": 21192.875
+          }
+        }
+      },
+      "holdout": {
+        "games": 296,
+        "wins": 111,
+        "losses": 183,
+        "ties": 2,
+        "mean_reward": 103342.72297297297,
+        "mean_margin": -10383.141891891892,
+        "groups": {
+          "g2": {
+            "games": 16,
+            "wins": 0,
+            "losses": 16,
+            "ties": 0,
+            "mean_reward": 57320.1875,
+            "mean_margin": -77809.4375
+          },
+          "live-56142365": {
+            "games": 24,
+            "wins": 8,
+            "losses": 16,
+            "ties": 0,
+            "mean_reward": 87762.95833333333,
+            "mean_margin": -20849.083333333332
+          },
+          "live-56183278": {
+            "games": 24,
+            "wins": 9,
+            "losses": 15,
+            "ties": 0,
+            "mean_reward": 101121.625,
+            "mean_margin": -20322.083333333332
+          },
+          "rank01": {
+            "games": 18,
+            "wins": 8,
+            "losses": 10,
+            "ties": 0,
+            "mean_reward": 104074.55555555556,
+            "mean_margin": 1032.6666666666667
+          },
+          "rank02": {
+            "games": 18,
+            "wins": 8,
+            "losses": 10,
+            "ties": 0,
+            "mean_reward": 114023.94444444444,
+            "mean_margin": 8993.944444444445
+          },
+          "rank03": {
+            "games": 18,
+            "wins": 12,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 111615.66666666667,
+            "mean_margin": 10745.777777777777
+          },
+          "rank04": {
+            "games": 18,
+            "wins": 12,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 106070.55555555556,
+            "mean_margin": 23704.5
+          },
+          "rank05": {
+            "games": 18,
+            "wins": 4,
+            "losses": 14,
+            "ties": 0,
+            "mean_reward": 109913.33333333333,
+            "mean_margin": -14043.222222222223
+          },
+          "rank06": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 105596.11111111111,
+            "mean_margin": -13376.722222222223
+          },
+          "rank07": {
+            "games": 18,
+            "wins": 10,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 112789.88888888889,
+            "mean_margin": -112.72222222222223
+          },
+          "rank08": {
+            "games": 18,
+            "wins": 12,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 117495.05555555556,
+            "mean_margin": 24928.11111111111
+          },
+          "rank09": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 119980.5,
+            "mean_margin": -15010.333333333334
+          },
+          "rank10": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 106619.16666666667,
+            "mean_margin": -5312.222222222223
+          },
+          "rank11": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 104837.94444444444,
+            "mean_margin": -6220.833333333333
+          },
+          "rank12": {
+            "games": 18,
+            "wins": 4,
+            "losses": 12,
+            "ties": 2,
+            "mean_reward": 114803.27777777778,
+            "mean_margin": -8883.611111111111
+          },
+          "v2": {
+            "games": 16,
+            "wins": 0,
+            "losses": 16,
+            "ties": 0,
+            "mean_reward": 77395.8125,
+            "mean_margin": -59772.9375
+          }
+        }
+      }
+    },
+    {
+      "source_index": 97,
+      "candidate_id": "p097",
+      "train": {
+        "games": 48,
+        "wins": 44,
+        "losses": 4,
+        "ties": 0,
+        "mean_reward": 96560.0,
+        "mean_margin": 21451.395833333332,
+        "groups": {
+          "train": {
+            "games": 48,
+            "wins": 44,
+            "losses": 4,
+            "ties": 0,
+            "mean_reward": 96560.0,
+            "mean_margin": 21451.395833333332
+          }
+        }
+      },
+      "holdout": {
+        "games": 296,
+        "wins": 155,
+        "losses": 139,
+        "ties": 2,
+        "mean_reward": 105017.31418918919,
+        "mean_margin": 3433.070945945946,
+        "groups": {
+          "g2": {
+            "games": 16,
+            "wins": 16,
+            "losses": 0,
+            "ties": 0,
+            "mean_reward": 106466.875,
+            "mean_margin": 16731.375
+          },
+          "live-56142365": {
+            "games": 24,
+            "wins": 18,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 108996.375,
+            "mean_margin": 15961.625
+          },
+          "live-56183278": {
+            "games": 24,
+            "wins": 22,
+            "losses": 2,
+            "ties": 0,
+            "mean_reward": 103444.79166666667,
+            "mean_margin": 17696.0
+          },
+          "rank01": {
+            "games": 18,
+            "wins": 7,
+            "losses": 11,
+            "ties": 0,
+            "mean_reward": 109557.55555555556,
+            "mean_margin": -7600.166666666667
+          },
+          "rank02": {
+            "games": 18,
+            "wins": 8,
+            "losses": 10,
+            "ties": 0,
+            "mean_reward": 98516.11111111111,
+            "mean_margin": -9260.388888888889
+          },
+          "rank03": {
+            "games": 18,
+            "wins": 9,
+            "losses": 9,
+            "ties": 0,
+            "mean_reward": 112783.77777777778,
+            "mean_margin": 8398.444444444445
+          },
+          "rank04": {
+            "games": 18,
+            "wins": 7,
+            "losses": 11,
+            "ties": 0,
+            "mean_reward": 104752.94444444444,
+            "mean_margin": 8329.611111111111
+          },
+          "rank05": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 91957.88888888889,
+            "mean_margin": -6901.5
+          },
+          "rank06": {
+            "games": 18,
+            "wins": 4,
+            "losses": 14,
+            "ties": 0,
+            "mean_reward": 91264.77777777778,
+            "mean_margin": -15816.555555555555
+          },
+          "rank07": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 111447.33333333333,
+            "mean_margin": 5771.777777777777
+          },
+          "rank08": {
+            "games": 18,
+            "wins": 10,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 103007.61111111111,
+            "mean_margin": 2377.1666666666665
+          },
+          "rank09": {
+            "games": 18,
+            "wins": 4,
+            "losses": 14,
+            "ties": 0,
+            "mean_reward": 106670.72222222222,
+            "mean_margin": -10076.5
+          },
+          "rank10": {
+            "games": 18,
+            "wins": 12,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 117371.27777777778,
+            "mean_margin": 22809.833333333332
+          },
+          "rank11": {
+            "games": 18,
+            "wins": 4,
+            "losses": 12,
+            "ties": 2,
+            "mean_reward": 106727.61111111111,
+            "mean_margin": -1107.1666666666667
+          },
+          "rank12": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 101698.61111111111,
+            "mean_margin": -13767.333333333334
+          },
+          "v2": {
+            "games": 16,
+            "wins": 16,
+            "losses": 0,
+            "ties": 0,
+            "mean_reward": 104965.9375,
+            "mean_margin": 15242.125
+          }
+        }
+      }
+    },
+    {
+      "source_index": 37,
+      "candidate_id": "p037",
+      "train": {
+        "games": 48,
+        "wins": 44,
+        "losses": 4,
+        "ties": 0,
+        "mean_reward": 96527.52083333333,
+        "mean_margin": 22566.9375,
+        "groups": {
+          "train": {
+            "games": 48,
+            "wins": 44,
+            "losses": 4,
+            "ties": 0,
+            "mean_reward": 96527.52083333333,
+            "mean_margin": 22566.9375
+          }
+        }
+      },
+      "holdout": {
+        "games": 296,
+        "wins": 175,
+        "losses": 121,
+        "ties": 0,
+        "mean_reward": 104880.66554054055,
+        "mean_margin": 14903.233108108108,
+        "groups": {
+          "g2": {
+            "games": 16,
+            "wins": 14,
+            "losses": 2,
+            "ties": 0,
+            "mean_reward": 102826.25,
+            "mean_margin": 21281.0625
+          },
+          "live-56142365": {
+            "games": 24,
+            "wins": 15,
+            "losses": 9,
+            "ties": 0,
+            "mean_reward": 103315.58333333333,
+            "mean_margin": 4193.458333333333
+          },
+          "live-56183278": {
+            "games": 24,
+            "wins": 18,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 100395.70833333333,
+            "mean_margin": 16265.916666666666
+          },
+          "rank01": {
+            "games": 18,
+            "wins": 4,
+            "losses": 14,
+            "ties": 0,
+            "mean_reward": 99790.72222222222,
+            "mean_margin": -7436.222222222223
+          },
+          "rank02": {
+            "games": 18,
+            "wins": 8,
+            "losses": 10,
+            "ties": 0,
+            "mean_reward": 106838.94444444444,
+            "mean_margin": 12051.666666666666
+          },
+          "rank03": {
+            "games": 18,
+            "wins": 17,
+            "losses": 1,
+            "ties": 0,
+            "mean_reward": 122310.38888888889,
+            "mean_margin": 53876.166666666664
+          },
+          "rank04": {
+            "games": 18,
+            "wins": 18,
+            "losses": 0,
+            "ties": 0,
+            "mean_reward": 129360.44444444444,
+            "mean_margin": 71882.0
+          },
+          "rank05": {
+            "games": 18,
+            "wins": 10,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 98949.44444444444,
+            "mean_margin": 10243.055555555555
+          },
+          "rank06": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 89487.05555555556,
+            "mean_margin": -5768.166666666667
+          },
+          "rank07": {
+            "games": 18,
+            "wins": 16,
+            "losses": 2,
+            "ties": 0,
+            "mean_reward": 115648.27777777778,
+            "mean_margin": 25578.666666666668
+          },
+          "rank08": {
+            "games": 18,
+            "wins": 10,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 98772.66666666667,
+            "mean_margin": 2591.8333333333335
+          },
+          "rank09": {
+            "games": 18,
+            "wins": 11,
+            "losses": 7,
+            "ties": 0,
+            "mean_reward": 100944.16666666667,
+            "mean_margin": 28372.11111111111
+          },
+          "rank10": {
+            "games": 18,
+            "wins": 10,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 105847.5,
+            "mean_margin": 12872.222222222223
+          },
+          "rank11": {
+            "games": 18,
+            "wins": 8,
+            "losses": 10,
+            "ties": 0,
+            "mean_reward": 117916.16666666667,
+            "mean_margin": 11618.111111111111
+          },
+          "rank12": {
+            "games": 18,
+            "wins": 2,
+            "losses": 16,
+            "ties": 0,
+            "mean_reward": 93809.61111111111,
+            "mean_margin": -23365.166666666668
+          },
+          "v2": {
+            "games": 16,
+            "wins": 8,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 92264.3125,
+            "mean_margin": 7158.875
+          }
+        }
+      }
+    },
+    {
+      "source_index": 78,
+      "candidate_id": "p078",
+      "train": {
+        "games": 48,
+        "wins": 44,
+        "losses": 4,
+        "ties": 0,
+        "mean_reward": 94246.64583333333,
+        "mean_margin": 24944.041666666668,
+        "groups": {
+          "train": {
+            "games": 48,
+            "wins": 44,
+            "losses": 4,
+            "ties": 0,
+            "mean_reward": 94246.64583333333,
+            "mean_margin": 24944.041666666668
+          }
+        }
+      },
+      "holdout": {
+        "games": 296,
+        "wins": 164,
+        "losses": 130,
+        "ties": 2,
+        "mean_reward": 94774.91554054055,
+        "mean_margin": 2506.8952702702704,
+        "groups": {
+          "g2": {
+            "games": 16,
+            "wins": 15,
+            "losses": 1,
+            "ties": 0,
+            "mean_reward": 94673.3125,
+            "mean_margin": 13156.3125
+          },
+          "live-56142365": {
+            "games": 24,
+            "wins": 12,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 101755.16666666667,
+            "mean_margin": 3805.125
+          },
+          "live-56183278": {
+            "games": 24,
+            "wins": 16,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 105454.66666666667,
+            "mean_margin": 14903.791666666666
+          },
+          "rank01": {
+            "games": 18,
+            "wins": 10,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 89269.22222222222,
+            "mean_margin": 4511.611111111111
+          },
+          "rank02": {
+            "games": 18,
+            "wins": 10,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 114956.22222222222,
+            "mean_margin": 27845.444444444445
+          },
+          "rank03": {
+            "games": 18,
+            "wins": 16,
+            "losses": 2,
+            "ties": 0,
+            "mean_reward": 140773.44444444444,
+            "mean_margin": 68687.88888888889
+          },
+          "rank04": {
+            "games": 18,
+            "wins": 18,
+            "losses": 0,
+            "ties": 0,
+            "mean_reward": 134866.72222222222,
+            "mean_margin": 76779.38888888889
+          },
+          "rank05": {
+            "games": 18,
+            "wins": 2,
+            "losses": 16,
+            "ties": 0,
+            "mean_reward": 34009.72222222222,
+            "mean_margin": -92245.0
+          },
+          "rank06": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 91454.55555555556,
+            "mean_margin": -17222.166666666668
+          },
+          "rank07": {
+            "games": 18,
+            "wins": 12,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 99961.22222222222,
+            "mean_margin": 25145.11111111111
+          },
+          "rank08": {
+            "games": 18,
+            "wins": 8,
+            "losses": 10,
+            "ties": 0,
+            "mean_reward": 86187.55555555556,
+            "mean_margin": -4885.388888888889
+          },
+          "rank09": {
+            "games": 18,
+            "wins": 0,
+            "losses": 16,
+            "ties": 2,
+            "mean_reward": 49738.444444444445,
+            "mean_margin": -64067.555555555555
+          },
+          "rank10": {
+            "games": 18,
+            "wins": 10,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 90054.83333333333,
+            "mean_margin": -2382.8888888888887
+          },
+          "rank11": {
+            "games": 18,
+            "wins": 13,
+            "losses": 5,
+            "ties": 0,
+            "mean_reward": 102259.77777777778,
+            "mean_margin": 13699.888888888889
+          },
+          "rank12": {
+            "games": 18,
+            "wins": 8,
+            "losses": 10,
+            "ties": 0,
+            "mean_reward": 88765.61111111111,
+            "mean_margin": -21394.277777777777
+          },
+          "v2": {
+            "games": 16,
+            "wins": 8,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 85263.375,
+            "mean_margin": -11123.1875
+          }
+        }
+      }
+    },
+    {
+      "source_index": 52,
+      "candidate_id": "p052",
+      "train": {
+        "games": 48,
+        "wins": 43,
+        "losses": 5,
+        "ties": 0,
+        "mean_reward": 88423.14583333333,
+        "mean_margin": 14295.375,
+        "groups": {
+          "train": {
+            "games": 48,
+            "wins": 43,
+            "losses": 5,
+            "ties": 0,
+            "mean_reward": 88423.14583333333,
+            "mean_margin": 14295.375
+          }
+        }
+      },
+      "holdout": {
+        "games": 296,
+        "wins": 134,
+        "losses": 160,
+        "ties": 2,
+        "mean_reward": 102460.64527027027,
+        "mean_margin": 2745.820945945946,
+        "groups": {
+          "g2": {
+            "games": 16,
+            "wins": 8,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 106459.5,
+            "mean_margin": 7763.125
+          },
+          "live-56142365": {
+            "games": 24,
+            "wins": 10,
+            "losses": 14,
+            "ties": 0,
+            "mean_reward": 104015.04166666667,
+            "mean_margin": -5202.125
+          },
+          "live-56183278": {
+            "games": 24,
+            "wins": 18,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 105990.54166666667,
+            "mean_margin": 15781.125
+          },
+          "rank01": {
+            "games": 18,
+            "wins": 11,
+            "losses": 7,
+            "ties": 0,
+            "mean_reward": 101160.44444444444,
+            "mean_margin": 8425.555555555555
+          },
+          "rank02": {
+            "games": 18,
+            "wins": 10,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 109562.11111111111,
+            "mean_margin": 9033.0
+          },
+          "rank03": {
+            "games": 18,
+            "wins": 12,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 115352.16666666667,
+            "mean_margin": 17395.833333333332
+          },
+          "rank04": {
+            "games": 18,
+            "wins": 12,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 101748.27777777778,
+            "mean_margin": 29703.055555555555
+          },
+          "rank05": {
+            "games": 18,
+            "wins": 9,
+            "losses": 9,
+            "ties": 0,
+            "mean_reward": 96233.0,
+            "mean_margin": -3356.0555555555557
+          },
+          "rank06": {
+            "games": 18,
+            "wins": 4,
+            "losses": 12,
+            "ties": 2,
+            "mean_reward": 100529.61111111111,
+            "mean_margin": -20074.0
+          },
+          "rank07": {
+            "games": 18,
+            "wins": 8,
+            "losses": 10,
+            "ties": 0,
+            "mean_reward": 107843.72222222222,
+            "mean_margin": 6817.0
+          },
+          "rank08": {
+            "games": 18,
+            "wins": 12,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 105702.88888888889,
+            "mean_margin": 10342.611111111111
+          },
+          "rank09": {
+            "games": 18,
+            "wins": 2,
+            "losses": 16,
+            "ties": 0,
+            "mean_reward": 88691.22222222222,
+            "mean_margin": -17214.5
+          },
+          "rank10": {
+            "games": 18,
+            "wins": 4,
+            "losses": 14,
+            "ties": 0,
+            "mean_reward": 97710.38888888889,
+            "mean_margin": 3097.0555555555557
+          },
+          "rank11": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 109528.5,
+            "mean_margin": 4067.3333333333335
+          },
+          "rank12": {
+            "games": 18,
+            "wins": 0,
+            "losses": 18,
+            "ties": 0,
+            "mean_reward": 82373.44444444444,
+            "mean_margin": -30568.11111111111
+          },
+          "v2": {
+            "games": 16,
+            "wins": 8,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 105563.8125,
+            "mean_margin": 7288.6875
+          }
+        }
+      }
+    },
+    {
+      "source_index": 86,
+      "candidate_id": "p086",
+      "train": {
+        "games": 48,
+        "wins": 42,
+        "losses": 6,
+        "ties": 0,
+        "mean_reward": 95642.29166666667,
+        "mean_margin": 23205.666666666668,
+        "groups": {
+          "train": {
+            "games": 48,
+            "wins": 42,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 95642.29166666667,
+            "mean_margin": 23205.666666666668
+          }
+        }
+      },
+      "holdout": {
+        "games": 296,
+        "wins": 92,
+        "losses": 202,
+        "ties": 2,
+        "mean_reward": 101073.58783783784,
+        "mean_margin": -8076.091216216216,
+        "groups": {
+          "g2": {
+            "games": 16,
+            "wins": 0,
+            "losses": 16,
+            "ties": 0,
+            "mean_reward": 74467.0625,
+            "mean_margin": -45039.5
+          },
+          "live-56142365": {
+            "games": 24,
+            "wins": 9,
+            "losses": 15,
+            "ties": 0,
+            "mean_reward": 97674.375,
+            "mean_margin": -12343.916666666666
+          },
+          "live-56183278": {
+            "games": 24,
+            "wins": 10,
+            "losses": 14,
+            "ties": 0,
+            "mean_reward": 106708.875,
+            "mean_margin": -6029.75
+          },
+          "rank01": {
+            "games": 18,
+            "wins": 8,
+            "losses": 10,
+            "ties": 0,
+            "mean_reward": 99041.38888888889,
+            "mean_margin": -2421.0
+          },
+          "rank02": {
+            "games": 18,
+            "wins": 8,
+            "losses": 10,
+            "ties": 0,
+            "mean_reward": 118434.05555555556,
+            "mean_margin": 4915.111111111111
+          },
+          "rank03": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 119137.55555555556,
+            "mean_margin": 8799.055555555555
+          },
+          "rank04": {
+            "games": 18,
+            "wins": 12,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 96248.16666666667,
+            "mean_margin": 16577.944444444445
+          },
+          "rank05": {
+            "games": 18,
+            "wins": 4,
+            "losses": 14,
+            "ties": 0,
+            "mean_reward": 102410.33333333333,
+            "mean_margin": -5451.722222222223
+          },
+          "rank06": {
+            "games": 18,
+            "wins": 0,
+            "losses": 18,
+            "ties": 0,
+            "mean_reward": 98852.33333333333,
+            "mean_margin": -23463.11111111111
+          },
+          "rank07": {
+            "games": 18,
+            "wins": 9,
+            "losses": 9,
+            "ties": 0,
+            "mean_reward": 102550.72222222222,
+            "mean_margin": 7428.722222222223
+          },
+          "rank08": {
+            "games": 18,
+            "wins": 8,
+            "losses": 10,
+            "ties": 0,
+            "mean_reward": 105640.0,
+            "mean_margin": 5782.777777777777
+          },
+          "rank09": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 107950.05555555556,
+            "mean_margin": -9195.444444444445
+          },
+          "rank10": {
+            "games": 18,
+            "wins": 4,
+            "losses": 12,
+            "ties": 2,
+            "mean_reward": 102458.44444444444,
+            "mean_margin": -4503.777777777777
+          },
+          "rank11": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 96748.38888888889,
+            "mean_margin": -3585.6666666666665
+          },
+          "rank12": {
+            "games": 18,
+            "wins": 2,
+            "losses": 16,
+            "ties": 0,
+            "mean_reward": 97164.11111111111,
+            "mean_margin": -24154.555555555555
+          },
+          "v2": {
+            "games": 16,
+            "wins": 0,
+            "losses": 16,
+            "ties": 0,
+            "mean_reward": 86354.4375,
+            "mean_margin": -43877.0625
+          }
+        }
+      }
+    },
+    {
+      "source_index": 89,
+      "candidate_id": "p089",
+      "train": {
+        "games": 48,
+        "wins": 42,
+        "losses": 6,
+        "ties": 0,
+        "mean_reward": 82908.1875,
+        "mean_margin": 12086.145833333334,
+        "groups": {
+          "train": {
+            "games": 48,
+            "wins": 42,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 82908.1875,
+            "mean_margin": 12086.145833333334
+          }
+        }
+      },
+      "holdout": {
+        "games": 296,
+        "wins": 82,
+        "losses": 212,
+        "ties": 2,
+        "mean_reward": 89059.9527027027,
+        "mean_margin": -12373.611486486487,
+        "groups": {
+          "g2": {
+            "games": 16,
+            "wins": 2,
+            "losses": 14,
+            "ties": 0,
+            "mean_reward": 97123.125,
+            "mean_margin": -16745.625
+          },
+          "live-56142365": {
+            "games": 24,
+            "wins": 2,
+            "losses": 22,
+            "ties": 0,
+            "mean_reward": 61186.791666666664,
+            "mean_margin": -54481.083333333336
+          },
+          "live-56183278": {
+            "games": 24,
+            "wins": 6,
+            "losses": 18,
+            "ties": 0,
+            "mean_reward": 84368.16666666667,
+            "mean_margin": -17443.166666666668
+          },
+          "rank01": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 104523.05555555556,
+            "mean_margin": -1966.7222222222222
+          },
+          "rank02": {
+            "games": 18,
+            "wins": 1,
+            "losses": 17,
+            "ties": 0,
+            "mean_reward": 80912.05555555556,
+            "mean_margin": -22962.11111111111
+          },
+          "rank03": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 101101.11111111111,
+            "mean_margin": 737.8333333333334
+          },
+          "rank04": {
+            "games": 18,
+            "wins": 7,
+            "losses": 11,
+            "ties": 0,
+            "mean_reward": 78335.55555555556,
+            "mean_margin": -406.5
+          },
+          "rank05": {
+            "games": 18,
+            "wins": 4,
+            "losses": 14,
+            "ties": 0,
+            "mean_reward": 82276.38888888889,
+            "mean_margin": -5465.055555555556
+          },
+          "rank06": {
+            "games": 18,
+            "wins": 4,
+            "losses": 14,
+            "ties": 0,
+            "mean_reward": 86387.44444444444,
+            "mean_margin": -22478.222222222223
+          },
+          "rank07": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 90264.22222222222,
+            "mean_margin": -3781.4444444444443
+          },
+          "rank08": {
+            "games": 18,
+            "wins": 12,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 96253.72222222222,
+            "mean_margin": 2393.4444444444443
+          },
+          "rank09": {
+            "games": 18,
+            "wins": 4,
+            "losses": 14,
+            "ties": 0,
+            "mean_reward": 98448.11111111111,
+            "mean_margin": -7191.166666666667
+          },
+          "rank10": {
+            "games": 18,
+            "wins": 8,
+            "losses": 8,
+            "ties": 2,
+            "mean_reward": 99597.94444444444,
+            "mean_margin": 12566.833333333334
+          },
+          "rank11": {
+            "games": 18,
+            "wins": 4,
+            "losses": 14,
+            "ties": 0,
+            "mean_reward": 97802.94444444444,
+            "mean_margin": -5105.611111111111
+          },
+          "rank12": {
+            "games": 18,
+            "wins": 2,
+            "losses": 16,
+            "ties": 0,
+            "mean_reward": 81089.33333333333,
+            "mean_margin": -29494.555555555555
+          },
+          "v2": {
+            "games": 16,
+            "wins": 8,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 98037.6875,
+            "mean_margin": -10732.375
+          }
+        }
+      }
+    },
+    {
+      "source_index": 99,
+      "candidate_id": "p099",
+      "train": {
+        "games": 48,
+        "wins": 40,
+        "losses": 8,
+        "ties": 0,
+        "mean_reward": 99743.97916666667,
+        "mean_margin": 15732.583333333334,
+        "groups": {
+          "train": {
+            "games": 48,
+            "wins": 40,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 99743.97916666667,
+            "mean_margin": 15732.583333333334
+          }
+        }
+      },
+      "holdout": {
+        "games": 296,
+        "wins": 100,
+        "losses": 194,
+        "ties": 2,
+        "mean_reward": 106477.11824324324,
+        "mean_margin": -5669.841216216216,
+        "groups": {
+          "g2": {
+            "games": 16,
+            "wins": 6,
+            "losses": 10,
+            "ties": 0,
+            "mean_reward": 101432.125,
+            "mean_margin": -3419.8125
+          },
+          "live-56142365": {
+            "games": 24,
+            "wins": 12,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 105021.04166666667,
+            "mean_margin": -957.2083333333334
+          },
+          "live-56183278": {
+            "games": 24,
+            "wins": 6,
+            "losses": 18,
+            "ties": 0,
+            "mean_reward": 107550.25,
+            "mean_margin": 75.75
+          },
+          "rank01": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 106588.94444444444,
+            "mean_margin": -3918.3888888888887
+          },
+          "rank02": {
+            "games": 18,
+            "wins": 4,
+            "losses": 14,
+            "ties": 0,
+            "mean_reward": 111096.16666666667,
+            "mean_margin": -14439.333333333334
+          },
+          "rank03": {
+            "games": 18,
+            "wins": 10,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 116102.27777777778,
+            "mean_margin": 8553.0
+          },
+          "rank04": {
+            "games": 18,
+            "wins": 12,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 103750.33333333333,
+            "mean_margin": 6275.111111111111
+          },
+          "rank05": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 105900.22222222222,
+            "mean_margin": -11068.888888888889
+          },
+          "rank06": {
+            "games": 18,
+            "wins": 0,
+            "losses": 18,
+            "ties": 0,
+            "mean_reward": 99328.88888888889,
+            "mean_margin": -24942.38888888889
+          },
+          "rank07": {
+            "games": 18,
+            "wins": 8,
+            "losses": 10,
+            "ties": 0,
+            "mean_reward": 112647.0,
+            "mean_margin": 3082.8888888888887
+          },
+          "rank08": {
+            "games": 18,
+            "wins": 10,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 111766.88888888889,
+            "mean_margin": 14223.611111111111
+          },
+          "rank09": {
+            "games": 18,
+            "wins": 4,
+            "losses": 14,
+            "ties": 0,
+            "mean_reward": 102180.11111111111,
+            "mean_margin": -24786.38888888889
+          },
+          "rank10": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 110002.61111111111,
+            "mean_margin": 2448.8888888888887
+          },
+          "rank11": {
+            "games": 18,
+            "wins": 4,
+            "losses": 14,
+            "ties": 0,
+            "mean_reward": 103836.22222222222,
+            "mean_margin": -11142.277777777777
+          },
+          "rank12": {
+            "games": 18,
+            "wins": 0,
+            "losses": 16,
+            "ties": 2,
+            "mean_reward": 104571.61111111111,
+            "mean_margin": -30421.777777777777
+          },
+          "v2": {
+            "games": 16,
+            "wins": 6,
+            "losses": 10,
+            "ties": 0,
+            "mean_reward": 100794.9375,
+            "mean_margin": -3247.125
+          }
+        }
+      }
+    },
+    {
+      "source_index": 106,
+      "candidate_id": "p106",
+      "train": {
+        "games": 48,
+        "wins": 40,
+        "losses": 8,
+        "ties": 0,
+        "mean_reward": 91539.64583333333,
+        "mean_margin": 16113.541666666666,
+        "groups": {
+          "train": {
+            "games": 48,
+            "wins": 40,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 91539.64583333333,
+            "mean_margin": 16113.541666666666
+          }
+        }
+      },
+      "holdout": {
+        "games": 296,
+        "wins": 161,
+        "losses": 133,
+        "ties": 2,
+        "mean_reward": 106164.84797297297,
+        "mean_margin": 7149.7972972972975,
+        "groups": {
+          "g2": {
+            "games": 16,
+            "wins": 16,
+            "losses": 0,
+            "ties": 0,
+            "mean_reward": 103821.625,
+            "mean_margin": 19423.1875
+          },
+          "live-56142365": {
+            "games": 24,
+            "wins": 16,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 100835.79166666667,
+            "mean_margin": 9216.125
+          },
+          "live-56183278": {
+            "games": 24,
+            "wins": 16,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 107717.625,
+            "mean_margin": 15714.875
+          },
+          "rank01": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 103947.11111111111,
+            "mean_margin": 1238.5
+          },
+          "rank02": {
+            "games": 18,
+            "wins": 8,
+            "losses": 10,
+            "ties": 0,
+            "mean_reward": 113090.55555555556,
+            "mean_margin": 8674.5
+          },
+          "rank03": {
+            "games": 18,
+            "wins": 14,
+            "losses": 4,
+            "ties": 0,
+            "mean_reward": 119130.11111111111,
+            "mean_margin": 24625.38888888889
+          },
+          "rank04": {
+            "games": 18,
+            "wins": 13,
+            "losses": 5,
+            "ties": 0,
+            "mean_reward": 103834.72222222222,
+            "mean_margin": 19964.88888888889
+          },
+          "rank05": {
+            "games": 18,
+            "wins": 14,
+            "losses": 4,
+            "ties": 0,
+            "mean_reward": 111529.44444444444,
+            "mean_margin": 9729.111111111111
+          },
+          "rank06": {
+            "games": 18,
+            "wins": 2,
+            "losses": 16,
+            "ties": 0,
+            "mean_reward": 89980.22222222222,
+            "mean_margin": -17405.777777777777
+          },
+          "rank07": {
+            "games": 18,
+            "wins": 10,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 108994.44444444444,
+            "mean_margin": 12455.833333333334
+          },
+          "rank08": {
+            "games": 18,
+            "wins": 12,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 112433.44444444444,
+            "mean_margin": 25693.944444444445
+          },
+          "rank09": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 99648.83333333333,
+            "mean_margin": -14034.611111111111
+          },
+          "rank10": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 113928.94444444444,
+            "mean_margin": 8689.111111111111
+          },
+          "rank11": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 105337.88888888889,
+            "mean_margin": -7348.166666666667
+          },
+          "rank12": {
+            "games": 18,
+            "wins": 0,
+            "losses": 16,
+            "ties": 2,
+            "mean_reward": 102085.05555555556,
+            "mean_margin": -22121.38888888889
+          },
+          "v2": {
+            "games": 16,
+            "wins": 16,
+            "losses": 0,
+            "ties": 0,
+            "mean_reward": 102964.5625,
+            "mean_margin": 19020.0625
+          }
+        }
+      }
+    },
+    {
+      "source_index": 94,
+      "candidate_id": "p094",
+      "train": {
+        "games": 48,
+        "wins": 40,
+        "losses": 8,
+        "ties": 0,
+        "mean_reward": 91155.54166666667,
+        "mean_margin": 16873.708333333332,
+        "groups": {
+          "train": {
+            "games": 48,
+            "wins": 40,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 91155.54166666667,
+            "mean_margin": 16873.708333333332
+          }
+        }
+      },
+      "holdout": {
+        "games": 296,
+        "wins": 136,
+        "losses": 158,
+        "ties": 2,
+        "mean_reward": 105572.09121621621,
+        "mean_margin": 2235.0337837837837,
+        "groups": {
+          "g2": {
+            "games": 16,
+            "wins": 12,
+            "losses": 4,
+            "ties": 0,
+            "mean_reward": 114595.1875,
+            "mean_margin": 17866.3125
+          },
+          "live-56142365": {
+            "games": 24,
+            "wins": 11,
+            "losses": 13,
+            "ties": 0,
+            "mean_reward": 107847.75,
+            "mean_margin": 818.9583333333334
+          },
+          "live-56183278": {
+            "games": 24,
+            "wins": 17,
+            "losses": 7,
+            "ties": 0,
+            "mean_reward": 114218.54166666667,
+            "mean_margin": 17082.208333333332
+          },
+          "rank01": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 103453.72222222222,
+            "mean_margin": -8339.222222222223
+          },
+          "rank02": {
+            "games": 18,
+            "wins": 7,
+            "losses": 11,
+            "ties": 0,
+            "mean_reward": 104956.0,
+            "mean_margin": 4325.222222222223
+          },
+          "rank03": {
+            "games": 18,
+            "wins": 7,
+            "losses": 11,
+            "ties": 0,
+            "mean_reward": 112916.5,
+            "mean_margin": 2496.222222222222
+          },
+          "rank04": {
+            "games": 18,
+            "wins": 12,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 94479.5,
+            "mean_margin": 11515.333333333334
+          },
+          "rank05": {
+            "games": 18,
+            "wins": 7,
+            "losses": 11,
+            "ties": 0,
+            "mean_reward": 94944.27777777778,
+            "mean_margin": -5757.722222222223
+          },
+          "rank06": {
+            "games": 18,
+            "wins": 4,
+            "losses": 14,
+            "ties": 0,
+            "mean_reward": 106114.72222222222,
+            "mean_margin": -8598.0
+          },
+          "rank07": {
+            "games": 18,
+            "wins": 8,
+            "losses": 10,
+            "ties": 0,
+            "mean_reward": 117039.5,
+            "mean_margin": 17153.555555555555
+          },
+          "rank08": {
+            "games": 18,
+            "wins": 12,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 95509.72222222222,
+            "mean_margin": 9281.055555555555
+          },
+          "rank09": {
+            "games": 18,
+            "wins": 3,
+            "losses": 15,
+            "ties": 0,
+            "mean_reward": 90103.94444444444,
+            "mean_margin": -31870.166666666668
+          },
+          "rank10": {
+            "games": 18,
+            "wins": 10,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 114711.11111111111,
+            "mean_margin": 11333.111111111111
+          },
+          "rank11": {
+            "games": 18,
+            "wins": 6,
+            "losses": 10,
+            "ties": 2,
+            "mean_reward": 103339.33333333333,
+            "mean_margin": 755.3333333333334
+          },
+          "rank12": {
+            "games": 18,
+            "wins": 2,
+            "losses": 16,
+            "ties": 0,
+            "mean_reward": 99544.88888888889,
+            "mean_margin": -21129.11111111111
+          },
+          "v2": {
+            "games": 16,
+            "wins": 12,
+            "losses": 4,
+            "ties": 0,
+            "mean_reward": 113636.6875,
+            "mean_margin": 17818.75
+          }
+        }
+      }
+    },
+    {
+      "source_index": 13,
+      "candidate_id": "p013",
+      "train": {
+        "games": 48,
+        "wins": 40,
+        "losses": 8,
+        "ties": 0,
+        "mean_reward": 89613.1875,
+        "mean_margin": 15986.75,
+        "groups": {
+          "train": {
+            "games": 48,
+            "wins": 40,
+            "losses": 8,
+            "ties": 0,
+            "mean_reward": 89613.1875,
+            "mean_margin": 15986.75
+          }
+        }
+      },
+      "holdout": {
+        "games": 296,
+        "wins": 99,
+        "losses": 195,
+        "ties": 2,
+        "mean_reward": 99766.02027027027,
+        "mean_margin": -9812.18581081081,
+        "groups": {
+          "g2": {
+            "games": 16,
+            "wins": 10,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 100565.625,
+            "mean_margin": 8189.5
+          },
+          "live-56142365": {
+            "games": 24,
+            "wins": 8,
+            "losses": 16,
+            "ties": 0,
+            "mean_reward": 105837.625,
+            "mean_margin": -7666.833333333333
+          },
+          "live-56183278": {
+            "games": 24,
+            "wins": 14,
+            "losses": 10,
+            "ties": 0,
+            "mean_reward": 107353.41666666667,
+            "mean_margin": 12175.666666666666
+          },
+          "rank01": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 95079.5,
+            "mean_margin": -18207.0
+          },
+          "rank02": {
+            "games": 18,
+            "wins": 2,
+            "losses": 14,
+            "ties": 2,
+            "mean_reward": 105019.33333333333,
+            "mean_margin": -22973.277777777777
+          },
+          "rank03": {
+            "games": 18,
+            "wins": 9,
+            "losses": 9,
+            "ties": 0,
+            "mean_reward": 107016.11111111111,
+            "mean_margin": 3731.1666666666665
+          },
+          "rank04": {
+            "games": 18,
+            "wins": 9,
+            "losses": 9,
+            "ties": 0,
+            "mean_reward": 97744.83333333333,
+            "mean_margin": 11876.833333333334
+          },
+          "rank05": {
+            "games": 18,
+            "wins": 2,
+            "losses": 16,
+            "ties": 0,
+            "mean_reward": 93550.27777777778,
+            "mean_margin": -21000.11111111111
+          },
+          "rank06": {
+            "games": 18,
+            "wins": 2,
+            "losses": 16,
+            "ties": 0,
+            "mean_reward": 99788.33333333333,
+            "mean_margin": -22724.333333333332
+          },
+          "rank07": {
+            "games": 18,
+            "wins": 6,
+            "losses": 12,
+            "ties": 0,
+            "mean_reward": 103154.38888888889,
+            "mean_margin": -1717.5
+          },
+          "rank08": {
+            "games": 18,
+            "wins": 8,
+            "losses": 10,
+            "ties": 0,
+            "mean_reward": 97445.27777777778,
+            "mean_margin": -6086.611111111111
+          },
+          "rank09": {
+            "games": 18,
+            "wins": 3,
+            "losses": 15,
+            "ties": 0,
+            "mean_reward": 110418.27777777778,
+            "mean_margin": -20617.38888888889
+          },
+          "rank10": {
+            "games": 18,
+            "wins": 4,
+            "losses": 14,
+            "ties": 0,
+            "mean_reward": 103934.44444444444,
+            "mean_margin": -7555.833333333333
+          },
+          "rank11": {
+            "games": 18,
+            "wins": 4,
+            "losses": 14,
+            "ties": 0,
+            "mean_reward": 91038.27777777778,
+            "mean_margin": -14277.5
+          },
+          "rank12": {
+            "games": 18,
+            "wins": 2,
+            "losses": 16,
+            "ties": 0,
+            "mean_reward": 74036.0,
+            "mean_margin": -62091.72222222222
+          },
+          "v2": {
+            "games": 16,
+            "wins": 10,
+            "losses": 6,
+            "ties": 0,
+            "mean_reward": 99816.0,
+            "mean_margin": 7870.5
+          }
+        }
+      }
+    }
+  ],
+  "controls": {
+    "v2": {
+      "games": 296,
+      "wins": 177,
+      "losses": 109,
+      "ties": 10,
+      "mean_reward": 103655.60135135135,
+      "mean_margin": 12627.39527027027,
+      "groups": {
+        "g2": {
+          "games": 16,
+          "wins": 16,
+          "losses": 0,
+          "ties": 0,
+          "mean_reward": 107598.4375,
+          "mean_margin": 9596.4375
+        },
+        "live-56142365": {
+          "games": 24,
+          "wins": 12,
+          "losses": 12,
+          "ties": 0,
+          "mean_reward": 92255.75,
+          "mean_margin": -5210.333333333333
+        },
+        "live-56183278": {
+          "games": 24,
+          "wins": 14,
+          "losses": 10,
+          "ties": 0,
+          "mean_reward": 91950.41666666667,
+          "mean_margin": -1309.9583333333333
+        },
+        "rank01": {
+          "games": 18,
+          "wins": 13,
+          "losses": 5,
+          "ties": 0,
+          "mean_reward": 111146.22222222222,
+          "mean_margin": 39722.72222222222
+        },
+        "rank02": {
+          "games": 18,
+          "wins": 15,
+          "losses": 3,
+          "ties": 0,
+          "mean_reward": 115416.72222222222,
+          "mean_margin": 43716.27777777778
+        },
+        "rank03": {
+          "games": 18,
+          "wins": 10,
+          "losses": 8,
+          "ties": 0,
+          "mean_reward": 101965.0,
+          "mean_margin": 12292.166666666666
+        },
+        "rank04": {
+          "games": 18,
+          "wins": 12,
+          "losses": 6,
+          "ties": 0,
+          "mean_reward": 97058.44444444444,
+          "mean_margin": 23367.88888888889
+        },
+        "rank05": {
+          "games": 18,
+          "wins": 8,
+          "losses": 10,
+          "ties": 0,
+          "mean_reward": 95295.11111111111,
+          "mean_margin": -3891.1111111111113
+        },
+        "rank06": {
+          "games": 18,
+          "wins": 14,
+          "losses": 4,
+          "ties": 0,
+          "mean_reward": 110964.77777777778,
+          "mean_margin": 8900.0
+        },
+        "rank07": {
+          "games": 18,
+          "wins": 18,
+          "losses": 0,
+          "ties": 0,
+          "mean_reward": 130560.77777777778,
+          "mean_margin": 64966.22222222222
+        },
+        "rank08": {
+          "games": 18,
+          "wins": 4,
+          "losses": 14,
+          "ties": 0,
+          "mean_reward": 78744.11111111111,
+          "mean_margin": -11179.944444444445
+        },
+        "rank09": {
+          "games": 18,
+          "wins": 4,
+          "losses": 14,
+          "ties": 0,
+          "mean_reward": 106117.16666666667,
+          "mean_margin": -14228.388888888889
+        },
+        "rank10": {
+          "games": 18,
+          "wins": 16,
+          "losses": 2,
+          "ties": 0,
+          "mean_reward": 103764.66666666667,
+          "mean_margin": 27528.777777777777
+        },
+        "rank11": {
+          "games": 18,
+          "wins": 10,
+          "losses": 8,
+          "ties": 0,
+          "mean_reward": 115185.05555555556,
+          "mean_margin": 17700.88888888889
+        },
+        "rank12": {
+          "games": 18,
+          "wins": 8,
+          "losses": 10,
+          "ties": 0,
+          "mean_reward": 108123.22222222222,
+          "mean_margin": -1081.4444444444443
+        },
+        "v2": {
+          "games": 16,
+          "wins": 3,
+          "losses": 3,
+          "ties": 10,
+          "mean_reward": 100087.0,
+          "mean_margin": 0.0
+        }
+      }
+    },
+    "g2": {
+      "games": 296,
+      "wins": 138,
+      "losses": 148,
+      "ties": 10,
+      "mean_reward": 101001.37162162163,
+      "mean_margin": 8963.570945945947,
+      "groups": {
+        "g2": {
+          "games": 16,
+          "wins": 3,
+          "losses": 3,
+          "ties": 10,
+          "mean_reward": 101489.125,
+          "mean_margin": 0.0
+        },
+        "live-56142365": {
+          "games": 24,
+          "wins": 0,
+          "losses": 24,
+          "ties": 0,
+          "mean_reward": 70922.25,
+          "mean_margin": -34488.291666666664
+        },
+        "live-56183278": {
+          "games": 24,
+          "wins": 2,
+          "losses": 22,
+          "ties": 0,
+          "mean_reward": 81104.5,
+          "mean_margin": -23912.625
+        },
+        "rank01": {
+          "games": 18,
+          "wins": 13,
+          "losses": 5,
+          "ties": 0,
+          "mean_reward": 107003.66666666667,
+          "mean_margin": 29323.444444444445
+        },
+        "rank02": {
+          "games": 18,
+          "wins": 16,
+          "losses": 2,
+          "ties": 0,
+          "mean_reward": 113019.94444444444,
+          "mean_margin": 54449.555555555555
+        },
+        "rank03": {
+          "games": 18,
+          "wins": 10,
+          "losses": 8,
+          "ties": 0,
+          "mean_reward": 100619.0,
+          "mean_margin": 11030.277777777777
+        },
+        "rank04": {
+          "games": 18,
+          "wins": 14,
+          "losses": 4,
+          "ties": 0,
+          "mean_reward": 99540.05555555556,
+          "mean_margin": 23376.38888888889
+        },
+        "rank05": {
+          "games": 18,
+          "wins": 0,
+          "losses": 18,
+          "ties": 0,
+          "mean_reward": 91047.22222222222,
+          "mean_margin": -24527.777777777777
+        },
+        "rank06": {
+          "games": 18,
+          "wins": 14,
+          "losses": 4,
+          "ties": 0,
+          "mean_reward": 114079.0,
+          "mean_margin": 25515.11111111111
+        },
+        "rank07": {
+          "games": 18,
+          "wins": 18,
+          "losses": 0,
+          "ties": 0,
+          "mean_reward": 121333.61111111111,
+          "mean_margin": 62407.666666666664
+        },
+        "rank08": {
+          "games": 18,
+          "wins": 8,
+          "losses": 10,
+          "ties": 0,
+          "mean_reward": 98292.94444444444,
+          "mean_margin": 5084.722222222223
+        },
+        "rank09": {
+          "games": 18,
+          "wins": 4,
+          "losses": 14,
+          "ties": 0,
+          "mean_reward": 103921.0,
+          "mean_margin": -21486.555555555555
+        },
+        "rank10": {
+          "games": 18,
+          "wins": 16,
+          "losses": 2,
+          "ties": 0,
+          "mean_reward": 116678.22222222222,
+          "mean_margin": 47978.88888888889
+        },
+        "rank11": {
+          "games": 18,
+          "wins": 12,
+          "losses": 6,
+          "ties": 0,
+          "mean_reward": 119367.22222222222,
+          "mean_margin": 24600.722222222223
+        },
+        "rank12": {
+          "games": 18,
+          "wins": 8,
+          "losses": 10,
+          "ties": 0,
+          "mean_reward": 95981.77777777778,
+          "mean_margin": -3953.4444444444443
+        },
+        "v2": {
+          "games": 16,
+          "wins": 0,
+          "losses": 16,
+          "ties": 0,
+          "mean_reward": 98002.0,
+          "mean_margin": -9596.4375
+        }
+      }
+    }
+  },
+  "winner_index": 12,
+  "winner_id": "v2",
+  "winner_holdout": {
+    "games": 296,
+    "wins": 177,
+    "losses": 109,
+    "ties": 10,
+    "mean_reward": 103655.60135135135,
+    "mean_margin": 12627.39527027027,
+    "groups": {
+      "g2": {
+        "games": 16,
+        "wins": 16,
+        "losses": 0,
+        "ties": 0,
+        "mean_reward": 107598.4375,
+        "mean_margin": 9596.4375
+      },
+      "live-56142365": {
+        "games": 24,
+        "wins": 12,
+        "losses": 12,
+        "ties": 0,
+        "mean_reward": 92255.75,
+        "mean_margin": -5210.333333333333
+      },
+      "live-56183278": {
+        "games": 24,
+        "wins": 14,
+        "losses": 10,
+        "ties": 0,
+        "mean_reward": 91950.41666666667,
+        "mean_margin": -1309.9583333333333
+      },
+      "rank01": {
+        "games": 18,
+        "wins": 13,
+        "losses": 5,
+        "ties": 0,
+        "mean_reward": 111146.22222222222,
+        "mean_margin": 39722.72222222222
+      },
+      "rank02": {
+        "games": 18,
+        "wins": 15,
+        "losses": 3,
+        "ties": 0,
+        "mean_reward": 115416.72222222222,
+        "mean_margin": 43716.27777777778
+      },
+      "rank03": {
+        "games": 18,
+        "wins": 10,
+        "losses": 8,
+        "ties": 0,
+        "mean_reward": 101965.0,
+        "mean_margin": 12292.166666666666
+      },
+      "rank04": {
+        "games": 18,
+        "wins": 12,
+        "losses": 6,
+        "ties": 0,
+        "mean_reward": 97058.44444444444,
+        "mean_margin": 23367.88888888889
+      },
+      "rank05": {
+        "games": 18,
+        "wins": 8,
+        "losses": 10,
+        "ties": 0,
+        "mean_reward": 95295.11111111111,
+        "mean_margin": -3891.1111111111113
+      },
+      "rank06": {
+        "games": 18,
+        "wins": 14,
+        "losses": 4,
+        "ties": 0,
+        "mean_reward": 110964.77777777778,
+        "mean_margin": 8900.0
+      },
+      "rank07": {
+        "games": 18,
+        "wins": 18,
+        "losses": 0,
+        "ties": 0,
+        "mean_reward": 130560.77777777778,
+        "mean_margin": 64966.22222222222
+      },
+      "rank08": {
+        "games": 18,
+        "wins": 4,
+        "losses": 14,
+        "ties": 0,
+        "mean_reward": 78744.11111111111,
+        "mean_margin": -11179.944444444445
+      },
+      "rank09": {
+        "games": 18,
+        "wins": 4,
+        "losses": 14,
+        "ties": 0,
+        "mean_reward": 106117.16666666667,
+        "mean_margin": -14228.388888888889
+      },
+      "rank10": {
+        "games": 18,
+        "wins": 16,
+        "losses": 2,
+        "ties": 0,
+        "mean_reward": 103764.66666666667,
+        "mean_margin": 27528.777777777777
+      },
+      "rank11": {
+        "games": 18,
+        "wins": 10,
+        "losses": 8,
+        "ties": 0,
+        "mean_reward": 115185.05555555556,
+        "mean_margin": 17700.88888888889
+      },
+      "rank12": {
+        "games": 18,
+        "wins": 8,
+        "losses": 10,
+        "ties": 0,
+        "mean_reward": 108123.22222222222,
+        "mean_margin": -1081.4444444444443
+      },
+      "v2": {
+        "games": 16,
+        "wins": 3,
+        "losses": 3,
+        "ties": 10,
+        "mean_reward": 100087.0,
+        "mean_margin": 0.0
+      }
+    }
+  },
+  "eligible": []
+}
