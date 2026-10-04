@@ -16,11 +16,47 @@ def play_game(agent0: Any, agent1: Any, seed: int, steps: int = 720,
     from kaggle_environments import make
 
     try:
-        env = make(
-            "kaggriculture",
-            configuration={"episodeSteps": int(steps), "seed": int(seed)},
-            debug=False,
-        )
+        try:
+            env = make(
+                "kaggriculture",
+                configuration={"episodeSteps": int(steps), "seed": int(seed)},
+                debug=False,
+            )
+        except Exception as first_error:
+            # Recent public kaggle-environments wheels do not always bundle the
+            # competition environment. Register our byte-audited reference
+            # copy rather than turning every closed-loop game into a false
+            # agent failure.
+            if "Unknown Environment Specification" not in str(first_error):
+                raise
+            import importlib.util
+            from pathlib import Path
+            from kaggle_environments import core, utils
+            reference_root = Path(__file__).resolve().parents[1] / "rust_port/reference"
+            if not hasattr(utils, "resolve_episode_seed"):
+                seed_spec = importlib.util.spec_from_file_location(
+                    "_kg_seed_utils", reference_root / "seed_utils.py")
+                if seed_spec is None or seed_spec.loader is None:
+                    raise RuntimeError("cannot load audited seed helper")
+                seed_module = importlib.util.module_from_spec(seed_spec)
+                seed_spec.loader.exec_module(seed_module)
+                utils.resolve_episode_seed = seed_module.resolve_episode_seed
+            reference = reference_root / "kaggriculture_sim.py"
+            spec = importlib.util.spec_from_file_location("_kg_reference_sim", reference)
+            if spec is None or spec.loader is None:
+                raise RuntimeError(f"cannot load reference environment: {reference}")
+            sim = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(sim)
+            core.register("kaggriculture", {
+                "specification": sim.specification, "interpreter": sim.interpreter,
+                "renderer": sim.renderer, "html_renderer": sim.html_renderer,
+                "agents": sim.agents,
+            })
+            env = make(
+                "kaggriculture",
+                configuration={"episodeSteps": int(steps), "seed": int(seed)},
+                debug=False,
+            )
         failures = []
         seen_failed = set()
         interpreter = env.interpreter
