@@ -1,0 +1,11 @@
+{
+  "opponent": "random",
+  "games": 10,
+  "seed_control": false,
+  "errors": 0,
+  "timeouts": 0,
+  "v12b": {"mean": 27966.0, "min": 25725.0, "max": 31587.0, "rewards": [26722,31587,27430,29603,26545,27200,27958,30977,25725,25913]},
+  "v13": {"mean": 92181.9, "min": 83513.0, "max": 102443.0, "rewards": [94877,87901,95920,102443,84968,97008,83513,85783,91038,98368]},
+  "delta_v13_minus_v12b": 64215.9,
+  "note": "Local smoke only; this is not the newest TOP12 benchmark. The kaggle-environments runner used here does not expose paired seed control through make()."
+}
