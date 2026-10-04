@@ -41,3 +41,29 @@ To jest ekran diagnostyczny i selekcja materiału do spójnego planera. Sam fakt
 Jeżeli bramka nie znajdzie transferowalnego rodzica, następnym krokiem pozostaje
 stanowy joint planner realizujący powyższe kamienie milowe na bazie bezpiecznego
 conveyora V2.
+
+## Wyniki V31–V33
+
+V31 wykonał 5 184 gry treningowe i 4 144 gry holdout. Żaden ze 108 przebiegów
+nie przeszedł bramki; kontrola V2 wygrała selekcję z bilansem 177–109–10. Oznacza
+to, że nawet replay pochodzący z architektury czteroćwiartkowej nie jest sam w
+sobie transferowalną polityką.
+
+Najbliższy statyczny przebieg (indeks 37) osiągał zależnie od odświeżenia panelu
+181–115 lub 183–113 i średnio około 104,8–105,0 tys. nagrody, ale tylko 120
+wygranych w nowym panelu rang wobec 132 dla V2. Co ważne, pochodził z aktywnego
+submissionu o wyniku publicznym 2827.9, a nie z wersji 3000+. Nie jest więc
+kandydatem do zgłoszenia mimo dobrego agregatu na panelu lokalnym.
+
+V32 sprawdził 2 000 połączeń czterech najlepszych rodziców ze stanowymi
+nakładkami rynku (96 000 gier treningowych i 5 920 holdout). Każdy zwycięzca
+lokalnego treningu przegrał z niezmienioną akcją rynku; modyfikacje załamywały
+finansowanie i synchronizację taśmy. V33 sprawdził 258 pełnych, rynkowych i
+jednostkowych splice'ów z V2 w 76 368 grach. Wszystkie splice'y były znacznie
+gorsze od rodziców, a bramka ponownie wybrała V2.
+
+Decyzja fail-closed: V31, V32 i V33 nie będą zgłaszane ani przedstawiane jako
+następcy V2. Wyniki zawężają dalszą pracę do jednej drogi: własnego planera
+zamkniętej pętli, który wspólnie przydziela pracowników, finansuje czwartą
+ćwiartkę i pilnuje celów około 70 upraw oraz 20–23 zwierząt. Nie należy ponawiać
+statycznych splice'ów, nearest-state ani samych nakładek rynku na replay.

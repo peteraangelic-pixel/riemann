@@ -109,3 +109,11 @@ wersjonowany plan i kryteria fail-closed zapisano w
 `kaggriculture_meta_lab/docs/V31_REFRESHED_TOP12_PLAN_20261004.md`. Wynik tego
 ekranu nie zostanie zgłoszony, jeżeli nie pokona jawnej kontroli V2; replay ma
 wyznaczyć spójną architekturę, a nie wrócić do odrzuconego nearest-state imitation.
+
+Ekrany V31–V33 potwierdziły ten warunek negatywnie. Żaden ze 108 rodziców nie
+przeszedł bramki V31. V32 wykonał 101 920 gier nakładek rynku, a V33 76 368 gier
+splice'ów pełnej akcji, jednostek i rynku; w obu przypadkach nie było żadnego
+kwalifikującego się wariantu. Najlepsza statyczna taśma lokalna osiągnęła nawet
+183–113, ale pochodziła ze submissionu o wyniku 2827.9 i traciła panel nowego
+TOP12 120 do 132 wygranych V2. To lokalny kontrprzykład wobec selekcji samym
+agregatem, nie kandydat 3000+. V31–V33 pozostają odrzucone bez zgłoszenia.
