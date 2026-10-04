@@ -1,0 +1,1345 @@
+{
+  "archive_blob": "33ef6f00f947ecb72f605d206701cda6ea3d4069",
+  "teams": 12,
+  "manifest": {
+    "competition": "kaggriculture",
+    "requested_top_n": 12,
+    "replays_per_team": 9,
+    "generated_at_utc": "2026-10-04T17:19:34.684435+00:00",
+    "selection_rule": "Newest episodes across all current public team submissions, sorted by create/end time.",
+    "teams": [
+      {
+        "rank": 1,
+        "team_id": 16681125,
+        "team_name": "M & M & P & Q",
+        "leaderboard_score": 3132.7,
+        "folder": "M & M & P & Q",
+        "active_submissions": [
+          {
+            "submission_id": 56711476,
+            "date_submitted": "2026-09-30T15:21:46.810000",
+            "public_score": 3132.7
+          },
+          {
+            "submission_id": 56701470,
+            "date_submitted": "2026-09-30T07:56:59.747000",
+            "public_score": 3095.0
+          }
+        ],
+        "selected_episodes": [
+          {
+            "episode_id": 117992485,
+            "submission_id": 56711476,
+            "create_time": "2026-10-04T17:04:50.493000",
+            "end_time": "2026-10-04T17:14:23.410000",
+            "sort_time": 1791126863.41,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_01_117992485.json"
+          },
+          {
+            "episode_id": 117992654,
+            "submission_id": 56701470,
+            "create_time": "2026-10-04T17:04:50.771000",
+            "end_time": "2026-10-04T17:12:55.337000",
+            "sort_time": 1791126775.337,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_02_117992654.json"
+          },
+          {
+            "episode_id": 117992657,
+            "submission_id": 56711476,
+            "create_time": "2026-10-04T17:04:50.776000",
+            "end_time": "2026-10-04T17:11:43.400000",
+            "sort_time": 1791126703.4,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_03_117992657.json"
+          },
+          {
+            "episode_id": 117977563,
+            "submission_id": 56701470,
+            "create_time": "2026-10-04T16:21:24.042000",
+            "end_time": "2026-10-04T16:30:52.131000",
+            "sort_time": 1791124252.131,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_04_117977563.json"
+          },
+          {
+            "episode_id": 117977401,
+            "submission_id": 56701470,
+            "create_time": "2026-10-04T16:21:23.758000",
+            "end_time": "2026-10-04T16:30:22.390000",
+            "sort_time": 1791124222.39,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_05_117977401.json"
+          },
+          {
+            "episode_id": 117977404,
+            "submission_id": 56711476,
+            "create_time": "2026-10-04T16:21:23.756000",
+            "end_time": "2026-10-04T16:30:02.695000",
+            "sort_time": 1791124202.695,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_06_117977404.json"
+          },
+          {
+            "episode_id": 117977297,
+            "submission_id": 56701470,
+            "create_time": "2026-10-04T16:21:23.561000",
+            "end_time": "2026-10-04T16:25:02.811000",
+            "sort_time": 1791123902.811,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_07_117977297.json"
+          },
+          {
+            "episode_id": 117962325,
+            "submission_id": 56711476,
+            "create_time": "2026-10-04T15:37:25.391000",
+            "end_time": "2026-10-04T15:51:14.893000",
+            "sort_time": 1791121874.893,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_08_117962325.json"
+          },
+          {
+            "episode_id": 117962669,
+            "submission_id": 56701470,
+            "create_time": "2026-10-04T15:41:27.724000",
+            "end_time": "2026-10-04T15:47:03.791000",
+            "sort_time": 1791121623.791,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_09_117962669.json"
+          }
+        ]
+      },
+      {
+        "rank": 2,
+        "team_id": 16621497,
+        "team_name": "1x5090 potato run",
+        "leaderboard_score": 3103.5,
+        "folder": "1x5090 potato run",
+        "active_submissions": [
+          {
+            "submission_id": 56722220,
+            "date_submitted": "2026-09-30T23:54:28.017000",
+            "public_score": 3103.5
+          },
+          {
+            "submission_id": 56710008,
+            "date_submitted": "2026-09-30T14:25:15.573000",
+            "public_score": 2989.7
+          }
+        ],
+        "selected_episodes": [
+          {
+            "episode_id": 117992485,
+            "submission_id": 56722220,
+            "create_time": "2026-10-04T17:04:50.493000",
+            "end_time": "2026-10-04T17:14:23.410000",
+            "sort_time": 1791126863.41,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_01_117992485.json"
+          },
+          {
+            "episode_id": 117992654,
+            "submission_id": 56710008,
+            "create_time": "2026-10-04T17:04:50.771000",
+            "end_time": "2026-10-04T17:12:55.337000",
+            "sort_time": 1791126775.337,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_02_117992654.json"
+          },
+          {
+            "episode_id": 117992657,
+            "submission_id": 56722220,
+            "create_time": "2026-10-04T17:04:50.776000",
+            "end_time": "2026-10-04T17:11:43.400000",
+            "sort_time": 1791126703.4,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_03_117992657.json"
+          },
+          {
+            "episode_id": 117978859,
+            "submission_id": 56710008,
+            "create_time": "2026-10-04T16:25:31.646000",
+            "end_time": "2026-10-04T16:33:23.864000",
+            "sort_time": 1791124403.864,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_04_117978859.json"
+          },
+          {
+            "episode_id": 117977563,
+            "submission_id": 56722220,
+            "create_time": "2026-10-04T16:21:24.042000",
+            "end_time": "2026-10-04T16:30:52.131000",
+            "sort_time": 1791124252.131,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_05_117977563.json"
+          },
+          {
+            "episode_id": 117977401,
+            "submission_id": 56722220,
+            "create_time": "2026-10-04T16:21:23.758000",
+            "end_time": "2026-10-04T16:30:22.390000",
+            "sort_time": 1791124222.39,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_06_117977401.json"
+          },
+          {
+            "episode_id": 117977404,
+            "submission_id": 56722220,
+            "create_time": "2026-10-04T16:21:23.756000",
+            "end_time": "2026-10-04T16:30:02.695000",
+            "sort_time": 1791124202.695,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_07_117977404.json"
+          },
+          {
+            "episode_id": 117963720,
+            "submission_id": 56710008,
+            "create_time": "2026-10-04T15:41:29.391000",
+            "end_time": "2026-10-04T15:51:56.293000",
+            "sort_time": 1791121916.293,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_08_117963720.json"
+          },
+          {
+            "episode_id": 117962325,
+            "submission_id": 56722220,
+            "create_time": "2026-10-04T15:37:25.391000",
+            "end_time": "2026-10-04T15:51:14.893000",
+            "sort_time": 1791121874.893,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_09_117962325.json"
+          }
+        ]
+      },
+      {
+        "rank": 3,
+        "team_id": 16732748,
+        "team_name": "DSM",
+        "leaderboard_score": 2987.2,
+        "folder": "DSM",
+        "active_submissions": [
+          {
+            "submission_id": 56721411,
+            "date_submitted": "2026-09-30T23:26:15.273000",
+            "public_score": 2987.2
+          },
+          {
+            "submission_id": 56720722,
+            "date_submitted": "2026-09-30T22:53:34.730000",
+            "public_score": 2965.7
+          }
+        ],
+        "selected_episodes": [
+          {
+            "episode_id": 117993772,
+            "submission_id": 56720722,
+            "create_time": "2026-10-04T17:08:49.962000",
+            "end_time": "2026-10-04T17:16:56.601000",
+            "sort_time": 1791127016.601,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_01_117993772.json"
+          },
+          {
+            "episode_id": 117993878,
+            "submission_id": 56721411,
+            "create_time": "2026-10-04T17:08:50.106000",
+            "end_time": "2026-10-04T17:16:49.449000",
+            "sort_time": 1791127009.449,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_02_117993878.json"
+          },
+          {
+            "episode_id": 117992905,
+            "submission_id": 56721411,
+            "create_time": "2026-10-04T17:04:51.175000",
+            "end_time": "2026-10-04T17:12:07.663000",
+            "sort_time": 1791126727.663,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_03_117992905.json"
+          },
+          {
+            "episode_id": 117978859,
+            "submission_id": 56721411,
+            "create_time": "2026-10-04T16:25:31.646000",
+            "end_time": "2026-10-04T16:33:23.864000",
+            "sort_time": 1791124403.864,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_04_117978859.json"
+          },
+          {
+            "episode_id": 117978735,
+            "submission_id": 56720722,
+            "create_time": "2026-10-04T16:25:31.460000",
+            "end_time": "2026-10-04T16:32:11.644000",
+            "sort_time": 1791124331.644,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_05_117978735.json"
+          },
+          {
+            "episode_id": 117978174,
+            "submission_id": 56721411,
+            "create_time": "2026-10-04T16:21:24.547000",
+            "end_time": "2026-10-04T16:28:52.273000",
+            "sort_time": 1791124132.273,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_06_117978174.json"
+          },
+          {
+            "episode_id": 117977297,
+            "submission_id": 56721411,
+            "create_time": "2026-10-04T16:21:23.561000",
+            "end_time": "2026-10-04T16:25:02.811000",
+            "sort_time": 1791123902.811,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_07_117977297.json"
+          },
+          {
+            "episode_id": 117963587,
+            "submission_id": 56720722,
+            "create_time": "2026-10-04T15:41:29.146000",
+            "end_time": "2026-10-04T15:48:58.356000",
+            "sort_time": 1791121738.356,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_08_117963587.json"
+          },
+          {
+            "episode_id": 117962669,
+            "submission_id": 56720722,
+            "create_time": "2026-10-04T15:41:27.724000",
+            "end_time": "2026-10-04T15:47:03.791000",
+            "sort_time": 1791121623.791,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_09_117962669.json"
+          }
+        ]
+      },
+      {
+        "rank": 4,
+        "team_id": 16623559,
+        "team_name": "DECEM",
+        "leaderboard_score": 2950.4,
+        "folder": "DECEM",
+        "active_submissions": [
+          {
+            "submission_id": 56716576,
+            "date_submitted": "2026-09-30T19:08:29.567000",
+            "public_score": 2950.4
+          },
+          {
+            "submission_id": 56705174,
+            "date_submitted": "2026-09-30T10:46:53.123000",
+            "public_score": 2897.7
+          }
+        ],
+        "selected_episodes": [
+          {
+            "episode_id": 117993772,
+            "submission_id": 56705174,
+            "create_time": "2026-10-04T17:08:49.962000",
+            "end_time": "2026-10-04T17:16:56.601000",
+            "sort_time": 1791127016.601,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_01_117993772.json"
+          },
+          {
+            "episode_id": 117993899,
+            "submission_id": 56705174,
+            "create_time": "2026-10-04T17:08:50.152000",
+            "end_time": "2026-10-04T17:14:52.471000",
+            "sort_time": 1791126892.471,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_02_117993899.json"
+          },
+          {
+            "episode_id": 117992905,
+            "submission_id": 56716576,
+            "create_time": "2026-10-04T17:04:51.175000",
+            "end_time": "2026-10-04T17:12:07.663000",
+            "sort_time": 1791126727.663,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_03_117992905.json"
+          },
+          {
+            "episode_id": 117978857,
+            "submission_id": 56705174,
+            "create_time": "2026-10-04T16:25:31.645000",
+            "end_time": "2026-10-04T16:37:45.682000",
+            "sort_time": 1791124665.682,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_04_117978857.json"
+          },
+          {
+            "episode_id": 117978858,
+            "submission_id": 56705174,
+            "create_time": "2026-10-04T16:25:31.646000",
+            "end_time": "2026-10-04T16:35:08.761000",
+            "sort_time": 1791124508.761,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_05_117978858.json"
+          },
+          {
+            "episode_id": 117978856,
+            "submission_id": 56705174,
+            "create_time": "2026-10-04T16:25:31.642000",
+            "end_time": "2026-10-04T16:30:29.541000",
+            "sort_time": 1791124229.541,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_06_117978856.json"
+          },
+          {
+            "episode_id": 117978174,
+            "submission_id": 56716576,
+            "create_time": "2026-10-04T16:21:24.547000",
+            "end_time": "2026-10-04T16:28:52.273000",
+            "sort_time": 1791124132.273,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_07_117978174.json"
+          },
+          {
+            "episode_id": 117963098,
+            "submission_id": 56716576,
+            "create_time": "2026-10-04T15:41:28.397000",
+            "end_time": "2026-10-04T15:51:38.317000",
+            "sort_time": 1791121898.317,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_08_117963098.json"
+          },
+          {
+            "episode_id": 117963095,
+            "submission_id": 56716576,
+            "create_time": "2026-10-04T15:41:28.397000",
+            "end_time": "2026-10-04T15:48:52.574000",
+            "sort_time": 1791121732.574,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_09_117963095.json"
+          }
+        ]
+      },
+      {
+        "rank": 5,
+        "team_id": 16891902,
+        "team_name": "Farmcore",
+        "leaderboard_score": 2944.7,
+        "folder": "Farmcore",
+        "active_submissions": [
+          {
+            "submission_id": 56721212,
+            "date_submitted": "2026-09-30T23:18:04.803000",
+            "public_score": 2944.7
+          },
+          {
+            "submission_id": 56714020,
+            "date_submitted": "2026-09-30T17:04:58.143000",
+            "public_score": 2827.9
+          }
+        ],
+        "selected_episodes": [
+          {
+            "episode_id": 117993774,
+            "submission_id": 56721212,
+            "create_time": "2026-10-04T17:08:49.964000",
+            "end_time": "2026-10-04T17:15:38.408000",
+            "sort_time": 1791126938.408,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_01_117993774.json"
+          },
+          {
+            "episode_id": 117994040,
+            "submission_id": 56714020,
+            "create_time": "2026-10-04T17:08:50.436000",
+            "end_time": "2026-10-04T17:14:02.390000",
+            "sort_time": 1791126842.39,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_02_117994040.json"
+          },
+          {
+            "episode_id": 117978736,
+            "submission_id": 56721212,
+            "create_time": "2026-10-04T16:25:31.461000",
+            "end_time": "2026-10-04T16:31:25.697000",
+            "sort_time": 1791124285.697,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_03_117978736.json"
+          },
+          {
+            "episode_id": 117978975,
+            "submission_id": 56714020,
+            "create_time": "2026-10-04T16:25:31.795000",
+            "end_time": "2026-10-04T16:31:24.587000",
+            "sort_time": 1791124284.587,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_04_117978975.json"
+          },
+          {
+            "episode_id": 117978982,
+            "submission_id": 56714020,
+            "create_time": "2026-10-04T16:25:31.802000",
+            "end_time": "2026-10-04T16:31:05.674000",
+            "sort_time": 1791124265.674,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_05_117978982.json"
+          },
+          {
+            "episode_id": 117979019,
+            "submission_id": 56714020,
+            "create_time": "2026-10-04T16:25:31.864000",
+            "end_time": "2026-10-04T16:29:51.350000",
+            "sort_time": 1791124191.35,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_06_117979019.json"
+          },
+          {
+            "episode_id": 117963587,
+            "submission_id": 56721212,
+            "create_time": "2026-10-04T15:41:29.146000",
+            "end_time": "2026-10-04T15:48:58.356000",
+            "sort_time": 1791121738.356,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_07_117963587.json"
+          },
+          {
+            "episode_id": 117963095,
+            "submission_id": 56721212,
+            "create_time": "2026-10-04T15:41:28.397000",
+            "end_time": "2026-10-04T15:48:52.574000",
+            "sort_time": 1791121732.574,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_08_117963095.json"
+          },
+          {
+            "episode_id": 117963845,
+            "submission_id": 56714020,
+            "create_time": "2026-10-04T15:41:29.552000",
+            "end_time": "2026-10-04T15:48:31.320000",
+            "sort_time": 1791121711.32,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_09_117963845.json"
+          }
+        ]
+      },
+      {
+        "rank": 6,
+        "team_id": 16624026,
+        "team_name": "有辣条有权",
+        "leaderboard_score": 2920.1,
+        "folder": "有辣条有权",
+        "active_submissions": [
+          {
+            "submission_id": 56721478,
+            "date_submitted": "2026-09-30T23:29:22.773000",
+            "public_score": 2916.7
+          },
+          {
+            "submission_id": 56720933,
+            "date_submitted": "2026-09-30T23:04:13.897000",
+            "public_score": 2856.2
+          }
+        ],
+        "selected_episodes": [
+          {
+            "episode_id": 117993966,
+            "submission_id": 56721478,
+            "create_time": "2026-10-04T17:08:50.337000",
+            "end_time": "2026-10-04T17:20:51.832000",
+            "sort_time": 1791127251.832,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_01_117993966.json"
+          },
+          {
+            "episode_id": 117994109,
+            "submission_id": 56720933,
+            "create_time": "2026-10-04T17:08:50.537000",
+            "end_time": "2026-10-04T17:15:49.105000",
+            "sort_time": 1791126949.105,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_02_117994109.json"
+          },
+          {
+            "episode_id": 117978872,
+            "submission_id": 56721478,
+            "create_time": "2026-10-04T16:25:31.659000",
+            "end_time": "2026-10-04T16:39:11.518000",
+            "sort_time": 1791124751.518,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_03_117978872.json"
+          },
+          {
+            "episode_id": 117978857,
+            "submission_id": 56721478,
+            "create_time": "2026-10-04T16:25:31.645000",
+            "end_time": "2026-10-04T16:37:45.682000",
+            "sort_time": 1791124665.682,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_04_117978857.json"
+          },
+          {
+            "episode_id": 117978943,
+            "submission_id": 56721478,
+            "create_time": "2026-10-04T16:25:31.760000",
+            "end_time": "2026-10-04T16:35:57.288000",
+            "sort_time": 1791124557.288,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_05_117978943.json"
+          },
+          {
+            "episode_id": 117978855,
+            "submission_id": 56721478,
+            "create_time": "2026-10-04T16:25:31.643000",
+            "end_time": "2026-10-04T16:33:55.732000",
+            "sort_time": 1791124435.732,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_06_117978855.json"
+          },
+          {
+            "episode_id": 117979074,
+            "submission_id": 56720933,
+            "create_time": "2026-10-04T16:25:31.946000",
+            "end_time": "2026-10-04T16:32:18.375000",
+            "sort_time": 1791124338.375,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_07_117979074.json"
+          },
+          {
+            "episode_id": 117978735,
+            "submission_id": 56721478,
+            "create_time": "2026-10-04T16:25:31.460000",
+            "end_time": "2026-10-04T16:32:11.644000",
+            "sort_time": 1791124331.644,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_08_117978735.json"
+          },
+          {
+            "episode_id": 117978947,
+            "submission_id": 56720933,
+            "create_time": "2026-10-04T16:25:31.763000",
+            "end_time": "2026-10-04T16:30:33.676000",
+            "sort_time": 1791124233.676,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_09_117978947.json"
+          }
+        ]
+      },
+      {
+        "rank": 7,
+        "team_id": 16736435,
+        "team_name": "CDE",
+        "leaderboard_score": 2907.9,
+        "folder": "CDE",
+        "active_submissions": [
+          {
+            "submission_id": 56721686,
+            "date_submitted": "2026-09-30T23:36:56.817000",
+            "public_score": 2907.9
+          },
+          {
+            "submission_id": 56719268,
+            "date_submitted": "2026-09-30T21:34:22.173000",
+            "public_score": 2827.4
+          }
+        ],
+        "selected_episodes": [
+          {
+            "episode_id": 117993878,
+            "submission_id": 56721686,
+            "create_time": "2026-10-04T17:08:50.106000",
+            "end_time": "2026-10-04T17:16:49.449000",
+            "sort_time": 1791127009.449,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_01_117993878.json"
+          },
+          {
+            "episode_id": 117993882,
+            "submission_id": 56721686,
+            "create_time": "2026-10-04T17:08:50.137000",
+            "end_time": "2026-10-04T17:16:34.508000",
+            "sort_time": 1791126994.508,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_02_117993882.json"
+          },
+          {
+            "episode_id": 117994109,
+            "submission_id": 56721686,
+            "create_time": "2026-10-04T17:08:50.537000",
+            "end_time": "2026-10-04T17:15:49.105000",
+            "sort_time": 1791126949.105,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_03_117994109.json"
+          },
+          {
+            "episode_id": 117993774,
+            "submission_id": 56721686,
+            "create_time": "2026-10-04T17:08:49.964000",
+            "end_time": "2026-10-04T17:15:38.408000",
+            "sort_time": 1791126938.408,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_04_117993774.json"
+          },
+          {
+            "episode_id": 117993965,
+            "submission_id": 56719268,
+            "create_time": "2026-10-04T17:08:50.336000",
+            "end_time": "2026-10-04T17:14:49.870000",
+            "sort_time": 1791126889.87,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_05_117993965.json"
+          },
+          {
+            "episode_id": 117978943,
+            "submission_id": 56719268,
+            "create_time": "2026-10-04T16:25:31.760000",
+            "end_time": "2026-10-04T16:35:57.288000",
+            "sort_time": 1791124557.288,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_06_117978943.json"
+          },
+          {
+            "episode_id": 117978855,
+            "submission_id": 56721686,
+            "create_time": "2026-10-04T16:25:31.643000",
+            "end_time": "2026-10-04T16:33:55.732000",
+            "sort_time": 1791124435.732,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_07_117978855.json"
+          },
+          {
+            "episode_id": 117978736,
+            "submission_id": 56721686,
+            "create_time": "2026-10-04T16:25:31.461000",
+            "end_time": "2026-10-04T16:31:25.697000",
+            "sort_time": 1791124285.697,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_08_117978736.json"
+          },
+          {
+            "episode_id": 117978856,
+            "submission_id": 56719268,
+            "create_time": "2026-10-04T16:25:31.642000",
+            "end_time": "2026-10-04T16:30:29.541000",
+            "sort_time": 1791124229.541,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_09_117978856.json"
+          }
+        ]
+      },
+      {
+        "rank": 8,
+        "team_id": 16628664,
+        "team_name": "Anton Tikhonov",
+        "leaderboard_score": 2866.2,
+        "folder": "Anton Tikhonov",
+        "active_submissions": [
+          {
+            "submission_id": 56718362,
+            "date_submitted": "2026-09-30T20:42:57.013000",
+            "public_score": 2866.2
+          },
+          {
+            "submission_id": 56713726,
+            "date_submitted": "2026-09-30T16:52:04.087000",
+            "public_score": 2857.1
+          }
+        ],
+        "selected_episodes": [
+          {
+            "episode_id": 117993882,
+            "submission_id": 56718362,
+            "create_time": "2026-10-04T17:08:50.137000",
+            "end_time": "2026-10-04T17:16:34.508000",
+            "sort_time": 1791126994.508,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_01_117993882.json"
+          },
+          {
+            "episode_id": 117994103,
+            "submission_id": 56718362,
+            "create_time": "2026-10-04T17:08:50.504000",
+            "end_time": "2026-10-04T17:15:18.959000",
+            "sort_time": 1791126918.959,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_02_117994103.json"
+          },
+          {
+            "episode_id": 117993888,
+            "submission_id": 56713726,
+            "create_time": "2026-10-04T17:08:50.141000",
+            "end_time": "2026-10-04T17:13:49.539000",
+            "sort_time": 1791126829.539,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_03_117993888.json"
+          },
+          {
+            "episode_id": 117978858,
+            "submission_id": 56718362,
+            "create_time": "2026-10-04T16:25:31.646000",
+            "end_time": "2026-10-04T16:35:08.761000",
+            "sort_time": 1791124508.761,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_04_117978858.json"
+          },
+          {
+            "episode_id": 117978870,
+            "submission_id": 56713726,
+            "create_time": "2026-10-04T16:25:31.650000",
+            "end_time": "2026-10-04T16:32:30.073000",
+            "sort_time": 1791124350.073,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_05_117978870.json"
+          },
+          {
+            "episode_id": 117978873,
+            "submission_id": 56718362,
+            "create_time": "2026-10-04T16:25:31.660000",
+            "end_time": "2026-10-04T16:30:29.423000",
+            "sort_time": 1791124229.423,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_06_117978873.json"
+          },
+          {
+            "episode_id": 117963720,
+            "submission_id": 56718362,
+            "create_time": "2026-10-04T15:41:29.391000",
+            "end_time": "2026-10-04T15:51:56.293000",
+            "sort_time": 1791121916.293,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_07_117963720.json"
+          },
+          {
+            "episode_id": 117963723,
+            "submission_id": 56713726,
+            "create_time": "2026-10-04T15:41:29.392000",
+            "end_time": "2026-10-04T15:48:18.298000",
+            "sort_time": 1791121698.298,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_08_117963723.json"
+          },
+          {
+            "episode_id": 117948379,
+            "submission_id": 56713726,
+            "create_time": "2026-10-04T15:01:27.655000",
+            "end_time": "2026-10-04T15:12:22.761000",
+            "sort_time": 1791119542.761,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_09_117948379.json"
+          }
+        ]
+      },
+      {
+        "rank": 9,
+        "team_id": 16654697,
+        "team_name": "KawattaTaido",
+        "leaderboard_score": 2855.5,
+        "folder": "KawattaTaido",
+        "active_submissions": [
+          {
+            "submission_id": 56721382,
+            "date_submitted": "2026-09-30T23:25:15.443000",
+            "public_score": 2855.5
+          },
+          {
+            "submission_id": 56720152,
+            "date_submitted": "2026-09-30T22:24:17.437000",
+            "public_score": 2815.4
+          }
+        ],
+        "selected_episodes": [
+          {
+            "episode_id": 117993897,
+            "submission_id": 56721382,
+            "create_time": "2026-10-04T17:08:50.149000",
+            "end_time": "2026-10-04T17:14:20.852000",
+            "sort_time": 1791126860.852,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_01_117993897.json"
+          },
+          {
+            "episode_id": 117993888,
+            "submission_id": 56721382,
+            "create_time": "2026-10-04T17:08:50.141000",
+            "end_time": "2026-10-04T17:13:49.539000",
+            "sort_time": 1791126829.539,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_02_117993888.json"
+          },
+          {
+            "episode_id": 117994105,
+            "submission_id": 56720152,
+            "create_time": "2026-10-04T17:08:50.533000",
+            "end_time": "2026-10-04T17:13:04.326000",
+            "sort_time": 1791126784.326,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_03_117994105.json"
+          },
+          {
+            "episode_id": 117993980,
+            "submission_id": 56721382,
+            "create_time": "2026-10-04T17:08:50.351000",
+            "end_time": "2026-10-04T17:11:52.612000",
+            "sort_time": 1791126712.612,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_04_117993980.json"
+          },
+          {
+            "episode_id": 117978870,
+            "submission_id": 56720152,
+            "create_time": "2026-10-04T16:25:31.650000",
+            "end_time": "2026-10-04T16:32:30.073000",
+            "sort_time": 1791124350.073,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_05_117978870.json"
+          },
+          {
+            "episode_id": 117979066,
+            "submission_id": 56720152,
+            "create_time": "2026-10-04T16:25:31.938000",
+            "end_time": "2026-10-04T16:31:58.590000",
+            "sort_time": 1791124318.59,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_06_117979066.json"
+          },
+          {
+            "episode_id": 117978869,
+            "submission_id": 56721382,
+            "create_time": "2026-10-04T16:25:31.657000",
+            "end_time": "2026-10-04T16:30:29.241000",
+            "sort_time": 1791124229.241,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_07_117978869.json"
+          },
+          {
+            "episode_id": 117963920,
+            "submission_id": 56720152,
+            "create_time": "2026-10-04T15:41:29.659000",
+            "end_time": "2026-10-04T15:49:48.270000",
+            "sort_time": 1791121788.27,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_08_117963920.json"
+          },
+          {
+            "episode_id": 117963730,
+            "submission_id": 56721382,
+            "create_time": "2026-10-04T15:41:29.399000",
+            "end_time": "2026-10-04T15:47:00.425000",
+            "sort_time": 1791121620.425,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_09_117963730.json"
+          }
+        ]
+      },
+      {
+        "rank": 10,
+        "team_id": 16730612,
+        "team_name": "Unknown Mother-Goose",
+        "leaderboard_score": 2849.9,
+        "folder": "Unknown Mother-Goose",
+        "active_submissions": [
+          {
+            "submission_id": 56721459,
+            "date_submitted": "2026-09-30T23:28:25.240000",
+            "public_score": 2849.9
+          },
+          {
+            "submission_id": 56721201,
+            "date_submitted": "2026-09-30T23:17:39.747000",
+            "public_score": 2771.5
+          }
+        ],
+        "selected_episodes": [
+          {
+            "episode_id": 117994216,
+            "submission_id": 56721201,
+            "create_time": "2026-10-04T17:08:50.681000",
+            "end_time": "2026-10-04T17:18:26.887000",
+            "sort_time": 1791127106.887,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_01_117994216.json"
+          },
+          {
+            "episode_id": 117994004,
+            "submission_id": 56721201,
+            "create_time": "2026-10-04T17:08:50.377000",
+            "end_time": "2026-10-04T17:16:11.042000",
+            "sort_time": 1791126971.042,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_02_117994004.json"
+          },
+          {
+            "episode_id": 117994112,
+            "submission_id": 56721201,
+            "create_time": "2026-10-04T17:08:50.538000",
+            "end_time": "2026-10-04T17:16:01.329000",
+            "sort_time": 1791126961.329,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_03_117994112.json"
+          },
+          {
+            "episode_id": 117993899,
+            "submission_id": 56721459,
+            "create_time": "2026-10-04T17:08:50.152000",
+            "end_time": "2026-10-04T17:14:52.471000",
+            "sort_time": 1791126892.471,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_04_117993899.json"
+          },
+          {
+            "episode_id": 117978872,
+            "submission_id": 56721459,
+            "create_time": "2026-10-04T16:25:31.659000",
+            "end_time": "2026-10-04T16:39:11.518000",
+            "sort_time": 1791124751.518,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_05_117978872.json"
+          },
+          {
+            "episode_id": 117979178,
+            "submission_id": 56721201,
+            "create_time": "2026-10-04T16:25:32.075000",
+            "end_time": "2026-10-04T16:33:34.150000",
+            "sort_time": 1791124414.15,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_06_117979178.json"
+          },
+          {
+            "episode_id": 117964137,
+            "submission_id": 56721201,
+            "create_time": "2026-10-04T15:45:25.848000",
+            "end_time": "2026-10-04T15:50:41.347000",
+            "sort_time": 1791121841.347,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_07_117964137.json"
+          },
+          {
+            "episode_id": 117963731,
+            "submission_id": 56721459,
+            "create_time": "2026-10-04T15:41:29.400000",
+            "end_time": "2026-10-04T15:49:25.817000",
+            "sort_time": 1791121765.817,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_08_117963731.json"
+          },
+          {
+            "episode_id": 117963582,
+            "submission_id": 56721459,
+            "create_time": "2026-10-04T15:41:29.142000",
+            "end_time": "2026-10-04T15:48:05.941000",
+            "sort_time": 1791121685.941,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_09_117963582.json"
+          }
+        ]
+      },
+      {
+        "rank": 11,
+        "team_id": 16623716,
+        "team_name": "tetsuya & yuanzhe & guoqin",
+        "leaderboard_score": 2843.1,
+        "folder": "tetsuya & yuanzhe & guoqin",
+        "active_submissions": [
+          {
+            "submission_id": 56719821,
+            "date_submitted": "2026-09-30T22:03:35.073000",
+            "public_score": 2843.1
+          },
+          {
+            "submission_id": 56717609,
+            "date_submitted": "2026-09-30T20:00:30.107000",
+            "public_score": 2724.4
+          }
+        ],
+        "selected_episodes": [
+          {
+            "episode_id": 117994049,
+            "submission_id": 56717609,
+            "create_time": "2026-10-04T17:08:50.442000",
+            "end_time": "2026-10-04T17:21:21.410000",
+            "sort_time": 1791127281.41,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_01_117994049.json"
+          },
+          {
+            "episode_id": 117993596,
+            "submission_id": 56717609,
+            "create_time": "2026-10-04T17:08:49.690000",
+            "end_time": "2026-10-04T17:16:51.402000",
+            "sort_time": 1791127011.402,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_02_117993596.json"
+          },
+          {
+            "episode_id": 117994060,
+            "submission_id": 56717609,
+            "create_time": "2026-10-04T17:08:50.447000",
+            "end_time": "2026-10-04T17:15:48.394000",
+            "sort_time": 1791126948.394,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_03_117994060.json"
+          },
+          {
+            "episode_id": 117993975,
+            "submission_id": 56719821,
+            "create_time": "2026-10-04T17:08:50.346000",
+            "end_time": "2026-10-04T17:14:42.556000",
+            "sort_time": 1791126882.556,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_04_117993975.json"
+          },
+          {
+            "episode_id": 117993897,
+            "submission_id": 56719821,
+            "create_time": "2026-10-04T17:08:50.149000",
+            "end_time": "2026-10-04T17:14:20.852000",
+            "sort_time": 1791126860.852,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_05_117993897.json"
+          },
+          {
+            "episode_id": 117978950,
+            "submission_id": 56719821,
+            "create_time": "2026-10-04T16:25:31.768000",
+            "end_time": "2026-10-04T16:31:52.203000",
+            "sort_time": 1791124312.203,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_06_117978950.json"
+          },
+          {
+            "episode_id": 117979024,
+            "submission_id": 56717609,
+            "create_time": "2026-10-04T16:25:31.871000",
+            "end_time": "2026-10-04T16:31:04.687000",
+            "sort_time": 1791124264.687,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_07_117979024.json"
+          },
+          {
+            "episode_id": 117963723,
+            "submission_id": 56719821,
+            "create_time": "2026-10-04T15:41:29.392000",
+            "end_time": "2026-10-04T15:48:18.298000",
+            "sort_time": 1791121698.298,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_08_117963723.json"
+          },
+          {
+            "episode_id": 117963796,
+            "submission_id": 56719821,
+            "create_time": "2026-10-04T15:41:29.479000",
+            "end_time": "2026-10-04T15:47:16.494000",
+            "sort_time": 1791121636.494,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_09_117963796.json"
+          }
+        ]
+      },
+      {
+        "rank": 12,
+        "team_id": 16714162,
+        "team_name": "MarvinTMB",
+        "leaderboard_score": 2827.8,
+        "folder": "MarvinTMB",
+        "active_submissions": [
+          {
+            "submission_id": 56722171,
+            "date_submitted": "2026-09-30T23:53:20.190000",
+            "public_score": 2827.8
+          },
+          {
+            "submission_id": 56721015,
+            "date_submitted": "2026-09-30T23:08:46.550000",
+            "public_score": 2796.6
+          }
+        ],
+        "selected_episodes": [
+          {
+            "episode_id": 117994222,
+            "submission_id": 56721015,
+            "create_time": "2026-10-04T17:08:50.687000",
+            "end_time": "2026-10-04T17:18:24.507000",
+            "sort_time": 1791127104.507,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_01_117994222.json"
+          },
+          {
+            "episode_id": 117993965,
+            "submission_id": 56722171,
+            "create_time": "2026-10-04T17:08:50.336000",
+            "end_time": "2026-10-04T17:14:49.870000",
+            "sort_time": 1791126889.87,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_02_117993965.json"
+          },
+          {
+            "episode_id": 117993998,
+            "submission_id": 56721015,
+            "create_time": "2026-10-04T17:08:50.369000",
+            "end_time": "2026-10-04T17:14:47.952000",
+            "sort_time": 1791126887.952,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_03_117993998.json"
+          },
+          {
+            "episode_id": 117994003,
+            "submission_id": 56722171,
+            "create_time": "2026-10-04T17:08:50.376000",
+            "end_time": "2026-10-04T17:13:42.429000",
+            "sort_time": 1791126822.429,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_04_117994003.json"
+          },
+          {
+            "episode_id": 117993970,
+            "submission_id": 56722171,
+            "create_time": "2026-10-04T17:08:50.341000",
+            "end_time": "2026-10-04T17:12:46.146000",
+            "sort_time": 1791126766.146,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_05_117993970.json"
+          },
+          {
+            "episode_id": 117978945,
+            "submission_id": 56722171,
+            "create_time": "2026-10-04T16:25:31.762000",
+            "end_time": "2026-10-04T16:31:47.391000",
+            "sort_time": 1791124307.391,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_06_117978945.json"
+          },
+          {
+            "episode_id": 117978975,
+            "submission_id": 56721015,
+            "create_time": "2026-10-04T16:25:31.795000",
+            "end_time": "2026-10-04T16:31:24.587000",
+            "sort_time": 1791124284.587,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_07_117978975.json"
+          },
+          {
+            "episode_id": 117978947,
+            "submission_id": 56722171,
+            "create_time": "2026-10-04T16:25:31.763000",
+            "end_time": "2026-10-04T16:30:33.676000",
+            "sort_time": 1791124233.676,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_08_117978947.json"
+          },
+          {
+            "episode_id": 117963796,
+            "submission_id": 56722171,
+            "create_time": "2026-10-04T15:41:29.479000",
+            "end_time": "2026-10-04T15:47:16.494000",
+            "sort_time": 1791121636.494,
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC",
+            "file": "replay_09_117963796.json"
+          }
+        ]
+      }
+    ]
+  }
+}
